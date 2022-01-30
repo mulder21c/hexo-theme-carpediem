@@ -1,0 +1,24 @@
+# Header
+menu:
+
+# Favicon
+favicon:
+
+# Profile
+profile:
+  gravatar:
+  social:
+    github:
+    facebook:
+    linkedin:
+    instagram:
+    twitter:
+    rss: /rss.xml
+
+# Analytics
+analytics:
+  google:
+
+# Comments
+disqus:
+  shortname:
