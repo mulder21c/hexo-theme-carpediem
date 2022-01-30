@@ -1,0 +1,16 @@
+{
+  "plugins": ["@prettier/plugin-pug"],
+  "pluginSearchDirs": ["./node_modules"],
+  "printWidth": 100,
+  "pugAttributeSeparator": "none",
+  "overrides": [
+    {
+      "files": "**/*.pug",
+      "options": {
+        "plugins": [
+          "@prettier/plugin-pug"
+        ]
+      }
+    }
+  ]
+}
