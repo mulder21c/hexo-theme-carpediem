@@ -1,7 +1,7 @@
 {
   "plugins": ["@prettier/plugin-pug"],
   "pluginSearchDirs": ["./node_modules"],
-  "printWidth": 100,
+  "printWidth": 80,
   "pugAttributeSeparator": "none",
   "overrides": [
     {
