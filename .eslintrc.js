@@ -9,7 +9,7 @@ module.exports = {
     parser: "@babel/eslint-parser",
   },
   extends: ["plugin:prettier/recommended"],
-  plugins: ["prettier"],
+  plugins: ["pug", "prettier"],
   rules: {
     "prettier/prettier": "error",
   },
