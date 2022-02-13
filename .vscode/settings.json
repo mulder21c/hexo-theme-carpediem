@@ -1,6 +1,12 @@
 {
   "puglint.enable": true,
-  "cSpell.words": ["amorfati"],
+  "cSpell.words": [
+    "amorfati",
+    "commitlint",
+    "Josa",
+    "lintfix",
+    "prettierignore"
+  ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": [
     "html",
