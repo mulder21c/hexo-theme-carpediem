@@ -1,0 +1,19 @@
+-
+  const getPageTitle = (page, config) => {
+    const { title, year, month, tag, category } = page;
+    const { title: siteTitle, language } = config;
+
+    if (is_post()) return title;
+    if (is_archive()) {
+      const date = year
+        ? dateFormat(
+            new Date(`${year}-${month || ''}`),
+            month ? `yyyy.LL` : `yyyy`
+          )
+        : ``;
+      return _p(`title.archives`, date);
+    }
+    // getJosa is only for Korean
+    if (is_tag()) return _p(`title.tag`, tag, getJosa(tag, '와'));
+    return siteTitle;
+  };
