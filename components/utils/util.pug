@@ -1,23 +1,20 @@
--
-  const getPageTitle = (page, config) => {
+- const stripFileName = (url) => url.replace(/([^\\\/]+)$/g, ``);
+
+mixin pageTitle
+  -
     const { title, year, month, tag, category } = page;
     const { title: siteTitle, language } = config;
-
-    if (is_post()) return title;
-    if (is_archive()) {
-      const date = year
-        ? dateFormat(
-            new Date(`${year}-${month || ''}`),
-            month ? `yyyy.LL` : `yyyy`
-          )
-        : ``;
-      return _p(`title.archives`, date);
-    }
-    // getJosa is only for Korean
-    if (is_tag()) return _p(`title.tag`, tag, getJosa(tag, '와'));
-    return siteTitle;
-  };
-  const stripFileName = url => url.replace(/([^\\\/]+)$/g, ``);
+    let pageTitle = siteTitle;
+    const date = year
+      ? dateFormat(
+          new Date(`${year}-${month || ''}`),
+          month ? `yyyy.LL` : `yyyy`
+        )
+      : ``;
+    if (is_home()) pageTitle = title;
+    if (is_archive()) pageTitle = _p(`title.archives`, date);
+    if (is_tag()) pageTitle = _p(`title.tag`, tag, getJosa(tag, '와'));
+  title= pageTitle
 
 mixin pageSequenceLink
   - const { prev_link, prev, next_link, next } = page;
