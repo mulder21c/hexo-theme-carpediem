@@ -17,10 +17,12 @@ mixin pageTitle
   title= pageTitle
 
 mixin pageSequenceLink
-  - const { prev_link, prev, next_link, next } = page;
-  if (prev_link || prev.permalink)
-    - const hrefURL = prev_link ? `${config.url}/${prev_link}` : prev.permalink;
-    link(rel="prev" href=stripFileName(hrefURL))
-  if (next_link || next.permalink)
-    - const hrefURL = next_link ? `${config.url}/${next_link}` : next.permalink;
-    link(rel="next" href=stripFileName(hrefURL))
+  -
+    const { prev_link, prev, next_link, next } = page;
+    const prevLink = prev_link ? `${config.url}/${prev_link}` : prev.permalink;
+    const nextLink = next_link ? `${config.url}/${next_link}` : next.permalink;
+
+  if (prevLink)
+    link(rel="prev" href=stripFileName(prevLink))
+  if (nextLink)
+    link(rel="next" href=stripFileName(nextLink))
