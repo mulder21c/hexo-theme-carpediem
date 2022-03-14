@@ -26,3 +26,13 @@ mixin pageSequenceLink
     link(rel="prev" href=stripFileName(prevLink))
   if (nextLink)
     link(rel="next" href=stripFileName(nextLink))
+
+mixin preLoadImage
+  - const imageObj = representativeImage();
+  if (imageObj)
+    link(
+      rel="preload"
+      as="image"
+      href=full_url(imageObj.path)
+      crossorigin="anonymous"
+    )

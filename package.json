@@ -47,6 +47,7 @@
     "postcss-nested": "^5.0.6",
     "postcss-preset-env": "^7.3.0",
     "prettier": "^2.5.1",
+    "probe-image-size": "^7.2.3",
     "pug-lint": "^2.6.0",
     "sass": "^1.49.7",
     "stylelint": "^14.3.0",
