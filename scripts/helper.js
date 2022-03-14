@@ -1,17 +1,41 @@
+/**
+ * @typedef {Object} ImageProbe
+ * @property {string} path
+ * @property {number} width
+ * @property {number} height
+ * @property {string} type
+ * @property {string} mime
+ * @property {string} wUnits
+ * @property {string} hUnits
+ */
+
 const dateFormat = require("date-fns/format");
 const { getJosaPicker } = require("josa");
 const probe = require("probe-image-size");
 const fs = require("fs");
 const path = require("path");
 
+/**
+ * @desc Return the result of executing dateFormat from date-fns
+ * @return {string}
+ */
 hexo.extend.helper.register(`dateFormat`, function (...arguments) {
   return dateFormat.call(null, ...arguments);
 });
 
+/**
+ * @desc Return the result of executing getJosaPicker (for Korean)
+ * @return {string}
+ */
 hexo.extend.helper.register(`getJosa`, (word, josa) => {
   return getJosaPicker(josa)(word);
 });
 
+/**
+ * @desc Return fully url from relative/absolute URL
+ * @param {String} url
+ * @return {String}
+ */
 hexo.extend.helper.register(`full_url`, (url) => {
   if (!url) return;
   const { origin, protocol } = new URL(hexo.config.url);
@@ -30,6 +54,10 @@ hexo.extend.helper.register(`full_url`, (url) => {
   return origin + url;
 });
 
+/**
+ * @desc Get representative image object
+ * @return {ImageProbe}
+ */
 hexo.extend.helper.register(`representativeImage`, function () {
   const { page, theme } = this;
   const hero = page?.hero || theme?.hero;
