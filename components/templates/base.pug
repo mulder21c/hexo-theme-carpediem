@@ -10,5 +10,7 @@ html(lang=config.language)
     +pageTitle
     +pageSequenceLink
     +preLoadImage
+    if theme.favicon
+      link(rel="shortcut icon" href=url_for(theme.favicon))
     link(rel="stylesheet" href=url_for("/css/index.css"))
   body
