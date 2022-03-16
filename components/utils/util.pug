@@ -1,9 +1,9 @@
 - const stripFileName = (url) => url.replace(/([^\\\/]+)$/g, ``);
-
-mixin pageTitle
-  -
+-
+  const getTitle = () => {
     const { title, year, month, tag, category } = page;
     const { title: siteTitle, language } = config;
+    console.log(`getTitle`, title, year, month, tag, category, siteTitle, language);
     let pageTitle = siteTitle;
     const date = year
       ? dateFormat(
@@ -11,28 +11,9 @@ mixin pageTitle
           month ? `yyyy.LL` : `yyyy`
         )
       : ``;
-    if (is_home()) pageTitle = title;
+    if (is_home()) pageTitle = title || siteTitle;
+    if (is_post()) pageTitle = title || siteTitle;
     if (is_archive()) pageTitle = _p(`title.archives`, date);
     if (is_tag()) pageTitle = _p(`title.tag`, tag, getJosa(tag, '와'));
-  title= pageTitle
-
-mixin pageSequenceLink
-  -
-    const { prev_link, prev, next_link, next } = page;
-    const prevLink = prev_link ? `${config.url}/${prev_link}` : prev.permalink;
-    const nextLink = next_link ? `${config.url}/${next_link}` : next.permalink;
-
-  if (prevLink)
-    link(rel="prev" href=stripFileName(prevLink))
-  if (nextLink)
-    link(rel="next" href=stripFileName(nextLink))
-
-mixin preLoadImage
-  - const imageObj = representativeImage();
-  if (imageObj)
-    link(
-      rel="preload"
-      as="image"
-      href=full_url(imageObj.path)
-      crossorigin="anonymous"
-    )
+    return pageTitle;
+  };
