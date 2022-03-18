@@ -21,3 +21,16 @@ mixin preLoadImage
       href=full_url(imageObj.path)
       crossorigin="anonymous"
     )
+
+mixin openGraph(options)
+  -
+    const defaultOptions = {
+      title: getTitle(),
+      type: `blog`,
+      url: stripFileName(url),
+    };
+    const properties = {
+      ...defaultOptions,
+      ...options,
+    };
+  | !{ open_graph(properties) }

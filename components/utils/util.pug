@@ -3,7 +3,6 @@
   const getTitle = () => {
     const { title, year, month, tag, category } = page;
     const { title: siteTitle, language } = config;
-    console.log(`getTitle`, title, year, month, tag, category, siteTitle, language);
     let pageTitle = siteTitle;
     const date = year
       ? dateFormat(
