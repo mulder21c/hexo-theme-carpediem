@@ -34,3 +34,7 @@ mixin openGraph(options)
       ...options,
     };
   | !{ open_graph(properties) }
+
+mixin siteVerification
+  each val, prop in (theme.site_verification || [])
+    meta(name=prop content=val)
