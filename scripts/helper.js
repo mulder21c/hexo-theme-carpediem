@@ -58,14 +58,14 @@ hexo.extend.helper.register(`full_url`, (url) => {
  * @desc Get representative image object
  * @return {ImageProbe}
  */
-hexo.extend.helper.register(`representativeImage`, function () {
-  const { page, theme } = this;
-  const hero = page?.hero || theme?.hero;
+hexo.extend.helper.register(`representativeImage`, function (page) {
+  const { theme } = this;
+  const hero = page?.hero || theme.hero || undefined;
   if (!hero) return null;
-  const filePath = path.join(__dirname, `../../../source`, hero?.url);
+  const filePath = path.join(__dirname, `../../../source`, hero);
   const dimention = probe.sync(fs.readFileSync(filePath));
   return {
-    path: hero?.url,
+    path: hero,
     ...dimention,
   };
 });

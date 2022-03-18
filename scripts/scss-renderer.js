@@ -1,5 +1,6 @@
 const path = require("path");
 const sass = require("sass");
+const glob = require("fast-glob");
 const postcss = require("postcss");
 const cssnano = require("cssnano");
 const postcssNested = require("postcss-nested");
@@ -11,18 +12,25 @@ hexo.extend.renderer.register(
   `scss`,
   `css`,
   async (data, options) => {
-    /**
-     * Compiling SCSS
-     */
-    const compiledSCSS = sass.compileString(data?.text || ``, {
-      loadPaths: [path.resolve(rootPath, `./source/css`)],
-      sourceMap: isDevServer,
-      sourceMapIncludeSources: true,
-      style: `compressed`,
-    });
-    const compiledCSS = compiledSCSS.css.toString();
+    // for importing sass from components directory
+    const prependData = glob
+      .sync([path.resolve(rootPath, `components/**/*.scss`)])
+      .reduce((prepend, path) => {
+        return `${prepend}@import "${path}";\n`;
+      }, ``);
+
+    const { css: $css, sourceMap: $sourceMap } = sass.compileString(
+      `${prependData}${data.text}` || ``,
+      {
+        loadPaths: [path.resolve(rootPath, `./components`)],
+        sourceMap: isDevServer,
+        sourceMapIncludeSources: true,
+        style: `compressed`,
+      }
+    );
+
     const sourceMapHash = (
-      Buffer.from(JSON.stringify(compiledSCSS.sourceMap), "utf8") || ""
+      Buffer.from(JSON.stringify($sourceMap), "utf8") || ""
     ).toString("base64");
     const sourceMapComment = `/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${sourceMapHash} */`;
 
@@ -35,7 +43,7 @@ hexo.extend.renderer.register(
         preset: `default`,
         plugins: [postcssNested],
       }),
-    ]).process(compiledCSS, { from: data.path });
+    ]).process($css.toString(), { from: data.path });
 
     const result = `${postProcessed.css}\n\n${sourceMapComment}`;
     return result;
