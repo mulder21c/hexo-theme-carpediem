@@ -38,3 +38,8 @@ mixin openGraph(options)
 mixin siteVerification
   each val, prop in (theme.site_verification || [])
     meta(name=prop content=val)
+
+mixin styles(paths = [])
+  link(rel="stylesheet" href=url_for("/css/index.css"))
+  each path in paths
+    link(rel="stylesheet" href=path)
