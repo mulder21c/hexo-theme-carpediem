@@ -13,7 +13,7 @@ mixin pageSequenceLink
     link(rel="next" href=stripFileName(nextLink))
 
 mixin preLoadImage
-  - const imageObj = representativeImage();
+  - const imageObj = representativeImage(page);
   if (imageObj)
     link(
       rel="preload"
@@ -43,3 +43,31 @@ mixin styles(paths = [])
   link(rel="stylesheet" href=url_for("/css/index.css"))
   each path in paths
     link(rel="stylesheet" href=path)
+
+mixin jsonLD
+  -
+    const jsonLdProps = getJsonLdProps(page);
+    const currPageType = is_post()
+      ? `post`
+      : (is_archive() || is_category() || is_tag())
+        ? `collection`
+        : `home`;
+
+    const jsonLD = {
+      "@context": `http://schema.org`,
+      ...jsonLdProps.getType(currPageType),
+      ...jsonLdProps.getName(),
+      ...jsonLdProps.getUrl(),
+      ...jsonLdProps.getDescription(),
+      ...jsonLdProps.getCopyRightHolder(),
+      ...jsonLdProps.getImage(),
+      ...jsonLdProps.getAuthor(),
+      ...([`post`].includes(currPageType) ? jsonLdProps.getPostLD() : {}),
+      ...(
+        [`collection`, `home`].includes(currPageType)
+          ? jsonLdProps.getItemList()
+          : undefined
+      ),
+    };
+  script(type="application/ld+json")
+    | !{ JSON.stringify(jsonLD) }

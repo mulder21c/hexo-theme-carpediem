@@ -16,3 +16,119 @@
     if (is_tag()) pageTitle = _p(`title.tag`, tag, getJosa(tag, '와'));
     return pageTitle;
   };
+-
+  const getJsonLdProps = (page) => {
+    // url is from global variable in Hexo
+    const $url = url;
+    // config is from global variable in Hexo
+    const {
+      description: $description,
+      author: $author,
+      profile_url: $profileUrl,
+    } = config;
+    const {
+      title: $title,
+      subtitle: $subtitle,
+      tags: $tags,
+      date: $date,
+      updated: $updated,
+      posts: $posts,
+    } = page;
+    const getDataType = type => {
+      if (!type) return `Blog`;
+      return {
+        home: `Blog`,
+        post: `BlogPosting`,
+        collection: `CollectionPage`,
+      }[type];
+    };
+    const representImg = representativeImage(page);
+
+    const getType = type => ({ "@type": getDataType(type) });
+    const getName = () => ({ "@name": getTitle() });
+    const getUrl = () => ({ "url": stripFileName($url) });
+    const getDescription = () => ({ "description": $description || undefined })
+    const getCopyRightHolder = () => (
+      {
+        "copyrightHolder":
+          $author ? { "@type": "Person",  "name": $author } : undefined
+      }
+    );
+    const getImage = () => (
+      {
+        "image": representImg
+          ? {
+              "@type": "imageObject",
+              "url": full_url(representImg.path),
+              "width": `${representImg.width}${representImg.wUnits}`,
+              "height": `${representImg.height}${representImg.hUnits}`,
+            }
+          : undefined,
+      }
+    );
+    const getAuthor = () => {
+      if (!$author) return undefined;
+      return {
+        "author": {
+          "@type": "Person",
+          "name": $author,
+          "image": theme.profile.gravatar
+              ? {
+                  "@type": "imageObject",
+                  "url": full_url(theme.profile.gravatar),
+                }
+              : undefined,
+          "url": $profileUrl || undefined,
+        }
+      };
+    };
+    const getHeadline = () => ({ "headline": $title || undefined});
+    const getAltHeadline = () => ({
+      "alternativeHeadline": $subtitle || undefined,
+    });
+    const getKeywords = () => ({
+      "keywords": ($tags || []).map(tag => tag.name).join(', ') || undefined,
+    });
+    const getDateCreated = () => ({ "dateCreated": $date || undefined });
+    const getDateModified = () => ({ "dateModified": $updated || undefined });
+    const getPostLD = () => {
+      return {
+        ...getType(`post`),
+        ...getName(),
+        ...getUrl(),
+        ...getDescription(),
+        ...getCopyRightHolder(),
+        ...getImage(),
+        ...getAuthor(),
+        ...getHeadline(),
+        ...getAltHeadline(),
+        ...getKeywords(),
+        ...getDateCreated(),
+        ...getDateModified(),
+      };
+    };
+    const getItemList = () => {
+      return {
+        "@type": "CollectionPage",
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": $posts.map(post => {
+            const jsonLdProps = getJsonLdProps(post);
+            return jsonLdProps.getPostLD();
+          }),
+        }
+      };
+    };
+
+    return {
+      getType,
+      getName,
+      getUrl,
+      getDescription,
+      getCopyRightHolder,
+      getImage,
+      getAuthor,
+      getPostLD,
+      getItemList,
+    };
+  };
