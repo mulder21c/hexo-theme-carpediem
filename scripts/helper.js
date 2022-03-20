@@ -14,6 +14,13 @@ const { getJosaPicker } = require("josa");
 const probe = require("probe-image-size");
 const fs = require("fs");
 const path = require("path");
+const fetch = require("sync-fetch");
+
+const prependHttpProtocol = (url) => {
+  const hasHttpProtocol = /https?:\/\//i.test(url);
+  const { protocol } = new URL(hexo.config.url);
+  return hasHttpProtocol ? url : `${protocol}${url}`;
+};
 
 /**
  * @desc Return the result of executing dateFormat from date-fns
@@ -62,10 +69,26 @@ hexo.extend.helper.register(`representativeImage`, function (page) {
   const { theme } = this;
   const hero = page?.hero || theme.hero || undefined;
   if (!hero) return null;
-  const filePath = path.join(__dirname, `../../../source`, hero);
-  const dimention = probe.sync(fs.readFileSync(filePath));
-  return {
-    path: hero,
-    ...dimention,
-  };
+  const isExternal = /^((https?):)?\/\//i.test(hero);
+  if (isExternal) {
+    try {
+      const image = fetch(prependHttpProtocol(hero));
+      const dimension = probe.sync(image.buffer());
+      return {
+        path: hero,
+        ...dimension,
+      };
+    } catch (error) {
+      return {
+        path: hero,
+      };
+    }
+  } else {
+    const filePath = path.join(__dirname, `../../../source`, hero);
+    const dimension = probe.sync(fs.readFileSync(filePath));
+    return {
+      path: hero,
+      ...dimension,
+    };
+  }
 });

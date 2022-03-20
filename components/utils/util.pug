@@ -60,8 +60,12 @@
           ? {
               "@type": "imageObject",
               "url": full_url(representImg.path),
-              "width": `${representImg.width}${representImg.wUnits}`,
-              "height": `${representImg.height}${representImg.hUnits}`,
+              "width": representImg.width
+                ? `${representImg.width}${representImg.wUnits}`
+                : undefined,
+              "height": representImg.height
+                ? `${representImg.height}${representImg.hUnits}`
+                : undefined,
             }
           : undefined,
       }
