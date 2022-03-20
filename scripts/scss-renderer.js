@@ -19,10 +19,18 @@ hexo.extend.renderer.register(
         return `${prepend}@import "${path}";\n`;
       }, ``);
 
+    const sourceText = data.text.replace(
+      /(\/\*\*)\s(automated imports).+(?=\*\*\/)(\*\*\/)/,
+      prependData
+    );
+
     const { css: $css, sourceMap: $sourceMap } = sass.compileString(
-      `${prependData}${data.text}` || ``,
+      sourceText || ``,
       {
-        loadPaths: [path.resolve(rootPath, `./components`)],
+        loadPaths: [
+          path.resolve(rootPath, `./components`),
+          path.resolve(rootPath, `./source/css`),
+        ],
         sourceMap: isDevServer,
         sourceMapIncludeSources: true,
         style: `compressed`,
