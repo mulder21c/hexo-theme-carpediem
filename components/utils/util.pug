@@ -112,7 +112,7 @@
       };
     };
     const getItemList = () => {
-      return {
+      return $posts ? {
         "@type": "CollectionPage",
         "mainEntity": {
           "@type": "ItemList",
@@ -121,7 +121,7 @@
             return jsonLdProps.getPostLD();
           }),
         }
-      };
+      } : undefined;
     };
 
     return {

@@ -30,7 +30,7 @@ hexo.extend.renderer.register(
     );
 
     const sourceMapHash = (
-      Buffer.from(JSON.stringify($sourceMap), "utf8") || ""
+      $sourceMap ? Buffer.from(JSON.stringify($sourceMap), "utf8") || "" : ""
     ).toString("base64");
     const sourceMapComment = `/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${sourceMapHash} */`;
 
