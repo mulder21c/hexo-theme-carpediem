@@ -44,6 +44,20 @@ mixin styles(paths = [])
   each path in paths
     link(rel="stylesheet" href=path)
 
+mixin analytics
+  if theme.analytics.google
+    script(
+      async
+      src=`https://www.googletagmanager.com/gtag/js?id=${theme.analytics.google}`
+    )
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "#{theme.analytics.google}");
+
 mixin jsonLD
   -
     const jsonLdProps = getJsonLdProps(page);
