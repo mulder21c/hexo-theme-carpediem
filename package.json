@@ -11,7 +11,8 @@
     "lint:style": "stylelint \"**/*.{css,scss,sass}\"",
     "lint:prettier": "prettier --check . --ignore-path ./.prettierignore",
     "lint": "yarn lint:js && yarn lint:pug && yarn lint:pug && yarn lint:style && yarn lint:prettier",
-    "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix"
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
+    "postinstall": "copy-files-from-to"
   },
   "keywords": [],
   "author": {
@@ -25,6 +26,15 @@
     "*.{css,scss,sass,html}": "stylelint",
     "*.**": "prettier --check --ignore-unknown"
   },
+  "copyFiles": [
+    {
+      "from": "./pug.config.js",
+      "to": "../../pug.config.js"
+    }
+  ],
+  "copyFilesSettings": {
+    "whenFileExists": "overwrite"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/eslint-parser": "^7.16.5",
@@ -33,6 +43,7 @@
     "@commitlint/config-conventional": "^16.0.0",
     "@prettier/plugin-pug": "^1.19.2",
     "autoprefixer": "^10.4.2",
+    "copy-files-from-to": "^3.2.2",
     "cssnano": "^5.0.16",
     "date-fns": "^2.28.0",
     "eslint": "^8.8.0",
