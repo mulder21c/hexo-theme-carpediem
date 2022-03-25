@@ -15,6 +15,10 @@ const probe = require("probe-image-size");
 const fs = require("fs");
 const path = require("path");
 const fetch = require("sync-fetch");
+const vanillaPropTypes = require("vanilla-prop-types");
+
+// provide vanillaPropTypes into `site`
+hexo.locals.set("propTypes", vanillaPropTypes);
 
 const prependHttpProtocol = (url) => {
   const hasHttpProtocol = /https?:\/\//i.test(url);
