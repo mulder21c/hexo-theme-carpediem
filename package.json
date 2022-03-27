@@ -35,6 +35,11 @@
   "copyFilesSettings": {
     "whenFileExists": "overwrite"
   },
+  "browsers": [
+    "last 2 versions and > 1% in KR",
+    "not ie > 0",
+    "not ie_mob > 0"
+  ],
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/eslint-parser": "^7.16.5",

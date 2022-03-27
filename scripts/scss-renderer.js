@@ -7,6 +7,7 @@ const postcssNested = require("postcss-nested");
 const postcssPresetEnv = require("postcss-preset-env");
 const rootPath = path.resolve(__dirname, `../`);
 const isDevServer = hexo.env.cmd === `server`;
+const { browsers } = require("../package.json");
 
 hexo.extend.renderer.register(
   `scss`,
@@ -46,8 +47,13 @@ hexo.extend.renderer.register(
      * Processing POSTCSS
      */
     const postProcessed = await postcss([
-      postcssPresetEnv({ stage: 2, autoprefixer: { grid: true } }),
+      postcssPresetEnv({
+        browsers,
+        stage: 2,
+        autoprefixer: { grid: true },
+      }),
       cssnano({
+        browsers: "> 2% in KR",
         preset: `default`,
         plugins: [postcssNested],
       }),
