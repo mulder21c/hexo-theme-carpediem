@@ -1,0 +1,31 @@
+:root {
+  --background-color: #{$color-neutral-05};
+  --text-color-primary: #{$color-neutral-95};
+  --text-color-secondary: #{$color-neutral-70};
+  --text-link-color: #{$color-blue-70};
+  --text-link-active-background-color: #{$color-green-65};
+  --text-link-active-color: #{$color-neutral-05};
+  --text-link-decoration-color: #{$color-blue-grey-70};
+  --font-size-default: #{$font-size-default};
+  --font-line-height-default: #{$font-line-height-default};
+
+  @media (prefers-color-scheme: dark) {
+    --background-color: #{$color-blue-grey-85};
+    --text-color-primary: #{$color-neutral-05};
+    --text-color-secondary: #{$color-neutral-30};
+    --text-link-color: #{$color-blue-20};
+    --text-link-active-background-color: #{$color-green-20};
+    --text-link-active-color: #{$color-neutral-95};
+    --text-link-decoration-color: #{$color-blue-grey-25};
+  }
+
+  &[data-theme="dark"] {
+    --background-color: #{$color-blue-grey-85};
+    --text-color-primary: #{$color-neutral-05};
+    --text-color-secondary: #{$color-neutral-80};
+    --text-link-color: #{$color-blue-20};
+    --text-link-active-background-color: #{$color-green-20};
+    --text-link-active-color: #{$color-neutral-95};
+    --text-link-decoration-color: #{$color-blue-grey-25};
+  }
+}

@@ -4,7 +4,81 @@
   box-sizing: border-box;
 }
 
+body,
+p,
+figure,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  line-height: 1.6;
-  -webkit-text-size-adjust: 100%;
+  font-size: var(--font-size-default);
+  line-height: var(--font-line-height-default);
+  text-size-adjust: 100%;
+
+  &:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  background-color: var(--background-color);
+  color: var(--text-color-primary);
+  font-size: var(--font-size-default);
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  appearance: button;
+}
+
+a {
+  position: relative;
+  color: var(--text-link-color);
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--text-link-decoration-color);
+
+  &::before {
+    content: "";
+    background-color: var(--text-link-active-background-color);
+    position: absolute;
+    left: -0.25em;
+    right: -0.25em;
+    bottom: -0.25em;
+    width: calc(100% + 0.5em);
+    height: 0;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      transition: none;
+    }
+  }
+
+  &:hover {
+    color: var(--text-link-active-color);
+    text-decoration: none;
+
+    &::before {
+      height: calc(100% + 0.5em);
+    }
+  }
 }
