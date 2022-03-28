@@ -13,7 +13,8 @@ blockquote {
 }
 
 html {
-  font-size: var(--font-size-default);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
   line-height: var(--font-line-height-default);
   text-size-adjust: 100%;
 
