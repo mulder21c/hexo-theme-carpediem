@@ -226,3 +226,9 @@ $font-size-heading-level-5: 1.5rem;
 $font-size-heading-level-6: 1.25rem;
 $font-size-small: 1rem;
 $font-line-height-default: 1.6;
+
+// responsive
+$breakpoints: (
+  "tablet": 768px,
+  "pc": 1024px,
+) !default;

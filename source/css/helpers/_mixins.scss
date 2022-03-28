@@ -1,0 +1,11 @@
+/// generate media query for responsive
+/// @param {String} $breakpoint breakpoint name
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{inspect(map-get($breakpoints, $breakpoint))}) {
+      @content;
+    }
+  } @else {
+    @warn "no value could be retrieved from `#{$breakpoint}`. ";
+  }
+}
