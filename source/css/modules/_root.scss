@@ -6,10 +6,9 @@
   --text-link-active-background-color: #{$color-green-65};
   --text-link-active-color: #{$color-neutral-05};
   --text-link-decoration-color: #{$color-blue-grey-70};
-  --font-family: #{$font-family};
-  --font-family-code: #{$font-family-code};
-  --font-size-base: #{$font-size-base};
-  --font-size-default: #{$font-size-default};
+  --font-family-base: #{$font-families-base};
+  --font-family-code: #{$font-families-code};
+  --font-size-default: #{$font-size-default * $font-responsive-ratio-default};
   --font-size-heading-level-1: #{$font-size-heading-level-1};
   --font-size-heading-level-2: #{$font-size-heading-level-2};
   --font-size-heading-level-3: #{$font-size-heading-level-3};
@@ -36,5 +35,13 @@
     --text-link-active-background-color: #{$color-green-20};
     --text-link-active-color: #{$color-neutral-95};
     --text-link-decoration-color: #{$color-blue-grey-25};
+  }
+
+  @include respond-to(tablet) {
+    --font-size-default: #{$font-size-default * $font-responsive-ratio-tablet};
+  }
+
+  @include respond-to(pc) {
+    --font-size-default: #{$font-size-default * $font-responsive-ratio-pc};
   }
 }

@@ -9,3 +9,45 @@
     @warn "no value could be retrieved from `#{$breakpoint}`. ";
   }
 }
+
+/// generate at-rule for font-face
+/// @param {String} $name font's name to be used for font-family
+/// @param {String} $path path to font files based on a web root
+/// @param {String} $filename name of file name without extension
+/// @param {Number} $weight font-weight
+/// @param {String} $style font-style
+/// @param {List} $exts list that contains extension of font files
+/// @param {String} $range range of unicode
+@mixin font-face(
+  $name,
+  $path,
+  $filename,
+  $weight: 400,
+  $style: normal,
+  $exts: woff2 woff ttf otf,
+  $range: null
+) {
+  $src: null;
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+  );
+
+  @each $ext in $exts {
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append(
+      $src,
+      url(quote($path + $filename + "." + $ext)) format(quote($format)),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: quote($name);
+    src: $src;
+    font-weight: $weight;
+    font-style: $style;
+    unicode-range: $range;
+  }
+}

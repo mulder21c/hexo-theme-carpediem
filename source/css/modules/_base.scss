@@ -13,8 +13,8 @@ blockquote {
 }
 
 html {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-default);
   line-height: var(--font-line-height-default);
   text-size-adjust: 100%;
 
@@ -25,10 +25,9 @@ html {
 
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizeLegibility;
   background-color: var(--background-color);
   color: var(--text-color-primary);
-  font-size: var(--font-size-default);
 }
 
 input,

@@ -1,0 +1,69 @@
+@include font-face(
+  $font-family-base,
+  $font-file-path,
+  "noto-serif-kr-200",
+  $font-weight-thin,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-base,
+  $font-file-path,
+  "noto-serif-kr-400",
+  $font-weight-normal,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-base,
+  $font-file-path,
+  "noto-serif-kr-700",
+  $font-weight-bold,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-code,
+  $font-file-path,
+  "hack-regular-subset",
+  $font-weight-normal,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-code,
+  $font-file-path,
+  "hack-italic-subset",
+  $font-weight-normal,
+  italic,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-code,
+  $font-file-path,
+  "hack-bold-subset",
+  $font-weight-bold,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-code,
+  $font-file-path,
+  "hack-bolditalic-subset",
+  $font-weight-bold,
+  italic,
+  woff woff2,
+  null
+);
