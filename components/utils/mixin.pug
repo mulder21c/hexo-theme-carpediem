@@ -1,6 +1,20 @@
+//- @pugdoc
+  name: pageTitle
+  description: create title element based on post type
+  beforeEach: |
+    include ./util
+  example: |
+    +pageTitle
 mixin pageTitle
   title= getTitle()
 
+//- @pugdoc
+  name: pageSequenceLink
+  description: create relational link element
+  beforeEach: |
+    include ./util
+  example: |
+    +pageSequenceLink
 mixin pageSequenceLink
   -
     const { prev_link, prev, next_link, next } = page;
@@ -12,6 +26,11 @@ mixin pageSequenceLink
   if (nextLink)
     link(rel="next" href=stripFileName(nextLink))
 
+//- @pugdoc
+  name: preLoadImage
+  description: create preload link element for representational image
+  example: |
+    +preLoadImage
 mixin preLoadImage
   - const imageObj = representativeImage(page);
   if (imageObj)
@@ -22,6 +41,13 @@ mixin preLoadImage
       crossorigin="anonymous"
     )
 
+//- @pugdoc
+  name: openGraph
+  description: create og meta element
+  beforeEach: |
+    include ./util
+  example: |
+    +openGraph
 mixin openGraph(options)
   -
     const defaultOptions = {
@@ -35,15 +61,35 @@ mixin openGraph(options)
     };
   | !{ open_graph(properties) }
 
+//- @pugdoc
+  name: siteVerification
+  description: create meta element for site-verification
+  example: |
+    +siteVerification
 mixin siteVerification
   each val, prop in (theme.site_verification || [])
     meta(name=prop content=val)
 
+//- @pugdoc
+  name: styles
+  description: |
+    create style elements from the stylesheet created by the theme
+    and the stylesheet specified.
+  arguments:
+    - {array} paths
+  examples:
+    - +styles([])
+    - +styles(["//mydomain.com/external/style.css"])
 mixin styles(paths = [])
   link(rel="stylesheet" href=url_for("/css/index.css"))
   each path in paths
     link(rel="stylesheet" href=path)
 
+//- @pugdoc
+  name: analytics
+  description: create meta element for google analytics, supported only GA 4
+  example: |
+    +analytics
 mixin analytics
   if theme.analytics.google
     script(
@@ -58,6 +104,13 @@ mixin analytics
       gtag("js", new Date());
       gtag("config", "#{theme.analytics.google}");
 
+//- @pugdoc
+  name: jsonLD
+  description: create JSON-LD script element
+  beforeEach: |
+    include ./util
+  example: |
+    +jsonLD
 mixin jsonLD
   -
     const jsonLdProps = getJsonLdProps(page);
