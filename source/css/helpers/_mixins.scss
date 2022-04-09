@@ -51,3 +51,30 @@
     unicode-range: $range;
   }
 }
+
+/// generate prefers-color-scheme media query
+/// and block for [data-scheme="{scheme}"] selector
+/// @param {String} $theme color scheme to apply the style to
+@mixin colorScheme($scheme) {
+  $schemes: ("light", "dark");
+
+  @if (index($schemes, $scheme)) {
+    @if ($scheme == "light") {
+      @content;
+      @media (prefers-color-scheme: dark) {
+        &[data-scheme="light"] {
+          @content;
+        }
+      }
+    } @else if ($scheme == "dark") {
+      &[data-scheme="dark"] {
+        @content;
+      }
+      @media (prefers-color-scheme: dark) {
+        @content;
+      }
+    } @else {
+      @warn "no value could be retrieved from `#{$scheme}`. ";
+    }
+  }
+}

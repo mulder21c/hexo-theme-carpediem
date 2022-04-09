@@ -1,4 +1,4 @@
-// colors
+// base colors
 $white: #ffffff !default;
 $black: #000000 !default;
 $neutral: #808080 !default;
@@ -12,6 +12,7 @@ $green: #198754 !default;
 $teal: #20c997 !default;
 $cyan: #0dcaf0 !default;
 
+// color palettes
 $color-neutral-05: tint($neutral, 90%);
 $color-neutral-10: tint($neutral, 80%);
 $color-neutral-15: tint($neutral, 70%);

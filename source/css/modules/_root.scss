@@ -1,15 +1,9 @@
 :root {
   color-scheme: dark light;
-  --background-color: #{$color-neutral-05};
-  --text-color-primary: #{$color-neutral-95};
-  --text-color-secondary: #{$color-neutral-70};
-  --text-link-color: #{$color-blue-70};
-  --text-link-active-background-color: #{$color-green-65};
-  --text-link-active-color: #{$color-neutral-05};
-  --text-link-decoration-color: #{$color-blue-grey-70};
   --font-family-base: #{$font-families-base};
   --font-family-code: #{$font-families-code};
-  --font-size-default: #{$font-size-default * $font-responsive-ratio-default};
+  --font-size-base: #{$font-size-default * $font-responsive-ratio-default};
+  --font-size-default: #{$font-size-default};
   --font-size-heading-level-1: #{$font-size-heading-level-1};
   --font-size-heading-level-2: #{$font-size-heading-level-2};
   --font-size-heading-level-3: #{$font-size-heading-level-3};
@@ -18,17 +12,17 @@
   --font-size-heading-level-6: #{$font-size-heading-level-6};
   --font-line-height-default: #{$font-line-height-default};
 
-  &[data-theme="dark"] {
-    --background-color: #{$color-blue-grey-85};
-    --text-color-primary: #{$color-neutral-05};
-    --text-color-secondary: #{$color-neutral-30};
-    --text-link-color: #{$color-blue-20};
-    --text-link-active-background-color: #{$color-green-20};
-    --text-link-active-color: #{$color-neutral-95};
-    --text-link-decoration-color: #{$color-blue-grey-25};
+  @include colorScheme(light) {
+    --background-color: #{$color-neutral-05};
+    --text-color-primary: #{$color-neutral-95};
+    --text-color-secondary: #{$color-neutral-70};
+    --text-link-color: #{$color-blue-70};
+    --text-link-active-background-color: #{$color-green-65};
+    --text-link-active-color: #{$color-neutral-05};
+    --text-link-decoration-color: #{$color-blue-grey-70};
   }
 
-  @media (prefers-color-scheme: dark) {
+  @include colorScheme(dark) {
     --background-color: #{$color-blue-grey-85};
     --text-color-primary: #{$color-neutral-05};
     --text-color-secondary: #{$color-neutral-30};
@@ -36,23 +30,13 @@
     --text-link-active-background-color: #{$color-green-20};
     --text-link-active-color: #{$color-neutral-95};
     --text-link-decoration-color: #{$color-blue-grey-25};
-
-    &[data-theme="light"] {
-      --background-color: #{$color-neutral-05};
-      --text-color-primary: #{$color-neutral-95};
-      --text-color-secondary: #{$color-neutral-70};
-      --text-link-color: #{$color-blue-70};
-      --text-link-active-background-color: #{$color-green-65};
-      --text-link-active-color: #{$color-neutral-05};
-      --text-link-decoration-color: #{$color-blue-grey-70};
-    }
   }
 
   @include respond-to(tablet) {
-    --font-size-default: #{$font-size-default * $font-responsive-ratio-tablet};
+    --font-size-base: #{$font-size-default * $font-responsive-ratio-tablet};
   }
 
   @include respond-to(pc) {
-    --font-size-default: #{$font-size-default * $font-responsive-ratio-pc};
+    --font-size-base: #{$font-size-default * $font-responsive-ratio-pc};
   }
 }
