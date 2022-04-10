@@ -78,3 +78,63 @@
     }
   }
 }
+
+/// generate @keyframes rules
+/// @param {String} $name
+@mixin keyframes($name) {
+  @if not $name or $name == "" {
+    @warn "not defined animation name.";
+  } @else {
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+}
+
+/// generate properties for animation
+/// @param {Map} $options
+/// @param {String} $options.name - the name of keyframe
+/// @param {Number} $options.duration [0] - the length of time that an animation should take to complete one cycle
+/// @param {String} $options.func [ease-in-out] - how an animation progresses through the duration of each cycle
+/// @param {Number} $options.delay [0] - the amount of time to wait from applying the animation to an element before beginning to perform the animation
+/// @param {Number} $options.iteration [1] - the number of times an animation sequence should be played before stopping
+/// @param {String} $options.direction [normal] - whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.
+/// @param {String} $options.fill [none] - how a CSS animation applies styles to its target before and after its execution
+/// @param {String} $options.state [running] - whether an animation is running or paused
+@mixin animation($options) {
+  $default: (
+    name: "",
+    duration: 0,
+    func: ease-in-out,
+    delay: 0,
+    iteration: 1,
+    direction: normal,
+    fill: none,
+    state: running,
+  );
+  $config: map-merge($default, $options);
+
+  $name: map-get($config, name);
+  $duration: map-get($config, duration);
+  $func: map-get($config, func);
+  $delay: map-get($config, delay);
+  $iteration: map-get($config, iteration);
+  $direction: map-get($config, direction);
+  $fill: map-get($config, fill);
+  $state: map-get($config, state);
+
+  @if not $name or $name == "" {
+    @warn "not defined animation name.";
+  } @else {
+    @media (prefers-reduced-motion: no-preference) {
+      animation-name: $name;
+      animation-duration: $duration;
+      animation-timing-function: $func;
+      animation-delay: $delay;
+      animation-iteration-count: $iteration;
+      animation-direction: $direction;
+      animation-fill-mode: $fill;
+      animation-play-state: $state;
+    }
+  }
+}
