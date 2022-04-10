@@ -4,6 +4,7 @@
   --font-family-code: #{$font-families-code};
   --font-size-base: #{$font-size-default * $font-responsive-ratio-default};
   --font-size-default: #{$font-size-default};
+  --font-size-large: #{$font-size-default * 1.125};
   --font-size-heading-level-1: #{$font-size-heading-level-1};
   --font-size-heading-level-2: #{$font-size-heading-level-2};
   --font-size-heading-level-3: #{$font-size-heading-level-3};
@@ -20,6 +21,18 @@
     --text-link-active-background-color: #{$color-green-65};
     --text-link-active-color: #{$color-neutral-05};
     --text-link-decoration-color: #{$color-blue-grey-70};
+
+    --primary-button-background-color: #{$color-green-50};
+    --primary-button-active-background-color: #{$color-green-65};
+    --primary-button-border-color: #{$color-green-60};
+    --primary-button-active-border-color: #{$color-green-75};
+    --primary-button-outline-color: #{$color-green-60};
+    --primary-button-active-outline-color: #{$color-green-60};
+    --primary-button-shadow-color: #{rgba($color-green-85, 0.375)};
+    --primary-button-active-shadow-color: #{rgba($color-green-85, 0.75)};
+    --primary-button-separator-color: #{$color-green-35};
+    --primary-button-text-color: #{$white};
+    --primary-button-text-color-dark: #{$color-green-75};
   }
 
   @include colorScheme(dark) {
@@ -27,9 +40,21 @@
     --text-color-primary: #{$color-neutral-05};
     --text-color-secondary: #{$color-neutral-30};
     --text-link-color: #{$color-blue-20};
-    --text-link-active-background-color: #{$color-green-20};
-    --text-link-active-color: #{$color-neutral-95};
+    --text-link-active-background-color: #{$color-green-65};
+    --text-link-active-color: #{$white};
     --text-link-decoration-color: #{$color-blue-grey-25};
+
+    --primary-button-background-color: #{$color-green-50};
+    --primary-button-active-background-color: #{$color-green-65};
+    --primary-button-border-color: #{$color-green-40};
+    --primary-button-active-border-color: #{$color-green-30};
+    --primary-button-outline-color: #{$color-green-60};
+    --primary-button-active-outline-color: #{$color-green-15};
+    --primary-button-shadow-color: #{rgba($color-green-75, 0.875)};
+    --primary-button-active-shadow-color: #{rgba($color-green-85, 0.75)};
+    --primary-button-separator-color: #{$color-green-35};
+    --primary-button-text-color: #{$white};
+    --primary-button-text-color-dark: #{$color-green-15};
   }
 
   @include respond-to(tablet) {
