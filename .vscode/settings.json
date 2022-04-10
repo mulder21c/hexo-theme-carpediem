@@ -11,6 +11,6 @@
   "eslint.validate": [
     "html",
     "javascript",
-    "jade",
-  ]
+  ],
+  "eslint.codeActionsOnSave.mode": "problems"
 }
