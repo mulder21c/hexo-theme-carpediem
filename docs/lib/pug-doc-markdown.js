@@ -59,10 +59,13 @@ function PugDocMarkdown(options) {
       lines.push("### arguments \n");
       lines.push(
         obj.meta.arguments.reduce((table, arg) => {
-          return `${table}|${arg.name}|${arg.description}|${arg.type}|${
-            arg.default ?? ""
-          }|${arg.optional}|
-          `;
+          const { name, description, type, optional } = arg;
+          const [, , defaultVal, , , desc] = description.match(
+            /(\[(.+)\])*(\s-?)*(\s?)*(.*)/
+          );
+          return `${table}|${name}|${desc.replace(/\|/g, "\\|")}|${type}|${
+            defaultVal ?? ""
+          }|${optional}|\n`;
         }, `|name|description|type|default|optional|\n|:---:|:---|:---:|:---:|:---:|\n`)
       );
       lines.push("\n");

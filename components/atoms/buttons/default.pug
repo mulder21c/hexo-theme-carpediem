@@ -9,7 +9,8 @@
     - {string} [options.size] ['medium'] - size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`
     - {string} [options.appearance] ['fill'] - appearance of button <br> one of `'fill'`, `'outline'`
   examples:
-    - +button() 버튼
+    - |
+      +button({type: 'button', size: 'medium', appearance: 'outline'}) 버튼
 mixin button(options)
   -
     const btnProps = {
