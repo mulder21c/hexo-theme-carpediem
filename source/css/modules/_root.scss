@@ -13,6 +13,8 @@
   --font-size-heading-level-6: #{$font-size-heading-level-6};
   --font-line-height-default: #{$font-line-height-default};
 
+  --primary-button-border-radius: 0.25rem;
+
   @include colorScheme(light) {
     --background-color: #{$color-neutral-05};
     --text-color-primary: #{$color-neutral-95};
