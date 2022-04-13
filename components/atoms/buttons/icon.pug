@@ -1,0 +1,60 @@
+//- @pugdoc
+  name: iconButton
+  description: create icon button element
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} options
+    - {string} options.name - name of icon
+    - {string} options.label - label of button
+    - {string} [options.type] ['button'] - the value of type attribute for button
+    - {string} [options.size] ['medium'] - size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``
+    - {string} [options.appearance] ['outline'] - appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`
+    - {string} [options.layout] [`icon-only`] - layout of button <br> one of `'icon-only', `icon-text``
+  examples:
+    - |
+      +iconButton({type: 'button', size: 'medium', appearance: 'outline', name: 'tty', label: '전화'})
+mixin iconButton(options)
+  -
+    const btnProps = {
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      size: PropTypes.oneOf([
+        `small`,
+        `medium`,
+        `large`,
+      ]),
+      appearance: PropTypes.oneOf([
+        `fill`,
+        `outline`,
+        `ghost`,
+      ]),
+      layout: PropTypes.oneOf([
+        `icon-only`,
+        `icon-text`,
+      ]),
+    };
+    const btnValidate = validateProps(btnProps);
+    const defaults = {
+      type: `button`,
+      size: `medium`,
+      appearance: `outline`,
+      layout: `icon-only`
+    };
+    const { type, size, appearance, name, label, layout, ...attrs } = {
+      ...defaults,
+      ...options,
+    };
+    const isIconOnly = layout === `icon-only`;
+    const className = [
+      `_btn-icon`,
+      { [`_btn-icon--${size}`]: size },
+      { [`_btn-icon--${appearance}`]: appearance },
+      { [`_btn-icon--${layout}`]: layout }
+    ];
+    btnValidate({size, appearance, name, label, layout});
+  button(type=type aria-label=isIconOnly && label class=className)&attributes(attrs)
+    svg._btn-icon__icon(role="img" focusable="false")
+      use(xlink:href=`/images/${getIconCategory(name)}.svg#${name}`)
+    if !isIconOnly
+      span._btn-icon__label= label
