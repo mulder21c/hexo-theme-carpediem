@@ -1142,6 +1142,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fortawesome/fontawesome-free@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.1.tgz#bf5d45611ab74890be386712a0e5d998c65ee2a1"
+  integrity sha512-J/3yg2AIXc9wznaVqpHVX3Wa5jwKovVF0AMYSnbmcXTiL3PpRPfF58pzWucCwEiCJBp+hCNRLWClTomD8SseKg==
+
 "@hidoo/sassdoc-to-markdown@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@hidoo/sassdoc-to-markdown/-/sassdoc-to-markdown-0.7.0.tgz#59a50e9599f1ba67f27a3cd47e6adb2275628118"

@@ -16,6 +16,23 @@ const fs = require("fs");
 const path = require("path");
 const fetch = require("sync-fetch");
 const vanillaPropTypes = require("vanilla-prop-types");
+const jsYml = require("js-yaml");
+const iconsMeta = (() => {
+  try {
+    return jsYml.load(
+      fs.readFileSync(
+        path.resolve(
+          __dirname,
+          `../node_modules/@fortawesome/fontawesome-free/metadata/icons.yml`
+        ),
+        `utf8`
+      )
+    );
+  } catch (err) {
+    console.warn("\x1b[33m%s\x1b[0m", `⚠ Cannot find fontawesome!`);
+    return {};
+  }
+})();
 
 // provide vanillaPropTypes into `site`
 hexo.locals.set("propTypes", vanillaPropTypes);
@@ -95,4 +112,20 @@ hexo.extend.helper.register(`representativeImage`, function (page) {
       ...dimension,
     };
   }
+});
+
+/**
+ * @desc Get category of icon from fontawesome
+ * @return {string}
+ */
+hexo.extend.helper.register(`getIconCategory`, function (name) {
+  const {
+    styles: [style],
+  } = iconsMeta?.[name] || { styles: [] };
+  if (!style)
+    console.warn(
+      "\x1b[33m%s\x1b[0m",
+      `⚠ Cannot find "${name}" icon from fontawesome.`
+    );
+  return style || ``;
 });
