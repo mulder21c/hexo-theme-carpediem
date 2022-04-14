@@ -53,8 +53,15 @@ mixin iconButton(options)
       { [`_btn-icon--${layout}`]: layout }
     ];
     btnValidate({size, appearance, name, label, layout});
-  button(type=type aria-label=isIconOnly && label class=className)&attributes(attrs)
-    svg._btn-icon__icon(role="img" focusable="false")
+  button(
+    type=type
+    aria-label=isIconOnly && label
+    class=className
+  )&attributes(attrs)
+    svg._btn-icon__icon(
+      role="img"
+      focusable="false"
+    )
       use(xlink:href=`/images/${getIconCategory(name)}.svg#${name}`)
     if !isIconOnly
       span._btn-icon__label= label

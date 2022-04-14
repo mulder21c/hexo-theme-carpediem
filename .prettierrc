@@ -3,6 +3,7 @@
   "pluginSearchDirs": ["./node_modules"],
   "printWidth": 80,
   "pugAttributeSeparator": "none",
+  "pugWrapAttributesThreshold": 1,
   "overrides": [
     {
       "files": "**/*.pug",

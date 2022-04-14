@@ -22,9 +22,15 @@ mixin pageSequenceLink
     const nextLink = next_link ? `${config.url}/${next_link}` : next?.permalink;
 
   if (prevLink)
-    link(rel="prev" href=stripFileName(prevLink))
+    link(
+      rel="prev"
+      href=stripFileName(prevLink)
+    )
   if (nextLink)
-    link(rel="next" href=stripFileName(nextLink))
+    link(
+      rel="next"
+      href=stripFileName(nextLink)
+    )
 
 //- @pugdoc
   name: preLoadImage
@@ -68,7 +74,10 @@ mixin openGraph(options)
     +siteVerification
 mixin siteVerification
   each val, prop in (theme.site_verification || [])
-    meta(name=prop content=val)
+    meta(
+      name=prop
+      content=val
+    )
 
 //- @pugdoc
   name: styles
@@ -81,9 +90,15 @@ mixin siteVerification
     - +styles([])
     - +styles(["//mydomain.com/external/style.css"])
 mixin styles(paths = [])
-  link(rel="stylesheet" href=url_for("/css/index.css"))
+  link(
+    rel="stylesheet"
+    href=url_for("/css/index.css")
+  )
   each path in paths
-    link(rel="stylesheet" href=path)
+    link(
+      rel="stylesheet"
+      href=path
+    )
 
 //- @pugdoc
   name: analytics
