@@ -193,6 +193,10 @@
         )
       );
 
+      &:focus {
+        border-color: var(--primary-button-separator-color);
+      }
+
       &::before {
         background-color: var(--primary-button-background-color);
         height: 100%;
