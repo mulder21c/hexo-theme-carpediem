@@ -46,11 +46,12 @@ mixin iconButton(options)
       ...options,
     };
     const isIconOnly = layout === `icon-only`;
+    const {prefix} = theme;
     const className = [
-      `_btn-icon`,
-      { [`_btn-icon--${size}`]: size },
-      { [`_btn-icon--${appearance}`]: appearance },
-      { [`_btn-icon--${layout}`]: layout }
+      `${prefix}-btn-icon`,
+      { [`${prefix}-btn-icon--${size}`]: size },
+      { [`${prefix}-btn-icon--${appearance}`]: appearance },
+      { [`${prefix}-btn-icon--${layout}`]: layout }
     ];
     btnValidate({size, appearance, name, label, layout});
   button(
@@ -58,7 +59,8 @@ mixin iconButton(options)
     aria-label=isIconOnly && label
     class=className
   )&attributes(attrs)
-    svg._btn-icon__icon(
+    svg(
+      class=`${prefix}-btn-icon__icon`
       role="img"
       focusable="false"
     )

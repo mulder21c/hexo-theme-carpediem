@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const sass = require("sass");
 const glob = require("fast-glob");
@@ -8,6 +9,17 @@ const postcssPresetEnv = require("postcss-preset-env");
 const rootPath = path.resolve(__dirname, `../`);
 const isDevServer = hexo.env.cmd === `server`;
 const { browsers } = require("../package.json");
+const jsYml = require("js-yaml");
+const { prefix } = (() => {
+  try {
+    return jsYml.load(
+      fs.readFileSync(path.resolve(__dirname, `../_config.yml`), `utf8`)
+    );
+  } catch (err) {
+    console.warn("\x1b[33m%s\x1b[0m", `⚠ Cannot find _config.yml for theme!`);
+    return `amor`;
+  }
+})();
 
 hexo.extend.renderer.register(
   `scss`,
@@ -18,7 +30,7 @@ hexo.extend.renderer.register(
       .sync([path.resolve(rootPath, `components/**/*.scss`)])
       .reduce((prepend, path) => {
         return `${prepend}@import "${path}";\n`;
-      }, ``);
+      }, `$prefix: ${prefix};\n`);
 
     const sourceText = data.text.replace(
       /(\/\*\*)\s(automated imports).+(?=\*\*\/)(\*\*\/)/,

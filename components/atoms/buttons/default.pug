@@ -31,9 +31,12 @@ mixin button(options)
       ...defaults,
       ...options,
     };
+    const {prefix} = theme;
+    const className = [
+      `${prefix}-btn-basic`,
+      { [`${prefix}-btn-basic--${size}`]: size },
+      { [`${prefix}-btn-basic--${appearance}`]: appearance }
+    ];
     btnValidate({size, appearance});
-  button(
-    type=type
-    class=[`_btn-basic`, { [`_btn-basic--${size}`]: size }, { [`_btn-basic--${appearance}`]: appearance }]
-  )&attributes(attrs)
+  button(type=type class=className)&attributes(attrs)
     block

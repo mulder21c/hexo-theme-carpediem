@@ -1,4 +1,4 @@
-._btn-icon {
+.#{$prefix}-btn-icon {
   $parent: &;
   $icon: #{&}__icon;
 
