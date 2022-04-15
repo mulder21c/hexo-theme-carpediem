@@ -17,6 +17,7 @@ const path = require("path");
 const fetch = require("sync-fetch");
 const vanillaPropTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
+const uid = require("easy-uid");
 const iconsMeta = (() => {
   try {
     return jsYml.load(
@@ -128,4 +129,12 @@ hexo.extend.helper.register(`getIconCategory`, function (name) {
       `⚠ Cannot find "${name}" icon from fontawesome.`
     );
   return style || ``;
+});
+
+/**
+ * @desc Generate unique id
+ * @return {string}
+ */
+hexo.extend.helper.register(`generateUid`, function () {
+  return uid();
 });

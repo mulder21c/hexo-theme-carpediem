@@ -2532,6 +2532,11 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
+easy-uid@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/easy-uid/-/easy-uid-2.0.2.tgz#34bd25179631c7f157d5ae25b0cba930ff72fc93"
+  integrity sha512-FAdGZBrhd5S0vmbYY9ZAlVw7z5oyW9DnxfO9am4ombzB6Hqi2CniawW5rb1nvuyx5tk+PiL8q94EAf8UbGhbnw==
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"

@@ -1,0 +1,35 @@
+//- @pugdoc
+  name: checkbox
+  description: create input checkbox element
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} options
+    - {string} options.label - label of checkbox
+    - {string} [options.id] - the value of checkbox's id attribute and label's for attribute
+    - {boolean} [options.checked] - the checked state of checkbox
+  examples:
+    - |
+      +checkbox({label: 동의, checked: true})
+mixin checkbox(options)
+  -
+    const chkProps = {
+      label: PropTypes.string.isRequired,
+      checked: PropTypes.bool,
+      id: PropTypes.string,
+    };
+    const chkValidate = validateProps(chkProps);
+    const { checked, label, id, ...attrs } = options;
+    const {prefix} = theme;
+    const className = [
+      `${prefix}-checkbox`,
+    ];
+    const uid = id || generateUid();
+    chkValidate({label, checked, id});
+  input(
+    type="checkbox"
+    id=uid
+    checked=checked
+    class=`${prefix}-checkbox__control`
+  )
+  label(for=uid class=`${prefix}-checkbox__label`) label
