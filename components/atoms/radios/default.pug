@@ -1,0 +1,38 @@
+//- @pugdoc
+  name: radio
+  description: create input radio element
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} options
+    - {string} options.label - label of radio
+    - {string} options.name - name of radio
+    - {string} [options.id] - the value of radio's id attribute and label's for attribute
+    - {boolean} [options.checked] - the checked state of radio
+  examples:
+    - |
+      +radio({label: 'yes', name: 'answer',  checked: true})
+mixin radio(options)
+  -
+    const radioProps = {
+      label: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      checked: PropTypes.bool,
+      id: PropTypes.string,
+    };
+    const radioValidate = validateProps(radioProps);
+    const { checked, label, id, name, ...attrs } = options;
+    const {prefix} = theme;
+    const className = [
+      `${prefix}-radio`,
+    ];
+    const uid = id || generateUid();
+    radioValidate({label, checked, id, name});
+  input(
+    type="radio"
+    id=uid
+    name=name
+    checked=checked
+    class=`${prefix}-radio__control`
+  )
+  label(for=uid class=`${prefix}-radio__label`) label

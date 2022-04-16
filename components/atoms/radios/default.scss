@@ -1,0 +1,45 @@
+.#{$prefix}-radio {
+  $control: #{&}__control;
+
+  &__control {
+    outline: 0;
+    position: relative;
+    z-index: -1;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+  }
+
+  &__label {
+    background-repeat: repeat;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 0.5rem;
+    color: var(--primary-button-text-color-dark);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      margin-right: 0.5rem;
+      border-radius: 50%;
+      border: 2px solid var(--primary-button-border-color);
+      width: 1.25rem;
+      height: 1.25rem;
+
+      #{$control}:checked + & {
+        border-width: 0.425rem;
+      }
+
+      #{$control}:focus + & {
+        outline: 2px solid var(--primary-button-active-outline-color);
+        outline-offset: 1px;
+        border-color: var(--primary-button-border-color);
+      }
+    }
+  }
+}
