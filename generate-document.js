@@ -5,20 +5,36 @@ const fs = require("fs");
 const path = require("path");
 const rootPath = path.resolve(__dirname);
 const propTypes = require("vanilla-prop-types");
+const jsYml = require("js-yaml");
+const uid = require("easy-uid");
+const iconsMeta = (() => {
+  try {
+    return jsYml.load(
+      fs.readFileSync(
+        path.resolve(
+          __dirname,
+          `./node_modules/@fortawesome/fontawesome-free/metadata/icons.yml`
+        ),
+        `utf8`
+      )
+    );
+  } catch (err) {
+    console.warn("\x1b[33m%s\x1b[0m", `⚠ Cannot find fontawesome!`);
+    return {};
+  }
+})();
 
 pugDocGen({
   input: path.resolve(rootPath, "./components/**/*.pug"),
   output: "./data.json",
   locals: {
     page: {},
-    config: {
-      title: `포스트 제목`,
-    },
-    theme: {
-      analytics: {
-        google: null,
-      },
-    },
+    config: jsYml.load(
+      fs.readFileSync(path.resolve(__dirname, `../../_config.yml`), `utf8`)
+    ),
+    theme: jsYml.load(
+      fs.readFileSync(path.resolve(__dirname, `./_config.yml`), `utf8`)
+    ),
     site: {
       propTypes,
     },
@@ -46,6 +62,18 @@ pugDocGen({
       hUnits: "px",
     }),
     full_url: (url) => url,
+    getIconCategory: function (name) {
+      const {
+        styles: [style],
+      } = iconsMeta?.[name] || { styles: [] };
+      if (!style)
+        console.warn(
+          "\x1b[33m%s\x1b[0m",
+          `⚠ Cannot find "${name}" icon from fontawesome.`
+        );
+      return style || ``;
+    },
+    generateUid: () => uid(),
   },
   complete: function () {
     const stream = new PugDocMD({

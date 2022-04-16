@@ -4,9 +4,9 @@
 const compact = require("lodash/compact");
 const JSONStream = require("JSONStream");
 const mkdirp = require("mkdirp");
-const pretty = require("js-beautify").html;
 const path = require("path");
 const fs = require("fs");
+const prettier = require("prettier");
 
 /**
  * Create markdown file from
@@ -108,7 +108,11 @@ function PugDocMarkdown(options) {
     lines.push("### output example \n");
     lines.push("```html");
     lines.push(
-      pretty(obj.output, { indent_size: 2, space_in_empty_paren: true })
+      prettier.format(obj.output, {
+        parser: "html",
+        plugins: ["@prettier/plugin-xml"],
+        htmlWhitespaceSensitivity: "ignore",
+      })
     );
     lines.push("```");
 

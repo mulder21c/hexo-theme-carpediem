@@ -315,3 +315,5 @@ $RECYCLE.BIN/
 .*rc
 
 _config.my.yml
+docs/
+source/images
