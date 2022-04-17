@@ -14,7 +14,6 @@
   }
 
   &__label {
-    background-repeat: repeat;
     display: inline-flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -39,6 +38,31 @@
         outline: 2px solid var(--primary-button-active-outline-color);
         outline-offset: 1px;
         border-color: var(--primary-button-border-color);
+      }
+    }
+
+    &--column {
+      flex-flow: column;
+      align-items: center;
+
+      &::before {
+        margin: 0 0 0.5rem 0;
+      }
+    }
+
+    &--reverse:not(&--column) {
+      flex-direction: row-reverse;
+
+      &::before {
+        margin: 0 0 0 0.5rem;
+      }
+    }
+
+    &--reverse:is(&--column) {
+      flex-direction: column-reverse;
+
+      &::before {
+        margin: 0.5rem 0 0;
       }
     }
   }
