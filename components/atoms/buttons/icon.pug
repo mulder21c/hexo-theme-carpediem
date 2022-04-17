@@ -61,7 +61,7 @@ mixin iconButton(options)
   )&attributes(attrs)
     svg(
       class=`${prefix}-btn-icon__icon`
-      role="img"
+      role="presentation"
       focusable="false"
     )
       use(xlink:href=`/images/${getIconCategory(name)}.svg#${name}`)
