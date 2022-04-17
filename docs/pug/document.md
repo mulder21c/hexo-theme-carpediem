@@ -1,5 +1,54 @@
 # Pug Documentation 
 
+## checkbox
+
+create input checkbox element
+
+
+### path 
+
+`components/atoms/checkboxes/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|options||object||false|
+|options.label|label of checkbox|string||false|
+|options.id|the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|options.name|the value of checkbox's name attribute|string||true|
+|options.checked|the checked state of checkbox|boolean||true|
+|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++checkbox({label: '동의', checked: true})
+```
+
+
+### output example 
+
+```html
+<input
+  class="amor-checkbox__control"
+  type="checkbox"
+  id="79qke1coeemu0u"
+  checked="checked"
+/>
+<label class="amor-checkbox__label" for="79qke1coeemu0u">label</label>
+
+```
+
+
+---
+
+
 ## button
 
 create basic button element
@@ -87,106 +136,10 @@ include ../../utils/util
   type="button"
   aria-label="전화"
 >
-  <svg class="amor-btn-icon__icon" role="img" focusable="false">
+  <svg class="amor-btn-icon__icon" role="presentation" focusable="false">
     <use xlink:href="/images/solid.svg#tty"></use>
   </svg>
 </button>
-
-```
-
-
----
-
-
-## radio
-
-create input radio element
-
-
-### path 
-
-`components/atoms/radios/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|options||object||false|
-|options.label|label of radio|string||false|
-|options.name|name of radio|string||false|
-|options.id|the value of radio's id attribute and label's for attribute|string||true|
-|options.checked|the checked state of radio|boolean||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+radio({label: 'yes', name: 'answer',  checked: true})
-```
-
-
-### output example 
-
-```html
-<input
-  class="amor-radio__control"
-  type="radio"
-  id="o3lto58nkht919"
-  name="answer"
-  checked="checked"
-/>
-<label class="amor-radio__label" for="o3lto58nkht919">label</label>
-
-```
-
-
----
-
-
-## checkbox
-
-create input checkbox element
-
-
-### path 
-
-`components/atoms/checkboxes/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|options||object||false|
-|options.label|label of checkbox|string||false|
-|options.id|the value of checkbox's id attribute and label's for attribute|string||true|
-|options.checked|the checked state of checkbox|boolean||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+checkbox({label: '동의', checked: true})
-```
-
-
-### output example 
-
-```html
-<input
-  class="amor-checkbox__control"
-  type="checkbox"
-  id="o3m8029fqkev5lg"
-  checked="checked"
-/>
-<label class="amor-checkbox__label" for="o3m8029fqkev5lg">label</label>
 
 ```
 
@@ -216,7 +169,7 @@ include ./util
 ### output example 
 
 ```html
-<title>Hexo</title>
+<title>Tracks of mulder21c</title>
 
 ```
 
@@ -357,7 +310,7 @@ include ./util
   {
     "@context": "http://schema.org",
     "@type": "Blog",
-    "@name": "Hexo",
+    "@name": "Tracks of mulder21c",
     "url": "",
     "copyrightHolder": { "@type": "Person", "name": "John Doe" },
     "image": {
@@ -373,6 +326,55 @@ include ./util
     }
   }
 </script>
+
+```
+
+
+---
+
+
+## radio
+
+create input radio element
+
+
+### path 
+
+`components/atoms/radios/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|options||object||false|
+|options.label|label of radio|string||false|
+|options.name|name of radio|string||false|
+|options.id|the value of radio's id attribute and label's for attribute|string||true|
+|options.checked|the checked state of radio|boolean||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++radio({label: 'yes', name: 'answer',  checked: true})
+```
+
+
+### output example 
+
+```html
+<input
+  class="amor-radio__control"
+  type="radio"
+  id="7a0kke8qkk2ii0o"
+  name="answer"
+  checked="checked"
+/>
+<label class="amor-radio__label" for="7a0kke8qkk2ii0o">label</label>
 
 ```
 

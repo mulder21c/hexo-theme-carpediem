@@ -6,8 +6,10 @@
   arguments:
     - {object} options
     - {string} options.label - label of checkbox
-    - {string} [options.id] - the value of checkbox's id attribute and label's for attribute
+    - {string} [options.id] - the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.
+    - {string} [options.name] - the value of checkbox's name attribute
     - {boolean} [options.checked] - the checked state of checkbox
+    - {string} [options.labelPosition] ['right']  - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
   examples:
     - |
       +checkbox({label: '동의', checked: true})
@@ -17,19 +19,36 @@ mixin checkbox(options)
       label: PropTypes.string.isRequired,
       checked: PropTypes.bool,
       id: PropTypes.string,
+      labelPosition: PropTypes.oneOf([
+        `top`,
+        `left`,
+        `right`,
+        `bottom`,
+      ]),
     };
     const chkValidate = validateProps(chkProps);
-    const { checked, label, id, ...attrs } = options;
+    const defaults = {labelPosition: `right`};
+    const { checked, label, id, labelPosition, ...attrs } = {
+      ...defaults,
+      ...options,
+    };
     const {prefix} = theme;
     const className = [
       `${prefix}-checkbox`,
     ];
     const uid = id || generateUid();
-    chkValidate({label, checked, id});
+    const isReverse = [`left`, `top`].includes(labelPosition);
+    const isColumn = [`top`, `bottom`].includes(labelPosition);
+    chkValidate({label, checked, id, labelPosition});
+    const labelClassName = [
+      `${prefix}-checkbox__label`,
+      { [`${prefix}-checkbox__label--reverse`]: isReverse },
+      { [`${prefix}-checkbox__label--column`]: isColumn }
+    ];
   input(
     type="checkbox"
     id=uid
     checked=checked
     class=`${prefix}-checkbox__control`
-  )
-  label(for=uid class=`${prefix}-checkbox__label`) label
+  )&attributes(attrs)
+  label(for=uid class=labelClassName) label
