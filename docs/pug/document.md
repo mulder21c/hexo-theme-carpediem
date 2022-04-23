@@ -1,54 +1,5 @@
 # Pug Documentation 
 
-## checkbox
-
-create input checkbox element
-
-
-### path 
-
-`components/atoms/checkboxes/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|options||object||false|
-|options.label|label of checkbox|string||false|
-|options.id|the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|options.name|the value of checkbox's name attribute|string||true|
-|options.checked|the checked state of checkbox|boolean||true|
-|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+checkbox({label: '동의', checked: true})
-```
-
-
-### output example 
-
-```html
-<input
-  class="amor-checkbox__control"
-  type="checkbox"
-  id="79qke1coeemu0u"
-  checked="checked"
-/>
-<label class="amor-checkbox__label" for="79qke1coeemu0u">label</label>
-
-```
-
-
----
-
-
 ## button
 
 create basic button element
@@ -169,7 +120,7 @@ include ./util
 ### output example 
 
 ```html
-<title>Tracks of mulder21c</title>
+<title>Hexo</title>
 
 ```
 
@@ -310,7 +261,7 @@ include ./util
   {
     "@context": "http://schema.org",
     "@type": "Blog",
-    "@name": "Tracks of mulder21c",
+    "@name": "Hexo",
     "url": "",
     "copyrightHolder": { "@type": "Person", "name": "John Doe" },
     "image": {
@@ -333,6 +284,55 @@ include ./util
 ---
 
 
+## checkbox
+
+create input checkbox element
+
+
+### path 
+
+`components/atoms/checkboxes/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|options||object||false|
+|options.name|the value of checkbox's name attribute|string||true|
+|options.id|the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|options.label|label of checkbox <br> If do not specify this value, you must author and style label element.|string||true|
+|options.checked|the checked state of checkbox|boolean||true|
+|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++checkbox({label: '동의', checked: true})
+```
+
+
+### output example 
+
+```html
+<input
+  class="amor-checkbox__control"
+  type="checkbox"
+  id="rvo83dcbkg7bn8g"
+  checked="checked"
+/>
+<label class="amor-checkbox__label" for="rvo83dcbkg7bn8g">label</label>
+
+```
+
+
+---
+
+
 ## radio
 
 create input radio element
@@ -348,10 +348,12 @@ create input radio element
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |options||object||false|
-|options.label|label of radio|string||false|
 |options.name|name of radio|string||false|
+|options.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
 |options.id|the value of radio's id attribute and label's for attribute|string||true|
 |options.checked|the checked state of radio|boolean||true|
+|options.value|the value of radio|string||true|
+|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
 
 
 
@@ -370,11 +372,11 @@ include ../../utils/util
 <input
   class="amor-radio__control"
   type="radio"
-  id="7a0kke8qkk2ii0o"
+  id="rvolg0qtrhrt6o8"
   name="answer"
   checked="checked"
 />
-<label class="amor-radio__label" for="7a0kke8qkk2ii0o">label</label>
+<label class="amor-radio__label" for="rvolg0qtrhrt6o8">label</label>
 
 ```
 
