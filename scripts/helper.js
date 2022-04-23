@@ -9,6 +9,12 @@
  * @property {string} hUnits
  */
 
+/**
+ * @typedef {Object} IconInfo
+ * @property {string} iconName
+ * @property {string} iconCategory
+ */
+
 const dateFormat = require("date-fns/format");
 const { getJosaPicker } = require("josa");
 const probe = require("probe-image-size");
@@ -38,6 +44,12 @@ const iconsMeta = (() => {
 // provide vanillaPropTypes into `site`
 hexo.locals.set("propTypes", vanillaPropTypes);
 
+/**
+ * If the URL does not contain a protocol,
+ * prepend protocol that is taken the protocol from the URL in the hexo config
+ * @param {string} url
+ * @returns {string}
+ */
 const prependHttpProtocol = (url) => {
   const hasHttpProtocol = /https?:\/\//i.test(url);
   const { protocol } = new URL(hexo.config.url);
@@ -54,10 +66,12 @@ hexo.extend.helper.register(`dateFormat`, function (...arguments) {
 
 /**
  * @desc Return the result of executing getJosaPicker (for Korean)
+ * @param {string} the word to which want to add a postposition
+ * @param {string} postposition kind of postposition
  * @return {string}
  */
-hexo.extend.helper.register(`getJosa`, (word, josa) => {
-  return getJosaPicker(josa)(word);
+hexo.extend.helper.register(`getJosa`, (word, postposition) => {
+  return getJosaPicker(postposition)(word);
 });
 
 /**
@@ -85,6 +99,7 @@ hexo.extend.helper.register(`full_url`, (url) => {
 
 /**
  * @desc Get representative image object
+ * @param {object} page page from hexo
  * @return {ImageProbe}
  */
 hexo.extend.helper.register(`representativeImage`, function (page) {
@@ -116,19 +131,28 @@ hexo.extend.helper.register(`representativeImage`, function (page) {
 });
 
 /**
- * @desc Get category of icon from fontawesome
- * @return {string}
+ * @desc Get name and category of icon from fontawesome
+ * @param {string} icon - the name of icon, you can predefine icon styles with slashes and words after slashes
+ * @example getIconCategory("bell")
+ * @example getIconCategory("bell/regular")
+ * @return {IconInfo}
  */
-hexo.extend.helper.register(`getIconCategory`, function (name) {
-  const {
-    styles: [style],
-  } = iconsMeta?.[name] || { styles: [] };
-  if (!style)
+hexo.extend.helper.register(`getIconCategory`, function (icon) {
+  const [name, category] = icon.split("/");
+  const { styles } = iconsMeta?.[name] || { styles: [] };
+  const [style] = styles;
+
+  if (category && !styles.includes(category)) {
     console.warn(
       "\x1b[33m%s\x1b[0m",
-      `⚠ Cannot find "${name}" icon from fontawesome.`
+      `⚠ Cannot find "${icon}" icon from fontawesome.`
     );
-  return style || ``;
+  }
+
+  return {
+    iconName: name,
+    iconCategory: category || style,
+  };
 });
 
 /**

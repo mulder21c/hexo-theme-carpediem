@@ -62,16 +62,22 @@ pugDocGen({
       hUnits: "px",
     }),
     full_url: (url) => url,
-    getIconCategory: function (name) {
-      const {
-        styles: [style],
-      } = iconsMeta?.[name] || { styles: [] };
-      if (!style)
+    getIconCategory: function (icon) {
+      const [name, category] = icon.split("/");
+      const { styles } = iconsMeta?.[name] || { styles: [] };
+      const [style] = styles;
+
+      if (category && !styles.includes(category)) {
         console.warn(
           "\x1b[33m%s\x1b[0m",
-          `⚠ Cannot find "${name}" icon from fontawesome.`
+          `⚠ Cannot find "${icon}" icon from fontawesome.`
         );
-      return style || ``;
+      }
+
+      return {
+        iconName: name,
+        iconCategory: category || style,
+      };
     },
     generateUid: () => uid(),
   },
