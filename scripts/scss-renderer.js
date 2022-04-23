@@ -21,6 +21,9 @@ const { prefix } = (() => {
   }
 })();
 
+/**
+ * @desc processing scss
+ */
 hexo.extend.renderer.register(
   `scss`,
   `css`,
