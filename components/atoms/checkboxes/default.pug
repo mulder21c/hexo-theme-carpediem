@@ -9,6 +9,7 @@
     - {string} [options.id] - the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.
     - {string} [options.label] - label of checkbox <br> If do not specify this value, you must author and style label element.
     - {boolean} [options.checked] - the checked state of checkbox
+    - {string} [options.value] - the value of checkbox
     - {string} [options.labelPosition] ['right']  - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
   examples:
     - |
@@ -19,6 +20,7 @@ mixin checkbox(options)
       label: PropTypes.string,
       checked: PropTypes.bool,
       id: PropTypes.string,
+      value: PropTypes.string,
       labelPosition: PropTypes.oneOf([
         `top`,
         `left`,
@@ -28,7 +30,7 @@ mixin checkbox(options)
     };
     const chkValidate = validateProps(chkProps);
     const defaults = {labelPosition: `right`};
-    const { checked, label, id, labelPosition, ...attrs } = {
+    const { checked, label, id, labelPosition, value, ...attrs } = {
       ...defaults,
       ...options,
     };
@@ -39,7 +41,7 @@ mixin checkbox(options)
     const uid = id || generateUid();
     const isReverse = [`left`, `top`].includes(labelPosition);
     const isColumn = [`top`, `bottom`].includes(labelPosition);
-    chkValidate({label, checked, id, labelPosition});
+    chkValidate({label, checked, id, value, labelPosition});
     const labelClassName = [
       `${prefix}-checkbox__label`,
       { [`${prefix}-checkbox__label--reverse`]: isReverse },
@@ -48,6 +50,7 @@ mixin checkbox(options)
   input(
     type="checkbox"
     id=uid
+    value=value
     checked=checked
     class=`${prefix}-checkbox__control`
   )&attributes(attrs)
