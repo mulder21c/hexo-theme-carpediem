@@ -24,6 +24,7 @@ const fetch = require("sync-fetch");
 const vanillaPropTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
 const uid = require("easy-uid");
+const imageInfo = require("../images-db.json");
 const iconsMeta = (() => {
   try {
     return jsYml.load(
@@ -106,7 +107,12 @@ hexo.extend.helper.register(`representativeImage`, function (page) {
   const { theme } = this;
   const hero = page?.hero || theme.hero || undefined;
   if (!hero) return null;
+
+  const info = imageInfo.find((image) => image.path === hero);
+  if (info) return info;
+
   const isExternal = /^((https?):)?\/\//i.test(hero);
+  console.log(`[helper] getting image size: ${hero}`);
   if (isExternal) {
     try {
       const image = fetch(prependHttpProtocol(hero));
