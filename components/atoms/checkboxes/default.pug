@@ -35,9 +35,6 @@ mixin checkbox(options)
       ...options,
     };
     const {prefix} = theme;
-    const className = [
-      `${prefix}-checkbox`,
-    ];
     const uid = id || generateUid();
     const isReverse = [`left`, `top`].includes(labelPosition);
     const isColumn = [`top`, `bottom`].includes(labelPosition);
