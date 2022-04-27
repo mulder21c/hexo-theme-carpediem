@@ -1,0 +1,73 @@
+.#{$prefix}-switch {
+  $control: #{&}__control;
+
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__control {
+    outline: 0;
+    position: relative;
+    z-index: -1;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+  }
+
+  &__btn {
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0.5em;
+    padding: 0 0.1em;
+    border-radius: 0.8em;
+    border: 2px solid var(--primary-button-border-color);
+    width: 3.5em;
+    height: 1.6em;
+    background-color: var(--background-color);
+
+    #{$control}:focus + & {
+      outline: 2px solid var(--primary-button-active-outline-color);
+      outline-offset: 2px;
+    }
+
+    #{$control}:checked + & {
+      flex-direction: row-reverse;
+      background-color: var(--primary-button-background-color);
+    }
+
+    &::before {
+      content: "";
+      display: inline-block;
+      border-radius: 50%;
+      width: 1.2rem;
+      height: 1.2rem;
+      background-color: var(--primary-button-background-color);
+      filter: drop-shadow(1px 1px 1px var(--primary-button-shadow-color));
+      transition: all 0.2s;
+
+      #{$control}:checked + & {
+        background-color: var(--background-color);
+      }
+    }
+
+    &::after {
+      content: "off";
+      margin-right: 0.5em;
+      font-size: 0.8em;
+      color: var(--primary-button-text-color-dark);
+
+      #{$control}:checked + & {
+        content: "on";
+        margin-left: 0.5em;
+        margin-right: 0;
+        color: var(--primary-button-text-color);
+      }
+    }
+  }
+}
