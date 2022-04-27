@@ -1,6 +1,7 @@
 :root {
   color-scheme: dark light;
-  --font-family-base: #{$font-families-base};
+  --font-family-serif: #{$font-family-serif};
+  --font-family-sans-serif: #{$font-family-sans-serif};
   --font-family-code: #{$font-families-code};
   --font-size-base: #{$font-size-default * $font-responsive-ratio-default};
   --font-size-default: #{$font-size-default};

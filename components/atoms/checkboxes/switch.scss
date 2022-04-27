@@ -59,6 +59,7 @@
     &::after {
       content: "off";
       margin-right: 0.5em;
+      font-family: $font-families-sans-serif;
       font-size: 0.8em;
       color: var(--primary-button-text-color-dark);
 

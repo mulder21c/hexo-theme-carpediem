@@ -1,6 +1,6 @@
 @include font-face(
-  $font-family-base,
-  $font-file-path,
+  $font-family-serif,
+  $font-file-serif-path,
   "noto-serif-kr-200",
   $font-weight-thin,
   normal,
@@ -9,8 +9,8 @@
 );
 
 @include font-face(
-  $font-family-base,
-  $font-file-path,
+  $font-family-serif,
+  $font-file-serif-path,
   "noto-serif-kr-400",
   $font-weight-normal,
   normal,
@@ -19,8 +19,8 @@
 );
 
 @include font-face(
-  $font-family-base,
-  $font-file-path,
+  $font-family-serif,
+  $font-file-serif-path,
   "noto-serif-kr-700",
   $font-weight-bold,
   normal,
@@ -29,8 +29,98 @@
 );
 
 @include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-thin",
+  $font-weight-thin,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-extralight",
+  $font-weight-extra-light,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-light",
+  $font-weight-light,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-regular",
+  $font-weight-normal,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-medium",
+  $font-weight-medium,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-semibold",
+  $font-weight-semi-bold,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-bold",
+  $font-weight-bold,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-bold",
+  $font-weight-bold,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
+  $font-family-sans-serif,
+  $font-file-sans-serif-path,
+  "pretendard-extrabold",
+  $font-weight-extra-bold,
+  normal,
+  woff woff2,
+  null
+);
+
+@include font-face(
   $font-family-code,
-  $font-file-path,
+  $font-file-code-path,
   "hack-regular-subset",
   $font-weight-normal,
   normal,
@@ -40,7 +130,7 @@
 
 @include font-face(
   $font-family-code,
-  $font-file-path,
+  $font-file-code-path,
   "hack-italic-subset",
   $font-weight-normal,
   italic,
@@ -50,7 +140,7 @@
 
 @include font-face(
   $font-family-code,
-  $font-file-path,
+  $font-file-code-path,
   "hack-bold-subset",
   $font-weight-bold,
   normal,
@@ -60,7 +150,7 @@
 
 @include font-face(
   $font-family-code,
-  $font-file-path,
+  $font-file-code-path,
   "hack-bolditalic-subset",
   $font-weight-bold,
   italic,
