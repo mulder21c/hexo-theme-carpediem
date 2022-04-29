@@ -23,13 +23,16 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
     padding: 0 0.1em;
-    border-radius: 0.8em;
+    border-radius: 0.8rem;
     border: 2px solid var(--primary-button-border-color);
-    width: 3.5em;
-    height: 1.6em;
+    width: 3.5rem;
+    height: 1.6rem;
     background-color: var(--background-color);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background 0.3s;
+    }
 
     #{$control}:focus + & {
       outline: 2px solid var(--primary-button-active-outline-color);
@@ -37,7 +40,6 @@
     }
 
     #{$control}:checked + & {
-      flex-direction: row-reverse;
       background-color: var(--primary-button-background-color);
     }
 
@@ -49,24 +51,28 @@
       height: 1.2rem;
       background-color: var(--primary-button-background-color);
       filter: drop-shadow(1px 1px 1px var(--primary-button-shadow-color));
-      transition: all 0.2s;
 
       #{$control}:checked + & {
+        transform: translate(calc(100% + 0.6rem), 0);
         background-color: var(--background-color);
       }
     }
 
     &::after {
       content: "off";
-      margin-right: 0.5em;
+      margin-right: 0.5rem;
       font-family: $font-families-sans-serif;
-      font-size: 0.8em;
+      font-size: 0.8rem;
       color: var(--primary-button-text-color-dark);
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
 
       #{$control}:checked + & {
         content: "on";
         margin-left: 0.5em;
         margin-right: 0;
+        transform: translate(calc(-100% - 0.9rem), 0);
         color: var(--primary-button-text-color);
       }
     }

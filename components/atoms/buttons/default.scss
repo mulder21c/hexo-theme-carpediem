@@ -32,6 +32,9 @@
     background-color: var(--primary-button-background-color);
     color: var(--primary-button-text-color);
     filter: drop-shadow(2px 2px 2px var(--primary-button-shadow-color));
+    @media (prefers-reduced-motion: no-preference) {
+      transition: vert-bounce-button 0.3s, background 0.2s ease-in-out;
+    }
 
     &:focus {
       outline: 3px solid var(--primary-button-active-outline-color);
@@ -40,14 +43,12 @@
       filter: drop-shadow(
         2px 2px 2px var(--primary-button-active-shadow-color)
       );
-      transition: all 0.3s;
     }
 
     &:hover {
       border-color: var(--primary-button-active-border-color);
       background-color: var(--primary-button-active-background-color);
       color: var(--primary-button-text-color);
-      transition: all 0.3s;
       @include animation(
         (
           name: vert-bounce-button,
@@ -64,24 +65,19 @@
   }
 
   &--outline {
-    position: relative;
     border: 1px solid var(--primary-button-border-color);
     background-color: transparent;
+    background-image: linear-gradient(
+      var(--primary-button-background-color),
+      var(--primary-button-background-color)
+    );
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 0;
     color: var(--primary-button-text-color-dark);
     filter: drop-shadow(1px 1px 1px var(--primary-button-shadow-color));
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      border-radius: var(--primary-button-border-radius);
-      width: 100%;
-      height: 0;
-      z-index: -1;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: all 0.3s ease-in-out;
-      }
+    @media (prefers-reduced-motion: no-preference) {
+      transition: vert-bounce-button 0.3s, background 0.2s ease-in-out;
     }
 
     &:focus {
@@ -90,16 +86,15 @@
       background-color: transparent;
       color: var(--primary-button-text-color-dark);
       filter: drop-shadow(1px 1px 1px var(--primary-button-active-color));
-      transition: all 0.3s;
     }
 
     &:hover {
       border-color: var(--primary-button-active-border-color);
       color: var(--primary-button-text-color);
+      background-size: 100% 100%;
       filter: drop-shadow(
         1px 1px 1px var(--primary-button-active-shadow-color)
       );
-      transition: all 0.3s;
 
       @include animation(
         (
@@ -110,11 +105,6 @@
           func: cubic-bezier(0.165, 0.84, 0.34, 1),
         )
       );
-
-      &::before {
-        background-color: var(--primary-button-background-color);
-        height: 100%;
-      }
 
       &:focus {
         border-color: var(--primary-button-separator-color);
