@@ -1,0 +1,49 @@
+.#{$prefix}-radio-boxy {
+  $control: #{&}__control;
+
+  flex: 1 1 auto;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-button-text-color-dark);
+
+  &__control {
+    outline: 0;
+    position: relative;
+    z-index: -1;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+  }
+
+  &__box {
+    display: inline-flex;
+    border: 1px solid var(--primary-button-border-color);
+    padding: 0.5rem 1.125rem;
+    background-color: transparent;
+    background-image: linear-gradient(
+      var(--primary-button-background-color),
+      var(--primary-button-background-color)
+    );
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 0;
+    font-family: $font-families-sans-serif;
+
+    #{$control}:checked + & {
+      border-color: var(--primary-button-active-border-color);
+      color: var(--primary-button-text-color);
+      background-size: 100% 100%;
+    }
+
+    #{$control}:focus + & {
+      outline: 2px solid var(--primary-button-active-outline-color);
+      outline-offset: 1px;
+      border-color: var(--primary-button-border-color);
+    }
+  }
+}

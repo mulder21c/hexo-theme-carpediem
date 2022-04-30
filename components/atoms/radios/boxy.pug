@@ -1,0 +1,46 @@
+//- @pugdoc
+  name: boxyRadio
+  description: create input radio element
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} options
+    - {string} options.name - name of radio
+    - {string|number|boolean} options.value - the value of radio
+    - {string} [options.id] - the value of radio's id attribute and label's for attribute
+    - {boolean} [options.checked] - the checked state of radio
+  examples:
+    - |
+      +boxyRadio({name: 'answer', value: 1 })
+mixin boxyRadio(options)
+  -
+    const radioProps = {
+      name: PropTypes.string.isRequired,
+      checked: PropTypes.bool,
+      id: PropTypes.string,
+      value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.bool,
+      ]).isRequired,
+    };
+    const radioValidate = validateProps(radioProps);
+    const defaults = {labelPosition: `right`};
+    const { checked, id, name, value, ...attrs } = {
+      ...defaults,
+      ...options,
+    };
+    const {prefix} = theme;
+    const uid = id || generateUid();
+    radioValidate({label, checked, id, name, value});
+  label(class=`${prefix}-radio-boxy`)
+    input(
+      type="radio"
+      id=uid
+      name=name
+      value=value
+      checked=checked
+      class=`${prefix}-radio-boxy__control`
+    )
+    span(class=`${prefix}-radio-boxy__box`)
+      block
