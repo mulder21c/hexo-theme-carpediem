@@ -39,7 +39,7 @@ const prependHttpProtocol = (url) => {
 /**
  * @desc process for clean image-info when after initialized hexo
  */
-hexo.extend.filter.register(`after_init`, () => {
+hexo.extend.filter.register(`after_init`, (data) => {
   if (isCleanStage) truncate(imageInfoPath);
 });
 
@@ -47,7 +47,13 @@ hexo.extend.filter.register(`after_init`, () => {
  * @desc process for generate image-info when after initialized hexo
  */
 hexo.extend.filter.register(`before_generate`, function (data) {
-  const imageInfo = require(imageInfoPath);
+  let imageInfo;
+  try {
+    imageInfo = require(imageInfoPath);
+  } catch (err) {
+    truncate(imageInfoPath);
+    imageInfo = require(imageInfoPath);
+  }
   const {
     theme: { config: themeConfig },
   } = this;

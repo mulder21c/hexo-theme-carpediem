@@ -24,7 +24,6 @@ const fetch = require("sync-fetch");
 const vanillaPropTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
 const uid = require("easy-uid");
-const imageInfo = require("../images-db.json");
 const iconsMeta = (() => {
   try {
     return jsYml.load(
@@ -103,10 +102,11 @@ hexo.extend.helper.register(`full_url`, (url) => {
  * @param {object} page page from hexo
  * @return {ImageProbe}
  */
-hexo.extend.helper.register(`representativeImage`, function (page) {
+hexo.extend.helper.register(`representativeImage`, async function (page) {
   const { theme } = this;
   const hero = page?.hero || theme.hero || undefined;
   if (!hero) return null;
+  const imageInfo = require("../images-db.json");
 
   const info = imageInfo.find((image) => image.path === hero);
   if (info) return info;
@@ -115,7 +115,7 @@ hexo.extend.helper.register(`representativeImage`, function (page) {
   console.log(`[helper] getting image size: ${hero}`);
   if (isExternal) {
     try {
-      const image = fetch(prependHttpProtocol(hero));
+      const image = await fetch(prependHttpProtocol(hero));
       const dimension = probe.sync(image.buffer());
       return {
         path: hero,
