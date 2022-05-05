@@ -4,15 +4,16 @@
   beforeEach: |
     include ../../utils/util
   arguments:
-    - {object} options
-    - {string} [options.type] ['button'] - the value of type attribute for button
-    - {string} [options.size] ['medium'] - size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`
-    - {string} [options.appearance] ['fill'] - appearance of button <br> one of `'fill'`, `'outline'`
+    - {object} props
+    - {string} [props.type] ['button'] - the value of type attribute for button
+    - {string} [props.size] ['medium'] - size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`
+    - {string} [props.appearance] ['fill'] - appearance of button <br> one of `'fill'`, `'outline'`
   examples:
     - |
       +button({type: 'button', size: 'medium', appearance: 'outline'}) 버튼
-mixin button(options)
+mixin button(props)
   -
+    // verifying props
     const btnProps = {
       size: PropTypes.oneOf([
         `small`,
@@ -29,14 +30,16 @@ mixin button(options)
     const defaults = {type: `button`, size: `medium`, appearance: `default`};
     const { type, size, appearance, ...attrs } = {
       ...defaults,
-      ...options,
+      ...props,
     };
+    btnValidate({size, appearance});
+
     const {prefix} = theme;
     const className = [
       `${prefix}-btn-basic`,
       { [`${prefix}-btn-basic--${size}`]: size },
       { [`${prefix}-btn-basic--${appearance}`]: appearance }
     ];
-    btnValidate({size, appearance});
+
   button(type=type class=className)&attributes(attrs)
     block

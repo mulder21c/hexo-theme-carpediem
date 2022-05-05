@@ -138,3 +138,15 @@
     }
   }
 }
+
+@mixin sr-only {
+  overflow: hidden !important;
+  position: relative !important;
+  z-index: -1 !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  clip-path: inset(50%) !important;
+}

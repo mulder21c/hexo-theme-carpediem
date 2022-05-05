@@ -4,16 +4,18 @@
   beforeEach: |
     include ../../utils/util
   arguments:
-    - {object} options
-    - {string} options.name - name of radio
-    - {string|number|boolean} options.value - the value of radio
-    - {string} [options.id] - the value of radio's id attribute and label's for attribute
-    - {boolean} [options.checked] - the checked state of radio
+    - {object} props
+    - {string} props.name - name of radio
+    - {string|number|boolean} props.value - the value of radio
+    - {string} [props.id] - the value of radio's id attribute and label's for attribute
+    - {boolean} [props.checked] - the checked state of radio
+    - {object} [props.inputAttrs] - the attrs for input:radio
   examples:
     - |
       +boxyRadio({name: 'answer', value: 1 })
-mixin boxyRadio(options)
+mixin boxyRadio(props)
   -
+    // verifying props
     const radioProps = {
       name: PropTypes.string.isRequired,
       checked: PropTypes.bool,
@@ -23,17 +25,23 @@ mixin boxyRadio(options)
         PropTypes.number,
         PropTypes.bool,
       ]).isRequired,
+      inputAttrs: PropTypes.object,
     };
     const radioValidate = validateProps(radioProps);
-    const defaults = {labelPosition: `right`};
-    const { checked, id, name, value, ...attrs } = {
-      ...defaults,
-      ...options,
+    const defaults = {
+      labelPosition: `right`,
+      inputAttrs: {},
     };
+    const { checked, id, name, value, inputAttrs, ...attrs } = {
+      ...defaults,
+      ...props,
+    };
+    radioValidate({label, checked, id, name, value});
+
     const {prefix} = theme;
     const uid = id || generateUid();
-    radioValidate({label, checked, id, name, value});
-  label(class=`${prefix}-radio-boxy`)
+
+  label(class=`${prefix}-radio-boxy`)&attributes(attrs)
     input(
       type="radio"
       id=uid
@@ -41,6 +49,6 @@ mixin boxyRadio(options)
       value=value
       checked=checked
       class=`${prefix}-radio-boxy__control`
-    )
+    )&attributes(inputAttrs)
     span(class=`${prefix}-radio-boxy__box`)
       block

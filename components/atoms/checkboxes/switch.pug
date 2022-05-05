@@ -4,18 +4,20 @@
   beforeEach: |
     include ../../utils/util
   arguments:
-    - {object} options
-    - {string} [options.name] - the value of switch button's name attribute
-    - {string} [options.id] - the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.
-    - {string} [options.label] - label of switch button <br> If do not specify this value, you must author and style label element.
-    - {boolean} [options.checked] - the state of switch button
-    - {string} [options.value] - the value of switch button
-    - {string} [options.labelPosition] ['right']  - Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`
+    - {object} props
+    - {string} [props.name] - the value of switch button's name attribute
+    - {string} [props.id] - the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.
+    - {string} [props.label] - label of switch button <br> If do not specify this value, you must author and style label element.
+    - {boolean} [props.checked] - the state of switch button
+    - {string} [props.value] - the value of switch button
+    - {string} [props.labelPosition] ['right'] - Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`
+    - {object} [props.inputAttrs] - the attrs for input:checkbox
   examples:
     - |
-      +switchButton({label: '알림', checked: true})
-mixin switchButton(options)
+        +switchButton({label: '알림', checked: true})
+mixin switchButton(props)
   -
+    // verifying props
     const switchBtnProps = {
       label: PropTypes.string,
       checked: PropTypes.bool,
@@ -25,29 +27,35 @@ mixin switchButton(options)
         `left`,
         `right`,
       ]),
+      inputAttrs: PropTypes.object,
     };
     const switchBtnValidate = validateProps(switchBtnProps);
-    const defaults = {labelPosition: `right`};
-    const { checked, label, id, labelPosition, value, ...attrs } = {
-      ...defaults,
-      ...options,
+    const defaults = {
+      labelPosition: `right`,
+      inputAttrs: {},
     };
+    const { checked, label, id, labelPosition, value, inputAttrs, ...attrs } = {
+      ...defaults,
+      ...props,
+    };
+    switchBtnValidate({label, checked, id, value, labelPosition});
+
     const {prefix} = theme;
     const uid = id || generateUid();
     const isReverse = [`left`].includes(labelPosition);
-    switchBtnValidate({label, checked, id, value, labelPosition});
     const btnClassName = [
       `${prefix}-switch__btn`,
       { [`${prefix}-switch__btn--reverse`]: isReverse }
     ];
-  span(class=`${prefix}-switch`)
+
+  span(class=`${prefix}-switch`)&attributes(attrs)
     input(
       type="checkbox"
       id=uid
       value=value
       checked=checked
       class=`${prefix}-switch__control`
-    )&attributes(attrs)
+    )&attributes(inputAttrs)
     span(class=btnClassName)
     if (label)
       label(for=uid class=`${prefix}-switch__label`) label

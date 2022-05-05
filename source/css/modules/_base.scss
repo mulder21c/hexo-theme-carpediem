@@ -81,3 +81,7 @@ a {
     }
   }
 }
+
+.sr-only {
+  @include sr-only;
+}
