@@ -3,6 +3,7 @@
 
   &__control {
     outline: 0;
+    order: 1;
     @include sr-only;
   }
 

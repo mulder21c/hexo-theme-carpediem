@@ -4,14 +4,15 @@
   beforeEach: |
     include ../../utils/util
   arguments:
-    - {object} options
-    - {string} options.level - the level(rank) of heading
-    - {boolean} [options.visible] - whether an element is visible or not
+    - {object} props
+    - {string} props.level - the level(rank) of heading
+    - {boolean} [props.visible] - whether an element is visible or not
   examples:
     - |
       +heading({level: 1 })
-mixin heading(options)
+mixin heading(props)
   -
+    // verifying props
     const headingProps = {
       level: PropTypes.number.custom(({prop}) => {
         if (Number.isInteger(prop) && prop > 0 && prop < 7) {
@@ -26,30 +27,31 @@ mixin heading(options)
     const defaults = {level: 1, visible: true};
     const { level, visible, ...attrs } = {
       ...defaults,
-      ...options,
+      ...props,
     };
-    const {prefix} = theme;
     headingValidate({level, visible});
+
+    const {prefix} = theme;
     const className = [
       `${prefix}-heading--level-${level}`,
       {[`sr-only`]: !visible}
     ];
   case level
     when 1
-      h1(class=className)
+      h1(class=className)&attributes(attrs)
         block
     when 2
-      h2(class=className)
+      h2(class=className)&attributes(attrs)
         block
     when 3
-      h3(class=className)
+      h3(class=className)&attributes(attrs)
         block
     when 4
-      h4(class=className)
+      h4(class=className)&attributes(attrs)
         block
     when 5
-      h5(class=className)
+      h5(class=className)&attributes(attrs)
         block
     when 6
-      h6(class=className)
+      h6(class=className)&attributes(attrs)
         block
