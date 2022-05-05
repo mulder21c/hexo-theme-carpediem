@@ -4,19 +4,20 @@
   beforeEach: |
     include ../../utils/util
   arguments:
-    - {object} options
-    - {string} options.icon - name of icon
-    - {string} options.label - label of button
-    - {string} [options.type] ['button'] - the value of type attribute for button
-    - {string} [options.size] ['medium'] - size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``
-    - {string} [options.appearance] ['outline'] - appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`
-    - {string} [options.layout] [`icon-only`] - layout of button <br> one of `'icon-only', `icon-text``
+    - {object} props
+    - {string} props.icon - name of icon
+    - {string} props.label - label of button
+    - {string} [props.type] ['button'] - the value of type attribute for button
+    - {string} [props.size] ['medium'] - size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``
+    - {string} [props.appearance] ['outline'] - appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`
+    - {string} [props.layout] [`icon-only`] - layout of button <br> one of `'icon-only', `icon-text``
   examples:
     - |
       +iconButton({type: 'button', size: 'medium', appearance: 'outline', icon: 'tty', label: '전화'})
-mixin iconButton(options)
+mixin iconButton(props)
   -
-    const btnProps = {
+    // verifying props
+    const iconBtnProps = {
       icon: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       size: PropTypes.oneOf([
@@ -34,7 +35,7 @@ mixin iconButton(options)
         `icon-text`,
       ]),
     };
-    const btnValidate = validateProps(btnProps);
+    const iconBtnValidate = validateProps(iconBtnProps);
     const defaults = {
       type: `button`,
       size: `medium`,
@@ -43,9 +44,10 @@ mixin iconButton(options)
     };
     const { type, size, appearance, icon, label, layout, ...attrs } = {
       ...defaults,
-      ...options,
+      ...props,
     };
-    btnValidate({size, appearance, icon, label, layout});
+    iconBtnValidate({size, appearance, icon, label, layout});
+
     const isIconOnly = layout === `icon-only`;
     const {prefix} = theme;
     const className = [
@@ -55,6 +57,7 @@ mixin iconButton(options)
       { [`${prefix}-btn-icon--${layout}`]: layout }
     ];
     const {iconName, iconCategory} = getIconCategory(icon);
+
   button(
     type=type
     aria-label=isIconOnly && label
@@ -67,4 +70,4 @@ mixin iconButton(options)
     )
       use(xlink:href=`/images/${iconCategory}.svg#${iconName}`)
     if !isIconOnly
-      span._btn-icon__label= label
+      span(class=`${prefix}-btn-icon__label`)= label

@@ -317,3 +317,5 @@ $RECYCLE.BIN/
 _config.my.yml
 docs/
 source/images
+images-db.json
+bundle.js

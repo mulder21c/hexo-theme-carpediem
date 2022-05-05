@@ -16,6 +16,7 @@
       +radio({label: 'yes', name: 'answer', value: 1})
 mixin radio(options)
   -
+    // verifying props
     const radioProps = {
       label: PropTypes.string,
       name: PropTypes.string.isRequired,
@@ -35,20 +36,23 @@ mixin radio(options)
     };
     const radioValidate = validateProps(radioProps);
     const defaults = {labelPosition: `right`};
-    const { checked, label, id, name, labelPosition, value, ...attrs } = {
+    const { checked, label, id, name, labelPosition, value, class: cn, ...attrs } = {
       ...defaults,
       ...options,
     };
+    radioValidate({label, checked, id, name, value, labelPosition});
+
     const {prefix} = theme;
     const uid = id || generateUid();
     const isReverse = [`left`, `top`].includes(labelPosition);
     const isColumn = [`top`, `bottom`].includes(labelPosition);
-    radioValidate({label, checked, id, name, value, labelPosition});
     const labelClassName = [
       `${prefix}-radio__label`,
       { [`${prefix}-radio__label--reverse`]: isReverse },
-      { [`${prefix}-radio__label--column`]: isColumn }
+      { [`${prefix}-radio__label--column`]: isColumn },
+      ...(Array.isArray(cn) ? cn : [cn] )
     ];
+
   input(
     type="radio"
     id=uid
@@ -56,7 +60,7 @@ mixin radio(options)
     value=value
     checked=checked
     class=`${prefix}-radio__control`
-  )
+  )&attributes(attrs)
   if (label)
     label(for=uid class=labelClassName) label
   else

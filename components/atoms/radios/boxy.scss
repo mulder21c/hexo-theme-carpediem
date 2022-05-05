@@ -10,14 +10,7 @@
 
   &__control {
     outline: 0;
-    position: relative;
-    z-index: -1;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-    width: 1px;
-    height: 1px;
-    clip-path: inset(50%);
+    @include sr-only;
   }
 
   &__box {

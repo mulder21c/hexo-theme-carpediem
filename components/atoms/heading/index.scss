@@ -1,0 +1,38 @@
+.#{$prefix}-heading {
+  &--level-1 {
+    margin-top: 0.75em;
+    margin-bottom: 1em;
+    font-size: var(--font-size-heading-level-1);
+    font-weight: var(--font-weight-extra-bold);
+  }
+  &--level-2 {
+    margin-top: 0.75em;
+    margin-bottom: 1.2em;
+    font-size: var(--font-size-heading-level-2);
+    font-weight: var(--font-weight-bold);
+  }
+  &--level-3 {
+    margin-top: 0.75em;
+    margin-bottom: 1.2em;
+    font-size: var(--font-size-heading-level-3);
+    font-weight: var(--font-weight-bold);
+  }
+  &--level-4 {
+    margin-top: 0.75em;
+    margin-bottom: 1.125em;
+    font-size: var(--font-size-heading-level-4);
+    font-weight: var(--font-weight-bold);
+  }
+  &--level-5 {
+    margin-top: 0.75em;
+    margin-bottom: 1.125em;
+    font-size: var(--font-size-heading-level-5);
+    font-weight: var(--font-weight-semi-bold);
+  }
+  &--level-6 {
+    margin-top: 0.75em;
+    margin-bottom: 1em;
+    font-size: var(--font-size-heading-level-6);
+    font-weight: var(--font-weight-semi-bold);
+  }
+}
