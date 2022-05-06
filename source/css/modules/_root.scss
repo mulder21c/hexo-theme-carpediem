@@ -44,6 +44,8 @@
     --primary-button-separator-color: #{$color-green-35};
     --primary-button-text-color: #{$white};
     --primary-button-text-color-dark: #{$color-green-75};
+
+    --separator-border-color: #{$color-neutral-20};
   }
 
   @include colorScheme(dark) {
@@ -66,6 +68,8 @@
     --primary-button-separator-color: #{$color-green-35};
     --primary-button-text-color: #{$white};
     --primary-button-text-color-dark: #{$color-green-15};
+
+    --separator-border-color: #{$color-neutral-60};
   }
 
   @include respond-to(tablet) {

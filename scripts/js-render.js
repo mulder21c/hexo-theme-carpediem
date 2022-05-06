@@ -59,6 +59,11 @@ const { prefix: themePrefix } = (() => {
  * @param {string} option.prepend - script to append at the first
  */
 const injectScriptForComponent = ({ prepend }) => {
+  hexo.extend.injector.register(
+    `body_end`,
+    `<script src="js/utils.js"></script>`,
+    `default`
+  );
   injectScript(prepend);
   glob
     .sync([path.resolve(rootPath, `./components/**/*.js`)])
@@ -100,6 +105,11 @@ const bundleComponentScript = async ({ prepend, fileName }) => {
     flag: `w`,
   });
 
+  hexo.extend.injector.register(
+    `body_end`,
+    `<script src="js/utils.js"></script>`,
+    `default`
+  );
   hexo.extend.injector.register(
     `body_end`,
     () => {
