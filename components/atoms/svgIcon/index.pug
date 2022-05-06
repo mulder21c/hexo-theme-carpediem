@@ -1,0 +1,28 @@
+//- @pugdoc
+  name: svgIon
+  description: create inline-svg icon
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {string} props.name - name of icon
+    - {string} [props.type] - type of icon
+mixin svgIcon(props)
+  -
+    // verifying props
+    const svgIconProps = {
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string,
+    };
+    const svgIconValidate = validateProps(svgIconProps);
+    const { name, type, ...attrs } = {
+      type: ``,
+      ...props,
+    };
+    svgIconValidate({name, type});
+
+    const {prefix} = theme;
+    const {iconName, iconCategory} = getIconCategory(`${name}${type && ('/' + type)}`);
+
+  svg(class=`${prefix}-svg-icon`)&attributes(attrs)
+    use(xlink:href=`/images/${iconCategory}.svg#${iconName}`)
