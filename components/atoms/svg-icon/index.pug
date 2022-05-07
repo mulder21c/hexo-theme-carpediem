@@ -1,5 +1,5 @@
 //- @pugdoc
-  name: svgIon
+  name: svgIcon
   description: create inline-svg icon
   beforeEach: |
     include ../../utils/util
@@ -7,6 +7,9 @@
     - {object} props
     - {string} props.name - name of icon
     - {string} [props.type] - type of icon
+  examples:
+    - |
+      +svgIcon({name: 'thumbs-up'})
 mixin svgIcon(props)
   -
     // verifying props
