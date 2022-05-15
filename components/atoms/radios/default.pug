@@ -62,6 +62,6 @@ mixin radio(options)
     class=`${prefix}-radio__control`
   )&attributes(attrs)
   if (label)
-    label(for=uid class=labelClassName) label
+    label(for=uid class=labelClassName)= label
   else
     span(class=labelClassName aria-hidden="true")

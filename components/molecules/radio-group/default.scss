@@ -1,0 +1,40 @@
+.#{$prefix}-radio-group {
+  $item: #{&}__item;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  &__item {
+    flex: 0 0 100%;
+    margin-bottom: 1em;
+  }
+
+  &--col {
+    &-2 {
+      #{$item} {
+        @include respond-to(tablet) {
+          flex: 0 0 50%;
+        }
+      }
+    }
+    &-3 {
+      #{$item} {
+        @include respond-to(tablet) {
+          flex: 0 0 math.div(100%, 3);
+        }
+      }
+    }
+    &-4 {
+      #{$item} {
+        @include respond-to(tablet) {
+          flex: 0 0 50%;
+        }
+        @include respond-to(pc) {
+          flex: 0 0 25%;
+        }
+      }
+    }
+  }
+}

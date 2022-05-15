@@ -1,105 +1,5 @@
 # Pug Documentation 
 
-## button
-
-create basic button element
-
-
-### path 
-
-`components/atoms/buttons/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.type|the value of type attribute for button|string|'button'|true|
-|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
-|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+button({type: 'button', size: 'medium', appearance: 'outline'}) 버튼
-```
-
-
-### output example 
-
-```html
-<button
-  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
-  type="button"
->
-  버튼
-</button>
-
-```
-
-
----
-
-
-## switchButton
-
-create switch button
-
-
-### path 
-
-`components/atoms/checkboxes/switch.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|the value of switch button's name attribute|string||true|
-|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
-|props.checked|the state of switch button|boolean||true|
-|props.value|the value of switch button|string||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
-|props.inputAttrs|the attrs for input:checkbox|object||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+switchButton({label: '알림', checked: true})
-```
-
-
-### output example 
-
-```html
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="672qod84ufq4cq8"
-    checked="checked"
-  />
-  <span class="amor-switch__btn"></span>
-  <label class="amor-switch__label" for="672qod84ufq4cq8">label</label>
-</span>
-
-```
-
-
----
-
-
 ## iconButton
 
 create icon button element
@@ -191,10 +91,10 @@ include ../../utils/util
 <input
   class="amor-checkbox__control"
   type="checkbox"
-  id="673tpuodkaosedo"
+  id="pu5e1vbrb8r4pa"
   checked="checked"
 />
-<label class="amor-checkbox__label" for="673tpuodkaosedo">label</label>
+<label class="amor-checkbox__label" for="pu5e1vbrb8r4pa">label</label>
 
 ```
 
@@ -242,57 +142,6 @@ include ../../utils/util
 ---
 
 
-## radio
-
-create input radio element
-
-
-### path 
-
-`components/atoms/radios/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|options||object||false|
-|options.name|name of radio|string||false|
-|options.value|the value of radio|string,number,boolean||false|
-|options.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
-|options.id|the value of radio's id attribute and label's for attribute|string||true|
-|options.checked|the checked state of radio|boolean||true|
-|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+radio({label: 'yes', name: 'answer', value: 1})
-```
-
-
-### output example 
-
-```html
-<input
-  class="amor-radio__control"
-  type="radio"
-  id="674ug02de6e8h28"
-  name="answer"
-  value="1"
-/>
-<label class="amor-radio__label" for="674ug02de6e8h28">label</label>
-
-```
-
-
----
-
-
 ## boxyRadio
 
 create input radio element
@@ -332,7 +181,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="6758n4ljvr9u59"
+    id="pu6ljutn8b0k31o"
     name="answer"
     value="1"
   />
@@ -345,14 +194,14 @@ include ../../utils/util
 ---
 
 
-## accordion
+## button
 
-create accordion component
+create basic button element
 
 
 ### path 
 
-`components/organisms/accordion/index.pug`
+`components/atoms/buttons/default.pug`
 
 
 ### arguments 
@@ -360,8 +209,9 @@ create accordion component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.hLevel|heading level of header in accordion|string||false|
-|props.activatedIndex|The index number of the panel that you want to initially open|number||true|
+|props.type|the value of type attribute for button|string|'button'|true|
+|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
+|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
 
 
 
@@ -369,104 +219,168 @@ create accordion component
 
 ```jade
 include ../../utils/util
-include ../../atoms/heading/index.pug
-include ../../atoms/svg-icon/index.pug
 
-+accordion({hLevel: 2, activatedIndex: 1})
-  +headingSlot 아코디언 1
-  +panelSlot 아코디언 1 패널
-  +headingSlot 아코디언 2
-  +panelSlot 아코디언 2 패널
-  +headingSlot 아코디언 3
-  +panelSlot 아코디언 3 패널
++button({type: 'button', size: 'medium', appearance: 'outline'}) 버튼
 ```
 
 
 ### output example 
 
 ```html
-<div class="amor-accordion" id="6767vhpp32lope" data-init-activate="1">
-  <h2 class="amor-heading--level-2 amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="accordion-heading-6767pk9f644kvv"
-      aria-expanded="false"
-      aria-controls="accordion-panel-6767pk9f644kvv"
-    >
-      아코디언 1
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        role="presentation"
-        focusable="false"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </h2>
-  <div
-    class="amor-accordion__panel"
-    id="accordion-panel-6767pk9f644kvv"
-    role="region"
-    aria-labelledby="accordion-heading-6767pk9f644kvv"
-    hidden="hidden"
-  >
-    아코디언 1 패널
-  </div>
-  <h2 class="amor-heading--level-2 amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="accordion-heading-67674vkngb8g0hg"
-      aria-expanded="true"
-      aria-controls="accordion-panel-67674vkngb8g0hg"
-    >
-      아코디언 2
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        role="presentation"
-        focusable="false"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </h2>
-  <div
-    class="amor-accordion__panel active"
-    id="accordion-panel-67674vkngb8g0hg"
-    role="region"
-    aria-labelledby="accordion-heading-67674vkngb8g0hg"
-  >
-    아코디언 2 패널
-  </div>
-  <h2 class="amor-heading--level-2 amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="accordion-heading-6768iiebtv6eg5g"
-      aria-expanded="false"
-      aria-controls="accordion-panel-6768iiebtv6eg5g"
-    >
-      아코디언 3
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        role="presentation"
-        focusable="false"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </h2>
-  <div
-    class="amor-accordion__panel"
-    id="accordion-panel-6768iiebtv6eg5g"
-    role="region"
-    aria-labelledby="accordion-heading-6768iiebtv6eg5g"
-    hidden="hidden"
-  >
-    아코디언 3 패널
-  </div>
+<button
+  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
+  type="button"
+>
+  버튼
+</button>
+
+```
+
+
+---
+
+
+## radioGroup
+
+create radio group component
+
+
+### path 
+
+`components/molecules/radio-group/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|attribute of radio|string||false|
+|props.options|the array that consists of options for radio component without name and labelPosition|array||false|
+|props.columns|column counts|undefined||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|`right`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/radios/default.pug
+
++radioGroup({
+  name: `job`,
+  labelPosition: `right`,
+  columns: 3,
+  options: [
+    { label: `웹 디자이너`, value: `designer`, },
+    { label: `웹 퍼블리셔`, value: `publisher`, },
+    { label: `프론트엔드 개발자`, value: `frontend`, },
+    { label: `웹 디자이너`, value: `designer`, },
+  ],
+})
+```
+
+
+### output example 
+
+```html
+<div class="amor-radio-group amor-radio-group--col-3">
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="pu7f3edrjv6mln"
+    name="job"
+    value="designer"
+  />
+  <label class="amor-radio__label amor-radio-group__item" for="pu7f3edrjv6mln">
+    웹 디자이너
+  </label>
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="pu7f02cd1gkhc"
+    name="job"
+    value="publisher"
+  />
+  <label class="amor-radio__label amor-radio-group__item" for="pu7f02cd1gkhc">
+    웹 퍼블리셔
+  </label>
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="pu7fo7m3fdeuko8"
+    name="job"
+    value="frontend"
+  />
+  <label class="amor-radio__label amor-radio-group__item" for="pu7fo7m3fdeuko8">
+    프론트엔드 개발자
+  </label>
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="pu7fdkehqm6j6l"
+    name="job"
+    value="designer"
+  />
+  <label class="amor-radio__label amor-radio-group__item" for="pu7fdkehqm6j6l">
+    웹 디자이너
+  </label>
 </div>
+
+```
+
+
+---
+
+
+## switchButton
+
+create switch button
+
+
+### path 
+
+`components/atoms/checkboxes/switch.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|the value of switch button's name attribute|string||true|
+|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
+|props.checked|the state of switch button|boolean||true|
+|props.value|the value of switch button|string||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
+|props.inputAttrs|the attrs for input:checkbox|object||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++switchButton({label: '알림', checked: true})
+```
+
+
+### output example 
+
+```html
+<span class="amor-switch">
+  <input
+    class="amor-switch__control"
+    type="checkbox"
+    id="pu7s6t0fadr32do"
+    checked="checked"
+  />
+  <span class="amor-switch__btn"></span>
+  <label class="amor-switch__label" for="pu7s6t0fadr32do">label</label>
+</span>
 
 ```
 
@@ -695,6 +609,186 @@ include ./util
     }
   }
 </script>
+
+```
+
+
+---
+
+
+## radio
+
+create input radio element
+
+
+### path 
+
+`components/atoms/radios/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|options||object||false|
+|options.name|name of radio|string||false|
+|options.value|the value of radio|string,number,boolean||false|
+|options.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
+|options.id|the value of radio's id attribute and label's for attribute|string||true|
+|options.checked|the checked state of radio|boolean||true|
+|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++radio({label: 'yes', name: 'answer', value: 1})
+```
+
+
+### output example 
+
+```html
+<input
+  class="amor-radio__control"
+  type="radio"
+  id="puapm4idnlni7ko"
+  name="answer"
+  value="1"
+/>
+<label class="amor-radio__label" for="puapm4idnlni7ko">yes</label>
+
+```
+
+
+---
+
+
+## accordion
+
+create accordion component
+
+
+### path 
+
+`components/organisms/accordion/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.hLevel|heading level of header in accordion|string||false|
+|props.activatedIndex|The index number of the panel that you want to initially open|number||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/heading/index.pug
+include ../../atoms/svg-icon/index.pug
+
++accordion({hLevel: 2, activatedIndex: 1})
+  +headingSlot 아코디언 1
+  +panelSlot 아코디언 1 패널
+  +headingSlot 아코디언 2
+  +panelSlot 아코디언 2 패널
+  +headingSlot 아코디언 3
+  +panelSlot 아코디언 3 패널
+```
+
+
+### output example 
+
+```html
+<div class="amor-accordion" id="publl39lsnbect" data-init-activate="1">
+  <h2 class="amor-heading--level-2 amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="accordion-heading-pubmg3llichpk38"
+      aria-expanded="false"
+      aria-controls="accordion-panel-pubmg3llichpk38"
+    >
+      아코디언 1
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        role="presentation"
+        focusable="false"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </h2>
+  <div
+    class="amor-accordion__panel"
+    id="accordion-panel-pubmg3llichpk38"
+    role="region"
+    aria-labelledby="accordion-heading-pubmg3llichpk38"
+    hidden="hidden"
+  >
+    아코디언 1 패널
+  </div>
+  <h2 class="amor-heading--level-2 amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="accordion-heading-pubmjda4upmon1g"
+      aria-expanded="true"
+      aria-controls="accordion-panel-pubmjda4upmon1g"
+    >
+      아코디언 2
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        role="presentation"
+        focusable="false"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </h2>
+  <div
+    class="amor-accordion__panel active"
+    id="accordion-panel-pubmjda4upmon1g"
+    role="region"
+    aria-labelledby="accordion-heading-pubmjda4upmon1g"
+  >
+    아코디언 2 패널
+  </div>
+  <h2 class="amor-heading--level-2 amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="accordion-heading-pubmkb0jasnsbmo"
+      aria-expanded="false"
+      aria-controls="accordion-panel-pubmkb0jasnsbmo"
+    >
+      아코디언 3
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        role="presentation"
+        focusable="false"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </h2>
+  <div
+    class="amor-accordion__panel"
+    id="accordion-panel-pubmkb0jasnsbmo"
+    role="region"
+    aria-labelledby="accordion-heading-pubmkb0jasnsbmo"
+    hidden="hidden"
+  >
+    아코디언 3 패널
+  </div>
+</div>
 
 ```
 
