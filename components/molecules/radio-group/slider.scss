@@ -1,0 +1,43 @@
+.#{$prefix}-radio-slider {
+  $item: #{&}__item;
+
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  &__item {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+      to bottom,
+      var(--primary-button-border-color),
+      var(--primary-button-border-color)
+    );
+    background-size: 100% 0.25rem;
+    background-position: center 0.625rem;
+
+    &:first-child {
+      background-size: 50% 0.25rem;
+      background-position: right 0.625rem;
+    }
+    &:last-child {
+      background-size: 50% 0.25rem;
+      background-position: left 0.625rem;
+    }
+  }
+
+  &__bar {
+    flex: 1 1 auto;
+    display: flex;
+    height: 1.75rem;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+      to bottom,
+      var(--primary-button-border-color),
+      var(--primary-button-border-color)
+    );
+    background-size: 100% 0.25rem;
+    background-position: center 0.625rem;
+  }
+}

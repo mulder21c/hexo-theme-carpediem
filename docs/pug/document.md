@@ -46,14 +46,14 @@ include ../../utils/util
 ---
 
 
-## heading
+## iconButton
 
-create heading element
+create icon button element
 
 
 ### path 
 
-`components/atoms/heading/index.pug`
+`components/atoms/buttons/icon.pug`
 
 
 ### arguments 
@@ -61,8 +61,12 @@ create heading element
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.level|the level(rank) of heading|string||false|
-|props.visible|whether an element is visible or not|boolean||true|
+|props.icon|name of icon|string||false|
+|props.label|label of button|string||false|
+|props.type|the value of type attribute for button|string|'button'|true|
+|props.size|size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``|string|'medium'|true|
+|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`|string|'outline'|true|
+|props.layout|layout of button <br> one of `'icon-only', `icon-text``|string|`icon-only`|true|
 
 
 
@@ -71,14 +75,22 @@ create heading element
 ```jade
 include ../../utils/util
 
-+heading({level: 1 })
++iconButton({type: 'button', size: 'medium', appearance: 'outline', icon: 'tty', label: '전화'})
 ```
 
 
 ### output example 
 
 ```html
-<h1 class="amor-heading--level-1"></h1>
+<button
+  class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--outline amor-btn-icon--icon-only"
+  type="button"
+  aria-label="전화"
+>
+  <svg class="amor-btn-icon__icon" role="presentation" focusable="false">
+    <use xlink:href="/images/solid.svg#tty"></use>
+  </svg>
+</button>
 
 ```
 
@@ -127,117 +139,12 @@ include ../../utils/util
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="9sgiee384o0at9o"
+    id="ktkf8rnhgaao8eg"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="9sgiee384o0at9o">알림</label>
+  <label class="amor-switch__label" for="ktkf8rnhgaao8eg">알림</label>
 </span>
-
-```
-
-
----
-
-
-## checkbox
-
-create input checkbox element
-
-
-### path 
-
-`components/atoms/checkboxes/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|the value of checkbox's name attribute|string||true|
-|props.id|the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|props.label|label of checkbox <br> If do not specify this value, you must author and style label element as child element.|string||true|
-|props.checked|the checked state of checkbox|boolean||true|
-|props.value|the value of checkbox|string||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
-|props.labelClassName|the class name for label element|string||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+checkbox({label: '동의', checked: true})
-```
-
-
-### output example 
-
-```html
-<span class="amor-checkbox">
-  <input
-    class="amor-checkbox__control"
-    type="checkbox"
-    id="9sh6vjvv15ur15"
-    checked="checked"
-  />
-  <label class="amor-checkbox__label" for="9sh6vjvv15ur15">동의</label>
-</span>
-
-```
-
-
----
-
-
-## boxyRadio
-
-create input radio element
-
-
-### path 
-
-`components/atoms/radios/boxy.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|name of radio|string||false|
-|props.value|the value of radio|string,number,boolean||false|
-|props.id|the value of radio's id attribute and label's for attribute|string||true|
-|props.checked|the checked state of radio|boolean||true|
-|props.inputAttrs|the attrs for input:radio|object||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+boxyRadio({name: 'answer', value: 1 })
-```
-
-
-### output example 
-
-```html
-<label class="amor-radio-boxy" labelPosition="right">
-  <input
-    class="amor-radio-boxy__control"
-    type="radio"
-    id="9shhftrqfo0t4kg"
-    name="answer"
-    value="1"
-  />
-  <span class="amor-radio-boxy__box"></span>
-</label>
 
 ```
 
@@ -295,31 +202,31 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="9si25u8fhhjq9go"
+      id="ktl6lauk28clb78"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="9si25u8fhhjq9go">웹 디자이너</label>
+    <label class="amor-radio__label" for="ktl6lauk28clb78">웹 디자이너</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="9si2m7krmmq64mg"
+      id="ktl78t9168nfkfo"
       name="job"
       value="publisher"
     />
-    <label class="amor-radio__label" for="9si2m7krmmq64mg">웹 퍼블리셔</label>
+    <label class="amor-radio__label" for="ktl78t9168nfkfo">웹 퍼블리셔</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="9si3mbe6omaao6g"
+      id="ktl7g55e5mabhho"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="9si3mbe6omaao6g">
+    <label class="amor-radio__label" for="ktl7g55e5mabhho">
       프론트엔드 개발자
     </label>
   </span>
@@ -327,55 +234,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="9si32l6c8b7i4ko"
+      id="ktl7ipjap87sfjg"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="9si32l6c8b7i4ko">웹 디자이너</label>
+    <label class="amor-radio__label" for="ktl7ipjap87sfjg">웹 디자이너</label>
   </span>
 </div>
-
-```
-
-
----
-
-
-## svgIcon
-
-create inline-svg icon
-
-
-### path 
-
-`components/atoms/svg-icon/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|name of icon|string||false|
-|props.type|type of icon|string||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+svgIcon({name: 'thumbs-up'})
-```
-
-
-### output example 
-
-```html
-<svg class="amor-svg-icon">
-  <use xlink:href="/images/solid.svg#thumbs-up"></use>
-</svg>
 
 ```
 
@@ -424,11 +289,11 @@ include ../../utils/util
   <input
     class="amor-radio__control"
     type="radio"
-    id="9sim1n0vul52178"
+    id="ktllbgk1l5g8nqo"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="9sim1n0vul52178">yes</label>
+  <label class="amor-radio__label" for="ktllbgk1l5g8nqo">yes</label>
 </span>
 
 ```
@@ -437,14 +302,14 @@ include ../../utils/util
 ---
 
 
-## radioSlider
+## accordion
 
-create radio group component
+create accordion component
 
 
 ### path 
 
-`components/molecules/radio-group/slider.pug`
+`components/organisms/accordion/index.pug`
 
 
 ### arguments 
@@ -452,9 +317,8 @@ create radio group component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.name|attribute of radio|string||false|
-|props.options|the array that consists of options for radio component|array||false|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`|string|`bottom`|true|
+|props.hLevel|heading level of header in accordion|string||false|
+|props.activatedIndex|The index number of the panel that you want to initially open|number||true|
 
 
 
@@ -462,70 +326,103 @@ create radio group component
 
 ```jade
 include ../../utils/util
-include ../../atoms/radios/default.pug
+include ../../atoms/heading/index.pug
+include ../../atoms/svg-icon/index.pug
 
-+radioSlider({
-  legend: `크기`,
-  name: `size`,
-  labelPosition: `bottom`,
-  options: [
-    { label: `작게`, value: `small`, },
-    { label: `보통`, value: `medium`, },
-    { label: `크게`, value: `large`, },
-  ],
-})
++accordion({hLevel: 2, activatedIndex: 1})
+  +headingSlot 아코디언 1
+  +panelSlot 아코디언 1 패널
+  +headingSlot 아코디언 2
+  +panelSlot 아코디언 2 패널
+  +headingSlot 아코디언 3
+  +panelSlot 아코디언 3 패널
 ```
 
 
 ### output example 
 
 ```html
-<div class="amor-radio-slider" legend="크기">
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="9sj23kr27ndvd48"
-      name="size"
-      value="small"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="9sj23kr27ndvd48"
+<div class="amor-accordion" id="ktmjksnf1mm08uo" data-init-activate="1">
+  <h2 class="amor-heading--level-2 amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="accordion-heading-ktmjhiooprre6o8"
+      aria-expanded="false"
+      aria-controls="accordion-panel-ktmjhiooprre6o8"
     >
-      작게
-    </label>
-  </span>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="9sj27pbb7ekhs1"
-      name="size"
-      value="medium"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="9sj27pbb7ekhs1"
+      아코디언 1
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        role="presentation"
+        focusable="false"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </h2>
+  <div
+    class="amor-accordion__panel"
+    id="accordion-panel-ktmjhiooprre6o8"
+    role="region"
+    aria-labelledby="accordion-heading-ktmjhiooprre6o8"
+    hidden="hidden"
+  >
+    아코디언 1 패널
+  </div>
+  <h2 class="amor-heading--level-2 amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="accordion-heading-ktmk8matdn0lfo"
+      aria-expanded="true"
+      aria-controls="accordion-panel-ktmk8matdn0lfo"
     >
-      보통
-    </label>
-  </span>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="9sj2nl16af25p7"
-      name="size"
-      value="large"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="9sj2nl16af25p7"
+      아코디언 2
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        role="presentation"
+        focusable="false"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </h2>
+  <div
+    class="amor-accordion__panel active"
+    id="accordion-panel-ktmk8matdn0lfo"
+    role="region"
+    aria-labelledby="accordion-heading-ktmk8matdn0lfo"
+  >
+    아코디언 2 패널
+  </div>
+  <h2 class="amor-heading--level-2 amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="accordion-heading-ktmkvb5sopuvsmg"
+      aria-expanded="false"
+      aria-controls="accordion-panel-ktmkvb5sopuvsmg"
     >
-      크게
-    </label>
-  </span>
+      아코디언 3
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        role="presentation"
+        focusable="false"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </h2>
+  <div
+    class="amor-accordion__panel"
+    id="accordion-panel-ktmkvb5sopuvsmg"
+    role="region"
+    aria-labelledby="accordion-heading-ktmkvb5sopuvsmg"
+    hidden="hidden"
+  >
+    아코디언 3 패널
+  </div>
 </div>
 
 ```
@@ -720,14 +617,14 @@ include ./util
 ---
 
 
-## accordion
+## boxyRadio
 
-create accordion component
+create input radio element
 
 
 ### path 
 
-`components/organisms/accordion/index.pug`
+`components/atoms/radios/boxy.pug`
 
 
 ### arguments 
@@ -735,8 +632,11 @@ create accordion component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.hLevel|heading level of header in accordion|string||false|
-|props.activatedIndex|The index number of the panel that you want to initially open|number||true|
+|props.name|name of radio|string||false|
+|props.value|the value of radio|string,number,boolean||false|
+|props.id|the value of radio's id attribute and label's for attribute|string||true|
+|props.checked|the checked state of radio|boolean||true|
+|props.inputAttrs|the attrs for input:radio|object||true|
 
 
 
@@ -744,103 +644,164 @@ create accordion component
 
 ```jade
 include ../../utils/util
-include ../../atoms/heading/index.pug
-include ../../atoms/svg-icon/index.pug
 
-+accordion({hLevel: 2, activatedIndex: 1})
-  +headingSlot 아코디언 1
-  +panelSlot 아코디언 1 패널
-  +headingSlot 아코디언 2
-  +panelSlot 아코디언 2 패널
-  +headingSlot 아코디언 3
-  +panelSlot 아코디언 3 패널
++boxyRadio({name: 'answer', value: 1 })
 ```
 
 
 ### output example 
 
 ```html
-<div class="amor-accordion" id="9sm4be40fc9p44g" data-init-activate="1">
-  <h2 class="amor-heading--level-2 amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="accordion-heading-9sm5hdq5lmrsip"
-      aria-expanded="false"
-      aria-controls="accordion-panel-9sm5hdq5lmrsip"
+<label class="amor-radio-boxy" labelPosition="right">
+  <input
+    class="amor-radio-boxy__control"
+    type="radio"
+    id="ktp59onvnon3fm8"
+    name="answer"
+    value="1"
+  />
+  <span class="amor-radio-boxy__box"></span>
+</label>
+
+```
+
+
+---
+
+
+## svgIcon
+
+create inline-svg icon
+
+
+### path 
+
+`components/atoms/svg-icon/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|name of icon|string||false|
+|props.type|type of icon|string||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++svgIcon({name: 'thumbs-up'})
+```
+
+
+### output example 
+
+```html
+<svg class="amor-svg-icon">
+  <use xlink:href="/images/solid.svg#thumbs-up"></use>
+</svg>
+
+```
+
+
+---
+
+
+## radioSlider
+
+create radio group component
+
+
+### path 
+
+`components/molecules/radio-group/slider.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|attribute of radio|string||false|
+|props.options|the array that consists of options for radio component|array||false|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`|string|`bottom`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/radios/default.pug
+
++radioSlider({
+  legend: `크기`,
+  name: `size`,
+  labelPosition: `bottom`,
+  options: [
+    { label: `작게`, value: `small`, },
+    { label: `보통`, value: `medium`, },
+    { label: `크게`, value: `large`, },
+  ],
+})
+```
+
+
+### output example 
+
+```html
+<div class="amor-radio-slider" legend="크기">
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="ktpqla5rm1qvsu8"
+      name="size"
+      value="small"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="ktpqla5rm1qvsu8"
     >
-      아코디언 1
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        role="presentation"
-        focusable="false"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </h2>
-  <div
-    class="amor-accordion__panel"
-    id="accordion-panel-9sm5hdq5lmrsip"
-    role="region"
-    aria-labelledby="accordion-heading-9sm5hdq5lmrsip"
-    hidden="hidden"
-  >
-    아코디언 1 패널
-  </div>
-  <h2 class="amor-heading--level-2 amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="accordion-heading-9sm5tn1ugujvna8"
-      aria-expanded="true"
-      aria-controls="accordion-panel-9sm5tn1ugujvna8"
+      작게
+    </label>
+  </span>
+  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="ktprrpgac9u1n38"
+      name="size"
+      value="medium"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="ktprrpgac9u1n38"
     >
-      아코디언 2
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        role="presentation"
-        focusable="false"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </h2>
-  <div
-    class="amor-accordion__panel active"
-    id="accordion-panel-9sm5tn1ugujvna8"
-    role="region"
-    aria-labelledby="accordion-heading-9sm5tn1ugujvna8"
-  >
-    아코디언 2 패널
-  </div>
-  <h2 class="amor-heading--level-2 amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="accordion-heading-9sm50ci9lip66o8"
-      aria-expanded="false"
-      aria-controls="accordion-panel-9sm50ci9lip66o8"
+      보통
+    </label>
+  </span>
+  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="ktpr4t4c99q7ou"
+      name="size"
+      value="large"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="ktpr4t4c99q7ou"
     >
-      아코디언 3
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        role="presentation"
-        focusable="false"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </h2>
-  <div
-    class="amor-accordion__panel"
-    id="accordion-panel-9sm50ci9lip66o8"
-    role="region"
-    aria-labelledby="accordion-heading-9sm50ci9lip66o8"
-    hidden="hidden"
-  >
-    아코디언 3 패널
-  </div>
+      크게
+    </label>
+  </span>
 </div>
 
 ```
@@ -849,14 +810,14 @@ include ../../atoms/svg-icon/index.pug
 ---
 
 
-## iconButton
+## checkbox
 
-create icon button element
+create input checkbox element
 
 
 ### path 
 
-`components/atoms/buttons/icon.pug`
+`components/atoms/checkboxes/default.pug`
 
 
 ### arguments 
@@ -864,12 +825,13 @@ create icon button element
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.icon|name of icon|string||false|
-|props.label|label of button|string||false|
-|props.type|the value of type attribute for button|string|'button'|true|
-|props.size|size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``|string|'medium'|true|
-|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`|string|'outline'|true|
-|props.layout|layout of button <br> one of `'icon-only', `icon-text``|string|`icon-only`|true|
+|props.name|the value of checkbox's name attribute|string||true|
+|props.id|the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|props.label|label of checkbox <br> If do not specify this value, you must author and style label element as child element.|string||true|
+|props.checked|the checked state of checkbox|boolean||true|
+|props.value|the value of checkbox|string||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
+|props.labelClassName|the class name for label element|string||true|
 
 
 
@@ -878,22 +840,62 @@ create icon button element
 ```jade
 include ../../utils/util
 
-+iconButton({type: 'button', size: 'medium', appearance: 'outline', icon: 'tty', label: '전화'})
++checkbox({label: '동의', checked: true})
 ```
 
 
 ### output example 
 
 ```html
-<button
-  class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--outline amor-btn-icon--icon-only"
-  type="button"
-  aria-label="전화"
->
-  <svg class="amor-btn-icon__icon" role="presentation" focusable="false">
-    <use xlink:href="/images/solid.svg#tty"></use>
-  </svg>
-</button>
+<span class="amor-checkbox">
+  <input
+    class="amor-checkbox__control"
+    type="checkbox"
+    id="ktq7oafvstrfo38"
+    checked="checked"
+  />
+  <label class="amor-checkbox__label" for="ktq7oafvstrfo38">동의</label>
+</span>
+
+```
+
+
+---
+
+
+## heading
+
+create heading element
+
+
+### path 
+
+`components/atoms/heading/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.level|the level(rank) of heading|string||false|
+|props.visible|whether an element is visible or not|boolean||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++heading({level: 1 })
+```
+
+
+### output example 
+
+```html
+<h1 class="amor-heading--level-1"></h1>
 
 ```
 
