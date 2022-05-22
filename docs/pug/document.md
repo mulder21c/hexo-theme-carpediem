@@ -1,13 +1,13 @@
 # Pug Documentation 
 
-## iconButton
+## button
 
-create icon button element
+create basic button element
 
 
 ### path 
 
-`components/atoms/buttons/icon.pug`
+`components/atoms/buttons/default.pug`
 
 
 ### arguments 
@@ -15,12 +15,9 @@ create icon button element
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.icon|name of icon|string||false|
-|props.label|label of button|string||false|
 |props.type|the value of type attribute for button|string|'button'|true|
-|props.size|size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``|string|'medium'|true|
-|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`|string|'outline'|true|
-|props.layout|layout of button <br> one of `'icon-only', `icon-text``|string|`icon-only`|true|
+|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
+|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
 
 
 
@@ -29,7 +26,7 @@ create icon button element
 ```jade
 include ../../utils/util
 
-+iconButton({type: 'button', size: 'medium', appearance: 'outline', icon: 'tty', label: '전화'})
++button({type: 'button', size: 'medium', appearance: 'outline'}) 버튼
 ```
 
 
@@ -37,64 +34,11 @@ include ../../utils/util
 
 ```html
 <button
-  class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--outline amor-btn-icon--icon-only"
+  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
   type="button"
-  aria-label="전화"
 >
-  <svg class="amor-btn-icon__icon" role="presentation" focusable="false">
-    <use xlink:href="/images/solid.svg#tty"></use>
-  </svg>
+  버튼
 </button>
-
-```
-
-
----
-
-
-## checkbox
-
-create input checkbox element
-
-
-### path 
-
-`components/atoms/checkboxes/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|the value of checkbox's name attribute|string||true|
-|props.id|the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|props.label|label of checkbox <br> If do not specify this value, you must author and style label element.|string||true|
-|props.checked|the checked state of checkbox|boolean||true|
-|props.value|the value of checkbox|string||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+checkbox({label: '동의', checked: true})
-```
-
-
-### output example 
-
-```html
-<input
-  class="amor-checkbox__control"
-  type="checkbox"
-  id="pu5e1vbrb8r4pa"
-  checked="checked"
-/>
-<label class="amor-checkbox__label" for="pu5e1vbrb8r4pa">label</label>
 
 ```
 
@@ -142,6 +86,113 @@ include ../../utils/util
 ---
 
 
+## switchButton
+
+create switch button
+
+
+### path 
+
+`components/atoms/checkboxes/switch.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|the value of switch button's name attribute|string||true|
+|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
+|props.checked|the state of switch button|boolean||true|
+|props.value|the value of switch button|string||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
+|props.inputAttrs|the attrs for input:checkbox|object||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++switchButton({label: '알림', checked: true})
+```
+
+
+### output example 
+
+```html
+<span class="amor-switch">
+  <input
+    class="amor-switch__control"
+    type="checkbox"
+    id="9sgiee384o0at9o"
+    checked="checked"
+  />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <label class="amor-switch__label" for="9sgiee384o0at9o">알림</label>
+</span>
+
+```
+
+
+---
+
+
+## checkbox
+
+create input checkbox element
+
+
+### path 
+
+`components/atoms/checkboxes/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|the value of checkbox's name attribute|string||true|
+|props.id|the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|props.label|label of checkbox <br> If do not specify this value, you must author and style label element as child element.|string||true|
+|props.checked|the checked state of checkbox|boolean||true|
+|props.value|the value of checkbox|string||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
+|props.labelClassName|the class name for label element|string||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++checkbox({label: '동의', checked: true})
+```
+
+
+### output example 
+
+```html
+<span class="amor-checkbox">
+  <input
+    class="amor-checkbox__control"
+    type="checkbox"
+    id="9sh6vjvv15ur15"
+    checked="checked"
+  />
+  <label class="amor-checkbox__label" for="9sh6vjvv15ur15">동의</label>
+</span>
+
+```
+
+
+---
+
+
 ## boxyRadio
 
 create input radio element
@@ -181,58 +232,12 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="pu6ljutn8b0k31o"
+    id="9shhftrqfo0t4kg"
     name="answer"
     value="1"
   />
   <span class="amor-radio-boxy__box"></span>
 </label>
-
-```
-
-
----
-
-
-## button
-
-create basic button element
-
-
-### path 
-
-`components/atoms/buttons/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.type|the value of type attribute for button|string|'button'|true|
-|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
-|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+button({type: 'button', size: 'medium', appearance: 'outline'}) 버튼
-```
-
-
-### output example 
-
-```html
-<button
-  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
-  type="button"
->
-  버튼
-</button>
 
 ```
 
@@ -286,101 +291,49 @@ include ../../atoms/radios/default.pug
 
 ```html
 <div class="amor-radio-group amor-radio-group--col-3">
-  <input
-    class="amor-radio__control"
-    type="radio"
-    id="pu7f3edrjv6mln"
-    name="job"
-    value="designer"
-  />
-  <label class="amor-radio__label amor-radio-group__item" for="pu7f3edrjv6mln">
-    웹 디자이너
-  </label>
-  <input
-    class="amor-radio__control"
-    type="radio"
-    id="pu7f02cd1gkhc"
-    name="job"
-    value="publisher"
-  />
-  <label class="amor-radio__label amor-radio-group__item" for="pu7f02cd1gkhc">
-    웹 퍼블리셔
-  </label>
-  <input
-    class="amor-radio__control"
-    type="radio"
-    id="pu7fo7m3fdeuko8"
-    name="job"
-    value="frontend"
-  />
-  <label class="amor-radio__label amor-radio-group__item" for="pu7fo7m3fdeuko8">
-    프론트엔드 개발자
-  </label>
-  <input
-    class="amor-radio__control"
-    type="radio"
-    id="pu7fdkehqm6j6l"
-    name="job"
-    value="designer"
-  />
-  <label class="amor-radio__label amor-radio-group__item" for="pu7fdkehqm6j6l">
-    웹 디자이너
-  </label>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="9si25u8fhhjq9go"
+      name="job"
+      value="designer"
+    />
+    <label class="amor-radio__label" for="9si25u8fhhjq9go">웹 디자이너</label>
+  </span>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="9si2m7krmmq64mg"
+      name="job"
+      value="publisher"
+    />
+    <label class="amor-radio__label" for="9si2m7krmmq64mg">웹 퍼블리셔</label>
+  </span>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="9si3mbe6omaao6g"
+      name="job"
+      value="frontend"
+    />
+    <label class="amor-radio__label" for="9si3mbe6omaao6g">
+      프론트엔드 개발자
+    </label>
+  </span>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="9si32l6c8b7i4ko"
+      name="job"
+      value="designer"
+    />
+    <label class="amor-radio__label" for="9si32l6c8b7i4ko">웹 디자이너</label>
+  </span>
 </div>
-
-```
-
-
----
-
-
-## switchButton
-
-create switch button
-
-
-### path 
-
-`components/atoms/checkboxes/switch.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|the value of switch button's name attribute|string||true|
-|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
-|props.checked|the state of switch button|boolean||true|
-|props.value|the value of switch button|string||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
-|props.inputAttrs|the attrs for input:checkbox|object||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+switchButton({label: '알림', checked: true})
-```
-
-
-### output example 
-
-```html
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="pu7s6t0fadr32do"
-    checked="checked"
-  />
-  <span class="amor-switch__btn"></span>
-  <label class="amor-switch__label" for="pu7s6t0fadr32do">label</label>
-</span>
 
 ```
 
@@ -423,6 +376,157 @@ include ../../utils/util
 <svg class="amor-svg-icon">
   <use xlink:href="/images/solid.svg#thumbs-up"></use>
 </svg>
+
+```
+
+
+---
+
+
+## radio
+
+create input radio element
+
+
+### path 
+
+`components/atoms/radios/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|options||object||false|
+|options.name|name of radio|string||false|
+|options.value|the value of radio|string,number,boolean||false|
+|options.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
+|options.id|the value of radio's id attribute and label's for attribute|string||true|
+|options.checked|the checked state of radio|boolean||true|
+|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
+|props.labelClassName|the class name for label element|string||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++radio({label: 'yes', name: 'answer', value: 1})
+```
+
+
+### output example 
+
+```html
+<span class="amor-radio">
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="9sim1n0vul52178"
+    name="answer"
+    value="1"
+  />
+  <label class="amor-radio__label" for="9sim1n0vul52178">yes</label>
+</span>
+
+```
+
+
+---
+
+
+## radioSlider
+
+create radio group component
+
+
+### path 
+
+`components/molecules/radio-group/slider.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|attribute of radio|string||false|
+|props.options|the array that consists of options for radio component|array||false|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`|string|`bottom`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/radios/default.pug
+
++radioSlider({
+  legend: `크기`,
+  name: `size`,
+  labelPosition: `bottom`,
+  options: [
+    { label: `작게`, value: `small`, },
+    { label: `보통`, value: `medium`, },
+    { label: `크게`, value: `large`, },
+  ],
+})
+```
+
+
+### output example 
+
+```html
+<div class="amor-radio-slider" legend="크기">
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="9sj23kr27ndvd48"
+      name="size"
+      value="small"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="9sj23kr27ndvd48"
+    >
+      작게
+    </label>
+  </span>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="9sj27pbb7ekhs1"
+      name="size"
+      value="medium"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="9sj27pbb7ekhs1"
+    >
+      보통
+    </label>
+  </span>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="9sj2nl16af25p7"
+      name="size"
+      value="large"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="9sj2nl16af25p7"
+    >
+      크게
+    </label>
+  </span>
+</div>
 
 ```
 
@@ -616,57 +720,6 @@ include ./util
 ---
 
 
-## radio
-
-create input radio element
-
-
-### path 
-
-`components/atoms/radios/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|options||object||false|
-|options.name|name of radio|string||false|
-|options.value|the value of radio|string,number,boolean||false|
-|options.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
-|options.id|the value of radio's id attribute and label's for attribute|string||true|
-|options.checked|the checked state of radio|boolean||true|
-|options.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+radio({label: 'yes', name: 'answer', value: 1})
-```
-
-
-### output example 
-
-```html
-<input
-  class="amor-radio__control"
-  type="radio"
-  id="puapm4idnlni7ko"
-  name="answer"
-  value="1"
-/>
-<label class="amor-radio__label" for="puapm4idnlni7ko">yes</label>
-
-```
-
-
----
-
-
 ## accordion
 
 create accordion component
@@ -707,14 +760,14 @@ include ../../atoms/svg-icon/index.pug
 ### output example 
 
 ```html
-<div class="amor-accordion" id="publl39lsnbect" data-init-activate="1">
+<div class="amor-accordion" id="9sm4be40fc9p44g" data-init-activate="1">
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-pubmg3llichpk38"
+      id="accordion-heading-9sm5hdq5lmrsip"
       aria-expanded="false"
-      aria-controls="accordion-panel-pubmg3llichpk38"
+      aria-controls="accordion-panel-9sm5hdq5lmrsip"
     >
       아코디언 1
       <svg
@@ -728,9 +781,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="accordion-panel-pubmg3llichpk38"
+    id="accordion-panel-9sm5hdq5lmrsip"
     role="region"
-    aria-labelledby="accordion-heading-pubmg3llichpk38"
+    aria-labelledby="accordion-heading-9sm5hdq5lmrsip"
     hidden="hidden"
   >
     아코디언 1 패널
@@ -739,9 +792,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-pubmjda4upmon1g"
+      id="accordion-heading-9sm5tn1ugujvna8"
       aria-expanded="true"
-      aria-controls="accordion-panel-pubmjda4upmon1g"
+      aria-controls="accordion-panel-9sm5tn1ugujvna8"
     >
       아코디언 2
       <svg
@@ -755,9 +808,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="accordion-panel-pubmjda4upmon1g"
+    id="accordion-panel-9sm5tn1ugujvna8"
     role="region"
-    aria-labelledby="accordion-heading-pubmjda4upmon1g"
+    aria-labelledby="accordion-heading-9sm5tn1ugujvna8"
   >
     아코디언 2 패널
   </div>
@@ -765,9 +818,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-pubmkb0jasnsbmo"
+      id="accordion-heading-9sm50ci9lip66o8"
       aria-expanded="false"
-      aria-controls="accordion-panel-pubmkb0jasnsbmo"
+      aria-controls="accordion-panel-9sm50ci9lip66o8"
     >
       아코디언 3
       <svg
@@ -781,14 +834,66 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="accordion-panel-pubmkb0jasnsbmo"
+    id="accordion-panel-9sm50ci9lip66o8"
     role="region"
-    aria-labelledby="accordion-heading-pubmkb0jasnsbmo"
+    aria-labelledby="accordion-heading-9sm50ci9lip66o8"
     hidden="hidden"
   >
     아코디언 3 패널
   </div>
 </div>
+
+```
+
+
+---
+
+
+## iconButton
+
+create icon button element
+
+
+### path 
+
+`components/atoms/buttons/icon.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.icon|name of icon|string||false|
+|props.label|label of button|string||false|
+|props.type|the value of type attribute for button|string|'button'|true|
+|props.size|size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``|string|'medium'|true|
+|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`|string|'outline'|true|
+|props.layout|layout of button <br> one of `'icon-only', `icon-text``|string|`icon-only`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++iconButton({type: 'button', size: 'medium', appearance: 'outline', icon: 'tty', label: '전화'})
+```
+
+
+### output example 
+
+```html
+<button
+  class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--outline amor-btn-icon--icon-only"
+  type="button"
+  aria-label="전화"
+>
+  <svg class="amor-btn-icon__icon" role="presentation" focusable="false">
+    <use xlink:href="/images/solid.svg#tty"></use>
+  </svg>
+</button>
 
 ```
 

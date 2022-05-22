@@ -60,7 +60,7 @@ mixin radioGroup(props)
           name,
           labelPosition,
           id: generateUid(),
+          class: `${prefix}-radio-group__item`,
           ...option,
-          class: `${prefix}-radio-group__item`
         };
       +radio(radioOption)

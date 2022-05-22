@@ -34,7 +34,15 @@ mixin switchButton(props)
       labelPosition: `right`,
       inputAttrs: {},
     };
-    const { checked, label, id, labelPosition, value, inputAttrs, ...attrs } = {
+    const {
+      checked,
+      label,
+      id,
+      labelPosition,
+      value,
+      inputAttrs,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
@@ -56,6 +64,8 @@ mixin switchButton(props)
       checked=checked
       class=`${prefix}-switch__control`
     )&attributes(inputAttrs)
-    span(class=btnClassName)
+    span(class=btnClassName aria-hidden="true")
     if (label)
-      label(for=uid class=`${prefix}-switch__label`) label
+      label(for=uid class=`${prefix}-switch__label`)= label
+    else
+      block

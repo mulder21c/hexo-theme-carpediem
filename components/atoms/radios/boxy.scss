@@ -17,7 +17,7 @@
     display: inline-flex;
     border: 1px solid var(--primary-button-border-color);
     padding: 0.5rem 1.125rem;
-    background-color: transparent;
+    background-color: var(--background-color);
     background-image: linear-gradient(
       var(--primary-button-background-color),
       var(--primary-button-background-color)

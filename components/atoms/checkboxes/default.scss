@@ -1,28 +1,34 @@
 .#{$prefix}-checkbox {
   $control: #{&}__control;
 
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
   &__control {
     outline: 0;
-    order: 1;
     @include sr-only;
   }
 
   &__label {
     display: inline-flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: flex-start;
-    align-items: center;
-    padding-right: 0.5rem;
+    align-items: flex-start;
     color: var(--primary-button-text-color-dark);
 
     &::before {
       content: "";
+      flex: none;
       display: inline-block;
       margin-right: 0.5rem;
       border-radius: var(--primary-button-border-radius);
       border: 2px solid var(--primary-button-border-color);
       width: 1.25rem;
       height: 1.25rem;
+      background-color: var(--background-color);
+      transform: translate(0, 0.25rem);
 
       #{$control}:checked + & {
         background-color: var(--primary-button-background-color);
@@ -45,6 +51,7 @@
 
       &::before {
         margin: 0 0 0.5rem 0;
+        transform: translate(0, 0.125rem);
       }
     }
 
@@ -61,6 +68,7 @@
 
       &::before {
         margin: 0.5rem 0 0;
+        transform: translate(0, -0.125rem);
       }
     }
   }
