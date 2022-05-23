@@ -14,7 +14,9 @@
     - {string} [props.labelClassName] - the class name for label element
   examples:
     - |
-      +checkbox({label: '동의', checked: true})
+      +checkbox({label: 'agree', checked: true})
+      +checkbox({ checked: false, id: "no-label"})
+        label(for="no-label") checkbox
 mixin checkbox(props)
   -
     // verifying props

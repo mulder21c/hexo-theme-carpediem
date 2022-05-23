@@ -15,6 +15,9 @@
   examples:
     - |
       +radio({label: 'yes', name: 'answer', value: 1})
+      +radio({name: 'answer', id: "no-label", value: 1})
+        label(for="no-label") radio button
+
 mixin radio(options)
   -
     // verifying props
