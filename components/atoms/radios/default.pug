@@ -11,6 +11,7 @@
     - {string} [options.id] - the value of radio's id attribute and label's for attribute
     - {boolean} [options.checked] - the checked state of radio
     - {string} [options.labelPosition] ['right']  - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
+    - {string} [props.labelClassName] - the class name for label element
   examples:
     - |
       +radio({label: 'yes', name: 'answer', value: 1})
@@ -33,14 +34,33 @@ mixin radio(options)
         `right`,
         `bottom`,
       ]),
+      labelClassName: PropTypes.string,
     };
     const radioValidate = validateProps(radioProps);
     const defaults = {labelPosition: `right`};
-    const { checked, label, id, name, labelPosition, value, class: cn, ...attrs } = {
+    const {
+      checked,
+      label,
+      id,
+      name,
+      labelPosition,
+      value,
+      labelClassName: lblClassName,
+      class: cn,
+      ...attrs
+    } = {
       ...defaults,
       ...options,
     };
-    radioValidate({label, checked, id, name, value, labelPosition});
+    radioValidate({
+      label,
+      checked,
+      id,
+      name,
+      value,
+      labelPosition,
+      labelClassName: lblClassName
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();
@@ -50,18 +70,19 @@ mixin radio(options)
       `${prefix}-radio__label`,
       { [`${prefix}-radio__label--reverse`]: isReverse },
       { [`${prefix}-radio__label--column`]: isColumn },
-      ...(Array.isArray(cn) ? cn : [cn] )
+      ...(Array.isArray(lblClassName) ? lblClassName : [lblClassName] ),
     ];
-
-  input(
-    type="radio"
-    id=uid
-    name=name
-    value=value
-    checked=checked
-    class=`${prefix}-radio__control`
-  )&attributes(attrs)
-  if (label)
-    label(for=uid class=labelClassName) label
-  else
-    span(class=labelClassName aria-hidden="true")
+  span(class=[`${prefix}-radio`, ...(Array.isArray(cn) ? cn : [cn])])
+    input(
+      type="radio"
+      id=uid
+      name=name
+      value=value
+      checked=checked
+      class=`${prefix}-radio__control`
+    )&attributes(attrs)
+    if (label)
+      label(for=uid class=labelClassName)= label
+    else
+      span(class=labelClassName aria-hidden="true")
+      block

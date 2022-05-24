@@ -1,17 +1,26 @@
 include /components/atoms/heading/index.pug
-include /components/atoms/svgIcon/index.pug
+include /components/atoms/svg-icon/index.pug
 
 //- @pugdoc
   name: accordion
   description: create accordion component
   beforeEach: |
     include ../../utils/util
-    include ../../components/atoms/heading/index.pug
+    include ../../atoms/heading/index.pug
+    include ../../atoms/svg-icon/index.pug
   arguments:
     - {object} props
     - {string} props.hLevel - heading level of header in accordion
     - {number} [props.activatedIndex] - The index number of the panel that you want to initially open
-
+  examples:
+    - |
+      +accordion({hLevel: 2, activatedIndex: 1})
+        +headingSlot 아코디언 1
+        +panelSlot 아코디언 1 패널
+        +headingSlot 아코디언 2
+        +panelSlot 아코디언 2 패널
+        +headingSlot 아코디언 3
+        +panelSlot 아코디언 3 패널
 mixin accordion(props)
   -
     // verifying props

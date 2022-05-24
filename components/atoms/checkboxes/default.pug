@@ -7,10 +7,11 @@
     - {object} props
     - {string} [props.name] - the value of checkbox's name attribute
     - {string} [props.id] - the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.
-    - {string} [props.label] - label of checkbox <br> If do not specify this value, you must author and style label element.
+    - {string} [props.label] - label of checkbox <br> If do not specify this value, you must author and style label element as child element.
     - {boolean} [props.checked] - the checked state of checkbox
     - {string} [props.value] - the value of checkbox
     - {string} [props.labelPosition] ['right']  - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
+    - {string} [props.labelClassName] - the class name for label element
   examples:
     - |
       +checkbox({label: '동의', checked: true})
@@ -28,14 +29,31 @@ mixin checkbox(props)
         `right`,
         `bottom`,
       ]),
+      labelClassName: PropTypes.string,
     };
     const chkValidate = validateProps(chkProps);
-    const defaults = {labelPosition: `right`};
-    const { checked, label, id, labelPosition, value, class: cn, ...attrs } = {
+    const defaults = {labelPosition: `right`, labelClassName: null};
+    const {
+      checked,
+      label,
+      id,
+      labelPosition,
+      value,
+      labelClassName: lblClassName,
+      class: cn,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    chkValidate({label, checked, id, value, labelPosition});
+    chkValidate({
+      label,
+      checked,
+      id,
+      value,
+      labelPosition,
+      labelClassName: lblClassName
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();
@@ -45,17 +63,18 @@ mixin checkbox(props)
       `${prefix}-checkbox__label`,
       { [`${prefix}-checkbox__label--reverse`]: isReverse },
       { [`${prefix}-checkbox__label--column`]: isColumn },
-      ...(Array.isArray(cn) ? cn : [cn] )
+      ...(Array.isArray(lblClassName) ? lblClassName : [lblClassName] ),
     ];
-
-  input(
-    type="checkbox"
-    id=uid
-    value=value
-    checked=checked
-    class=`${prefix}-checkbox__control`
-  )&attributes(attrs)
-  if (label)
-    label(for=uid class=labelClassName) label
-  else
-    span(class=labelClassName aria-hidden="true")
+  span(class=[`${prefix}-checkbox`, ...(Array.isArray(cn) ? cn : [cn])])
+    input(
+      type="checkbox"
+      id=uid
+      value=value
+      checked=checked
+      class=`${prefix}-checkbox__control`
+    )&attributes(attrs)
+    if (label)
+      label(for=uid class=labelClassName)= label
+    else
+      span(class=labelClassName aria-hidden="true")
+      block

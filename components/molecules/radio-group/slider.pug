@@ -1,0 +1,62 @@
+include /components/atoms/radios/default.pug
+
+//- @pugdoc
+  name: radioSlider
+  description: create radio group component
+  see: test
+  beforeEach: |
+    include ../../utils/util
+    include ../../atoms/radios/default.pug
+  arguments:
+    - {object} props
+    - {string} props.name - attribute of radio
+    - {array} props.options - the array that consists of options for radio component
+    - {string} [props.labelPosition] [`bottom`] - Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`
+  examples:
+    - |
+      +radioSlider({
+        legend: `크기`,
+        name: `size`,
+        labelPosition: `bottom`,
+        options: [
+          { label: `작게`, value: `small`, },
+          { label: `보통`, value: `medium`, },
+          { label: `크게`, value: `large`, },
+        ],
+      })
+
+mixin radioSlider(props)
+  -
+    // verifying props
+    const radioSliderProps = {
+      name: PropTypes.string.isRequired,
+      options: PropTypes.array.isRequired,
+      labelPosition: PropTypes.oneOf([
+        `top`,
+        `bottom`,
+      ]),
+    };
+    const radioSliderValidate = validateProps(radioSliderProps);
+    const defaults = {options: null, columns: null};
+    const { name, labelPosition, options, ...attrs } = {
+      ...defaults,
+      ...props,
+    };
+    radioSliderValidate({name, labelPosition, options});
+
+    const {prefix} = theme;
+    const uid = id || generateUid();
+
+  div(class=[`${prefix}-radio-slider`])&attributes(attrs)
+    each option, idx in options
+      -
+        const radioOption = {
+          name,
+          labelPosition,
+          id: generateUid(),
+          ...option,
+          class: `${prefix}-radio-slider__item`
+        };
+      if (idx !== 0)
+        span(class=`${prefix}-radio-slider__bar` aria-hidden="true")
+      +radio(radioOption)
