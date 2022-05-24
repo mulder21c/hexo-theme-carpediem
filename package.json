@@ -80,7 +80,7 @@
     "pug-doc": "^2.23.1",
     "pug-lint": "^2.6.0",
     "sass": "^1.51.0",
-    "stylelint": "^14.8.2",
+    "stylelint": "^14.8.3",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
     "sync-fetch": "^0.3.1",
