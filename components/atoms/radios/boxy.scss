@@ -9,12 +9,16 @@
   color: var(--primary-button-text-color-dark);
 
   &__control {
-    outline: 0;
     @include sr-only;
+    outline: 0;
+    position: absolute !important;
   }
 
   &__box {
+    flex: 1 1 auto;
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid var(--primary-button-border-color);
     padding: 0.5rem 1.125rem;
     background-color: var(--background-color);

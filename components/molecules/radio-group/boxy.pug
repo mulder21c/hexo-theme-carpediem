@@ -1,22 +1,20 @@
-include /components/atoms/radios/default.pug
+include /components/atoms/radios/boxy.pug
 
 //- @pugdoc
-  name: radioSlider
+  name: radioBoxes
   description: create radio group component
   see: test
   beforeEach: |
     include ../../utils/util
-    include ../../atoms/radios/default.pug
+    include ../../atoms/radios/boxy.pug
   arguments:
     - {object} props
     - {string} props.name - attribute of radio
     - {array} props.options - the array that consists of options for radio component
-    - {string} [props.labelPosition] [`bottom`] - Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`
   examples:
     - |
-      +radioSlider({
+      +radioBoxes({
         name: `size`,
-        labelPosition: `bottom`,
         options: [
           { label: `small`, value: `small`, },
           { label: `medium`, value: `medium`, },
@@ -24,38 +22,31 @@ include /components/atoms/radios/default.pug
         ],
       })
 
-mixin radioSlider(props)
+mixin radioBoxes(props)
   -
     // verifying props
-    const radioSliderProps = {
+    const radioBoxesProps = {
       name: PropTypes.string.isRequired,
       options: PropTypes.array.isRequired,
-      labelPosition: PropTypes.oneOf([
-        `top`,
-        `bottom`,
-      ]),
     };
-    const radioSliderValidate = validateProps(radioSliderProps);
+    const radioBoxesValidate = validateProps(radioBoxesProps);
     const defaults = {options: null, columns: null};
-    const { name, labelPosition, options, ...attrs } = {
+    const { name, options, ...attrs } = {
       ...defaults,
       ...props,
     };
-    radioSliderValidate({name, labelPosition, options});
+    radioBoxesValidate({name, labelPosition, options});
 
     const {prefix} = theme;
     const uid = id || generateUid();
 
-  div(class=[`${prefix}-radio-slider`])&attributes(attrs)
+  div(class=[`${prefix}-radio-boxes`])&attributes(attrs)
     each option, idx in options
       -
         const radioOption = {
           name,
-          labelPosition,
           id: generateUid(),
           ...option,
-          class: `${prefix}-radio-slider__item`
+          class: `${prefix}-radio-boxes__item`
         };
-      if (idx !== 0)
-        span(class=`${prefix}-radio-slider__bar` aria-hidden="true")
-      +radio(radioOption)
+      +boxyRadio(radioOption)

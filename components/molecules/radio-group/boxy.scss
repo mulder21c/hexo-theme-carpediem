@@ -1,0 +1,28 @@
+.#{$prefix}-radio-boxes {
+  $item: #{&}__item;
+
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  &__item {
+    $control: #{$prefix}-radio-boxy;
+
+    flex: 1 1 100%;
+    .#{$prefix}-radio-boxy {
+      &__control:focus + .#{$control}__box {
+        transform: translateZ(1px);
+      }
+    }
+
+    & + & {
+      .#{$prefix}-radio-boxy {
+        &__box {
+          border-left: 0;
+        }
+      }
+    }
+  }
+}
