@@ -1,0 +1,27 @@
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 100px 1fr auto;
+  grid-template-areas:
+    "side header"
+    "side main"
+    "side footer";
+}
+
+._side {
+  grid-area: side;
+  background-color: $color-blue-grey-15;
+}
+
+._header {
+  grid-area: header;
+}
+
+._container {
+  grid-area: main;
+}
+
+._footer {
+  grid-area: footer;
+}

@@ -1,5 +1,17 @@
 include /components/utils/util.pug
 include /components/utils/mixin.pug
+include /components/atoms/buttons/default.pug
+include /components/atoms/buttons/icon.pug
+include /components/atoms/checkboxes/default.pug
+include /components/atoms/checkboxes/switch.pug
+include /components/atoms/radios/default.pug
+include /components/atoms/radios/boxy.pug
+include /components/atoms/heading/index.pug
+include /components/organisms/accordion/index.pug
+include /components/molecules/radio-group/default.pug
+include /components/molecules/radio-group/slider.pug
+include /components/molecules/radio-group/boxy.pug
+include /components/molecules/fieldset/default.pug
 
 doctype html
 html(lang=config.language)
@@ -31,3 +43,236 @@ html(lang=config.language)
     +jsonLD
     +analytics
   body
+    header._header Header
+    section._container(role="main")
+      h1 components
+
+      h2 Links
+      a(href="#") some link
+
+      h2 Buttons
+      h3 basic button
+      ul
+        li appearance: `fill`
+          div
+            +button({size: "small", appearance: "fill"}) me
+            |
+            |
+            +button({size: "medium", appearance: "fill"}) me
+            |
+            |
+            +button({size: "large", appearance: "fill"}) me
+          div
+            +button({size: "fluid", appearance: "fill"}) me
+        li appearance: `outline`
+          div
+            +button({size: "small", appearance: "outline"}) me
+            |
+            |
+            +button({size: "medium", appearance: "outline"}) me
+            |
+            |
+            +button({size: "large", appearance: "outline"}) me
+          div
+            +button({size: "fluid", appearance: "outline"}) me
+
+      h3 icon button
+      h4 layout `icon-only`
+      ul
+        li appearance: `fill`
+          div
+            +iconButton({size: "small", appearance: "fill", icon: "tty", layout: "icon-only", label: "tel"})
+            |
+            |
+            +iconButton({size: "medium", appearance: "fill", icon: "tty", layout: "icon-only", label: "tel"})
+            |
+            |
+            +iconButton({size: "large", appearance: "fill", icon: "tty", layout: "icon-only", label: "tel"})
+        li appearance: `outline`
+          div
+            +iconButton({size: "small", appearance: "outline", icon: "tty", layout: "icon-only", label: "tel"})
+            |
+            |
+            +iconButton({size: "medium", appearance: "outline", icon: "tty", layout: "icon-only", label: "tel"})
+            |
+            |
+            +iconButton({size: "large", appearance: "outline", icon: "tty", layout: "icon-only", label: "tel"})
+        li appearance: `ghost`
+          div
+            +iconButton({size: "small", appearance: "ghost", icon: "tty", layout: "icon-only", label: "tel"})
+            |
+            |
+            +iconButton({size: "medium", appearance: "ghost", icon: "tty", layout: "icon-only", label: "tel"})
+            |
+            |
+            +iconButton({size: "large", appearance: "ghost", icon: "tty", layout: "icon-only", label: "tel"})
+
+      h4 layout `icon-text`
+      ul
+        li appearance: `fill`
+          div
+            +iconButton({size: "small", appearance: "fill", icon: "tty", layout: "icon-text", label: "tel"})
+            |
+            |
+            +iconButton({size: "medium", appearance: "fill", icon: "tty", layout: "icon-text", label: "tel"})
+            |
+            |
+            +iconButton({size: "large", appearance: "fill", icon: "bell/solid", layout: "icon-text", label: "tel"})
+        li appearance: `outline`
+          div
+            +iconButton({size: "small", appearance: "outline", icon: "tty", layout: "icon-text", label: "tel"})
+            |
+            |
+            +iconButton({size: "medium", appearance: "outline", icon: "tty", layout: "icon-text", label: "tel"})
+            |
+            |
+            +iconButton({size: "large", appearance: "outline", icon: "bell/regular", layout: "icon-text", label: "tel"})
+        li appearance: `ghost`
+          div
+            +iconButton({size: "small", appearance: "ghost", icon: "tty", layout: "icon-text", label: "tel"})
+            |
+            |
+            +iconButton({size: "medium", appearance: "ghost", icon: "tty", layout: "icon-text", label: "tel"})
+            |
+            |
+            +iconButton({size: "large", appearance: "ghost", icon: "tty", layout: "icon-text", label: "tel"})
+
+      h2 Checkbox
+      h3 default
+      div(role="group")
+        h4 basic
+        +checkbox({ label: "웹 퍼블리셔", checked: true})
+        |
+        |
+        +checkbox({ label: "웹 디자이너", checked: true})
+        |
+        |
+        +checkbox({ label: "프론트엔드 엔지니어", checked: true})
+        |
+        |
+        +checkbox({ label: "데브옵스", checked: true})
+      div(role="group")
+        h4 without label property
+        +checkbox({ checked: false }) 체크박스 레이블
+        |
+        |
+        +checkbox({ checked: true, id: "no-label-checkbox"})
+        label(for="no-label-checkbox") label 미설정
+      div(role="group")
+        h4 left position label
+        +checkbox({ label: "one", checked: true, labelPosition: 'left'})
+        |
+        |
+        +checkbox({ label: "two", checked: true, labelPosition: 'left'})
+      div(role="group")
+        h4 vertical position label
+        +checkbox({ label: "one", checked: true, labelPosition: 'top'})
+        |
+        |
+        +checkbox({ label: "two", checked: true, labelPosition: 'bottom'})
+
+      h3 switch
+      div(role="group")
+        +switchButton({ label: "one", checked: false, labelPosition: 'left'})
+        |
+        |
+        +switchButton({ label: "two", checked: true, labelPosition: 'right'})
+      div(role="group")
+        +switchButton({ checked: false, id: `no-label-switch`}) label 미설정
+        +switchButton({ checked: false, id: `no-label-switch2`})
+        label(for="no-label-switch2") 미설정
+
+      h2 Radio button
+      h3 default
+      div(role="group")
+        +radio({ name: "no-label", id: "no-label-radio-1", value: 1}) 미설정
+        |
+        |
+        +radio({ name: "no-label", id: "no-label-radio-2", value: 2})
+        label(for="no-label-radio-2") 미설정
+      div(role="group")
+        +radio({ name: "type", label: "one", value: "0"})
+        |
+        |
+        +radio({ name: "type", label: "two", value: "1"})
+      div(role="group")
+        +radio({ name: "type2", label: "one", labelPosition: 'left', value: true})
+        |
+        |
+        +radio({ name: "type2", label: "two", labelPosition: 'left', value: false})
+      div(role="group")
+        +radio({ name: "type3", label: "one", labelPosition: 'top', value: 0})
+        |
+        |
+        +radio({ name: "type3", label: "two", labelPosition: 'bottom', value: 1})
+      h3 boxy shape
+      div(role="group")
+        +boxyRadio({ name: "boxy-radio", value: 0}) 박스형 1
+        +boxyRadio({ name: "boxy-radio", value: 1}) 박스형 2
+        +boxyRadio({ name: "boxy-radio", value: 2}) 박스형 3
+      +heading({level: 1}) 이게 헤딩 1임
+      +heading({level: 2}) 이게 헤딩 2임
+      +heading({level: 3}) 이게 헤딩 3임
+      +heading({level: 4}) 이게 헤딩 4임
+      +heading({level: 5}) 이게 헤딩 5임
+      +heading({level: 6}) 이게 헤딩 6임
+      h2 radio group
+      h3 default
+      +radioGroup({ name: `job`, labelPosition: `right`, columns: 3, options: [ { label: `웹 디자이너`, value: `designer`, }, { label: `웹 퍼블리셔`, value: `publisher`, }, { label: `프론트엔드 개발자`, value: `frontend`, }, { label: `웹 디자이너`, value: `designer`, }, { label: `웹 퍼블리셔`, value: `publisher`, }, { label: `프론트엔드 개발자`, value: `frontend`, } ] })
+      h3 with label slot
+      +radioGroup({ name: `job2`, labelPosition: `right`, columns: 3, options: [ { value: `designer`, }, { value: `publisher`, }, { value: `frontend`, }] })
+        +radioGroupLabelSlot 웹 디자이너
+        +radioGroupLabelSlot 웹 퍼블리셔
+        +radioGroupLabelSlot 프론트엔드 개발자
+      h2 radio slider
+      h3 default
+      +radioSlider({ name: `size`, labelPosition: `bottom`, options: [ { label: `작게`, value: `small`, }, { label: `보통`, value: `medium`, }, { label: `크게`, value: `large`, }, ] })
+      h3 with label slot
+      +radioSlider({ name: `size2`, labelPosition: `bottom`, options: [ { value: `small`, }, { value: `medium`, }, { value: `large`, }, ] })
+        +radioSliderLabelSlot small
+        +radioSliderLabelSlot medium
+        +radioSliderLabelSlot large
+      h2 radio boxes
+      h3 default
+      +radioBoxes({ name: `size3`, options: [ { label: `작게`, value: `small`, }, { label: `보통`, value: `medium`, }, { label: `크게`, value: `large`, }, ] })
+      h3 with label slot
+      +radioBoxes({ name: `size4`, options: [ { value: `small`, }, { value: `medium`, }, { value: `large`, }, ] })
+        +radioBoxesLabelSlot 라디오 1
+        +radioBoxesLabelSlot 라디오 2
+        +radioBoxesLabelSlot 라디오 3
+      h2 fieldset
+      h3 row
+      +fieldset({direction: `row`})
+        +fieldsetLabelSlot 레전드
+        +fieldsetBodySlot
+          p 필드셋 바디
+      +fieldset({direction: `row`})
+        +fieldsetLabelSlot 레전드
+        +fieldsetBodySlot
+          p 필드셋 바디
+      +fieldset({direction: `row`})
+        +fieldsetLabelSlot 레전드
+        +fieldsetBodySlot
+          p 필드셋 바디
+      h3 column
+      +fieldset({direction: `column`})
+        +fieldsetLabelSlot 레전드
+        +fieldsetBodySlot
+          p 필드셋 바디
+      +fieldset({direction: `column`})
+        +fieldsetLabelSlot 레전드
+        +fieldsetBodySlot
+          p 필드셋 바디
+      +fieldset({direction: `column`})
+        +fieldsetLabelSlot 레전드
+        +fieldsetBodySlot
+          p 필드셋 바디
+    ._side sidebar
+      +accordion({hLevel: 2, activatedIndex: 1})
+        +accordionHeadingSlot 아코디언 1
+        +accordionPanelSlot 아코디언 1 패널
+        +accordionHeadingSlot 아코디언 2
+        +accordionPanelSlot 아코디언 2 패널
+        +accordionHeadingSlot 아코디언 3
+        +accordionPanelSlot 아코디언 3 패널
+    footer._footer footer
