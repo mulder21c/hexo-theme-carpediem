@@ -7,16 +7,20 @@
     - {object} options
     - {string} options.name - name of radio
     - {string|number|boolean} options.value - the value of radio
-    - {string} [options.label] - label of radio<br> If do not specify this value, you must author and style label element.
+    - {string} [options.label] - label of radio<br>If do not specify this value, you should provide label as block or separated label element
     - {string} [options.id] - the value of radio's id attribute and label's for attribute
     - {boolean} [options.checked] - the checked state of radio
     - {string} [options.labelPosition] ['right']  - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
     - {string} [props.labelClassName] - the class name for label element
   examples:
     - |
+      // basic
       +radio({label: 'yes', name: 'answer', value: 1})
+      // using block instead of label property
+      +radio({name: 'answer', value: 1}) radio button
+      // using separated label element
       +radio({name: 'answer', id: "no-label", value: 1})
-        label(for="no-label") radio button
+      label(for="no-label") radio button
 
 mixin radio(options)
   -
@@ -75,6 +79,7 @@ mixin radio(options)
       { [`${prefix}-radio__label--column`]: isColumn },
       ...(Array.isArray(lblClassName) ? lblClassName : [lblClassName] ),
     ];
+
   span(class=[`${prefix}-radio`, ...(Array.isArray(cn) ? cn : [cn])])
     input(
       type="radio"
@@ -84,8 +89,10 @@ mixin radio(options)
       checked=checked
       class=`${prefix}-radio__control`
     )&attributes(attrs)
-    if (label)
-      label(for=uid class=labelClassName)= label
+    if (label || block)
+      label(for=uid class=labelClassName)
+        if (label)
+          = label
+        block
     else
       span(class=labelClassName aria-hidden="true")
-      block

@@ -13,8 +13,11 @@ include /components/atoms/radios/default.pug
     - {array} props.options - the array that consists of options for radio component without name and labelPosition
     - {number|null} [props.columns] - column counts
     - {string} [props.labelPosition] [`right`] - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
+  slots:
+    - radioGroupLabelSlot the slot for label. the number of slots must be equal to number of option items
   examples:
     - |
+      // basic
       +radioGroup({
         name: `job`,
         labelPosition: `right`,
@@ -27,6 +30,20 @@ include /components/atoms/radios/default.pug
           { label: `iOS developer`, value: `ios`, },
         ],
       })
+      // label with slot
+      +radioGroup({
+        name: `job2`,
+        labelPosition: `right`,
+        columns: 3,
+        options: [
+          { value: `designer`, },
+          { value: `publisher`, },
+          { value: `frontend`, }
+        ],
+      })
+        +radioGroupLabelSlot 웹 디자이너
+        +radioGroupLabelSlot 웹 퍼블리셔
+        +radioGroupLabelSlot 프론트엔드 개발자
 mixin radioGroup(props)
   -
     // verifying props
@@ -51,11 +68,15 @@ mixin radioGroup(props)
 
     const {prefix} = theme;
     const uid = id || generateUid();
+    const radioGroupLabelSlots = [];
+
+  mixin radioGroupLabelSlot
+    - radioGroupLabelSlots.push(block);
 
   div(
     class=[`${prefix}-radio-group`, { [`${prefix}-radio-group--col-${columns}`]: columns }]
   )&attributes(attrs)
-    each option in options
+    each option, idx in options
       -
         const radioOption = {
           name,
@@ -65,3 +86,6 @@ mixin radioGroup(props)
           ...option,
         };
       +radio(radioOption)
+        block
+        if (radioGroupLabelSlots[idx])
+          - radioGroupLabelSlots[idx]();

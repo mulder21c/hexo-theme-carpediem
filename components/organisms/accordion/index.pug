@@ -12,15 +12,18 @@ include /components/atoms/svg-icon/index.pug
     - {object} props
     - {string} props.hLevel - heading level of header in accordion
     - {number} [props.activatedIndex] - The index number of the panel that you want to initially open
+  slots:
+    - accordionHeadingSlot the slot for heading of accordion item
+    - accordionPanelSlot the slot for panel of accordion item
   examples:
     - |
       +accordion({hLevel: 2, activatedIndex: 1})
-        +headingSlot heading 1
-        +panelSlot panel 1
-        +headingSlot heading 2
-        +panelSlot panel 2
-        +headingSlot heading 3
-        +panelSlot panel 3
+        +accordionHeadingSlot heading 1
+        +accordionPanelSlot panel 1
+        +accordionHeadingSlot heading 2
+        +accordionPanelSlot panel 2
+        +accordionHeadingSlot heading 3
+        +accordionPanelSlot panel 3
 mixin accordion(props)
   -
     // verifying props
@@ -48,10 +51,10 @@ mixin accordion(props)
     const accordionHeadingSlots = [];
     const accordionPanelSlots = [];
 
-  mixin headingSlot
+  mixin accordionHeadingSlot
     - accordionHeadingSlots.push(block);
 
-  mixin panelSlot
+  mixin accordionPanelSlot
     - accordionPanelSlots.push(block);
 
   div(id=uid class=`${prefix}-accordion` data-init-activate=activatedIndex)

@@ -12,8 +12,11 @@ include /components/atoms/radios/default.pug
     - {string} props.name - attribute of radio
     - {array} props.options - the array that consists of options for radio component
     - {string} [props.labelPosition] [`bottom`] - Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`
+  slots:
+    - radioSliderLabelSlot the slot for label. the number of slots must be equal to number of option items
   examples:
     - |
+      // basic
       +radioSlider({
         name: `size`,
         labelPosition: `bottom`,
@@ -23,6 +26,19 @@ include /components/atoms/radios/default.pug
           { label: `large`, value: `large`, },
         ],
       })
+      // label with slot
+      +radioSlider({
+        name: `size2`,
+        labelPosition: `bottom`,
+        options: [
+          { value: `small`, },
+          { value: `medium`, },
+          { value: `large`, },
+        ],
+      })
+        +radioSliderLabelSlot small
+        +radioSliderLabelSlot medium
+        +radioSliderLabelSlot large
 
 mixin radioSlider(props)
   -
@@ -45,6 +61,10 @@ mixin radioSlider(props)
 
     const {prefix} = theme;
     const uid = id || generateUid();
+    const radioSliderLabelSlots = [];
+
+  mixin radioSliderLabelSlot
+    - radioSliderLabelSlots.push(block);
 
   div(class=[`${prefix}-radio-slider`])&attributes(attrs)
     each option, idx in options
@@ -59,3 +79,6 @@ mixin radioSlider(props)
       if (idx !== 0)
         span(class=`${prefix}-radio-slider__bar` aria-hidden="true")
       +radio(radioOption)
+        block
+        if (radioSliderLabelSlots[idx])
+          - radioSliderLabelSlots[idx]();

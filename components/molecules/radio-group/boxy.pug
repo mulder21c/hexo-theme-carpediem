@@ -11,8 +11,11 @@ include /components/atoms/radios/boxy.pug
     - {object} props
     - {string} props.name - attribute of radio
     - {array} props.options - the array that consists of options for radio component
+  slots:
+    - radioBoxesLabelSlot the slot for label. the number of slots must be equal to number of option items
   examples:
     - |
+      // basic
       +radioBoxes({
         name: `size`,
         options: [
@@ -21,6 +24,18 @@ include /components/atoms/radios/boxy.pug
           { label: `large`, value: `large`, },
         ],
       })
+      // label with slot
+      +radioBoxes({
+        name: `size2`,
+        options: [
+          { value: `small`, },
+          { value: `medium`, },
+          { value: `large`, },
+        ]
+      })
+        +radioBoxesLabelSlot small 1
+        +radioBoxesLabelSlot medium 2
+        +radioBoxesLabelSlot large 3
 
 mixin radioBoxes(props)
   -
@@ -39,6 +54,10 @@ mixin radioBoxes(props)
 
     const {prefix} = theme;
     const uid = id || generateUid();
+    const radioBoxesLabelSlots = [];
+
+  mixin radioBoxesLabelSlot
+    - radioBoxesLabelSlots.push(block);
 
   div(class=[`${prefix}-radio-boxes`])&attributes(attrs)
     each option, idx in options
@@ -50,3 +69,6 @@ mixin radioBoxes(props)
           class: `${prefix}-radio-boxes__item`
         };
       +boxyRadio(radioOption)
+        block
+        if (radioBoxesLabelSlots[idx])
+          - radioBoxesLabelSlots[idx]();

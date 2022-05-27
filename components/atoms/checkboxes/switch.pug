@@ -9,20 +9,30 @@
     - {string} [props.id] - the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.
     - {string} [props.label] - label of switch button <br> If do not specify this value, you must author and style label element.
     - {boolean} [props.checked] - the state of switch button
-    - {string} [props.value] - the value of switch button
+    - {string|number} [props.value] - the value of switch button
     - {string} [props.labelPosition] ['right'] - Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`
     - {object} [props.inputAttrs] - the attrs for input:checkbox
   examples:
     - |
-        +switchButton({label: 'alarm', checked: true})
+      // basic
+      +switchButton({label: 'alarm', checked: true})
+      // using block instead of label property
+      +switchButton({label: 'alarm', checked: true}) switch button
+      // using separated label element
+      +switchButton({ checked: false, id: `no-label-switch`})
+      label(for="no-label-switch") switch button
 mixin switchButton(props)
   -
     // verifying props
     const switchBtnProps = {
       label: PropTypes.string,
+      name: PropTypes.string,
       checked: PropTypes.bool,
       id: PropTypes.string,
-      value: PropTypes.string,
+      value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
       labelPosition: PropTypes.oneOf([
         `left`,
         `right`,
@@ -38,6 +48,7 @@ mixin switchButton(props)
       checked,
       label,
       id,
+      name,
       labelPosition,
       value,
       inputAttrs,
@@ -60,12 +71,16 @@ mixin switchButton(props)
     input(
       type="checkbox"
       id=uid
+      name=name
       value=value
       checked=checked
       class=`${prefix}-switch__control`
     )&attributes(inputAttrs)
     span(class=btnClassName aria-hidden="true")
-    if (label)
-      label(for=uid class=`${prefix}-switch__label`)= label
+    if (label || block)
+      label(for=uid class=`${prefix}-switch__label`)
+        if (label)
+          = label
+        block
     else
-      block
+      span(class=`${prefix}-switch__label` aria-hidden="true")

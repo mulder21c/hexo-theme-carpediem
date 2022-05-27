@@ -13,7 +13,9 @@
     - {object} [props.inputAttrs] - the attrs for input:radio
   examples:
     - |
+      // label property
       +boxyRadio({name: 'answer', value: 1, label: 'boxy radio' })
+      // label from block
       +boxyRadio({name: 'answer', value: 1 })
         boxy radio
 mixin boxyRadio(props)
@@ -33,7 +35,6 @@ mixin boxyRadio(props)
     };
     const radioValidate = validateProps(radioProps);
     const defaults = {
-      labelPosition: `right`,
       inputAttrs: {},
     };
     const { checked, id, name, value, label, inputAttrs, ...attrs } = {

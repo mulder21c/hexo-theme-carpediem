@@ -7,24 +7,33 @@
     - {object} props
     - {string} [props.name] - the value of checkbox's name attribute
     - {string} [props.id] - the value of checkbox's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.
-    - {string} [props.label] - label of checkbox <br> If do not specify this value, you must author and style label element as child element.
+    - {string} [props.label] - label of checkbox <br>If do not specify this value, you should provide label as block or separated label element
     - {boolean} [props.checked] - the checked state of checkbox
-    - {string} [props.value] - the value of checkbox
+    - {string|number} [props.value] - the value of checkbox
     - {string} [props.labelPosition] ['right']  - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
     - {string} [props.labelClassName] - the class name for label element
   examples:
     - |
+      // basic
       +checkbox({label: 'agree', checked: true})
-      +checkbox({ checked: false, id: "no-label"})
-        label(for="no-label") checkbox
+      // using block instead of label property
+      +checkbox({name: 'answer', value: 1}) check label
+      // using separated label element
+      +checkbox({ checked: false, id: "no-label-checkbox"})
+      label(for="no-label-checkbox") checkbox
+
 mixin checkbox(props)
   -
     // verifying props
     const chkProps = {
       label: PropTypes.string,
+      name: PropTypes.string,
       checked: PropTypes.bool,
       id: PropTypes.string,
-      value: PropTypes.string,
+      value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
       labelPosition: PropTypes.oneOf([
         `top`,
         `left`,
@@ -39,6 +48,7 @@ mixin checkbox(props)
       checked,
       label,
       id,
+      name,
       labelPosition,
       value,
       labelClassName: lblClassName,
@@ -52,6 +62,7 @@ mixin checkbox(props)
       label,
       checked,
       id,
+      name,
       value,
       labelPosition,
       labelClassName: lblClassName
@@ -71,12 +82,15 @@ mixin checkbox(props)
     input(
       type="checkbox"
       id=uid
+      name=name
       value=value
       checked=checked
       class=`${prefix}-checkbox__control`
     )&attributes(attrs)
-    if (label)
-      label(for=uid class=labelClassName)= label
+    if (label || block)
+      label(for=uid class=labelClassName)
+        if (label)
+          = label
+        block
     else
       span(class=labelClassName aria-hidden="true")
-      block

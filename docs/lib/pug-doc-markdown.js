@@ -83,6 +83,19 @@ function PugDocMarkdown(options) {
       lines.push("");
     }
 
+    if (obj.meta.slots) {
+      lines.push("### slots \n");
+      lines.push(
+        obj.meta.slots.reduce((table, arg) => {
+          const [, name, desc] = arg.match(
+            /(^[^\s.]*)\s(.*)/
+          );
+          return `${table}|${name}|${desc.replace(/\|/g, "\\|")}|\n`;
+        }, `|name|description|\n|:---:|:---|\n`)
+      );
+      lines.push("\n");
+    }
+
     if (obj.meta.example || obj.meta.examples) {
       lines.push("### examples\n");
       for (let example of compact([
