@@ -55,7 +55,7 @@
     "autoprefixer": "^10.4.7",
     "concat-with-sourcemaps": "^1.1.0",
     "copy-files-from-to": "^3.2.2",
-    "cssnano": "^5.1.9",
+    "cssnano": "^5.1.11",
     "date-fns": "^2.28.0",
     "easy-uid": "^2.0.2",
     "eslint": "^8.16.0",
