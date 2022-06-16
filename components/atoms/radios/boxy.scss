@@ -30,6 +30,7 @@
     background-position: bottom;
     background-size: 100% 0;
     font-family: $font-families-sans-serif;
+    word-break: keep-all;
 
     #{$control}:checked + & {
       border-color: var(--primary-button-active-border-color);

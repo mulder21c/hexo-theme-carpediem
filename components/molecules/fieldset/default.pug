@@ -1,0 +1,55 @@
+mixin fieldset(props)
+  -
+    // verifying props
+    const fieldsetProps = {
+      direction: PropTypes.oneOf([
+        `column`,
+        `row`,
+      ]).isRequired,
+      alignItem: PropTypes.oneOf([
+        `start`,
+        `center`,
+      ]),
+      labelSize: PropTypes.number.custom(({prop, propName, props}) => {
+        if (prop <= 0 || prop > 9) {
+          throw new Error('rowSize must be an integer between 1 and 9.');
+        }
+        return true;
+      }),
+    };
+    const fieldsetValidate = validateProps(fieldsetProps);
+    const defaults = {
+      direction: `row`,
+      alignItem: `start`,
+      labelSize: 3,
+    };
+    const { direction, alignItem, labelSize, ...attrs } = {
+      ...defaults,
+      ...props,
+    };
+    fieldsetValidate({direction, alignItem, labelSize});
+
+    const {prefix} = theme;
+    const uid = id || generateUid();
+
+    let fieldsetLabelSlot = null;
+    let fieldsetBodySlot = null;
+
+  mixin fieldsetLabelSlot
+    - fieldsetLabelSlot = block;
+
+  mixin fieldsetBodySlot
+    - fieldsetBodySlot = block;
+
+  div(
+    role="group"
+    class=[`${prefix}-field`, `${prefix}-field--${direction}`, { [`${prefix}-field--${alignItem}`]: direction == `row` }]
+  )
+    block
+    div(
+      id=uid
+      class=[`${prefix}-field__label`, { [`${prefix}-field__label--${labelSize * 10}`]: labelSize }]
+    )
+      - fieldsetLabelSlot();
+    div(class=`${prefix}-field__body`)
+      - fieldsetBodySlot();

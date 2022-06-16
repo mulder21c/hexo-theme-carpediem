@@ -1,0 +1,43 @@
+.#{$prefix}-field {
+  $field: &;
+  display: flex;
+
+  &--row {
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+
+    & + & {
+      border-top: 1px solid var(--separator-border-color);
+    }
+
+    @for $step from 1 through 9 {
+      $amount: $step * 10;
+
+      #{$field}__label--#{$amount} {
+        flex: 1 1 $amount * 1%;
+
+        & + #{$field}__body {
+          flex: 1 1 (100% - $amount * 1%);
+        }
+      }
+    }
+  }
+
+  &--column {
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0.75rem 0;
+
+    & + & {
+      border-top: 1px solid var(--separator-border-color);
+    }
+
+    #{$field}__label,
+    #{$field}__body {
+      padding: 0.25em 0;
+    }
+  }
+}
