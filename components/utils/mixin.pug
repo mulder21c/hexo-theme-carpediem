@@ -54,16 +54,16 @@ mixin preLoadImage
     include ./util
   example: |
     +openGraph
-mixin openGraph(options)
+mixin openGraph(props)
   -
-    const defaultOptions = {
+    const defaultProps = {
       title: getTitle(),
       type: `blog`,
       url: stripFileName(url),
     };
     const properties = {
-      ...defaultOptions,
-      ...options,
+      ...defaultProps,
+      ...props,
     };
   | !{ open_graph(properties) }
 
