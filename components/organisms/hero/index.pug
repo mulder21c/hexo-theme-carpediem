@@ -1,0 +1,28 @@
+//- @pugdoc
+  name: hero
+  description: create hero component
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {string} [props.imgSrc] the source url for hero image
+  examples:
+    - |
+      +hero({imgSrc: "hero.jpg"})
+mixin hero(props)
+  if (props)
+    -
+      const heroProps = {
+        imgSrc: PropTypes.string.isRequired,
+      };
+      const heroValidate = validateProps(heroProps);
+      const { imgSrc, ...attrs } = props;
+      heroValidate({imgSrc});
+
+      const {prefix} = theme;
+
+    div(
+      role="presentation"
+      style=`background-image:url(${imgSrc})`
+      class=`${prefix}-hero`
+    )
