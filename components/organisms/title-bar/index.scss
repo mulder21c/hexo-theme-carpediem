@@ -1,0 +1,19 @@
+.#{$prefix}-title-bar {
+  min-height: 3em;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--separator-border-color);
+
+  &__title {
+    display: inline-block;
+    margin: auto;
+    font-family: var(--font-family-sans-serif);
+    font-size: var(--font-size-default);
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--text-color-secondary);
+    @include lineEllipsis(1);
+  }
+}

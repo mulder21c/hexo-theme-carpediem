@@ -1,0 +1,15 @@
+mixin titleBar(props)
+  -
+    const titleBarProps = {
+      title: PropTypes.string.isRequired,
+    };
+    const titleBarValidate = validateProps(titleBarProps);
+    const { title, ...attrs } = props;
+    titleBarValidate({title});
+
+    const {prefix} = theme;
+    const uid = id || generateUid();
+
+  div(id=uid class=`${prefix}-title-bar`)&attributes(attrs)
+    block
+    span(class=`${prefix}-title-bar__title`)= title

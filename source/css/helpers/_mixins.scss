@@ -150,3 +150,18 @@
   height: 1px !important;
   clip-path: inset(50%) !important;
 }
+
+/// generate ellipsis by lines
+/// @param {Number} $line-to-show the number of lines
+@mixin lineEllipsis($line-to-show) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if $line-to-show == 1 {
+    white-space: nowrap;
+  } @else {
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line-to-show;
+  }
+}
