@@ -102,9 +102,9 @@ hexo.extend.helper.register(`full_url`, (url) => {
  * @param {object} page page from hexo
  * @return {ImageProbe}
  */
-hexo.extend.helper.register(`representativeImage`, async function (page) {
+hexo.extend.helper.register(`representativeImage`, function (page) {
   const { theme } = this;
-  const hero = page?.hero || theme.hero || undefined;
+  const hero = page?.hero || undefined;
   if (!hero) return null;
   const imageInfo = require("../images-db.json");
 
@@ -115,7 +115,7 @@ hexo.extend.helper.register(`representativeImage`, async function (page) {
   console.log(`[helper] getting image size: ${hero}`);
   if (isExternal) {
     try {
-      const image = await fetch(prependHttpProtocol(hero));
+      const image = fetch(prependHttpProtocol(hero));
       const dimension = probe.sync(image.buffer());
       return {
         path: hero,
