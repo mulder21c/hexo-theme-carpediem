@@ -60,7 +60,7 @@
     "easy-uid": "^2.0.2",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-pug": "^1.2.4",
     "fast-glob": "^3.2.11",
     "husky": "^8.0.1",
