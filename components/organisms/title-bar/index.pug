@@ -1,3 +1,16 @@
+//- @pugdoc
+  name: titleBar
+  description: create a title bar located at the top of the page
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {string} [props.title] the text to use as a title
+  slots:
+    - default you can append content before title text
+  examples:
+    - |
+      +titleBar({title: siteTitle, class: `${prefix}-title-bar`})
 mixin titleBar(props)
   -
     const titleBarProps = {
