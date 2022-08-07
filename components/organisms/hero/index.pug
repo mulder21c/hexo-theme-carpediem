@@ -16,7 +16,10 @@ mixin hero(props)
         imgSrc: PropTypes.string.isRequired,
       };
       const heroValidate = validateProps(heroProps);
-      const { imgSrc, ...attrs } = props;
+      const {
+        imgSrc,
+        ...attrs
+      } = props;
       heroValidate({imgSrc});
 
       const {prefix} = theme;

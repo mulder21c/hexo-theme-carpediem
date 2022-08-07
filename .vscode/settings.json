@@ -5,7 +5,8 @@
     "commitlint",
     "Josa",
     "lintfix",
-    "prettierignore"
+    "prettierignore",
+    "pugdoc"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": [

@@ -1,17 +1,4 @@
 {
-  "plugins": ["@prettier/plugin-pug"],
   "pluginSearchDirs": ["./node_modules"],
-  "printWidth": 80,
-  "pugAttributeSeparator": "none",
-  "pugWrapAttributesThreshold": 1,
-  "overrides": [
-    {
-      "files": "**/*.pug",
-      "options": {
-        "plugins": [
-          "@prettier/plugin-pug"
-        ]
-      }
-    }
-  ]
+  "printWidth": 80
 }

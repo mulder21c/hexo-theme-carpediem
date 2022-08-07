@@ -9,12 +9,19 @@ include /components/atoms/radios/default.pug
     include ../../atoms/radios/default.pug
   arguments:
     - {object} props
-    - {string} props.name - attribute of radio
-    - {array} props.options - the array that consists of options for radio component without name and labelPosition
-    - {number|null} [props.columns] - column counts
-    - {string} [props.labelPosition] [`right`] - Where the label is located relative to the visual indicator<br>One of `'top'`, `'left'`, `'right'`, `'bottom'`
+    - {string} props.name attribute of radio
+    - |
+      {array} props.options the array that consists of options
+      for radio component without name and labelPosition
+    - {number|null} [props.columns] column counts
+    - |
+      {string} [props.labelPosition] [`right`] Where the label is located
+      relative to the visual indicator<br>
+      One of `'top'`, `'left'`, `'right'`, `'bottom'`
   slots:
-    - radioGroupLabelSlot the slot for label. the number of slots must be equal to number of option items
+    - |
+      radioGroupLabelSlot the slot for label.
+      the number of slots must be equal to number of option items
   examples:
     - |
       // basic
@@ -59,12 +66,26 @@ mixin radioGroup(props)
       ]),
     };
     const radioGroupValidate = validateProps(radioGroupProps);
-    const defaults = {options: null, columns: null};
-    const { name, columns, labelPosition, options, ...attrs } = {
+    const defaults = {
+      options: null,
+      columns: null
+    };
+    const {
+      name,
+      columns,
+      labelPosition,
+      options,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    radioGroupValidate({name, columns, labelPosition, options});
+    radioGroupValidate({
+      name,
+      columns,
+      labelPosition,
+      options
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();
@@ -74,7 +95,10 @@ mixin radioGroup(props)
     - radioGroupLabelSlots.push(block);
 
   div(
-    class=[`${prefix}-radio-group`, { [`${prefix}-radio-group--col-${columns}`]: columns }]
+    class=[
+      `${prefix}-radio-group`,
+      { [`${prefix}-radio-group--col-${columns}`]: columns }
+    ]
   )&attributes(attrs)
     each option, idx in options
       -

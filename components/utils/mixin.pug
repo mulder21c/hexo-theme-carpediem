@@ -109,7 +109,9 @@ mixin analytics
   if theme.analytics.google
     script(
       async
-      src=`https://www.googletagmanager.com/gtag/js?id=${theme.analytics.google}`
+      src= `https://www.googletagmanager.com/gtag/js?id=${
+        theme.analytics.google
+      }`
     )
     script.
       window.dataLayer = window.dataLayer || [];

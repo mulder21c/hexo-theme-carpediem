@@ -10,8 +10,10 @@ include /components/atoms/svg-icon/index.pug
     include ../../atoms/svg-icon/index.pug
   arguments:
     - {object} props
-    - {string} props.hLevel - heading level of header in accordion
-    - {number} [props.activatedIndex] - The index number of the panel that you want to initially open
+    - {string} props.hLevel heading level of header in accordion
+    - |
+      {number} [props.activatedIndex] The index number of the panel that
+      you want to initially open
   slots:
     - accordionHeadingSlot the slot for heading of accordion item
     - accordionPanelSlot the slot for panel of accordion item
@@ -38,12 +40,21 @@ mixin accordion(props)
       activatedIndex: PropTypes.number,
     };
     const accordionValidate = validateProps(accordionProps);
-    const defaults = {hLevel: 2};
-    const { hLevel, activatedIndex, id, ...attrs } = {
+    const defaults = {
+      hLevel: 2
+    };
+    const {
+      hLevel,
+      activatedIndex,
+      id,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    accordionValidate({hLevel});
+    accordionValidate({
+      hLevel
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();
@@ -57,7 +68,11 @@ mixin accordion(props)
   mixin accordionPanelSlot
     - accordionPanelSlots.push(block);
 
-  div(id=uid class=`${prefix}-accordion` data-init-activate=activatedIndex)
+  div(
+    id= uid
+    class=`${prefix}-accordion`
+    data-init-activate= activatedIndex
+  )
     block
     each _, idx in accordionHeadingSlots
       -
@@ -65,22 +80,33 @@ mixin accordion(props)
         const headingId = `accordion-heading-${groupId}`;
         const panelId = `accordion-panel-${groupId}`;
 
-      +heading({level: hLevel, class: `${prefix}-accordion__header`})
+      +heading({
+        level: hLevel,
+        class: `${prefix}-accordion__header`
+      })
         button(
-          type="button"
-          id=headingId
-          aria-expanded=JSON.stringify(idx === activatedIndex)
-          aria-controls=panelId
-          class=`${prefix}-accordion__tab`
+          type= "button"
+          id= headingId
+          aria-expanded= JSON.stringify(idx === activatedIndex)
+          aria-controls= panelId
+          class= `${prefix}-accordion__tab`
         )
           - accordionHeadingSlots[idx]();
-          +svgIcon({ name: `chevron-down`, role: `presentation`, focusable: `false`, class: `${prefix}-accordion__tab__icon` })
+          +svgIcon({
+            name: `chevron-down`,
+            role: `presentation`,
+            focusable: `false`,
+            class: `${prefix}-accordion__tab__icon`
+          })
 
       div(
-        id=panelId
-        role="region"
-        aria-labelledby=headingId
-        hidden=idx === activatedIndex ? null : true
-        class=[`${prefix}-accordion__panel`, idx === activatedIndex ? `active` : false]
+        id= panelId
+        role= "region"
+        aria-labelledby= headingId
+        hidden= (idx === activatedIndex ? null : true)
+        class= [
+          `${prefix}-accordion__panel`,
+          idx === activatedIndex ? `active` : false
+        ]
       )
         - accordionPanelSlots[idx]();

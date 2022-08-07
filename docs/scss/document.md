@@ -127,3 +127,18 @@ generate properties for animation
 |`$options.direction`|**[String](https://sass-lang.com/documentation/values/strings)**|whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.|`normal`|
 |`$options.fill`|**[String](https://sass-lang.com/documentation/values/strings)**|how a CSS animation applies styles to its target before and after its execution|`none`|
 |`$options.state`|**[String](https://sass-lang.com/documentation/values/strings)**|whether an animation is running or paused|`running`|
+
+<a id="general-mixin-lineEllipsis"></a>
+
+# @mixin lineEllipsis
+
+generate ellipsis by lines
+
++ **Group:** General
++ **Access:** public
+
+## Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$line-to-show`|**[Number](https://sass-lang.com/documentation/values/numbers)**|the number of lines|-|

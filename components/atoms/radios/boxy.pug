@@ -5,18 +5,29 @@
     include ../../utils/util
   arguments:
     - {object} props
-    - {string} props.name - name of radio
-    - {string|number|boolean} props.value - the value of radio
-    - {string} [props.label] - label of radio<br> If do not specify this value, you must author and style label element.
-    - {string} [props.id] - the value of radio's id attribute and label's for attribute
-    - {boolean} [props.checked] - the checked state of radio
-    - {object} [props.inputAttrs] - the attrs for input:radio
+    - {string} props.name name of radio
+    - {string|number|boolean} props.value the value of radio
+    - |
+      {string} [props.label] label of radio<br>
+      If do not specify this value, you must author and style label element.
+    - |
+      {string} [props.id] the value of radio's id attribute
+      and label's for attribute
+    - {boolean} [props.checked] the checked state of radio
+    - {object} [props.inputAttrs] the attrs for input:radio
   examples:
     - |
       // label property
-      +boxyRadio({name: 'answer', value: 1, label: 'boxy radio' })
+      +boxyRadio({
+        name: 'answer',
+        value: 1,
+        label: 'boxy radio'
+      })
       // label from block
-      +boxyRadio({name: 'answer', value: 1 })
+      +boxyRadio({
+        name: 'answer',
+        value: 1
+      })
         boxy radio
 mixin boxyRadio(props)
   -
@@ -37,11 +48,26 @@ mixin boxyRadio(props)
     const defaults = {
       inputAttrs: {},
     };
-    const { checked, id, name, value, label, inputAttrs, ...attrs } = {
+    const {
+      checked,
+      id,
+      name,
+      value,
+      label,
+      inputAttrs,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    radioValidate({label, checked, id, name, label, value});
+    radioValidate({
+      label,
+      checked,
+      id,
+      name,
+      label,
+      value
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();

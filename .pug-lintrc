@@ -1,0 +1,8 @@
+{
+  "maximumLineLength": 80,
+  "validateAttributeSeparator": {
+    "separator": "  ",
+    "multiLineSeparator": "\n  "
+  },
+  "validateLineBreaks": "LF"
+}

@@ -9,11 +9,17 @@ include /components/atoms/radios/default.pug
     include ../../atoms/radios/default.pug
   arguments:
     - {object} props
-    - {string} props.name - attribute of radio
-    - {array} props.options - the array that consists of options for radio component
-    - {string} [props.labelPosition] [`bottom`] - Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`
+    - {string} props.name attribute of radio
+    - |
+      {array} props.options the array that consists of options
+      for radio component
+    - |
+      {string} [props.labelPosition] [`bottom`] Where the label is located
+      relative to the visual indicator<br>One of `'top'`, `'bottom'`
   slots:
-    - radioSliderLabelSlot the slot for label. the number of slots must be equal to number of option items
+    - |
+      radioSliderLabelSlot the slot for label.
+      the number of slots must be equal to number of option items
   examples:
     - |
       // basic
@@ -52,12 +58,24 @@ mixin radioSlider(props)
       ]),
     };
     const radioSliderValidate = validateProps(radioSliderProps);
-    const defaults = {options: null, columns: null};
-    const { name, labelPosition, options, ...attrs } = {
+    const defaults = {
+      options: null,
+      columns: null
+    };
+    const {
+      name,
+      labelPosition,
+      options,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    radioSliderValidate({name, labelPosition, options});
+    radioSliderValidate({
+      name,
+      labelPosition,
+      options
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();
@@ -77,7 +95,10 @@ mixin radioSlider(props)
           class: `${prefix}-radio-slider__item`
         };
       if (idx !== 0)
-        span(class=`${prefix}-radio-slider__bar` aria-hidden="true")
+        span(
+          class=`${prefix}-radio-slider__bar`
+          aria-hidden="true"
+        )
       +radio(radioOption)
         block
         if (radioSliderLabelSlots[idx])

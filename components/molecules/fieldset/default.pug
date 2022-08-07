@@ -5,9 +5,15 @@
     include ../../utils/util
   arguments:
     - {object} props
-    - {string} [props.direction] ['row'] how items are placed in the container<br>One of `'row'`, `'column'`
-    - {string} [props.alignItem] ['start'] alignment of items on the cross axis<br>One of `'start'`, `'center'`
-    - {integer} [props.labelWidthRatio] [3] the factor of label's width in the container
+    - |
+      {string} [props.direction] ['row'] how items are placed in the container
+      <br>One of `'row'`, `'column'`
+    - |
+      {string} [props.alignItem] ['start'] alignment of items on the cross axis
+      <br>One of `'start'`, `'center'`
+    - |
+      {integer} [props.labelWidthRatio] [3] the factor of label's width
+      in the container
   examples:
     - |
       // row
@@ -45,11 +51,20 @@ mixin fieldset(props)
       alignItem: `start`,
       labelWidthRatio: 3,
     };
-    const { direction, alignItem, labelWidthRatio, ...attrs } = {
+    const {
+      direction,
+      alignItem,
+      labelWidthRatio,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    fieldsetValidate({direction, alignItem, labelWidthRatio});
+    fieldsetValidate({
+      direction,
+      alignItem,
+      labelWidthRatio
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();
@@ -66,12 +81,19 @@ mixin fieldset(props)
   div(
     role="group"
     aria-labelledby=uid
-    class=[`${prefix}-field`, `${prefix}-field--${direction}`, { [`${prefix}-field--${alignItem}`]: direction == `row` }]
+    class=[
+      `${prefix}-field`,
+      `${prefix}-field--${direction}`,
+      { [`${prefix}-field--${alignItem}`]: direction == `row` }
+    ]
   )
     block
     div(
       id=uid
-      class=[`${prefix}-field__label`, { [`${prefix}-field__label--${labelWidthRatio * 10}`]: labelWidthRatio }]
+      class=[
+        `${prefix}-field__label`,
+        { [`${prefix}-field__label--${labelWidthRatio * 10}`]: labelWidthRatio }
+      ]
     )
       - fieldsetLabelSlot();
     div(class=`${prefix}-field__body`)

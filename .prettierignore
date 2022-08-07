@@ -319,3 +319,4 @@ docs/
 source/images
 images-db.json
 source/js
+*.pug

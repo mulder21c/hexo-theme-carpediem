@@ -5,15 +5,27 @@
     include ../../utils/util
   arguments:
     - {object} props
-    - {string} props.icon - name of icon
-    - {string} props.label - label of button
-    - {string} [props.type] ['button'] - the value of type attribute for button
-    - {string} [props.size] ['medium'] - size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``
-    - {string} [props.appearance] ['outline'] - appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`
-    - {string} [props.layout] [`icon-only`] - layout of button <br> one of `'icon-only', `icon-text``
+    - {string} props.icon name of icon
+    - {string} props.label label of button
+    - {string} [props.type] ['button'] the value of type attribute for button
+    - |
+      {string} [props.size] ['medium'] size of button- size of button
+      <br> one of `'small'`, `'medium'`, `'large'``
+    - |
+      {string} [props.appearance] ['outline'] appearance of button
+      <br> one of `'fill'`, `'outline'`, `'ghost'`
+    - |
+      {string} [props.layout] [`icon-only`] layout of button
+      <br> one of `'icon-only', `icon-text``
   examples:
     - |
-      +iconButton({type: 'button', size: 'medium', appearance: 'outline', icon: 'tty', label: 'tel'})
+      +iconButton({
+        type: 'button',
+        size: 'medium',
+        appearance: 'outline',
+        icon: 'tty',
+        label: 'tel'
+      })
 mixin iconButton(props)
   -
     // verifying props
@@ -42,11 +54,25 @@ mixin iconButton(props)
       appearance: `outline`,
       layout: `icon-only`
     };
-    const { type, size, appearance, icon, label, layout, ...attrs } = {
+    const {
+      type,
+      size,
+      appearance,
+      icon,
+      label,
+      layout,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    iconBtnValidate({size, appearance, icon, label, layout});
+    iconBtnValidate({
+      size,
+      appearance,
+      icon,
+      label,
+      layout
+    });
 
     const isIconOnly = layout === `icon-only`;
     const {prefix} = theme;
@@ -56,7 +82,10 @@ mixin iconButton(props)
       { [`${prefix}-btn-icon--${appearance}`]: appearance },
       { [`${prefix}-btn-icon--${layout}`]: layout }
     ];
-    const {iconName, iconCategory} = getIconCategory(icon);
+    const {
+      iconName,
+      iconCategory
+    } = getIconCategory(icon);
 
   button(
     type=type

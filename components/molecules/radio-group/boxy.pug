@@ -9,10 +9,14 @@ include /components/atoms/radios/boxy.pug
     include ../../atoms/radios/boxy.pug
   arguments:
     - {object} props
-    - {string} props.name - attribute of radio
-    - {array} props.options - the array that consists of options for radio component
+    - {string} props.name attribute of radio
+    - |
+      {array} props.options the array that consists of options
+      for radio component
   slots:
-    - radioBoxesLabelSlot the slot for label. the number of slots must be equal to number of option items
+    - |
+      radioBoxesLabelSlot the slot for label.
+      the number of slots must be equal to number of option items
   examples:
     - |
       // basic
@@ -45,12 +49,23 @@ mixin radioBoxes(props)
       options: PropTypes.array.isRequired,
     };
     const radioBoxesValidate = validateProps(radioBoxesProps);
-    const defaults = {options: null, columns: null};
-    const { name, options, ...attrs } = {
+    const defaults = {
+      options: null,
+      columns: null
+    };
+    const {
+      name,
+      options,
+      ...attrs
+    } = {
       ...defaults,
       ...props,
     };
-    radioBoxesValidate({name, labelPosition, options});
+    radioBoxesValidate({
+      name,
+      labelPosition,
+      options
+    });
 
     const {prefix} = theme;
     const uid = id || generateUid();
