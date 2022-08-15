@@ -76,7 +76,7 @@
     "probe-image-size": "^7.2.3",
     "pug-doc": "^2.23.1",
     "pug-lint": "^2.6.0",
-    "sass": "^1.52.1",
+    "sass": "^1.54.4",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
