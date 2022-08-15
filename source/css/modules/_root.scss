@@ -3,15 +3,15 @@
   --font-family-serif: #{$font-family-serif};
   --font-family-sans-serif: #{$font-family-sans-serif};
   --font-family-code: #{$font-families-code};
-  --font-size-base: #{$font-size-default * $font-responsive-ratio-default};
-  --font-size-default: #{$font-size-default};
-  --font-size-large: #{$font-size-default * 1.125};
-  --font-size-heading-level-1: #{$font-size-heading-level-1};
-  --font-size-heading-level-2: #{$font-size-heading-level-2};
-  --font-size-heading-level-3: #{$font-size-heading-level-3};
-  --font-size-heading-level-4: #{$font-size-heading-level-4};
-  --font-size-heading-level-5: #{$font-size-heading-level-5};
-  --font-size-heading-level-6: #{$font-size-heading-level-6};
+  --font-size-base: #{getFontSize(1) * $font-responsive-ratio-default};
+  --font-size-default: #{getFontSize(1)};
+  --font-size-large: #{getFontSize(2)};
+  --font-size-heading-level-1: #{getFontSize(7)};
+  --font-size-heading-level-2: #{getFontSize(6)};
+  --font-size-heading-level-3: #{getFontSize(5)};
+  --font-size-heading-level-4: #{getFontSize(4)};
+  --font-size-heading-level-5: #{getFontSize(3)};
+  --font-size-heading-level-6: #{getFontSize(2)};
   --font-line-height-default: #{$font-line-height-default};
   --font-weight-thin: #{$font-weight-thin};
   --font-weight-extra-light: #{$font-weight-extra-light};
@@ -22,7 +22,7 @@
   --font-weight-bold: #{$font-weight-bold};
   --font-weight-extra-bold: #{$font-weight-extra-bold};
 
-  --primary-button-border-radius: 0.25rem;
+  --button-border-radius: 0.25rem;
 
   @include colorScheme(light) {
     --background-color: #{$color-neutral-05};

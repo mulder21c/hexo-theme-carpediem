@@ -15,3 +15,29 @@
 @function shade($color, $percentage) {
   @return mix(black, $color, $percentage);
 }
+
+/// get font size from sizes of divided evenly
+/// between the minimum and maximum values
+/// @param {Number} divided step
+/// @return {Number}
+
+@function getFontSize($step) {
+  @if not $font-size-largest {
+    @error "can not found $font-size-largest";
+  }
+  @if not $font-size-smallest {
+    @error "can not found $font-size-smallest";
+  }
+  @if not $font-size-step-count {
+    @error "can not found $font-size-step-count";
+  }
+
+  @if ($step > $font-size-step-count) {
+    $step: $font-size-step-count;
+  }
+
+  @return math.div(
+      ($font-size-largest - $font-size-smallest),
+      ($font-size-step-count - 1)
+    ) * ($step - 1) + $font-size-smallest;
+}
