@@ -1,0 +1,67 @@
+include ../../atoms/datetime/index
+include ../../atoms/category/index
+
+mixin post-card(props)
+  -
+    const postProps = {
+      post: PropTypes.object.isRequired,
+    };
+    const postValidate = validateProps(postProps);
+    const {
+      post,
+      ...attrs
+    } = props;
+    postValidate({
+      post,
+    });
+
+    const {prefix} = theme;
+    const uid = id || generateUid();
+    const titleId = `${uid}-title`;
+    const dateId = `${uid}-date`;
+    const contentId = `${uid}-content`;
+    const datetime = post.updated || post.date;
+    const categories = post.categories.data;
+    const tags = post.tags;
+    const thumb = post.thumbnail || post.hero || post?.photos?.unshift();
+
+  div(
+    class=`${prefix}-post-card`
+  )
+    if (thumb)
+      img(
+        src= thumb
+        alt=""
+        loading="lazy"
+        class=`${prefix}-post-card__thumb`
+        role="none"
+      )
+
+    a(
+      id=titleId
+      href=post.path
+      aria-describedby=`${contentId}`
+      class=`${prefix}-post-card__heading`
+    )= post.title
+
+    div(class=`${prefix}-post-card__meta`)
+      +datetime({
+        datetime,
+        label: _p(`label.date.posted`),
+        visibleLabel: '📆',
+        class: `${prefix}-post-card__meta__item`
+      })
+
+      +category({
+        categories,
+        visibleLabel: '📂',
+        useLink: false,
+        class: `${prefix}-post-card__meta__item`,
+        level: `all`,
+        separator: `angle-right`,
+      })
+
+    p(
+      id=contentId
+      class=`${prefix}-post-card__content`
+    )= stripHTML(post.content, 250)

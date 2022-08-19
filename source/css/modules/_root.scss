@@ -23,6 +23,7 @@
   --font-weight-extra-bold: #{$font-weight-extra-bold};
 
   --button-border-radius: 0.25rem;
+  --box-border-radius: 0.5rem;
 
   @include colorScheme(light) {
     --background-color: #{$color-neutral-05};
@@ -44,6 +45,11 @@
     --primary-button-separator-color: #{$color-green-35};
     --primary-button-text-color: #{$white};
     --primary-button-text-color-dark: #{$color-green-75};
+
+    --primary-card-border-color: #{$color-neutral-50};
+    --primary-card-hover-border-color: #{$color-neutral-70};
+    --primary-card-focus-border-color: #{$color-green-45};
+    --primary-card-focus-shadow-color: #{rgba($color-green-85, 0.375)};
 
     --separator-border-color: #{$color-neutral-20};
   }
@@ -68,6 +74,11 @@
     --primary-button-separator-color: #{$color-green-35};
     --primary-button-text-color: #{$white};
     --primary-button-text-color-dark: #{$color-green-15};
+
+    --primary-card-border-color: #{$color-neutral-55};
+    --primary-card-hover-border-color: #{$color-neutral-35};
+    --primary-card-focus-border-color: #{$color-green-45};
+    --primary-card-focus-shadow-color: #{rgba($color-green-15, 0.375)};
 
     --separator-border-color: #{$color-neutral-60};
   }
