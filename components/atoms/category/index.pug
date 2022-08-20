@@ -1,8 +1,11 @@
+include ../svg-icon/index
+
 //- @pugdoc
   name: category
   description: create category indicator
   beforeEach: |
     include ../../utils/util
+    include ../svg-icon/index
   arguments:
     - {object} props
     - {array} props.category sequence of category
@@ -11,8 +14,28 @@
       <br> one of `'lowest'`, `'top'`, `'all'`
     - {string} props.visibleLabel the visible label for category
   examples:
-
-include ../../atoms/svg-icon/index
+    - |
+      +category({
+        categories: [
+          {
+            name: 'dev-note',
+            slug: `dev-note`,
+            path: `categories/dev-note/`,
+            permalink: `https://example.com/categories/dev-note/`,
+          },
+          {
+            name: 'Front-End',
+            slug: `dev-note/Front-End`,
+            path: `categories/dev-note/Front-End/`,
+            permalink: `https://example.com/categories/dev-note/Front-End/`,
+          }
+        ],
+        visibleLabel: '📂',
+        useLink: false,
+        class: `post-card__meta__item`,
+        level: `all`,
+        separator: `>`
+      })
 
 mixin category(props)
   -

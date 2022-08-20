@@ -38,6 +38,32 @@ Slightly darken a color
 
 **[Color](https://sass-lang.com/documentation/values/colors)**
 
+<a id="general-function-getFontSize"></a>
+
+# @function getFontSize
+
+get font size from sizes of divided evenly
+between the minimum and maximum values
+
++ **Group:** General
++ **Access:** public
+
+## Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$divided`|**[Number](https://sass-lang.com/documentation/values/numbers)**|step|-|
+
+## Returns
+
+**[Number](https://sass-lang.com/documentation/values/numbers)**
+
+## Throws
+
++ can not found $font-size-largest
++ can not found $font-size-smallest
++ can not found $font-size-step-count
+
 <a id="general-mixin-respond-to"></a>
 
 # @mixin respond-to
