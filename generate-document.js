@@ -7,6 +7,7 @@ const rootPath = path.resolve(__dirname);
 const propTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
 const uid = require("easy-uid");
+const dateFormat = require("date-fns/format");
 const iconsMeta = (() => {
   try {
     return jsYml.load(
@@ -80,6 +81,7 @@ pugDocGen({
       };
     },
     generateUid: () => uid(),
+    dateFormat,
   },
   complete: function () {
     const stream = new PugDocMD({

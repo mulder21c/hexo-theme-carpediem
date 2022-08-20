@@ -14,16 +14,16 @@
     - {string} [props.visibleLabel] the visible label for date
     - {string} [props.id] the value of id attribute
   examples:
-    -|
+    - |
       // simple
       +datetime({
-        datetime,
+        datetime: new Date(),
         label: 'posted ',
         visibleLabel: '📆 '
       })
       // explicit format
       +datetime({
-        datetime,
+        datetime: new Date(),
         label: 'posted ',
         visibleLabel: '📆 ',
         format: 'yyyy-MM-dd',
