@@ -1,0 +1,30 @@
+.#{$prefix}-category {
+  &__label {
+    margin-right: 0.25em;
+  }
+
+  &__list {
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__content {
+    display: inline-block;
+  }
+
+  &__separator {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1em;
+    max-height: 1.6em;
+    color: var(--text-color-secondary);
+
+    > svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+}

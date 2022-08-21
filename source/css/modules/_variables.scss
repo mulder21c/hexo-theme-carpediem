@@ -213,7 +213,7 @@ $color-cyan-85: shade($cyan, 70%);
 $color-cyan-90: shade($cyan, 80%);
 $color-cyan-95: shade($cyan, 90%);
 
-// fonts
+// fonts families
 $font-family-serif: "Noto Serif";
 $font-family-sans-serif: "Pretendard";
 $font-family-code: Hack;
@@ -224,17 +224,15 @@ $font-families-code: $font-family-code, Consolas, Monaco;
 $font-file-serif-path: "/fonts/noto-serif-kr/";
 $font-file-sans-serif-path: "/fonts/pretendard/";
 $font-file-code-path: "/fonts/pretendard/";
-$font-size-default: 1rem;
+
+// fonts appearances
 $font-responsive-ratio-default: 1.125;
 $font-responsive-ratio-tablet: 1.25;
 $font-responsive-ratio-pc: 1.375;
-$font-size-heading-level-1: 3rem;
-$font-size-heading-level-2: 2.25rem;
-$font-size-heading-level-3: 2rem;
-$font-size-heading-level-4: 1.75rem;
-$font-size-heading-level-5: 1.5rem;
-$font-size-heading-level-6: 1.25rem;
-$font-size-small: 1rem;
+$font-size-largest: 3rem !default;
+$font-size-smallest: 1rem !default;
+$font-size-step-count: 7 !default;
+$font-size-default: 1rem;
 $font-line-height-default: 1.6;
 $font-weight-thin: 100;
 $font-weight-extra-light: 200;

@@ -1,3 +1,6 @@
 title:
   archives: "Archives %s"
   tag: "Related to %1$s"
+
+label:
+  category: "category"

@@ -1,0 +1,91 @@
+//- @pugdoc
+  name: datetime
+  description: create time element
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {Date} props.datetime the date object
+    - |
+      {string} [props.format] the format of machine readable date
+      to use as datetime attribute
+    - {string} [props.visibleFormat] the format of human readable date
+    - {string} [props.label] the accessible name for date
+    - {string} [props.visibleLabel] the visible label for date
+    - {string} [props.id] the value of id attribute
+  examples:
+    - |
+      // simple
+      +datetime({
+        datetime: new Date(),
+        label: 'posted ',
+        visibleLabel: '📆 '
+      })
+      // explicit format
+      +datetime({
+        datetime: new Date(),
+        label: 'posted ',
+        visibleLabel: '📆 ',
+        format: 'yyyy-MM-dd',
+        visibleFormat: 'yyyy-MM-dd',
+      })
+
+mixin datetime(props)
+  -
+    const datetimeProps = {
+      datetime: PropTypes.object.isRequired,
+      format: PropTypes.string,
+      visibleFormat: PropTypes.string,
+      label: PropTypes.string,
+      visibleLabel: PropTypes.string,
+      id: PropTypes.string,
+    };
+    const datetimeValidate = validateProps(datetimeProps);
+    const defaults = {
+      format: `yyyy-MM-dd`,
+      visibleFormat: `yyyy. MM .dd`,
+    };
+    const {
+      datetime,
+      format,
+      visibleFormat,
+      label,
+      visibleLabel,
+      id,
+      ...attrs
+    } = {
+      ...defaults,
+      ...props,
+    };
+    datetimeValidate({
+      datetime,
+      format,
+      visibleFormat,
+      label,
+      visibleLabel,
+      id,
+    });
+
+    const {prefix} = theme;
+    const uid = id || generateUid();
+    const machineReadableDate = dateFormat(new Date(datetime), format);
+    const humanReadableDate = dateFormat(new Date(datetime), visibleFormat);
+    const hasLabel = !!(label || visibleLabel);
+    if (label && !visibleLabel) {
+      throw new Error(`the label property must have visible label.`);
+    }
+
+  span(
+    class= `${prefix}-datetime`
+  )&attributes(attrs)
+    if hasLabel
+      span(
+        class= `${prefix}-datetime__label`
+        role="img"
+        aria-label= (label || visibleLabel || null)
+      )= visibleLabel
+    time(
+      id= uid
+      datetime= machineReadableDate
+      class= `${prefix}-datetime__time`
+    )= humanReadableDate
