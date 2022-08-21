@@ -7,7 +7,7 @@
   flex-flow: row;
   justify-content: center;
   align-items: center;
-  border-radius: var(--primary-button-border-radius);
+  border-radius: var(--button-border-radius);
   font-family: $font-families-sans-serif;
   @media (prefers-reduced-motion: no-preference) {
     transition: vert-bounce-button 0.3s, background 0.2s ease-in-out;
