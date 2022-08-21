@@ -49,14 +49,14 @@ include ../../atoms/svg-icon/index.pug
 ### output example 
 
 ```html
-<div class="amor-accordion" id="e9cmq40idsinnfo" data-init-activate="1">
+<div class="amor-accordion" id="cb8b8ni68lm111o" data-init-activate="1">
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-e9cmh8vbeteokuo"
+      id="accordion-heading-cb8c3bnt5d34b4o"
       aria-expanded="false"
-      aria-controls="accordion-panel-e9cmh8vbeteokuo"
+      aria-controls="accordion-panel-cb8c3bnt5d34b4o"
     >
       heading 1
       <svg
@@ -70,9 +70,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="accordion-panel-e9cmh8vbeteokuo"
+    id="accordion-panel-cb8c3bnt5d34b4o"
     role="region"
-    aria-labelledby="accordion-heading-e9cmh8vbeteokuo"
+    aria-labelledby="accordion-heading-cb8c3bnt5d34b4o"
     hidden="hidden"
   >
     panel 1
@@ -81,9 +81,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-e9cnf2pmkhopljo"
+      id="accordion-heading-cb8clurt7oboik"
       aria-expanded="true"
-      aria-controls="accordion-panel-e9cnf2pmkhopljo"
+      aria-controls="accordion-panel-cb8clurt7oboik"
     >
       heading 2
       <svg
@@ -97,9 +97,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="accordion-panel-e9cnf2pmkhopljo"
+    id="accordion-panel-cb8clurt7oboik"
     role="region"
-    aria-labelledby="accordion-heading-e9cnf2pmkhopljo"
+    aria-labelledby="accordion-heading-cb8clurt7oboik"
   >
     panel 2
   </div>
@@ -107,9 +107,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-e9cnugglc3apsj"
+      id="accordion-heading-cb8d6pev61gba6g"
       aria-expanded="false"
-      aria-controls="accordion-panel-e9cnugglc3apsj"
+      aria-controls="accordion-panel-cb8d6pev61gba6g"
     >
       heading 3
       <svg
@@ -123,9 +123,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="accordion-panel-e9cnugglc3apsj"
+    id="accordion-panel-cb8d6pev61gba6g"
     role="region"
-    aria-labelledby="accordion-heading-e9cnugglc3apsj"
+    aria-labelledby="accordion-heading-cb8d6pev61gba6g"
     hidden="hidden"
   >
     panel 3
@@ -220,7 +220,7 @@ include ../../utils/util
 ### output example 
 
 ```html
-<div class="amor-title-bar" id="e9d6626rmu1vga">
+<div class="amor-title-bar" id="cb8peo5vfnu36u">
   <span class="amor-title-bar__title">Hexo Blog</span>
 </div>
 

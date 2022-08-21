@@ -1,5 +1,169 @@
 # Pug Documentation 
 
+## fieldset
+
+create group containing label and body
+
+
+### path 
+
+`components/molecules/fieldset/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.direction|how items are placed in the container <br>One of `'row'`, `'column'`|string|'row'|true|
+|props.alignItem|alignment of items on the cross axis <br>One of `'start'`, `'center'`|string|'start'|true|
+|props.labelWidthRatio|the factor of label's width in the container|integer|3|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// row
++fieldset({direction: `row`})
+  +fieldsetLabelSlot 레전드
+  +fieldsetBodySlot
+    p 필드셋 바디
+// column
++fieldset({direction: `column`})
+  +fieldsetLabelSlot 레전드
+  +fieldsetBodySlot
+    p 필드셋 바디
+```
+
+
+### output example 
+
+```html
+<!-- row-->
+<div
+  class="amor-field amor-field--row amor-field--start"
+  role="group"
+  aria-labelledby="cb4ol4mn9rtcbi"
+>
+  <div class="amor-field__label amor-field__label--30" id="cb4ol4mn9rtcbi">
+    레전드
+  </div>
+  <div class="amor-field__body"><p>필드셋 바디</p></div>
+</div>
+<!-- column-->
+<div
+  class="amor-field amor-field--column"
+  role="group"
+  aria-labelledby="cb4ogla9mtqk5r"
+>
+  <div class="amor-field__label amor-field__label--30" id="cb4ogla9mtqk5r">
+    레전드
+  </div>
+  <div class="amor-field__body"><p>필드셋 바디</p></div>
+</div>
+
+```
+
+
+---
+
+
+## postCard
+
+create post card component
+
+
+### path 
+
+`components/molecules/post-card/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.post|hexo post object|object||false|
+|props.isLink|Whether to operate the card as a link|boolean|false|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/datetime/index
+include ../../atoms/category/index
+
++postCard({post: hexoPost, isLink: true})
+```
+
+
+### output example 
+
+```html
+<div class="amor-post-card amor-post-card--link">
+  <img
+    class="amor-post-card__thumb"
+    src="/upload/2022/thumbs/hero.jpg"
+    alt=""
+    loading="lazy"
+    role="none"
+  />
+  <a
+    class="amor-post-card__heading"
+    id="cb5sf7e3ufo19f"
+    href="http://example.com//post-title/"
+    aria-describedby="cb5si8vcmhnts38"
+  >
+    post title
+  </a>
+  <div class="amor-post-card__meta">
+    <span class="amor-datetime amor-post-card__meta__item">
+      <span class="amor-datetime__label" role="img" aria-label="📆">📆</span>
+      <time
+        class="amor-datetime__time"
+        id="cb5trnfik3nr44o"
+        datetime="2022-08-21"
+      >
+        2022. 08 .21
+      </time>
+    </span>
+    <span class="amor-category amor-post-card__meta__item">
+      <span class="amor-category__label" role="img" aria-label="category">
+        📂
+      </span>
+      <span class="amor-category__list" role="list">
+        <span class="amor-category__content" role="listitem">
+          <span>Front-End</span>
+        </span>
+        <span class="amor-category__separator" aria-hidden="true">
+          <svg class="amor-svg-icon">
+            <use xlink:href="/images/solid.svg#angle-right"></use>
+          </svg>
+        </span>
+        <span class="amor-category__content" role="listitem">
+          <span>dev-note</span>
+        </span>
+      </span>
+    </span>
+  </div>
+  <p class="amor-post-card__content" id="cb5si8vcmhnts38">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo tempora in,
+    aliquam ut unde harum doloribus magnam! Iste nulla illum explicabo tempora
+    est dolorum, itaque corporis eos consequuntur exercitationem minus.
+  </p>
+</div>
+
+```
+
+
+---
+
+
 ## radioGroup
 
 create radio group component
@@ -75,31 +239,31 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9drvqij9d46n9o"
+      id="cb6d5o18795kdqg"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="e9drvqij9d46n9o">designer</label>
+    <label class="amor-radio__label" for="cb6d5o18795kdqg">designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9drc6amc5lnpqo"
+      id="cb6doj1kj5kcb9"
       name="job"
       value="publisher"
     />
-    <label class="amor-radio__label" for="e9drc6amc5lnpqo">publisher</label>
+    <label class="amor-radio__label" for="cb6doj1kj5kcb9">publisher</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9dr2g3465jcnhg"
+      id="cb6eg8bh9kddatg"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="e9dr2g3465jcnhg">
+    <label class="amor-radio__label" for="cb6eg8bh9kddatg">
       frontend developer
     </label>
   </span>
@@ -107,21 +271,21 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9drjv7prl5p0go"
+      id="cb6euiidip719r8"
       name="job"
       value="devops"
     />
-    <label class="amor-radio__label" for="e9drjv7prl5p0go">devops</label>
+    <label class="amor-radio__label" for="cb6euiidip719r8">devops</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9drvlgj9rahbv8"
+      id="cb6eqpt5agcj8sg"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="e9drvlgj9rahbv8">iOS developer</label>
+    <label class="amor-radio__label" for="cb6eqpt5agcj8sg">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
@@ -130,31 +294,31 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9dr59194b0lfsg"
+      id="cb6ek7plcr60h1g"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="e9dr59194b0lfsg">웹 디자이너</label>
+    <label class="amor-radio__label" for="cb6ek7plcr60h1g">웹 디자이너</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9dsdqq6e2tv1uo"
+      id="cb6fvhpnce6in5g"
       name="job2"
       value="publisher"
     />
-    <label class="amor-radio__label" for="e9dsdqq6e2tv1uo">웹 퍼블리셔</label>
+    <label class="amor-radio__label" for="cb6fvhpnce6in5g">웹 퍼블리셔</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9dsbi5j4c7rpbg"
+      id="cb6f919l4at6n4"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="e9dsbi5j4c7rpbg">
+    <label class="amor-radio__label" for="cb6f919l4at6n4">
       프론트엔드 개발자
     </label>
   </span>
@@ -233,7 +397,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="e9e935r1pggd5n8"
+      id="cb6vnphb9c241d"
       name="size"
       value="small"
     />
@@ -243,7 +407,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="e9e9fl1l10ctll8"
+      id="cb70mvqjajo86eo"
       name="size"
       value="medium"
     />
@@ -253,7 +417,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="e9e9k2u4b28ieu8"
+      id="cb70oefvj50gv48"
       name="size"
       value="large"
     />
@@ -266,7 +430,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="e9eakca5st1ivlo"
+      id="cb707od4k3s8d2g"
       name="size2"
       value="small"
     />
@@ -276,7 +440,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="e9eaiks6o7pqlmo"
+      id="cb700o6iv15d75g"
       name="size2"
       value="medium"
     />
@@ -286,7 +450,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="e9eacfm5las0svg"
+      id="cb70a8ml9l3kbag"
       name="size2"
       value="large"
     />
@@ -370,13 +534,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9eq9sdk3550is"
+      id="cb7g5rhoioecjdg"
       name="size"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="e9eq9sdk3550is"
+      for="cb7g5rhoioecjdg"
     >
       small
     </label>
@@ -386,13 +550,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9er1rlaajld8hg"
+      id="cb7hvnjdkfirv8"
       name="size"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="e9er1rlaajld8hg"
+      for="cb7hvnjdkfirv8"
     >
       medium
     </label>
@@ -402,13 +566,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9erulvf2q8uda8"
+      id="cb7h2lduj35tkr8"
       name="size"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="e9erulvf2q8uda8"
+      for="cb7h2lduj35tkr8"
     >
       large
     </label>
@@ -420,13 +584,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9ertiaiuu2vomo"
+      id="cb7hduj7nltiflg"
       name="size2"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="e9ertiaiuu2vomo"
+      for="cb7hduj7nltiflg"
     >
       small
     </label>
@@ -436,13 +600,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9er4k1b1m57bs8"
+      id="cb7hdeumqajv1qg"
       name="size2"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="e9er4k1b1m57bs8"
+      for="cb7hdeumqajv1qg"
     >
       medium
     </label>
@@ -452,88 +616,17 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9eriq6rhfhkguo"
+      id="cb7h0ksrk0i5bn8"
       name="size2"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="e9eriq6rhfhkguo"
+      for="cb7h0ksrk0i5bn8"
     >
       large
     </label>
   </span>
-</div>
-
-```
-
-
----
-
-
-## fieldset
-
-create group containing label and body
-
-
-### path 
-
-`components/molecules/fieldset/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.direction|how items are placed in the container <br>One of `'row'`, `'column'`|string|'row'|true|
-|props.alignItem|alignment of items on the cross axis <br>One of `'start'`, `'center'`|string|'start'|true|
-|props.labelWidthRatio|the factor of label's width in the container|integer|3|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// row
-+fieldset({direction: `row`})
-  +fieldsetLabelSlot 레전드
-  +fieldsetBodySlot
-    p 필드셋 바디
-// column
-+fieldset({direction: `column`})
-  +fieldsetLabelSlot 레전드
-  +fieldsetBodySlot
-    p 필드셋 바디
-```
-
-
-### output example 
-
-```html
-<!-- row-->
-<div
-  class="amor-field amor-field--row amor-field--start"
-  role="group"
-  aria-labelledby="e9fl83ninpm0uj"
->
-  <div class="amor-field__label amor-field__label--30" id="e9fl83ninpm0uj">
-    레전드
-  </div>
-  <div class="amor-field__body"><p>필드셋 바디</p></div>
-</div>
-<!-- column-->
-<div
-  class="amor-field amor-field--column"
-  role="group"
-  aria-labelledby="e9flnmpnllt30l8"
->
-  <div class="amor-field__label amor-field__label--30" id="e9flnmpnllt30l8">
-    레전드
-  </div>
-  <div class="amor-field__body"><p>필드셋 바디</p></div>
 </div>
 
 ```

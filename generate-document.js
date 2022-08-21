@@ -24,8 +24,77 @@ const iconsMeta = (() => {
     return {};
   }
 })();
+const hexoPostCategory = [
+  {
+    name: `dev-note`,
+    slug: `dev-note`,
+    path: `categories/dev-note/`,
+    permalink: `https://example.com/categories/dev-note/`,
+  },
+  {
+    name: `Front-End`,
+    slug: `dev-note/Front-End`,
+    path: `categories/dev-note/Front-End/`,
+    permalink: `https://example.com/categories/dev-note/Front-End/`,
+  },
+];
+const hexoPost = {
+  title: "post title",
+  thumbnail: "/upload/2022/thumbs/hero.jpg",
+  date: new Date(),
+  updated: new Date(),
+  slug: "post-title",
+  published: true,
+  layout: "post",
+  content: `
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Illo tempora in, aliquam ut unde harum doloribus magnam!
+      Iste nulla illum explicabo tempora est dolorum,
+      itaque corporis eos consequuntur exercitationem minus.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Illo tempora in, aliquam ut unde harum doloribus magnam!
+      Iste nulla illum explicabo tempora est dolorum,
+      itaque corporis eos consequuntur exercitationem minus.
+    </p>
+  `,
+  excerpt: "",
+  more: `
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Illo tempora in, aliquam ut unde harum doloribus magnam!
+      Iste nulla illum explicabo tempora est dolorum,
+      itaque corporis eos consequuntur exercitationem minus.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Illo tempora in, aliquam ut unde harum doloribus magnam!
+      Iste nulla illum explicabo tempora est dolorum,
+      itaque corporis eos consequuntur exercitationem minus.
+    </p>
+  `,
+  path: "/post-title/",
+  permalink: "http://example.com//post-title/",
+  tags: {
+    data: [
+      {
+        name: "tag",
+        slug: "tag",
+        path: "tags/tag/",
+        permalink: "http://example.com/tags/tag/",
+      },
+    ],
+  },
+  categories: {
+    data: hexoPostCategory,
+  },
+};
 const locals = {
   page: {},
+  hexoPost,
+  hexoPostCategory,
   config: jsYml.load(
     fs.readFileSync(path.resolve(__dirname, `../../_config.yml`), `utf8`)
   ),
@@ -82,6 +151,14 @@ const locals = {
     ({
       "label.category": "category",
     }[str]),
+  stripHTML: (str, len) =>
+    str
+      .replace(/</g, " <")
+      .replace(/(<td class="gutter">)[^(td)]*(\/td>)/g, "")
+      .replace(/&#(\d+);/g, (_, dec) => `${String.fromCharCode(dec)}`)
+      .replace(/(<([^>]+)>)/gi, "")
+      .substr(0, len || str.length)
+      .replace(/\w+[,.!?]?$/, ""),
 };
 
 pugDocGen({

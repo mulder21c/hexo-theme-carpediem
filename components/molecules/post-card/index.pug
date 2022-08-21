@@ -5,14 +5,17 @@ include ../../atoms/category/index
   name: postCard
   description: create post card component
   beforeEach: |
+    include ../../utils/util
     include ../../atoms/datetime/index
     include ../../atoms/category/index
   arguments:
     - {object} props
     - {object} props.post hexo post object
     - {boolean} [props.isLink] [false] Whether to operate the card as a link
-  examples: |
-    +postCard({post, isLink: true})
+  examples:
+    - |
+      +postCard({post: hexoPost, isLink: true})
+
 mixin postCard(props)
   -
     const postProps = {
