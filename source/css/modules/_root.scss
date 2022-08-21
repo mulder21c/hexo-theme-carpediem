@@ -3,15 +3,15 @@
   --font-family-serif: #{$font-family-serif};
   --font-family-sans-serif: #{$font-family-sans-serif};
   --font-family-code: #{$font-families-code};
-  --font-size-base: #{$font-size-default * $font-responsive-ratio-default};
-  --font-size-default: #{$font-size-default};
-  --font-size-large: #{$font-size-default * 1.125};
-  --font-size-heading-level-1: #{$font-size-heading-level-1};
-  --font-size-heading-level-2: #{$font-size-heading-level-2};
-  --font-size-heading-level-3: #{$font-size-heading-level-3};
-  --font-size-heading-level-4: #{$font-size-heading-level-4};
-  --font-size-heading-level-5: #{$font-size-heading-level-5};
-  --font-size-heading-level-6: #{$font-size-heading-level-6};
+  --font-size-base: #{getFontSize(1) * $font-responsive-ratio-default};
+  --font-size-default: #{getFontSize(1)};
+  --font-size-large: #{getFontSize(2)};
+  --font-size-heading-level-1: #{getFontSize(7)};
+  --font-size-heading-level-2: #{getFontSize(6)};
+  --font-size-heading-level-3: #{getFontSize(5)};
+  --font-size-heading-level-4: #{getFontSize(4)};
+  --font-size-heading-level-5: #{getFontSize(3)};
+  --font-size-heading-level-6: #{getFontSize(2)};
   --font-line-height-default: #{$font-line-height-default};
   --font-weight-thin: #{$font-weight-thin};
   --font-weight-extra-light: #{$font-weight-extra-light};
@@ -22,16 +22,19 @@
   --font-weight-bold: #{$font-weight-bold};
   --font-weight-extra-bold: #{$font-weight-extra-bold};
 
-  --primary-button-border-radius: 0.25rem;
+  --button-border-radius: 0.25rem;
+  --box-border-radius: 0.5rem;
 
   @include colorScheme(light) {
     --background-color: #{$color-neutral-05};
     --text-color-primary: #{$color-neutral-95};
     --text-color-secondary: #{$color-neutral-70};
     --text-link-color: #{$color-blue-70};
-    --text-link-active-background-color: #{$color-green-65};
-    --text-link-active-color: #{$color-neutral-05};
+    --text-link-hover-background-color: #{$color-green-65};
+    --text-link-hover-color: #{$color-neutral-05};
     --text-link-decoration-color: #{$color-blue-grey-70};
+    --text-link-outline-color: #{$color-green-60};
+    --text-link-box-shadow-color: #{rgba($color-green-85, 0.375)};
 
     --primary-button-background-color: #{$color-green-50};
     --primary-button-active-background-color: #{$color-green-65};
@@ -45,6 +48,11 @@
     --primary-button-text-color: #{$white};
     --primary-button-text-color-dark: #{$color-green-75};
 
+    --primary-card-border-color: #{$color-neutral-50};
+    --primary-card-hover-border-color: #{$color-neutral-70};
+    --primary-card-focus-border-color: #{$color-green-45};
+    --primary-card-focus-shadow-color: #{rgba($color-green-85, 0.375)};
+
     --separator-border-color: #{$color-neutral-20};
   }
 
@@ -53,9 +61,11 @@
     --text-color-primary: #{$color-neutral-05};
     --text-color-secondary: #{$color-neutral-30};
     --text-link-color: #{$color-blue-20};
-    --text-link-active-background-color: #{$color-green-65};
-    --text-link-active-color: #{$white};
+    --text-link-hover-background-color: #{$color-green-65};
+    --text-link-hover-color: #{$white};
     --text-link-decoration-color: #{$color-blue-grey-25};
+    --text-link-outline-color: #{$color-green-30};
+    --text-link-box-shadow-color: #{rgba($color-green-85, 0.375)};
 
     --primary-button-background-color: #{$color-green-50};
     --primary-button-active-background-color: #{$color-green-65};
@@ -68,6 +78,11 @@
     --primary-button-separator-color: #{$color-green-35};
     --primary-button-text-color: #{$white};
     --primary-button-text-color-dark: #{$color-green-15};
+
+    --primary-card-border-color: #{$color-neutral-55};
+    --primary-card-hover-border-color: #{$color-neutral-25};
+    --primary-card-focus-border-color: #{$color-green-30};
+    --primary-card-focus-shadow-color: #{rgba($color-green-85, 0.725)};
 
     --separator-border-color: #{$color-neutral-60};
   }
