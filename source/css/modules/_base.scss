@@ -48,8 +48,9 @@ button,
   font-size: var(--font-size-default);
 }
 
-a:where(article) {
-  position: relative;
+%anchor-default {
+  display: inline-block;
+  border-radius: 0.125em;
   color: var(--text-link-color);
   text-decoration-line: underline;
   text-decoration-style: dashed;
@@ -57,38 +58,37 @@ a:where(article) {
   text-underline-offset: 0.2em;
   text-decoration-color: var(--text-link-decoration-color);
 
-  &::before {
-    content: "";
-    background-color: var(--text-link-active-background-color);
-    position: absolute;
-    left: -0.25em;
-    right: -0.25em;
-    bottom: -0.25em;
-    width: calc(100% + 0.5em);
-    height: 0;
-    z-index: -1;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: all 0.3s ease-in-out;
-    }
+  &:focus {
+    outline: 3px solid var(--text-link-outline-color);
+    outline-offset: 2px;
+  }
+}
+
+a:where(article) {
+  @extend %anchor-default;
+
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(
+      to top,
+      transparent,
+      var(--text-link-hover-background-color) 0 0
+    );
+  background-position: 0 0, 0% 100%;
+  background-size: 100%, 100% 0%;
+  background-repeat: no-repeat;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: color 0.2s, background-size 0.2s ease-in-out;
   }
 
   &:hover {
-    color: var(--text-link-active-color);
+    color: var(--text-link-hover-color);
     text-decoration: none;
-
-    &::before {
-      height: calc(100% + 0.5em);
-    }
+    background-size: 100%, 100% 100%;
   }
 }
 
 a:not(:where(article)) {
-  color: inherit;
-  text-decoration-line: underline;
-  text-decoration-style: dashed;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  text-decoration-color: var(--text-link-decoration-color);
+  @extend %anchor-default;
 }
 
 .sr-only {

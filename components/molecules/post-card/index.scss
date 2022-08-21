@@ -1,4 +1,6 @@
 .#{$prefix}-post-card {
+  $link-card: #{&}--link;
+
   overflow: hidden;
   display: grid;
   grid-template-areas:
@@ -10,18 +12,22 @@
   padding: 1em;
   border: 1px solid var(--primary-card-border-color);
   border-radius: var(--box-border-radius);
-  text-decoration: none;
 
   &:hover {
     border-color: var(--primary-card-hover-border-color);
   }
 
-  &:focus-within,
-  &:active {
-    outline: 3px solid var(--primary-card-focus-border-color);
-    outline-offset: 0;
-    border-color: var(--primary-card-focus-border-color);
-    box-shadow: 2px 2px 3px 2px var(--primary-card-focus-shadow-color);
+  &#{$link-card} {
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus-within,
+    &:active {
+      outline: 3px solid var(--primary-card-focus-border-color);
+      outline-offset: 0;
+      border-color: var(--primary-card-focus-border-color);
+      box-shadow: 2px 2px 3px 2px var(--primary-card-focus-shadow-color);
+    }
   }
 
   @include respond-to(tablet) {
@@ -52,10 +58,13 @@
     margin: 0.75em 0 1em;
     font-size: var(--font-size-heading-level-6);
     font-weight: var(--font-weight-semi-bold);
-    text-decoration: none;
 
-    &:focus {
-      outline: 0;
+    #{$link-card} & {
+      color: inherit;
+      text-decoration: none;
+      &:focus {
+        outline: 0;
+      }
     }
 
     @include respond-to(tablet) {

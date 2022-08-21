@@ -30,9 +30,11 @@
     --text-color-primary: #{$color-neutral-95};
     --text-color-secondary: #{$color-neutral-70};
     --text-link-color: #{$color-blue-70};
-    --text-link-active-background-color: #{$color-green-65};
-    --text-link-active-color: #{$color-neutral-05};
+    --text-link-hover-background-color: #{$color-green-65};
+    --text-link-hover-color: #{$color-neutral-05};
     --text-link-decoration-color: #{$color-blue-grey-70};
+    --text-link-outline-color: #{$color-green-60};
+    --text-link-box-shadow-color: #{rgba($color-green-85, 0.375)};
 
     --primary-button-background-color: #{$color-green-50};
     --primary-button-active-background-color: #{$color-green-65};
@@ -59,9 +61,11 @@
     --text-color-primary: #{$color-neutral-05};
     --text-color-secondary: #{$color-neutral-30};
     --text-link-color: #{$color-blue-20};
-    --text-link-active-background-color: #{$color-green-65};
-    --text-link-active-color: #{$white};
+    --text-link-hover-background-color: #{$color-green-65};
+    --text-link-hover-color: #{$white};
     --text-link-decoration-color: #{$color-blue-grey-25};
+    --text-link-outline-color: #{$color-green-30};
+    --text-link-box-shadow-color: #{rgba($color-green-85, 0.375)};
 
     --primary-button-background-color: #{$color-green-50};
     --primary-button-active-background-color: #{$color-green-65};
@@ -76,9 +80,9 @@
     --primary-button-text-color-dark: #{$color-green-15};
 
     --primary-card-border-color: #{$color-neutral-55};
-    --primary-card-hover-border-color: #{$color-neutral-35};
-    --primary-card-focus-border-color: #{$color-green-45};
-    --primary-card-focus-shadow-color: #{rgba($color-green-15, 0.375)};
+    --primary-card-hover-border-color: #{$color-neutral-25};
+    --primary-card-focus-border-color: #{$color-green-30};
+    --primary-card-focus-shadow-color: #{rgba($color-green-85, 0.725)};
 
     --separator-border-color: #{$color-neutral-60};
   }
