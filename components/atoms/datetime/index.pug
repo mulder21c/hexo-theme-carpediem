@@ -81,7 +81,7 @@ mixin datetime(props)
     if hasLabel
       span(
         class= `${prefix}-datetime__label`
-        role="img"
+        role= "img"
         aria-label= (label || visibleLabel || null)
       )= visibleLabel
     time(

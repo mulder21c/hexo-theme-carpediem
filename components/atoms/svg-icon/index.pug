@@ -37,5 +37,5 @@ mixin svgIcon(props)
       iconCategory
     } = getIconCategory(`${name}${type && ('/' + type)}`);
 
-  svg(class=`${prefix}-svg-icon`)&attributes(attrs)
-    use(xlink:href=`/images/${iconCategory}.svg#${iconName}`)
+  svg(class= `${prefix}-svg-icon`)&attributes(attrs)
+    use(xlink:href= `/images/${iconCategory}.svg#${iconName}`)

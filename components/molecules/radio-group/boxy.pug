@@ -68,13 +68,12 @@ mixin radioBoxes(props)
     });
 
     const {prefix} = theme;
-    const uid = id || generateUid();
     const radioBoxesLabelSlots = [];
 
   mixin radioBoxesLabelSlot
     - radioBoxesLabelSlots.push(block);
 
-  div(class=[`${prefix}-radio-boxes`])&attributes(attrs)
+  div(class= [`${prefix}-radio-boxes`])&attributes(attrs)
     each option, idx in options
       -
         const radioOption = {

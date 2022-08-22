@@ -91,27 +91,27 @@ mixin switchButton(props)
 
   span(class=`${prefix}-switch`)&attributes(attrs)
     input(
-      type="checkbox"
-      id=uid
-      name=name
-      value=value
-      checked=checked
-      class=`${prefix}-switch__control`
+      type= `checkbox`
+      id= uid
+      name= name
+      value= value
+      checked= checked
+      class= `${prefix}-switch__control`
     )&attributes(inputAttrs)
     span(
-      class=btnClassName
-      aria-hidden="true"
+      class= btnClassName
+      aria-hidden= `true`
     )
     if (label || block)
       label(
-        for=uid
-        class=`${prefix}-switch__label`
+        for= uid
+        class= `${prefix}-switch__label`
       )
         if (label)
           = label
         block
     else
       span(
-        class=`${prefix}-switch__label`
-        aria-hidden="true"
+        class= `${prefix}-switch__label`
+        aria-hidden= `true`
       )

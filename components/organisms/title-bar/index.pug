@@ -27,8 +27,8 @@ mixin titleBar(props)
     const uid = id || generateUid();
 
   div(
-    id=uid
-    class=`${prefix}-title-bar`
+    id= uid
+    class= `${prefix}-title-bar`
   )&attributes(attrs)
     block
-    span(class=`${prefix}-title-bar__title`)= title
+    span(class= `${prefix}-title-bar__title`)= title

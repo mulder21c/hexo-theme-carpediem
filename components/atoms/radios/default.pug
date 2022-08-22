@@ -91,27 +91,29 @@ mixin radio(props)
     ];
 
   span(
-    class=[`${prefix}-radio`,
-    ...(Array.isArray(cn) ? cn : [cn])]
+    class=[
+      `${prefix}-radio`,
+      ...(Array.isArray(cn) ? cn : [cn])
+    ]
   )
     input(
-      type="radio"
-      id=uid
-      name=name
-      value=value
-      checked=checked
-      class=`${prefix}-radio__control`
+      type= `radio`
+      id= uid
+      name= name
+      value= value
+      checked= checked
+      class= `${prefix}-radio__control`
     )&attributes(attrs)
     if (label || block)
       label(
-        for=uid
-        class=labelClassName
+        for= uid
+        class= labelClassName
       )
         if (label)
           = label
         block
     else
       span(
-        class=labelClassName
-        aria-hidden="true"
+        class= labelClassName
+        aria-hidden= `true`
       )

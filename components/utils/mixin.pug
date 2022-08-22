@@ -23,13 +23,13 @@ mixin pageSequenceLink
 
   if (prevLink)
     link(
-      rel="prev"
-      href=stripFileName(prevLink)
+      rel= `prev`
+      href= stripFileName(prevLink)
     )
   if (nextLink)
     link(
-      rel="next"
-      href=stripFileName(nextLink)
+      rel= `next`
+      href= stripFileName(nextLink)
     )
 
 //- @pugdoc
@@ -41,10 +41,10 @@ mixin preLoadImage
   - const imageObj = representativeImage(page);
   if (imageObj)
     link(
-      rel="preload"
-      as="image"
-      href=full_url(imageObj.path)
-      crossorigin="anonymous"
+      rel= `preload`
+      as= `image`
+      href= full_url(imageObj.path)
+      crossorigin= "anonymous"
     )
 
 //- @pugdoc
@@ -75,8 +75,8 @@ mixin openGraph(props)
 mixin siteVerification
   each val, prop in (theme.site_verification || [])
     meta(
-      name=prop
-      content=val
+      name= prop
+      content= val
     )
 
 //- @pugdoc
@@ -91,13 +91,13 @@ mixin siteVerification
     - +styles(["//mydomain.com/external/style.css"])
 mixin styles(paths = [])
   link(
-    rel="stylesheet"
-    href=url_for("/css/index.css")
+    rel= `stylesheet`
+    href= url_for(`/css/index.css`)
   )
   each path in paths
     link(
-      rel="stylesheet"
-      href=path
+      rel= `stylesheet`
+      href= path
     )
 
 //- @pugdoc
@@ -118,8 +118,8 @@ mixin analytics
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
-      gtag("config", "#{theme.analytics.google}");
+      gtag(`js`, new Date());
+      gtag(`config`, `#{theme.analytics.google}`);
 
 //- @pugdoc
   name: jsonLD
@@ -153,5 +153,5 @@ mixin jsonLD
           : undefined
       ),
     };
-  script(type="application/ld+json")
+  script(type= `application/ld+json`)
     | !{ JSON.stringify(jsonLD) }

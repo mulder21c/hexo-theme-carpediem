@@ -46,66 +46,6 @@ include ../../utils/util
 ---
 
 
-## category
-
-create category indicator
-
-
-### path 
-
-`components/atoms/category/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.category|sequence of category|array||false|
-|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|boolean|`lowest`|true|
-|props.visibleLabel|the visible label for category|string||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../svg-icon/index
-
-+category({
-  categories: hexoPostCategory,
-  visibleLabel: '📂',
-  useLink: false,
-  class: `post-card__meta__item`,
-  level: `all`,
-  separator: `>`
-})
-```
-
-
-### output example 
-
-```html
-<span class="amor-category post-card__meta__item">
-  <span class="amor-category__label" role="img" aria-label="category">📂</span>
-  <span class="amor-category__list" role="list">
-    <span class="amor-category__content" role="listitem">
-      <span>dev-note</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>Front-End</span>
-    </span>
-  </span>
-</span>
-
-```
-
-
----
-
-
 ## iconButton
 
 create icon button element
@@ -157,96 +97,6 @@ include ../../utils/util
     <use xlink:href="/images/solid.svg#tty"></use>
   </svg>
 </button>
-
-```
-
-
----
-
-
-## switchButton
-
-create switch button
-
-
-### path 
-
-`components/atoms/checkboxes/switch.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|the value of switch button's name attribute|string||true|
-|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
-|props.checked|the state of switch button|boolean||true|
-|props.value|the value of switch button|undefined||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
-|props.inputAttrs|the attrs for input:checkbox|object||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// basic
-+switchButton({
-  label: 'alarm',
-  checked: true
-})
-// using block instead of label property
-+switchButton({
-  label: 'alarm',
-  checked: true
-}) switch button
-// using separated label element
-+switchButton({
-  checked: false,
-  id: `no-label-switch`
-})
-label(for="no-label-switch") switch button
-```
-
-
-### output example 
-
-```html
-<!-- basic-->
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="cba95dsd5littho"
-    checked="checked"
-  />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="cba95dsd5littho">alarm</label>
-</span>
-<!-- using block instead of label property-->
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="cba915c55a2mm8g"
-    checked="checked"
-  />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="cba915c55a2mm8g">
-    alarmswitch button
-  </label>
-</span>
-<!-- using separated label element-->
-<span class="amor-switch">
-  <input class="amor-switch__control" type="checkbox" id="no-label-switch" />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <span class="amor-switch__label" aria-hidden="true"></span>
-</span>
-<label for="no-label-switch">switch button</label>
 
 ```
 
@@ -306,15 +156,15 @@ include ../../utils/util
 <!-- simple-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="cbakl7duu5vmvjo" datetime="2022-08-21">
-    2022. 08 .21
+  <time class="amor-datetime__time" id="u4s175tc7hguuao" datetime="2022-08-22">
+    2022. 08 .22
   </time>
 </span>
 <!-- explicit format-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="cbalhdfg4ltprs" datetime="2022-08-21">
-    2022-08-21
+  <time class="amor-datetime__time" id="u4s1t1f02jsg6fo" datetime="2022-08-22">
+    2022-08-22
   </time>
 </span>
 
@@ -381,21 +231,21 @@ label(for="no-label-checkbox") checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="cbb1utngbaunuc8"
+    id="u4sgnlp45m5dq7o"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="cbb1utngbaunuc8">agree</label>
+  <label class="amor-checkbox__label" for="u4sgnlp45m5dq7o">agree</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="cbb1vcmri3hr06g"
+    id="u4shkvklnpcacm8"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="cbb1vcmri3hr06g">check label</label>
+  <label class="amor-checkbox__label" for="u4shkvklnpcacm8">check label</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-checkbox">
@@ -414,14 +264,14 @@ label(for="no-label-checkbox") checkbox
 ---
 
 
-## radio
+## category
 
-create input radio element
+create category indicator
 
 
 ### path 
 
-`components/atoms/radios/default.pug`
+`components/atoms/category/index.pug`
 
 
 ### arguments 
@@ -429,13 +279,9 @@ create input radio element
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.name|name of radio|string||false|
-|props.value|the value of radio|string,number,boolean||false|
-|props.label|label of radio<br> If do not specify this value, you should provide label as block or separated label element|string||true|
-|props.id|the value of radio's id attribute and label's for attribute|string||true|
-|props.checked|the checked state of radio|boolean||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br> One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
-|props.labelClassName|the class name for label element|string||true|
+|props.category|sequence of category|array||false|
+|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|boolean|`lowest`|true|
+|props.visibleLabel|the visible label for category|string||false|
 
 
 
@@ -443,54 +289,34 @@ create input radio element
 
 ```jade
 include ../../utils/util
+include ../svg-icon/index
 
-// basic
-+radio({label: 'yes', name: 'answer', value: 1})
-// using block instead of label property
-+radio({name: 'answer', value: 1}) radio button
-// using separated label element
-+radio({name: 'answer', id: "no-label", value: 1})
-label(for="no-label") radio button
++category({
+  categories: hexoPostCategory,
+  visibleLabel: '📂',
+  useLink: false,
+  class: `post-card__meta__item`,
+  level: `all`,
+  separator: `>`
+})
 ```
 
 
 ### output example 
 
 ```html
-<!-- basic-->
-<span class="amor-radio">
-  <input
-    class="amor-radio__control"
-    type="radio"
-    id="cbbc42atkmdeo7"
-    name="answer"
-    value="1"
-  />
-  <label class="amor-radio__label" for="cbbc42atkmdeo7">yes</label>
+<span class="amor-category post-card__meta__item">
+  <span class="amor-category__label" role="img" aria-label="category">📂</span>
+  <span class="amor-category__list" role="list">
+    <span class="amor-category__content" role="listitem">
+      <span>dev-note</span>
+    </span>
+    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
+    <span class="amor-category__content" role="listitem">
+      <span>Front-End</span>
+    </span>
+  </span>
 </span>
-<!-- using block instead of label property-->
-<span class="amor-radio">
-  <input
-    class="amor-radio__control"
-    type="radio"
-    id="cbbcacifa49pusg"
-    name="answer"
-    value="1"
-  />
-  <label class="amor-radio__label" for="cbbcacifa49pusg">radio button</label>
-</span>
-<!-- using separated label element-->
-<span class="amor-radio">
-  <input
-    class="amor-radio__control"
-    type="radio"
-    id="no-label"
-    name="answer"
-    value="1"
-  />
-  <span class="amor-radio__label" aria-hidden="true"></span>
-</span>
-<label for="no-label">radio button</label>
 
 ```
 
@@ -531,6 +357,96 @@ include ../../utils/util
 
 ```html
 <h1 class="amor-heading--level-1">heading</h1>
+
+```
+
+
+---
+
+
+## switchButton
+
+create switch button
+
+
+### path 
+
+`components/atoms/checkboxes/switch.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|the value of switch button's name attribute|string||true|
+|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
+|props.checked|the state of switch button|boolean||true|
+|props.value|the value of switch button|undefined||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
+|props.inputAttrs|the attrs for input:checkbox|object||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// basic
++switchButton({
+  label: 'alarm',
+  checked: true
+})
+// using block instead of label property
++switchButton({
+  label: 'alarm',
+  checked: true
+}) switch button
+// using separated label element
++switchButton({
+  checked: false,
+  id: `no-label-switch`
+})
+label(for="no-label-switch") switch button
+```
+
+
+### output example 
+
+```html
+<!-- basic-->
+<span class="amor-switch">
+  <input
+    class="amor-switch__control"
+    type="checkbox"
+    id="u4tvnf7b6glb9oo"
+    checked="checked"
+  />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <label class="amor-switch__label" for="u4tvnf7b6glb9oo">alarm</label>
+</span>
+<!-- using block instead of label property-->
+<span class="amor-switch">
+  <input
+    class="amor-switch__control"
+    type="checkbox"
+    id="u4tvp4qk7ah599g"
+    checked="checked"
+  />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <label class="amor-switch__label" for="u4tvp4qk7ah599g">
+    alarmswitch button
+  </label>
+</span>
+<!-- using separated label element-->
+<span class="amor-switch">
+  <input class="amor-switch__control" type="checkbox" id="no-label-switch" />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <span class="amor-switch__label" aria-hidden="true"></span>
+</span>
+<label for="no-label-switch">switch button</label>
 
 ```
 
@@ -590,7 +506,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="cbbv8b634onq97"
+    id="u4ubdb38kc3qgsg"
     name="answer"
     value="1"
   />
@@ -601,7 +517,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="cbbvkjpn6qhnf7o"
+    id="u4ub9e1r3k70ad8"
     name="answer"
     value="1"
   />
@@ -649,6 +565,90 @@ include ../../utils/util
 <svg class="amor-svg-icon">
   <use xlink:href="/images/solid.svg#thumbs-up"></use>
 </svg>
+
+```
+
+
+---
+
+
+## radio
+
+create input radio element
+
+
+### path 
+
+`components/atoms/radios/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|name of radio|string||false|
+|props.value|the value of radio|string,number,boolean||false|
+|props.label|label of radio<br> If do not specify this value, you should provide label as block or separated label element|string||true|
+|props.id|the value of radio's id attribute and label's for attribute|string||true|
+|props.checked|the checked state of radio|boolean||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br> One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|'right'|true|
+|props.labelClassName|the class name for label element|string||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// basic
++radio({label: 'yes', name: 'answer', value: 1})
+// using block instead of label property
++radio({name: 'answer', value: 1}) radio button
+// using separated label element
++radio({name: 'answer', id: "no-label", value: 1})
+label(for="no-label") radio button
+```
+
+
+### output example 
+
+```html
+<!-- basic-->
+<span class="amor-radio">
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="u4uviq0m6rs8i1o"
+    name="answer"
+    value="1"
+  />
+  <label class="amor-radio__label" for="u4uviq0m6rs8i1o">yes</label>
+</span>
+<!-- using block instead of label property-->
+<span class="amor-radio">
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="u4uvbuoje1b72oo"
+    name="answer"
+    value="1"
+  />
+  <label class="amor-radio__label" for="u4uvbuoje1b72oo">radio button</label>
+</span>
+<!-- using separated label element-->
+<span class="amor-radio">
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="no-label"
+    name="answer"
+    value="1"
+  />
+  <span class="amor-radio__label" aria-hidden="true"></span>
+</span>
+<label for="no-label">radio button</label>
 
 ```
 

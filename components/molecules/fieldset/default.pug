@@ -79,8 +79,8 @@ mixin fieldset(props)
     - fieldsetBodySlot = block;
 
   div(
-    role="group"
-    aria-labelledby=uid
+    role= `group`
+    aria-labelledby= uid
     class=[
       `${prefix}-field`,
       `${prefix}-field--${direction}`,
@@ -89,12 +89,12 @@ mixin fieldset(props)
   )
     block
     div(
-      id=uid
-      class=[
+      id= uid
+      class= [
         `${prefix}-field__label`,
         { [`${prefix}-field__label--${labelWidthRatio * 10}`]: labelWidthRatio }
       ]
     )
       - fieldsetLabelSlot();
-    div(class=`${prefix}-field__body`)
+    div(class= `${prefix}-field__body`)
       - fieldsetBodySlot();

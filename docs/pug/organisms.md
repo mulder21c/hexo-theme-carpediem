@@ -1,5 +1,48 @@
 # Pug Documentation 
 
+## hero
+
+create hero component
+
+
+### path 
+
+`components/organisms/hero/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.imgSrc|the source url for hero image|string||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++hero({imgSrc: "hero.jpg"})
+```
+
+
+### output example 
+
+```html
+<div
+  class="amor-hero"
+  role="presentation"
+  style="background-image: url(hero.jpg)"
+></div>
+
+```
+
+
+---
+
+
 ## accordion
 
 create accordion component
@@ -49,14 +92,14 @@ include ../../atoms/svg-icon/index.pug
 ### output example 
 
 ```html
-<div class="amor-accordion" id="cb8b8ni68lm111o" data-init-activate="1">
+<div class="amor-accordion" id="u4n8i1k5vj70mu8" data-init-activate="1">
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-cb8c3bnt5d34b4o"
+      id="u4n8c7kbc8das1g"
       aria-expanded="false"
-      aria-controls="accordion-panel-cb8c3bnt5d34b4o"
+      aria-controls="u4n8bd8m2ld3s3"
     >
       heading 1
       <svg
@@ -70,9 +113,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="accordion-panel-cb8c3bnt5d34b4o"
+    id="u4n8bd8m2ld3s3"
     role="region"
-    aria-labelledby="accordion-heading-cb8c3bnt5d34b4o"
+    aria-labelledby="u4n8c7kbc8das1g"
     hidden="hidden"
   >
     panel 1
@@ -81,9 +124,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-cb8clurt7oboik"
+      id="u4n9rhpejjcm8vg"
       aria-expanded="true"
-      aria-controls="accordion-panel-cb8clurt7oboik"
+      aria-controls="u4n9iir0k9pbg8o"
     >
       heading 2
       <svg
@@ -97,9 +140,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="accordion-panel-cb8clurt7oboik"
+    id="u4n9iir0k9pbg8o"
     role="region"
-    aria-labelledby="accordion-heading-cb8clurt7oboik"
+    aria-labelledby="u4n9rhpejjcm8vg"
   >
     panel 2
   </div>
@@ -107,9 +150,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="accordion-heading-cb8d6pev61gba6g"
+      id="u4n9uscguvtri6g"
       aria-expanded="false"
-      aria-controls="accordion-panel-cb8d6pev61gba6g"
+      aria-controls="u4n9e5i309cm14g"
     >
       heading 3
       <svg
@@ -123,57 +166,14 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="accordion-panel-cb8d6pev61gba6g"
+    id="u4n9e5i309cm14g"
     role="region"
-    aria-labelledby="accordion-heading-cb8d6pev61gba6g"
+    aria-labelledby="u4n9uscguvtri6g"
     hidden="hidden"
   >
     panel 3
   </div>
 </div>
-
-```
-
-
----
-
-
-## hero
-
-create hero component
-
-
-### path 
-
-`components/organisms/hero/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.imgSrc|the source url for hero image|string||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+hero({imgSrc: "hero.jpg"})
-```
-
-
-### output example 
-
-```html
-<div
-  class="amor-hero"
-  role="presentation"
-  style="background-image: url(hero.jpg)"
-></div>
 
 ```
 
@@ -220,7 +220,7 @@ include ../../utils/util
 ### output example 
 
 ```html
-<div class="amor-title-bar" id="cb8peo5vfnu36u">
+<div class="amor-title-bar" id="u4nhgeemg2u053g">
   <span class="amor-title-bar__title">Hexo Blog</span>
 </div>
 

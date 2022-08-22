@@ -78,7 +78,6 @@ mixin radioSlider(props)
     });
 
     const {prefix} = theme;
-    const uid = id || generateUid();
     const radioSliderLabelSlots = [];
 
   mixin radioSliderLabelSlot
@@ -96,8 +95,8 @@ mixin radioSlider(props)
         };
       if (idx !== 0)
         span(
-          class=`${prefix}-radio-slider__bar`
-          aria-hidden="true"
+          class= `${prefix}-radio-slider__bar`
+          aria-hidden= `true`
         )
       +radio(radioOption)
         block

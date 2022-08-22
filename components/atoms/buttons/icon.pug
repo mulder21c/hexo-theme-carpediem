@@ -88,15 +88,15 @@ mixin iconButton(props)
     } = getIconCategory(icon);
 
   button(
-    type=type
-    aria-label=isIconOnly && label
-    class=className
+    type= type
+    aria-label= isIconOnly && label
+    class= className
   )&attributes(attrs)
     svg(
-      class=`${prefix}-btn-icon__icon`
-      role="presentation"
-      focusable="false"
+      class= `${prefix}-btn-icon__icon`
+      role= `presentation`
+      focusable= "false"
     )
-      use(xlink:href=`/images/${iconCategory}.svg#${iconName}`)
+      use(xlink:href= `/images/${iconCategory}.svg#${iconName}`)
     if !isIconOnly
-      span(class=`${prefix}-btn-icon__label`)= label
+      span(class= `${prefix}-btn-icon__label`)= label

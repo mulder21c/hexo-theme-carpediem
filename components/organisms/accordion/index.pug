@@ -70,15 +70,14 @@ mixin accordion(props)
 
   div(
     id= uid
-    class=`${prefix}-accordion`
+    class= `${prefix}-accordion`
     data-init-activate= activatedIndex
   )
     block
     each _, idx in accordionHeadingSlots
       -
-        const groupId = generateUid();
-        const headingId = `accordion-heading-${groupId}`;
-        const panelId = `accordion-panel-${groupId}`;
+        const headingId = generateUid();
+        const panelId = generateUid();
 
       +heading({
         level: hLevel,

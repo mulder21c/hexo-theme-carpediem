@@ -83,7 +83,7 @@ mixin category(props)
   )&attributes(attrs)
     span(
       class= `${prefix}-category__label`
-      role="img"
+      role= `img`
       aria-label= `${_p('label.category')}`
     )= visibleLabel
     if (Array.isArray(categoryEntries))
@@ -94,7 +94,7 @@ mixin category(props)
         each entry, idx in categoryEntries.reverse()
           if idx > 0
             span(
-              aria-hidden= "true"
+              aria-hidden= `true`
               class= `${prefix}-category__separator`
             )
               if isIconName(separator)

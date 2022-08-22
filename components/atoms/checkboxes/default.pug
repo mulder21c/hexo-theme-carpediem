@@ -106,23 +106,23 @@ mixin checkbox(props)
     ]
   )
     input(
-      type="checkbox"
-      id=uid
-      name=name
-      value=value
-      checked=checked
-      class=`${prefix}-checkbox__control`
+      type= `checkbox`
+      id= uid
+      name= name
+      value= value
+      checked= checked
+      class= `${prefix}-checkbox__control`
     )&attributes(attrs)
     if (label || block)
       label(
-        for=uid
-        class=labelClassName
+        for= uid
+        class= labelClassName
       )
         if (label)
           = label
         block
     else
       span(
-        class=labelClassName
-        aria-hidden="true"
+        class= labelClassName
+        aria-hidden= `true`
       )

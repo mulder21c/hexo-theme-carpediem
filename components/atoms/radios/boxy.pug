@@ -72,16 +72,16 @@ mixin boxyRadio(props)
     const {prefix} = theme;
     const uid = id || generateUid();
 
-  label(class=`${prefix}-radio-boxy`)&attributes(attrs)
+  label(class= `${prefix}-radio-boxy`)&attributes(attrs)
     input(
-      type="radio"
-      id=uid
-      name=name
-      value=value
-      checked=checked
-      class=`${prefix}-radio-boxy__control`
+      type= `radio`
+      id= uid
+      name= name
+      value= value
+      checked= checked
+      class= `${prefix}-radio-boxy__control`
     )&attributes(inputAttrs)
-    span(class=`${prefix}-radio-boxy__box`)
+    span(class= `${prefix}-radio-boxy__box`)
       if (label)
         = label
       else
