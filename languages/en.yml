@@ -4,3 +4,6 @@ title:
 
 label:
   category: "category"
+  date:
+    published: "published at "
+    updated: "updated at "

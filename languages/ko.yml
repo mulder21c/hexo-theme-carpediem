@@ -4,3 +4,6 @@ title:
 
 label:
   category: "카테고리"
+  date:
+    published: "발행일 "
+    updated: "업데이트 "
