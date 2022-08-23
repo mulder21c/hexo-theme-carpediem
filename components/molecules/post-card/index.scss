@@ -37,6 +37,9 @@
       "meta thumb"
       "body thumb";
   }
+  @include respond-to(pc) {
+    grid-template-columns: 7fr 2fr;
+  }
 
   &__thumb {
     grid-area: thumb;

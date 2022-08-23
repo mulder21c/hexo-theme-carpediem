@@ -92,4 +92,4 @@ mixin postCard(props)
     p(
       id= contentId
       class= `${prefix}-post-card__content`
-    )= stripHTML(post.content, 250)
+    )= truncate(stripHTML(post.content), 300)

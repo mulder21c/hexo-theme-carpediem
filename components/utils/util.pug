@@ -59,7 +59,7 @@
         "image": representImg
           ? {
               "@type": "imageObject",
-              "url": full_url(representImg.path),
+              "url": fullUrl(representImg.path),
               "width": representImg.width
                 ? `${representImg.width}${representImg.wUnits}`
                 : undefined,
@@ -79,7 +79,7 @@
           "image": theme.profile.gravatar
               ? {
                   "@type": "imageObject",
-                  "url": full_url(theme.profile.gravatar),
+                  "url": fullUrl(theme.profile.gravatar),
                 }
               : undefined,
           "url": $profileUrl || undefined,
