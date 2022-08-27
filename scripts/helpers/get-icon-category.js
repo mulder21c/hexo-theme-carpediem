@@ -1,13 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 const jsYml = require("js-yaml");
+const nodeModulePath = path.resolve(__dirname, `../../node_modules/`);
 const iconsMeta = (() => {
   try {
     return jsYml.load(
       fs.readFileSync(
         path.resolve(
-          __dirname,
-          `../../node_modules/@fortawesome/fontawesome-free/metadata/icons.yml`
+          nodeModulePath,
+          `./@fortawesome/fontawesome-free/metadata/icons.yml`
         ),
         `utf8`
       )
@@ -32,7 +33,7 @@ const iconsMeta = (() => {
  * @example getIconCategory("bell/regular")
  * @return {IconInfo}
  */
-function getIconCategory(icon) {
+function getIconCategoryHelper(icon) {
   const [name, category] = icon.split("/");
   const { styles } = iconsMeta?.[name] || { styles: [] };
   const [style] = styles;
@@ -50,4 +51,4 @@ function getIconCategory(icon) {
   };
 }
 
-module.exports = getIconCategory;
+module.exports = getIconCategoryHelper;

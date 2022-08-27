@@ -2,7 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
-const imageInfo = require("../../images-db.json");
+const rootPath = path.resolve(__dirname, `../../`);
+const imageInfo = require(path.resolve(rootPath, "./images-db.json"));
+const sourcePath = path.resolve(rootPath, "../../source/");
 
 /**
  * @typedef {Object} ImageProbe
@@ -32,7 +34,7 @@ const prependHttpProtocol = (url) => {
  * @param {object} page page from hexo
  * @return {ImageProbe}
  */
-function representativeImage(page) {
+function representativeImageHelper(page) {
   const hero = page?.hero || page?.photos?.unshift() || undefined;
   if (!hero) return null;
 
@@ -55,7 +57,7 @@ function representativeImage(page) {
       };
     }
   } else {
-    const filePath = path.join(__dirname, `../../../source`, hero);
+    const filePath = path.join(sourcePath, hero);
     const dimension = probe.sync(fs.readFileSync(filePath));
     return {
       path: hero,
@@ -64,4 +66,4 @@ function representativeImage(page) {
   }
 }
 
-module.exports = representativeImage;
+module.exports = representativeImageHelper;

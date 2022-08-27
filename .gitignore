@@ -473,3 +473,6 @@ $RECYCLE.BIN/
 _config.my.yml
 bundle.js
 images-db.json
+source/css/*.css
+source/css/*map
+source/js

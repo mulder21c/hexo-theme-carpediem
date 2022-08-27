@@ -1,13 +1,12 @@
-const util = require(`hexo-util`);
-const _stripHTML = util.stripHTML;
+const { stripHTML } = require(`hexo-util`);
 
 /**
  * @desc Strip HTML tags from string
  * @param {string} str - the original string
  * @return {string}
  */
-function stripHTML(str) {
-  return _stripHTML(
+function stripHTMLHelper(str) {
+  return stripHTML(
     str
       // ensuring whitespace between elements
       .replace(/</g, " <")
@@ -18,4 +17,4 @@ function stripHTML(str) {
   );
 }
 
-module.exports = stripHTML;
+module.exports = stripHTMLHelper;

@@ -1,5 +1,5 @@
-(() => {
-  const { themePrefix: prefix } = GLOBAL;
+((window, document) => {
+  const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
   const fakeRadioSelector = `span.${prefix}-radio__label`;
 
   function handleClickRadio(event) {
@@ -11,4 +11,4 @@
   }
 
   document.addEventListener(`click`, handleClickRadio, false);
-})();
+})(window, document);

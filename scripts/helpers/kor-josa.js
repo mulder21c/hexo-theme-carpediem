@@ -6,8 +6,8 @@ const { getJosaPicker } = require("josa");
  * @param {string} postposition kind of postposition
  * @return {string}
  */
-function getJosa(word, postposition) {
+function getJosaHelper(word, postposition) {
   return getJosaPicker(postposition)(word);
 }
 
-module.exports = getJosa;
+module.exports = getJosaHelper;

@@ -1,5 +1,5 @@
-(() => {
-  const { themePrefix: prefix } = GLOBAL;
+((window, document) => {
+  const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
   const fakeCheckboxSelector = `span.${prefix}-checkbox__label`;
 
   function handleClickCheckbox(event) {
@@ -11,4 +11,4 @@
   }
 
   document.addEventListener(`click`, handleClickCheckbox, false);
-})();
+})(window, document);

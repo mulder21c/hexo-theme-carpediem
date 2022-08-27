@@ -1,5 +1,5 @@
-(() => {
-  const { themePrefix: prefix } = GLOBAL;
+((window, document) => {
+  const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
   const linkCardSelector = `.${prefix}-post-card--link`;
 
   function followLink(event) {
@@ -10,4 +10,4 @@
   }
 
   document.addEventListener(`click`, followLink, false);
-})();
+})(window, document);

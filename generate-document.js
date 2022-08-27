@@ -6,8 +6,6 @@ const path = require("path");
 const rootPath = path.resolve(__dirname);
 const propTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
-const uid = require("easy-uid");
-const dateFormat = require("date-fns/format");
 const iconsMeta = (() => {
   try {
     return jsYml.load(
@@ -24,6 +22,24 @@ const iconsMeta = (() => {
     return {};
   }
 })();
+
+const { url_for } = require("hexo-util");
+const dateFormat = require("./scripts/helpers/date-format");
+const fullUrl = require("./scripts/helpers/full-url");
+const generateUid = require("./scripts/helpers/generate-uid");
+const representativeImage = require("./scripts/helpers/representative-image");
+const getIconCategory = require("./scripts/helpers/get-icon-category");
+const stripHTML = require("./scripts/helpers/strip-html");
+const truncate = require("./scripts/helpers/truncate");
+const paginator = require("./scripts/helpers/paginator");
+
+const config = jsYml.load(
+  fs.readFileSync(path.resolve(__dirname, `../../_config.yml`), `utf8`)
+);
+const theme = jsYml.load(
+  fs.readFileSync(path.resolve(__dirname, `./_config.yml`), `utf8`)
+);
+
 const hexoPostCategory = [
   {
     name: `dev-note`,
@@ -92,15 +108,13 @@ const hexoPost = {
   },
 };
 const locals = {
-  page: {},
+  page: {
+    base: `/`,
+  },
   hexoPost,
   hexoPostCategory,
-  config: jsYml.load(
-    fs.readFileSync(path.resolve(__dirname, `../../_config.yml`), `utf8`)
-  ),
-  theme: jsYml.load(
-    fs.readFileSync(path.resolve(__dirname, `./_config.yml`), `utf8`)
-  ),
+  config,
+  theme,
   site: {
     propTypes,
   },
@@ -120,46 +134,18 @@ const locals = {
     <meta name="twitter:card" content="summary">
     ...
   `,
-  representativeImage: () => ({
-    path: `imgSrc`,
-    width: 100,
-    height: 100,
-    wUnits: "px",
-    hUnits: "px",
-  }),
-  full_url: (url) => url,
-  getIconCategory: function (icon) {
-    const [name, category] = icon.split("/");
-    const { styles } = iconsMeta?.[name] || { styles: [] };
-    const [style] = styles;
-
-    if (category && !styles.includes(category)) {
-      console.warn(
-        "\x1b[33m%s\x1b[0m",
-        `⚠ Cannot find "${icon}" icon from fontawesome.`
-      );
-    }
-
-    return {
-      iconName: name,
-      iconCategory: category || style,
-    };
-  },
-  generateUid: () => uid(),
+  representativeImage,
+  fullUrl,
+  getIconCategory,
+  generateUid,
   dateFormat,
-  _p: (str) =>
-    ({
-      "label.category": "category",
-    }[str]),
-  stripHTML: (str, len) =>
-    str
-      .replace(/</g, " <")
-      .replace(/(<td class="gutter">)[^(td)]*(\/td>)/g, "")
-      .replace(/&#(\d+);/g, (_, dec) => `${String.fromCharCode(dec)}`)
-      .replace(/(<([^>]+)>)/gi, "")
-      .substr(0, len || str.length)
-      .replace(/\w+[,.!?]?$/, ""),
+  stripHTML,
+  _p: (str) => `i18n(${str})`,
+  truncate,
+  paginator,
 };
+
+locals.paginator = locals.paginator.bind(locals);
 
 pugDocGen({
   input: path.resolve(rootPath, "./components/atoms/**/*.pug"),

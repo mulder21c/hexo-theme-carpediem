@@ -2,18 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
-const rootPath = path.resolve(__dirname, "../../../");
-const imageInfoPath = path.resolve(__dirname, "../images-db.json");
-const sourcePath = path.resolve(rootPath, "./source/");
-const isCleanStage = hexo.env.cmd === "clean";
-
-/**
- * if file exists, remove file
- * @param {string} path
- */
-const truncate = (path) => {
-  fs.writeFileSync(path, `[]`, { encoding: `utf8`, flag: `w` });
-};
+const truncateFile = require("./truncate-file");
+const rootPath = path.resolve(__dirname, "../../");
+const imageInfoPath = path.resolve(rootPath, "./images-db.json");
+const sourcePath = path.resolve(rootPath, "../../source/");
 
 /**
  * check has protocol
@@ -37,30 +29,25 @@ const prependHttpProtocol = (url) => {
 };
 
 /**
- * @desc process for clean image-info when after initialized hexo
+ * truncate image information
+ * @param {boolean} isCleanStage Whether it is in clean stage or not
  */
-hexo.extend.filter.register(`after_init`, (data) => {
-  if (isCleanStage) truncate(imageInfoPath);
-});
+const truncateImageInfo = (isCleanStage) => {
+  isCleanStage && truncateFile(imageInfoPath, `[]`);
+};
 
-/**
- * @desc process for generate image-info when after initialized hexo
- */
-hexo.extend.filter.register(`before_generate`, function (data) {
+const generateImageInfo = (data) => {
   let imageInfo;
+  const [posts] = data;
   try {
     imageInfo = require(imageInfoPath);
   } catch (err) {
-    truncate(imageInfoPath);
+    truncateFile(imageInfoPath);
     imageInfo = require(imageInfoPath);
   }
-  const {
-    theme: { config: themeConfig },
-  } = this;
-  const [docs] = data;
 
-  docs.forEach((doc) => {
-    const hero = doc?.hero || themeConfig.hero || undefined;
+  posts.forEach((post) => {
+    const hero = post?.hero || undefined;
     if (!hero || imageInfo.find((image) => image.path === hero)) return;
     console.log(`[storing image-info] getting image size: ${hero}`);
     if (hasProtocol(hero)) {
@@ -86,8 +73,10 @@ hexo.extend.filter.register(`before_generate`, function (data) {
     }
   });
 
-  fs.writeFileSync(imageInfoPath, JSON.stringify(imageInfo), {
-    encoding: `utf8`,
-    flag: `w`,
-  });
-});
+  return imageInfo;
+};
+
+module.exports = {
+  truncateImageInfo,
+  generateImageInfo,
+};

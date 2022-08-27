@@ -1,5 +1,5 @@
-(() => {
-  const { themePrefix: prefix } = GLOBAL;
+((window, document) => {
+  const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
   const fakeButtonSelector = `.${prefix}-switch__btn`;
 
   function handleToggleSwitch(event) {
@@ -11,4 +11,4 @@
   }
 
   document.addEventListener(`click`, handleToggleSwitch, false);
-})();
+})(window, document);

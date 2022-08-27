@@ -5,8 +5,8 @@
  * @param {number} len - the
  * @return {string}
  */
-function truncate(str, len) {
+function truncateHelper(str, len) {
   return str.slice(0, len).replace(/\s([^\s]+)$/, "");
 }
 
-module.exports = truncate;
+module.exports = truncateHelper;

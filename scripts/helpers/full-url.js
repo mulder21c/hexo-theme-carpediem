@@ -1,18 +1,15 @@
+const { url_for } = require("hexo-util");
+
 /**
- *
- * @param {object} hexo hexo context
- * @returns {function}
+ * @function fullUrlHelper
+ * @desc Return fully url from relative/absolute URL
+ * @param {String} url
+ * @return {String}
  */
-function fullUrl(hexo) {
-  /**
-   * @desc Return fully url from relative/absolute URL
-   * @param {String} url
-   * @return {String}
-   */
-  return function (url) {
+module.exports = (ctx) =>
+  function fullUrlHelper(url) {
     if (!url) return;
-    const { origin, protocol } = new URL(hexo.config.url);
-    const url_for = hexo.extend.helper.store;
+    const { origin, protocol } = new URL(ctx.config.url);
 
     if (
       /^(https?|file|ftps?|mailto|javascript|data:image\/[^;]{2,9};):/i.test(
@@ -22,12 +19,9 @@ function fullUrl(hexo) {
       return url;
     }
     if (url.substring(0, 2) == "//") {
-      url = url_for.call(hexo, url);
+      url = url_for.call(ctx, url);
       return protocol + url;
     }
 
     return origin + url;
   };
-}
-
-module.exports = fullUrl;

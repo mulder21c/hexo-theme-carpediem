@@ -4,8 +4,8 @@ const uid = require("easy-uid");
  * @desc Generate unique id
  * @return {string}
  */
-function generateUid() {
+function generateUidHelper() {
   return uid();
 }
 
-module.exports = generateUid;
+module.exports = generateUidHelper;
