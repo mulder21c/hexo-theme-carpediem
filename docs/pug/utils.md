@@ -30,34 +30,6 @@ include ./util
 ---
 
 
-## preLoadImage
-
-create preload link element for representational image
-
-
-### path 
-
-`components/utils/mixin.pug`
-
-
-### examples
-
-```jade
-+preLoadImage
-```
-
-
-### output example 
-
-```html
-<link rel="preload" as="image" href="imgSrc" crossorigin="anonymous" />
-
-```
-
-
----
-
-
 ## openGraph
 
 create og meta element
@@ -166,12 +138,6 @@ include ./util
     "@name": "Hexo",
     "url": "",
     "copyrightHolder": { "@type": "Person", "name": "John Doe" },
-    "image": {
-      "@type": "imageObject",
-      "url": "imgSrc",
-      "width": "100px",
-      "height": "100px"
-    },
     "author": {
       "@type": "Person",
       "name": "John Doe",

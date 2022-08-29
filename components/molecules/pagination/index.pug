@@ -1,0 +1,81 @@
+//- @pugdoc
+  name: pagination
+  description: create pagination component
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - |
+      {object} props.options paginator's option of hexo
+      @see https://hexo.io/ko/docs/helpers#paginator
+    - {string} props.labelRef the id of related content
+  examples:
+    - |
+      +pagination({
+        options: {
+          base: `/`,
+          format: `/page/%d`,
+        }
+      })
+mixin pagination(props)
+  -
+    const {prefix} = theme;
+    const paginationProps = {
+      options: PropTypes.object,
+      labelRef: PropTypes.string,
+    };
+    const paginationValidate = validateProps(paginationProps);
+    const defaults = {
+      options: {
+        prev_text: `
+          <svg
+            role="img"
+            aria-label="${_p('label.page.prev')}"
+          >
+            <use xlink:href="/images/solid.svg#angle-left"></use>
+          </svg>
+        `,
+        next_text: `
+          <svg
+            role="img"
+            aria-label="${_p('label.page.next')}"
+          >
+            <use xlink:href="/images/solid.svg#angle-right"></use>
+          </svg>
+        `,
+        escape: false,
+        space: '',
+        end_size: 0,
+        mid_size: 2,
+        page_class: `${prefix}-pagination__item`,
+        prev_class: `${prefix}-pagination__prev`,
+        next_class: `${prefix}-pagination__next`,
+        current_class: `${prefix}-pagination__item--current`,
+      },
+    };
+
+    const {
+      options,
+      labelRef,
+      ...attrs
+    } = {
+      ...defaults,
+      ...(props || {}),
+      options: {
+        ...defaults.options,
+        ...(props?.options || {}),
+      }
+    };
+    paginationValidate({
+      options,
+      labelRef,
+    });
+
+    const uid = id || generateUid();
+
+  nav(
+    id= uid
+    class= `${prefix}-pagination`
+    aria-labelledby= labelRef || null
+  )&attributes(attrs)
+    | !{paginator(options)}

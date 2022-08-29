@@ -64,9 +64,7 @@ button,
   }
 }
 
-a:where(article) {
-  @extend %anchor-default;
-
+%anchor-animate {
   background-image: linear-gradient(transparent, transparent),
     linear-gradient(
       to top,
@@ -87,7 +85,12 @@ a:where(article) {
   }
 }
 
-a:not(:where(article)) {
+a:where(article) {
+  @extend %anchor-default;
+  @extend %anchor-animate;
+}
+
+a[href]:not(:where(article)) {
   @extend %anchor-default;
 }
 

@@ -7,3 +7,9 @@ label:
   date:
     published: "published at "
     updated: "updated at "
+  page:
+    default: "page %d"
+    next: "next page"
+    prev: "prev page"
+  posts:
+    recently: "recently posts"

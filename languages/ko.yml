@@ -7,3 +7,9 @@ label:
   date:
     published: "발행일 "
     updated: "업데이트 "
+  page:
+    default: "%d 페이지"
+    next: "다음 페이지"
+    prev: "이전 페이지"
+  posts:
+    recently: "최근 게시글"

@@ -245,6 +245,7 @@ $font-weight-extra-bold: 800;
 
 // responsive
 $breakpoints: (
+  "mobile": 320px,
   "tablet": 768px,
   "pc": 1024px,
 ) !default;

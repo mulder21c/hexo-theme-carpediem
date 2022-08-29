@@ -1,48 +1,5 @@
 # Pug Documentation 
 
-## hero
-
-create hero component
-
-
-### path 
-
-`components/organisms/hero/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.imgSrc|the source url for hero image|string||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+hero({imgSrc: "hero.jpg"})
-```
-
-
-### output example 
-
-```html
-<div
-  class="amor-hero"
-  role="presentation"
-  style="background-image: url(hero.jpg)"
-></div>
-
-```
-
-
----
-
-
 ## accordion
 
 create accordion component
@@ -92,14 +49,14 @@ include ../../atoms/svg-icon/index.pug
 ### output example 
 
 ```html
-<div class="amor-accordion" id="u4n8i1k5vj70mu8" data-init-activate="1">
+<div class="amor-accordion" id="uathf8572hquig" data-init-activate="1">
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="u4n8c7kbc8das1g"
+      id="uathclnhn74mh3g"
       aria-expanded="false"
-      aria-controls="u4n8bd8m2ld3s3"
+      aria-controls="uath4a398uu7s88"
     >
       heading 1
       <svg
@@ -113,9 +70,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="u4n8bd8m2ld3s3"
+    id="uath4a398uu7s88"
     role="region"
-    aria-labelledby="u4n8c7kbc8das1g"
+    aria-labelledby="uathclnhn74mh3g"
     hidden="hidden"
   >
     panel 1
@@ -124,9 +81,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="u4n9rhpejjcm8vg"
+      id="uatiqvrsq81so9o"
       aria-expanded="true"
-      aria-controls="u4n9iir0k9pbg8o"
+      aria-controls="uati0qg3vpt271g"
     >
       heading 2
       <svg
@@ -140,9 +97,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="u4n9iir0k9pbg8o"
+    id="uati0qg3vpt271g"
     role="region"
-    aria-labelledby="u4n9rhpejjcm8vg"
+    aria-labelledby="uatiqvrsq81so9o"
   >
     panel 2
   </div>
@@ -150,9 +107,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="u4n9uscguvtri6g"
+      id="uati4evrnpeg8c8"
       aria-expanded="false"
-      aria-controls="u4n9e5i309cm14g"
+      aria-controls="uatiluu7q5a7qsg"
     >
       heading 3
       <svg
@@ -166,14 +123,57 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="u4n9e5i309cm14g"
+    id="uatiluu7q5a7qsg"
     role="region"
-    aria-labelledby="u4n9uscguvtri6g"
+    aria-labelledby="uati4evrnpeg8c8"
     hidden="hidden"
   >
     panel 3
   </div>
 </div>
+
+```
+
+
+---
+
+
+## hero
+
+create hero component
+
+
+### path 
+
+`components/organisms/hero/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.imgSrc|the source url for hero image|string||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++hero({imgSrc: "hero.jpg"})
+```
+
+
+### output example 
+
+```html
+<div
+  class="amor-hero"
+  role="presentation"
+  style="background-image: url(hero.jpg)"
+></div>
 
 ```
 
@@ -220,7 +220,7 @@ include ../../utils/util
 ### output example 
 
 ```html
-<div class="amor-title-bar" id="u4nhgeemg2u053g">
+<div class="amor-title-bar" id="uau3dc537jgjcog">
   <span class="amor-title-bar__title">Hexo Blog</span>
 </div>
 

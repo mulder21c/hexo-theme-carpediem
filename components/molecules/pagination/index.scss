@@ -1,0 +1,52 @@
+.#{$prefix}-pagination {
+  $parent: &;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: stretch;
+  column-gap: 0.5em;
+  margin-top: 2rem;
+
+  & > &__item,
+  & > &__prev,
+  & > &__next {
+    @extend %anchor-default;
+    @extend %anchor-animate;
+
+    flex: 0 1 3rem;
+    height: 3rem;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    > svg {
+      width: 1em;
+      height: 1em;
+      fill: var(--text-color-primary);
+    }
+
+    &:hover {
+      > svg {
+        fill: var(--text-link-hover-color);
+      }
+    }
+  }
+
+  &__item {
+    &:not(&--current) {
+      display: none;
+
+      @include respond-to(mobile) {
+        display: inline-flex;
+      }
+    }
+    &--current#{&} {
+      border-radius: 50%;
+      background-color: var(--primary-button-background-color);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-link-hover-color);
+    }
+  }
+}
