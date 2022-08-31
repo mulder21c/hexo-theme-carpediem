@@ -1,0 +1,64 @@
+include /components/atoms/heading/index
+include /components/molecules/post-card/index
+include /components/molecules/pagination/index
+
+//- @pugdoc
+  name: postsList
+  description: create accordion component
+  beforeEach: |
+    include ../../utils/util
+    include ../../atoms/heading/index
+    include ../../molecules/post-card/index
+    include ../../molecules/pagination/index
+  arguments:
+    - {object} props
+    - |
+      {array} props.posts hexo page.posts
+      @see https://hexo.io/docs/variables.html#Page-Variables
+    - |
+      {object} props.headingProp prop of heading component
+      @see atoms.md#heading
+    - {string} props.headingTitle the string as heading label
+  examples:
+    - |
+      +postsList({
+        posts: (posts || []),
+        headingProp: { level: 1, visible: false },
+        headingTitle: `최근 게시글`,
+      })
+
+mixin postsList(props)
+  -
+    const postsListProps = {
+      posts: PropTypes.array.isRequired,
+      headingProp: PropTypes.object.isRequired,
+      headingTitle: PropTypes.string.isRequired,
+    };
+    const postsListValidate = validateProps(postsListProps);
+    const { posts, headingProp, headingTitle, ...attrs } = props;
+    postsListValidate({posts, headingProp, headingTitle});
+
+    const {prefix} = theme;
+    const uid = id || generateUid();
+    const headingId = generateUid();
+
+    const _headingProp = {
+      ...headingProp,
+      id: headingId,
+      class: `${prefix}-posts__heading`
+    };
+
+  section(aria-labelledby= headingId)
+    +heading(_headingProp)
+      = _p(`label.posts.recently`)
+    ol(class=`${prefix}-posts`)
+      each post in posts
+        li(class= `${prefix}-posts__list-item`)
+          +postCard({post, isLink: true})
+    +pagination({
+      labelRef: headingId,
+      options: {
+        base: config.url,
+        format: `/page/%d`,
+      }
+    })

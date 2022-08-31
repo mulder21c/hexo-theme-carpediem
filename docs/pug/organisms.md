@@ -43,55 +43,6 @@ include ../../utils/util
 ---
 
 
-## titleBar
-
-create a title bar located at the top of the page
-
-
-### path 
-
-`components/organisms/title-bar/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.title|the text to use as a title|string||true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|default|you can append content before title text|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+titleBar({title: "Hexo Blog"})
-```
-
-
-### output example 
-
-```html
-<div class="amor-title-bar" id="oh8fuvq3hlj7hu">
-  <span class="amor-title-bar__title">Hexo Blog</span>
-</div>
-
-```
-
-
----
-
-
 ## accordion
 
 create accordion component
@@ -141,14 +92,14 @@ include ../../atoms/svg-icon/index.pug
 ### output example 
 
 ```html
-<div class="amor-accordion" id="oh9732j514al1i8" data-init-activate="1">
+<div class="amor-accordion" id="5v6582utsguc36o" data-init-activate="1">
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="oh98qpu6ssissco"
+      id="5v65e49p2rpg0fo"
       aria-expanded="false"
-      aria-controls="oh98d4dkqjs257g"
+      aria-controls="5v66mr4p23mfhn8"
     >
       heading 1
       <svg
@@ -162,9 +113,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="oh98d4dkqjs257g"
+    id="5v66mr4p23mfhn8"
     role="region"
-    aria-labelledby="oh98qpu6ssissco"
+    aria-labelledby="5v65e49p2rpg0fo"
     hidden="hidden"
   >
     panel 1
@@ -173,9 +124,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="oh9829v1amhiqe8"
+      id="5v66kd0rti9nnb8"
       aria-expanded="true"
-      aria-controls="oh9826lj5lcslrg"
+      aria-controls="5v66pda07fdo9kg"
     >
       heading 2
       <svg
@@ -189,9 +140,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="oh9826lj5lcslrg"
+    id="5v66pda07fdo9kg"
     role="region"
-    aria-labelledby="oh9829v1amhiqe8"
+    aria-labelledby="5v66kd0rti9nnb8"
   >
     panel 2
   </div>
@@ -199,9 +150,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="oh98d3eudlghg5g"
+      id="5v66j4nq3ojka58"
       aria-expanded="false"
-      aria-controls="oh98vg9qm2magt8"
+      aria-controls="5v66f81m0k7hqog"
     >
       heading 3
       <svg
@@ -215,14 +166,156 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="oh98vg9qm2magt8"
+    id="5v66f81m0k7hqog"
     role="region"
-    aria-labelledby="oh98d3eudlghg5g"
+    aria-labelledby="5v66j4nq3ojka58"
     hidden="hidden"
   >
     panel 3
   </div>
 </div>
+
+```
+
+
+---
+
+
+## titleBar
+
+create a title bar located at the top of the page
+
+
+### path 
+
+`components/organisms/title-bar/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.title|the text to use as a title|string||true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|default|you can append content before title text|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++titleBar({title: "Hexo Blog"})
+```
+
+
+### output example 
+
+```html
+<div class="amor-title-bar" id="5v6ddm4p27aa89">
+  <span class="amor-title-bar__title">Hexo Blog</span>
+</div>
+
+```
+
+
+---
+
+
+## postsList
+
+create accordion component
+
+
+### path 
+
+`components/organisms/posts-list/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.posts|hexo page.posts @see https://hexo.io/docs/variables.html#Page-Variables|array||false|
+|props.headingProp|prop of heading component @see atoms.md#heading|object||false|
+|props.headingTitle|the string as heading label|string||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/heading/index
+include ../../molecules/post-card/index
+include ../../molecules/pagination/index
+
++postsList({
+  posts: (posts || []),
+  headingProp: { level: 1, visible: false },
+  headingTitle: `최근 게시글`,
+})
+```
+
+
+### output example 
+
+```html
+<section aria-labelledby="5v7f9e8fc2d09mg">
+  <h1
+    class="amor-heading--level-1 sr-only amor-posts__heading"
+    id="5v7f9e8fc2d09mg"
+  >
+    i18n(label.posts.recently)
+  </h1>
+  <ol class="amor-posts"></ol>
+  <nav
+    class="amor-pagination"
+    id="5v7fqairetvo4t8"
+    aria-labelledby="5v7f9e8fc2d09mg"
+  >
+    <a
+      class="amor-pagination__item amor-pagination__item--current"
+      href="http://example.com/"
+      aria-current="page"
+      aria-label="i18n(label.page.default)"
+    >
+      1
+    </a>
+    <a
+      class="amor-pagination__item"
+      href="http://example.com//page/2"
+      aria-label="i18n(label.page.default)"
+    >
+      2
+    </a>
+    <a
+      class="amor-pagination__item"
+      href="http://example.com//page/3"
+      aria-label="i18n(label.page.default)"
+    >
+      3
+    </a>
+    <a
+      class="amor-pagination__next"
+      rel="next"
+      href="http://example.com//page/2"
+    >
+      <svg role="img" aria-label="i18n(label.page.next)">
+        <use xlink:href="/images/solid.svg#angle-right"></use>
+      </svg>
+    </a>
+  </nav>
+</section>
 
 ```
 

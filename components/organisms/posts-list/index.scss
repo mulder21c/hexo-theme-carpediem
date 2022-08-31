@@ -1,0 +1,13 @@
+.#{$prefix}-posts {
+  margin: 0;
+  padding: 0;
+
+  &__list-item {
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
+    &::marker {
+      content: "";
+    }
+  }
+}
