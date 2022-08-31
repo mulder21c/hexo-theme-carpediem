@@ -46,9 +46,9 @@ include ../../utils/util
 <div
   class="amor-field amor-field--row amor-field--start"
   role="group"
-  aria-labelledby="uaunkt259hv4u2o"
+  aria-labelledby="oh48bhlaa3jq4r"
 >
-  <div class="amor-field__label amor-field__label--30" id="uaunkt259hv4u2o">
+  <div class="amor-field__label amor-field__label--30" id="oh48bhlaa3jq4r">
     레전드
   </div>
   <div class="amor-field__body"><p>필드셋 바디</p></div>
@@ -57,161 +57,12 @@ include ../../utils/util
 <div
   class="amor-field amor-field--column"
   role="group"
-  aria-labelledby="uauo8e2c27slg0o"
+  aria-labelledby="oh488pf2uf929k"
 >
-  <div class="amor-field__label amor-field__label--30" id="uauo8e2c27slg0o">
+  <div class="amor-field__label amor-field__label--30" id="oh488pf2uf929k">
     레전드
   </div>
   <div class="amor-field__body"><p>필드셋 바디</p></div>
-</div>
-
-```
-
-
----
-
-
-## pagination
-
-create pagination component
-
-
-### path 
-
-`components/molecules/pagination/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.options|paginator's option of hexo @see https://hexo.io/ko/docs/helpers#paginator|object||false|
-|props.labelRef|the id of related content|string||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+pagination({
-  options: {
-    base: `/`,
-    format: `/page/%d`,
-  }
-})
-```
-
-
-### output example 
-
-```html
-<nav class="amor-pagination" id="uav33v8mrth32io"></nav>
-
-```
-
-
----
-
-
-## postCard
-
-create post card component
-
-
-### path 
-
-`components/molecules/post-card/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.post|hexo post object|object||false|
-|props.isLink|Whether to operate the card as a link|boolean|false|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../../atoms/datetime/index
-include ../../atoms/category/index
-
-+postCard({post: hexoPost, isLink: true})
-```
-
-
-### output example 
-
-```html
-<div class="amor-post-card amor-post-card--link">
-  <img
-    class="amor-post-card__thumb"
-    src="/upload/2022/thumbs/hero.jpg"
-    alt=""
-    loading="lazy"
-    role="none"
-  />
-  <a
-    class="amor-post-card__heading"
-    id="ub04mkhknscgl7o"
-    href="http://example.com//post-title/"
-    aria-describedby="ub042fg61frq6b"
-  >
-    post title
-  </a>
-  <div class="amor-post-card__meta">
-    <span class="amor-datetime amor-post-card__meta__item">
-      <span
-        class="amor-datetime__label"
-        role="img"
-        aria-label="i18n(label.date.published)"
-      >
-        📆
-      </span>
-      <time
-        class="amor-datetime__time"
-        id="ub05gma5tngknog"
-        datetime="2022-08-29"
-      >
-        2022. 08 .29
-      </time>
-    </span>
-    <span class="amor-category amor-post-card__meta__item">
-      <span
-        class="amor-category__label"
-        role="img"
-        aria-label="i18n(label.category)"
-      >
-        📂
-      </span>
-      <span class="amor-category__list" role="list">
-        <span class="amor-category__content" role="listitem">
-          <span>Front-End</span>
-        </span>
-        <span class="amor-category__separator" aria-hidden="true">
-          <svg class="amor-svg-icon">
-            <use xlink:href="/images/solid.svg#angle-right"></use>
-          </svg>
-        </span>
-        <span class="amor-category__content" role="listitem">
-          <span>dev-note</span>
-        </span>
-      </span>
-    </span>
-  </div>
-  <p class="amor-post-card__content" id="ub042fg61frq6b">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo tempora in,
-    aliquam ut unde harum doloribus magnam! Iste nulla illum explicabo tempora
-    est dolorum, itaque corporis eos consequuntur exercitationem minus. Lorem
-    ipsum dolor sit amet
-  </p>
 </div>
 
 ```
@@ -287,7 +138,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ub0nnbjacm95kp"
+      id="oh4ro6b05lb164o"
       name="size"
       value="small"
     />
@@ -297,7 +148,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ub0nqte3nk2tn6"
+      id="oh4r73l5uvi4ca"
       name="size"
       value="medium"
     />
@@ -307,7 +158,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ub0nlr7jn1nb47"
+      id="oh4s1gpkbqkup7g"
       name="size"
       value="large"
     />
@@ -320,7 +171,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ub0o3c53lh9i1jg"
+      id="oh4skjsg68200uo"
       name="size2"
       value="small"
     />
@@ -330,7 +181,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ub0oevfi711ku1"
+      id="oh4si70b8sgl9ng"
       name="size2"
       value="medium"
     />
@@ -340,12 +191,117 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ub0o59ijh3b05to"
+      id="oh4s9rj29ttv28o"
       name="size2"
       value="large"
     />
     <span class="amor-radio-boxy__box">large 3</span>
   </label>
+</div>
+
+```
+
+
+---
+
+
+## postCard
+
+create post card component
+
+
+### path 
+
+`components/molecules/post-card/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.post|hexo post object|object||false|
+|props.isLink|Whether to operate the card as a link|boolean|false|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/datetime/index
+include ../../atoms/category/index
+
++postCard({post, isLink: true})
+```
+
+
+### output example 
+
+```html
+<div class="amor-post-card amor-post-card--link">
+  <img
+    class="amor-post-card__thumb"
+    src="https://via.placeholder.com/320x180.png?text=ogr20nrnnsurg3o"
+    alt=""
+    loading="lazy"
+    role="none"
+  />
+  <a
+    class="amor-post-card__heading"
+    id="oh6011d3k6gb2bo"
+    href="http://example.com/post-ogr20nrnnsurg3o/"
+    aria-describedby="oh60qsqublio6p"
+  >
+    Post ogr20nrnnsurg3o
+  </a>
+  <div class="amor-post-card__meta">
+    <span class="amor-datetime amor-post-card__meta__item">
+      <span
+        class="amor-datetime__label"
+        role="img"
+        aria-label="i18n(label.date.published)"
+      >
+        📆
+      </span>
+      <time
+        class="amor-datetime__time"
+        id="oh60jk8l1v6e7i8"
+        datetime="2022-08-31"
+      >
+        2022. 08 .31
+      </time>
+    </span>
+    <span class="amor-category amor-post-card__meta__item">
+      <span
+        class="amor-category__label"
+        role="img"
+        aria-label="i18n(label.category)"
+      >
+        📂
+      </span>
+      <span class="amor-category__list" role="list">
+        <span class="amor-category__content" role="listitem">
+          <span>cate-ogr2pt3f1sfp87</span>
+        </span>
+        <span class="amor-category__separator" aria-hidden="true">
+          <svg class="amor-svg-icon">
+            <use xlink:href="/images/solid.svg#angle-right"></use>
+          </svg>
+        </span>
+        <span class="amor-category__content" role="listitem">
+          <span>cate-ogr228gjurua8j</span>
+        </span>
+      </span>
+    </span>
+  </div>
+  <p class="amor-post-card__content" id="oh60qsqublio6p">
+    Aliqua nisi aliqua aute nisi nostrud aliqua ut nisi irure fugiat cillum
+    quis. Do proident ad minim cillum amet ea exercitation esse exercitation
+    duis aute. Nulla ea quis laboris do. Et occaecat incididunt consectetur
+    dolor veniam esse in mollit ut. Aute labore adipisicing nulla Lorem irure
+    nisi
+  </p>
 </div>
 
 ```
@@ -424,13 +380,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1b5il4loh0vpo"
+      id="oh6p1m7jh3qna4g"
       name="size"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ub1b5il4loh0vpo"
+      for="oh6p1m7jh3qna4g"
     >
       small
     </label>
@@ -440,13 +396,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1c22id0b6n898"
+      id="oh6pisons3qunhg"
       name="size"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ub1c22id0b6n898"
+      for="oh6pisons3qunhg"
     >
       medium
     </label>
@@ -456,13 +412,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1cs9kn7f6ftrg"
+      id="oh6phsfaoaq19ug"
       name="size"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ub1cs9kn7f6ftrg"
+      for="oh6phsfaoaq19ug"
     >
       large
     </label>
@@ -474,13 +430,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1c9jnl2v252tg"
+      id="oh6q4jofcudua38"
       name="size2"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ub1c9jnl2v252tg"
+      for="oh6q4jofcudua38"
     >
       small
     </label>
@@ -490,13 +446,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1c073oenk3sm8"
+      id="oh6qbq6jbqm6ei"
       name="size2"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ub1c073oenk3sm8"
+      for="oh6qbq6jbqm6ei"
     >
       medium
     </label>
@@ -506,13 +462,13 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1c0hfh94nfp1"
+      id="oh6q5a0e98fq6go"
       name="size2"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ub1c0hfh94nfp1"
+      for="oh6q5a0e98fq6go"
     >
       large
     </label>
@@ -600,31 +556,31 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1ujtbaadcsd1g"
+      id="oh7dbppocl7sr8g"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="ub1ujtbaadcsd1g">designer</label>
+    <label class="amor-radio__label" for="oh7dbppocl7sr8g">designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1u94tbj936hd"
+      id="oh7dnr57j53i888"
       name="job"
       value="publisher"
     />
-    <label class="amor-radio__label" for="ub1u94tbj936hd">publisher</label>
+    <label class="amor-radio__label" for="oh7dnr57j53i888">publisher</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1utlbvotjn2u"
+      id="oh7dq4820oqjbug"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ub1utlbvotjn2u">
+    <label class="amor-radio__label" for="oh7dq4820oqjbug">
       frontend developer
     </label>
   </span>
@@ -632,21 +588,21 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1u8jvh3g941go"
+      id="oh7drdo6uqak0a"
       name="job"
       value="devops"
     />
-    <label class="amor-radio__label" for="ub1u8jvh3g941go">devops</label>
+    <label class="amor-radio__label" for="oh7drdo6uqak0a">devops</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1ukgjok6oucr8"
+      id="oh7d5qamkifa82"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="ub1ukgjok6oucr8">iOS developer</label>
+    <label class="amor-radio__label" for="oh7d5qamkifa82">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
@@ -655,35 +611,108 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1urng0gujhov"
+      id="oh7e10v0butmuh"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="ub1urng0gujhov">웹 디자이너</label>
+    <label class="amor-radio__label" for="oh7e10v0butmuh">웹 디자이너</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1vbebg4h51f7g"
+      id="oh7egn6luhmc8t"
       name="job2"
       value="publisher"
     />
-    <label class="amor-radio__label" for="ub1vbebg4h51f7g">웹 퍼블리셔</label>
+    <label class="amor-radio__label" for="oh7egn6luhmc8t">웹 퍼블리셔</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ub1vqfi75ap6eto"
+      id="oh7e7cvnercoqo8"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ub1vqfi75ap6eto">
+    <label class="amor-radio__label" for="oh7e7cvnercoqo8">
       프론트엔드 개발자
     </label>
   </span>
 </div>
+
+```
+
+
+---
+
+
+## pagination
+
+create pagination component
+
+
+### path 
+
+`components/molecules/pagination/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.options|paginator's option of hexo @see https://hexo.io/ko/docs/helpers#paginator|object||false|
+|props.labelRef|the id of related content|string||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++pagination({
+  options: {
+    base: `/`,
+    format: `/page/%d`,
+  }
+})
+```
+
+
+### output example 
+
+```html
+<nav class="amor-pagination" id="oh7pkvscccglcb8">
+  <a
+    class="amor-pagination__item amor-pagination__item--current"
+    href="undefined/"
+    aria-current="page"
+    aria-label="i18n(label.page.default)"
+  >
+    1
+  </a>
+  <a
+    class="amor-pagination__item"
+    href="//page/2"
+    aria-label="i18n(label.page.default)"
+  >
+    2
+  </a>
+  <a
+    class="amor-pagination__item"
+    href="//page/3"
+    aria-label="i18n(label.page.default)"
+  >
+    3
+  </a>
+  <a class="amor-pagination__next" rel="next" href="//page/2">
+    <svg role="img" aria-label="i18n(label.page.next)">
+      <use xlink:href="/images/solid.svg#angle-right"></use>
+    </svg>
+  </a>
+</nav>
 
 ```
 

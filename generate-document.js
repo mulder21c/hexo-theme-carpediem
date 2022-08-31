@@ -1,29 +1,12 @@
+const fs = require("fs");
 const pugDocGen = require("pug-doc");
 const PugDocMD = require("./docs/lib/pug-doc-markdown.js");
 const sassDocMD = require("@hidoo/sassdoc-to-markdown").default;
-const fs = require("fs");
 const path = require("path");
 const rootPath = path.resolve(__dirname);
 const propTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
-const iconsMeta = (() => {
-  try {
-    return jsYml.load(
-      fs.readFileSync(
-        path.resolve(
-          __dirname,
-          `./node_modules/@fortawesome/fontawesome-free/metadata/icons.yml`
-        ),
-        `utf8`
-      )
-    );
-  } catch (err) {
-    console.warn("\x1b[33m%s\x1b[0m", `⚠ Cannot find fontawesome!`);
-    return {};
-  }
-})();
 
-const { url_for } = require("hexo-util");
 const dateFormat = require("./scripts/helpers/date-format");
 const fullUrl = require("./scripts/helpers/full-url");
 const generateUid = require("./scripts/helpers/generate-uid");
@@ -32,6 +15,12 @@ const getIconCategory = require("./scripts/helpers/get-icon-category");
 const stripHTML = require("./scripts/helpers/strip-html");
 const truncate = require("./scripts/helpers/truncate");
 const paginator = require("./scripts/helpers/paginator");
+const page = require("./mock");
+const [post] = require("./mock/posts")({
+  domain: `http://example.com`,
+  count: 1,
+});
+const categoryGenerator = require("./mock/categories");
 
 const config = jsYml.load(
   fs.readFileSync(path.resolve(__dirname, `../../_config.yml`), `utf8`)
@@ -39,80 +28,12 @@ const config = jsYml.load(
 const theme = jsYml.load(
   fs.readFileSync(path.resolve(__dirname, `./_config.yml`), `utf8`)
 );
+const domain = config.url || `http://example.com`;
 
-const hexoPostCategory = [
-  {
-    name: `dev-note`,
-    slug: `dev-note`,
-    path: `categories/dev-note/`,
-    permalink: `https://example.com/categories/dev-note/`,
-  },
-  {
-    name: `Front-End`,
-    slug: `dev-note/Front-End`,
-    path: `categories/dev-note/Front-End/`,
-    permalink: `https://example.com/categories/dev-note/Front-End/`,
-  },
-];
-const hexoPost = {
-  title: "post title",
-  thumbnail: "/upload/2022/thumbs/hero.jpg",
-  date: new Date(),
-  updated: new Date(),
-  slug: "post-title",
-  published: true,
-  layout: "post",
-  content: `
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Illo tempora in, aliquam ut unde harum doloribus magnam!
-      Iste nulla illum explicabo tempora est dolorum,
-      itaque corporis eos consequuntur exercitationem minus.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Illo tempora in, aliquam ut unde harum doloribus magnam!
-      Iste nulla illum explicabo tempora est dolorum,
-      itaque corporis eos consequuntur exercitationem minus.
-    </p>
-  `,
-  excerpt: "",
-  more: `
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Illo tempora in, aliquam ut unde harum doloribus magnam!
-      Iste nulla illum explicabo tempora est dolorum,
-      itaque corporis eos consequuntur exercitationem minus.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Illo tempora in, aliquam ut unde harum doloribus magnam!
-      Iste nulla illum explicabo tempora est dolorum,
-      itaque corporis eos consequuntur exercitationem minus.
-    </p>
-  `,
-  path: "/post-title/",
-  permalink: "http://example.com//post-title/",
-  tags: {
-    data: [
-      {
-        name: "tag",
-        slug: "tag",
-        path: "tags/tag/",
-        permalink: "http://example.com/tags/tag/",
-      },
-    ],
-  },
-  categories: {
-    data: hexoPostCategory,
-  },
-};
 const locals = {
-  page: {
-    base: `/`,
-  },
-  hexoPost,
-  hexoPostCategory,
+  page,
+  post,
+  categories: categoryGenerator({ count: 3, domain }),
   config,
   theme,
   site: {
@@ -144,7 +65,6 @@ const locals = {
   truncate,
   paginator,
 };
-
 locals.paginator = locals.paginator.bind(locals);
 
 pugDocGen({

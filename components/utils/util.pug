@@ -91,7 +91,9 @@
       "alternativeHeadline": $subtitle || undefined,
     });
     const getKeywords = () => ({
-      "keywords": ($tags || []).map(tag => tag.name).join(', ') || undefined,
+      "keywords": ($tags.data || $tags || [])
+        .map(tag => tag.name)
+        .join(', ') || undefined,
     });
     const getDateCreated = () => ({ "dateCreated": $date || undefined });
     const getDateModified = () => ({ "dateModified": $updated || undefined });
