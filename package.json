@@ -47,7 +47,7 @@
     "@babel/preset-env": "^7.18.10",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@fortawesome/fontawesome-free": "^6.1.2",
+    "@fortawesome/fontawesome-free": "^6.2.0",
     "@hidoo/sassdoc-to-markdown": "^0.8.0",
     "@prettier/plugin-xml": "^2.2.0",
     "@rollup/plugin-babel": "^5.3.1",
