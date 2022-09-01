@@ -81,7 +81,7 @@
     "pug-lint": "^2.6.0",
     "rollup": "^2.79.0",
     "rollup-plugin-terser": "^7.0.2",
-    "sass": "^1.54.5",
+    "sass": "^1.54.8",
     "stylelint": "^14.11.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^28.0.0",
