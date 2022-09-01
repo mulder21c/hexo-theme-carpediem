@@ -7,28 +7,50 @@
     - {object} props
     - {string} [props.title] the text to use as a title
   slots:
-    - default you can append content before title text
+    - beforeSlot the slot to be placed before title
+    - afterSlot the slot to be placed after title
   examples:
     - |
-      +titleBar({title: "Hexo Blog"})
+      // without slot
+      +titleBar({title: config.title, useLink: true})
+
 mixin titleBar(props)
   -
     const titleBarProps = {
       title: PropTypes.string.isRequired,
+      useLink: PropTypes.bool,
     };
     const titleBarValidate = validateProps(titleBarProps);
     const {
       title,
+      useLink,
       ...attrs
     } = props;
-    titleBarValidate({title});
+    titleBarValidate({title, useLink});
 
     const {prefix} = theme;
     const uid = id || generateUid();
+
+    let beforeSlot = null;
+    let afterSlot = null;
+
+  mixin beforeSlot
+    - beforeSlot = block;
+
+  mixin afterSlot
+    - afterSlot = block;
 
   div(
     id= uid
     class= `${prefix}-title-bar`
   )&attributes(attrs)
     block
-    span(class= `${prefix}-title-bar__title`)= title
+    - beforeSlot && beforeSlot();
+    h1(class= `${prefix}-title-bar__title`)
+      if (useLink)
+        a(
+          href= `/`
+        )= title
+      else
+        span= title
+    - afterSlot && afterSlot();

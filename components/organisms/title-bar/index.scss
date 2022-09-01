@@ -15,5 +15,10 @@
     font-weight: var(--font-weight-semi-bold);
     color: var(--text-color-secondary);
     @include lineEllipsis(1);
+
+    > a {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 }
