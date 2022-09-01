@@ -14,18 +14,21 @@
     - |
       {integer} [props.labelWidthRatio] [3] the factor of label's width
       in the container
+  slots:
+    - fieldsetLabelSlot the slot for legend of fieldset
+    - fieldsetBodySlot the slot for body of fieldset
   examples:
     - |
       // row
       +fieldset({direction: `row`})
-        +fieldsetLabelSlot 레전드
+        +fieldsetLabelSlot fieldset title
         +fieldsetBodySlot
-          p 필드셋 바디
+          p fieldset body
       // column
       +fieldset({direction: `column`})
-        +fieldsetLabelSlot 레전드
+        +fieldsetLabelSlot fieldset title
         +fieldsetBodySlot
-          p 필드셋 바디
+          p fieldset body
 mixin fieldset(props)
   -
     // verifying props
