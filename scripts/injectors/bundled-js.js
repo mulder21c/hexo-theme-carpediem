@@ -1,12 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 const jsYml = require("js-yaml");
-const removeFile = require("../utils/remove-file");
+const cleanDirectory = require("../utils/remove-file");
 const { bundleJS } = require("../utils/bundler");
 const rootPath = path.resolve(__dirname, "../../");
 const sourcePath = path.resolve(rootPath, `./components/**/*.js`);
 const outputPath = path.resolve(rootPath, "./source/js/");
 const isDevServer = hexo.env.cmd === "server";
+const isCleanStage = hexo.env.cmd === "clean";
 let bundleFileName = `bundle.js`;
 const { prefix: themePrefix } = (() => {
   try {
@@ -22,6 +23,9 @@ const { prefix: themePrefix } = (() => {
   }
 })();
 
+// clean all generated js files
+cleanDirectory(outputPath);
+
 bundleJS({
   rollupOption: {
     input: sourcePath,
@@ -29,11 +33,7 @@ bundleJS({
   },
   isDevServer,
 }).then(({ code, map, fileName }) => {
-  // clean all generated js files
-  removeFile(path.resolve(outputPath, `./${fileName}`));
-  removeFile(path.resolve(outputPath, `./${fileName}.map`));
-  removeFile(path.resolve(outputPath, `./${bundleFileName}`));
-  removeFile(path.resolve(outputPath, `./${bundleFileName}.map`));
+  if (isCleanStage) return;
 
   bundleFileName = isDevServer ? fileName : bundleFileName;
 
