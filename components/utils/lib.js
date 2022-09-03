@@ -1,7 +1,7 @@
 /**
  * @see https://github.com/cloudfour/transition-hidden-element
  */
-function transitionHiddenElement({
+export function transitionHiddenElement({
   element: e,
   visibleClass: t,
   waitMode: i = "transitionend",
@@ -54,4 +54,23 @@ function transitionHiddenElement({
     timeout: null,
   };
 }
-window.transitionHiddenElement = transitionHiddenElement;
+
+/**
+ * @desc trigger click method on an element corresponding
+ *  to a given selector among descendants
+ * @param {string} selector the selector to use to find elements in descendants
+ * @param {MouseEvent} event
+ */
+export function triggerDescendantClick(selector, event) {
+  if (!selector) {
+    throw new Error(`selector is not defined`);
+  }
+  const ctx = event.currentTarget;
+  const el = ctx.querySelector(selector);
+  el && el.click();
+}
+
+export default {
+  transitionHiddenElement,
+  triggerDescendantClick,
+};

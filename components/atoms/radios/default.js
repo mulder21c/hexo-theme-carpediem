@@ -1,14 +1,13 @@
+import { syncRadio } from "./lib";
+
 ((window, document) => {
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
-  const fakeRadioSelector = `span.${prefix}-radio__label`;
 
-  function handleClickRadio(event) {
-    const { target } = event;
-    if (!target.matches(fakeRadioSelector)) return;
-    const control = target.previousElementSibling;
-    control.checked = true;
-    control.focus();
-  }
-
-  document.addEventListener(`click`, handleClickRadio, false);
+  // bind handler to all virtual radio with no label
+  const virtualRadios = document.querySelectorAll(
+    `span.${prefix}-radio__label`
+  );
+  virtualRadios.forEach((vRadio) => {
+    vRadio.addEventListener(`click`, syncRadio, false);
+  });
 })(window, document);

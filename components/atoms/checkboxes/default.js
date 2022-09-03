@@ -1,14 +1,13 @@
+import { syncCheckbox } from "./lib";
+
 ((window, document) => {
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
-  const fakeCheckboxSelector = `span.${prefix}-checkbox__label`;
 
-  function handleClickCheckbox(event) {
-    const { target } = event;
-    if (!target.matches(fakeCheckboxSelector)) return;
-    const control = target.previousElementSibling;
-    control.checked = !control.checked;
-    control.focus();
-  }
-
-  document.addEventListener(`click`, handleClickCheckbox, false);
+  // bind handler to all virtual checkbox with no label
+  const virtualCheckboxes = document.querySelectorAll(
+    `span.${prefix}-checkbox__label`
+  );
+  virtualCheckboxes.forEach((vCheckbox) => {
+    vCheckbox.addEventListener(`click`, syncCheckbox, false);
+  });
 })(window, document);

@@ -5,8 +5,8 @@ const format = require("date-fns/format");
  * @see https://date-fns.org/docs/format
  * @return {string}
  */
-function dateFormatHelper(...arguments) {
-  return format.call(null, ...arguments);
+function dateFormatHelper(...args) {
+  return format.call(null, ...args);
 }
 
 module.exports = dateFormatHelper;

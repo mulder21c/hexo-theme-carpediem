@@ -4,7 +4,10 @@ const jsYml = require("js-yaml");
 const cleanDirectory = require("../utils/remove-file");
 const { bundleJS } = require("../utils/bundler");
 const rootPath = path.resolve(__dirname, "../../");
-const sourcePath = path.resolve(rootPath, `./components/**/*.js`);
+const sourcePath = [
+  path.resolve(rootPath, `./components/**/*.js`),
+  `!${path.resolve(rootPath, `./components/**/lib.js`)}`,
+];
 const outputPath = path.resolve(rootPath, "./source/js/");
 const isDevServer = hexo.env.cmd === "server";
 const isCleanStage = hexo.env.cmd === "clean";

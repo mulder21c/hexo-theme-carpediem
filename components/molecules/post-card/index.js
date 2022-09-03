@@ -1,13 +1,16 @@
+import { triggerDescendantClick } from "../../utils/lib";
+
 ((window, document) => {
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
-  const linkCardSelector = `.${prefix}-post-card--link`;
 
-  function followLink(event) {
-    const cardContainer = event.target?.closest(linkCardSelector);
-    if (!cardContainer) return;
-    const linkEl = cardContainer?.querySelector(`a`);
-    linkEl.click();
-  }
+  // bind handler to link-typed card
+  const linkCards = document.querySelectorAll(`.${prefix}-post-card--link`);
 
-  document.addEventListener(`click`, followLink, false);
+  linkCards.forEach((card) => {
+    card.addEventListener(
+      `click`,
+      triggerDescendantClick.bind(card, `a:first-of-type`),
+      false
+    );
+  });
 })(window, document);
