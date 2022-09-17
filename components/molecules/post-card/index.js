@@ -1,6 +1,7 @@
 import { triggerDescendantClick } from "../../utils/lib";
 
 ((window, document) => {
+  if (!window.usedComponents.has(`post-card`)) return;
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
 
   // bind handler to link-typed card

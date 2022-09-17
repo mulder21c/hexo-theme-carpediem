@@ -90,6 +90,12 @@ mixin radio(props)
       ...(Array.isArray(lblClassName) ? lblClassName : [lblClassName] ),
     ];
 
+  script(
+    async
+    data-pug
+  ).
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`radio`);
   span(
     class=[
       `${prefix}-radio`,

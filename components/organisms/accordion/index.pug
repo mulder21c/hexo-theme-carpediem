@@ -68,6 +68,12 @@ mixin accordion(props)
   mixin accordionPanelSlot
     - accordionPanelSlots.push(block);
 
+  script(
+    async
+    data-pug
+  ).
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`accordion`);
   div(
     id= uid
     class= `${prefix}-accordion`

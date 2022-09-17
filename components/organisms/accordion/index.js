@@ -1,6 +1,7 @@
 import { Accordion } from "./lib";
 
 ((window, document) => {
+  if (!window.usedComponents.has(`accordion`)) return;
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
   const accordionSelector = `.${prefix}-accordion`;
   const accordionTabSelector = `.${prefix}-accordion__tab`;
