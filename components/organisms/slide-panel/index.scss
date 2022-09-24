@@ -1,0 +1,23 @@
+.#{$prefix}-slide-panel {
+  position: relative;
+  padding: 0.75rem;
+  background-color: var(--panel-background-color);
+  filter: drop-shadow(2px 2px 0.75rem var(--panel-shadow-color));
+  @include colorScheme(dark) {
+    filter: none;
+    box-shadow: 1px 1px 5px 2px var(--panel-shadow-color);
+  }
+
+  &--btn-top {
+    padding-top: 3.2rem;
+  }
+  &--btn-bottom {
+    padding-bottom: 3.2rem;
+  }
+
+  &__btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

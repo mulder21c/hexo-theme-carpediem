@@ -159,7 +159,21 @@ export function triggerDescendantClick(selector, event) {
   el && el.click();
 }
 
+/**
+ * @param {HTMLElement} context The context for finding tabbable elements
+ */
+export function getTabbable(context) {
+  const selector = `a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])`;
+  return [...context.querySelectorAll(selector)].filter(
+    (el) =>
+      !el.hasAttribute(`hidden`) &&
+      !el.hasAttribute(`disabled`) &&
+      !JSON.parse(el.getAttribute(`aria-hidden`))
+  );
+}
+
 export default {
   transitionHiddenElement,
   triggerDescendantClick,
+  getTabbable,
 };

@@ -53,6 +53,9 @@
     --primary-card-focus-border-color: #{$color-green-45};
     --primary-card-focus-shadow-color: #{rgba($color-green-85, 0.375)};
 
+    --panel-background-color: #{$color-blue-grey-10};
+    --panel-shadow-color: #{$color-neutral-80};
+
     --separator-border-color: #{$color-neutral-20};
   }
 
@@ -83,6 +86,9 @@
     --primary-card-hover-border-color: #{$color-neutral-25};
     --primary-card-focus-border-color: #{$color-green-30};
     --primary-card-focus-shadow-color: #{rgba($color-green-85, 0.725)};
+
+    --panel-background-color: #{$color-blue-grey-90};
+    --panel-shadow-color: #{$color-green-40};
 
     --separator-border-color: #{$color-neutral-60};
   }

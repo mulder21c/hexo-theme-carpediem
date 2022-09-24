@@ -1,0 +1,72 @@
+include /components/atoms/svg-icon/index.pug
+include /components/atoms/buttons/icon.pug
+
+mixin slidePanel(props)
+  -
+    const slidePanelProps = {
+      useCloseBtn: PropTypes.bool,
+      closeBtnPosition: PropTypes.oneOf([
+        `top-left`,
+        `top-right`,
+        `bottom-left`,
+        `bottom-right`,
+      ]),
+      tag: PropTypes.string,
+    };
+    const slidePanelValidate = validateProps(slidePanelProps);
+    const defaults = {
+      useCloseBtn: true,
+      closeBtnPosition: `top-right`,
+      tag: `div`,
+    };
+
+    const {
+      useCloseBtn,
+      closeBtnPosition,
+      tag,
+      id,
+      ...attrs
+    } = {
+      ...defaults,
+      ...props,
+    };
+    slidePanelValidate({
+      useCloseBtn,
+      closeBtnPosition,
+      tag,
+    });
+
+    const {prefix} = theme;
+    const uid = id || generateUid();
+    const [closeBtnPosY] = closeBtnPosition.split(`-`);
+
+    let panelBodySlot = null;
+
+  mixin panelBodySlot
+    - panelBodySlot = block;
+
+  script(
+    async
+    data-pug
+  ).
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`slide-panel`);
+  #{tag}.slide-panel(
+    id= uid
+    role= region
+    class= [
+      `${prefix}-slide-panel`,
+      useCloseBtn && `${prefix}-slide-panel--btn-${closeBtnPosY}`
+    ]
+    hidden
+  )&attributes(attrs)
+    block
+    - panelBodySlot();
+    +iconButton({
+      type: 'button',
+      size: 'medium',
+      appearance: 'ghost',
+      icon: 'xmark',
+      label: 'close',
+      class: `closer ${prefix}-slide-panel__btn-close`,
+    })
