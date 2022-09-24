@@ -1,56 +1,145 @@
 /**
  * @see https://github.com/cloudfour/transition-hidden-element
+ * @param {Function} opts.onTranstionBefore the callback function
+ *  to run before transition starts
+ * @param {Function} opts.onTransitionEnd the callback function
+ *  to run after transition ends
  */
 export function transitionHiddenElement({
-  element: e,
-  visibleClass: t,
-  waitMode: i = "transitionend",
-  timeoutDuration: n,
-  hideMode: s = "hidden",
-  displayValue: o = "block",
+  element,
+  visibleClass,
+  waitMode = "transitionend",
+  timeoutDuration,
+  hideMode = "hidden",
+  displayValue = "block",
+  onTranstionBefore = null,
+  onTransitionEnd = null,
 }) {
-  if ("timeout" === i && "number" != typeof n)
-    return void console.error(`
+  if (waitMode === "timeout" && typeof timeoutDuration !== "number") {
+    console.error(`
       When calling transitionHiddenElement with waitMode set to timeout,
       you must pass in a number for timeoutDuration.
     `);
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-    (i = "immediate");
-  const d = (t) => {
-      t.target === e && (r(), e.removeEventListener("transitionend", d));
-    },
-    r = () => {
-      "display" === s
-        ? (e.style.display = "none")
-        : e.setAttribute("hidden", !0);
-    };
+
+    return;
+  }
+
+  // Don't wait for exit transitions if a user prefers reduced motion.
+  // Ideally transitions will be disabled in CSS, which means we should not wait
+  // before adding `hidden`.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    waitMode = "immediate";
+  }
+
+  /**
+   * An event listener to add `hidden` after our animations complete.
+   * This listener will remove itself after completing.
+   */
+  const listener = (e) => {
+    // Confirm `transitionend` was called on  our `element` and didn't bubble
+    // up from a child element.
+    if (e.target === element) {
+      applyHiddenAttributes();
+
+      element.removeEventListener("transitionend", listener);
+      onTransitionEnd && onTransitionEnd();
+    }
+  };
+
+  const applyHiddenAttributes = () => {
+    if (hideMode === "display") {
+      element.style.display = "none";
+    } else {
+      element.setAttribute("hidden", true);
+    }
+  };
+
+  const removeHiddenAttributes = () => {
+    if (hideMode === "display") {
+      element.style.display = displayValue;
+    } else {
+      element.removeAttribute("hidden");
+    }
+  };
+
   return {
+    /**
+     * Show the element
+     */
     show() {
-      e.removeEventListener("transitionend", d),
-        this.timeout && clearTimeout(this.timeout),
-        "display" === s ? (e.style.display = o) : e.removeAttribute("hidden");
-      e.offsetHeight;
-      e.classList.add(t);
+      /**
+       * This listener shouldn't be here but if someone spams the toggle
+       * over and over really fast it can incorrectly stick around.
+       * We remove it just to be safe.
+       */
+      element.removeEventListener("transitionend", listener);
+
+      /**
+       * Similarly, we'll clear the timeout in case it's still hanging around.
+       */
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+
+      removeHiddenAttributes();
+
+      /**
+       * Force a browser re-paint so the browser will realize the
+       * element is no longer `hidden` and allow transitions.
+       */
+      const reflow = element.offsetHeight;
+
+      onTranstionBefore && onTranstionBefore();
+      element.classList.add(visibleClass);
     },
+
+    /**
+     * Hide the element
+     */
     hide() {
-      "transitionend" === i
-        ? e.addEventListener("transitionend", d)
-        : "timeout" === i
-        ? (this.timeout = setTimeout(() => {
-            r();
-          }, n))
-        : r(),
-        e.classList.remove(t);
+      if (waitMode === "transitionend") {
+        element.addEventListener("transitionend", listener);
+      } else if (waitMode === "timeout") {
+        this.timeout = setTimeout(() => {
+          applyHiddenAttributes();
+        }, timeoutDuration);
+      } else {
+        applyHiddenAttributes();
+      }
+
+      // Add this class to trigger our animation
+      element.classList.remove(visibleClass);
     },
+
+    /**
+     * Toggle the element's visibility
+     */
     toggle() {
-      this.isHidden() ? this.show() : this.hide();
+      if (this.isHidden()) {
+        this.show();
+      } else {
+        this.hide();
+      }
     },
+
+    /**
+     * Tell whether the element is hidden or not.
+     */
     isHidden() {
-      const i = null !== e.getAttribute("hidden"),
-        n = "none" === e.style.display,
-        s = [...e.classList].includes(t);
-      return i || n || !s;
+      /**
+       * The hidden attribute does not require a value. Since an empty string is
+       * falsy, but shows the presence of an attribute we compare to `null`
+       */
+      const hasHiddenAttribute = element.getAttribute("hidden") !== null;
+
+      const isDisplayNone = element.style.display === "none";
+
+      const hasVisibleClass = [...element.classList].includes(visibleClass);
+
+      return hasHiddenAttribute || isDisplayNone || !hasVisibleClass;
     },
+
+    // A placeholder for our `timeout`
     timeout: null,
   };
 }
