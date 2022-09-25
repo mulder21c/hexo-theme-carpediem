@@ -1,5 +1,5 @@
 .#{$prefix}-accordion {
-  width: 300px;
+  width: 100%;
   $padding-horizon: 1rem;
   $padding-vertical: 1rem;
 
@@ -67,6 +67,7 @@
     &.transition {
       @media (prefers-reduced-motion: no-preference) {
         transition: all 0.4s ease-in-out;
+        transform-origin: top;
       }
     }
 

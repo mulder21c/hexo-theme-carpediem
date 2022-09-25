@@ -14,6 +14,7 @@ export class Accordion {
    */
   constructor({ el, tabSelector, transitionClassName }) {
     this.container = el;
+    this.tabSelector = tabSelector;
     this.tabs = el.querySelectorAll(tabSelector);
     this.transitionClassName = transitionClassName;
     this.init();
@@ -41,7 +42,7 @@ export class Accordion {
    * @param {HTMLElement} event.target - click event
    */
   handleClickTab({ target }) {
-    if (target.matches(accordionTabSelector)) this.togglePanel(target);
+    if (target.matches(this.tabSelector)) this.togglePanel(target);
   }
 
   /**
@@ -51,7 +52,7 @@ export class Accordion {
   handleKeyDown(event) {
     const { keyCode, target } = event;
     const { tabs } = this;
-    const isTab = target.matches(accordionTabSelector);
+    const isTab = target.matches(this.tabSelector);
     if (!isTab) return;
     const lastIdx = tabs.length - 1;
     let currIdx = [...tabs].indexOf(target);
