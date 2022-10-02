@@ -157,3 +157,13 @@
   woff woff2,
   null
 );
+
+@include font-face(
+  $font-family-iropke,
+  $font-file-iropke-path,
+  "IropkeBatangM",
+  $font-weight-normal,
+  normal,
+  woff,
+  null
+);

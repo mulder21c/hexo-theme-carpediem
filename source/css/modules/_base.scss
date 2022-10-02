@@ -86,13 +86,12 @@ button,
   }
 }
 
-a:where(article) {
+a[href] {
   @extend %anchor-default;
-  @extend %anchor-animate;
 }
 
-a[href]:not(:where(article)) {
-  @extend %anchor-default;
+:where(article) a {
+  @extend %anchor-animate;
 }
 
 .sr-only {

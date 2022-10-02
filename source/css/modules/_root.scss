@@ -28,13 +28,15 @@
   @include colorScheme(light) {
     --background-color: #{$color-neutral-05};
     --text-color-primary: #{$color-neutral-95};
-    --text-color-secondary: #{$color-neutral-70};
+    --text-color-secondary: #{$color-neutral-75};
+    --text-color-accent: #{$color-green-70};
     --text-link-color: #{$color-blue-70};
     --text-link-hover-background-color: #{$color-green-65};
     --text-link-hover-color: #{$color-neutral-05};
     --text-link-decoration-color: #{$color-blue-grey-70};
     --text-link-outline-color: #{$color-green-60};
     --text-link-box-shadow-color: #{rgba($color-green-85, 0.375)};
+    --text-link-placeholder-color: #{$color-neutral-50};
 
     --primary-button-background-color: #{$color-green-50};
     --primary-button-active-background-color: #{$color-green-65};
@@ -69,6 +71,7 @@
     --text-link-decoration-color: #{$color-blue-grey-25};
     --text-link-outline-color: #{$color-green-30};
     --text-link-box-shadow-color: #{rgba($color-green-85, 0.375)};
+    --text-link-placeholder-color: #{$color-neutral-50};
 
     --primary-button-background-color: #{$color-green-50};
     --primary-button-active-background-color: #{$color-green-65};

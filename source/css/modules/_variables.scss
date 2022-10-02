@@ -217,13 +217,16 @@ $color-cyan-95: shade($cyan, 90%);
 $font-family-serif: "Noto Serif";
 $font-family-sans-serif: "Pretendard";
 $font-family-code: Hack;
-$font-families-serif: $font-family-serif, "Times New Roman", Times, serif;
+$font-family-iropke: "iropke";
+$font-families-serif: $font-family-iropke, $font-family-serif, "Times New Roman",
+  Times, serif;
 $font-families-sans-serif: $font-family-sans-serif, -apple-system,
   BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 $font-families-code: $font-family-code, Consolas, Monaco;
 $font-file-serif-path: "/fonts/noto-serif-kr/";
 $font-file-sans-serif-path: "/fonts/pretendard/";
 $font-file-code-path: "/fonts/pretendard/";
+$font-file-iropke-path: "/fonts/iropke/";
 
 // fonts appearances
 $font-responsive-ratio-default: 1.125;
