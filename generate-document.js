@@ -65,6 +65,7 @@ const locals = {
   truncate,
   paginator,
 };
+locals.fullUrl = locals.fullUrl.bind(locals);
 locals.paginator = locals.paginator.bind(locals);
 
 pugDocGen({
