@@ -53,14 +53,14 @@ include ../../atoms/svg-icon/index.pug
   window.usedComponents = window.usedComponents || new Set();
   usedComponents.add(`accordion`);
 </script>
-<div class="amor-accordion" id="rsh-ua33w3968vfn3ibipr" data-init-activate="1">
+<div class="amor-accordion" id="Wt7-nyxkk2bzpis7e83a4so" data-init-activate="1">
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="dsi-0egg46v3vkeekqh27to"
+      id="Ct7-u3wk4giynoglqo1hcoug"
       aria-expanded="false"
-      aria-controls="Gsi-0imru78cg2sgqr5i52qg"
+      aria-controls="lt7-u7x1w6jvttmju9smttg"
     >
       heading 1
       <svg
@@ -74,9 +74,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="Gsi-0imru78cg2sgqr5i52qg"
+    id="lt7-u7x1w6jvttmju9smttg"
     role="region"
-    aria-labelledby="dsi-0egg46v3vkeekqh27to"
+    aria-labelledby="Ct7-u3wk4giynoglqo1hcoug"
     hidden="hidden"
   >
     panel 1
@@ -85,9 +85,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="tsi-ibjdme8f9bs8uunpq5o"
+      id="At8-b30jj6nhrdadgq1l12"
       aria-expanded="true"
-      aria-controls="Psi-ihfxyb2aokbev0pdbr"
+      aria-controls="st8-b8qfodqsn2kb2sc5noo"
     >
       heading 2
       <svg
@@ -101,9 +101,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="Psi-ihfxyb2aokbev0pdbr"
+    id="st8-b8qfodqsn2kb2sc5noo"
     role="region"
-    aria-labelledby="tsi-ibjdme8f9bs8uunpq5o"
+    aria-labelledby="At8-b30jj6nhrdadgq1l12"
   >
     panel 2
   </div>
@@ -111,9 +111,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="esi-tskgisw8nab0nk0dqf4g"
+      id="dt8-n5d7h3bcn4q7m9q14mo"
       aria-expanded="false"
-      aria-controls="ksi-txu0stfq21gufobbsq8"
+      aria-controls="Kt8-nan6vflw7bri6pbg0io"
     >
       heading 3
       <svg
@@ -127,9 +127,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="ksi-txu0stfq21gufobbsq8"
+    id="Kt8-nan6vflw7bri6pbg0io"
     role="region"
-    aria-labelledby="esi-tskgisw8nab0nk0dqf4g"
+    aria-labelledby="dt8-n5d7h3bcn4q7m9q14mo"
     hidden="hidden"
   >
     panel 3
@@ -225,18 +225,18 @@ include ../../molecules/pagination/index
 ### output example 
 
 ```html
-<section aria-labelledby="ctr-m2m6ygk4r8h59gmkkjo">
+<section aria-labelledby="Juh-rd7zfx7nh6kmj858chf">
   <h1
     class="amor-heading--level-1 sr-only amor-posts__heading"
-    id="ctr-m2m6ygk4r8h59gmkkjo"
+    id="Juh-rd7zfx7nh6kmj858chf"
   >
     i18n(label.posts.recently)
   </h1>
   <ol class="amor-posts"></ol>
   <nav
     class="amor-pagination"
-    id="Rts-832a8n5v57rb6ioj3d"
-    aria-labelledby="ctr-m2m6ygk4r8h59gmkkjo"
+    id="Jui-acga4gr5es6fhftd9kh"
+    aria-labelledby="Juh-rd7zfx7nh6kmj858chf"
   >
     <a
       class="amor-pagination__item amor-pagination__item--current"
@@ -402,7 +402,7 @@ include ../../utils/util
 
 ```html
 <!-- without slot-->
-<div class="amor-title-bar" id="Xuh-gtcyybuym5qp7ln14so">
+<div class="amor-title-bar" id="uva-4ij8032ispuafhbi91o">
   <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
 </div>
 

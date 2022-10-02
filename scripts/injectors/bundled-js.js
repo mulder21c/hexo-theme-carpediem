@@ -71,7 +71,7 @@ bundleJS({
   );
   hexo.extend.injector.register(
     `body_end`,
-    `<script src="js/${bundleFileName}"></script>
+    `<script src="/js/${bundleFileName}"></script>
      <script>
        document.querySelectorAll("script[data-pug]").forEach(el => el.remove());
      </script>`,

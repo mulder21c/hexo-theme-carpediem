@@ -155,15 +155,15 @@ include ../svg-icon/index
   </span>
   <span class="amor-category__list" role="list">
     <span class="amor-category__content" role="listitem">
-      <span>cate-isger03cqtscru8</span>
+      <span>cate-0c8o1t7ep9bhgi8</span>
     </span>
     <span class="amor-category__separator" aria-hidden="true">&gt;</span>
     <span class="amor-category__content" role="listitem">
-      <span>cate-isge97kbpt1e0m</span>
+      <span>cate-0c8ofbn713spkng</span>
     </span>
     <span class="amor-category__separator" aria-hidden="true">&gt;</span>
     <span class="amor-category__content" role="listitem">
-      <span>cate-isgem2tlkglaop</span>
+      <span>cate-0c8oq8os2jp2pt8</span>
     </span>
   </span>
 </span>
@@ -235,10 +235,10 @@ label(for="no-label-checkbox") checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="Tlo-tbf0he1fi1i58vob86o"
+    id="plx-ccxdlxz6fon7gai37ng"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="Tlo-tbf0he1fi1i58vob86o">
+  <label class="amor-checkbox__label" for="plx-ccxdlxz6fon7gai37ng">
     agree
   </label>
 </span>
@@ -251,11 +251,11 @@ label(for="no-label-checkbox") checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="plp-5gy15xt3q9p6dga6pgbo"
+    id="Plx-pewm73lv80ck8ork6ssg"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="plp-5gy15xt3q9p6dga6pgbo">
+  <label class="amor-checkbox__label" for="Plx-pewm73lv80ck8ork6ssg">
     check label
   </label>
 </span>
@@ -341,11 +341,11 @@ label(for="no-label-switch") switch button
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="Hmc-5ko627jkaauuesvak5sg"
+    id="Aml-fmov9xumaf87lttmfrlo"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="Hmc-5ko627jkaauuesvak5sg">alarm</label>
+  <label class="amor-switch__label" for="Aml-fmov9xumaf87lttmfrlo">alarm</label>
 </span>
 <!-- using block instead of label property-->
 <script async="async" data-pug="data-pug">
@@ -356,11 +356,11 @@ label(for="no-label-switch") switch button
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="umc-hubgkak0okgr3gaccvpo"
+    id="Dml-nl0e4bsfq2klp9gtkd5"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="umc-hubgkak0okgr3gaccvpo">
+  <label class="amor-switch__label" for="Dml-nl0e4bsfq2klp9gtkd5">
     alarmswitch button
   </label>
 </span>
@@ -476,7 +476,7 @@ include ../../utils/util
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
   <time
     class="amor-datetime__time"
-    id="Yn4-uiide8qb3pjh31e7gc"
+    id="fnf-6t4zd6u2bkujj9dpmtg"
     datetime="2022-10-02"
   >
     2022. 10 .02
@@ -487,7 +487,7 @@ include ../../utils/util
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
   <time
     class="amor-datetime__time"
-    id="Un5-vopjdfbnagf0h7v6oslo"
+    id="Jng-7nylo9jc5df2tcnu1uo"
     datetime="2022-10-02"
   >
     2022-10-02
@@ -552,7 +552,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="Qnj-x5zipf2k31n9j4rlgfg"
+    id="ynv-47r6mtuibodjm15cb28"
     name="answer"
     value="1"
   />
@@ -563,7 +563,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="Bnk-8afdtea29nqlt961u3"
+    id="Tnv-f5oqpr30r0qa10sndi88"
     name="answer"
     value="1"
   />
@@ -628,11 +628,11 @@ label(for="no-label") radio button
   <input
     class="amor-radio__control"
     type="radio"
-    id="to4-nhvwkgp1e89lngmfce"
+    id="koh-xnymzbwcsj1olbt71mo"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="to4-nhvwkgp1e89lngmfce">yes</label>
+  <label class="amor-radio__label" for="koh-xnymzbwcsj1olbt71mo">yes</label>
 </span>
 <!-- using block instead of label property-->
 <script async="async" data-pug="data-pug">
@@ -643,11 +643,11 @@ label(for="no-label") radio button
   <input
     class="amor-radio__control"
     type="radio"
-    id="Vo5-46too5emuf60epgoli4g"
+    id="koi-ds5i41xqego74hs6f7o"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="Vo5-46too5emuf60epgoli4g">
+  <label class="amor-radio__label" for="koi-ds5i41xqego74hs6f7o">
     radio button
   </label>
 </span>

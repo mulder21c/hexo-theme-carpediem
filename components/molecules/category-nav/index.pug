@@ -1,0 +1,44 @@
+//- @pugdoc
+  name: categoryNavigation
+  description: create hexo category list
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - | {obejct} [props.options]
+      @see https://hexo.io/ko/docs/helpers#list-categories
+  examples:
+    - |
+      +categoryNavigation()
+
+mixin categoryNavigation(props)
+  -
+    const {prefix} = theme;
+    const defaults = {
+      options: {
+        show_count: false,
+        show_current: true,
+        class: `${prefix}-category-nav`
+      },
+    };
+
+    const {
+      options,
+      id,
+      ...attrs
+    } = {
+      ...defaults,
+      ...(props || {}),
+      options: {
+        ...defaults.options,
+        ...(props?.options || {}),
+      }
+    };
+
+    const uid = id || generateUid();
+
+  nav(
+    class= options.class
+    aria-label= `categories`
+  )&attributes(attrs)
+    | !{listCategories(options)}
