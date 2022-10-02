@@ -12,6 +12,7 @@ import { SlidePanel } from "./lib";
         `[aria-controls="${panel.getAttribute("id")}"]`
       ),
       transitionClassName: `transition`,
+      bodyClassName: `open-nav`,
     });
   });
 })(window, document, document.querySelectorAll(`.slide-panel`));

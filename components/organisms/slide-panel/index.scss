@@ -17,7 +17,21 @@
 
   &__btn-close {
     position: absolute;
-    top: 0;
-    right: 0;
+
+    &--top {
+      top: 3px;
+    }
+
+    &--bottom {
+      bottom: 3px;
+    }
+
+    &--left {
+      left: 3px;
+    }
+
+    &--right {
+      right: 3px;
+    }
   }
 }

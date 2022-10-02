@@ -1,9 +1,41 @@
 include /components/atoms/svg-icon/index.pug
 include /components/atoms/buttons/icon.pug
 
+//- @pugdoc
+  name: slidePanel
+  description: create a sliding panel
+  beforeEach: |
+    include ../../utils/util
+    include ../../atoms/svg-icon/index.pug
+    include ../../atoms/buttons/icon.pug
+  arguments:
+    - {object} props
+    - {string} props.label the label of panel
+    - {boolean} [props.useCloseBtn=true] whether to use the close button
+    - |
+      {string} [props.closeBtnPosition=`top-right`] the position of close button
+    - |
+      {string} [props.tag=`div`]
+      the HTML tag name for the element enclosing the panel
+  slots:
+    - panelBodySlot the slot for body of panel
+  examples:
+    - |
+      +slidePanel({
+        label: 'setting',
+        useCloseBtn: true,
+        closeBtnPosition: `top-right`,
+        tag: 'div',
+        class: '_side',
+        id: 'slide-nav',
+      })
+        +panelBodySlot
+          slide panel
+
 mixin slidePanel(props)
   -
     const slidePanelProps = {
+      label: PropTypes.string.isRequired,
       useCloseBtn: PropTypes.bool,
       closeBtnPosition: PropTypes.oneOf([
         `top-left`,
@@ -21,6 +53,7 @@ mixin slidePanel(props)
     };
 
     const {
+      label,
       useCloseBtn,
       closeBtnPosition,
       tag,
@@ -31,6 +64,7 @@ mixin slidePanel(props)
       ...props,
     };
     slidePanelValidate({
+      label,
       useCloseBtn,
       closeBtnPosition,
       tag,
@@ -38,7 +72,7 @@ mixin slidePanel(props)
 
     const {prefix} = theme;
     const uid = id || generateUid();
-    const [closeBtnPosY] = closeBtnPosition.split(`-`);
+    const [closeBtnPosY, closeBtnPosX] = closeBtnPosition.split(`-`);
 
     let panelBodySlot = null;
 
@@ -53,7 +87,8 @@ mixin slidePanel(props)
     usedComponents.add(`slide-panel`);
   #{tag}.slide-panel(
     id= uid
-    role= region
+    aria-label= label
+    role= `region`
     class= [
       `${prefix}-slide-panel`,
       useCloseBtn && `${prefix}-slide-panel--btn-${closeBtnPosY}`
@@ -61,12 +96,17 @@ mixin slidePanel(props)
     hidden
   )&attributes(attrs)
     block
-    - panelBodySlot();
+    - panelBodySlot && panelBodySlot();
     +iconButton({
       type: 'button',
       size: 'medium',
       appearance: 'ghost',
       icon: 'xmark',
-      label: 'close',
-      class: `closer ${prefix}-slide-panel__btn-close`,
+      label: `close ${label}`,
+      class: [
+        `closer`,
+        `${prefix}-slide-panel__btn-close`,
+        `${prefix}-slide-panel__btn-close--${closeBtnPosY}`,
+        `${prefix}-slide-panel__btn-close--${closeBtnPosX}`,
+      ],
     })

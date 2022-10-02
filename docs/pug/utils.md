@@ -52,8 +52,8 @@ include ./util
 ### output example 
 
 ```html
-<link rel="prev" href="http://example.com///" />
-<link rel="next" href="http://example.com//page/2/" />
+<link rel="prev" href="http://example.com//" />
+<link rel="next" href="http://example.com/page/2/" />
 
 ```
 
@@ -182,45 +182,54 @@ include ./util
           "@name": "Hexo",
           "url": "",
           "copyrightHolder": { "@type": "Person", "name": "John Doe" },
-          "image": { "@type": "imageObject" },
+          "image": {
+            "@type": "imageObject",
+            "url": "https://via.placeholder.com/1600x900.png?text=isgdq1b6c37heno"
+          },
           "author": {
             "@type": "Person",
             "name": "John Doe",
             "url": "https://www.facebook.com/mulder21c"
           },
-          "headline": "Post 7nptkvmdi6n5h9g",
-          "keywords": "tag-7nptcghvif4qboo, tag-7nptkf6kuqvd6j8",
-          "dateCreated": "2022-09-01T10:58:33.917Z"
+          "headline": "Post isgdq1b6c37heno",
+          "keywords": "tag-isgd39bc3plv7u8, tag-isgd66ikg776ed8",
+          "dateCreated": "2022-10-02T07:46:47.949Z"
         },
         {
           "@type": "BlogPosting",
           "@name": "Hexo",
           "url": "",
           "copyrightHolder": { "@type": "Person", "name": "John Doe" },
-          "image": { "@type": "imageObject" },
+          "image": {
+            "@type": "imageObject",
+            "url": "https://via.placeholder.com/1600x900.png?text=isgd3602cpccubg"
+          },
           "author": {
             "@type": "Person",
             "name": "John Doe",
             "url": "https://www.facebook.com/mulder21c"
           },
-          "headline": "Post 7npt7jn7dort0lo",
-          "keywords": "tag-7nptoddhtfkhbfo, tag-7npta69km6q4tso",
-          "dateCreated": "2022-09-01T10:58:33.917Z"
+          "headline": "Post isgd3602cpccubg",
+          "keywords": "tag-isgddbnrc6308dg, tag-isgd1p6un8k1gn",
+          "dateCreated": "2022-10-02T07:46:47.949Z"
         },
         {
           "@type": "BlogPosting",
           "@name": "Hexo",
           "url": "",
           "copyrightHolder": { "@type": "Person", "name": "John Doe" },
-          "image": { "@type": "imageObject" },
+          "image": {
+            "@type": "imageObject",
+            "url": "https://via.placeholder.com/1600x900.png?text=isgdm05mavt6p3"
+          },
           "author": {
             "@type": "Person",
             "name": "John Doe",
             "url": "https://www.facebook.com/mulder21c"
           },
-          "headline": "Post 7npum0tis9r4il",
-          "keywords": "tag-7npulhadmfjf468, tag-7npu050d8v690dg",
-          "dateCreated": "2022-09-01T10:58:33.918Z"
+          "headline": "Post isgdm05mavt6p3",
+          "keywords": "tag-isgdrar47m2b348, tag-isgdksco66qa6mg",
+          "dateCreated": "2022-10-02T07:46:47.949Z"
         }
       ]
     }

@@ -46,76 +46,6 @@ include ../../utils/util
 ---
 
 
-## category
-
-create category indicator
-
-
-### path 
-
-`components/atoms/category/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.category|sequence of category|array||false|
-|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|boolean|`lowest`|true|
-|props.visibleLabel|the visible label for category|string||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../svg-icon/index
-
-+category({
-  categories,
-  visibleLabel: '📂',
-  useLink: false,
-  class: `post-card__meta__item`,
-  level: `all`,
-  separator: `>`
-})
-```
-
-
-### output example 
-
-```html
-<span class="amor-category post-card__meta__item">
-  <span
-    class="amor-category__label"
-    role="img"
-    aria-label="i18n(label.category)"
-  >
-    📂
-  </span>
-  <span class="amor-category__list" role="list">
-    <span class="amor-category__content" role="listitem">
-      <span>cate-7npv1shmmf7ervo</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-7npvuqt431s85l8</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-7npvcvn0rkri0dg</span>
-    </span>
-  </span>
-</span>
-
-```
-
-
----
-
-
 ## iconButton
 
 create icon button element
@@ -167,6 +97,76 @@ include ../../utils/util
     <use xlink:href="/images/solid.svg#tty"></use>
   </svg>
 </button>
+
+```
+
+
+---
+
+
+## category
+
+create category indicator
+
+
+### path 
+
+`components/atoms/category/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.category|sequence of category|array||false|
+|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|boolean|`lowest`|true|
+|props.visibleLabel|the visible label for category|string||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../svg-icon/index
+
++category({
+  categories,
+  visibleLabel: '📂',
+  useLink: false,
+  class: `post-card__meta__item`,
+  level: `all`,
+  separator: `>`
+})
+```
+
+
+### output example 
+
+```html
+<span class="amor-category post-card__meta__item">
+  <span
+    class="amor-category__label"
+    role="img"
+    aria-label="i18n(label.category)"
+  >
+    📂
+  </span>
+  <span class="amor-category__list" role="list">
+    <span class="amor-category__content" role="listitem">
+      <span>cate-isger03cqtscru8</span>
+    </span>
+    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
+    <span class="amor-category__content" role="listitem">
+      <span>cate-isge97kbpt1e0m</span>
+    </span>
+    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
+    <span class="amor-category__content" role="listitem">
+      <span>cate-isgem2tlkglaop</span>
+    </span>
+  </span>
+</span>
 
 ```
 
@@ -227,27 +227,43 @@ label(for="no-label-checkbox") checkbox
 
 ```html
 <!-- basic-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`checkboxes`);
+</script>
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="7o9penrisg82s4g"
+    id="Tlo-tbf0he1fi1i58vob86o"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="7o9penrisg82s4g">agree</label>
+  <label class="amor-checkbox__label" for="Tlo-tbf0he1fi1i58vob86o">
+    agree
+  </label>
 </span>
 <!-- using block instead of label property-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`checkboxes`);
+</script>
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="7o9q49t4g6tgrmg"
+    id="plp-5gy15xt3q9p6dga6pgbo"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="7o9q49t4g6tgrmg">check label</label>
+  <label class="amor-checkbox__label" for="plp-5gy15xt3q9p6dga6pgbo">
+    check label
+  </label>
 </span>
 <!-- using separated label element-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`checkboxes`);
+</script>
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
@@ -264,14 +280,14 @@ label(for="no-label-checkbox") checkbox
 ---
 
 
-## boxyRadio
+## switchButton
 
-create input radio element
+create switch button
 
 
 ### path 
 
-`components/atoms/radios/boxy.pug`
+`components/atoms/checkboxes/switch.pug`
 
 
 ### arguments 
@@ -279,12 +295,13 @@ create input radio element
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.name|name of radio|string||false|
-|props.value|the value of radio|string,number,boolean||false|
-|props.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
-|props.id|the value of radio's id attribute and label's for attribute|string||true|
-|props.checked|the checked state of radio|boolean||true|
-|props.inputAttrs|the attrs for input:radio|object||true|
+|props.name|the value of switch button's name attribute|string||true|
+|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
+|props.checked|the state of switch button|boolean||true|
+|props.value|the value of switch button|undefined||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
+|props.inputAttrs|the attrs for input:checkbox|object||true|
 
 
 
@@ -293,46 +310,71 @@ create input radio element
 ```jade
 include ../../utils/util
 
-// label property
-+boxyRadio({
-  name: 'answer',
-  value: 1,
-  label: 'boxy radio'
+// basic
++switchButton({
+  label: 'alarm',
+  checked: true
 })
-// label from block
-+boxyRadio({
-  name: 'answer',
-  value: 1
+// using block instead of label property
++switchButton({
+  label: 'alarm',
+  checked: true
+}) switch button
+// using separated label element
++switchButton({
+  checked: false,
+  id: `no-label-switch`
 })
-  boxy radio
+label(for="no-label-switch") switch button
 ```
 
 
 ### output example 
 
 ```html
-<!-- label property-->
-<label class="amor-radio-boxy">
+<!-- basic-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`switch`);
+</script>
+<span class="amor-switch">
   <input
-    class="amor-radio-boxy__control"
-    type="radio"
-    id="7oablptbvsvfsj"
-    name="answer"
-    value="1"
+    class="amor-switch__control"
+    type="checkbox"
+    id="Hmc-5ko627jkaauuesvak5sg"
+    checked="checked"
   />
-  <span class="amor-radio-boxy__box">boxy radio</span>
-</label>
-<!-- label from block-->
-<label class="amor-radio-boxy">
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <label class="amor-switch__label" for="Hmc-5ko627jkaauuesvak5sg">alarm</label>
+</span>
+<!-- using block instead of label property-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`switch`);
+</script>
+<span class="amor-switch">
   <input
-    class="amor-radio-boxy__control"
-    type="radio"
-    id="7oacnb6ckrcout8"
-    name="answer"
-    value="1"
+    class="amor-switch__control"
+    type="checkbox"
+    id="umc-hubgkak0okgr3gaccvpo"
+    checked="checked"
   />
-  <span class="amor-radio-boxy__box"><boxy>radio</boxy></span>
-</label>
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <label class="amor-switch__label" for="umc-hubgkak0okgr3gaccvpo">
+    alarmswitch button
+  </label>
+</span>
+<!-- using separated label element-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`switch`);
+</script>
+<span class="amor-switch">
+  <input class="amor-switch__control" type="checkbox" id="no-label-switch" />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <span class="amor-switch__label" aria-hidden="true"></span>
+</span>
+<label for="no-label-switch">switch button</label>
 
 ```
 
@@ -432,17 +474,101 @@ include ../../utils/util
 <!-- simple-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="7oberhd9b4epqjo" datetime="2022-09-01">
-    2022. 09 .01
+  <time
+    class="amor-datetime__time"
+    id="Yn4-uiide8qb3pjh31e7gc"
+    datetime="2022-10-02"
+  >
+    2022. 10 .02
   </time>
 </span>
 <!-- explicit format-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="7obgj690vvg8oro" datetime="2022-09-01">
-    2022-09-01
+  <time
+    class="amor-datetime__time"
+    id="Un5-vopjdfbnagf0h7v6oslo"
+    datetime="2022-10-02"
+  >
+    2022-10-02
   </time>
 </span>
+
+```
+
+
+---
+
+
+## boxyRadio
+
+create input radio element
+
+
+### path 
+
+`components/atoms/radios/boxy.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|name of radio|string||false|
+|props.value|the value of radio|string,number,boolean||false|
+|props.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
+|props.id|the value of radio's id attribute and label's for attribute|string||true|
+|props.checked|the checked state of radio|boolean||true|
+|props.inputAttrs|the attrs for input:radio|object||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// label property
++boxyRadio({
+  name: 'answer',
+  value: 1,
+  label: 'boxy radio'
+})
+// label from block
++boxyRadio({
+  name: 'answer',
+  value: 1
+})
+  boxy radio
+```
+
+
+### output example 
+
+```html
+<!-- label property-->
+<label class="amor-radio-boxy">
+  <input
+    class="amor-radio-boxy__control"
+    type="radio"
+    id="Qnj-x5zipf2k31n9j4rlgfg"
+    name="answer"
+    value="1"
+  />
+  <span class="amor-radio-boxy__box">boxy radio</span>
+</label>
+<!-- label from block-->
+<label class="amor-radio-boxy">
+  <input
+    class="amor-radio-boxy__control"
+    type="radio"
+    id="Bnk-8afdtea29nqlt961u3"
+    name="answer"
+    value="1"
+  />
+  <span class="amor-radio-boxy__box"><boxy>radio</boxy></span>
+</label>
 
 ```
 
@@ -494,28 +620,42 @@ label(for="no-label") radio button
 
 ```html
 <!-- basic-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`radio`);
+</script>
 <span class="amor-radio">
   <input
     class="amor-radio__control"
     type="radio"
-    id="7oc6qf0pmb0i8s"
+    id="to4-nhvwkgp1e89lngmfce"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="7oc6qf0pmb0i8s">yes</label>
+  <label class="amor-radio__label" for="to4-nhvwkgp1e89lngmfce">yes</label>
 </span>
 <!-- using block instead of label property-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`radio`);
+</script>
 <span class="amor-radio">
   <input
     class="amor-radio__control"
     type="radio"
-    id="7oc6gq1f36d2g2g"
+    id="Vo5-46too5emuf60epgoli4g"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="7oc6gq1f36d2g2g">radio button</label>
+  <label class="amor-radio__label" for="Vo5-46too5emuf60epgoli4g">
+    radio button
+  </label>
 </span>
 <!-- using separated label element-->
+<script async="async" data-pug="data-pug">
+  window.usedComponents = window.usedComponents || new Set();
+  usedComponents.add(`radio`);
+</script>
 <span class="amor-radio">
   <input
     class="amor-radio__control"
@@ -569,96 +709,6 @@ include ../../utils/util
 <svg class="amor-svg-icon">
   <use xlink:href="/images/solid.svg#thumbs-up"></use>
 </svg>
-
-```
-
-
----
-
-
-## switchButton
-
-create switch button
-
-
-### path 
-
-`components/atoms/checkboxes/switch.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|the value of switch button's name attribute|string||true|
-|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
-|props.checked|the state of switch button|boolean||true|
-|props.value|the value of switch button|undefined||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
-|props.inputAttrs|the attrs for input:checkbox|object||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// basic
-+switchButton({
-  label: 'alarm',
-  checked: true
-})
-// using block instead of label property
-+switchButton({
-  label: 'alarm',
-  checked: true
-}) switch button
-// using separated label element
-+switchButton({
-  checked: false,
-  id: `no-label-switch`
-})
-label(for="no-label-switch") switch button
-```
-
-
-### output example 
-
-```html
-<!-- basic-->
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="7od31esf1ffnc48"
-    checked="checked"
-  />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="7od31esf1ffnc48">alarm</label>
-</span>
-<!-- using block instead of label property-->
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="7od38t1cf57h018"
-    checked="checked"
-  />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="7od38t1cf57h018">
-    alarmswitch button
-  </label>
-</span>
-<!-- using separated label element-->
-<span class="amor-switch">
-  <input class="amor-switch__control" type="checkbox" id="no-label-switch" />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <span class="amor-switch__label" aria-hidden="true"></span>
-</span>
-<label for="no-label-switch">switch button</label>
 
 ```
 

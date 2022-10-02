@@ -11,12 +11,13 @@ export class SlidePanel {
    * @param {HTMLElement} options.el slide panel element
    * @param {HTMLElement} options.trigger the element that triggers a panel's visibility
    * @param {string} options.transitionClassName the class name for animation
+   * @param {string} options.bodyClassName the class name to insert/remove when toggle panel
    */
-  constructor({ el, trigger, transitionClassName }) {
+  constructor({ el, trigger, transitionClassName, bodyClassName }) {
     this.el = el;
     this.trigger = trigger;
     this.transitionClassName = transitionClassName;
-    this.firedByKeyEvent = null;
+    this.bodyClassName = bodyClassName;
     this.init();
   }
 
@@ -40,13 +41,13 @@ export class SlidePanel {
       element: this.el,
       visibleClass: `open`,
       onTranstionBefore: () => {
-        document.body.classList.add(`open-panel`);
-        if (this.firedByKeyEvent)
-          this.firstTabbable && this.firstTabbable.focus();
+        this.bodyClassName && document.body.classList.add(this.bodyClassName);
+        this.firstTabbable && this.firstTabbable.focus();
       },
       onTransitionEnd: () => {
-        document.body.classList.remove(`open-panel`);
-        if (this.firedByKeyEvent) this.trigger.focus();
+        this.bodyClassName &&
+          document.body.classList.remove(this.bodyClassName);
+        this.trigger && this.trigger.focus();
       },
     });
     this.bindEvent();
@@ -55,8 +56,7 @@ export class SlidePanel {
   /**
    * toggle visibility state for panel
    */
-  toggleState(event) {
-    this.firedByKeyEvent = !event.detail; // 0: keyboard, 1: pointer
+  toggleState() {
     this.state = !this.state;
   }
 
