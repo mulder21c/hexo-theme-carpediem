@@ -20,6 +20,7 @@
       relative to the visual indicator<br>
       One of `'top'`, `'left'`, `'right'`, `'bottom'`
     - {string} [props.labelClassName] the class name for label element
+    - {object} [props.inputAttrs] the attrs for input:radio
   examples:
     - |
       // basic
@@ -50,10 +51,12 @@ mixin radio(props)
         `bottom`,
       ]),
       labelClassName: PropTypes.string,
+      inputAttrs: PropTypes.object,
     };
     const radioValidate = validateProps(radioProps);
     const defaults = {
-      labelPosition: `right`
+      labelPosition: `right`,
+      inputAttrs: {},
     };
     const {
       checked,
@@ -64,6 +67,7 @@ mixin radio(props)
       value,
       labelClassName: lblClassName,
       class: cn,
+      inputAttrs,
       ...attrs
     } = {
       ...defaults,
@@ -76,7 +80,8 @@ mixin radio(props)
       name,
       value,
       labelPosition,
-      labelClassName: lblClassName
+      labelClassName: lblClassName,
+      inputAttrs,
     });
 
     const {prefix} = theme;
@@ -93,7 +98,7 @@ mixin radio(props)
   script(
     async
     data-pug
-  ).
+  )&attributes(attrs).
     window.usedComponents = window.usedComponents || new Set();
     usedComponents.add(`radio`);
   span(
@@ -109,7 +114,7 @@ mixin radio(props)
       value= value
       checked= checked
       class= `${prefix}-radio__control`
-    )&attributes(attrs)
+    )&attributes(inputAttrs)
     if (label || block)
       label(
         for= uid

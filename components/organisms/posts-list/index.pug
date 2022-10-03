@@ -39,7 +39,6 @@ mixin postsList(props)
     postsListValidate({posts, headingProp, headingTitle});
 
     const {prefix} = theme;
-    const uid = id || generateUid();
     const headingId = generateUid();
 
     const _headingProp = {
@@ -48,7 +47,7 @@ mixin postsList(props)
       class: `${prefix}-posts__heading`
     };
 
-  section(aria-labelledby= headingId)
+  section(aria-labelledby= headingId)&attributes(attrs)
     +heading(_headingProp)
       = _p(`label.posts.recently`)
     ol(class=`${prefix}-posts`)

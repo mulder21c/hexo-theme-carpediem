@@ -90,7 +90,7 @@ mixin fieldset(props)
       `${prefix}-field--${direction}`,
       { [`${prefix}-field--${alignItem}`]: direction == `row` }
     ]
-  )
+  )&attributes(attrs)
     block
     div(
       id= uid

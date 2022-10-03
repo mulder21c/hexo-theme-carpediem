@@ -24,7 +24,6 @@ mixin categoryNavigation(props)
 
     const {
       options,
-      id,
       ...attrs
     } = {
       ...defaults,
@@ -34,8 +33,6 @@ mixin categoryNavigation(props)
         ...(props?.options || {}),
       }
     };
-
-    const uid = id || generateUid();
 
   nav(
     class= options.class

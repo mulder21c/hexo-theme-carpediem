@@ -71,10 +71,7 @@ mixin pagination(props)
       labelRef,
     });
 
-    const uid = id || generateUid();
-
   nav(
-    id= uid
     class= `${prefix}-pagination`
     aria-labelledby= labelRef || null
   )&attributes(attrs)

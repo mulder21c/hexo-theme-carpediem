@@ -78,7 +78,7 @@ mixin accordion(props)
     id= uid
     class= `${prefix}-accordion`
     data-init-activate= activatedIndex
-  )
+  )&attributes(attrs)
     block
     each _, idx in accordionHeadingSlots
       -

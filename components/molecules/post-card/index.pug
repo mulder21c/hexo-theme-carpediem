@@ -63,7 +63,7 @@ mixin postCard(props)
       `${prefix}-post-card`,
       {[`${prefix}-post-card--link`]: isLink}
     ]
-  )
+  )&attributes(attrs)
     if (thumb)
       img(
         src= thumb

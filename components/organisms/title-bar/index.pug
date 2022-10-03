@@ -29,7 +29,6 @@ mixin titleBar(props)
     titleBarValidate({title, useLink});
 
     const {prefix} = theme;
-    const uid = id || generateUid();
 
     let beforeSlot = null;
     let afterSlot = null;
@@ -41,7 +40,6 @@ mixin titleBar(props)
     - afterSlot = block;
 
   div(
-    id= uid
     class= `${prefix}-title-bar`
   )&attributes(attrs)
     block

@@ -21,6 +21,7 @@
       relative to the visual indicator<br>
       One of `'top'`, `'left'`, `'right'`, `'bottom'`
     - {string} [props.labelClassName] the class name for label element
+    - {object} [props.inputAttrs] the attrs for input:checkbox
   examples:
     - |
       // basic
@@ -59,11 +60,13 @@ mixin checkbox(props)
         `bottom`,
       ]),
       labelClassName: PropTypes.string,
+      inputAttrs: PropTypes.object,
     };
     const chkValidate = validateProps(chkProps);
     const defaults = {
       labelPosition: `right`,
-      labelClassName: null
+      labelClassName: null,
+      inputAttrs: {},
     };
     const {
       checked,
@@ -74,6 +77,7 @@ mixin checkbox(props)
       value,
       labelClassName: lblClassName,
       class: cn,
+      inputAttrs,
       ...attrs
     } = {
       ...defaults,
@@ -86,7 +90,8 @@ mixin checkbox(props)
       name,
       value,
       labelPosition,
-      labelClassName: lblClassName
+      labelClassName: lblClassName,
+      inputAttrs,
     });
 
     const {prefix} = theme;
@@ -110,7 +115,7 @@ mixin checkbox(props)
       `${prefix}-checkbox`,
       ...(Array.isArray(cn) ? cn : [cn])
     ]
-  )
+  )&attributes(attrs)
     input(
       type= `checkbox`
       id= uid
@@ -118,7 +123,7 @@ mixin checkbox(props)
       value= value
       checked= checked
       class= `${prefix}-checkbox__control`
-    )&attributes(attrs)
+    )&attributes(inputAttrs)
     if (label || block)
       label(
         for= uid
