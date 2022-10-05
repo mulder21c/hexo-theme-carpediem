@@ -15,6 +15,7 @@ const getIconCategory = require("./scripts/helpers/get-icon-category");
 const stripHTML = require("./scripts/helpers/strip-html");
 const truncate = require("./scripts/helpers/truncate");
 const paginator = require("./scripts/helpers/paginator");
+const listCategories = require("./scripts/helpers/list-categories");
 const page = require("./mock");
 const [post] = require("./mock/posts")({
   domain: `http://example.com`,
@@ -29,15 +30,18 @@ const theme = jsYml.load(
   fs.readFileSync(path.resolve(__dirname, `./_config.yml`), `utf8`)
 );
 const domain = config.url || `http://example.com`;
+const categories = categoryGenerator({ count: 3, domain });
 
 const locals = {
+  isMock: true,
   page,
   post,
-  categories: categoryGenerator({ count: 3, domain }),
+  categories,
   config,
   theme,
   site: {
     propTypes,
+    categories,
   },
   url: `URL`,
   is_home: () => true,
@@ -64,9 +68,11 @@ const locals = {
   _p: (str) => `i18n(${str})`,
   truncate,
   paginator,
+  listCategories,
 };
 locals.fullUrl = locals.fullUrl.bind(locals);
 locals.paginator = locals.paginator.bind(locals);
+locals.listCategories = locals.listCategories.bind(locals);
 
 pugDocGen({
   input: path.resolve(rootPath, "./components/atoms/**/*.pug"),
