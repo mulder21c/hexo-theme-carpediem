@@ -53,14 +53,18 @@ include ../../atoms/svg-icon/index.pug
   window.usedComponents = window.usedComponents || new Set();
   usedComponents.add(`accordion`);
 </script>
-<div class="amor-accordion" id="Wt7-nyxkk2bzpis7e83a4so" data-init-activate="1">
+<div
+  class="amor-accordion"
+  id="x1v6-s23opkf9mf9m5lph2t8"
+  data-init-activate="1"
+>
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="Ct7-u3wk4giynoglqo1hcoug"
+      id="i1v7-0u731wfihrgfea2fnb"
       aria-expanded="false"
-      aria-controls="lt7-u7x1w6jvttmju9smttg"
+      aria-controls="h1v7-11l0v3yd4haos7rs2v8"
     >
       heading 1
       <svg
@@ -74,9 +78,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="lt7-u7x1w6jvttmju9smttg"
+    id="h1v7-11l0v3yd4haos7rs2v8"
     role="region"
-    aria-labelledby="Ct7-u3wk4giynoglqo1hcoug"
+    aria-labelledby="i1v7-0u731wfihrgfea2fnb"
     hidden="hidden"
   >
     panel 1
@@ -85,9 +89,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="At8-b30jj6nhrdadgq1l12"
+      id="n1v7-o3a70z08mgpph9u9nv"
       aria-expanded="true"
-      aria-controls="st8-b8qfodqsn2kb2sc5noo"
+      aria-controls="b1v7-ob24q14wi8qhigpm2vg"
     >
       heading 2
       <svg
@@ -101,9 +105,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="st8-b8qfodqsn2kb2sc5noo"
+    id="b1v7-ob24q14wi8qhigpm2vg"
     role="region"
-    aria-labelledby="At8-b30jj6nhrdadgq1l12"
+    aria-labelledby="n1v7-o3a70z08mgpph9u9nv"
   >
     panel 2
   </div>
@@ -111,9 +115,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="dt8-n5d7h3bcn4q7m9q14mo"
+      id="M1v7-xjve417tta27934cjfg"
       aria-expanded="false"
-      aria-controls="Kt8-nan6vflw7bri6pbg0io"
+      aria-controls="J1v7-xqhc5jj4sqf9ogqs858"
     >
       heading 3
       <svg
@@ -127,9 +131,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="Kt8-nan6vflw7bri6pbg0io"
+    id="J1v7-xqhc5jj4sqf9ogqs858"
     role="region"
-    aria-labelledby="dt8-n5d7h3bcn4q7m9q14mo"
+    aria-labelledby="M1v7-xjve417tta27934cjfg"
     hidden="hidden"
   >
     panel 3
@@ -225,19 +229,15 @@ include ../../molecules/pagination/index
 ### output example 
 
 ```html
-<section aria-labelledby="Juh-rd7zfx7nh6kmj858chf">
+<section aria-labelledby="O1ws-3qiw52thog739letmng">
   <h1
     class="amor-heading--level-1 sr-only amor-posts__heading"
-    id="Juh-rd7zfx7nh6kmj858chf"
+    id="O1ws-3qiw52thog739letmng"
   >
     i18n(label.posts.recently)
   </h1>
   <ol class="amor-posts"></ol>
-  <nav
-    class="amor-pagination"
-    id="Jui-acga4gr5es6fhftd9kh"
-    aria-labelledby="Juh-rd7zfx7nh6kmj858chf"
-  >
+  <nav class="amor-pagination" aria-labelledby="O1ws-3qiw52thog739letmng">
     <a
       class="amor-pagination__item amor-pagination__item--current"
       href="http://example.com/"
@@ -248,14 +248,14 @@ include ../../molecules/pagination/index
     </a>
     <a
       class="amor-pagination__item"
-      href="http://example.com/page/2"
+      href="http://example.com//page/2"
       aria-label="i18n(label.page.default)"
     >
       2
     </a>
     <a
       class="amor-pagination__item"
-      href="http://example.com/page/3"
+      href="http://example.com//page/3"
       aria-label="i18n(label.page.default)"
     >
       3
@@ -263,7 +263,7 @@ include ../../molecules/pagination/index
     <a
       class="amor-pagination__next"
       rel="next"
-      href="http://example.com/page/2"
+      href="http://example.com//page/2"
     >
       <svg role="img" aria-label="i18n(label.page.next)">
         <use xlink:href="/images/solid.svg#angle-right"></use>
@@ -402,7 +402,7 @@ include ../../utils/util
 
 ```html
 <!-- without slot-->
-<div class="amor-title-bar" id="uva-4ij8032ispuafhbi91o">
+<div class="amor-title-bar">
   <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
 </div>
 

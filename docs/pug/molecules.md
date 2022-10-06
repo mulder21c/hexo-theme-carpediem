@@ -1,5 +1,76 @@
 # Pug Documentation 
 
+## categoryNavigation
+
+create hexo category list
+
+
+### path 
+
+`components/molecules/category-nav/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.options|@see https://hexo.io/ko/docs/helpers#list-categories|object||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++categoryNavigation()
+```
+
+
+### output example 
+
+```html
+<nav class="amor-category-nav" aria-label="categories">
+  <ul class="amor-category-nav__list">
+    <li class="amor-category-nav__list__item">
+      <a
+        href="http://example.com/categories/cate-aajvpr77ts3qcio"
+        class="amor-category-nav__list__link"
+        false
+      >
+        cate-aajvpr77ts3qcio
+      </a>
+    </li>
+
+    <li class="amor-category-nav__list__item">
+      <a
+        href="http://example.com/categories/cate-aajv829k5jb9qp"
+        class="amor-category-nav__list__link"
+        false
+      >
+        cate-aajv829k5jb9qp
+      </a>
+    </li>
+
+    <li class="amor-category-nav__list__item">
+      <a
+        href="http://example.com/categories/cate-aajvtugglgvose"
+        class="amor-category-nav__list__link"
+        false
+      >
+        cate-aajvtugglgvose
+      </a>
+    </li>
+  </ul>
+</nav>
+
+```
+
+
+---
+
+
 ## fieldset
 
 create group containing label and body
@@ -55,11 +126,11 @@ include ../../utils/util
 <div
   class="amor-field amor-field--row amor-field--start"
   role="group"
-  aria-labelledby="jpp-eu56djoj9lh2uk7vk3o8"
+  aria-labelledby="e1ye-mk2ndvwi4odldoum0ug"
 >
   <div
     class="amor-field__label amor-field__label--30"
-    id="jpp-eu56djoj9lh2uk7vk3o8"
+    id="e1ye-mk2ndvwi4odldoum0ug"
   >
     fieldset title
   </div>
@@ -69,89 +140,16 @@ include ../../utils/util
 <div
   class="amor-field amor-field--column"
   role="group"
-  aria-labelledby="gpp-rdovgnbmge90mpvej5eo"
+  aria-labelledby="J1yf-0d384dr1fq2btqgt5ng"
 >
   <div
     class="amor-field__label amor-field__label--30"
-    id="gpp-rdovgnbmge90mpvej5eo"
+    id="J1yf-0d384dr1fq2btqgt5ng"
   >
     fieldset title
   </div>
   <div class="amor-field__body"><p>fieldset body</p></div>
 </div>
-
-```
-
-
----
-
-
-## pagination
-
-create pagination component
-
-
-### path 
-
-`components/molecules/pagination/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.options|paginator's option of hexo @see https://hexo.io/ko/docs/helpers#paginator|object||false|
-|props.labelRef|the id of related content|string||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+pagination({
-  options: {
-    base: `/`,
-    format: `/page/%d`,
-  }
-})
-```
-
-
-### output example 
-
-```html
-<nav class="amor-pagination" id="Iq1-i5eu2rbp7ssacau3h8f8">
-  <a
-    class="amor-pagination__item amor-pagination__item--current"
-    href="undefined/"
-    aria-current="page"
-    aria-label="i18n(label.page.default)"
-  >
-    1
-  </a>
-  <a
-    class="amor-pagination__item"
-    href="//page/2"
-    aria-label="i18n(label.page.default)"
-  >
-    2
-  </a>
-  <a
-    class="amor-pagination__item"
-    href="//page/3"
-    aria-label="i18n(label.page.default)"
-  >
-    3
-  </a>
-  <a class="amor-pagination__next" rel="next" href="//page/2">
-    <svg role="img" aria-label="i18n(label.page.next)">
-      <use xlink:href="/images/solid.svg#angle-right"></use>
-    </svg>
-  </a>
-</nav>
 
 ```
 
@@ -200,18 +198,18 @@ include ../../atoms/category/index
 <div class="amor-post-card amor-post-card--link">
   <img
     class="amor-post-card__thumb"
-    src="https://via.placeholder.com/320x180.png?text=0c8m4s56m74ke4"
+    src="https://via.placeholder.com/320x180.png?text=aajubq416t4m61"
     alt=""
     loading="lazy"
     role="none"
   />
   <a
     class="amor-post-card__heading"
-    id="er4-olhaikwdruhj582ba8l"
-    href="http://example.com/post-0c8m4s56m74ke4/"
-    aria-describedby="Ir4-opbuz1ywo8bscc0kj038"
+    id="y1zi-doly1ibb52tofgfrf6g"
+    href="http://example.com/post-aajubq416t4m61/"
+    aria-describedby="c1zi-dtnwjl7lcvcrqi5kpo"
   >
-    Post 0c8m4s56m74ke4
+    Post aajubq416t4m61
   </a>
   <div class="amor-post-card__meta">
     <span class="amor-datetime amor-post-card__meta__item">
@@ -224,10 +222,10 @@ include ../../atoms/category/index
       </span>
       <time
         class="amor-datetime__time"
-        id="gr4-znxyj6b6npul7889nn3g"
-        datetime="2022-10-02"
+        id="a1zi-qzqo2r9bdm29h110te"
+        datetime="2022-10-06"
       >
-        2022. 10 .02
+        2022. 10 .06
       </time>
     </span>
     <span class="amor-category amor-post-card__meta__item">
@@ -240,7 +238,7 @@ include ../../atoms/category/index
       </span>
       <span class="amor-category__list" role="list">
         <span class="amor-category__content" role="listitem">
-          <span>cate-0c8ndud50k3lob8</span>
+          <span>cate-aajubodd7lfl3f</span>
         </span>
         <span class="amor-category__separator" aria-hidden="true">
           <svg class="amor-svg-icon">
@@ -248,17 +246,212 @@ include ../../atoms/category/index
           </svg>
         </span>
         <span class="amor-category__content" role="listitem">
-          <span>cate-0c8n69m50jri4o8</span>
+          <span>cate-aajut3ks8fuirag</span>
         </span>
       </span>
     </span>
   </div>
-  <p class="amor-post-card__content" id="Ir4-opbuz1ywo8bscc0kj038">
-    Commodo qui reprehenderit nisi officia pariatur consequat. Magna eu mollit
-    ad magna anim officia labore reprehenderit nisi sit et sunt cupidatat amet.
-    Nulla occaecat excepteur laboris excepteur aute incididunt. Proident quis
-    laborum aute quis ex eu non consectetur ex ut id est. Ad eu voluptate
+  <p class="amor-post-card__content" id="c1zi-dtnwjl7lcvcrqi5kpo">
+    Aute dolor sunt in irure Lorem adipisicing velit et pariatur in dolor
+    voluptate ullamco cillum. Adipisicing ut aute et ad consequat aliqua fugiat
+    culpa. Sint qui culpa nostrud duis aliqua qui adipisicing qui aute. Dolor
+    qui dolore minim id tempor velit nostrud. Eu consequat commodo id ea
   </p>
+</div>
+
+```
+
+
+---
+
+
+## radioSlider
+
+create radio group component
+
+
+### path 
+
+`components/molecules/radio-group/slider.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|attribute of radio|string||false|
+|props.options|the array that consists of options for radio component|array||false|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`|string|`bottom`|true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|radioSliderLabelSlot|the slot for label.|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/radios/default.pug
+
+// basic
++radioSlider({
+  name: `size`,
+  labelPosition: `bottom`,
+  options: [
+    { label: `small`, value: `small`, },
+    { label: `medium`, value: `medium`, },
+    { label: `large`, value: `large`, },
+  ],
+})
+// label with slot
++radioSlider({
+  name: `size2`,
+  labelPosition: `bottom`,
+  options: [
+    { value: `small`, },
+    { value: `medium`, },
+    { value: `large`, },
+  ],
+})
+  +radioSliderLabelSlot small
+  +radioSliderLabelSlot medium
+  +radioSliderLabelSlot large
+```
+
+
+### output example 
+
+```html
+<!-- basic-->
+<div class="amor-radio-slider">
+  <script async="async" data-pug="data-pug">
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`radio`);
+  </script>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="C20g-xmq19mbwddlh06tm9"
+      name="size"
+      value="small"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="C20g-xmq19mbwddlh06tm9"
+    >
+      small
+    </label>
+  </span>
+  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
+  <script async="async" data-pug="data-pug">
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`radio`);
+  </script>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="a20h-n7x4bire6htrbft9lsg"
+      name="size"
+      value="medium"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="a20h-n7x4bire6htrbft9lsg"
+    >
+      medium
+    </label>
+  </span>
+  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
+  <script async="async" data-pug="data-pug">
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`radio`);
+  </script>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="i20h-rubr0ialeqmj3kq2cfo"
+      name="size"
+      value="large"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="i20h-rubr0ialeqmj3kq2cfo"
+    >
+      large
+    </label>
+  </span>
+</div>
+<!-- label with slot-->
+<div class="amor-radio-slider">
+  <script async="async" data-pug="data-pug">
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`radio`);
+  </script>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="M20i-0mxt7bs7hsarn214i0g"
+      name="size2"
+      value="small"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="M20i-0mxt7bs7hsarn214i0g"
+    >
+      small
+    </label>
+  </span>
+  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
+  <script async="async" data-pug="data-pug">
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`radio`);
+  </script>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="U20i-5xg8r6wz1ueubimf7k8"
+      name="size2"
+      value="medium"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="U20i-5xg8r6wz1ueubimf7k8"
+    >
+      medium
+    </label>
+  </span>
+  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
+  <script async="async" data-pug="data-pug">
+    window.usedComponents = window.usedComponents || new Set();
+    usedComponents.add(`radio`);
+  </script>
+  <span class="amor-radio amor-radio-slider__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="O20i-eoibekyzr0rf284s44o"
+      name="size2"
+      value="large"
+    />
+    <label
+      class="amor-radio__label amor-radio__label--column"
+      for="O20i-eoibekyzr0rf284s44o"
+    >
+      large
+    </label>
+  </span>
 </div>
 
 ```
@@ -334,7 +527,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="erk-lwbjdriybcv3g032t08"
+      id="f20v-d2kskim9q1ijuagj44o"
       name="size"
       value="small"
     />
@@ -344,7 +537,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="Drk-tobdp7vco80t705be278"
+      id="y20v-jqgthoriatndpo5488o"
       name="size"
       value="medium"
     />
@@ -354,7 +547,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="srk-vzgd2eperr7jot1b9e0o"
+      id="E20v-mlvyuj2chvamr7dhp4g"
       name="size"
       value="large"
     />
@@ -367,7 +560,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="drl-0u1mjbgq6jfhnr9j0l28"
+      id="P20v-u8n1ftwzvtqgcvdof48"
       name="size2"
       value="small"
     />
@@ -377,7 +570,7 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="Xrl-4mpvhciuh5ff1n1hd9l8"
+      id="t20w-39t13eqtaq4gtq4758o"
       name="size2"
       value="medium"
     />
@@ -387,13 +580,86 @@ include ../../atoms/radios/boxy.pug
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="Url-8t5ucg49f9ljll3e5tp"
+      id="B20w-b24q19yipqss685gmto"
       name="size2"
       value="large"
     />
     <span class="amor-radio-boxy__box">large 3</span>
   </label>
 </div>
+
+```
+
+
+---
+
+
+## pagination
+
+create pagination component
+
+
+### path 
+
+`components/molecules/pagination/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.options|paginator's option of hexo @see https://hexo.io/ko/docs/helpers#paginator|object||false|
+|props.labelRef|the id of related content|string||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++pagination({
+  options: {
+    base: `/`,
+    format: `/page/%d`,
+  }
+})
+```
+
+
+### output example 
+
+```html
+<nav class="amor-pagination">
+  <a
+    class="amor-pagination__item amor-pagination__item--current"
+    href="undefined/"
+    aria-current="page"
+    aria-label="i18n(label.page.default)"
+  >
+    1
+  </a>
+  <a
+    class="amor-pagination__item"
+    href="//page/2"
+    aria-label="i18n(label.page.default)"
+  >
+    2
+  </a>
+  <a
+    class="amor-pagination__item"
+    href="//page/3"
+    aria-label="i18n(label.page.default)"
+  >
+    3
+  </a>
+  <a class="amor-pagination__next" rel="next" href="//page/2">
+    <svg role="img" aria-label="i18n(label.page.next)">
+      <use xlink:href="/images/solid.svg#angle-right"></use>
+    </svg>
+  </a>
+</nav>
 
 ```
 
@@ -480,11 +746,11 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="fs2-1ihgqi53iefb3ahdlo08"
+      id="W21l-li8alj7gji9a0vl7afg"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="fs2-1ihgqi53iefb3ahdlo08">
+    <label class="amor-radio__label" for="W21l-li8alj7gji9a0vl7afg">
       designer
     </label>
   </span>
@@ -496,11 +762,11 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="os2-fuvvhlgt976rnp0lk9o"
+      id="f21l-xjqq5fcqvlsqrs443f"
       name="job"
       value="publisher"
     />
-    <label class="amor-radio__label" for="os2-fuvvhlgt976rnp0lk9o">
+    <label class="amor-radio__label" for="f21l-xjqq5fcqvlsqrs443f">
       publisher
     </label>
   </span>
@@ -512,11 +778,11 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="Ks2-iznoyc34f1pgkdpparko"
+      id="b21m-146c3gbs82np0sflu28"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="Ks2-iznoyc34f1pgkdpparko">
+    <label class="amor-radio__label" for="b21m-146c3gbs82np0sflu28">
       frontend developer
     </label>
   </span>
@@ -528,11 +794,11 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="Ks2-nd2zwrqh9l517a9laomo"
+      id="Y21m-9j1ucspvtmadbadap0o"
       name="job"
       value="devops"
     />
-    <label class="amor-radio__label" for="Ks2-nd2zwrqh9l517a9laomo">
+    <label class="amor-radio__label" for="Y21m-9j1ucspvtmadbadap0o">
       devops
     </label>
   </span>
@@ -544,11 +810,11 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="Vs2-pjn6vflvp1tf4r6pmmh8"
+      id="Q21m-f1q7hkl3mjvcsb1hlag"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="Vs2-pjn6vflvp1tf4r6pmmh8">
+    <label class="amor-radio__label" for="Q21m-f1q7hkl3mjvcsb1hlag">
       iOS developer
     </label>
   </span>
@@ -563,11 +829,11 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="ks2-t0mda3y9muv90p4vfgso"
+      id="F21m-k76ojcu67179qane12o"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="ks2-t0mda3y9muv90p4vfgso">
+    <label class="amor-radio__label" for="F21m-k76ojcu67179qane12o">
       웹 디자이너
     </label>
   </span>
@@ -579,11 +845,11 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="as2-wzljvltmetia86fk6cv"
+      id="a21m-qb8vc11zkltdkfko9b8"
       name="job2"
       value="publisher"
     />
-    <label class="amor-radio__label" for="as2-wzljvltmetia86fk6cv">
+    <label class="amor-radio__label" for="a21m-qb8vc11zkltdkfko9b8">
       웹 퍼블리셔
     </label>
   </span>
@@ -595,207 +861,12 @@ include ../../atoms/radios/default.pug
     <input
       class="amor-radio__control"
       type="radio"
-      id="Is2-zabxiy78ev6nlcui3os8"
+      id="n21m-til95pahosboqg6kapo"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="Is2-zabxiy78ev6nlcui3os8">
+    <label class="amor-radio__label" for="n21m-til95pahosboqg6kapo">
       프론트엔드 개발자
-    </label>
-  </span>
-</div>
-
-```
-
-
----
-
-
-## radioSlider
-
-create radio group component
-
-
-### path 
-
-`components/molecules/radio-group/slider.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|attribute of radio|string||false|
-|props.options|the array that consists of options for radio component|array||false|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`|string|`bottom`|true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|radioSliderLabelSlot|the slot for label.|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../../atoms/radios/default.pug
-
-// basic
-+radioSlider({
-  name: `size`,
-  labelPosition: `bottom`,
-  options: [
-    { label: `small`, value: `small`, },
-    { label: `medium`, value: `medium`, },
-    { label: `large`, value: `large`, },
-  ],
-})
-// label with slot
-+radioSlider({
-  name: `size2`,
-  labelPosition: `bottom`,
-  options: [
-    { value: `small`, },
-    { value: `medium`, },
-    { value: `large`, },
-  ],
-})
-  +radioSliderLabelSlot small
-  +radioSliderLabelSlot medium
-  +radioSliderLabelSlot large
-```
-
-
-### output example 
-
-```html
-<!-- basic-->
-<div class="amor-radio-slider">
-  <script async="async" data-pug="data-pug">
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`radio`);
-  </script>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="isk-ckrew0kbar4k03jaf2g"
-      name="size"
-      value="small"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="isk-ckrew0kbar4k03jaf2g"
-    >
-      small
-    </label>
-  </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <script async="async" data-pug="data-pug">
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`radio`);
-  </script>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="qsk-q1csi7hgmv9hgpm5cio"
-      name="size"
-      value="medium"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="qsk-q1csi7hgmv9hgpm5cio"
-    >
-      medium
-    </label>
-  </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <script async="async" data-pug="data-pug">
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`radio`);
-  </script>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="ksk-ter76bhlckfc8ah1pqi8"
-      name="size"
-      value="large"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="ksk-ter76bhlckfc8ah1pqi8"
-    >
-      large
-    </label>
-  </span>
-</div>
-<!-- label with slot-->
-<div class="amor-radio-slider">
-  <script async="async" data-pug="data-pug">
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`radio`);
-  </script>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="Psk-yvscvgag6sfmffh4qig"
-      name="size2"
-      value="small"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="Psk-yvscvgag6sfmffh4qig"
-    >
-      small
-    </label>
-  </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <script async="async" data-pug="data-pug">
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`radio`);
-  </script>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="asl-2izmhaad0et3urmmvr"
-      name="size2"
-      value="medium"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="asl-2izmhaad0et3urmmvr"
-    >
-      medium
-    </label>
-  </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <script async="async" data-pug="data-pug">
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`radio`);
-  </script>
-  <span class="amor-radio amor-radio-slider__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="fsl-4umitfsn5j9oepugvs8"
-      name="size2"
-      value="large"
-    />
-    <label
-      class="amor-radio__label amor-radio__label--column"
-      for="fsl-4umitfsn5j9oepugvs8"
-    >
-      large
     </label>
   </span>
 </div>

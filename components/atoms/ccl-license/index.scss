@@ -1,0 +1,27 @@
+.#{$prefix}-license {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--text-color-secondary);
+
+  &__icon {
+    margin-right: 0.75em;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  &__year {
+    margin-right: 0.25em;
+
+    & + & {
+      margin-right: 0.75em;
+    }
+  }
+  &__name {
+    margin-right: 0.75em;
+  }
+  &__link {
+    word-break: keep-all;
+  }
+}
