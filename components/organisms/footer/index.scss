@@ -3,12 +3,6 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   background-color: var(--panel-background-color);
-
-  &__credit {
-    font-family: var(--font-family-sans-serif);
-    font-size: 0.875rem;
-    color: var(--text-color-secondary);
-  }
 }

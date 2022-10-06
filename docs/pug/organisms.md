@@ -55,16 +55,16 @@ include ../../atoms/svg-icon/index.pug
 </script>
 <div
   class="amor-accordion"
-  id="x1v6-s23opkf9mf9m5lph2t8"
+  id="h2bu-26eormm4icqgujtosp8"
   data-init-activate="1"
 >
   <h2 class="amor-heading--level-2 amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="i1v7-0u731wfihrgfea2fnb"
+      id="r2bu-b0yqdo466n7lhpd9cug"
       aria-expanded="false"
-      aria-controls="h1v7-11l0v3yd4haos7rs2v8"
+      aria-controls="b2bu-b5rcyh8of7l174pq1t"
     >
       heading 1
       <svg
@@ -78,9 +78,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="h1v7-11l0v3yd4haos7rs2v8"
+    id="b2bu-b5rcyh8of7l174pq1t"
     role="region"
-    aria-labelledby="i1v7-0u731wfihrgfea2fnb"
+    aria-labelledby="r2bu-b0yqdo466n7lhpd9cug"
     hidden="hidden"
   >
     panel 1
@@ -89,9 +89,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="n1v7-o3a70z08mgpph9u9nv"
+      id="j2bu-umw97rhdk0pu5kfkicg"
       aria-expanded="true"
-      aria-controls="b1v7-ob24q14wi8qhigpm2vg"
+      aria-controls="F2bu-urtjr6gyhfml8ohaduo"
     >
       heading 2
       <svg
@@ -105,9 +105,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel active"
-    id="b1v7-ob24q14wi8qhigpm2vg"
+    id="F2bu-urtjr6gyhfml8ohaduo"
     role="region"
-    aria-labelledby="n1v7-o3a70z08mgpph9u9nv"
+    aria-labelledby="j2bu-umw97rhdk0pu5kfkicg"
   >
     panel 2
   </div>
@@ -115,9 +115,9 @@ include ../../atoms/svg-icon/index.pug
     <button
       class="amor-accordion__tab"
       type="button"
-      id="M1v7-xjve417tta27934cjfg"
+      id="h2bv-0xb24o9ac5jhd7744pg"
       aria-expanded="false"
-      aria-controls="J1v7-xqhc5jj4sqf9ogqs858"
+      aria-controls="q2bv-123oplfrofrmamujnio"
     >
       heading 3
       <svg
@@ -131,9 +131,9 @@ include ../../atoms/svg-icon/index.pug
   </h2>
   <div
     class="amor-accordion__panel"
-    id="J1v7-xqhc5jj4sqf9ogqs858"
+    id="q2bv-123oplfrofrmamujnio"
     role="region"
-    aria-labelledby="M1v7-xjve417tta27934cjfg"
+    aria-labelledby="h2bv-0xb24o9ac5jhd7744pg"
     hidden="hidden"
   >
     panel 3
@@ -229,15 +229,15 @@ include ../../molecules/pagination/index
 ### output example 
 
 ```html
-<section aria-labelledby="O1ws-3qiw52thog739letmng">
+<section aria-labelledby="K2cu-jy8r6ov6hb811ufdpng">
   <h1
     class="amor-heading--level-1 sr-only amor-posts__heading"
-    id="O1ws-3qiw52thog739letmng"
+    id="K2cu-jy8r6ov6hb811ufdpng"
   >
     i18n(label.posts.recently)
   </h1>
   <ol class="amor-posts"></ol>
-  <nav class="amor-pagination" aria-labelledby="O1ws-3qiw52thog739letmng">
+  <nav class="amor-pagination" aria-labelledby="K2cu-jy8r6ov6hb811ufdpng">
     <a
       class="amor-pagination__item amor-pagination__item--current"
       href="http://example.com/"
@@ -271,6 +271,58 @@ include ../../molecules/pagination/index
     </a>
   </nav>
 </section>
+
+```
+
+
+---
+
+
+## titleBar
+
+create a title bar located at the top of the page
+
+
+### path 
+
+`components/organisms/title-bar/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.title|the text to use as a title|string||true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|beforeSlot|the slot to be placed before title|
+|afterSlot|the slot to be placed after title|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// without slot
++titleBar({title: config.title, useLink: true})
+```
+
+
+### output example 
+
+```html
+<!-- without slot-->
+<div class="amor-title-bar">
+  <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
+</div>
 
 ```
 
@@ -352,58 +404,6 @@ include ../../atoms/buttons/icon.pug
       <use xlink:href="/images/solid.svg#xmark"></use>
     </svg>
   </button>
-</div>
-
-```
-
-
----
-
-
-## titleBar
-
-create a title bar located at the top of the page
-
-
-### path 
-
-`components/organisms/title-bar/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.title|the text to use as a title|string||true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|beforeSlot|the slot to be placed before title|
-|afterSlot|the slot to be placed after title|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// without slot
-+titleBar({title: config.title, useLink: true})
-```
-
-
-### output example 
-
-```html
-<!-- without slot-->
-<div class="amor-title-bar">
-  <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
 </div>
 
 ```

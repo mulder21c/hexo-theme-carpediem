@@ -1,20 +1,23 @@
+include /components/atoms/ccl-license/index
+include /components/atoms/watermark/index
+
+//- @pugdoc
+  name: footerContent
+  description: generate footer content
+  beforeEach: |
+    include ../../utils/util
+  examples:
+    - |
+      +footerContent()
 mixin footerContent
   - const {prefix} = theme;
 
   div(class= `${prefix}-footer`)
-    p(class= `${prefix}-footer__credit`)
-      | Powered by
-      = " "
-      a(
-        href="https://hexo.io/"
-        rel="external noreferrer"
-        target="_blank"
-      ) Hexo.
-      = " "
-      | Theme by
-      = " "
-      a(
-        href="https://github.com/mulder21c"
-        rel="external noreferrer"
-        target="_blank"
-      ) mulder21c.
+    +cclLicense({
+      name: config.author,
+      year: [2012, 2022],
+      license: [`by`, `nc`, `nd`],
+    })
+
+    //- do not remove this
+    +watermark()
