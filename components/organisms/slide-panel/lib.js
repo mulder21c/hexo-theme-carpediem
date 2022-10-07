@@ -36,18 +36,17 @@ export class SlidePanel {
     this.handleKeyEvent = this.handleKeyEvent.bind(this);
     this.closer = this.el.querySelector(`.closer`);
     this.firstTabbable = getTabbable(this.el)[0];
-    this.el.classList.add(this.transitionClassName);
     this.panelTransitioner = transitionHiddenElement({
       element: this.el,
+      transitionClassName: this.transitionClassName,
       visibleClass: `open`,
-      onTranstionBefore: () => {
-        this.bodyClassName && document.body.classList.add(this.bodyClassName);
+      onTransitionBefore: () => {
+        document.body.classList.add(this.bodyClassName);
         this.firstTabbable && this.firstTabbable.focus();
       },
       onTransitionEnd: () => {
-        this.bodyClassName &&
-          document.body.classList.remove(this.bodyClassName);
-        this.trigger && this.trigger.focus();
+        this.trigger && this.trigger.focus({ preventScroll: true });
+        document.body.classList.remove(this.bodyClassName);
       },
     });
     this.bindEvent();

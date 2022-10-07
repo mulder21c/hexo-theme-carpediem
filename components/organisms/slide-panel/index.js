@@ -12,7 +12,7 @@ import { SlidePanel } from "./lib";
         `[aria-controls="${panel.getAttribute("id")}"]`
       ),
       transitionClassName: `transition`,
-      bodyClassName: `open-nav`,
+      bodyClassName: `opened-panel`,
     });
   });
 })(window, document, document.querySelectorAll(`.slide-panel`));
