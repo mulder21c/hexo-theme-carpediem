@@ -87,9 +87,9 @@ export class Accordion {
     const panelId = tab.getAttribute(`aria-controls`);
     const panelElem = this.container.querySelector(`#${panelId}`);
     const isHidden = panelElem.hidden;
-    panelElem.classList.add(this.transitionClassName);
     const panelTransitioner = transitionHiddenElement({
       element: panelElem,
+      transitionClassName: this.transitionClassName,
       visibleClass: `active`,
     });
 
