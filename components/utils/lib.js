@@ -7,12 +7,13 @@
  */
 export function transitionHiddenElement({
   element,
+  transitionClassName,
   visibleClass,
   waitMode = "transitionend",
   timeoutDuration,
   hideMode = "hidden",
   displayValue = "block",
-  onTranstionBefore = null,
+  onTransitionBefore = null,
   onTransitionEnd = null,
 }) {
   if (waitMode === "timeout" && typeof timeoutDuration !== "number") {
@@ -41,6 +42,7 @@ export function transitionHiddenElement({
     if (e.target === element) {
       applyHiddenAttributes();
 
+      element.classList.remove(transitionClassName);
       element.removeEventListener("transitionend", listener);
       onTransitionEnd && onTransitionEnd();
     }
@@ -89,7 +91,8 @@ export function transitionHiddenElement({
        */
       const reflow = element.offsetHeight;
 
-      onTranstionBefore && onTranstionBefore();
+      onTransitionBefore && onTransitionBefore();
+      element.classList.add(transitionClassName);
       element.classList.add(visibleClass);
     },
 
