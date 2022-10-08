@@ -8,6 +8,7 @@
 export function transitionHiddenElement({
   element,
   transitionClassName,
+  transitionEndClassName,
   visibleClass,
   waitMode = "transitionend",
   timeoutDuration,
@@ -36,14 +37,23 @@ export function transitionHiddenElement({
    * An event listener to add `hidden` after our animations complete.
    * This listener will remove itself after completing.
    */
-  const listener = (e) => {
-    // Confirm `transitionend` was called on  our `element` and didn't bubble
-    // up from a child element.
+
+  const handlerOnshow = (e) => {
+    if (e.target === element) {
+      element.classList.remove(transitionClassName);
+      transitionEndClassName && element.classList.add(transitionEndClassName);
+      element.removeEventListener("transitionend", handlerOnshow);
+    }
+  };
+
+  const handlerOnHide = (e) => {
     if (e.target === element) {
       applyHiddenAttributes();
 
       element.classList.remove(transitionClassName);
-      element.removeEventListener("transitionend", listener);
+      transitionEndClassName &&
+        element.classList.remove(transitionEndClassName);
+      element.removeEventListener("transitionend", handlerOnHide);
       onTransitionEnd && onTransitionEnd();
     }
   };
@@ -74,7 +84,8 @@ export function transitionHiddenElement({
        * over and over really fast it can incorrectly stick around.
        * We remove it just to be safe.
        */
-      element.removeEventListener("transitionend", listener);
+      element.removeEventListener("transitionend", handlerOnHide);
+      element.addEventListener("transitionend", handlerOnshow);
 
       /**
        * Similarly, we'll clear the timeout in case it's still hanging around.
@@ -101,16 +112,19 @@ export function transitionHiddenElement({
      */
     hide() {
       if (waitMode === "transitionend") {
-        element.addEventListener("transitionend", listener);
+        element.addEventListener("transitionend", handlerOnHide);
       } else if (waitMode === "timeout") {
         this.timeout = setTimeout(() => {
           applyHiddenAttributes();
+          onTransitionEnd && onTransitionEnd();
         }, timeoutDuration);
       } else {
         applyHiddenAttributes();
+        onTransitionEnd && onTransitionEnd();
       }
 
       // Add this class to trigger our animation
+      element.classList.add(transitionClassName);
       element.classList.remove(visibleClass);
     },
 
