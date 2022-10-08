@@ -102,17 +102,17 @@ mixin slidePanel(props)
     ])
       block
       - panelBodySlot && panelBodySlot();
-      if (useCloseBtn)
-        +iconButton({
-          type: 'button',
-          size: 'medium',
-          appearance: 'ghost',
-          icon: 'xmark',
-          label: `close ${label}`,
-          class: [
-            `closer`,
-            `${prefix}-slide-panel__btn-close`,
-            `${prefix}-slide-panel__btn-close--${closeBtnPosY}`,
-            `${prefix}-slide-panel__btn-close--${closeBtnPosX}`,
-          ],
-        })
+    if (useCloseBtn)
+      +iconButton({
+        type: 'button',
+        size: 'medium',
+        appearance: 'ghost',
+        icon: 'xmark',
+        label: `close ${label}`,
+        class: [
+          `closer`,
+          `${prefix}-slide-panel__btn-close`,
+          `${prefix}-slide-panel__btn-close--${closeBtnPosY}`,
+          `${prefix}-slide-panel__btn-close--${closeBtnPosX}`,
+        ],
+      })
