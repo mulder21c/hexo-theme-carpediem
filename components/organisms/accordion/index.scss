@@ -63,11 +63,11 @@
   &__panel {
     padding: 0 $padding-horizon;
     transform: scaleY(0);
+    transform-origin: top;
 
     &.transition {
       @media (prefers-reduced-motion: no-preference) {
         transition: all 0.4s ease-in-out;
-        transform-origin: top;
       }
     }
 
