@@ -1,0 +1,38 @@
+//- @pugdoc
+  name: menuNavigation
+  description: create hexo menu list
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+  examples:
+    - |
+      +menuNavigation()
+
+mixin menuNavigation(props)
+  -
+    const {prefix} = theme;
+    const defaults = {
+      options: {
+        show_current: true,
+        class: `${prefix}-menu-nav`
+      },
+    };
+
+    const {
+      options,
+      ...attrs
+    } = {
+      ...defaults,
+      ...(props || {}),
+      options: {
+        ...defaults.options,
+        ...(props?.options || {}),
+      }
+    };
+
+  nav(
+    class= options.class
+    aria-label= `menu`
+  )&attributes(attrs)
+    | !{listMenus(options)}
