@@ -1,5 +1,5 @@
 /**
- * this is inspired from hexo paginator helper
+ * this is inspired from hexo listCategoriesHelper helper
  */
 
 const fullUrl = require("./full-url");
@@ -80,7 +80,7 @@ function listCategoriesHelper(categories, options) {
             class="${className}__list__link ${
         isCurrent ? `${className}__list__link--current` : ``
       }"
-            ${isCurrent && `aria-current="page"`}
+            ${isCurrent ? `aria-current="page"` : ``}
           >
             ${transform ? transform(cat.name) : cat.name}
           </a>

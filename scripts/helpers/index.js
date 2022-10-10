@@ -10,3 +10,4 @@ helper.register(`stripHTML`, require(`./strip-html`));
 helper.register(`truncate`, require(`./truncate`));
 helper.register(`paginator`, require(`./paginator`));
 helper.register(`listCategories`, require(`./list-categories`));
+helper.register(`listMenus`, require(`./list-menus`));
