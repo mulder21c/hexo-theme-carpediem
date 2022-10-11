@@ -1,6 +1,6 @@
 /**
  * @see https://github.com/cloudfour/transition-hidden-element
- * @param {Function} opts.onTranstionBefore the callback function
+ * @param {Function} opts.onTransitionBefore the callback function
  *  to run before transition starts
  * @param {Function} opts.onTransitionEnd the callback function
  *  to run after transition ends
@@ -189,8 +189,50 @@ export function getTabbable(context) {
   );
 }
 
+export const ThemeSetting = ((document, storage) => {
+  const IDENTIFIER = `theme-settings`;
+  const defaults = {
+    colorScheme: `auto`,
+    fontSize: `medium`,
+  };
+  const _state = {
+    ...defaults,
+    ...(JSON.parse(storage.getItem(IDENTIFIER)) || {}),
+  };
+  const state = {};
+
+  function setState(prop, val) {
+    _state[prop] = val;
+    storage.setItem(IDENTIFIER, JSON.stringify(_state));
+  }
+
+  Object.defineProperties(state, {
+    colorScheme: {
+      get() {
+        return _state.colorScheme;
+      },
+      set(val) {
+        if (val === _state.colorScheme) return;
+        setState(`colorScheme`, val);
+      },
+    },
+    fontSize: {
+      get() {
+        return _state.fontSize;
+      },
+      set(val) {
+        if (val === _state.fontSize) return;
+        setState(`fontSize`, val);
+      },
+    },
+  });
+
+  return state;
+})(document, localStorage);
+
 export default {
   transitionHiddenElement,
   triggerDescendantClick,
   getTabbable,
+  ThemeSetting,
 };
