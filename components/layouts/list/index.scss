@@ -1,0 +1,20 @@
+._container {
+  padding: 2rem 0.75rem 7.5rem;
+}
+
+.#{$prefix} {
+  &-section-hero {
+    &#{&} {
+      aspect-ratio: 21/9;
+
+      @include respond-to(large) {
+        aspect-ratio: unset;
+        padding-top: 500px;
+      }
+    }
+  }
+  &-post-list {
+    margin: 0 auto;
+    max-width: 50em;
+  }
+}

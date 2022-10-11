@@ -13,12 +13,19 @@ blockquote {
 }
 
 html {
-  font-family: $font-families-serif;
+  font-family: var(--font-family-serif);
   font-size: var(--font-size-base);
   line-height: var(--font-line-height-default);
   text-size-adjust: 100%;
   width: 100%;
   height: 100%;
+
+  &[data-size="small"] {
+    --font-size-base: #{$font-size-smallest * 0.875};
+  }
+  &[data-size="large"] {
+    --font-size-base: #{$font-size-smallest * 1.25};
+  }
 
   &:focus-within {
     scroll-behavior: smooth;
@@ -90,7 +97,8 @@ a[href] {
   @extend %anchor-default;
 }
 
-:where(article) a {
+:where(article) a,
+:where(._footer) a {
   @extend %anchor-animate;
 }
 

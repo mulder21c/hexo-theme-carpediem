@@ -1,6 +1,6 @@
 .#{$prefix}-btn-basic {
   border-radius: var(--button-border-radius);
-  font-family: $font-families-sans-serif;
+  font-family: var(--font-family-sans-serif);
 
   // sizes
   &--small {

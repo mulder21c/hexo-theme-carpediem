@@ -16,6 +16,31 @@
   @return mix(black, $color, $percentage);
 }
 
+/// Remove units from a given value
+/// @param {Number} numbers containing units
+/// @return {Number}
+
+@function stripUnit($num) {
+  @return math.div($num, ($num * 0 + 1));
+}
+
+/// Convert a given value in rem
+/// @param {Number} value to convert
+/// @param {Number} the value that is the basis for the conversion
+/// @return {Number}
+
+@function convertRem($value, $base-value) {
+  @if not $base-value {
+    @error "not defined $base-value";
+  }
+
+  $value: math.div(stripUnit($value), stripUnit($base-value)) * 1rem;
+  @if ($value == 0rem) {
+    $value: 0;
+  } // Turn 0rem into 0
+  @return $value;
+}
+
 /// get font size from sizes of divided evenly
 /// between the minimum and maximum values
 /// @param {Number} divided step
@@ -36,8 +61,10 @@
     $step: $font-size-step-count;
   }
 
-  @return math.div(
+  $result: math.div(
       ($font-size-largest - $font-size-smallest),
       ($font-size-step-count - 1)
     ) * ($step - 1) + $font-size-smallest;
+
+  @return convertRem($result, $font-size-smallest);
 }

@@ -3,7 +3,8 @@
   --font-family-serif: #{$font-family-serif};
   --font-family-sans-serif: #{$font-family-sans-serif};
   --font-family-code: #{$font-families-code};
-  --font-size-base: #{getFontSize(1) * $font-responsive-ratio-default};
+  --font-size-base: #{$font-size-smallest};
+  --font-size-small: #{getFontSize(1) * 0.875};
   --font-size-default: #{getFontSize(1)};
   --font-size-large: #{getFontSize(2)};
   --font-size-heading-level-1: #{getFontSize(7)};
@@ -94,13 +95,5 @@
     --panel-shadow-color: #{$color-green-40};
 
     --separator-border-color: #{$color-neutral-60};
-  }
-
-  @include respond-to(tablet) {
-    --font-size-base: #{$font-size-default * $font-responsive-ratio-tablet};
-  }
-
-  @include respond-to(pc) {
-    --font-size-base: #{$font-size-default * $font-responsive-ratio-pc};
   }
 }

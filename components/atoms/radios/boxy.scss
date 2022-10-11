@@ -29,7 +29,7 @@
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: 100% 0;
-    font-family: $font-families-sans-serif;
+    font-family: var(--font-family-sans-serif);
     word-break: keep-all;
 
     #{$control}:checked + & {
