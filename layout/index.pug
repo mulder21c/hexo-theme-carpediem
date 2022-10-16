@@ -1,1 +1,18 @@
-extends /components/templates/base/index.pug
+extends /components/templates/home/index.pug
+
+block prepend heroContent
+  -
+    const primaryHero = {
+      path: null,
+    };
+
+block prepend mainContent
+  -
+    const headingProp = {
+      level: 1,
+      visible: true,
+    };
+    const headingTitle = _p('label.posts.recently');
+    const posts = (page.posts.data || page.posts || []).slice(0, 5);
+
+block sidebar
