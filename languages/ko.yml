@@ -3,13 +3,33 @@ title:
   tag: "%1$s%2$s 관련된 글"
 
 label:
-  category: "카테고리"
+  category: 카테고리
   date:
-    published: "발행일 "
-    updated: "업데이트 "
+    published: 발행일
+    updated: 업데이트
   page:
     default: "%d 페이지"
-    next: "다음 페이지"
-    prev: "이전 페이지"
+    next: 다음 페이지
+    prev: 이전 페이지
   posts:
-    recently: "최근 게시글"
+    recently: 최근 게시글
+
+section:
+  side: 설정 및 내비게이션
+  settings: ⚙️ settings
+  menu: 📑 menu
+  categories: 📂 categories
+
+form:
+  theme:
+    name: 테마
+    option:
+      auto: 자동
+      light: 밝게
+      dark: 어둡게
+  font_size:
+    name: 글자 크기
+    option:
+      small: 작게
+      medium: 보통
+      large: 크게

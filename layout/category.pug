@@ -1,0 +1,15 @@
+extends /components/templates/list/index.pug
+
+block prepend mainContent
+  -
+    const headingProp = {
+      level: 1,
+      visible: true,
+    };
+    const headingTitle = page.category;
+    const categoryHero = {
+      path: null,
+    };
+    const posts = page.posts.data || page.posts || [];
+
+block sidebar

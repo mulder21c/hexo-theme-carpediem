@@ -1,0 +1,29 @@
+extends /components/templates/common.pug
+include /components/organisms/hero/index.pug
+include /components/organisms/posts-list/index.pug
+
+block mainContent
+  -
+    const defaultHeadingProp = {level: 1, visible: false };
+    const listHero = categoryHero.path ? categoryHero : hero;
+    const listHeadingProp = {
+      ...(headingProp || defaultHeadingProp),
+      class: [
+        Array.isArray((headingProp || defdefaultHeadingPropaultProp).class)
+          ? (headingProp || defaultHeadingProp).class.join(" ")
+          : (headingProp || defaultHeadingProp).class,
+        `${prefix}-post-list__heading`
+      ],
+    };
+
+
+  +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
+  +postsList({
+    posts,
+    headingProp: listHeadingProp,
+    headingTitle: headingTitle || ``,
+    headingSlotContent: headingSlotContent || ``,
+    class: `${prefix}-post-list`
+  })
+
+block sidebar

@@ -1,15 +1,35 @@
 title:
   archives: "Archives %s"
-  tag: "Related to %1$s"
+  tag: Related to %1$s
 
 label:
-  category: "category"
+  category: category
   date:
-    published: "published at "
-    updated: "updated at "
+    published: published at
+    updated: updated at
   page:
     default: "page %d"
-    next: "next page"
-    prev: "prev page"
+    next: next page
+    prev: prev page
   posts:
-    recently: "recently posts"
+    recently: recently posts
+
+section:
+  side: settings and navigation
+  settings: ⚙️ settings
+  menu: 📑 menu
+  categories: 📂 categories
+
+form:
+  theme:
+    name: theme
+    option:
+      auto: auto
+      light: light
+      dark: dark
+  font_size:
+    name: font size
+    option:
+      small: small
+      medium: medium
+      large: large

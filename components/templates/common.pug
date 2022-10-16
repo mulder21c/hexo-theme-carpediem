@@ -1,0 +1,137 @@
+include /components/utils/util.pug
+include /components/utils/mixin.pug
+include /components/atoms/radios/boxy.pug
+include /components/molecules/radio-group/slider.pug
+include /components/molecules/radio-group/boxy.pug
+include /components/molecules/fieldset/default.pug
+include /components/molecules/category-nav/index.pug
+include /components/molecules/menu-nav/index.pug
+include /components/organisms/accordion/index.pug
+include /components/organisms/title-bar/index.pug
+include /components/organisms/slide-panel/index.pug
+include /components/organisms/footer/index.pug
+
+-
+  const {title: siteTitle} = config;
+  const {prefix} = theme;
+  const hero = representativeImage(theme);
+
+doctype html
+html(lang=config.language)
+  head
+    meta(charset="UTF-8")
+    meta(
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    )
+    meta(
+      name="color-scheme"
+      content="dark light"
+    )
+    link(
+      rel="canonical"
+      href=stripFileName(url)
+    )
+    if theme.favicon
+      link(
+        rel="shortcut icon"
+        href=url_for(theme.favicon)
+      )
+    +pageTitle
+    +pageSequenceLink
+    +preLoadImage
+    +openGraph
+    +siteVerification
+    +styles([])
+    +jsonLD
+    +analytics
+  body
+    header._header
+      +titleBar({
+        title: siteTitle,
+        useLink: true,
+        class: `${prefix}-title-bar`
+      })
+        +beforeSlot
+          +iconButton({
+            type: 'button',
+            size: 'medium',
+            appearance: 'ghost',
+            icon: 'angle-right',
+            label: 'open',
+            class: `${prefix}-btn-menu`,
+            "aria-controls": `slide-nav`,
+            "aria-haspopup": `dialog`,
+          })
+    section._container(role= "main")
+      block mainContent
+
+    +slidePanel({
+      label: _p(`section.side`),
+      useCloseBtn: true,
+      closeBtnPosition: `top-right`,
+      tag: 'div',
+      class: '_side',
+      id: 'slide-nav',
+    })
+      +panelBodySlot
+        +accordion({hLevel: 2})
+          +accordionHeadingSlot
+            = _p(`section.settings`)
+          +accordionPanelSlot
+            +fieldset({direction: `column`})
+              +fieldsetLabelSlot
+                = _p(`form.theme.name`)
+                +fieldsetBodySlot
+                  +radioBoxes({
+                    name: `theme`,
+                    options: [
+                      { value: `auto`, },
+                      { value: `light`, },
+                      { value: `dark`, },
+                    ]
+                  })
+                    +radioBoxesLabelSlot
+                      = _p(`form.theme.option.auto`)
+                    +radioBoxesLabelSlot
+                      = _p(`form.theme.option.light`)
+                    +radioBoxesLabelSlot
+                      = _p(`form.theme.option.dark`)
+            +fieldset({direction: `column`})
+              +fieldsetLabelSlot
+                = _p(`form.font_size.name`)
+              +fieldsetBodySlot
+                +radioSlider({
+                  name: `font-size`,
+                  labelPosition: `bottom`,
+                  options: [
+                    {
+                      label: _p(`form.font_size.option.small`),
+                      value: `small`,
+                    },
+                    {
+                      label: _p(`form.font_size.option.medium`),
+                      value: `medium`,
+                    },
+                    {
+                      label: _p(`form.font_size.option.large`),
+                      value: `large`,
+                    },
+                  ]
+                })
+
+          if (theme.menu && theme.menu.length)
+            +accordionHeadingSlot
+              = _p(`section.menu`)
+            +accordionPanelSlot
+              +menuNavigation()
+
+          if (site.categories && site.categories.length)
+            +accordionHeadingSlot
+              = _p(`section.categories`)
+            +accordionPanelSlot
+              +categoryNavigation()
+        block sidebar
+
+    footer._footer
+      +footerContent

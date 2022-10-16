@@ -104,12 +104,21 @@ body {
 
   .#{$prefix}-accordion__header {
     font-family: var(--font-family-sans-serif);
+
+    .#{$prefix}-accordion__tab {
+      text-transform: capitalize;
+    }
   }
 }
 
 ._header {
   overflow: hidden;
   grid-area: header;
+
+  @include respond-to(large) {
+    position: sticky;
+    top: 0;
+  }
 }
 
 ._container {
