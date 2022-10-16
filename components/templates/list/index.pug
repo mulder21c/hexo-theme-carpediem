@@ -5,7 +5,7 @@ include /components/organisms/posts-list/index.pug
 block mainContent
   -
     const defaultHeadingProp = {level: 1, visible: false };
-    const listHero = categoryHero.path ? categoryHero : hero;
+    const listHero = primaryHero.path ? primaryHero : hero;
     const listHeadingProp = {
       ...(headingProp || defaultHeadingProp),
       class: [
@@ -15,7 +15,6 @@ block mainContent
         `${prefix}-post-list__heading`
       ],
     };
-
 
   +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
   +postsList({
