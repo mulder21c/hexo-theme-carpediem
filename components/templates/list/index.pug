@@ -2,10 +2,15 @@ extends /components/templates/common.pug
 include /components/organisms/hero/index.pug
 include /components/organisms/posts-list/index.pug
 
+block heroContent
+  -
+    const listHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
+
+  +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
+
 block mainContent
   -
     const defaultHeadingProp = {level: 1, visible: false };
-    const listHero = primaryHero.path ? primaryHero : hero;
     const listHeadingProp = {
       ...(headingProp || defaultHeadingProp),
       class: [
@@ -16,7 +21,6 @@ block mainContent
       ],
     };
 
-  +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
   +postsList({
     posts,
     headingProp: listHeadingProp,

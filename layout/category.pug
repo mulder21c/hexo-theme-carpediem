@@ -1,5 +1,11 @@
 extends /components/templates/list/index.pug
 
+block prepend heroContent
+  -
+    const primaryHero = {
+      path: null,
+    };
+
 block prepend mainContent
   -
     const headingProp = {
@@ -7,9 +13,6 @@ block prepend mainContent
       visible: true,
     };
     const headingTitle = page.category;
-    const primaryHero = {
-      path: null,
-    };
     const posts = page.posts.data || page.posts || [];
 
 block sidebar
