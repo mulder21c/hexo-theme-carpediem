@@ -13,6 +13,7 @@
     if (is_home()) pageTitle = title || siteTitle;
     if (is_post()) pageTitle = title || siteTitle;
     if (is_archive()) pageTitle = _p(`title.archives`, date);
+    if (is_category()) pageTitle = category;
     if (is_tag()) pageTitle = _p(`title.tag`, tag, getJosa(tag, '와'));
     return pageTitle;
   };
