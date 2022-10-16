@@ -7,6 +7,8 @@
     - {object} props
     - {string} props.level the level(rank) of heading
     - {boolean} [props.visible] whether an element is visible or not
+  slots:
+    - headingSlot the slot for heading content
   examples:
     - |
       +heading({level: 1 }) heading
@@ -46,22 +48,14 @@ mixin heading(props)
       `${prefix}-heading--level-${level}`,
       {[`sr-only`]: !visible}
     ];
-  case level
-    when 1
-      h1(class= className)&attributes(attrs)
-        block
-    when 2
-      h2(class= className)&attributes(attrs)
-        block
-    when 3
-      h3(class= className)&attributes(attrs)
-        block
-    when 4
-      h4(class= className)&attributes(attrs)
-        block
-    when 5
-      h5(class= className)&attributes(attrs)
-        block
-    when 6
-      h6(class= className)&attributes(attrs)
-        block
+
+    let headingSlot = null;
+    let tag = `h${level}`;
+
+  mixin headingSlot
+    - headingSlot = block;
+
+  #{tag}(class= className)&attributes(attrs)
+    block
+    if (headingSlot)
+      - headingSlot();
