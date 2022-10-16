@@ -18,13 +18,14 @@ include /components/molecules/pagination/index
     - |
       {object} props.headingProp prop of heading component
       @see atoms.md#heading
-    - {string} props.headingTitle the string as heading label
+    - {string} [props.headingTitle] the string as heading label
+    - {string} [props.headingSlotContent] the contents as heading slot
   examples:
     - |
       +postsList({
         posts: (posts || []),
         headingProp: { level: 1, visible: false },
-        headingTitle: `최근 게시글`,
+        headingTitle: `recently articles`,
       })
 
 mixin postsList(props)
@@ -32,11 +33,18 @@ mixin postsList(props)
     const postsListProps = {
       posts: PropTypes.array.isRequired,
       headingProp: PropTypes.object.isRequired,
-      headingTitle: PropTypes.string.isRequired,
+      headingTitle: PropTypes.string,
+      headingSlotContent: PropTypes.string,
     };
     const postsListValidate = validateProps(postsListProps);
-    const { posts, headingProp, headingTitle, ...attrs } = props;
-    postsListValidate({posts, headingProp, headingTitle});
+    const {
+      posts,
+      headingProp,
+      headingTitle,
+      headingSlotContent,
+      ...attrs
+    } = props;
+    postsListValidate({posts, headingProp, headingTitle, headingSlotContent});
 
     const {prefix} = theme;
     const headingId = generateUid();
@@ -44,12 +52,21 @@ mixin postsList(props)
     const _headingProp = {
       ...headingProp,
       id: headingId,
-      class: `${prefix}-posts__heading`
+      class: [
+        Array.isArray(headingProp.class)
+          ? headingProp.class.join(" ")
+          : headingProp.class,
+        `${prefix}-posts__heading`,
+      ],
     };
 
   section(aria-labelledby= headingId)&attributes(attrs)
     +heading(_headingProp)
-      = _p(`label.posts.recently`)
+      if headingSlotContent
+        +headingSlot
+          | !{headingSlotContent}
+      else
+        = headingTitle
     ol(class=`${prefix}-posts`)
       each post in posts
         li(class= `${prefix}-posts__list-item`)
