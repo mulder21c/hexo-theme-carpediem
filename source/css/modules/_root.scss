@@ -1,7 +1,7 @@
 :root {
   color-scheme: dark light;
-  --font-family-serif: #{$font-family-serif};
-  --font-family-sans-serif: #{$font-family-sans-serif};
+  --font-family-serif: #{$font-families-serif};
+  --font-family-sans-serif: #{$font-families-sans-serif};
   --font-family-code: #{$font-families-code};
   --font-size-base: #{$font-size-smallest};
   --font-size-small: #{getFontSize(1) * 0.875};
