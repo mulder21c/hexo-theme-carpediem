@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const rootPath = path.resolve(__dirname, "../../");
-const imageInfoPath = path.resolve(rootPath, "./images-db.json");
+const imageDBPath = path.resolve(rootPath, "./images-db.json");
 const { generateImageInfo } = require("../utils/image-processor");
 
 /**
@@ -25,14 +25,16 @@ const prependHttpProtocol = (url) => {
   return hasHttpProtocol ? url : `${protocol}${url}`;
 };
 
-/**
- * @desc process for generate image-info when after initialized hexo
- */
-hexo.extend.filter.register(`before_generate`, function (data) {
-  const imageInfo = generateImageInfo(data);
-
-  fs.writeFileSync(imageInfoPath, JSON.stringify(imageInfo), {
+const storeImageDB = (data) => {
+  fs.writeFileSync(imageDBPath, JSON.stringify(generateImageInfo(data)), {
     encoding: `utf8`,
     flag: `w`,
   });
-});
+
+  hexo.extend.filter.unregister(`before_generate`, storeImageDB);
+};
+
+/**
+ * @desc process for generate image-info when after initialized hexo
+ */
+hexo.extend.filter.register(`before_generate`, storeImageDB);
