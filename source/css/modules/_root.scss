@@ -26,6 +26,9 @@
   --button-border-radius: 0.25rem;
   --box-border-radius: 0.5rem;
 
+  --modal-z-index: 950;
+  --highest--z-index: 900;
+
   @include colorScheme(light) {
     --background-color: #{$color-neutral-05};
     --text-color-primary: #{$color-neutral-95};

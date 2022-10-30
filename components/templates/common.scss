@@ -118,6 +118,7 @@ body {
   @include respond-to(large) {
     position: sticky;
     top: 0;
+    z-index: var(--highest--z-index);
   }
 }
 
