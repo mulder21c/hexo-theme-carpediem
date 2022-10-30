@@ -1,5 +1,7 @@
 title:
-  archives: "%s년 작성글"
+  archives:
+    yearly: "%s년 작성글"
+    default: "Archives"
   tag: "%1$s%2$s 관련된 글"
 
 label:
@@ -12,7 +14,11 @@ label:
     next: 다음 페이지
     prev: 이전 페이지
   posts:
+    default: 게시글
     recently: 최근 게시글
+    archives: 작성된 게시글
+    yearly: "%s년에 작성된 게시글"
+  read_more: 더보기
 
 section:
   side: 설정 및 내비게이션
@@ -33,3 +39,6 @@ form:
       small: 작게
       medium: 보통
       large: 크게
+
+date:
+  month: "%d월"

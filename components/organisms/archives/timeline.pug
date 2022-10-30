@@ -1,0 +1,96 @@
+include /components/atoms/heading/index
+
+//- @pugdoc
+  name: archiveTimeline
+  description: create archive timeline
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {object} props.list the collection that is consist of archives
+    - {boolean} props.isSection whether this component represent as section
+    - {object} props.headingProp @see atoms.md#heading
+  examples:
+    - |
+      +archiveTimeline()
+
+mixin archiveTimeline(props)
+  -
+    const archivesProps = {
+      archives: PropTypes.object.isRequired,
+      isSection: PropTypes.bool,
+      sectionHeadingProp: propTypesPreset.heading,
+      headingLevel: propTypesPreset.headingLevel.isRequired,
+      displayYearNum: PropTypes.number,
+    };
+    const archivesValidate = validateProps(archivesProps);
+
+    const defaultProp = {
+      archives: {},
+      isSection: true,
+      headingLevel: 2,
+      displayYearNum: 2,
+    };
+
+    const {
+      archives,
+      isSection,
+      sectionHeadingProp,
+      headingLevel,
+      displayYearNum,
+      ...attrs
+    } = {
+      ...defaultProp,
+      ...(props || {}),
+    };
+
+    const tag = isSection ? `section` : `div`;
+    const {prefix} = theme;
+
+  #{tag}(class= `${prefix}-timeline`)
+    -
+      let count = 0;
+      const reverse = (a, b) => Number(a) > Number(b) ? -1 : 1;
+
+      console.log(sectionHeadingProp)
+
+    if sectionHeadingProp
+      +heading(sectionHeadingProp)
+
+    each year in Object.keys(archives).reverse()
+      -
+        const yearlyItem = ++count <= displayYearNum ? archives[year] : {};
+        const months = Object.keys(yearlyItem).sort(reverse);
+
+      +heading({
+        level: headingLevel,
+        class: `${prefix}-timeline__year`
+      })
+        = year
+        | &rsquo;
+        = " "
+        span
+          = _p('label.posts.default')
+
+      if months && months.length
+        ol(class= `${prefix}-timeline__list`)
+          each month in months
+            - const monthlyItem = yearlyItem[month];
+            if monthlyItem && monthlyItem.length
+              each item in monthlyItem
+                li(class= `${prefix}-timeline__list__item`)
+                  a(
+                    href= item.permalink
+                    class= `${prefix}-timeline__link`
+                  )
+                    span(class= `${prefix}-timeline__title`)
+                      = item.title
+                    if item.subtitle
+                      span(class= `${prefix}-timeline__title--sub`)
+                        = item.subtitle
+      else
+        span(class= `${prefix}-timeline__more`)
+          a(
+            href= fullUrl(`/archives/${year}`)
+          )
+            = _p('label.read_more')

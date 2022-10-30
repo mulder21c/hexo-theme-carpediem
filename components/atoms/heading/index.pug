@@ -5,7 +5,8 @@
     include ../../utils/util
   arguments:
     - {object} props
-    - {string} props.level the level(rank) of heading
+    - {number} props.level the level(rank) of heading
+    - {string} props.htmlString the html string as content of heading
     - {boolean} [props.visible] whether an element is visible or not
   slots:
     - headingSlot the slot for heading content
@@ -23,16 +24,18 @@ mixin heading(props)
           throw new Error('level must be an integer between 1 and 6.');
         }
       }).isRequired,
-      visible: PropTypes.bool
+      htmlString: PropTypes.string,
+      visible: PropTypes.bool,
     };
     const headingValidate = validateProps(headingProps);
     const defaults = {
       level: 1,
-      visible: true
+      visible: true,
     };
     const {
       level,
       visible,
+      htmlString,
       ...attrs
     } = {
       ...defaults,
@@ -40,7 +43,8 @@ mixin heading(props)
     };
     headingValidate({
       level,
-      visible
+      htmlString,
+      visible,
     });
 
     const {prefix} = theme;
@@ -57,5 +61,7 @@ mixin heading(props)
 
   #{tag}(class= className)&attributes(attrs)
     block
+    if (htmlString)
+      | !{htmlString}
     if (headingSlot)
       - headingSlot();
