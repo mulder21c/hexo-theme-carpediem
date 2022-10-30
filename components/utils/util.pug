@@ -12,10 +12,14 @@
       : ``;
     if (is_home()) pageTitle = title || siteTitle;
     if (is_post()) pageTitle = title || siteTitle;
-    if (is_archive()) pageTitle = _p(`title.archives`, date);
+    if (is_archive()) pageTitle = year
+      ? _p(`title.archives.yearly`, date)
+      : _p(`title.archives.default`);
     if (is_category()) pageTitle = category;
     if (is_tag()) pageTitle = _p(`title.tag`, tag, getJosa(tag, '와'));
-    return pageTitle;
+    return pageTitle.includes(siteTitle)
+      ? pageTitle
+      : `${pageTitle} - ${siteTitle}`;
   };
 -
   const getJsonLdProps = (page) => {

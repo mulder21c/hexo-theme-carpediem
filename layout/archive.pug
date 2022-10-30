@@ -1,0 +1,14 @@
+extends /components/templates/archive/index.pug
+
+block prepend heroContent
+  -
+    const primaryHero = {
+      path: null,
+    };
+
+block prepend mainContent
+  -
+    const map = mapArchives();
+    const archives = page.year ? {[page.year]: map[page.year]} : map;
+
+block sidebar

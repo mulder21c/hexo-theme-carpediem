@@ -1,0 +1,29 @@
+extends /components/templates/common.pug
+include /components/organisms/hero/index.pug
+include /components/organisms/archives/timeline.pug
+
+block heroContent
+  -
+    const listHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
+
+  +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
+
+block mainContent
+  -
+    const archiveProp = {
+      archives,
+      headingLevel: 2,
+      isSection: true,
+      sectionHeadingProp: page.year ? {
+        level: 1,
+        visible: false,
+        htmlString: _p('label.posts.yearly', page.year)
+      }: {
+        level: 1,
+        visible: false,
+        htmlString: _p('label.posts.archives')
+      },
+    };
+  +archiveTimeline(archiveProp)
+
+block sidebar
