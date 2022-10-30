@@ -2,8 +2,12 @@
   &__list {
     $parent-list: &;
     margin: 0;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 0.5rem;
     width: 100%;
+
+    @include respond-to(tablet) {
+      padding-left: 1rem;
+    }
 
     &--child {
       padding: 0 0 2rem 1rem;
