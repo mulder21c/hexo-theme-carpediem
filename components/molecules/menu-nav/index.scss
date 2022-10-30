@@ -1,8 +1,12 @@
 .#{$prefix}-menu-nav {
   &__list {
     margin: 0;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 0.5rem;
     width: 100%;
+
+    @include respond-to(tablet) {
+      padding-left: 1rem;
+    }
 
     &__item {
       padding: 0.25em 0;

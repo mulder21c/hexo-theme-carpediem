@@ -1,11 +1,20 @@
 .#{$prefix}-slide-panel {
   position: relative;
-  padding: 0.75rem;
+  padding: 0.75rem 0.5rem;
   background-color: var(--panel-background-color);
   filter: drop-shadow(2px 2px 0.75rem var(--panel-shadow-color));
+
   @include colorScheme(dark) {
     filter: none;
     box-shadow: 1px 1px 5px 2px var(--panel-shadow-color);
+  }
+
+  @include respond-to(tablet) {
+    padding: 0.75rem 0.75rem;
+  }
+
+  @include respond-to(pc) {
+    padding: 0.75rem 1rem;
   }
 
   &--btn-top {
@@ -32,6 +41,14 @@
 
     &--right {
       right: 3px;
+    }
+  }
+
+  .#{$prefix}-accordion__panel {
+    padding: 0.5em 0 3em;
+
+    @include respond-to(tablet) {
+      padding: 0.5em 1em 3em;
     }
   }
 }

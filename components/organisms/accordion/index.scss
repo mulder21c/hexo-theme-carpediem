@@ -1,7 +1,7 @@
 .#{$prefix}-accordion {
   width: 100%;
-  $padding-horizon: 1rem;
-  $padding-vertical: 1rem;
+  $padding-horizon: 1em;
+  $padding-vertical: 1em;
 
   &__header {
     margin: 0;
@@ -15,7 +15,7 @@
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
-    padding: math.div($padding-vertical, 2) $padding-horizon;
+    padding: math.div($padding-vertical, 2) math.div($padding-horizon, 2);
     border: 3px solid transparent;
     width: 100%;
     background-color: transparent;
@@ -27,11 +27,16 @@
     background-position: bottom;
     background-size: 100% 0;
 
+    @include respond-to(tablet) {
+      padding: math.div($padding-vertical, 2) $padding-horizon;
+    }
+
     &__icon {
       margin-left: auto;
       width: 1rem;
       height: 1rem;
       color: var(--primary-button-text-color-dark);
+      pointer-events: none;
     }
 
     &[aria-expanded="true"] &__icon {
@@ -61,7 +66,8 @@
   }
 
   &__panel {
-    padding: 0 $padding-horizon;
+    padding: math.div($padding-vertical, 2) $padding-horizon $padding-vertical *
+      3;
     transform: scaleY(0);
     transform-origin: top;
 
@@ -72,8 +78,6 @@
     }
 
     &.active {
-      padding: math.div($padding-vertical, 2) $padding-horizon $padding-vertical *
-        3;
       transform: scaleY(1);
     }
   }
