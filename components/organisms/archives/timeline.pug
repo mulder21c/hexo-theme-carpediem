@@ -4,6 +4,7 @@ include /components/atoms/heading/index
   name: archiveTimeline
   description: create archive timeline
   beforeEach: |
+    include ../../atoms/heading/index
     include ../../utils/util
   arguments:
     - {object} props
@@ -19,7 +20,7 @@ include /components/atoms/heading/index
     - {number} [props.displayYearNum] [2] the number of years to be display
   examples:
     - |
-      +archiveTimeline()
+      +archiveTimeline({archives: mapArchives(), headingLevel: 2})
 
 mixin archiveTimeline(props)
   -

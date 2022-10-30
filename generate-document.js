@@ -17,12 +17,18 @@ const truncate = require("./scripts/helpers/truncate");
 const paginator = require("./scripts/helpers/paginator");
 const listCategories = require("./scripts/helpers/list-categories");
 const listMenus = require("./scripts/helpers/list-menus");
+const mapArchives = require(`./scripts/helpers/map-archives`);
 const page = require("./mock");
 const [post] = require("./mock/posts")({
   domain: `http://example.com`,
   count: 1,
 });
+const posts = require("./mock/posts")({
+  domain: `http://example.com`,
+  count: 3,
+});
 const categoryGenerator = require("./mock/categories");
+const propTypesPreset = require("./mock/proptypes-preset");
 
 const config = jsYml.load(
   fs.readFileSync(path.resolve(__dirname, `../../_config.yml`), `utf8`)
@@ -43,6 +49,8 @@ const locals = {
   site: {
     propTypes,
     categories,
+    propTypesPreset,
+    posts,
   },
   url: `URL`,
   is_home: () => true,
@@ -71,11 +79,13 @@ const locals = {
   paginator,
   listCategories,
   listMenus,
+  mapArchives,
 };
 locals.fullUrl = locals.fullUrl.bind(locals);
 locals.paginator = locals.paginator.bind(locals);
 locals.listCategories = locals.listCategories.bind(locals);
 locals.listMenus = locals.listMenus.bind(locals);
+locals.mapArchives = locals.mapArchives.bind(locals);
 
 pugDocGen({
   input: path.resolve(rootPath, "./components/atoms/**/*.pug"),

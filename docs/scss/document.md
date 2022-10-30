@@ -38,6 +38,64 @@ Slightly darken a color
 
 **[Color](https://sass-lang.com/documentation/values/colors)**
 
+<a id="general-function-stripUnit"></a>
+
+# @function stripUnit
+
+Remove units from a given value
+
++ **Group:** General
++ **Access:** public
+
+## Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$numbers`|**[Number](https://sass-lang.com/documentation/values/numbers)**|containing units|-|
+
+## Returns
+
+**[Number](https://sass-lang.com/documentation/values/numbers)**
+
+## Dependents
+
++ **@function convertRem** Convert a given value in rem
++ **@function convertRem** Convert a given value in rem
+
+<a id="general-function-convertRem"></a>
+
+# @function convertRem
+
+Convert a given value in rem
+
++ **Group:** General
++ **Access:** public
+
+## Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$value`|**[Number](https://sass-lang.com/documentation/values/numbers)**|to convert|-|
+|`$the`|**[Number](https://sass-lang.com/documentation/values/numbers)**|value that is the basis for the conversion|-|
+
+## Returns
+
+**[Number](https://sass-lang.com/documentation/values/numbers)**
+
+## Throws
+
++ not defined $base-value
+
+## Dependencies
+
++ **[@function stripUnit](#general-function-stripUnit)**
++ **[@function stripUnit](#general-function-stripUnit)**
+
+## Dependents
+
++ **@function getFontSize** get font size from sizes of divided evenly
+  between the minimum and maximum values
+
 <a id="general-function-getFontSize"></a>
 
 # @function getFontSize
@@ -63,6 +121,10 @@ between the minimum and maximum values
 + can not found $font-size-largest
 + can not found $font-size-smallest
 + can not found $font-size-step-count
+
+## Dependencies
+
++ **[@function convertRem](#general-function-convertRem)**
 
 <a id="general-mixin-respond-to"></a>
 

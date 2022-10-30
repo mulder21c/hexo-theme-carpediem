@@ -2,6 +2,7 @@ const uid = require("easy-uid");
 const generateTags = require("./tags");
 const generateCategories = require("./categories");
 const loremIpsum = require("lorem-ipsum").loremIpsum;
+const moment = require("moment");
 const loremOpts = {
   count: 2,
   format: "html",
@@ -18,7 +19,7 @@ const generatePost = ({ domain, id = uid(), next, prev }) => ({
   title: `Post ${id}`,
   thumbnail: `https://via.placeholder.com/320x180.png?text=${id}`,
   hero: `https://via.placeholder.com/1600x900.png?text=${id}`,
-  date: new Date(),
+  date: moment(),
   slug: `post-${id}`,
   published: true,
   comments: true,
@@ -49,6 +50,8 @@ module.exports = ({ count, domain }) => {
     if (idx > 0) post.prev = post[idx - 1];
     if (idx < posts.length - 1) post.next = post[idx + 1];
   });
+
+  posts.sort = () => posts;
 
   return posts;
 };
