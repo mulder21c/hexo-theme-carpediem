@@ -16,6 +16,7 @@ const stripHTML = require("./scripts/helpers/strip-html");
 const truncate = require("./scripts/helpers/truncate");
 const paginator = require("./scripts/helpers/paginator");
 const listCategories = require("./scripts/helpers/list-categories");
+const listMenus = require("./scripts/helpers/list-menus");
 const page = require("./mock");
 const [post] = require("./mock/posts")({
   domain: `http://example.com`,
@@ -69,10 +70,12 @@ const locals = {
   truncate,
   paginator,
   listCategories,
+  listMenus,
 };
 locals.fullUrl = locals.fullUrl.bind(locals);
 locals.paginator = locals.paginator.bind(locals);
 locals.listCategories = locals.listCategories.bind(locals);
+locals.listMenus = locals.listMenus.bind(locals);
 
 pugDocGen({
   input: path.resolve(rootPath, "./components/atoms/**/*.pug"),
