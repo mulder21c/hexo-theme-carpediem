@@ -20,6 +20,7 @@ include /components/molecules/pagination/index
       @see atoms.md#heading
     - {string} [props.headingTitle] the string as heading label
     - {string} [props.headingSlotContent] the contents as heading slot
+    - {boolean} [props.usePagination] [true] whether to use pagination
   examples:
     - |
       +postsList({
@@ -35,16 +36,30 @@ mixin postsList(props)
       headingProp: PropTypes.object.isRequired,
       headingTitle: PropTypes.string,
       headingSlotContent: PropTypes.string,
+      usePagination: PropTypes.bool,
     };
     const postsListValidate = validateProps(postsListProps);
+    const defaults = {
+      usePagination: true,
+    };
     const {
       posts,
       headingProp,
       headingTitle,
       headingSlotContent,
+      usePagination,
       ...attrs
-    } = props;
-    postsListValidate({posts, headingProp, headingTitle, headingSlotContent});
+    } = {
+      ...defaults,
+      ...props,
+    };
+    postsListValidate({
+      posts,
+      headingProp,
+      headingTitle,
+      headingSlotContent,
+      usePagination,
+    });
 
     const {prefix} = theme;
     const headingId = generateUid();
@@ -71,10 +86,11 @@ mixin postsList(props)
       each post in posts
         li(class= `${prefix}-posts__list-item`)
           +postCard({post, isLink: true})
-    +pagination({
-      labelRef: headingId,
-      options: {
-        base: config.url,
-        format: `/page/%d`,
-      }
-    })
+    if usePagination
+      +pagination({
+        labelRef: headingId,
+        options: {
+          base: config.url,
+          format: `/page/%d`,
+        }
+      })
