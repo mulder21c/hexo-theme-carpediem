@@ -5,6 +5,8 @@
 .#{$prefix} {
   &-section-hero {
     margin: -2rem -0.75rem 2rem;
+    width: calc(100% + 0.75em * 2);
+
     &#{&} {
       aspect-ratio: 21/9;
 
