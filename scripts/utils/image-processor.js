@@ -4,8 +4,8 @@ const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
 const truncateFile = require("./truncate-file");
 const rootPath = path.resolve(__dirname, "../../");
-const imageInfoPath = path.resolve(rootPath, "./images-db.json");
 const sourcePath = path.resolve(rootPath, "../../source/");
+const imageDBPath = path.resolve(sourcePath, "./_data/images.db.json");
 
 /**
  * check has protocol
@@ -33,17 +33,17 @@ const prependHttpProtocol = (url) => {
  * @param {boolean} isCleanStage Whether it is in clean stage or not
  */
 const truncateImageInfo = (isCleanStage) => {
-  isCleanStage && truncateFile(imageInfoPath, `[]`);
+  isCleanStage && truncateFile(imageDBPath, `[]`);
 };
 
 const generateImageInfo = (data) => {
   let imageInfo;
   const [posts] = data;
   try {
-    imageInfo = require(imageInfoPath);
+    imageInfo = require(imageDBPath);
   } catch (err) {
-    truncateFile(imageInfoPath);
-    imageInfo = require(imageInfoPath);
+    truncateFile(imageDBPath, `[]`);
+    imageInfo = require(imageDBPath);
   }
 
   posts.forEach((post) => {

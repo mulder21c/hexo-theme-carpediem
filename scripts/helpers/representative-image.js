@@ -3,8 +3,8 @@ const path = require("path");
 const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
 const rootPath = path.resolve(__dirname, `../../`);
-const imageInfo = require(path.resolve(rootPath, "./images-db.json"));
 const sourcePath = path.resolve(rootPath, "../../source/");
+const imageInfo = require(path.resolve(sourcePath, "./_data/images.db.json"));
 
 /**
  * @typedef {Object} ImageProbe
