@@ -7,9 +7,16 @@ include /components/atoms/heading/index
     include ../../utils/util
   arguments:
     - {object} props
-    - {object} props.list the collection that is consist of archives
-    - {boolean} props.isSection whether this component represent as section
-    - {object} props.headingProp @see atoms.md#heading
+    - {object} props.archives the collection that is consist of archives
+    - {number} props.headingLevel [2] the level of year as heading
+    - |
+      {boolean} [props.isSection] [true] <br>
+      whether this component represent as section
+    - |
+      {object} [props.sectionHeadingProp] if specified,
+      it will generate heading for section
+      <br>@see atoms.md#heading
+    - {number} [props.displayYearNum] [2] the number of years to be display
   examples:
     - |
       +archiveTimeline()
@@ -18,9 +25,9 @@ mixin archiveTimeline(props)
   -
     const archivesProps = {
       archives: PropTypes.object.isRequired,
+      headingLevel: propTypesPreset.headingLevel.isRequired,
       isSection: PropTypes.bool,
       sectionHeadingProp: propTypesPreset.heading,
-      headingLevel: propTypesPreset.headingLevel.isRequired,
       displayYearNum: PropTypes.number,
     };
     const archivesValidate = validateProps(archivesProps);
