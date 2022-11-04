@@ -45,7 +45,7 @@
     "@babel/core": "^7.19.6",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.19.4",
-    "@commitlint/cli": "^17.1.2",
+    "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.1.0",
     "@fortawesome/fontawesome-free": "^6.2.0",
     "@hidoo/sassdoc-to-markdown": "^0.8.0",
