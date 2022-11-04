@@ -58,7 +58,7 @@
     "copy-files-from-to": "^3.2.2",
     "cssnano": "^5.1.13",
     "easy-uid": "^2.0.2",
-    "eslint": "^8.25.0",
+    "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-pug": "^1.2.4",
