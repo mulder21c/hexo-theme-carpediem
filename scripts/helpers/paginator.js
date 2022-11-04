@@ -25,7 +25,7 @@ const createPageTag = (options, ctx) => {
         class: `${pageClass} ${i === current ? currentClass : ``}`,
         href: link(i),
         "aria-current": i === current ? "page" : null,
-        "aria-label": _p(`label.page.default`, i),
+        "aria-label": _p(`label.pagination.default`, i),
       },
       transform ? transform(i) : i,
       escape

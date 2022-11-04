@@ -9,7 +9,7 @@ label:
   date:
     published: published at
     updated: updated at
-  page:
+  pagination:
     default: "page %d"
     next: next page
     prev: prev page

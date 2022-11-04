@@ -9,7 +9,7 @@ label:
   date:
     published: 발행일
     updated: 업데이트
-  page:
+  pagination:
     default: "%d 페이지"
     next: 다음 페이지
     prev: 이전 페이지
