@@ -56,7 +56,7 @@
     "autoprefixer": "^10.4.13",
     "concat-with-sourcemaps": "^1.1.0",
     "copy-files-from-to": "^3.2.2",
-    "cssnano": "^5.1.13",
+    "cssnano": "^5.1.14",
     "easy-uid": "^2.0.2",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.3.0",
