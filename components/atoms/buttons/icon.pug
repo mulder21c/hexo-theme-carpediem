@@ -1,8 +1,11 @@
+include ../svg-icon/index
+
 //- @pugdoc
   name: iconButton
-  description: create icon button element
+  description: icon(font awesome) button component
   beforeEach: |
     include ../../utils/util
+    include ../svg-icon/index
   arguments:
     - {object} props
     - {string} props.icon name of icon
@@ -20,18 +23,24 @@
   examples:
     - |
       +iconButton({
+        icon: 'tty',
+        label: 'tel',
         type: 'button',
         size: 'medium',
         appearance: 'outline',
-        icon: 'tty',
-        label: 'tel'
       })
-mixin iconButton(props)
+
+mixin iconButton(props = {})
   -
-    // verifying props
+    // define types
     const iconBtnProps = {
       icon: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
+      type: PropTypes.oneOf([
+        `button`,
+        `submit`,
+        `reset`,
+      ]),
       size: PropTypes.oneOf([
         `small`,
         `medium`,
@@ -47,56 +56,50 @@ mixin iconButton(props)
         `icon-text`,
       ]),
     };
-    const iconBtnValidate = validateProps(iconBtnProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(iconBtnProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       type: `button`,
       size: `medium`,
       appearance: `outline`,
       layout: `icon-only`
     };
+
+    // merge user-supplied options with the defaults
     const {
+      icon,
+      label,
       type,
       size,
       appearance,
-      icon,
-      label,
       layout,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    iconBtnValidate({
-      size,
-      appearance,
-      icon,
-      label,
-      layout
-    });
 
+    const { prefix } = theme;
     const isIconOnly = layout === `icon-only`;
-    const {prefix} = theme;
     const className = [
       `${prefix}-btn-icon`,
       { [`${prefix}-btn-icon--${size}`]: size },
       { [`${prefix}-btn-icon--${appearance}`]: appearance },
       { [`${prefix}-btn-icon--${layout}`]: layout }
     ];
-    const {
-      iconName,
-      iconCategory
-    } = getIconCategory(icon);
 
   button(
     type= type
     aria-label= isIconOnly && label
     class= className
   )&attributes(attrs)
-    svg(
-      class= `${prefix}-btn-icon__icon`
-      role= `presentation`
-      focusable= "false"
-    )
-      use(xlink:href= `/images/${iconCategory}.svg#${iconName}`)
+    +svgIcon({
+      name: icon,
+      class: `${prefix}-btn-icon__icon`,
+      [`aria-hidden`]: `true`,
+    })
     if !isIconOnly
       span(class= `${prefix}-btn-icon__label`)= label

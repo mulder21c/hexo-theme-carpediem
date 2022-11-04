@@ -1,27 +1,27 @@
 //- @pugdoc
   name: checkbox
-  description: create input checkbox element
+  description: checkbox component
   beforeEach: |
     include ../../utils/util
   arguments:
     - {object} props
-    - {string} [props.name] the value of checkbox's name attribute
     - |
       {string} [props.id] the value of checkbox's id attribute
       and label's for attribute <br>
       If not specified, an auto-generated id is assigned.
+    - {string} [props.name] the value of checkbox's name attribute
     - |
       {string} [props.label] label of checkbox <br>
       If do not specify this value, you should provide label as block
       or separated label element
-    - {boolean} [props.checked] the checked state of checkbox
+    - {boolean} [props.checked] [false] the checked state of checkbox
     - {string|number} [props.value] the value of checkbox
     - |
       {string} [props.labelPosition] ['right'] Where the label is located
       relative to the visual indicator<br>
       One of `'top'`, `'left'`, `'right'`, `'bottom'`
-    - {string} [props.labelClassName] the class name for label element
-    - {object} [props.inputAttrs] the attrs for input:checkbox
+    - {string} [props.labelClassName] [``] the class name for label element
+    - {object} [props.inputAttrs] [{}] the attrs for input:checkbox
   examples:
     - |
       // basic
@@ -29,26 +29,28 @@
         label: 'agree',
         checked: true
       })
+
       // using block instead of label property
       +checkbox({
         name: 'answer',
         value: 1
       }) check label
+
       // using separated label element
       +checkbox({
+        id: "no-label-checkbox",
         checked: false,
-        id: "no-label-checkbox"
       })
       label(for="no-label-checkbox") checkbox
 
-mixin checkbox(props)
+mixin checkbox(props = {})
   -
-    // verifying props
+    // define types
     const chkProps = {
-      label: PropTypes.string,
-      name: PropTypes.string,
-      checked: PropTypes.bool,
       id: PropTypes.string,
+      name: PropTypes.string,
+      label: PropTypes.string,
+      checked: PropTypes.bool,
       value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -62,40 +64,36 @@ mixin checkbox(props)
       labelClassName: PropTypes.string,
       inputAttrs: PropTypes.object,
     };
-    const chkValidate = validateProps(chkProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(chkProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
+      checked: false,
       labelPosition: `right`,
-      labelClassName: null,
+      labelClassName: ``,
       inputAttrs: {},
     };
+
     const {
-      checked,
-      label,
       id,
       name,
+      label,
+      checked,
       labelPosition,
       value,
       labelClassName: lblClassName,
-      class: cn,
       inputAttrs,
+      class: className,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    chkValidate({
-      label,
-      checked,
-      id,
-      name,
-      value,
-      labelPosition,
-      labelClassName: lblClassName,
-      inputAttrs,
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
+    const { prefix } = theme;
     const isReverse = [`left`, `top`].includes(labelPosition);
     const isColumn = [`top`, `bottom`].includes(labelPosition);
     const labelClassName = [
@@ -104,6 +102,7 @@ mixin checkbox(props)
       { [`${prefix}-checkbox__label--column`]: isColumn },
       ...(Array.isArray(lblClassName) ? lblClassName : [lblClassName] ),
     ];
+
   script(
     async
     data-pug
@@ -111,22 +110,22 @@ mixin checkbox(props)
     window.usedComponents = window.usedComponents || new Set();
     usedComponents.add(`checkboxes`);
   span(
-    class=[
+    class= [
       `${prefix}-checkbox`,
-      ...(Array.isArray(cn) ? cn : [cn])
+      ...(Array.isArray(className) ? className : [className]),
     ]
   )&attributes(attrs)
     input(
       type= `checkbox`
-      id= uid
-      name= name
-      value= value
+      id= id
+      name= name || null
+      value= value || null
       checked= checked
       class= `${prefix}-checkbox__control`
     )&attributes(inputAttrs)
     if (label || block)
       label(
-        for= uid
+        for= id
         class= labelClassName
       )
         if (label)

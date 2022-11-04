@@ -4,64 +4,53 @@ include /components/atoms/heading/index
   name: archiveTimeline
   description: create archive timeline
   beforeEach: |
-    include ../../atoms/heading/index
     include ../../utils/util
+    include ../../atoms/heading/index
   arguments:
     - {object} props
     - {object} props.archives the collection that is consist of archives
     - {number} props.headingLevel [2] the level of year as heading
-    - |
-      {boolean} [props.isSection] [true] <br>
-      whether this component represent as section
-    - |
-      {object} [props.sectionHeadingProp] if specified,
-      it will generate heading for section
-      <br>@see atoms.md#heading
     - {number} [props.displayYearNum] [2] the number of years to be display
   examples:
     - |
       +archiveTimeline({archives: mapArchives(), headingLevel: 2})
 
-mixin archiveTimeline(props)
+mixin archiveTimeline(props = {})
   -
+    // define types
     const archivesProps = {
       archives: PropTypes.object.isRequired,
       headingLevel: propTypesPreset.headingLevel.isRequired,
-      isSection: PropTypes.bool,
       sectionHeadingProp: propTypesPreset.heading,
       displayYearNum: PropTypes.number,
     };
-    const archivesValidate = validateProps(archivesProps);
 
+    // verifying props
+    validateProps(archivesProps)(props);
+
+    // merge user-supplied options with the defaults
     const defaultProp = {
       archives: {},
-      isSection: true,
       headingLevel: 2,
       displayYearNum: 2,
     };
 
     const {
       archives,
-      isSection,
-      sectionHeadingProp,
       headingLevel,
       displayYearNum,
       ...attrs
     } = {
       ...defaultProp,
-      ...(props || {}),
+      ...props,
     };
 
-    const tag = isSection ? `section` : `div`;
-    const {prefix} = theme;
+    const { prefix } = theme;
 
-  #{tag}(class= `${prefix}-timeline`)
+  div(class= `${prefix}-timeline`)
     -
       let count = 0;
       const reverse = (a, b) => Number(a) > Number(b) ? -1 : 1;
-
-    if sectionHeadingProp
-      +heading(sectionHeadingProp)
 
     each year in Object.keys(archives).reverse()
       -

@@ -1,50 +1,53 @@
 //- @pugdoc
   name: switchButton
-  description: create switch button
+  description: switch button component
   beforeEach: |
     include ../../utils/util
   arguments:
     - {object} props
-    - {string} [props.name] the value of switch button's name attribute
     - |
       {string} [props.id] the value of switch button's id attribute
       and label's for attribute <br>
       If not specified, an auto-generated id is assigned.
+    - {string} [props.name] the value of switch button's name attribute
     - |
       {string} [props.label] label of switch button <br>
       If do not specify this value, you must author and style label element.
-    - {boolean} [props.checked] the state of switch button
+    - {boolean} [props.checked] [false] the state of switch button
     - {string|number} [props.value] the value of switch button
     - |
       {string} [props.labelPosition] ['right'] Where the label is located
       relative to the visual indicator<br>One of `'left'`, `'right'`
-    - {object} [props.inputAttrs] the attrs for input:checkbox
+    - {object} [props.inputAttrs] [{}] the attrs for input:checkbox
   examples:
     - |
       // basic
       +switchButton({
         label: 'alarm',
-        checked: true
+        checked: true,
       })
+
       // using block instead of label property
       +switchButton({
         label: 'alarm',
-        checked: true
+        checked: true,
       }) switch button
+
       // using separated label element
       +switchButton({
+        id: `no-label-switch`,
         checked: false,
-        id: `no-label-switch`
       })
       label(for="no-label-switch") switch button
-mixin switchButton(props)
+
+mixin switchButton(props = {})
   -
-    // verifying props
+    // define types
     const switchBtnProps = {
-      label: PropTypes.string,
-      name: PropTypes.string,
-      checked: PropTypes.bool,
       id: PropTypes.string,
+      name: PropTypes.string,
+      label: PropTypes.string,
+      checked: PropTypes.bool,
       value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -55,34 +58,32 @@ mixin switchButton(props)
       ]),
       inputAttrs: PropTypes.object,
     };
-    const switchBtnValidate = validateProps(switchBtnProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(switchBtnProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
+      checked: false,
       labelPosition: `right`,
       inputAttrs: {},
     };
     const {
-      checked,
-      label,
       id,
       name,
-      labelPosition,
+      label,
+      checked,
       value,
+      labelPosition,
       inputAttrs,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    switchBtnValidate({
-      label,
-      checked,
-      id,
-      value,
-      labelPosition
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
+    const { prefix } = theme;
     const isReverse = [`left`].includes(labelPosition);
     const btnClassName = [
       `${prefix}-switch__btn`,
@@ -98,9 +99,9 @@ mixin switchButton(props)
   span(class=`${prefix}-switch`)&attributes(attrs)
     input(
       type= `checkbox`
-      id= uid
-      name= name
-      value= value
+      id= id
+      name= name || null
+      value= value || null
       checked= checked
       class= `${prefix}-switch__control`
     )&attributes(inputAttrs)
@@ -110,7 +111,7 @@ mixin switchButton(props)
     )
     if (label || block)
       label(
-        for= uid
+        for= id
         class= `${prefix}-switch__label`
       )
         if (label)

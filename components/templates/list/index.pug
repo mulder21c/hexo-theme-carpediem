@@ -1,6 +1,8 @@
-extends /components/templates/common.pug
-include /components/organisms/hero/index.pug
-include /components/organisms/posts-list/index.pug
+extends /components/templates/common
+include /components/atoms/heading/index
+include /components/organisms/hero/index
+include /components/organisms/posts-list/index
+include /components/organisms/pagination/index
 
 block heroContent
   -
@@ -10,23 +12,24 @@ block heroContent
 
 block mainContent
   -
-    const defaultHeadingProp = {level: 1, visible: false };
-    const listHeadingProp = {
-      ...(headingProp || defaultHeadingProp),
-      class: [
-        Array.isArray((headingProp || defdefaultHeadingPropaultProp).class)
-          ? (headingProp || defaultHeadingProp).class.join(" ")
-          : (headingProp || defaultHeadingProp).class,
-        `${prefix}-post-list__heading`
-      ],
+    const headingId = generateUid();
+    const headingProp = {
+      id: headingId,
+      level: 1,
+      visible: true,
+      class: `${prefix}-category-list__heading`,
     };
 
-  +postsList({
-    posts,
-    headingProp: listHeadingProp,
-    headingTitle: headingTitle || ``,
-    headingSlotContent: headingSlotContent || ``,
-    class: `${prefix}-post-list`
-  })
+  section(class=`${prefix}-category-list`)
+    +heading(headingProp)
+      = page.category
+
+    +postsList({
+      posts,
+    })
+
+    +pagination({
+      labelRef: headingId,
+    })
 
 block sidebar

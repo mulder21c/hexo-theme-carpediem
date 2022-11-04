@@ -1,25 +1,29 @@
 //- @pugdoc
   name: cclLicense
-  description: create ccl license text for footer
+  description: ccl license text
   beforeEach: |
     include ../../utils/util
   arguments:
     - {object} props
-    - |
-      {string} [props.year] of first publication of the work
+    - {number|number[]} [props.year] of first publication of the work
     - {string} [props.name] the name of the owner of copyright in the work
-    - {array} [props.license] the features to apply to license
-    - {number} [props.version] the version of creative commons license
+    - |
+      {string[]} [props.license] the features to apply to license
+      among `by`, `nc`, `nd`, `sa`
+    - |
+      {number} [props.version] the version of creative commons license
+      <br> one of 1, 2, 2.5, 3, 4
   examples:
     - |
       +cclLicense({
-        name: config.author,
         year: [2012, 2022],
+        name: config.author,
         license: [`by`, `nc`, `nd`],
       })
 
-mixin cclLicense(props)
+mixin cclLicense(props = {})
   -
+    // define types
     const licenseProps = {
       year: PropTypes.oneOfType([
         PropTypes.number,
@@ -31,7 +35,7 @@ mixin cclLicense(props)
           `by`,
           `nc`,
           `nd`,
-          `sa`
+          `sa`,
         ])
       ),
       version: PropTypes.oneOf([
@@ -39,10 +43,13 @@ mixin cclLicense(props)
         3,
         2.5,
         2,
-        1
+        1,
       ])
     };
-    const licenseValidate = validateProps(licenseProps);
+
+    // verifying props
+    validateProps(licenseProps)(props);
+
     const {
       year,
       name,
@@ -50,15 +57,13 @@ mixin cclLicense(props)
       version,
       ...attrs
     } = props;
-    licenseValidate({year, name, license, version});
 
-    const {prefix} = theme;
+    const { prefix } = theme;
     const licenseTxt = license.map(li => li.toUpperCase()).sort().join(`-`);
     const licenseUrl =
       `https://creativecommons.org/licenses/${
         licenseTxt.toLowerCase()
       }/${(version || 4).toFixed(1)}`;
-
     const ccImage = `
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +93,7 @@ mixin cclLicense(props)
         </path>
       </svg>
     `;
+
     let startYear;
     let lastYear;
     if(Array.isArray(year)) {
@@ -114,8 +120,7 @@ mixin cclLicense(props)
 
     span(
       class= `${prefix}-license__name`
-    )
-      = (config.author || ``)
+    )= (config.author || ``)
 
     span(
       class= `${prefix}-license__link`
@@ -123,7 +128,7 @@ mixin cclLicense(props)
       |(
       a(
         href= licenseUrl
-        rel="external noreferrer"
+        rel="external noreferrer noopener nofollow"
         target="_blank"
       )= licenseTxt
       |)

@@ -1,20 +1,20 @@
 //- @pugdoc
   name: boxyRadio
-  description: create input radio element
+  description: box styled radio component
   beforeEach: |
     include ../../utils/util
   arguments:
     - {object} props
     - {string} props.name name of radio
-    - {string|number|boolean} props.value the value of radio
-    - |
-      {string} [props.label] label of radio<br>
-      If do not specify this value, you must author and style label element.
+    - {string|number} props.value the value of radio
     - |
       {string} [props.id] the value of radio's id attribute
       and label's for attribute
-    - {boolean} [props.checked] the checked state of radio
-    - {object} [props.inputAttrs] the attrs for input:radio
+    - |
+      {string} [props.label] label of radio<br>
+      If do not specify this value, you must author and style label element.
+    - {boolean} [props.checked] [false] the checked state of radio
+    - {object} [props.inputAttrs] [{}] the attrs for input:radio
   examples:
     - |
       // label property
@@ -23,59 +23,58 @@
         value: 1,
         label: 'boxy radio'
       })
+
       // label from block
       +boxyRadio({
         name: 'answer',
         value: 1
       })
         boxy radio
-mixin boxyRadio(props)
+
+mixin boxyRadio(props = {})
   -
-    // verifying props
+    // define types
     const radioProps = {
       name: PropTypes.string.isRequired,
-      checked: PropTypes.bool,
-      id: PropTypes.string,
-      label: PropTypes.string,
       value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
-        PropTypes.bool,
       ]).isRequired,
+      checked: PropTypes.bool,
+      id: PropTypes.string,
+      label: PropTypes.string,
       inputAttrs: PropTypes.object,
     };
-    const radioValidate = validateProps(radioProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(radioProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
+      checked: false,
       inputAttrs: {},
     };
+
     const {
-      checked,
-      id,
       name,
       value,
+      id,
       label,
+      checked,
       inputAttrs,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    radioValidate({
-      label,
-      checked,
-      id,
-      name,
-      label,
-      value
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
+    const { prefix } = theme;
 
   label(class= `${prefix}-radio-boxy`)&attributes(attrs)
     input(
       type= `radio`
-      id= uid
+      id= id
       name= name
       value= value
       checked= checked

@@ -1,21 +1,22 @@
-include /components/atoms/svg-icon/index.pug
-include /components/atoms/buttons/icon.pug
+include /components/atoms/svg-icon/index
+include /components/atoms/buttons/icon
 
 //- @pugdoc
   name: slidePanel
   description: create a sliding panel
   beforeEach: |
     include ../../utils/util
-    include ../../atoms/svg-icon/index.pug
-    include ../../atoms/buttons/icon.pug
+    include ../../atoms/svg-icon/index
+    include ../../atoms/buttons/icon
   arguments:
     - {object} props
     - {string} props.label the label of panel
-    - {boolean} [props.useCloseBtn=true] whether to use the close button
+    - {boolean} [props.useCloseBtn] [true] whether to use the close button
     - |
-      {string} [props.closeBtnPosition=`top-right`] the position of close button
+      {string} [props.closeBtnPosition] [`top-right`]
+      the position of close button
     - |
-      {string} [props.tag=`div`]
+      {string} [props.tag] [`section`]
       the HTML tag name for the element enclosing the panel
   slots:
     - panelBodySlot the slot for body of panel
@@ -32,8 +33,9 @@ include /components/atoms/buttons/icon.pug
         +panelBodySlot
           slide panel
 
-mixin slidePanel(props)
+mixin slidePanel(props = {})
   -
+    // define types
     const slidePanelProps = {
       label: PropTypes.string.isRequired,
       useCloseBtn: PropTypes.bool,
@@ -45,11 +47,15 @@ mixin slidePanel(props)
       ]),
       tag: PropTypes.string,
     };
-    const slidePanelValidate = validateProps(slidePanelProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(slidePanelProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       useCloseBtn: true,
       closeBtnPosition: `top-right`,
-      tag: `div`,
+      tag: `section`,
     };
 
     const {
@@ -58,23 +64,17 @@ mixin slidePanel(props)
       closeBtnPosition,
       tag,
       id,
-      class: cn,
+      class: className,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    slidePanelValidate({
-      label,
-      useCloseBtn,
-      closeBtnPosition,
-      tag,
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
+    const { prefix } = theme;
     const [closeBtnPosY, closeBtnPosX] = closeBtnPosition.split(`-`);
 
+    // declaring slots
     let panelBodySlot = null;
 
   mixin panelBodySlot
@@ -87,18 +87,18 @@ mixin slidePanel(props)
     window.usedComponents = window.usedComponents || new Set();
     usedComponents.add(`slide-panel`);
   #{tag}.slide-panel(
-    id= uid
+    id= id
     aria-label= label
     role= `region`
     class= [
       `${prefix}-slide-panel`,
       useCloseBtn && `${prefix}-slide-panel--btn-${closeBtnPosY}`,
-      cn,
+      className,
     ]
     hidden
   )&attributes(attrs)
     div(class =[
-      `${cn}__inner`,
+      `${className}__inner`,
     ])
       block
       - panelBodySlot && panelBodySlot();

@@ -1,4 +1,4 @@
-include /components/atoms/radios/boxy.pug
+include /components/atoms/radios/boxy
 
 //- @pugdoc
   name: radioBoxes
@@ -6,7 +6,7 @@ include /components/atoms/radios/boxy.pug
   see: test
   beforeEach: |
     include ../../utils/util
-    include ../../atoms/radios/boxy.pug
+    include ../../atoms/radios/boxy
   arguments:
     - {object} props
     - {string} props.name attribute of radio
@@ -28,6 +28,7 @@ include /components/atoms/radios/boxy.pug
           { label: `large`, value: `large`, },
         ],
       })
+
       // label with slot
       +radioBoxes({
         name: `size2`,
@@ -41,44 +42,47 @@ include /components/atoms/radios/boxy.pug
         +radioBoxesLabelSlot medium 2
         +radioBoxesLabelSlot large 3
 
-mixin radioBoxes(props)
+mixin radioBoxes(props = {})
   -
-    // verifying props
+    // define types
     const radioBoxesProps = {
       name: PropTypes.string.isRequired,
       options: PropTypes.array.isRequired,
     };
-    const radioBoxesValidate = validateProps(radioBoxesProps);
-    const defaults = {
-      options: null,
-      columns: null
-    };
+
+    // verifying props
+    validateProps(radioBoxesProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {};
+
     const {
       name,
       options,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    radioBoxesValidate({
-      name,
-      labelPosition,
-      options
-    });
 
-    const {prefix} = theme;
+    const { prefix } = theme;
+
+    // declaring slots
     const radioBoxesLabelSlots = [];
 
   mixin radioBoxesLabelSlot
     - radioBoxesLabelSlots.push(block);
 
-  div(class= [`${prefix}-radio-boxes`])&attributes(attrs)
+  div(
+    class= [
+      `${prefix}-radio-boxes`,
+    ]
+  )&attributes(attrs)
     each option, idx in options
       -
         const radioOption = {
-          name,
           id: generateUid(),
+          name,
           ...option,
           class: `${prefix}-radio-boxes__item`
         };

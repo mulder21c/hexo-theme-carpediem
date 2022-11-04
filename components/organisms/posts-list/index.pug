@@ -1,96 +1,42 @@
-include /components/atoms/heading/index
 include /components/molecules/post-card/index
-include /components/molecules/pagination/index
 
 //- @pugdoc
   name: postsList
   description: create accordion component
   beforeEach: |
     include ../../utils/util
-    include ../../atoms/heading/index
     include ../../molecules/post-card/index
-    include ../../molecules/pagination/index
   arguments:
     - {object} props
     - |
       {array} props.posts hexo page.posts
       @see https://hexo.io/docs/variables.html#Page-Variables
-    - |
-      {object} props.headingProp prop of heading component
-      @see atoms.md#heading
-    - {string} [props.headingTitle] the string as heading label
-    - {string} [props.headingSlotContent] the contents as heading slot
-    - {boolean} [props.usePagination] [true] whether to use pagination
   examples:
     - |
       +postsList({
         posts: (posts || []),
-        headingProp: { level: 1, visible: false },
-        headingTitle: `recently articles`,
       })
 
-mixin postsList(props)
+mixin postsList(props = {})
   -
+    // define types
     const postsListProps = {
       posts: PropTypes.array.isRequired,
-      headingProp: PropTypes.object.isRequired,
-      headingTitle: PropTypes.string,
-      headingSlotContent: PropTypes.string,
-      usePagination: PropTypes.bool,
     };
-    const postsListValidate = validateProps(postsListProps);
-    const defaults = {
-      usePagination: true,
-    };
+
+    // verifying props
+    validateProps(postsListProps)(props);
+
     const {
       posts,
-      headingProp,
-      headingTitle,
-      headingSlotContent,
-      usePagination,
       ...attrs
     } = {
-      ...defaults,
       ...props,
     };
-    postsListValidate({
-      posts,
-      headingProp,
-      headingTitle,
-      headingSlotContent,
-      usePagination,
-    });
 
-    const {prefix} = theme;
-    const headingId = generateUid();
+    const { prefix } = theme;
 
-    const _headingProp = {
-      ...headingProp,
-      id: headingId,
-      class: [
-        Array.isArray(headingProp.class)
-          ? headingProp.class.join(" ")
-          : headingProp.class,
-        `${prefix}-posts__heading`,
-      ],
-    };
-
-  section(aria-labelledby= headingId)&attributes(attrs)
-    +heading(_headingProp)
-      if headingSlotContent
-        +headingSlot
-          | !{headingSlotContent}
-      else
-        = headingTitle
-    ol(class=`${prefix}-posts`)
-      each post in posts
-        li(class= `${prefix}-posts__list-item`)
-          +postCard({post, isLink: true})
-    if usePagination
-      +pagination({
-        labelRef: headingId,
-        options: {
-          base: config.url,
-          format: `/page/%d`,
-        }
-      })
+  ol(class=`${prefix}-posts`)
+    each post in posts
+      li(class= `${prefix}-posts__list-item`)
+        +postCard({post, isLink: true})

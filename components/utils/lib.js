@@ -1,7 +1,7 @@
 /**
  * @see https://github.com/cloudfour/transition-hidden-element
  * @param {Function} opts.onTransitionBefore the callback function
- *  to run before transition starts
+ *  to run after transition starts
  * @param {Function} opts.onTransitionEnd the callback function
  *  to run after transition ends
  */
@@ -62,7 +62,7 @@ export function transitionHiddenElement({
     if (hideMode === "display") {
       element.style.display = "none";
     } else {
-      element.setAttribute("hidden", true);
+      element.hidden = true;
     }
   };
 
@@ -70,7 +70,7 @@ export function transitionHiddenElement({
     if (hideMode === "display") {
       element.style.display = displayValue;
     } else {
-      element.removeAttribute("hidden");
+      element.hidden = false;
     }
   };
 
@@ -102,9 +102,9 @@ export function transitionHiddenElement({
        */
       const reflow = element.offsetHeight;
 
-      onTransitionBefore && onTransitionBefore();
       element.classList.add(transitionClassName);
       element.classList.add(visibleClass);
+      onTransitionBefore && onTransitionBefore();
     },
 
     /**

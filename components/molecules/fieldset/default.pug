@@ -24,14 +24,16 @@
         +fieldsetLabelSlot fieldset title
         +fieldsetBodySlot
           p fieldset body
+
       // column
       +fieldset({direction: `column`})
         +fieldsetLabelSlot fieldset title
         +fieldsetBodySlot
           p fieldset body
-mixin fieldset(props)
+
+mixin fieldset(props = {})
   -
-    // verifying props
+    // define types
     const fieldsetProps = {
       direction: PropTypes.oneOf([
         `column`,
@@ -48,31 +50,31 @@ mixin fieldset(props)
         return true;
       }),
     };
-    const fieldsetValidate = validateProps(fieldsetProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(fieldsetProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
       direction: `row`,
       alignItem: `start`,
       labelWidthRatio: 3,
     };
     const {
+      id,
       direction,
       alignItem,
       labelWidthRatio,
-      id,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    fieldsetValidate({
-      direction,
-      alignItem,
-      labelWidthRatio
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
+    const { prefix } = theme;
 
+    // declaring slots
     let fieldsetLabelSlot = null;
     let fieldsetBodySlot = null;
 
@@ -84,19 +86,21 @@ mixin fieldset(props)
 
   div(
     role= `group`
-    aria-labelledby= uid
-    class=[
+    aria-labelledby= id
+    class= [
       `${prefix}-field`,
       `${prefix}-field--${direction}`,
-      { [`${prefix}-field--${alignItem}`]: direction == `row` }
+      { [`${prefix}-field--${alignItem}`]: direction == `row` },
     ]
   )&attributes(attrs)
     block
     div(
-      id= uid
+      id= id
       class= [
         `${prefix}-field__label`,
-        { [`${prefix}-field__label--${labelWidthRatio * 10}`]: labelWidthRatio }
+        {
+          [`${prefix}-field__label--${labelWidthRatio * 10}`]: labelWidthRatio
+        },
       ]
     )
       - fieldsetLabelSlot();

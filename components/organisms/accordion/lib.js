@@ -24,6 +24,10 @@ export class Accordion {
    * initialize accordion
    */
   init() {
+    this.tabPanels = [...this.tabs].map((tab) => {
+      const panelId = tab.getAttribute(`aria-controls`);
+      return this.container.querySelector(`#${panelId}`);
+    });
     this.container.addEventListener(
       `click`,
       this.handleClickTab.bind(this),
@@ -91,6 +95,12 @@ export class Accordion {
       element: panelElem,
       transitionClassName: this.transitionClassName,
       visibleClass: `active`,
+      onTransitionBefore: () => {
+        panelElem.style.setProperty(
+          `max-height`,
+          `${panelElem.scrollHeight + 400}px`
+        );
+      },
     });
 
     if (isHidden) {
@@ -98,6 +108,7 @@ export class Accordion {
       panelTransitioner.show();
     } else {
       tab.setAttribute(`aria-expanded`, `false`);
+      panelElem.style.removeProperty(`max-height`);
       panelTransitioner.hide();
     }
   }

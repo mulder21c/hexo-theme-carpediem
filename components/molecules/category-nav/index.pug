@@ -11,10 +11,20 @@
     - |
       +categoryNavigation()
 
-mixin categoryNavigation(props)
+mixin categoryNavigation(props = {})
   -
-    const {prefix} = theme;
-    const defaults = {
+    // define types
+    const categoryNavProps = {
+      options: PropTypes.object,
+    };
+
+    // verifying props
+    validateProps(categoryNavProps)(props);
+
+    const { prefix } = theme;
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       options: {
         show_count: false,
         show_current: true,
@@ -26,11 +36,11 @@ mixin categoryNavigation(props)
       options,
       ...attrs
     } = {
-      ...defaults,
-      ...(props || {}),
+      ...defaultProps,
+      ...props,
       options: {
-        ...defaults.options,
-        ...(props?.options || {}),
+        ...defaultProps.options,
+        ...(props?.options),
       }
     };
 

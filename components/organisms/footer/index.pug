@@ -11,13 +11,13 @@ include /components/atoms/watermark/index
   examples:
     - |
       +footerContent()
+
 mixin footerContent
-  - const {prefix} = theme;
+  - const { prefix } = theme;
 
   div(class= `${prefix}-footer`)
     +cclLicense({
       name: config.author,
-      year: [2012, 2022],
       license: [`by`, `nc`, `nd`],
     })
 

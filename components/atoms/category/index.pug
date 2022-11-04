@@ -2,81 +2,94 @@ include ../svg-icon/index
 
 //- @pugdoc
   name: category
-  description: create category indicator
+  description: category indicator
   beforeEach: |
     include ../../utils/util
     include ../svg-icon/index
   arguments:
     - {object} props
-    - {array} props.category sequence of category
-    - |
-      {boolean} [props.level] [`lowest`] the level of category to be display
-      <br> one of `'lowest'`, `'top'`, `'all'`
+    - {array} props.categories sequence of category
     - {string} props.visibleLabel the visible label for category
+    - |
+      {string} [props.level] [`lowest`] the level of category to be display
+      <br> one of `'lowest'`, `'top'`, `'all'`
+    - {bool} [props.useLink] [true] whether to use link
+    - |
+      {string} [props.separator] [`>`] hierarchy separator
+      <br> You can use icon(font awesome) name for separator
+
   examples:
     - |
       +category({
         categories,
         visibleLabel: '📂',
-        useLink: false,
-        class: `post-card__meta__item`,
         level: `all`,
+        useLink: false,
         separator: `>`
       })
 
-mixin category(props)
+mixin category(props = {})
   -
+    // define types
     const categoryProps = {
       categories: PropTypes.array.isRequired,
+      visibleLabel: PropTypes.string.isRequired,
       level: PropTypes.oneOf([
         `lowest`,
         `top`,
         `all`,
       ]),
-      visibleLabel: PropTypes.string,
       useLink: PropTypes.bool,
       separator: PropTypes.string,
     };
-    const categoryValidate = validateProps(categoryProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(categoryProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       level: `lowest`,
+      useLink: true,
+      separator: `>`,
     };
+
     const {
       categories,
-      level,
       visibleLabel,
+      level,
       useLink,
       separator,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    categoryValidate({
-      categories,
-      level,
-      visibleLabel,
-      useLink,
-      separator,
-    });
 
-    const {prefix} = theme;
+    /**
+     * determine if given string is an icon name
+     * @function isIconName
+     * @pram {string} str the string to determine if it is an icon name
+     * @return {boolean}
+     */
+    const isIconName = str => {
+      if (str.length < 2) return false;
+      if (/^[&\\]/.test(str)) return false; // HTML Entity
+      return !!getIconCategory(str);
+    };
+
+    // get entries to display from categories
     const categoryEntries = ((level, categories) => {
       switch (level) {
         case "lowest":
           return categories.at(0);
         case "top":
-          return categories.poop();
+          return categories.pop();
         case "all":
           return categories;
       }
     })(level, categories);
+    const { prefix } = theme;
     const wrapper = useLink ? `a` : `span`;
-    const isIconName = str => {
-      if (str.length < 2) return false;
-      if (/^[&\\]/.test(str)) return false;
-      return true;
-    };
 
   span(
     class= `${prefix}-category`
@@ -98,7 +111,10 @@ mixin category(props)
               class= `${prefix}-category__separator`
             )
               if isIconName(separator)
-                +svgIcon({name: separator})
+                +svgIcon({
+                  name: separator,
+                  focusable: `false`,
+                })
               else
                 = separator
           span(

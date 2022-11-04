@@ -1,16 +1,16 @@
-include /components/atoms/heading/index.pug
-include /components/atoms/svg-icon/index.pug
+include /components/atoms/heading/index
+include /components/atoms/svg-icon/index
 
 //- @pugdoc
   name: accordion
   description: create accordion component
   beforeEach: |
     include ../../utils/util
-    include ../../atoms/heading/index.pug
-    include ../../atoms/svg-icon/index.pug
+    include ../../atoms/heading/index
+    include ../../atoms/svg-icon/index
   arguments:
     - {object} props
-    - {string} props.hLevel heading level of header in accordion
+    - {string} props.headingLevel [2] heading level of header in accordion
     - |
       {number} [props.activatedIndex] The index number of the panel that
       you want to initially open
@@ -19,46 +19,43 @@ include /components/atoms/svg-icon/index.pug
     - accordionPanelSlot the slot for panel of accordion item
   examples:
     - |
-      +accordion({hLevel: 2, activatedIndex: 1})
+      +accordion({headingLevel: 2, activatedIndex: 1})
         +accordionHeadingSlot heading 1
         +accordionPanelSlot panel 1
         +accordionHeadingSlot heading 2
         +accordionPanelSlot panel 2
         +accordionHeadingSlot heading 3
         +accordionPanelSlot panel 3
-mixin accordion(props)
+
+mixin accordion(props = {})
   -
-    // verifying props
+    // define types
     const accordionProps = {
-      hLevel: PropTypes.number.custom(({prop}) => {
-        if (Number.isInteger(prop) && prop > 0 && prop < 7) {
-          return true;
-        } else {
-          throw new Error('level must be an integer between 1 and 6.');
-        }
-      }).isRequired,
+      headingLevel: propTypesPreset.headingLevel.isRequired,
       activatedIndex: PropTypes.number,
     };
-    const accordionValidate = validateProps(accordionProps);
-    const defaults = {
-      hLevel: 2
+
+    // verifying props
+    validateProps(accordionProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
+      headingLevel: 2
     };
+
     const {
-      hLevel,
+      headingLevel,
       activatedIndex,
-      id,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    accordionValidate({
-      hLevel
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
+    const { prefix } = theme;
 
+    // declaring slots
     const accordionHeadingSlots = [];
     const accordionPanelSlots = [];
 
@@ -75,7 +72,7 @@ mixin accordion(props)
     window.usedComponents = window.usedComponents || new Set();
     usedComponents.add(`accordion`);
   div(
-    id= uid
+    id= id
     class= `${prefix}-accordion`
     data-init-activate= activatedIndex
   )&attributes(attrs)
@@ -86,7 +83,7 @@ mixin accordion(props)
         const panelId = generateUid();
 
       +heading({
-        level: hLevel,
+        level: headingLevel,
         class: `${prefix}-accordion__header`
       })
         button(
@@ -111,7 +108,7 @@ mixin accordion(props)
         hidden= (idx === activatedIndex ? null : true)
         class= [
           `${prefix}-accordion__panel`,
-          idx === activatedIndex ? `active` : false
+          idx === activatedIndex ? `active` : false,
         ]
       )
         - accordionPanelSlots[idx]();

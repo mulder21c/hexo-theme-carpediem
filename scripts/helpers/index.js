@@ -1,6 +1,5 @@
 const helper = hexo.extend.helper;
 
-helper.register(`dateFormat`, require(`./date-format`));
 helper.register(`fullUrl`, require(`./full-url`));
 helper.register(`generateUid`, require(`./generate-uid`));
 helper.register(`getIconCategory`, require(`./get-icon-category`));

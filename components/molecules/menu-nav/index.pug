@@ -5,16 +5,29 @@
     include ../../utils/util
   arguments:
     - {object} props
+    - {object} [props.options] the options for menu list
+    - |
+      {function} [props.options.transform] <br>
+      the function that changes the display of category name
   examples:
     - |
       +menuNavigation()
 
-mixin menuNavigation(props)
+mixin menuNavigation(props = {})
   -
-    const {prefix} = theme;
-    const defaults = {
+    // define types
+    const menuNavProps = {
+      options: PropTypes.object,
+    };
+
+    // verifying props
+    validateProps(menuNavProps)(props);
+
+    const { prefix } = theme;
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       options: {
-        show_current: true,
         class: `${prefix}-menu-nav`
       },
     };
@@ -23,10 +36,10 @@ mixin menuNavigation(props)
       options,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...(props || {}),
       options: {
-        ...defaults.options,
+        ...defaultProps.options,
         ...(props?.options || {}),
       }
     };

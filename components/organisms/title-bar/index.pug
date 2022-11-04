@@ -6,6 +6,7 @@
   arguments:
     - {object} props
     - {string} [props.title] the text to use as a title
+    - {boolean} [props.useLink] [true] whether to use link
   slots:
     - beforeSlot the slot to be placed before title
     - afterSlot the slot to be placed after title
@@ -14,22 +15,31 @@
       // without slot
       +titleBar({title: config.title, useLink: true})
 
-mixin titleBar(props)
+mixin titleBar(props = {})
   -
+    // define types
     const titleBarProps = {
       title: PropTypes.string.isRequired,
       useLink: PropTypes.bool,
     };
-    const titleBarValidate = validateProps(titleBarProps);
+
+    // verifying props
+    validateProps(titleBarProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      useLink: true,
+    };
+
     const {
       title,
       useLink,
       ...attrs
     } = props;
-    titleBarValidate({title, useLink});
 
-    const {prefix} = theme;
+    const { prefix } = theme;
 
+    // declaring slots
     let beforeSlot = null;
     let afterSlot = null;
 

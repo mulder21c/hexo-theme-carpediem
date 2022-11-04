@@ -1,4 +1,4 @@
-extends /components/templates/list/index.pug
+extends /components/templates/list/index
 
 block prepend heroContent
   -
@@ -8,11 +8,6 @@ block prepend heroContent
 
 block prepend mainContent
   -
-    const headingProp = {
-      level: 1,
-      visible: true,
-    };
-    const headingTitle = page.category;
     const posts = page.posts.data || page.posts || [];
 
 block sidebar

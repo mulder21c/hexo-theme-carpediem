@@ -6,8 +6,7 @@ const path = require("path");
 const rootPath = path.resolve(__dirname);
 const propTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
-
-const dateFormat = require("./scripts/helpers/date-format");
+const moment = require("moment");
 const fullUrl = require("./scripts/helpers/full-url");
 const generateUid = require("./scripts/helpers/generate-uid");
 const representativeImage = require("./scripts/helpers/representative-image");
@@ -72,7 +71,6 @@ const locals = {
   fullUrl,
   getIconCategory,
   generateUid,
-  dateFormat,
   stripHTML,
   _p: (str) => `i18n(${str})`,
   truncate,
@@ -80,6 +78,7 @@ const locals = {
   listCategories,
   listMenus,
   mapArchives,
+  moment,
 };
 locals.fullUrl = locals.fullUrl.bind(locals);
 locals.paginator = locals.paginator.bind(locals);

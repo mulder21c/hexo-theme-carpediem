@@ -6,9 +6,9 @@
   arguments:
     - {object} props
     - |
-      {object} props.options paginator's option of hexo
+      {object} [props.options] paginator's option of hexo
       @see https://hexo.io/ko/docs/helpers#paginator
-    - {string} props.labelRef the id of related content
+    - {string} [props.labelRef] the id of related content
   examples:
     - |
       +pagination({
@@ -17,20 +17,28 @@
           format: `/page/%d`,
         }
       })
-mixin pagination(props)
+
+mixin pagination(props = {})
   -
-    const {prefix} = theme;
+    // define types
     const paginationProps = {
       options: PropTypes.object,
       labelRef: PropTypes.string,
     };
-    const paginationValidate = validateProps(paginationProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(paginationProps)(props);
+
+    const { prefix } = theme;
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       options: {
         prev_text: `
           <svg
             role="img"
-            aria-label="${_p('label.page.prev')}"
+            aria-label="${_p('label.pagination.prev')}"
+            focusable="false"
           >
             <use xlink:href="/images/solid.svg#angle-left"></use>
           </svg>
@@ -38,7 +46,8 @@ mixin pagination(props)
         next_text: `
           <svg
             role="img"
-            aria-label="${_p('label.page.next')}"
+            aria-label="${_p('label.pagination.next')}"
+            focusable="false"
           >
             <use xlink:href="/images/solid.svg#angle-right"></use>
           </svg>
@@ -59,17 +68,13 @@ mixin pagination(props)
       labelRef,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...(props || {}),
       options: {
-        ...defaults.options,
+        ...defaultProps.options,
         ...(props?.options || {}),
       }
     };
-    paginationValidate({
-      options,
-      labelRef,
-    });
 
   nav(
     class= `${prefix}-pagination`

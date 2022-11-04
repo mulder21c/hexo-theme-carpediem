@@ -1,19 +1,19 @@
-include /components/utils/util.pug
-include /components/utils/mixin.pug
-include /components/atoms/radios/boxy.pug
-include /components/molecules/radio-group/slider.pug
-include /components/molecules/radio-group/boxy.pug
-include /components/molecules/fieldset/default.pug
-include /components/molecules/category-nav/index.pug
-include /components/molecules/menu-nav/index.pug
-include /components/organisms/accordion/index.pug
-include /components/organisms/title-bar/index.pug
-include /components/organisms/slide-panel/index.pug
-include /components/organisms/footer/index.pug
+include /components/utils/util
+include /components/utils/mixin
+include /components/atoms/radios/boxy
+include /components/molecules/radio-group/slider
+include /components/molecules/radio-group/boxy
+include /components/molecules/fieldset/default
+include /components/molecules/category-nav/index
+include /components/molecules/menu-nav/index
+include /components/organisms/accordion/index
+include /components/organisms/title-bar/index
+include /components/organisms/slide-panel/index
+include /components/organisms/footer/index
 
 -
   const {title: siteTitle} = config;
-  const {prefix} = theme;
+  const { prefix } = theme;
   const hero = representativeImage(theme);
 
 doctype html
@@ -71,12 +71,11 @@ html(lang=config.language)
       label: _p(`section.side`),
       useCloseBtn: true,
       closeBtnPosition: `top-right`,
-      tag: 'div',
       class: '_side',
       id: 'slide-nav',
     })
       +panelBodySlot
-        +accordion({hLevel: 2})
+        +accordion({headingLevel: 2})
           +accordionHeadingSlot
             = _p(`section.settings`)
           +accordionPanelSlot

@@ -6,28 +6,33 @@
   arguments:
     - {object} props
     - |
-      {boolean} [props.hexo=true] whether to display tool for generating as hexo
+      {boolean} [props.hexo] [true]
+      whether to display tool for generating as hexo
   examples:
     - |
       +watermark()
 
-mixin watermark(props)
+mixin watermark(props = {})
   -
+    // define types
     const watermarkProps = {
       hexo: PropTypes.bool,
     };
-    const watermarkValidate = validateProps(watermarkProps);
-    const defaults = { hexo : true };
+
+    // verifying props
+    validateProps(watermarkProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = { hexo : true };
     const {
       hexo,
       ...attrs
     } = {
-      ...defaults,
-      ...props
+      ...defaultProps,
+      ...props,
     };
-    watermarkValidate({hexo});
 
-    const {prefix} = theme;
+    const { prefix } = theme;
 
   p(
     class= `${prefix}-watermark`

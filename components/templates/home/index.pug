@@ -1,33 +1,29 @@
-extends /components/templates/common.pug
-include /components/organisms/hero/index.pug
-include /components/organisms/posts-list/index.pug
+extends /components/templates/common
+include /components/organisms/hero/index
+include /components/organisms/posts-list/index
 
 block heroContent
   -
     const listHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
 
-  +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
+  +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-home-hero`})
 
 block mainContent
   -
-    const defaultHeadingProp = {level: 1, visible: false };
-    const listHeadingProp = {
-      ...(headingProp || defaultHeadingProp),
-      class: [
-        Array.isArray((headingProp || defdefaultHeadingPropaultProp).class)
-          ? (headingProp || defaultHeadingProp).class.join(" ")
-          : (headingProp || defaultHeadingProp).class,
-        `${prefix}-post-list__heading`
-      ],
+    const headingId = generateUid();
+    const headingProp = {
+      id: headingId,
+      level: 1,
+      visible: false,
+      class: `${prefix}-home-list__heading`,
     };
 
-  +postsList({
-    posts,
-    headingProp: listHeadingProp,
-    headingTitle: headingTitle || ``,
-    headingSlotContent: headingSlotContent || ``,
-    usePagination: false,
-    class: `${prefix}-post-list`
-  })
+  section(class=`${prefix}-home-list`)
+    +heading(headingProp)
+      = _p('label.posts.recently')
+
+    +postsList({
+      posts,
+    })
 
 block sidebar

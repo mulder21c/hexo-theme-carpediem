@@ -8,84 +8,83 @@
     - {string} props.name name of radio
     - {string|number|boolean} props.value the value of radio
     - |
+      {string} [props.id] the value of radio's id attribute
+      and label's for attribute
+    - |
       {string} [props.label] label of radio<br>
       If do not specify this value, you should provide label
       as block or separated label element
-    - |
-      {string} [props.id] the value of radio's id attribute
-      and label's for attribute
     - {boolean} [props.checked] the checked state of radio
     - |
       {string} [props.labelPosition] ['right'] Where the label is located
       relative to the visual indicator<br>
       One of `'top'`, `'left'`, `'right'`, `'bottom'`
-    - {string} [props.labelClassName] the class name for label element
-    - {object} [props.inputAttrs] the attrs for input:radio
+    - {string|string[]} [props.labelClassName] the class name for label element
+    - {object} [props.inputAttrs] [{}] the attrs for input:radio
   examples:
     - |
       // basic
       +radio({label: 'yes', name: 'answer', value: 1})
+
       // using block instead of label property
       +radio({name: 'answer', value: 1}) radio button
+
       // using separated label element
       +radio({name: 'answer', id: "no-label", value: 1})
       label(for="no-label") radio button
 
-mixin radio(props)
+mixin radio(props = {})
   -
-    // verifying props
+    // define types
     const radioProps = {
-      label: PropTypes.string,
       name: PropTypes.string.isRequired,
-      checked: PropTypes.bool,
-      id: PropTypes.string,
       value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
         PropTypes.bool,
       ]).isRequired,
+      id: PropTypes.string,
+      label: PropTypes.string,
+      checked: PropTypes.bool,
       labelPosition: PropTypes.oneOf([
         `top`,
         `left`,
         `right`,
         `bottom`,
       ]),
-      labelClassName: PropTypes.string,
+      labelClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+      ]),
       inputAttrs: PropTypes.object,
     };
-    const radioValidate = validateProps(radioProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(radioProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
       labelPosition: `right`,
       inputAttrs: {},
     };
     const {
-      checked,
-      label,
-      id,
       name,
-      labelPosition,
       value,
+      id,
+      label,
+      checked,
+      labelPosition,
       labelClassName: lblClassName,
-      class: cn,
+      class: className,
       inputAttrs,
       ...attrs
     } = {
       ...defaults,
       ...props,
     };
-    radioValidate({
-      label,
-      checked,
-      id,
-      name,
-      value,
-      labelPosition,
-      labelClassName: lblClassName,
-      inputAttrs,
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
+    const { prefix } = theme;
     const isReverse = [`left`, `top`].includes(labelPosition);
     const isColumn = [`top`, `bottom`].includes(labelPosition);
     const labelClassName = [
@@ -102,14 +101,14 @@ mixin radio(props)
     window.usedComponents = window.usedComponents || new Set();
     usedComponents.add(`radio`);
   span(
-    class=[
+    class= [
       `${prefix}-radio`,
-      ...(Array.isArray(cn) ? cn : [cn])
+      ...(Array.isArray(className) ? className : [className]),
     ]
   )
     input(
       type= `radio`
-      id= uid
+      id= id
       name= name
       value= value
       checked= checked
@@ -117,7 +116,7 @@ mixin radio(props)
     )&attributes(inputAttrs)
     if (label || block)
       label(
-        for= uid
+        for= id
         class= labelClassName
       )
         if (label)

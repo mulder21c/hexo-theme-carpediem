@@ -18,34 +18,34 @@ include ../../atoms/category/index
     - |
       +postCard({post, isLink: true})
 
-mixin postCard(props)
+mixin postCard(props = {})
   -
+    // define types
     const postProps = {
       post: PropTypes.object.isRequired,
       isLink: PropTypes.bool,
     };
-    const postValidate = validateProps(postProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(postProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       isLink: false,
     };
+
     const {
       post,
       isLink,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    postValidate({
-      post,
-      isLink,
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
-    const titleId = generateUid();
-    const dateId = generateUid();
+    const { prefix } = theme;
     const contentId = generateUid();
+    const metaId = generateUid();
     const datetime = post.updated || post.date;
     const categories = post.categories.data;
     const tags = post.tags;
@@ -61,7 +61,7 @@ mixin postCard(props)
   div(
     class= [
       `${prefix}-post-card`,
-      {[`${prefix}-post-card--link`]: isLink}
+      { [`${prefix}-post-card--link`]: isLink },
     ]
   )&attributes(attrs)
     if (thumb)
@@ -74,13 +74,15 @@ mixin postCard(props)
       )
 
     a(
-      id= titleId
       href= post.permalink
-      aria-describedby= `${contentId}`
+      aria-describedby= `${metaId} ${contentId}`
       class= `${prefix}-post-card__heading`
     )= post.title
 
-    div(class=`${prefix}-post-card__meta`)
+    div(
+      id= metaId
+      class=`${prefix}-post-card__meta`
+    )
       +datetime({
         datetime,
         label: _p(`label.date.published`),

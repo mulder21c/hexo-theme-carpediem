@@ -43,6 +43,7 @@ function getIconCategoryHelper(icon) {
       "\x1b[33m%s\x1b[0m",
       `⚠ Cannot find "${icon}" icon from fontawesome.`
     );
+    return null;
   }
 
   return {

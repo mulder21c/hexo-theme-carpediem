@@ -4,16 +4,10 @@
     const { title, year, month, tag, category } = page;
     const { title: siteTitle, language } = config;
     let pageTitle = siteTitle;
-    const date = year
-      ? dateFormat(
-          new Date(`${year}-${month || ''}`),
-          month ? `yyyy.LL` : `yyyy`
-        )
-      : ``;
     if (is_home()) pageTitle = title || siteTitle;
     if (is_post()) pageTitle = title || siteTitle;
     if (is_archive()) pageTitle = year
-      ? _p(`title.archives.yearly`, date)
+      ? _p(`title.archives.yearly`, year)
       : _p(`title.archives.default`);
     if (is_category()) pageTitle = category;
     if (is_tag()) pageTitle = _p(`title.tag`, tag, getJosa(tag, '와'));

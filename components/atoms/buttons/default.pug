@@ -1,6 +1,6 @@
 //- @pugdoc
   name: button
-  description: create basic button element
+  description: basic button component
   beforeEach: |
     include ../../utils/util
   arguments:
@@ -14,11 +14,21 @@
       <br> one of `'fill'`, `'outline'`
   examples:
     - |
-      +button({type: 'button', size: 'medium', appearance: 'outline'}) button
-mixin button(props)
+      +button({
+        type: 'button',
+        size: 'medium',
+        appearance: 'outline',
+      }) button
+
+mixin button(props = {})
   -
-    // verifying props
+    // define types
     const btnProps = {
+      type: PropTypes.oneOf([
+        `button`,
+        `submit`,
+        `reset`,
+      ]),
       size: PropTypes.oneOf([
         `small`,
         `medium`,
@@ -30,31 +40,32 @@ mixin button(props)
         `outline`,
       ]),
     };
-    const btnValidate = validateProps(btnProps);
-    const defaults = {
+
+    // verifying props
+    validateProps(btnProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
       type: `button`,
       size: `medium`,
-      appearance: `default`
+      appearance: `default`,
     };
+
     const {
       type,
       size,
       appearance,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    btnValidate({
-      size,
-      appearance
-    });
 
-    const {prefix} = theme;
+    const { prefix } = theme;
     const className = [
       `${prefix}-btn-basic`,
-      { [`${prefix}-btn-basic--${size}`]: size },
-      { [`${prefix}-btn-basic--${appearance}`]: appearance }
+      size ? { [`${prefix}-btn-basic--${size}`]: size } : ``,
+      appearance ? { [`${prefix}-btn-basic--${appearance}`]: appearance } : ``,
     ];
 
   button(

@@ -1,37 +1,40 @@
 //- @pugdoc
   name: datetime
-  description: create time element
+  description: time component
   beforeEach: |
     include ../../utils/util
   arguments:
     - {object} props
-    - {Date} props.datetime the date object
-    - |
-      {string} [props.format] the format of machine readable date
-      to use as datetime attribute
-    - {string} [props.visibleFormat] the format of human readable date
-    - {string} [props.label] the accessible name for date
-    - {string} [props.visibleLabel] the visible label for date
+    - {Moment} props.datetime the date object
     - {string} [props.id] the value of id attribute
+    - {string} [props.label] the accessible name for date
+    - |
+      {string} [props.format] [`YYYY-MM-DD`] the format of machine readable date
+      to use as datetime attribute
+    - {string} [props.visibleLabel] the visible label for date
+    - |
+      {string} [props.visibleFormat] [`YYYY. MM. DD`]
+      the format of human readable date
   examples:
     - |
       // simple
       +datetime({
-        datetime: new Date(),
+        datetime: moment(new Date()),
         label: 'posted ',
         visibleLabel: '📆 '
       })
+
       // explicit format
       +datetime({
-        datetime: new Date(),
+        datetime: moment(new Date()),
         label: 'posted ',
         visibleLabel: '📆 ',
-        format: 'yyyy-MM-dd',
-        visibleFormat: 'yyyy-MM-dd',
+        visibleFormat: 'YYYY-MM-DD',
       })
 
-mixin datetime(props)
+mixin datetime(props = {})
   -
+    // define types
     const datetimeProps = {
       datetime: PropTypes.object.isRequired,
       format: PropTypes.string,
@@ -40,36 +43,33 @@ mixin datetime(props)
       visibleLabel: PropTypes.string,
       id: PropTypes.string,
     };
-    const datetimeValidate = validateProps(datetimeProps);
-    const defaults = {
-      format: `yyyy-MM-dd`,
-      visibleFormat: `yyyy. MM .dd`,
+
+    // verifying props
+    validateProps(datetimeProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
+      format: `YYYY-MM-DD`,
+      visibleFormat: `YYYY. MM. DD`,
     };
+
     const {
       datetime,
-      format,
-      visibleFormat,
-      label,
-      visibleLabel,
       id,
+      label,
+      format,
+      visibleLabel,
+      visibleFormat,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    datetimeValidate({
-      datetime,
-      format,
-      visibleFormat,
-      label,
-      visibleLabel,
-      id,
-    });
 
-    const {prefix} = theme;
-    const uid = id || generateUid();
-    const machineReadableDate = dateFormat(new Date(datetime), format);
-    const humanReadableDate = dateFormat(new Date(datetime), visibleFormat);
+    const { prefix } = theme;
+    const machineReadableDate = datetime.format(format);
+    const humanReadableDate = datetime.format(visibleFormat);
     const hasLabel = !!(label || visibleLabel);
     if (label && !visibleLabel) {
       throw new Error(`the label property must have visible label.`);
@@ -85,7 +85,7 @@ mixin datetime(props)
         aria-label= (label || visibleLabel || null)
       )= visibleLabel
     time(
-      id= uid
+      id= id
       datetime= machineReadableDate
       class= `${prefix}-datetime__time`
     )= humanReadableDate

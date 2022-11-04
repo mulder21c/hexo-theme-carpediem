@@ -10,32 +10,40 @@
   examples:
     - |
       +svgIcon({name: 'thumbs-up'})
-mixin svgIcon(props)
+
+mixin svgIcon(props = {})
   -
-    // verifying props
+    // define types
     const svgIconProps = {
       name: PropTypes.string.isRequired,
       type: PropTypes.string,
     };
-    const svgIconValidate = validateProps(svgIconProps);
+
+    // verifying props
+    validateProps(svgIconProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      type: null,
+    };
+
     const {
       name,
       type,
       ...attrs
     } = {
-      type: ``,
+      ...defaultProps,
       ...props,
     };
-    svgIconValidate({
-      name,
-      type
-    });
 
-    const {prefix} = theme;
+    const { prefix } = theme;
     const {
       iconName,
-      iconCategory
-    } = getIconCategory(`${name}${type && ('/' + type)}`);
+      iconCategory,
+    } = getIconCategory(`${name}${type && ('/' + type) || ""}`);
 
-  svg(class= `${prefix}-svg-icon`)&attributes(attrs)
+  svg(
+    class= `${prefix}-svg-icon`
+    focusable= `false`
+  )&attributes(attrs)
     use(xlink:href= `/images/${iconCategory}.svg#${iconName}`)

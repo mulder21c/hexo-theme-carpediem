@@ -1,4 +1,4 @@
-include /components/atoms/radios/default.pug
+include /components/atoms/radios/default
 
 //- @pugdoc
   name: radioSlider
@@ -6,7 +6,7 @@ include /components/atoms/radios/default.pug
   see: test
   beforeEach: |
     include ../../utils/util
-    include ../../atoms/radios/default.pug
+    include ../../atoms/radios/default
   arguments:
     - {object} props
     - {string} props.name attribute of radio
@@ -32,6 +32,7 @@ include /components/atoms/radios/default.pug
           { label: `large`, value: `large`, },
         ],
       })
+
       // label with slot
       +radioSlider({
         name: `size2`,
@@ -46,9 +47,9 @@ include /components/atoms/radios/default.pug
         +radioSliderLabelSlot medium
         +radioSliderLabelSlot large
 
-mixin radioSlider(props)
+mixin radioSlider(props = {})
   -
-    // verifying props
+    // define types
     const radioSliderProps = {
       name: PropTypes.string.isRequired,
       options: PropTypes.array.isRequired,
@@ -57,39 +58,44 @@ mixin radioSlider(props)
         `bottom`,
       ]),
     };
-    const radioSliderValidate = validateProps(radioSliderProps);
-    const defaults = {
-      options: null,
-      columns: null
+
+    // verifying props
+    validateProps(radioSliderProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      labelPosition: `bottom`,
     };
+
     const {
       name,
       labelPosition,
       options,
       ...attrs
     } = {
-      ...defaults,
+      ...defaultProps,
       ...props,
     };
-    radioSliderValidate({
-      name,
-      labelPosition,
-      options
-    });
 
-    const {prefix} = theme;
+    const { prefix } = theme;
+
+    // declaring slots
     const radioSliderLabelSlots = [];
 
   mixin radioSliderLabelSlot
     - radioSliderLabelSlots.push(block);
 
-  div(class=[`${prefix}-radio-slider`])&attributes(attrs)
+  div(
+    class= [
+      `${prefix}-radio-slider`,
+    ]
+  )&attributes(attrs)
     each option, idx in options
       -
         const radioOption = {
+          id: generateUid(),
           name,
           labelPosition,
-          id: generateUid(),
           ...option,
           class: `${prefix}-radio-slider__item`
         };

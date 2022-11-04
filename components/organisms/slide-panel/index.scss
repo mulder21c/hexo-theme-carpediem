@@ -44,7 +44,7 @@
     }
   }
 
-  .#{$prefix}-accordion__panel {
+  .#{$prefix}-accordion__panel.active {
     padding: 0.5em 0 3em;
 
     @include respond-to(tablet) {

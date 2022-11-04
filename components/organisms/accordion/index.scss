@@ -66,8 +66,9 @@
   }
 
   &__panel {
-    padding: math.div($padding-vertical, 2) $padding-horizon $padding-vertical *
-      3;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0 $padding-horizon;
     transform: scaleY(0);
     transform-origin: top;
 
@@ -78,7 +79,13 @@
     }
 
     &.active {
+      padding: math.div($padding-vertical, 2) $padding-horizon $padding-vertical *
+        3;
       transform: scaleY(1);
+
+      &:not(.transition) {
+        overflow: auto;
+      }
     }
   }
 }
