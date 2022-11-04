@@ -13,7 +13,7 @@ function listMenuHelper(menus, options) {
   if (!menus || !menus.length) return "";
   options = options || {};
 
-  const { style = "list", transform, separator = ", ", suffix = "" } = options;
+  const { transform } = options;
   const className = options.class || `menu`;
 
   const list = () => {
@@ -39,30 +39,7 @@ function listMenuHelper(menus, options) {
     }, ``);
   };
 
-  const flatList = (level, parent) => {
-    return prepareQuery(parent).reduce((html, cat, idx) => {
-      return `${html}${idx || level ? separator : ``}
-        <a class="${className}__link" href="${fullUrl.call(
-        this,
-        cat.path
-      )}${suffix}">
-          ${transform ? transform(cat.name) : cat.name}
-          ${
-            showCount
-              ? `<span class="${className}__count">${cat.length}</span>`
-              : ``
-          }
-        </a>
-        ${!depth || level + 1 < depth ? flatList(level + 1, cat._id) : ``}
-      `;
-    }, ``);
-  };
-
-  if (style === "list") {
-    return `<ul class="${className}__list">${list()}</ul>`;
-  }
-
-  return flatList(0);
+  return `<ul class="${className}__list">${list()}</ul>`;
 }
 
 module.exports = listMenuHelper;
