@@ -17,6 +17,7 @@ export class Accordion {
     this.tabSelector = tabSelector;
     this.tabs = el.querySelectorAll(tabSelector);
     this.transitionClassName = transitionClassName;
+    this.visibleClass = `active`;
     this.init();
   }
 
@@ -94,7 +95,7 @@ export class Accordion {
     const panelTransitioner = transitionHiddenElement({
       element: panelElem,
       transitionClassName: this.transitionClassName,
-      visibleClass: `active`,
+      visibleClass: this.visibleClass,
       onTransitionBefore: () => {
         panelElem.style.setProperty(
           `max-height`,
@@ -111,6 +112,16 @@ export class Accordion {
       panelElem.style.removeProperty(`max-height`);
       panelTransitioner.hide();
     }
+  }
+
+  /**
+   * close all accordion panel
+   */
+  closeAllPanels() {
+    this.tabPanels.forEach((panel) => {
+      panel.classList.remove(this.visibleClass);
+      panel.hidden = true;
+    });
   }
 }
 

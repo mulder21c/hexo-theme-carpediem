@@ -38,9 +38,21 @@ import { ThemeSetting } from "../utils/lib";
     type: `scheme`,
     initVal: ThemeSetting.colorScheme,
   });
+
   configureTheme({
     options: document.querySelectorAll(`[name="font-size"]`),
     type: `size`,
     initVal: ThemeSetting.fontSize,
   });
+
+  const observer = new MutationObserver((mutations) => {
+    const accordion = window.uis.get(`sidebar-accordion`);
+    mutations.forEach(({ target, attributeName }) => {
+      if (attributeName === `hidden` && target.hidden) {
+        accordion.closeAllPanels();
+      }
+    });
+  });
+
+  observer.observe(document.querySelector(`#slide-nav`), { attributes: true });
 })(window, document);
