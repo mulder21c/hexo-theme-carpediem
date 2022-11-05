@@ -35,6 +35,8 @@
 
 mixin radio(props = {})
   -
+    site.usedComponents.add(`radio`);
+
     // define types
     const radioProps = {
       name: PropTypes.string.isRequired,
@@ -94,12 +96,6 @@ mixin radio(props = {})
       ...(Array.isArray(lblClassName) ? lblClassName : [lblClassName] ),
     ];
 
-  script(
-    async
-    data-pug
-  )&attributes(attrs).
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`radio`);
   span(
     class= [
       `${prefix}-radio`,

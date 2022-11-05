@@ -42,6 +42,8 @@
 
 mixin switchButton(props = {})
   -
+    site.usedComponents.add(`switch`);
+
     // define types
     const switchBtnProps = {
       id: PropTypes.string,
@@ -90,12 +92,6 @@ mixin switchButton(props = {})
       { [`${prefix}-switch__btn--reverse`]: isReverse }
     ];
 
-  script(
-    async
-    data-pug
-  ).
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`switch`);
   span(class=`${prefix}-switch`)&attributes(attrs)
     input(
       type= `checkbox`

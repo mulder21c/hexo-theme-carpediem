@@ -61,18 +61,20 @@ cleanDirectory(outputPath).then(() => {
 
     hexo.extend.injector.register(
       `head_begin`,
-      `<script>
-        const GLOBAL = { themePrefix: "${themePrefix}" };
-        window.GLOBAL = GLOBAL;
-      </script>`,
+      `
+        <script>
+          const GLOBAL = { themePrefix: "${themePrefix}" };
+          window.GLOBAL = GLOBAL;
+        </script>
+      `,
       `default`
     );
     hexo.extend.injector.register(
       `body_end`,
-      `<script src="/js/${bundleFileName}"></script>
-       <script>
-         document.querySelectorAll("script[data-pug]").forEach(el => el.remove());
-       </script>`,
+      `
+        <script data-component></script>
+        <script src="/js/${bundleFileName}"></script>
+      `,
       `default`
     );
   });

@@ -29,6 +29,8 @@ include /components/atoms/svg-icon/index
 
 mixin accordion(props = {})
   -
+    site.usedComponents.add(`accordion`);
+
     // define types
     const accordionProps = {
       headingLevel: propTypesPreset.headingLevel.isRequired,
@@ -65,12 +67,6 @@ mixin accordion(props = {})
   mixin accordionPanelSlot
     - accordionPanelSlots.push(block);
 
-  script(
-    async
-    data-pug
-  ).
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`accordion`);
   div(
     id= id
     class= `${prefix}-accordion`

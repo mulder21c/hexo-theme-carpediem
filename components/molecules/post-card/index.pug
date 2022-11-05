@@ -20,6 +20,8 @@ include ../../atoms/category/index
 
 mixin postCard(props = {})
   -
+    site.usedComponents.add(`post-card`);
+
     // define types
     const postProps = {
       post: PropTypes.object.isRequired,
@@ -52,12 +54,6 @@ mixin postCard(props = {})
     const thumb = post.thumbnail || post.hero || post?.photos?.unshift();
     const hasCategoryLink = !isLink;
 
-  script(
-    async
-    data-pug
-  ).
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`post-card`);
   div(
     class= [
       `${prefix}-post-card`,

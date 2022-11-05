@@ -45,6 +45,8 @@
 
 mixin checkbox(props = {})
   -
+    site.usedComponents.add(`checkboxes`);
+
     // define types
     const chkProps = {
       id: PropTypes.string,
@@ -103,12 +105,6 @@ mixin checkbox(props = {})
       ...(Array.isArray(lblClassName) ? lblClassName : [lblClassName] ),
     ];
 
-  script(
-    async
-    data-pug
-  ).
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`checkboxes`);
   span(
     class= [
       `${prefix}-checkbox`,

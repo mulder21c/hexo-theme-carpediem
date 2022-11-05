@@ -35,6 +35,8 @@ include /components/atoms/buttons/icon
 
 mixin slidePanel(props = {})
   -
+    site.usedComponents.add(`slide-panel`);
+
     // define types
     const slidePanelProps = {
       label: PropTypes.string.isRequired,
@@ -80,12 +82,6 @@ mixin slidePanel(props = {})
   mixin panelBodySlot
     - panelBodySlot = block;
 
-  script(
-    async
-    data-pug
-  ).
-    window.usedComponents = window.usedComponents || new Set();
-    usedComponents.add(`slide-panel`);
   #{tag}.slide-panel(
     id= id
     aria-label= label

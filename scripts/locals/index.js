@@ -23,3 +23,4 @@ hexo.locals.set("propTypesPreset", {
     visible: PropTypes.bool,
   }),
 });
+hexo.locals.set("usedComponents", () => new Set());
