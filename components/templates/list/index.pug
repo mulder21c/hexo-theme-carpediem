@@ -8,7 +8,8 @@ block heroContent
   -
     const listHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
 
-  +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
+  if (listHero)
+    +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-section-hero`})
 
 block mainContent
   -
