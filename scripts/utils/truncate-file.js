@@ -6,7 +6,7 @@ const fs = require("fs");
  * @param {string} [initContent] Initial content to be set on truncated files
  */
 const truncateFile = (path, initContent) => {
-  if (fs.existsSync(path)) {
+  if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
   }
   fs.writeFileSync(path, initContent, { encoding: `utf8`, flag: `w` });
