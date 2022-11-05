@@ -1,26 +1,5 @@
-const vanillaPropTypes = require("vanilla-prop-types");
-const { PropTypes } = vanillaPropTypes;
+const locals = hexo.locals;
 
-// provide vanillaPropTypes into `site`
-hexo.locals.set("propTypes", vanillaPropTypes);
-hexo.locals.set("propTypesPreset", {
-  headingLevel: PropTypes.number.custom(({ prop }) => {
-    if (Number.isInteger(prop) && prop > 0 && prop < 7) {
-      return true;
-    } else {
-      throw new Error("level must be an integer between 1 and 6.");
-    }
-  }),
-  heading: PropTypes.shape({
-    level: PropTypes.number.custom(({ prop }) => {
-      if (Number.isInteger(prop) && prop > 0 && prop < 7) {
-        return true;
-      } else {
-        throw new Error("level must be an integer between 1 and 6.");
-      }
-    }).isRequired,
-    htmlString: PropTypes.string,
-    visible: PropTypes.bool,
-  }),
-});
-hexo.locals.set("usedComponents", () => new Set());
+locals.set("vanillaPropTypes", require(`./proptypes`));
+locals.set("propTypesPreset", require(`./proptypes-preset`));
+locals.set("components", require(`./used-components`));

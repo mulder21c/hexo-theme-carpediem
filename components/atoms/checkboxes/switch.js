@@ -1,7 +1,7 @@
 import { syncCheckbox } from "./lib";
 
 ((window, document) => {
-  if (!window.usedComponents.has(`switch`)) return;
+  if (!window.components.has(`switch`)) return;
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
 
   // bind handler to all virtual checkbox with no label

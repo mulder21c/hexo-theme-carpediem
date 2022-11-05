@@ -73,9 +73,13 @@ html(lang=config.language)
       closeBtnPosition: `top-right`,
       class: '_side',
       id: 'slide-nav',
+      "data-ui-name": "sidebar",
     })
       +panelBodySlot
-        +accordion({headingLevel: 2})
+        +accordion({
+          headingLevel: 2,
+          "data-ui-name": "sidebar-accordion"
+        })
           +accordionHeadingSlot
             = _p(`section.settings`)
           +accordionPanelSlot

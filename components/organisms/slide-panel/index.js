@@ -1,12 +1,13 @@
 import { SlidePanel } from "./lib";
 
 ((window, document, slidePanels) => {
-  if (!window.usedComponents.has(`slide-panel`)) return;
+  if (!window.components.has(`slide-panel`)) return;
   if (!slidePanels.length) return;
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
 
   slidePanels.forEach((panel) => {
-    new SlidePanel({
+    const name = panel.getAttribute(`data-ui-name`);
+    const ui = new SlidePanel({
       el: panel,
       trigger: document.querySelector(
         `[aria-controls="${panel.getAttribute("id")}"]`
@@ -14,5 +15,7 @@ import { SlidePanel } from "./lib";
       transitionClassName: `transition`,
       bodyClassName: `opened-panel`,
     });
+
+    name && window.uis.set(name, ui);
   });
 })(window, document, document.querySelectorAll(`.slide-panel`));

@@ -5,16 +5,19 @@ const sourcePath = path.resolve(rootPath, "../../source/_data/");
 const imageDBPath = path.resolve(sourcePath, "./images.db.json");
 const { generateImageInfo } = require("../utils/image-processor");
 
-const storeImageDB = (data) => {
+/**
+ * @function storeImageDBFilter
+ * @desc storing image DB
+ * @param {array} data
+ */
+function storeImageDBFilter(data) {
+  const filter = this.extend.filter;
   fs.writeFileSync(imageDBPath, JSON.stringify(generateImageInfo(data)), {
     encoding: `utf8`,
     flag: `w`,
   });
 
-  hexo.extend.filter.unregister(`before_generate`, storeImageDB);
-};
+  filter.unregister(`before_generate`, storeImageDBFilter);
+}
 
-/**
- * @desc process for generate image-info when after initialized hexo
- */
-hexo.extend.filter.register(`before_generate`, storeImageDB);
+module.exports = storeImageDBFilter;

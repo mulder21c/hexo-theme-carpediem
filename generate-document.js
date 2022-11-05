@@ -4,7 +4,7 @@ const PugDocMD = require("./docs/lib/pug-doc-markdown.js");
 const sassDocMD = require("@hidoo/sassdoc-to-markdown").default;
 const path = require("path");
 const rootPath = path.resolve(__dirname);
-const propTypes = require("vanilla-prop-types");
+const vanillaPropTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
 const moment = require("moment");
 const fullUrl = require("./scripts/helpers/full-url");
@@ -46,10 +46,11 @@ const locals = {
   config,
   theme,
   site: {
-    propTypes,
+    vanillaPropTypes,
     categories,
     propTypesPreset,
     posts,
+    components: new Set(),
   },
   url: `URL`,
   is_home: () => true,
