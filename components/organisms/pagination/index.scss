@@ -30,11 +30,14 @@
     &:hover {
       > svg {
         fill: var(--text-link-hover-color);
+        filter: drop-shadow(1px 1px 2px var(--background-color));
       }
     }
   }
 
   &__item {
+    font-weight: var(--font-weight-medium);
+
     &:not(&--current) {
       display: none;
 
@@ -47,6 +50,9 @@
       background-color: var(--primary-button-background-color);
       font-weight: var(--font-weight-bold);
       color: var(--text-link-hover-color);
+    }
+    &:hover {
+      text-shadow: 1px 1px 2px var(--background-color);
     }
   }
 }

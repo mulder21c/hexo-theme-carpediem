@@ -9,5 +9,10 @@ block prepend heroContent
 block prepend mainContent
   -
     const posts = page.posts.data || page.posts || [];
+    const headingId = generateUid();
+    const headingProp = {
+      htmlString: page.category,
+    };
+    const headingScope = `category`;
 
 block sidebar

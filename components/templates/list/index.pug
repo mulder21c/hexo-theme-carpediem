@@ -13,17 +13,21 @@ block heroContent
 
 block mainContent
   -
-    const headingId = generateUid();
-    const headingProp = {
-      id: headingId,
-      level: 1,
-      visible: true,
-      class: `${prefix}-category-list__heading`,
+    const listHeadingProp = {
+      ...{
+        id: headingId,
+        level: 1,
+        visible: true,
+        class: `${prefix}-list__heading`,
+      },
+      ...(headingProp || {})
     };
 
-  section(class=`${prefix}-category-list`)
-    +heading(headingProp)
-      = page.category
+  section(class= `${prefix}-list`)
+    +heading(listHeadingProp)
+      if (headingScope)
+        span(class= `${prefix}-list__heading__scope`)
+          = headingScope
 
     +postsList({
       posts,
@@ -31,6 +35,7 @@ block mainContent
 
     +pagination({
       labelRef: headingId,
+      class: `${prefix}-list__pagination`
     })
 
 block sidebar
