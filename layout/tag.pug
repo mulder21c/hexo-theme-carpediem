@@ -1,0 +1,18 @@
+extends /components/templates/list/index
+
+block prepend heroContent
+  -
+    const primaryHero = {
+      path: null,
+    };
+
+block prepend mainContent
+  -
+    const posts = page.posts.data || page.posts || [];
+    const headingId = generateUid();
+    const headingProp = {
+      htmlString: page.tag,
+    };
+    const headingScope = `tag`;
+
+block sidebar
