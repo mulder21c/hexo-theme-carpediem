@@ -23,7 +23,7 @@ block mainContent
       ...(headingProp || {})
     };
 
-  section(class= `${prefix}-list`)
+  div(class= `${prefix}-list`)
     +heading(listHeadingProp)
       if (headingScope)
         span(class= `${prefix}-list__heading__scope`)
