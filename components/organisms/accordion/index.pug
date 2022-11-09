@@ -3,7 +3,7 @@ include /components/atoms/svg-icon/index
 
 //- @pugdoc
   name: accordion
-  description: create accordion component
+  description: create accordion component aria pattern
   beforeEach: |
     include ../../utils/util
     include ../../atoms/heading/index
@@ -14,6 +14,9 @@ include /components/atoms/svg-icon/index
     - |
       {number} [props.activatedIndex] The index number of the panel that
       you want to initially open
+    - |
+      {boolean} [props.useSection] [false] Whether to separate each item
+      into sections
   slots:
     - accordionHeadingSlot the slot for heading of accordion item
     - accordionPanelSlot the slot for panel of accordion item
@@ -35,6 +38,7 @@ mixin accordion(props = {})
     const accordionProps = {
       headingLevel: propTypesPreset.headingLevel.isRequired,
       activatedIndex: PropTypes.number,
+      useSection: PropTypes.bool,
     };
 
     // verifying props
@@ -43,12 +47,14 @@ mixin accordion(props = {})
     // merge user-supplied options with the defaults
     const defaultProps = {
       id: generateUid(),
-      headingLevel: 2
+      headingLevel: 2,
+      useSection: false,
     };
 
     const {
       headingLevel,
       activatedIndex,
+      useSection,
       ...attrs
     } = {
       ...defaultProps,
@@ -60,6 +66,17 @@ mixin accordion(props = {})
     // declaring slots
     const accordionHeadingSlots = [];
     const accordionPanelSlots = [];
+
+  mixin accordionHeadingWrapper(useSection)
+    if (useSection)
+      +heading({
+        level: headingLevel,
+        class: `${prefix}-accordion__header`
+      })
+        block
+    else
+      div(class= `${prefix}-accordion__header`)
+        block
 
   mixin accordionHeadingSlot
     - accordionHeadingSlots.push(block);
@@ -78,10 +95,7 @@ mixin accordion(props = {})
         const headingId = generateUid();
         const panelId = generateUid();
 
-      +heading({
-        level: headingLevel,
-        class: `${prefix}-accordion__header`
-      })
+      +accordionHeadingWrapper(useSection)
         button(
           type= "button"
           id= headingId
