@@ -173,7 +173,16 @@ export function triggerDescendantClick(selector, event) {
   }
   const ctx = event.currentTarget;
   const el = ctx.querySelector(selector);
-  el && el.click();
+  el &&
+    el.dispatchEvent(
+      new MouseEvent(`click`, {
+        altKey: event.altKey,
+        ctrlKey: event.ctrlKey,
+        metaKey: event.metaKey,
+        shiftKey: event.shiftKey,
+        pressure: event.pressure,
+      })
+    );
 }
 
 /**
