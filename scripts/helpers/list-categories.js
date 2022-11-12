@@ -3,6 +3,7 @@
  */
 
 const fullUrl = require("./full-url");
+const { url_for } = require("hexo-util");
 
 function listCategoriesHelper(categories, options) {
   if (
@@ -16,6 +17,7 @@ function listCategoriesHelper(categories, options) {
   if (!categories || !categories.length) return "";
   options = options || {};
 
+  const isDevelopment = this.site.mode === "development";
   const { style = "list", transform, separator = ", ", suffix = "" } = options;
   const showCount = Object.prototype.hasOwnProperty.call(options, "show_count")
     ? options.show_count
@@ -76,7 +78,11 @@ function listCategoriesHelper(categories, options) {
       return `${html}
           <li class="${className}__list__item${additionalClassName}">
           <a
-            href="${fullUrl.call(this, cat.path)}${suffix}"
+            href="${
+              isDevelopment
+                ? url_for.call(this, cat.path)
+                : fullUrl.call(this, cat.path)
+            }${suffix}"
             class="${className}__list__link ${
         isCurrent ? `${className}__list__link--current` : ``
       }"
@@ -101,10 +107,11 @@ function listCategoriesHelper(categories, options) {
   const flatList = (level, parent) => {
     return prepareQuery(parent).reduce((html, cat, idx) => {
       return `${html}${idx || level ? separator : ``}
-        <a class="${className}__link" href="${fullUrl.call(
-        this,
-        cat.path
-      )}${suffix}">
+        <a class="${className}__link" href="${
+        isDevelopment
+          ? url_for.call(this, cat.path)
+          : fullUrl.call(this, cat.path)
+      }${suffix}">
           ${transform ? transform(cat.name) : cat.name}
           ${
             showCount

@@ -3,6 +3,7 @@
  */
 
 const fullUrl = require("./full-url");
+const { url_for } = require("hexo-util");
 
 function listMenuHelper(menus, options) {
   if (!options && (!menus || !Array.isArray(menus))) {
@@ -15,6 +16,7 @@ function listMenuHelper(menus, options) {
 
   const { transform } = options;
   const className = options.class || `menu`;
+  const isDevelopment = this.site.mode === "development";
 
   const list = () => {
     return menus.reduce((html, menu) => {
@@ -26,7 +28,11 @@ function listMenuHelper(menus, options) {
       return `${html}
         <li class="${className}__list__item">
           <a
-            href="${fullUrl.call(this, path)}"
+            href="${
+              isDevelopment
+                ? url_for.call(this, path)
+                : fullUrl.call(this, path)
+            }"
             class="${className}__list__link ${
         isCurrent ? `${className}__list__link--current` : ``
       }"

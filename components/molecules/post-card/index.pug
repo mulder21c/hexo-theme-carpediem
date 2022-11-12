@@ -70,7 +70,7 @@ mixin postCard(props = {})
       )
 
     a(
-      href= post.permalink
+      href= isDevelopment ? url_for(post.path) : post.permalink
       aria-describedby= `${metaId} ${contentId}`
       class= `${prefix}-post-card__heading`
     )= post.title

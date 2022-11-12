@@ -51,6 +51,7 @@ const locals = {
     propTypesPreset,
     posts,
     components: new Set(),
+    isDevelopment: false,
   },
   url: `URL`,
   is_home: () => true,
@@ -80,6 +81,7 @@ const locals = {
   listMenus,
   mapArchives,
   moment,
+  mode: "production",
 };
 locals.fullUrl = locals.fullUrl.bind(locals);
 locals.paginator = locals.paginator.bind(locals);
