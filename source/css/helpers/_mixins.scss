@@ -139,6 +139,7 @@
   }
 }
 
+/// visually hidden for screen reader
 @mixin sr-only {
   overflow: hidden !important;
   position: relative !important;
@@ -166,10 +167,14 @@
   }
 }
 
-@mixin defineColorVar($name, $color) {
-  $rgb: toRGB($color);
-  #{$name}: $color;
-  @if ($rgb) {
-    #{$name}-rgb: $rgb;
+/// generate css variable for color 2-way that contains hex code and r, g, b run
+/// @param {Map} $colorMap map containing variable's name & color value
+@mixin defineColorVar($colorMap) {
+  @each $name, $color in $colorMap {
+    $rgb: toRGB($color);
+    #{$name}: $color;
+    @if ($rgb) {
+      #{$name}-rgb: $rgb;
+    }
   }
 }
