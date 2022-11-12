@@ -165,3 +165,11 @@
     -webkit-line-clamp: $line-to-show;
   }
 }
+
+@mixin defineColorVar($name, $color) {
+  $rgb: toRGB($color);
+  #{$name}: $color;
+  @if ($rgb) {
+    #{$name}-rgb: $rgb;
+  }
+}

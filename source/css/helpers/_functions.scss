@@ -68,3 +68,15 @@
 
   @return convertRem($result, $font-size-smallest);
 }
+
+/// get rgb(r, g, b) format from Hex color
+/// @param {Color} color Hex color
+/// @return {Color}
+
+@function toRGB($color) {
+  @if (alpha($color) == 1) {
+    @return red($color), green($color), blue($color);
+  } @else {
+    @return null;
+  }
+}
