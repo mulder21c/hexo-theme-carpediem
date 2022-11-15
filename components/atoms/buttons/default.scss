@@ -94,7 +94,7 @@
     &:focus {
       outline: 3px solid var(--button-outline-color);
       border-color: var(--button-focus-border-color);
-      background-color: transparent;
+      background-color: var(--background-color);
       filter: drop-shadow(1px 1px 1px var(--button-focus-shadow-color));
 
       &:not(:hover) {

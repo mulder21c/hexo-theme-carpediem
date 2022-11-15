@@ -10,49 +10,64 @@
   & > &__item,
   & > &__prev,
   & > &__next {
-    @extend %anchor-default;
-    @extend %anchor-animate;
-
     flex: 0 1 3rem;
-    height: 3rem;
     display: inline-flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
+    height: 3rem;
+    background-color: var(--background-color);
+    background-image: linear-gradient(
+      var(--button-hover-background-color),
+      var(--button-hover-background-color)
+    );
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 0;
+    font-family: var(--font-family-sans-serif);
+    font-weight: var(--font-weight-medium);
     text-decoration: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: vert-bounce-button 0.3s, background 0.2s ease-in-out;
+    }
 
     > svg {
       width: 1em;
       height: 1em;
-      fill: var(--text-color-primary);
+      fill: var(--button-text-color-dark);
     }
 
     &:hover {
+      border-color: var(--button-hover-border-color);
+      background-size: 100% 100%;
+      color: var(--button-text-color);
+      text-shadow: 1px 1px 2px var(--button-hover-background-color);
       > svg {
-        fill: var(--text-link-hover-color);
-        filter: drop-shadow(1px 1px 2px var(--background-color));
+        fill: var(--button-text-color);
+        filter: drop-shadow(1px 1px 2px var(--button-hover-shadow-color));
       }
+    }
+
+    &:focus:not(&--current) {
+      outline: 3px solid var(--button-outline-color);
+      background-color: var(--background-color);
     }
   }
 
   &__item {
-    font-weight: var(--font-weight-medium);
-
     &:not(&--current) {
       display: none;
-
       @include respond-to(mobile) {
         display: inline-flex;
       }
     }
     &--current#{&} {
       border-radius: 50%;
-      background-color: var(--button-background-color);
+      background-color: var(--button-focus-background-color);
       font-weight: var(--font-weight-bold);
-      color: var(--text-link-hover-color);
-    }
-    &:hover {
-      text-shadow: 1px 1px 2px var(--background-color);
+      color: var(--button-text-color);
     }
   }
 }
