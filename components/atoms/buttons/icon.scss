@@ -77,24 +77,15 @@
   }
 
   &--fill {
-    border: 1px solid var(--primary-button-border-color);
-    background-color: var(--primary-button-background-color);
-    color: var(--primary-button-text-color);
-    filter: drop-shadow(2px 2px 2px var(--primary-button-shadow-color));
-
-    &:focus {
-      outline: 3px solid var(--primary-button-active-outline-color);
-      border-color: var(--primary-button-separator-color);
-      background-color: var(--primary-button-background-color);
-      filter: drop-shadow(
-        2px 2px 2px var(--primary-button-active-shadow-color)
-      );
-    }
+    border: 1px solid var(--button-border-color);
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    filter: drop-shadow(2px 2px 2px var(--button-shadow-color));
 
     &:hover {
-      border-color: var(--primary-button-active-border-color);
-      background-color: var(--primary-button-active-background-color);
-      color: var(--primary-button-text-color);
+      border-color: var(--button-hover-border-color);
+      background-color: var(--button-hover-background-color);
+      color: var(--button-text-color);
       @include animation(
         (
           name: vert-bounce-button,
@@ -103,40 +94,34 @@
           func: cubic-bezier(0.165, 0.84, 0.44, 1),
         )
       );
+    }
 
-      &:focus {
-        border-color: var(--primary-button-separator-color);
-      }
+    &:focus {
+      outline: 3px solid var(--button-outline-color);
+      border-color: var(--button-focus-border-color);
+      background-color: var(--button-background-color);
+      filter: drop-shadow(2px 2px 2px var(--button-focus-shadow-color));
     }
   }
 
   &--outline {
-    border: 1px solid var(--primary-button-border-color);
+    border: 1px solid var(--button-border-color);
     background-color: transparent;
     background-image: linear-gradient(
-      var(--primary-button-background-color),
-      var(--primary-button-background-color)
+      var(--button-hover-background-color),
+      var(--button-hover-background-color)
     );
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: 100% 0;
-    color: var(--primary-button-text-color-dark);
-    filter: drop-shadow(1px 1px 1px var(--primary-button-shadow-color));
-
-    &:focus {
-      outline: 3px solid var(--primary-button-active-outline-color);
-      border-color: var(--primary-button-active-border-color);
-      background-color: transparent;
-      filter: drop-shadow(1px 1px 1px var(--primary-button-active-color));
-    }
+    color: var(--button-text-color-dark);
+    filter: drop-shadow(1px 1px 1px var(--button-shadow-color));
 
     &:hover {
-      border-color: var(--primary-button-active-border-color);
+      border-color: var(--button-hover-border-color);
       background-size: 100% 100%;
-      color: var(--primary-button-text-color);
-      filter: drop-shadow(
-        1px 1px 1px var(--primary-button-active-shadow-color)
-      );
+      color: var(--button-text-color);
+      filter: drop-shadow(1px 1px 1px var(--button-hover-shadow-color));
       @include animation(
         (
           name: vert-bounce-button,
@@ -145,6 +130,13 @@
           func: cubic-bezier(0.165, 0.84, 0.44, 1),
         )
       );
+    }
+
+    &:focus {
+      outline: 3px solid var(--button-outline-color);
+      border-color: var(--button-focus-border-color);
+      background-color: transparent;
+      filter: drop-shadow(1px 1px 1px var(--button-focus-shadow-color));
     }
   }
 
@@ -152,29 +144,20 @@
     border: 1px solid transparent;
     background-color: transparent;
     background-image: linear-gradient(
-      var(--primary-button-background-color),
-      var(--primary-button-background-color)
+      var(--button-background-color),
+      var(--button-background-color)
     );
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: 100% 0;
-    color: var(--primary-button-text-color-dark);
-    filter: drop-shadow(1px 1px 1px var(--primary-button-shadow-color));
-
-    &:focus {
-      outline: 3px solid var(--primary-button-active-outline-color);
-      border-color: var(--primary-button-active-border-color);
-      background-color: transparent;
-      filter: drop-shadow(1px 1px 1px var(--primary-button-active-color));
-    }
+    color: var(--button-text-color-dark);
+    filter: drop-shadow(1px 1px 1px var(--button-shadow-color));
 
     &:hover {
       border-color: transparent;
       background-size: 100% 100%;
-      color: var(--primary-button-text-color);
-      filter: drop-shadow(
-        1px 1px 1px var(--primary-button-active-shadow-color)
-      );
+      color: var(--button-text-color);
+      filter: drop-shadow(1px 1px 1px var(--button-hover-shadow-color));
       @include animation(
         (
           name: vert-bounce-button,
@@ -184,10 +167,13 @@
           func: cubic-bezier(0.165, 0.84, 0.44, 1),
         )
       );
+    }
 
-      &:focus {
-        border-color: var(--primary-button-separator-color);
-      }
+    &:focus {
+      outline: 3px solid var(--button-outline-color);
+      border-color: var(--button-focus-border-color);
+      background-color: transparent;
+      filter: drop-shadow(0 0 1px var(--button-focus-shadow-color));
     }
   }
 }

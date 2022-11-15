@@ -104,9 +104,9 @@
 @mixin animation($options) {
   $default: (
     name: "",
-    duration: 0,
+    duration: 0s,
     func: ease-in-out,
-    delay: 0,
+    delay: 0s,
     iteration: 1,
     direction: normal,
     fill: none,

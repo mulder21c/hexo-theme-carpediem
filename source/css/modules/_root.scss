@@ -24,7 +24,8 @@
   --font-weight-extra-bold: #{$font-weight-extra-bold};
 
   --button-border-radius: 0.25rem;
-  --box-border-radius: 0.5rem;
+  --input-border-radius: 0.25rem;
+  --card-border-radius: 0.5rem;
 
   --modal-z-index: 950;
   --highest--z-index: 900;
@@ -33,39 +34,62 @@
     @include defineColorVar(
       (
         --background-color: $color-neutral-05,
+        // normal text
         --text-color-primary: $color-neutral-95,
         --text-color-secondary: $color-neutral-75,
+        --text-color-tertiary: $color-neutral-50,
         --text-color-accent: $color-green-70,
+        --text-color-accent-secondary: $color-green-60,
+        --text-color-accent-tertiary: $color-green-50,
+        // link text
         --text-link-color: $color-blue-70,
-
-        --text-link-hover-background-color: $color-green-65,
         --text-link-hover-color: $color-neutral-05,
+        --text-link-hover-background-color: $color-green-70,
         --text-link-decoration-color: $color-blue-grey-70,
-        --text-link-outline-color: $color-green-60,
-
-        --text-link-box-shadow-color: rgba($color-green-85, 0.375),
-        --text-link-placeholder-color: $color-neutral-50,
-
-        --primary-button-background-color: $color-green-50,
-        --primary-button-active-background-color: $color-green-65,
-        --primary-button-border-color: $color-green-60,
-        --primary-button-active-border-color: $color-green-75,
-        --primary-button-outline-color: $color-green-60,
-        --primary-button-active-outline-color: $color-green-60,
-        --primary-button-shadow-color: rgba($color-green-85, 0.375),
-        --primary-button-active-shadow-color: rgba($color-green-85, 0.75),
-        --primary-button-separator-color: $color-green-35,
-        --primary-button-text-color: $white,
-        --primary-button-text-color-dark: $color-green-75,
-
-        --primary-card-border-color: $color-neutral-50,
-        --primary-card-hover-border-color: $color-neutral-70,
-        --primary-card-focus-border-color: $color-green-45,
-        --primary-card-focus-shadow-color: rgba($color-green-85, 0.375),
+        --text-link-outline-color: $color-green-50,
+        --text-link-current-indicator-color: $color-neutral-55,
+        // button
+        --button-background-color: $color-green-50,
+        --button-hover-background-color: $color-green-60,
+        --button-focus-background-color: $color-green-70,
+        --button-border-color: $color-green-70,
+        --button-hover-border-color: $color-green-80,
+        --button-focus-border-color: $color-green-25,
+        --button-outline-color: $color-green-60,
+        --button-shadow-color: rgba($color-green-85, 0.375),
+        --button-hover-shadow-color: rgba($color-green-85, 0.75),
+        --button-focus-shadow-color: rgba($color-green-85, 0.75),
+        --button-text-color: $white,
+        --button-text-color-dark: $color-green-75,
+        // form controls
+        --input-hover-background-color: $color-green-10,
+        --input-focus-background-color: $color-green-10,
+        --input-stated-background-color: $color-green-55,
+        --input-border-color: $color-green-60,
+        --input-hover-border-color: $color-green-60,
+        --input-focus-border-color: $color-green-60,
+        --input-outline-color: $color-green-70,
+        --input-text-color: $color-green-75,
+        --input-stated-text-color: $white,
+        --input-shadow-color: rgba($color-green-85, 0.375),
+        // card content
+        --card-border-color: $color-neutral-50,
+        --card-hover-border-color: $color-green-65,
+        --card-focus-border-color: $color-green-50,
+        --card-outline-color: $color-green-60,
+        --card-hover-outline-color: $color-green-70,
+        --card-focus-outline-color: $color-green-65,
+        --card-background-color: transparent,
+        --card-hover-background-color: rgba($color-blue-grey-10, 0.275),
+        --card-focus-background-color: rgba($color-blue-grey-10, 0.275),
+        --card-shadow-color: rgba($color-green-50, 0.375),
+        --card-hover-shadow-color: rgba($color-green-65, 0.375),
+        --card-focus-shadow-color: rgba($color-green-85, 0.375),
+        // panel content
         --panel-background-color: $color-blue-grey-10,
         --panel-shadow-color: $color-neutral-80,
-
-        --separator-border-color: $color-neutral-20,
+        // miscellaneous
+        --separator-border-color: $color-neutral-50,
       )
     );
   }
@@ -74,37 +98,63 @@
     @include defineColorVar(
       (
         --background-color: $color-blue-grey-85,
+        // normal text
         --text-color-primary: $color-neutral-05,
-        --text-color-secondary: $color-neutral-30,
-        --text-color-accent: $color-green-30,
-        --text-link-color: $color-blue-20,
-        --text-link-hover-background-color: $color-green-40,
-        --text-link-hover-color: $white,
-        --text-link-decoration-color: $color-blue-grey-25,
-        --text-link-outline-color: $color-green-30,
-
-        --text-link-box-shadow-color: rgba($color-green-85, 0.375),
-        --text-link-placeholder-color: $color-neutral-50,
-        --primary-button-background-color: $color-green-50,
-        --primary-button-active-background-color: $color-green-65,
-        --primary-button-border-color: $color-green-40,
-        --primary-button-active-border-color: $color-green-30,
-        --primary-button-outline-color: $color-green-60,
-        --primary-button-active-outline-color: $color-green-15,
-        --primary-button-shadow-color: rgba($color-green-75, 0.875),
-        --primary-button-active-shadow-color: rgba($color-green-85, 0.75),
-        --primary-button-separator-color: $color-green-35,
-        --primary-button-text-color: $white,
-        --primary-button-text-color-dark: $color-green-15,
-
-        --primary-card-border-color: $color-neutral-55,
-        --primary-card-hover-border-color: $color-neutral-25,
-        --primary-card-focus-border-color: $color-green-30,
-        --primary-card-focus-shadow-color: rgba($color-green-85, 0.725),
+        --text-color-secondary: $color-neutral-25,
+        --text-color-tertiary: $color-neutral-45,
+        --text-color-accent: $color-green-15,
+        --text-color-accent-secondary: $color-green-25,
+        --text-color-accent-tertiary: $color-green-40,
+        // link text
+        --text-link-color: $color-blue-25,
+        --text-link-hover-color: $color-blue-grey-95,
+        --text-link-hover-background-color: $color-green-25,
+        --text-link-decoration-color: $color-blue-grey-20,
+        --text-link-outline-color: $color-green-25,
+        --text-link-current-indicator-color: $color-neutral-35,
+        // button
+        --button-background-color: $color-green-50,
+        --button-hover-background-color: $color-green-55,
+        --button-focus-background-color: $color-green-65,
+        --button-activated-background-color-primary: $color-green-60,
+        --button-border-color: $color-green-40,
+        --button-hover-border-color: $color-green-20,
+        --button-focus-border-color: $color-green-25,
+        --button-outline-color: $color-green-15,
+        --button-shadow-color: rgba($color-green-35, 0.375),
+        --button-hover-shadow-color: rgba($color-green-35, 0.75),
+        --button-focus-shadow-color: rgba($color-green-35, 0.75),
+        --button-text-color: $white,
+        --button-text-color-dark: $color-green-15,
+        // form controls
+        --input-hover-background-color: $color-blue-grey-80,
+        --input-focus-background-color: $color-green-70,
+        --input-stated-background-color: $color-green-55,
+        --input-border-color: $color-green-40,
+        --input-hover-border-color: $color-green-25,
+        --input-focus-border-color: $color-green-25,
+        --input-outline-color: $color-green-15,
+        --input-text-color: $color-green-20,
+        --input-stated-text-color: $white,
+        --input-shadow-color: rgba($color-green-35, 0.375),
+        // card content
+        --card-border-color: $color-neutral-55,
+        --card-hover-border-color: $color-green-35,
+        --card-focus-border-color: $color-green-25,
+        --card-outline-color: $color-green-35,
+        --card-hover-outline-color: $color-green-35,
+        --card-focus-outline-color: $color-green-25,
+        --card-background-color: transparent,
+        --card-hover-background-color: rgba($color-blue-grey-80, 0.275),
+        --card-focus-background-color: rgba($color-blue-grey-80, 0.275),
+        --card-shadow-color: rgba($color-green-50, 0.275),
+        --card-hover-shadow-color: rgba($color-green-30, 0.275),
+        --card-focus-shadow-color: rgba($color-green-30, 0.275),
+        // panel content
         --panel-background-color: $color-blue-grey-90,
         --panel-shadow-color: $color-green-40,
-
-        --separator-border-color: $color-neutral-60,
+        // miscellaneous
+        --separator-border-color: $color-neutral-55,
       )
     );
   }

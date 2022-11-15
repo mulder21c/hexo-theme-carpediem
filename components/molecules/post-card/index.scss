@@ -10,23 +10,25 @@
     "body";
   margin: 1em 0;
   padding: 1em;
-  border: 1px solid var(--primary-card-border-color);
-  border-radius: var(--box-border-radius);
-
-  &:hover {
-    border-color: var(--primary-card-hover-border-color);
-  }
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-background-color);
+  outline-offset: 0;
 
   &#{$link-card} {
     &:hover {
+      border-color: var(--card-hover-border-color);
+      outline: 1px solid var(--card-hover-outline-color);
+      background-color: var(--card-hover-background-color);
+      box-shadow: 1px 1px 2px 1px var(--card-hover-shadow-color);
       cursor: pointer;
     }
     &:focus-within,
     &:active {
-      outline: 3px solid var(--primary-card-focus-border-color);
-      outline-offset: 0;
-      border-color: var(--primary-card-focus-border-color);
-      box-shadow: 2px 2px 3px 2px var(--primary-card-focus-shadow-color);
+      border-color: var(--card-focus-border-color);
+      outline: 3px solid var(--card-focus-outline-color);
+      background-color: var(--card-hover-background-color);
+      box-shadow: 2px 2px 4px 4px var(--card-focus-shadow-color);
     }
   }
 

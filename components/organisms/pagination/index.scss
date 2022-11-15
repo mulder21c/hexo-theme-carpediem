@@ -47,7 +47,7 @@
     }
     &--current#{&} {
       border-radius: 50%;
-      background-color: var(--primary-button-background-color);
+      background-color: var(--button-background-color);
       font-weight: var(--font-weight-bold);
       color: var(--text-link-hover-color);
     }

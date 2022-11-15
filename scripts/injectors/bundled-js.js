@@ -60,7 +60,7 @@ cleanDirectory(outputPath).then(() => {
       );
 
     hexo.extend.injector.register(
-      `head_begin`,
+      `head_end`,
       `
         <script>
           const GLOBAL = { themePrefix: "${themePrefix}" };

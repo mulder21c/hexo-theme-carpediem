@@ -17,7 +17,7 @@
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    color: var(--primary-button-text-color-dark);
+    color: var(--input-text-color);
 
     &::before {
       content: "";
@@ -25,7 +25,7 @@
       display: inline-block;
       margin-right: 0.5rem;
       border-radius: 50%;
-      border: 2px solid var(--primary-button-border-color);
+      border: 2px solid var(--input-border-color);
       width: 1.25rem;
       height: 1.25rem;
       background-color: var(--background-color);
@@ -33,12 +33,13 @@
 
       #{$control}:checked + & {
         border-width: 0.425rem;
+        border-color: var(--input-border-color);
       }
 
       #{$control}:focus + & {
-        outline: 2px solid var(--primary-button-active-outline-color);
+        outline: 2px solid var(--input-outline-color);
         outline-offset: 1px;
-        border-color: var(--primary-button-border-color);
+        border-color: var(--input-border-color);
       }
     }
 

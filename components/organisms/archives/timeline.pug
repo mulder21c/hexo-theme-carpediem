@@ -47,7 +47,7 @@ mixin archiveTimeline(props = {})
 
     const { prefix } = theme;
 
-  div(class= `${prefix}-timeline`)
+  div(class= `${prefix}-timeline`)&attributes(attrs)
     -
       let count = 0;
       const reverse = (a, b) => Number(a) > Number(b) ? -1 : 1;
