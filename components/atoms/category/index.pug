@@ -79,6 +79,7 @@ mixin category(props = {})
 
     // get entries to display from categories
     const categoryEntries = ((level, categories) => {
+      if (!categories.length) return { name: _p('label.no_category') }
       switch (level) {
         case "lowest":
           return categories.at(0);
@@ -89,7 +90,7 @@ mixin category(props = {})
       }
     })(level, categories);
     const { prefix } = theme;
-    const wrapper = useLink ? `a` : `span`;
+    const wrapper = (useLink && categories.length) ? `a` : `span`;
 
   span(
     class= `${prefix}-category`

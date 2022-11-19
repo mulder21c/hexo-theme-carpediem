@@ -5,7 +5,8 @@ title:
   tag: "%1$s%2$s 관련된 글"
 
 label:
-  category: 카테고리
+  category: 분류
+  no_category: 분류 없음
   date:
     published: 발행일
     updated: 업데이트

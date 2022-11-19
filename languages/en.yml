@@ -6,6 +6,7 @@ title:
 
 label:
   category: category
+  no_category: no category
   date:
     published: published at
     updated: updated at
