@@ -1,72 +1,23 @@
-.#{$prefix} {
-  &-article {
-    margin: 0 auto;
+.#{$prefix}-article {
+  margin: 0 auto;
 
-    &__header {
-      max-width: 50em;
-      margin-top: -7em;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0.5em 2rem 0;
-      border-radius: 0.5rem 0.5rem 0 0;
-      background-image: linear-gradient(
-        to bottom,
-        rgba(var(--background-color-rgb), 0.95) 50%,
-        var(--background-color)
-      );
-    }
+  &__header {
+    max-width: 50em;
+    margin-top: -7em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5em 2rem 0;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(var(--background-color-rgb), 0.95) 50%,
+      var(--background-color)
+    );
+  }
 
-    &__heading {
-      margin-top: 0.5em;
-      margin-bottom: 1em;
-      font-family: var(--font-family-sans-serif);
-    }
-
-    &__meta {
-      display: flex;
-      flex-flow: column;
-      margin: 0 -2rem;
-      padding: 1rem 2rem;
-      background-color: var(--panel-background-color);
-
-      @include respond-to(tablet) {
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-        align-items: center;
-      }
-    }
-
-    &__categories {
-      margin-bottom: 1em;
-
-      @include respond-to(tablet) {
-        margin-bottom: 0;
-        margin-right: 2em;
-      }
-    }
-
-    &__updated {
-      margin-left: 0.5em;
-      color: var(--text-color-secondary);
-
-      &::before {
-        margin-left: 1em;
-        content: "(";
-
-        @include respond-to(tablet) {
-          margin-left: 0;
-        }
-      }
-      &::after {
-        content: ")";
-      }
-    }
-
-    &__content {
-      max-width: 40em;
-      margin: 5rem auto 2.5rem;
-
-      @include article;
-    }
+  &__heading {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    font-family: var(--font-family-sans-serif);
   }
 }

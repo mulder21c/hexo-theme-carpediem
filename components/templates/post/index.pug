@@ -1,0 +1,16 @@
+extends /components/templates/common
+include /components/organisms/hero/index
+include /components/organisms/article/index
+
+block heroContent
+  -
+    const postHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
+
+  if (postHero)
+    +hero(postHero && {imgSrc: postHero.path, class: `${prefix}-home-hero`})
+
+block mainContent
+  if(post)
+    +article({post})
+
+block sidebar

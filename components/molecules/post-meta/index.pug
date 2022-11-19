@@ -1,0 +1,74 @@
+include /components/atoms/category/index
+include /components/atoms/datetime/index
+
+//- @pugdoc
+  name: postMeta
+  description: create meta info component for post
+  beforeEach: |
+    include ../../utils/util
+    include ../../atoms/category/index
+    include ../../atoms/datetime/index
+  arguments:
+    - {object} props
+    - {object} props.categories sequence of category
+    - {object} props.date date of post
+    - {object} props.updated updated date of post
+  examples:
+    - |
+      +postMeta({
+        categories: post.categories.data || post.categories || [],
+        date: post.date,
+        updated: post.updated,
+      })
+
+mixin postMeta(props = {})
+  -
+    // define types
+    const postMetaProps = {
+      categories: PropTypes.array.isRequired,
+      date: PropTypes.object,
+      updated: PropTypes.object,
+    };
+
+    // verifying props
+    validateProps(postMetaProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      categories: [],
+    };
+
+    const {
+      categories,
+      date,
+      updated,
+      ...attrs
+    } = {
+      ...defaultProps,
+      ...props,
+    };
+
+    const { prefix } = theme;
+
+  div(class= `${prefix}-meta`)&attributes(attrs)
+    +category({
+      categories: categories,
+      visibleLabel: '📂',
+      level: `all`,
+      useLink: true,
+      separator: `angle-right`,
+      class: `${prefix}-meta__categories`
+    })
+    +datetime({
+      datetime: date,
+      label: _p(`label.date.published`),
+      visibleLabel: '📆',
+      class: `${prefix}-meta__date`
+    })
+    if (updated)
+      +datetime({
+        datetime: updated,
+        label: _p(`label.date.updated`),
+        visibleLabel: 'Updated',
+        class: `${prefix}-meta__updated`,
+      })

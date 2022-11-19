@@ -3,13 +3,17 @@ body {
   min-height: 100vh;
   position: relative;
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: min-content 100%;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "side header"
     "side main"
     "side footer";
   width: 100%;
+
+  @include respond-to(tablet) {
+    grid-template-columns: min-content 1fr;
+  }
 
   &.opened-panel {
     position: fixed;

@@ -88,8 +88,31 @@
         // panel content
         --panel-background-color: $color-blue-grey-10,
         --panel-shadow-color: $color-neutral-80,
+        // box content
+        --box-background-color: $color-neutral-10,
+        --box-border-color: $color-neutral-50,
         // miscellaneous
         --separator-border-color: $color-neutral-50,
+        // scroll
+        --track-background-color: $color-blue-grey-10,
+        --track-thumb-color: $color-blue-grey-65,
+        --track-hover-thumb-color: $color-blue-grey-85,
+        --track-thumb-border-color: $color-blue-grey-15,
+        --track-thumb-border-color-dark: $color-blue-grey-80,
+        --track-thumb-outline-color: $color-blue-grey-80,
+        --track-thumb-outline-color-dark: $color-blue-grey-10,
+        --track-button-background-color: $color-blue-grey-10,
+        --track-hover-button-background-color: $color-blue-grey-90,
+        --track-button-border-color: $color-blue-grey-10,
+        --track-hover-button-border-color: $color-blue-grey-10,
+        // table
+        --table-border-color: $color-neutral-50,
+        --table-header-cell-border-color: $color-neutral-40,
+        --table-header-cell-background-color: $color-blue-grey-10,
+        --table-cell-border-color: $color-neutral-40,
+        // code
+        --code-background-color: $color-blue-grey-15,
+        --code-color: $color-neutral-90,
       )
     );
   }
@@ -155,6 +178,26 @@
         --panel-shadow-color: $color-green-40,
         // miscellaneous
         --separator-border-color: $color-neutral-55,
+        // scroll
+        --track-background-color: $color-blue-grey-10,
+        --track-thumb-color: $color-blue-grey-65,
+        --track-hover-thumb-color: $color-blue-grey-85,
+        --track-thumb-border-color: $color-blue-grey-15,
+        --track-thumb-border-color-dark: $color-blue-grey-80,
+        --track-thumb-outline-color: $color-blue-grey-80,
+        --track-thumb-outline-color-dark: $color-blue-grey-10,
+        --track-button-background-color: $color-blue-grey-10,
+        --track-hover-button-background-color: $color-blue-grey-90,
+        --track-button-border-color: $color-blue-grey-10,
+        --track-hover-button-border-color: $color-blue-grey-10,
+        // table
+        --table-border-color: $color-neutral-50,
+        --table-header-cell-border-color: $color-neutral-40,
+        --table-header-cell-background-color: $color-blue-grey-95,
+        --table-cell-border-color: $color-neutral-40,
+        // code
+        --code-background-color: $color-blue-grey-15,
+        --code-color: $color-neutral-90,
       )
     );
   }

@@ -1,0 +1,33 @@
+//- @pugdoc
+  name: articleContent
+  description: create content for article
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {object} props.content content of post
+  examples:
+    - |
+      +articleContent({ categories: post.content, })
+
+mixin articleContent(props = {})
+  -
+    // define types
+    const articleContentProps = {
+      content: PropTypes.string,
+    };
+
+    // verifying props
+    validateProps(articleContentProps)(props);
+
+    const {
+      content,
+      ...attrs
+    } = {
+      ...props,
+    };
+
+    const { prefix } = theme;
+
+  div(class= `${prefix}-article-content`)&attributes(attrs)
+    != content

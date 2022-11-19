@@ -1,0 +1,11 @@
+extends /components/templates/post/index
+
+block prepend heroContent
+  -
+    const primaryHero = {
+      path: page.hero,
+    };
+
+block prepend mainContent
+  -
+    const post = page;

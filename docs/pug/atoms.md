@@ -1,126 +1,5 @@
 # Pug Documentation 
 
-## category
-
-category indicator
-
-
-### path 
-
-`components/atoms/category/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.categories|sequence of category|array||false|
-|props.visibleLabel|the visible label for category|string||false|
-|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|string|`lowest`|true|
-|props.useLink|whether to use link|bool|true|true|
-|props.separator|hierarchy separator <br> You can use icon(font awesome) name for separator|string|`>`|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../svg-icon/index
-
-+category({
-  categories,
-  visibleLabel: '📂',
-  level: `all`,
-  useLink: false,
-  separator: `>`
-})
-```
-
-
-### output example 
-
-```html
-<span class="amor-category">
-  <span
-    class="amor-category__label"
-    role="img"
-    aria-label="i18n(label.category)"
-  >
-    📂
-  </span>
-  <span class="amor-category__list" role="list">
-    <span class="amor-category__content" role="listitem">
-      <span>cate-itkcvi40hqkiom8</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-itkcappoeksngi</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-itkcrik7tr5791o</span>
-    </span>
-  </span>
-</span>
-
-```
-
-
----
-
-
-## button
-
-basic button component
-
-
-### path 
-
-`components/atoms/buttons/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.type|the value of type attribute for button|string|'button'|true|
-|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
-|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+button({
-  type: 'button',
-  size: 'medium',
-  appearance: 'outline',
-}) button
-```
-
-
-### output example 
-
-```html
-<button
-  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
-  type="button"
->
-  button
-</button>
-
-```
-
-
----
-
-
 ## cclLicense
 
 ccl license text
@@ -196,6 +75,56 @@ include ../../utils/util
 ---
 
 
+## button
+
+basic button component
+
+
+### path 
+
+`components/atoms/buttons/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.type|the value of type attribute for button|string|'button'|true|
+|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
+|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++button({
+  type: 'button',
+  size: 'medium',
+  appearance: 'outline',
+}) button
+```
+
+
+### output example 
+
+```html
+<button
+  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
+  type="button"
+>
+  button
+</button>
+
+```
+
+
+---
+
+
 ## checkbox
 
 checkbox component
@@ -256,21 +185,21 @@ label(for="no-label-checkbox") checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="k6vrhdobdeo"
+    id="itlr4998ujs"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="k6vrhdobdeo">agree</label>
+  <label class="amor-checkbox__label" for="itlr4998ujs">agree</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="wzrn6l2k9mo"
+    id="s2ldw4nv3eq"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="wzrn6l2k9mo">check label</label>
+  <label class="amor-checkbox__label" for="s2ldw4nv3eq">check label</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-checkbox">
@@ -282,6 +211,215 @@ label(for="no-label-checkbox") checkbox
   <span class="amor-checkbox__label" aria-hidden="true"></span>
 </span>
 <label for="no-label-checkbox">checkbox</label>
+
+```
+
+
+---
+
+
+## switchButton
+
+switch button component
+
+
+### path 
+
+`components/atoms/checkboxes/switch.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
+|props.name|the value of switch button's name attribute|string||true|
+|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
+|props.checked|the state of switch button|boolean|false|true|
+|props.value|the value of switch button|undefined||true|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
+|props.inputAttrs|the attrs for input:checkbox|object|{}|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// basic
++switchButton({
+  label: 'alarm',
+  checked: true,
+})
+
+// using block instead of label property
++switchButton({
+  checked: true,
+}) switch button
+
+// using separated label element
++switchButton({
+  id: `no-label-switch`,
+  checked: false,
+})
+label(for="no-label-switch") switch button
+```
+
+
+### output example 
+
+```html
+<!-- basic-->
+<span class="amor-switch">
+  <input
+    class="amor-switch__control"
+    type="checkbox"
+    id="ilb6smfdi7c"
+    checked="checked"
+  />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <label class="amor-switch__label" for="ilb6smfdi7c">alarm</label>
+</span>
+<!-- using block instead of label property-->
+<span class="amor-switch">
+  <input
+    class="amor-switch__control"
+    type="checkbox"
+    id="g6ib8ip4ic8"
+    checked="checked"
+  />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <label class="amor-switch__label" for="g6ib8ip4ic8">switch button</label>
+</span>
+<!-- using separated label element-->
+<span class="amor-switch">
+  <input class="amor-switch__control" type="checkbox" id="no-label-switch" />
+  <span class="amor-switch__btn" aria-hidden="true"></span>
+  <span class="amor-switch__label" aria-hidden="true"></span>
+</span>
+<label for="no-label-switch">switch button</label>
+
+```
+
+
+---
+
+
+## category
+
+category indicator
+
+
+### path 
+
+`components/atoms/category/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.categories|sequence of category|array||false|
+|props.visibleLabel|the visible label for category|string||false|
+|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|string|`lowest`|true|
+|props.useLink|whether to use link|bool|true|true|
+|props.separator|hierarchy separator <br> You can use icon(font awesome) name for separator|string|`>`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../svg-icon/index
+
++category({
+  categories,
+  visibleLabel: '📂',
+  level: `all`,
+  useLink: false,
+  separator: `>`
+})
+```
+
+
+### output example 
+
+```html
+<span class="amor-category">
+  <span
+    class="amor-category__label"
+    role="img"
+    aria-label="i18n(label.category)"
+  >
+    📂
+  </span>
+  <span class="amor-category__list" role="list">
+    <span class="amor-category__content" role="listitem">
+      <span>cate-90m7fepgkmlh8fg</span>
+    </span>
+    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
+    <span class="amor-category__content" role="listitem">
+      <span>cate-90m7drbkbj6l13</span>
+    </span>
+    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
+    <span class="amor-category__content" role="listitem">
+      <span>cate-90m7s274fquk0mg</span>
+    </span>
+  </span>
+</span>
+
+```
+
+
+---
+
+
+## heading
+
+heading component
+
+
+### path 
+
+`components/atoms/heading/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.level|the level(rank) of heading from 1 to 6|number||false|
+|props.htmlString|the html string as content of heading|string||true|
+|props.visible|whether an element is visible or not|boolean|true|true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|headingSlot|the slot for heading content|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++heading({ level: 1 }) heading
+```
+
+
+### output example 
+
+```html
+<h1 class="amor-heading--lv-1">heading</h1>
 
 ```
 
@@ -404,15 +542,15 @@ include ../../utils/util
 <!-- simple-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="aualgk1v1f6" datetime="2022-11-06">
-    2022. 11. 06
+  <time class="amor-datetime__time" id="zwrwzxatl6g" datetime="2022-11-20">
+    2022. 11. 20
   </time>
 </span>
 <!-- explicit format-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="y3us42p0gno" datetime="2022-11-06">
-    2022-11-06
+  <time class="amor-datetime__time" id="qswy4lbnl44" datetime="2022-11-20">
+    2022-11-20
   </time>
 </span>
 
@@ -422,14 +560,14 @@ include ../../utils/util
 ---
 
 
-## switchButton
+## watermark
 
-switch button component
+watermark for theme
 
 
 ### path 
 
-`components/atoms/checkboxes/switch.pug`
+`components/atoms/watermark/index.pug`
 
 
 ### arguments 
@@ -437,13 +575,7 @@ switch button component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.id|the value of switch button's id attribute and label's for attribute <br> If not specified, an auto-generated id is assigned.|string||true|
-|props.name|the value of switch button's name attribute|string||true|
-|props.label|label of switch button <br> If do not specify this value, you must author and style label element.|string||true|
-|props.checked|the state of switch button|boolean|false|true|
-|props.value|the value of switch button|undefined||true|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'left'`, `'right'`|string|'right'|true|
-|props.inputAttrs|the attrs for input:checkbox|object|{}|true|
+|props.hexo|whether to display tool for generating as hexo|boolean|true|true|
 
 
 
@@ -452,59 +584,25 @@ switch button component
 ```jade
 include ../../utils/util
 
-// basic
-+switchButton({
-  label: 'alarm',
-  checked: true,
-})
-
-// using block instead of label property
-+switchButton({
-  label: 'alarm',
-  checked: true,
-}) switch button
-
-// using separated label element
-+switchButton({
-  id: `no-label-switch`,
-  checked: false,
-})
-label(for="no-label-switch") switch button
++watermark()
 ```
 
 
 ### output example 
 
 ```html
-<!-- basic-->
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="nqp6umq0qva"
-    checked="checked"
-  />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="nqp6umq0qva">alarm</label>
-</span>
-<!-- using block instead of label property-->
-<span class="amor-switch">
-  <input
-    class="amor-switch__control"
-    type="checkbox"
-    id="jv7smamhcfk"
-    checked="checked"
-  />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="jv7smamhcfk">alarmswitch button</label>
-</span>
-<!-- using separated label element-->
-<span class="amor-switch">
-  <input class="amor-switch__control" type="checkbox" id="no-label-switch" />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <span class="amor-switch__label" aria-hidden="true"></span>
-</span>
-<label for="no-label-switch">switch button</label>
+<p class="amor-watermark">
+  Powered by
+  <a href="https://hexo.io/" rel="external noreferrer" target="_blank">Hexo.</a>
+  Theme by
+  <a
+    href="https://github.com/mulder21c"
+    rel="external noreferrer"
+    target="_blank"
+  >
+    mulder21c.
+  </a>
+</p>
 
 ```
 
@@ -512,14 +610,14 @@ label(for="no-label-switch") switch button
 ---
 
 
-## heading
+## svgIcon
 
-heading component
+create inline-svg icon
 
 
 ### path 
 
-`components/atoms/heading/index.pug`
+`components/atoms/svg-icon/index.pug`
 
 
 ### arguments 
@@ -527,17 +625,8 @@ heading component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.level|the level(rank) of heading from 1 to 6|number||false|
-|props.htmlString|the html string as content of heading|string||true|
-|props.visible|whether an element is visible or not|boolean|true|true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|headingSlot|the slot for heading content|
+|props.name|name of icon|string||false|
+|props.type|type of icon|string||true|
 
 
 
@@ -546,14 +635,16 @@ heading component
 ```jade
 include ../../utils/util
 
-+heading({ level: 1 }) heading
++svgIcon({name: 'thumbs-up'})
 ```
 
 
 ### output example 
 
 ```html
-<h1 class="amor-heading--lv-1">heading</h1>
+<svg class="amor-svg-icon" focusable="false">
+  <use xlink:href="/images/solid.svg#thumbs-up"></use>
+</svg>
 
 ```
 
@@ -614,7 +705,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="hjen8u52kgo"
+    id="cab686rem2g"
     name="answer"
     value="1"
   />
@@ -625,7 +716,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="j9k6nidk54k"
+    id="cof7fz8n2f8"
     name="answer"
     value="1"
   />
@@ -686,13 +777,25 @@ label(for="no-label") radio button
 ```html
 <!-- basic-->
 <span class="amor-radio">
-  <input class="amor-radio__control" type="radio" name="answer" value="1" />
-  <label class="amor-radio__label">yes</label>
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="mr8y5hbimsg"
+    name="answer"
+    value="1"
+  />
+  <label class="amor-radio__label" for="mr8y5hbimsg">yes</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-radio">
-  <input class="amor-radio__control" type="radio" name="answer" value="1" />
-  <label class="amor-radio__label">radio button</label>
+  <input
+    class="amor-radio__control"
+    type="radio"
+    id="d340ncckism"
+    name="answer"
+    value="1"
+  />
+  <label class="amor-radio__label" for="d340ncckism">radio button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-radio">
@@ -706,98 +809,6 @@ label(for="no-label") radio button
   <span class="amor-radio__label" aria-hidden="true"></span>
 </span>
 <label for="no-label">radio button</label>
-
-```
-
-
----
-
-
-## svgIcon
-
-create inline-svg icon
-
-
-### path 
-
-`components/atoms/svg-icon/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|name of icon|string||false|
-|props.type|type of icon|string||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+svgIcon({name: 'thumbs-up'})
-```
-
-
-### output example 
-
-```html
-<svg class="amor-svg-icon" focusable="false">
-  <use xlink:href="/images/solid.svg#thumbs-up"></use>
-</svg>
-
-```
-
-
----
-
-
-## watermark
-
-watermark for theme
-
-
-### path 
-
-`components/atoms/watermark/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.hexo|whether to display tool for generating as hexo|boolean|true|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+watermark()
-```
-
-
-### output example 
-
-```html
-<p class="amor-watermark">
-  Powered by
-  <a href="https://hexo.io/" rel="external noreferrer" target="_blank">Hexo.</a>
-  Theme by
-  <a
-    href="https://github.com/mulder21c"
-    rel="external noreferrer"
-    target="_blank"
-  >
-    mulder21c.
-  </a>
-</p>
 
 ```
 

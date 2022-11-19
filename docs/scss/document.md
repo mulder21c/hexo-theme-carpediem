@@ -126,6 +126,48 @@ between the minimum and maximum values
 
 + **[@function convertRem](#general-function-convertRem)**
 
+<a id="general-function-toRGB"></a>
+
+# @function toRGB
+
+get rgb(r, g, b) format from Hex color
+
++ **Group:** General
++ **Access:** public
+
+## Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$color`|**[Color](https://sass-lang.com/documentation/values/colors)**|Hex color|-|
+
+## Returns
+
+**[Color](https://sass-lang.com/documentation/values/colors)**
+
+## Dependents
+
++ **@mixin defineColorVar** generate css variable for color 2-way that contains hex code and r, g, b run
+
+<a id="general-function-encodecolor"></a>
+
+# @function encodecolor
+
+url encode
+
++ **Group:** General
++ **Access:** public
+
+## Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$color`|**[Color](https://sass-lang.com/documentation/values/colors)**|Hex color|-|
+
+## Returns
+
+**[String](https://sass-lang.com/documentation/values/strings)**
+
 <a id="general-mixin-respond-to"></a>
 
 # @mixin respond-to
@@ -216,6 +258,15 @@ generate properties for animation
 |`$options.fill`|**[String](https://sass-lang.com/documentation/values/strings)**|how a CSS animation applies styles to its target before and after its execution|`none`|
 |`$options.state`|**[String](https://sass-lang.com/documentation/values/strings)**|whether an animation is running or paused|`running`|
 
+<a id="general-mixin-sr-only"></a>
+
+# @mixin sr-only
+
+visually hidden for screen reader
+
++ **Group:** General
++ **Access:** public
+
 <a id="general-mixin-lineEllipsis"></a>
 
 # @mixin lineEllipsis
@@ -230,3 +281,22 @@ generate ellipsis by lines
 |Name|Type|Description|Default|
 |:--|:--|:--|:--|
 |`$line-to-show`|**[Number](https://sass-lang.com/documentation/values/numbers)**|the number of lines|-|
+
+<a id="general-mixin-defineColorVar"></a>
+
+# @mixin defineColorVar
+
+generate css variable for color 2-way that contains hex code and r, g, b run
+
++ **Group:** General
++ **Access:** public
+
+## Parameters
+
+|Name|Type|Description|Default|
+|:--|:--|:--|:--|
+|`$colorMap`|**[Map](https://sass-lang.com/documentation/values/maps)**|map containing variable's name & color value|-|
+
+## Dependencies
+
++ **[@function toRGB](#general-function-toRGB)**
