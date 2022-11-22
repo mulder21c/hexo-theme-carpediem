@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const jsYml = require("js-yaml");
+const glob = require("fast-glob");
 const { compileInlineSCSS } = require("../utils/bundler");
 const rootPath = path.resolve(__dirname, "../../");
 const cssSourcePath = path.resolve(rootPath, `./source/css/`);
@@ -14,6 +15,16 @@ const { prefix: themePrefix } = (() => {
     return {};
   }
 })();
+
+const functions = fs.readFileSync(
+  path.join(cssSourcePath, "./helpers/_functions.scss")
+);
+const mixins = fs.readFileSync(
+  path.join(cssSourcePath, "./helpers/_mixins.scss")
+);
+const variables = fs.readFileSync(
+  path.join(cssSourcePath, "./modules/_variables.scss")
+);
 
 const prepend = `$prefix: ${themePrefix};\n`;
 
@@ -35,7 +46,7 @@ const postCssOption = {
  */
 function compileSCSSHelper(css) {
   const result = compileInlineSCSS({
-    source: css,
+    source: `@use "sass:math"; ${functions} ${mixins} ${variables} ${css}`,
     prepend,
     sassOption,
     postCssOption,
