@@ -43,6 +43,9 @@ html(lang=config.language)
     +openGraph
     +siteVerification
     +styles([])
+    if page.style
+      style
+       != compileSass(page.style)
     +jsonLD
     +analytics
   body

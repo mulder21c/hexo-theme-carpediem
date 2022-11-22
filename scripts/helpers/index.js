@@ -11,3 +11,4 @@ helper.register(`paginator`, require(`./paginator`));
 helper.register(`listCategories`, require(`./list-categories`));
 helper.register(`listMenus`, require(`./list-menus`));
 helper.register(`mapArchives`, require(`./map-archives`));
+helper.register(`compileSass`, require(`./compile-sass`));

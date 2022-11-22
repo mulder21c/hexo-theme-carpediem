@@ -6,6 +6,7 @@ const { terser } = require("rollup-plugin-terser");
 const sass = require("sass");
 const postcss = require("postcss");
 const cssnano = require("cssnano");
+const autoprefixer = require("autoprefixer");
 const postcssNested = require("postcss-nested");
 const postcssPresetEnv = require("postcss-preset-env");
 const rootPath = path.resolve(__dirname, "../../");
@@ -89,7 +90,34 @@ function compileSCSS({ source, prepend, sassOption, postCssOption }) {
   });
 }
 
+/**
+ * compile scss & post-precessing with postcss for post-specific scss
+ * @param {object} param
+ * @param {string} param.source the source code to compile
+ * @param {string} param.prepend prepend data apply to sass compiler
+ * @param {object} param.sassOption @see https://sass-lang.com/documentation/js-api/interfaces/StringOptionsWithoutImporter
+ * @param {object} param.postCssOption @see https://postcss.org/api/#processoptions
+ * @returns {string} result css of postcss
+ */
+function compileInlineSCSS({ source, prepend, sassOption, postCssOption }) {
+  const scssText = source.replace(
+    /(\/\*\*)\s(automated imports).+(?=\*\*\/)(\*\*\/)/,
+    prepend
+  );
+
+  const { css } = sass.compileString(scssText || ``, sassOption);
+
+  const result = postcss([
+    autoprefixer({ overrideBrowserslist: browsers }),
+  ]).process(css, {
+    ...postCssOption,
+  });
+
+  return result.css || ``;
+}
+
 module.exports = {
   bundleJS,
   compileSCSS,
+  compileInlineSCSS,
 };
