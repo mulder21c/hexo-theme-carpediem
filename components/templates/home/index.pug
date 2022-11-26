@@ -1,6 +1,6 @@
 extends /components/templates/common
 include /components/organisms/hero/index
-include /components/organisms/posts-list/index
+include /components/organisms/articles-list/index
 
 block heroContent
   -
@@ -23,7 +23,7 @@ block mainContent
     +heading(headingProp)
       = _p('label.posts.recently')
 
-    +postsList({
+    +articlesList({
       posts,
     })
 

@@ -2,8 +2,8 @@ include /components/atoms/category/index
 include /components/atoms/datetime/index
 
 //- @pugdoc
-  name: postMeta
-  description: create meta info component for post
+  name: articleMeta
+  description: create meta info component for article
   beforeEach: |
     include ../../utils/util
     include ../../atoms/category/index
@@ -11,27 +11,27 @@ include /components/atoms/datetime/index
   arguments:
     - {object} props
     - {object} props.categories sequence of category
-    - {object} props.date date of post
-    - {object} props.updated updated date of post
+    - {object} props.date date of article
+    - {object} props.updated updated date of article
   examples:
     - |
-      +postMeta({
+      +articleMeta({
         categories: post.categories.data || post.categories || [],
         date: post.date,
         updated: post.updated,
       })
 
-mixin postMeta(props = {})
+mixin articleMeta(props = {})
   -
     // define types
-    const postMetaProps = {
+    const articleMetaProps = {
       categories: PropTypes.array.isRequired,
       date: PropTypes.object,
       updated: PropTypes.object,
     };
 
     // verifying props
-    validateProps(postMetaProps)(props);
+    validateProps(articleMetaProps)(props);
 
     // merge user-supplied options with the defaults
     const defaultProps = {
@@ -50,25 +50,25 @@ mixin postMeta(props = {})
 
     const { prefix } = theme;
 
-  div(class= `${prefix}-meta`)&attributes(attrs)
+  div(class= `${prefix}-article-meta`)&attributes(attrs)
     +category({
       categories: categories,
       visibleLabel: '📂',
       level: `all`,
       useLink: true,
       separator: `angle-right`,
-      class: `${prefix}-meta__categories`
+      class: `${prefix}-article-meta__categories`
     })
     +datetime({
       datetime: date,
       label: _p(`label.date.published`),
       visibleLabel: '📆',
-      class: `${prefix}-meta__date`
+      class: `${prefix}-article-meta__date`
     })
     if (updated)
       +datetime({
         datetime: updated,
         label: _p(`label.date.updated`),
         visibleLabel: 'Updated',
-        class: `${prefix}-meta__updated`,
+        class: `${prefix}-article-meta__updated`,
       })

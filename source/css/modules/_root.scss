@@ -88,9 +88,6 @@
         // panel content
         --panel-background-color: $color-blue-grey-10,
         --panel-shadow-color: $color-neutral-80,
-        // box content
-        --box-background-color: $color-neutral-10,
-        --box-border-color: $color-neutral-50,
         // miscellaneous
         --separator-border-color: $color-neutral-50,
         // scroll
@@ -113,6 +110,9 @@
         // code
         --code-background-color: $color-blue-grey-15,
         --code-color: $color-neutral-90,
+        // box content
+        --box-background-color: $color-neutral-10,
+        --box-accent-border-color: $color-green-60,
       )
     );
   }
@@ -198,6 +198,9 @@
         // code
         --code-background-color: $color-blue-grey-15,
         --code-color: $color-neutral-90,
+        // box content
+        --box-background-color: $color-neutral-80,
+        --box-accent-border-color: $color-green-30,
       )
     );
   }

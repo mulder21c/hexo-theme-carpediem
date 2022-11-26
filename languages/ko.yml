@@ -18,8 +18,11 @@ label:
     default: 게시글
     recently: 최근 게시글
     archives: 작성된 게시글
-    yearly: "%s년에 작성된 게시글"
+    yearly: "%s년에 작성 된 게시글"
   read_more: 더보기
+  tags:
+    default: 태그
+    no_tags: 태그가 없어요
 
 section:
   side: 설정 및 내비게이션

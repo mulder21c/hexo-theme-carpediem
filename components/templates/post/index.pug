@@ -1,6 +1,10 @@
 extends /components/templates/common
+include /components/atoms/svg-icon/index
+include /components/atoms/heading/index
+include /components/molecules/article-meta/index
+include /components/molecules/tags-list/index
 include /components/organisms/hero/index
-include /components/organisms/article/index
+include /components/organisms/article-content/index
 
 block heroContent
   -
@@ -10,7 +14,38 @@ block heroContent
     +hero(postHero && {imgSrc: postHero.path, class: `${prefix}-home-hero`})
 
 block mainContent
-  if(post)
-    +article({post})
+  if post
+    article(class= `${prefix}-article`)
+      div(class= `${prefix}-article__header`)
+        +heading({
+          level: 1,
+          htmlString: post.title,
+          class: `${prefix}-article__heading`,
+        })
+        +articleMeta({
+          categories: post.categories.data || post.categories || [],
+          date: post.date,
+          updated: post.updated,
+        })
+
+      +articleContent({
+        content: page.content,
+      })
+
+      div(class= `${prefix}-article__tags`)
+        +heading({
+          level: 2,
+          class: `${prefix}-article__tags__heading`,
+        })
+          +svgIcon({
+            name: `tags`,
+            "aria-hidden": `true`,
+            "aria-label": _p(`label.tags.default`),
+          })
+        +tagsList({
+          tags: post.tags.data || post.tags || [],
+          appearance: `flat`,
+          class: `${prefix}-article__tags__list`,
+        })
 
 block sidebar

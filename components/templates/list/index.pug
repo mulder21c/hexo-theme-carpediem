@@ -1,7 +1,7 @@
 extends /components/templates/common
 include /components/atoms/heading/index
 include /components/organisms/hero/index
-include /components/organisms/posts-list/index
+include /components/organisms/articles-list/index
 include /components/organisms/pagination/index
 
 block heroContent
@@ -29,7 +29,7 @@ block mainContent
         span(class= `${prefix}-list__heading__scope`)
           = headingScope
 
-    +postsList({
+    +articlesList({
       posts,
     })
 

@@ -20,6 +20,9 @@ label:
     archives: timeline of posts
     yearly: "posts at %s"
   read_more: read more
+  tags:
+    default: tags
+    no_tags: no tags
 
 section:
   side: settings and navigation

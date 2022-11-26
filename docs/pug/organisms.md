@@ -43,211 +43,29 @@ include ../../atoms/heading/index
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-90m31kaa0qktho/"
+        href="http://example.com/post-ebvmc25j7ok7qd8/"
       >
-        <span class="amor-timeline__title">Post 90m31kaa0qktho</span>
+        <span class="amor-timeline__title">Post ebvmc25j7ok7qd8</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-90m37jfibogbdug/"
+        href="http://example.com/post-ebvm5k1q7t7g6o/"
       >
-        <span class="amor-timeline__title">Post 90m37jfibogbdug</span>
+        <span class="amor-timeline__title">Post ebvm5k1q7t7g6o</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-90m37kpnrplivpo/"
+        href="http://example.com/post-ebvn3ebr9425o5/"
       >
-        <span class="amor-timeline__title">Post 90m37kpnrplivpo</span>
+        <span class="amor-timeline__title">Post ebvn3ebr9425o5</span>
       </a>
     </li>
   </ol>
 </div>
-
-```
-
-
----
-
-
-## accordion
-
-create accordion component aria pattern
-
-
-### path 
-
-`components/organisms/accordion/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.headingLevel|heading level of header in accordion|string|2|false|
-|props.activatedIndex|The index number of the panel that you want to initially open|number||true|
-|props.useSection|Whether to separate each item into sections|boolean|false|true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|accordionHeadingSlot|the slot for heading of accordion item|
-|accordionPanelSlot|the slot for panel of accordion item|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../../atoms/heading/index
-include ../../atoms/svg-icon/index
-
-+accordion({headingLevel: 2, activatedIndex: 1})
-  +accordionHeadingSlot heading 1
-  +accordionPanelSlot panel 1
-  +accordionHeadingSlot heading 2
-  +accordionPanelSlot panel 2
-  +accordionHeadingSlot heading 3
-  +accordionPanelSlot panel 3
-```
-
-
-### output example 
-
-```html
-<div class="amor-accordion" id="u22r4v3hhvg" data-init-activate="1">
-  <div class="amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="x3wxce0jmh8"
-      aria-expanded="false"
-      aria-controls="z1qbyql25dg"
-    >
-      heading 1
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        focusable="false"
-        role="presentation"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </div>
-  <div
-    class="amor-accordion__panel"
-    id="z1qbyql25dg"
-    role="region"
-    aria-labelledby="x3wxce0jmh8"
-    hidden="hidden"
-  >
-    panel 1
-  </div>
-  <div class="amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="piu3d7iribg"
-      aria-expanded="true"
-      aria-controls="asgf91o0p68"
-    >
-      heading 2
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        focusable="false"
-        role="presentation"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </div>
-  <div
-    class="amor-accordion__panel active"
-    id="asgf91o0p68"
-    role="region"
-    aria-labelledby="piu3d7iribg"
-  >
-    panel 2
-  </div>
-  <div class="amor-accordion__header">
-    <button
-      class="amor-accordion__tab"
-      type="button"
-      id="kxxgz2ir4ns"
-      aria-expanded="false"
-      aria-controls="rvqnhgm3l2s"
-    >
-      heading 3
-      <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
-        focusable="false"
-        role="presentation"
-      >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
-      </svg>
-    </button>
-  </div>
-  <div
-    class="amor-accordion__panel"
-    id="rvqnhgm3l2s"
-    role="region"
-    aria-labelledby="kxxgz2ir4ns"
-    hidden="hidden"
-  >
-    panel 3
-  </div>
-</div>
-
-```
-
-
----
-
-
-## articleContent
-
-create content for article
-
-
-### path 
-
-`components/organisms/article-content/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.content|content of post|object||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+articleContent({ categories: post.content, })
-```
-
-
-### output example 
-
-```html
-<div
-  class="amor-article-content"
-  categories="<p>Nulla Lorem sunt nisi tempor eu. Incididunt nulla ipsum ad aliqua magna labore cupidatat nisi adipisicing ullamco tempor consequat ad occaecat. Ullamco deserunt proident laborum pariatur veniam elit aute pariatur esse nisi exercitation consectetur. Et duis minim et esse dolore incididunt.</p>
-<p>Nostrud occaecat elit nostrud exercitation ut consectetur sunt ut pariatur ipsum ut irure tempor. Ipsum velit in est id deserunt. Duis cillum est nostrud est excepteur id laborum incididunt qui deserunt eu enim occaecat laborum.</p>"
-></div>
 
 ```
 
@@ -330,6 +148,273 @@ include ../../atoms/watermark/index
 ---
 
 
+## accordion
+
+create accordion component aria pattern
+
+
+### path 
+
+`components/organisms/accordion/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.headingLevel|heading level of header in accordion|string|2|false|
+|props.activatedIndex|The index number of the panel that you want to initially open|number||true|
+|props.useSection|Whether to separate each item into sections|boolean|false|true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|accordionHeadingSlot|the slot for heading of accordion item|
+|accordionPanelSlot|the slot for panel of accordion item|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/heading/index
+include ../../atoms/svg-icon/index
+
++accordion({headingLevel: 2, activatedIndex: 1})
+  +accordionHeadingSlot heading 1
+  +accordionPanelSlot panel 1
+  +accordionHeadingSlot heading 2
+  +accordionPanelSlot panel 2
+  +accordionHeadingSlot heading 3
+  +accordionPanelSlot panel 3
+```
+
+
+### output example 
+
+```html
+<div class="amor-accordion" id="e1q6w9rqo66" data-init-activate="1">
+  <div class="amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="teor6e4jhs4"
+      aria-expanded="false"
+      aria-controls="r1drq42sv78"
+    >
+      heading 1
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        focusable="false"
+        role="presentation"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </div>
+  <div
+    class="amor-accordion__panel"
+    id="r1drq42sv78"
+    role="region"
+    aria-labelledby="teor6e4jhs4"
+    hidden="hidden"
+  >
+    panel 1
+  </div>
+  <div class="amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="n3x0dvq8or8"
+      aria-expanded="true"
+      aria-controls="sekls6ivbnl"
+    >
+      heading 2
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        focusable="false"
+        role="presentation"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </div>
+  <div
+    class="amor-accordion__panel active"
+    id="sekls6ivbnl"
+    role="region"
+    aria-labelledby="n3x0dvq8or8"
+  >
+    panel 2
+  </div>
+  <div class="amor-accordion__header">
+    <button
+      class="amor-accordion__tab"
+      type="button"
+      id="lolf11hch58"
+      aria-expanded="false"
+      aria-controls="jnk3hl7om6c"
+    >
+      heading 3
+      <svg
+        class="amor-svg-icon amor-accordion__tab__icon"
+        focusable="false"
+        role="presentation"
+      >
+        <use xlink:href="/images/solid.svg#chevron-down"></use>
+      </svg>
+    </button>
+  </div>
+  <div
+    class="amor-accordion__panel"
+    id="jnk3hl7om6c"
+    role="region"
+    aria-labelledby="lolf11hch58"
+    hidden="hidden"
+  >
+    panel 3
+  </div>
+</div>
+
+```
+
+
+---
+
+
+## articlesList
+
+create accordion component
+
+
+### path 
+
+`components/organisms/articles-list/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.posts|hexo page.posts @see https://hexo.io/docs/variables.html#Page-Variables|array||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../molecules/article-card/index
+
++articlesList({
+  posts: (posts || []),
+})
+```
+
+
+### output example 
+
+```html
+<ol class="amor-articles-list"></ol>
+
+```
+
+
+---
+
+
+## hero
+
+create hero component
+
+
+### path 
+
+`components/organisms/hero/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.imgSrc|the source url for hero image|string||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++hero({imgSrc: "hero.jpg"})
+```
+
+
+### output example 
+
+```html
+<div
+  class="amor-hero"
+  role="presentation"
+  style="background-image: url(hero.jpg)"
+></div>
+
+```
+
+
+---
+
+
+## articleContent
+
+create content for article
+
+
+### path 
+
+`components/organisms/article-content/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.content|content of post|object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++articleContent({ categories: post.content, })
+```
+
+
+### output example 
+
+```html
+<div
+  class="amor-article-content"
+  categories="<p>Ex sunt labore voluptate laboris deserunt non velit qui culpa ex mollit velit. Lorem sit fugiat labore in non laboris elit non eu do. Quis laboris amet enim Lorem ea enim nulla. Ipsum esse culpa eu pariatur aliquip.</p>
+<p>Cillum laborum excepteur cupidatat anim deserunt commodo ea nostrud laboris fugiat pariatur sint nostrud. Occaecat consectetur minim proident ut ea mollit commodo sint proident reprehenderit eu laborum ad. Aliqua cillum velit elit commodo eiusmod ea duis magna commodo commodo sint velit cillum. Sunt proident minim cillum mollit non id ad consequat ullamco. Do magna magna officia dolor laboris sint veniam enim elit id aliqua minim ut. Dolore adipisicing elit consectetur aliqua do consequat Lorem dolore minim nisi incididunt in.</p>"
+></div>
+
+```
+
+
+---
+
+
 ## pagination
 
 create pagination component
@@ -403,14 +488,14 @@ include ../../utils/util
 ---
 
 
-## hero
+## titleBar
 
-create hero component
+create a title bar located at the top of the page
 
 
 ### path 
 
-`components/organisms/hero/index.pug`
+`components/organisms/title-bar/index.pug`
 
 
 ### arguments 
@@ -418,7 +503,17 @@ create hero component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.imgSrc|the source url for hero image|string||false|
+|props.title|the text to use as a title|string||true|
+|props.useLink|whether to use link|boolean|true|true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|beforeSlot|the slot to be placed before title|
+|afterSlot|the slot to be placed after title|
 
 
 
@@ -427,60 +522,18 @@ create hero component
 ```jade
 include ../../utils/util
 
-+hero({imgSrc: "hero.jpg"})
+// without slot
++titleBar({title: config.title, useLink: true})
 ```
 
 
 ### output example 
 
 ```html
-<div
-  class="amor-hero"
-  role="presentation"
-  style="background-image: url(hero.jpg)"
-></div>
-
-```
-
-
----
-
-
-## postsList
-
-create accordion component
-
-
-### path 
-
-`components/organisms/posts-list/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.posts|hexo page.posts @see https://hexo.io/docs/variables.html#Page-Variables|array||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../../molecules/post-card/index
-
-+postsList({
-  posts: (posts || []),
-})
-```
-
-
-### output example 
-
-```html
-<ol class="amor-posts"></ol>
+<!-- without slot-->
+<div class="amor-title-bar">
+  <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
+</div>
 
 ```
 
@@ -562,59 +615,6 @@ include ../../atoms/buttons/icon
       <use xlink:href="/images/solid.svg#xmark"></use>
     </svg>
   </button>
-</div>
-
-```
-
-
----
-
-
-## titleBar
-
-create a title bar located at the top of the page
-
-
-### path 
-
-`components/organisms/title-bar/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.title|the text to use as a title|string||true|
-|props.useLink|whether to use link|boolean|true|true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|beforeSlot|the slot to be placed before title|
-|afterSlot|the slot to be placed after title|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// without slot
-+titleBar({title: config.title, useLink: true})
-```
-
-
-### output example 
-
-```html
-<!-- without slot-->
-<div class="amor-title-bar">
-  <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
 </div>
 
 ```

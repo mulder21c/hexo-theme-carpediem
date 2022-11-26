@@ -1,5 +1,5 @@
 .#{$prefix}-article-content {
-  max-width: 40em;
+  max-width: 80ch;
   margin: 0 auto;
 
   h1 {
@@ -53,19 +53,31 @@
     flex-flow: column;
     justify-content: center;
     align-items: flex-start;
-    margin: 1rem 0;
+    margin: 1rem -0.75rem;
+    width: calc(100% + (0.75rem * 2));
     padding: 1rem 2rem;
-    border: 1px solid var(--box-border-color);
-    border-radius: 5px;
     background-color: var(--box-background-color);
+
+    @include respond-to(tablet) {
+      margin: 1rem 0;
+      width: 100%;
+      border-radius: 5px;
+      border-left: 5px solid var(--box-accent-border-color);
+    }
 
     &::before {
       content: "";
       margin-left: -1em;
       width: 2em;
       height: 2em;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='#{encodecolor($color-neutral-70)}' %3E%3Cpath d='M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
+
+      @include colorScheme(light) {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='#{encodecolor($color-green-60)}' %3E%3Cpath d='M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z'/%3E%3C/svg%3E");
+      }
+      @include colorScheme(dark) {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='#{encodecolor($color-green-30)}' %3E%3Cpath d='M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z'/%3E%3C/svg%3E");
+      }
     }
     &::after {
       content: "";
@@ -73,8 +85,14 @@
       margin-right: -1em;
       width: 2em;
       height: 2em;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='#{encodecolor($color-neutral-70)}' %3E%3Cpath d='M448 296c0 66.3-53.7 120-120 120h-8c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H320c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72zm-256 0c0 66.3-53.7 120-120 120H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H64c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
+
+      @include colorScheme(light) {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='#{encodecolor($color-green-60)}' %3E%3Cpath d='M448 296c0 66.3-53.7 120-120 120h-8c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H320c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72zm-256 0c0 66.3-53.7 120-120 120H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H64c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72z'/%3E%3C/svg%3E");
+      }
+      @include colorScheme(dark) {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='#{encodecolor($color-green-30)}' %3E%3Cpath d='M448 296c0 66.3-53.7 120-120 120h-8c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H320c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72zm-256 0c0 66.3-53.7 120-120 120H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H64c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 32 72z'/%3E%3C/svg%3E");
+      }
     }
   }
 
@@ -108,18 +126,22 @@
     }
   }
 
-  & img:not(:where(figure)),
-  & video:not(:where(figure)),
-  & audio:not(:where(figure)) {
-    &.block {
-      max-width: calc(100% + 2rem);
-      display: block;
-      margin: 1rem -1rem;
+  & img:not(:where(figure) img),
+  & video:not(:where(figure) video),
+  & audio:not(:where(figure) audio) {
+    max-width: 100%;
 
-      @include respond-to(tablet) {
-        max-width: 100%;
-        margin: 1rem 0;
-      }
+    @include respond-to(tablet) {
+      margin-right: unset;
+      margin-left: unset;
+      width: auto;
+    }
+
+    &.block {
+      margin: 1rem -0.75rem;
+      width: calc(100% + (0.75rem * 2));
+      display: block;
+
       &.--align-right {
         margin-left: auto;
       }
@@ -132,18 +154,21 @@
   }
 
   figure {
-    margin: 1rem -1rem;
-    width: calc(100% + 2rem);
+    margin: 1rem -0.75rem;
+    width: calc(100% + (0.75rem * 2));
 
     @include respond-to(tablet) {
+      max-width: 100%;
+      display: table;
       margin: 1rem 0;
-      width: 100%;
+      width: fit-content;
     }
 
     img,
     video,
     audio {
       max-width: 100%;
+      width: 100%;
       display: block;
 
       &.--align-right {
@@ -157,10 +182,17 @@
     }
 
     figcaption {
-      margin: 1em;
+      border-left: 5px solid var(--box-accent-border-color);
+      padding: 0.5em 1em;
+      background-color: var(--box-background-color);
       font-family: var(--font-family-sans-serif);
       font-size: 0.95em;
       color: var(--text-color-secondary);
+
+      @include respond-to(tablet) {
+        display: table-caption;
+        caption-side: bottom;
+      }
     }
   }
 
@@ -202,7 +234,7 @@ pre > code[class*="language-"] {
 }
 
 pre[class*="language-"] {
-  margin: 1em -1rem;
+  margin: 1em -0.75rem;
   background: #2a2a2a;
 
   @include respond-to(tablet) {

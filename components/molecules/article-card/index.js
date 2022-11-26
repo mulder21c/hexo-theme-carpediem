@@ -1,11 +1,11 @@
 import { triggerDescendantClick } from "../../utils/lib";
 
 ((window, document) => {
-  if (!window.components.has(`post-card`)) return;
+  if (!window.components.has(`article-card`)) return;
   const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
 
   // bind handler to link-typed card
-  const linkCards = document.querySelectorAll(`.${prefix}-post-card--link`);
+  const linkCards = document.querySelectorAll(`.${prefix}-article-card--link`);
 
   linkCards.forEach((card) => {
     card.addEventListener(

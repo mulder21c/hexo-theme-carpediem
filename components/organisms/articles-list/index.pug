@@ -1,11 +1,11 @@
-include /components/molecules/post-card/index
+include /components/molecules/article-card/index
 
 //- @pugdoc
-  name: postsList
+  name: articlesList
   description: create accordion component
   beforeEach: |
     include ../../utils/util
-    include ../../molecules/post-card/index
+    include ../../molecules/article-card/index
   arguments:
     - {object} props
     - |
@@ -13,19 +13,19 @@ include /components/molecules/post-card/index
       @see https://hexo.io/docs/variables.html#Page-Variables
   examples:
     - |
-      +postsList({
+      +articlesList({
         posts: (posts || []),
       })
 
-mixin postsList(props = {})
+mixin articlesList(props = {})
   -
     // define types
-    const postsListProps = {
+    const articlesListProps = {
       posts: PropTypes.array.isRequired,
     };
 
     // verifying props
-    validateProps(postsListProps)(props);
+    validateProps(articlesListProps)(props);
 
     const {
       posts,
@@ -36,7 +36,7 @@ mixin postsList(props = {})
 
     const { prefix } = theme;
 
-  ol(class=`${prefix}-posts`)
+  ol(class=`${prefix}-articles-list`)
     each post in posts
-      li(class= `${prefix}-posts__list-item`)
-        +postCard({post, isLink: true})
+      li(class= `${prefix}-articles-list__item`)
+        +articleCard({post, isLink: true})

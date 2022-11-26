@@ -2,8 +2,8 @@ include ../../atoms/datetime/index
 include ../../atoms/category/index
 
 //- @pugdoc
-  name: postCard
-  description: create post card component
+  name: articleCard
+  description: create article card component
   beforeEach: |
     include ../../utils/util
     include ../../atoms/datetime/index
@@ -16,11 +16,11 @@ include ../../atoms/category/index
     - {boolean} [props.isLink] [false] Whether to operate the card as a link
   examples:
     - |
-      +postCard({post, isLink: true})
+      +articleCard({post, isLink: true})
 
-mixin postCard(props = {})
+mixin articleCard(props = {})
   -
-    site.components.add(`post-card`);
+    site.components.add(`article-card`);
 
     // define types
     const postProps = {
@@ -56,8 +56,8 @@ mixin postCard(props = {})
 
   div(
     class= [
-      `${prefix}-post-card`,
-      { [`${prefix}-post-card--link`]: isLink },
+      `${prefix}-article-card`,
+      { [`${prefix}-article-card--link`]: isLink },
     ]
   )&attributes(attrs)
     if (thumb)
@@ -65,37 +65,37 @@ mixin postCard(props = {})
         src= thumb
         alt= ""
         loading= "lazy"
-        class= `${prefix}-post-card__thumb`
+        class= `${prefix}-article-card__thumb`
         role= "none"
       )
 
     a(
       href= isDevelopment ? url_for(post.path) : post.permalink
       aria-describedby= `${metaId} ${contentId}`
-      class= `${prefix}-post-card__heading`
+      class= `${prefix}-article-card__heading`
     )= post.title
 
     div(
       id= metaId
-      class=`${prefix}-post-card__meta`
+      class=`${prefix}-article-card__meta`
     )
       +datetime({
         datetime,
         label: _p(`label.date.published`),
         visibleLabel: '📆',
-        class: `${prefix}-post-card__meta__item`
+        class: `${prefix}-article-card__meta__item`
       })
 
       +category({
         categories,
         visibleLabel: '📂',
         useLink: hasCategoryLink,
-        class: `${prefix}-post-card__meta__item`,
+        class: `${prefix}-article-card__meta__item`,
         level: `all`,
         separator: `angle-right`,
       })
 
     p(
       id= contentId
-      class= `${prefix}-post-card__content`
+      class= `${prefix}-article-card__content`
     )= truncate(stripHTML(post.content), 300)

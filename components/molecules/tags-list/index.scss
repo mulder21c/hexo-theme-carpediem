@@ -1,0 +1,30 @@
+.#{$prefix}-tags-list {
+  &--flat {
+    > ul {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      > li {
+        display: inline-flex;
+        align-items: center;
+
+        &:not(:first-child) {
+          margin-left: 0.75em;
+        }
+
+        &:not(:last-child):after {
+          content: " , ";
+          margin-left: 0.25em;
+        }
+
+        &::marker {
+          content: none;
+        }
+      }
+    }
+  }
+}

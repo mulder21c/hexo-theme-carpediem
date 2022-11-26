@@ -1,8 +1,8 @@
-.#{$prefix}-posts {
+.#{$prefix}-articles-list {
   margin: 0;
   padding: 0;
 
-  &__list-item {
+  &__item {
     &:not(:first-child) {
       margin-top: 2rem;
     }

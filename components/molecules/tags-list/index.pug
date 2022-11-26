@@ -1,0 +1,66 @@
+//- @pugdoc
+  name: tagsList
+  description: create tags list
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {object} props.tags sequence of tags
+  examples:
+    - |
+      +tagsList({
+        tags: post.tags.data || post.tags || [],
+      })
+
+mixin tagsList(props = {})
+  -
+    // define types
+    const tagsListProps = {
+      tags: PropTypes.array.isRequired,
+      appearance: PropTypes.oneOf([`list`, `flat`]),
+      useLink: PropTypes.bool,
+    };
+
+    // verifying props
+    validateProps(tagsListProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      tags: [],
+      appearance: `flat`,
+      useLink: true,
+    };
+
+    const {
+      tags,
+      appearance,
+      useLink,
+      ...attrs
+    } = {
+      ...defaultProps,
+      ...props,
+    };
+
+    const { prefix } = theme;
+  div(
+    class= [
+      `${prefix}-tags-list`,
+      appearance !== `list` ? `${prefix}-tags-list--${appearance}` : ``,
+    ]
+  )&attributes(attrs)
+    if tags.length
+      ul
+        each tag in tags
+          li
+            if useLink
+              a(
+                href= (
+                  isDevelopment
+                  ? url_for.call(this, tag.path)
+                  : tag.permalink
+                )
+              )= tag.name
+            else
+              != tag.name
+    else
+      != _p(`label.tags.no_tags`)

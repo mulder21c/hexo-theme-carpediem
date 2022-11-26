@@ -1,5 +1,186 @@
 # Pug Documentation 
 
+## articleMeta
+
+create meta info component for article
+
+
+### path 
+
+`components/molecules/article-meta/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.categories|sequence of category|object||false|
+|props.date|date of article|object||false|
+|props.updated|updated date of article|object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/category/index
+include ../../atoms/datetime/index
+
++articleMeta({
+  categories: post.categories.data || post.categories || [],
+  date: post.date,
+  updated: post.updated,
+})
+```
+
+
+### output example 
+
+```html
+<div class="amor-article-meta">
+  <span class="amor-category amor-article-meta__categories">
+    <span
+      class="amor-category__label"
+      role="img"
+      aria-label="i18n(label.category)"
+    >
+      📂
+    </span>
+    <span class="amor-category__list" role="list">
+      <span class="amor-category__content" role="listitem">
+        <a href="categories/cate-ebvmlgfg9esmd8">cate-ebvmlgfg9esmd8</a>
+      </span>
+      <span class="amor-category__separator" aria-hidden="true">
+        <svg class="amor-svg-icon" focusable="false">
+          <use xlink:href="/images/solid.svg#angle-right"></use>
+        </svg>
+      </span>
+      <span class="amor-category__content" role="listitem">
+        <a href="categories/cate-ebvm7nbpc7fkf9g">cate-ebvm7nbpc7fkf9g</a>
+      </span>
+    </span>
+  </span>
+  <span class="amor-datetime amor-article-meta__date">
+    <span
+      class="amor-datetime__label"
+      role="img"
+      aria-label="i18n(label.date.published)"
+    >
+      📆
+    </span>
+    <time class="amor-datetime__time" id="w61tpmtllkm" datetime="2022-11-26">
+      2022. 11. 26
+    </time>
+  </span>
+</div>
+
+```
+
+
+---
+
+
+## articleCard
+
+create article card component
+
+
+### path 
+
+`components/molecules/article-card/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.post|hexo post object @see https://hexo.io/docs/variables.html#Page-Variables|object||false|
+|props.isLink|Whether to operate the card as a link|boolean|false|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/datetime/index
+include ../../atoms/category/index
+
++articleCard({post, isLink: true})
+```
+
+
+### output example 
+
+```html
+<div class="amor-article-card amor-article-card--link">
+  <img
+    class="amor-article-card__thumb"
+    src="https://via.placeholder.com/320x180.png?text=ebvm02odfelduv"
+    alt=""
+    loading="lazy"
+    role="none"
+  />
+  <a
+    class="amor-article-card__heading"
+    href="http://example.com/post-ebvm02odfelduv/"
+    aria-describedby="um046f3aai8 dx658je6ndk"
+  >
+    Post ebvm02odfelduv
+  </a>
+  <div class="amor-article-card__meta" id="um046f3aai8">
+    <span class="amor-datetime amor-article-card__meta__item">
+      <span
+        class="amor-datetime__label"
+        role="img"
+        aria-label="i18n(label.date.published)"
+      >
+        📆
+      </span>
+      <time class="amor-datetime__time" id="zysfuzbj4us" datetime="2022-11-26">
+        2022. 11. 26
+      </time>
+    </span>
+    <span class="amor-category amor-article-card__meta__item">
+      <span
+        class="amor-category__label"
+        role="img"
+        aria-label="i18n(label.category)"
+      >
+        📂
+      </span>
+      <span class="amor-category__list" role="list">
+        <span class="amor-category__content" role="listitem">
+          <span>cate-ebvmlgfg9esmd8</span>
+        </span>
+        <span class="amor-category__separator" aria-hidden="true">
+          <svg class="amor-svg-icon" focusable="false">
+            <use xlink:href="/images/solid.svg#angle-right"></use>
+          </svg>
+        </span>
+        <span class="amor-category__content" role="listitem">
+          <span>cate-ebvm7nbpc7fkf9g</span>
+        </span>
+      </span>
+    </span>
+  </div>
+  <p class="amor-article-card__content" id="dx658je6ndk">
+    Ex sunt labore voluptate laboris deserunt non velit qui culpa ex mollit
+    velit. Lorem sit fugiat labore in non laboris elit non eu do. Quis laboris
+    amet enim Lorem ea enim nulla. Ipsum esse culpa eu pariatur aliquip. Cillum
+    laborum excepteur cupidatat anim deserunt commodo ea nostrud laboris
+  </p>
+</div>
+
+```
+
+
+---
+
+
 ## fieldset
 
 create group containing label and body
@@ -56,9 +237,9 @@ include ../../utils/util
 <div
   class="amor-field amor-field--row amor-field--start"
   role="group"
-  aria-labelledby="zcfuhfa584o"
+  aria-labelledby="xgl6o85bk3l"
 >
-  <div class="amor-field__label amor-field__label--30" id="zcfuhfa584o">
+  <div class="amor-field__label amor-field__label--30" id="xgl6o85bk3l">
     fieldset title
   </div>
   <div class="amor-field__body"><p>fieldset body</p></div>
@@ -67,9 +248,9 @@ include ../../utils/util
 <div
   class="amor-field amor-field--column"
   role="group"
-  aria-labelledby="fajj1k3ka2k"
+  aria-labelledby="fgxmuvppj14"
 >
-  <div class="amor-field__label amor-field__label--30" id="fajj1k3ka2k">
+  <div class="amor-field__label amor-field__label--30" id="fgxmuvppj14">
     fieldset title
   </div>
   <div class="amor-field__body"><p>fieldset body</p></div>
@@ -81,14 +262,14 @@ include ../../utils/util
 ---
 
 
-## postCard
+## categoryNavigation
 
-create post card component
+create hexo category list
 
 
 ### path 
 
-`components/molecules/post-card/index.pug`
+`components/molecules/category-nav/index.pug`
 
 
 ### arguments 
@@ -96,8 +277,7 @@ create post card component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.post|hexo post object @see https://hexo.io/docs/variables.html#Page-Variables|object||false|
-|props.isLink|Whether to operate the card as a link|boolean|false|true|
+|props.options|@see https://hexo.io/ko/docs/helpers#list-categories|object||true|
 
 
 
@@ -105,156 +285,44 @@ create post card component
 
 ```jade
 include ../../utils/util
-include ../../atoms/datetime/index
-include ../../atoms/category/index
 
-+postCard({post, isLink: true})
++categoryNavigation()
 ```
 
 
 ### output example 
 
 ```html
-<div class="amor-post-card amor-post-card--link">
-  <img
-    class="amor-post-card__thumb"
-    src="https://via.placeholder.com/320x180.png?text=90m37135414q7mg"
-    alt=""
-    loading="lazy"
-    role="none"
-  />
-  <a
-    class="amor-post-card__heading"
-    href="http://example.com/post-90m37135414q7mg/"
-    aria-describedby="u1ygo7a2s1s r4dmz8pvetg"
-  >
-    Post 90m37135414q7mg
-  </a>
-  <div class="amor-post-card__meta" id="u1ygo7a2s1s">
-    <span class="amor-datetime amor-post-card__meta__item">
-      <span
-        class="amor-datetime__label"
-        role="img"
-        aria-label="i18n(label.date.published)"
+<nav class="amor-category-nav" aria-label="categories">
+  <ul class="amor-category-nav__list">
+    <li class="amor-category-nav__list__item">
+      <a
+        href="http://example.com/categories/cate-ebvq8oe9mkon95o"
+        class="amor-category-nav__list__link"
       >
-        📆
-      </span>
-      <time class="amor-datetime__time" id="za0t4ttiqm8" datetime="2022-11-20">
-        2022. 11. 20
-      </time>
-    </span>
-    <span class="amor-category amor-post-card__meta__item">
-      <span
-        class="amor-category__label"
-        role="img"
-        aria-label="i18n(label.category)"
+        cate-ebvq8oe9mkon95o
+      </a>
+    </li>
+
+    <li class="amor-category-nav__list__item">
+      <a
+        href="http://example.com/categories/cate-ebvq5aa72llc82g"
+        class="amor-category-nav__list__link"
       >
-        📂
-      </span>
-      <span class="amor-category__list" role="list">
-        <span class="amor-category__content" role="listitem">
-          <span>cate-90m3oqpatcollbo</span>
-        </span>
-        <span class="amor-category__separator" aria-hidden="true">
-          <svg class="amor-svg-icon" focusable="false">
-            <use xlink:href="/images/solid.svg#angle-right"></use>
-          </svg>
-        </span>
-        <span class="amor-category__content" role="listitem">
-          <span>cate-90m3vrkdbip24j8</span>
-        </span>
-      </span>
-    </span>
-  </div>
-  <p class="amor-post-card__content" id="r4dmz8pvetg">
-    Nulla Lorem sunt nisi tempor eu. Incididunt nulla ipsum ad aliqua magna
-    labore cupidatat nisi adipisicing ullamco tempor consequat ad occaecat.
-    Ullamco deserunt proident laborum pariatur veniam elit aute pariatur esse
-    nisi exercitation consectetur. Et duis minim et esse dolore incididunt.
-  </p>
-</div>
+        cate-ebvq5aa72llc82g
+      </a>
+    </li>
 
-```
-
-
----
-
-
-## postMeta
-
-create meta info component for post
-
-
-### path 
-
-`components/molecules/post-meta/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.categories|sequence of category|object||false|
-|props.date|date of post|object||false|
-|props.updated|updated date of post|object||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../../atoms/category/index
-include ../../atoms/datetime/index
-
-+postMeta({
-  categories: post.categories.data || post.categories || [],
-  date: post.date,
-  updated: post.updated,
-})
-```
-
-
-### output example 
-
-```html
-<div class="amor-meta">
-  <span class="amor-category amor-meta__categories">
-    <span
-      class="amor-category__label"
-      role="img"
-      aria-label="i18n(label.category)"
-    >
-      📂
-    </span>
-    <span class="amor-category__list" role="list">
-      <span class="amor-category__content" role="listitem">
-        <a href="categories/cate-90m3oqpatcollbo">cate-90m3oqpatcollbo</a>
-      </span>
-      <span class="amor-category__separator" aria-hidden="true">
-        <svg class="amor-svg-icon" focusable="false">
-          <use xlink:href="/images/solid.svg#angle-right"></use>
-        </svg>
-      </span>
-      <span class="amor-category__content" role="listitem">
-        <a href="categories/cate-90m3vrkdbip24j8">cate-90m3vrkdbip24j8</a>
-      </span>
-    </span>
-  </span>
-  <span class="amor-datetime amor-meta__date">
-    <span
-      class="amor-datetime__label"
-      role="img"
-      aria-label="i18n(label.date.published)"
-    >
-      📆
-    </span>
-    <time class="amor-datetime__time" id="n3z2kqddv4m" datetime="2022-11-20">
-      2022. 11. 20
-    </time>
-  </span>
-</div>
+    <li class="amor-category-nav__list__item">
+      <a
+        href="http://example.com/categories/cate-ebvq8i6s8k0a60o"
+        class="amor-category-nav__list__link"
+      >
+        cate-ebvq8i6s8k0a60o
+      </a>
+    </li>
+  </ul>
+</nav>
 
 ```
 
@@ -330,7 +398,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="fdj989ou7lo"
+      id="e3x0dvu6nf8"
       name="size"
       value="small"
     />
@@ -340,7 +408,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="pl3235cgg0a"
+      id="j7hkl3a5qrg"
       name="size"
       value="medium"
     />
@@ -350,7 +418,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="o6kgguui228"
+      id="giu2cpsf3ek"
       name="size"
       value="large"
     />
@@ -363,7 +431,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="bj6ijcett2k"
+      id="zn1fpvpcegc"
       name="size2"
       value="small"
     />
@@ -373,7 +441,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="qz73ayqitl2"
+      id="xcuevxrfsag"
       name="size2"
       value="medium"
     />
@@ -383,13 +451,73 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="fg8ph3spgcg"
+      id="rjn33qv637k"
       name="size2"
       value="large"
     />
     <span class="amor-radio-boxy__box">large 3</span>
   </label>
 </div>
+
+```
+
+
+---
+
+
+## menuNavigation
+
+create hexo menu list
+
+
+### path 
+
+`components/molecules/menu-nav/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.options|the options for menu list|object||true|
+|props.options.transform|<br> the function that changes the display of category name|function||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++menuNavigation()
+```
+
+
+### output example 
+
+```html
+<nav class="amor-menu-nav" aria-label="menu">
+  <ul class="amor-menu-nav__list">
+    <li class="amor-menu-nav__list__item">
+      <a href="http://example.com/about" class="amor-menu-nav__list__link">
+        about
+      </a>
+    </li>
+
+    <li class="amor-menu-nav__list__item">
+      <a href="http://example.com/hwo-to" class="amor-menu-nav__list__link">
+        how
+      </a>
+    </li>
+
+    <li class="amor-menu-nav__list__item">
+      <a href="http://example.com/archives" class="amor-menu-nav__list__link">
+        Archives
+      </a>
+    </li>
+  </ul>
+</nav>
 
 ```
 
@@ -471,31 +599,31 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="jkc2ii1p2as"
+      id="oy3ki6729l4"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="jkc2ii1p2as">designer</label>
+    <label class="amor-radio__label" for="oy3ki6729l4">designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="onufgelqq9s"
+      id="bzd6u2p5g63"
       name="job"
       value="publisher"
     />
-    <label class="amor-radio__label" for="onufgelqq9s">publisher</label>
+    <label class="amor-radio__label" for="bzd6u2p5g63">publisher</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="zqm0xl20q1g"
+      id="obzaxk5tq3a"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="zqm0xl20q1g">
+    <label class="amor-radio__label" for="obzaxk5tq3a">
       frontend developer
     </label>
   </span>
@@ -503,21 +631,21 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="s97rhdoi03k"
+      id="zeuzrzn8g6o"
       name="job"
       value="devops"
     />
-    <label class="amor-radio__label" for="s97rhdoi03k">devops</label>
+    <label class="amor-radio__label" for="zeuzrzn8g6o">devops</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="qkg4v8s0358"
+      id="ztflk5d92sg"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="qkg4v8s0358">iOS developer</label>
+    <label class="amor-radio__label" for="ztflk5d92sg">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
@@ -526,31 +654,31 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="biy5pyadgna"
+      id="wuzkvc4mqq8"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="biy5pyadgna">웹 디자이너</label>
+    <label class="amor-radio__label" for="wuzkvc4mqq8">웹 디자이너</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ga0t4tcs7ns"
+      id="snbsp6qi7ho"
       name="job2"
       value="publisher"
     />
-    <label class="amor-radio__label" for="ga0t4tcs7ns">웹 퍼블리셔</label>
+    <label class="amor-radio__label" for="snbsp6qi7ho">웹 퍼블리셔</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="zea8swafa9c"
+      id="y9qf93fdrg8"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="zea8swafa9c">프론트엔드 개발자</label>
+    <label class="amor-radio__label" for="y9qf93fdrg8">프론트엔드 개발자</label>
   </span>
 </div>
 
@@ -631,13 +759,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="uz0vpvdn543"
+      id="ag4m3venslm"
       name="size"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="uz0vpvdn543"
+      for="ag4m3venslm"
     >
       small
     </label>
@@ -647,13 +775,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="egh2aicajng"
+      id="ow9778rku4c"
       name="size"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="egh2aicajng"
+      for="ow9778rku4c"
     >
       medium
     </label>
@@ -663,13 +791,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="zm6gtypi9ug"
+      id="w6urf5njsln"
       name="size"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="zm6gtypi9ug"
+      for="w6urf5njsln"
     >
       large
     </label>
@@ -681,13 +809,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="ng4n4cgsk88"
+      id="qdd2nnibog8"
       name="size2"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ng4n4cgsk88"
+      for="qdd2nnibog8"
     >
       small
     </label>
@@ -697,13 +825,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="se1vzh5v2lg"
+      id="rarqsjr2n9b"
       name="size2"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="se1vzh5v2lg"
+      for="rarqsjr2n9b"
     >
       medium
     </label>
@@ -713,146 +841,18 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="ixxgz289coo"
+      id="lb6a6jh9798"
       name="size2"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ixxgz289coo"
+      for="lb6a6jh9798"
     >
       large
     </label>
   </span>
 </div>
-
-```
-
-
----
-
-
-## menuNavigation
-
-create hexo menu list
-
-
-### path 
-
-`components/molecules/menu-nav/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.options|the options for menu list|object||true|
-|props.options.transform|<br> the function that changes the display of category name|function||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+menuNavigation()
-```
-
-
-### output example 
-
-```html
-<nav class="amor-menu-nav" aria-label="menu">
-  <ul class="amor-menu-nav__list">
-    <li class="amor-menu-nav__list__item">
-      <a href="http://example.com/about" class="amor-menu-nav__list__link">
-        about
-      </a>
-    </li>
-
-    <li class="amor-menu-nav__list__item">
-      <a href="http://example.com/hwo-to" class="amor-menu-nav__list__link">
-        how
-      </a>
-    </li>
-
-    <li class="amor-menu-nav__list__item">
-      <a href="http://example.com/archives" class="amor-menu-nav__list__link">
-        Archives
-      </a>
-    </li>
-  </ul>
-</nav>
-
-```
-
-
----
-
-
-## categoryNavigation
-
-create hexo category list
-
-
-### path 
-
-`components/molecules/category-nav/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.options|@see https://hexo.io/ko/docs/helpers#list-categories|object||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+categoryNavigation()
-```
-
-
-### output example 
-
-```html
-<nav class="amor-category-nav" aria-label="categories">
-  <ul class="amor-category-nav__list">
-    <li class="amor-category-nav__list__item">
-      <a
-        href="http://example.com/categories/cate-90m7fepgkmlh8fg"
-        class="amor-category-nav__list__link"
-      >
-        cate-90m7fepgkmlh8fg
-      </a>
-    </li>
-
-    <li class="amor-category-nav__list__item">
-      <a
-        href="http://example.com/categories/cate-90m7drbkbj6l13"
-        class="amor-category-nav__list__link"
-      >
-        cate-90m7drbkbj6l13
-      </a>
-    </li>
-
-    <li class="amor-category-nav__list__item">
-      <a
-        href="http://example.com/categories/cate-90m7s274fquk0mg"
-        class="amor-category-nav__list__link"
-      >
-        cate-90m7s274fquk0mg
-      </a>
-    </li>
-  </ul>
-</nav>
 
 ```
 
