@@ -59,7 +59,7 @@ function PugDocMarkdown(options) {
       lines.push("### arguments \n");
       lines.push(
         obj.meta.arguments.reduce((table, arg) => {
-          const { name, description, type, optional } = arg;
+          let { name, description, type, optional } = arg;
           const [, , defaultVal, , , desc] = description.match(
             /(\[(.+)\])*(\s-?)*(\s?)*(.*)/
           );
@@ -118,7 +118,7 @@ function PugDocMarkdown(options) {
     }
 
     // push html snippet
-    lines.push("### output example \n");
+    lines.push("### example output \n");
     lines.push("```html");
     lines.push(
       prettier.format(obj.output, {

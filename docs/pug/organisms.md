@@ -31,7 +31,7 @@ include ../../atoms/heading/index
 ```
 
 
-### output example 
+### example output 
 
 ```html
 <div class="amor-timeline">
@@ -43,103 +43,28 @@ include ../../atoms/heading/index
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-ebvmc25j7ok7qd8/"
+        href="http://example.com/post-ndv48vdm1onpp58/"
       >
-        <span class="amor-timeline__title">Post ebvmc25j7ok7qd8</span>
+        <span class="amor-timeline__title">Post ndv48vdm1onpp58</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-ebvm5k1q7t7g6o/"
+        href="http://example.com/post-ndv41u4abtugb0g/"
       >
-        <span class="amor-timeline__title">Post ebvm5k1q7t7g6o</span>
+        <span class="amor-timeline__title">Post ndv41u4abtugb0g</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-ebvn3ebr9425o5/"
+        href="http://example.com/post-ndv4mpg18taef9/"
       >
-        <span class="amor-timeline__title">Post ebvn3ebr9425o5</span>
+        <span class="amor-timeline__title">Post ndv4mpg18taef9</span>
       </a>
     </li>
   </ol>
-</div>
-
-```
-
-
----
-
-
-## footerContent
-
-generate footer content
-
-
-### path 
-
-`components/organisms/footer/index.pug`
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../../atoms/ccl-license/index
-include ../../atoms/watermark/index
-
-+footerContent()
-```
-
-
-### output example 
-
-```html
-<div class="amor-footer">
-  <p class="amor-license">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      aria-label="creative commons license"
-      role="img"
-      preserveAspectRatio="xMidYMid meet"
-      viewBox="0 0 24 24"
-      class="amor-license__icon"
-    >
-      <path
-        fill="currentColor"
-        d="m11.89 10.34l-1.34.7c-.14-.3-.31-.51-.52-.63c-.21-.12-.41-.18-.58-.18c-.9 0-1.34.59-1.34 1.77c0 .54.11.97.34 1.29c.22.32.55.48 1 .48c.58 0 .99-.27 1.23-.86l1.23.63c-.26.49-.62.87-1.09 1.15c-.46.28-.97.42-1.53.42c-.9 0-1.62-.27-2.17-.82C6.58 13.74 6.3 13 6.3 12c0-.95.28-1.7.83-2.26c.56-.56 1.26-.84 2.1-.84c1.24-.01 2.13.48 2.66 1.44m5.77 0l-1.32.7c-.14-.3-.34-.51-.53-.63c-.21-.12-.41-.18-.6-.18c-.89 0-1.34.59-1.34 1.77c0 .54.13.97.34 1.29c.23.32.56.48 1 .48c.59 0 1-.27 1.24-.86l1.25.63c-.28.49-.65.87-1.11 1.15c-.47.28-.97.42-1.52.42c-.9 0-1.63-.27-2.17-.82c-.54-.55-.81-1.29-.81-2.29c0-.95.28-1.7.83-2.26c.55-.56 1.25-.84 2.08-.84c1.26-.01 2.14.48 2.66 1.44M12 3.5a8.5 8.5 0 0 1 8.5 8.5a8.5 8.5 0 0 1-8.5 8.5A8.5 8.5 0 0 1 3.5 12A8.5 8.5 0 0 1 12 3.5M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
-      ></path>
-    </svg>
-    <span class="amor-license__name">John Doe</span>
-    <span class="amor-license__link">
-      (
-      <a
-        href="https://creativecommons.org/licenses/by-nc-nd/4.0"
-        rel="external noreferrer noopener nofollow"
-        target="_blank"
-      >
-        BY-NC-ND
-      </a>
-      )
-    </span>
-  </p>
-  <p class="amor-watermark">
-    Powered by
-    <a href="https://hexo.io/" rel="external noreferrer" target="_blank">
-      Hexo.
-    </a>
-    Theme by
-    <a
-      href="https://github.com/mulder21c"
-      rel="external noreferrer"
-      target="_blank"
-    >
-      mulder21c.
-    </a>
-  </p>
 </div>
 
 ```
@@ -195,17 +120,17 @@ include ../../atoms/svg-icon/index
 ```
 
 
-### output example 
+### example output 
 
 ```html
-<div class="amor-accordion" id="e1q6w9rqo66" data-init-activate="1">
+<div class="amor-accordion" id="zz92gc8lh8k" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="teor6e4jhs4"
+      id="e5n9b4do67j"
       aria-expanded="false"
-      aria-controls="r1drq42sv78"
+      aria-controls="n9gkimb0glc"
     >
       heading 1
       <svg
@@ -219,9 +144,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="r1drq42sv78"
+    id="n9gkimb0glc"
     role="region"
-    aria-labelledby="teor6e4jhs4"
+    aria-labelledby="e5n9b4do67j"
     hidden="hidden"
   >
     panel 1
@@ -230,9 +155,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="n3x0dvq8or8"
+      id="o4ycxtb908g"
       aria-expanded="true"
-      aria-controls="sekls6ivbnl"
+      aria-controls="irj83bn946g"
     >
       heading 2
       <svg
@@ -246,9 +171,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel active"
-    id="sekls6ivbnl"
+    id="irj83bn946g"
     role="region"
-    aria-labelledby="n3x0dvq8or8"
+    aria-labelledby="o4ycxtb908g"
   >
     panel 2
   </div>
@@ -256,9 +181,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="lolf11hch58"
+      id="jb8ddwo2ako"
       aria-expanded="false"
-      aria-controls="jnk3hl7om6c"
+      aria-controls="xxcx3fn61c4"
     >
       heading 3
       <svg
@@ -272,9 +197,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="jnk3hl7om6c"
+    id="xxcx3fn61c4"
     role="region"
-    aria-labelledby="lolf11hch58"
+    aria-labelledby="jb8ddwo2ako"
     hidden="hidden"
   >
     panel 3
@@ -318,7 +243,7 @@ include ../../molecules/article-card/index
 ```
 
 
-### output example 
+### example output 
 
 ```html
 <ol class="amor-articles-list"></ol>
@@ -329,85 +254,74 @@ include ../../molecules/article-card/index
 ---
 
 
-## hero
+## footerContent
 
-create hero component
+generate footer content
 
 
 ### path 
 
-`components/organisms/hero/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.imgSrc|the source url for hero image|string||false|
-
+`components/organisms/footer/index.pug`
 
 
 ### examples
 
 ```jade
 include ../../utils/util
+include ../../atoms/ccl-license/index
+include ../../atoms/watermark/index
 
-+hero({imgSrc: "hero.jpg"})
++footerContent()
 ```
 
 
-### output example 
+### example output 
 
 ```html
-<div
-  class="amor-hero"
-  role="presentation"
-  style="background-image: url(hero.jpg)"
-></div>
-
-```
-
-
----
-
-
-## articleContent
-
-create content for article
-
-
-### path 
-
-`components/organisms/article-content/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.content|content of post|object||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+articleContent({ categories: post.content, })
-```
-
-
-### output example 
-
-```html
-<div
-  class="amor-article-content"
-  categories="<p>Ex sunt labore voluptate laboris deserunt non velit qui culpa ex mollit velit. Lorem sit fugiat labore in non laboris elit non eu do. Quis laboris amet enim Lorem ea enim nulla. Ipsum esse culpa eu pariatur aliquip.</p>
-<p>Cillum laborum excepteur cupidatat anim deserunt commodo ea nostrud laboris fugiat pariatur sint nostrud. Occaecat consectetur minim proident ut ea mollit commodo sint proident reprehenderit eu laborum ad. Aliqua cillum velit elit commodo eiusmod ea duis magna commodo commodo sint velit cillum. Sunt proident minim cillum mollit non id ad consequat ullamco. Do magna magna officia dolor laboris sint veniam enim elit id aliqua minim ut. Dolore adipisicing elit consectetur aliqua do consequat Lorem dolore minim nisi incididunt in.</p>"
-></div>
+<div class="amor-footer">
+  <p class="amor-license">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      aria-label="creative commons license"
+      role="img"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 24 24"
+      class="amor-license__icon"
+    >
+      <path
+        fill="currentColor"
+        d="m11.89 10.34l-1.34.7c-.14-.3-.31-.51-.52-.63c-.21-.12-.41-.18-.58-.18c-.9 0-1.34.59-1.34 1.77c0 .54.11.97.34 1.29c.22.32.55.48 1 .48c.58 0 .99-.27 1.23-.86l1.23.63c-.26.49-.62.87-1.09 1.15c-.46.28-.97.42-1.53.42c-.9 0-1.62-.27-2.17-.82C6.58 13.74 6.3 13 6.3 12c0-.95.28-1.7.83-2.26c.56-.56 1.26-.84 2.1-.84c1.24-.01 2.13.48 2.66 1.44m5.77 0l-1.32.7c-.14-.3-.34-.51-.53-.63c-.21-.12-.41-.18-.6-.18c-.89 0-1.34.59-1.34 1.77c0 .54.13.97.34 1.29c.23.32.56.48 1 .48c.59 0 1-.27 1.24-.86l1.25.63c-.28.49-.65.87-1.11 1.15c-.47.28-.97.42-1.52.42c-.9 0-1.63-.27-2.17-.82c-.54-.55-.81-1.29-.81-2.29c0-.95.28-1.7.83-2.26c.55-.56 1.25-.84 2.08-.84c1.26-.01 2.14.48 2.66 1.44M12 3.5a8.5 8.5 0 0 1 8.5 8.5a8.5 8.5 0 0 1-8.5 8.5A8.5 8.5 0 0 1 3.5 12A8.5 8.5 0 0 1 12 3.5M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
+      ></path>
+    </svg>
+    <span class="amor-license__name">John Doe</span>
+    <span class="amor-license__link">
+      (
+      <a
+        href="https://creativecommons.org/licenses/by-nc-nd/4.0"
+        rel="external noreferrer noopener nofollow"
+        target="_blank"
+      >
+        BY-NC-ND
+      </a>
+      )
+    </span>
+  </p>
+  <p class="amor-watermark">
+    Powered by
+    <a href="https://hexo.io/" rel="external noreferrer" target="_blank">
+      Hexo.
+    </a>
+    Theme by
+    <a
+      href="https://github.com/mulder21c"
+      rel="external noreferrer"
+      target="_blank"
+    >
+      mulder21c.
+    </a>
+  </p>
+</div>
 
 ```
 
@@ -449,7 +363,7 @@ include ../../utils/util
 ```
 
 
-### output example 
+### example output 
 
 ```html
 <nav class="amor-pagination">
@@ -527,13 +441,56 @@ include ../../utils/util
 ```
 
 
-### output example 
+### example output 
 
 ```html
 <!-- without slot-->
 <div class="amor-title-bar">
   <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
 </div>
+
+```
+
+
+---
+
+
+## hero
+
+create hero component
+
+
+### path 
+
+`components/organisms/hero/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.imgSrc|the source url for hero image|string||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++hero({imgSrc: "hero.jpg"})
+```
+
+
+### example output 
+
+```html
+<div
+  class="amor-hero"
+  role="presentation"
+  style="background-image: url(hero.jpg)"
+></div>
 
 ```
 
@@ -591,7 +548,7 @@ include ../../atoms/buttons/icon
 ```
 
 
-### output example 
+### example output 
 
 ```html
 <div
@@ -616,6 +573,49 @@ include ../../atoms/buttons/icon
     </svg>
   </button>
 </div>
+
+```
+
+
+---
+
+
+## articleContent
+
+create content for article
+
+
+### path 
+
+`components/organisms/article-content/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.content|content of post|object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++articleContent({ categories: post.content, })
+```
+
+
+### example output 
+
+```html
+<div
+  class="amor-article-content"
+  categories="<p>Adipisicing elit minim irure ullamco consequat labore in elit ex cillum. Voluptate cillum cupidatat voluptate ullamco laborum mollit consequat officia tempor aliquip mollit eu ad enim. Cupidatat sit voluptate mollit et dolor incididunt eu aute exercitation ut occaecat. Labore elit ut labore dolore Lorem eu.</p>
+<p>Ipsum excepteur deserunt enim enim anim aute. Duis proident elit est nisi elit magna elit cupidatat. Reprehenderit dolor dolor aliquip laborum ea dolor pariatur culpa minim officia reprehenderit exercitation enim.</p>"
+></div>
 
 ```
 
