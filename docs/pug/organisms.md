@@ -1,78 +1,5 @@
 # Pug Documentation 
 
-## archiveTimeline
-
-create archive timeline
-
-
-### path 
-
-`components/organisms/archives/timeline.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.archives|the collection that is consist of archives|object||false|
-|props.headingLevel|the level of year as heading|number|2|false|
-|props.displayYearNum|the number of years to be display|number|2|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../../atoms/heading/index
-
-+archiveTimeline({archives: mapArchives(), headingLevel: 2})
-```
-
-
-### example output 
-
-```html
-<div class="amor-timeline">
-  <h2 class="amor-heading--lv-2 amor-timeline__year">
-    2022&rsquo;
-    <span>i18n(label.posts.default)</span>
-  </h2>
-  <ol class="amor-timeline__list">
-    <li class="amor-timeline__list__item">
-      <a
-        class="amor-timeline__link"
-        href="http://example.com/post-ndv48vdm1onpp58/"
-      >
-        <span class="amor-timeline__title">Post ndv48vdm1onpp58</span>
-      </a>
-    </li>
-    <li class="amor-timeline__list__item">
-      <a
-        class="amor-timeline__link"
-        href="http://example.com/post-ndv41u4abtugb0g/"
-      >
-        <span class="amor-timeline__title">Post ndv41u4abtugb0g</span>
-      </a>
-    </li>
-    <li class="amor-timeline__list__item">
-      <a
-        class="amor-timeline__link"
-        href="http://example.com/post-ndv4mpg18taef9/"
-      >
-        <span class="amor-timeline__title">Post ndv4mpg18taef9</span>
-      </a>
-    </li>
-  </ol>
-</div>
-
-```
-
-
----
-
-
 ## accordion
 
 create accordion component aria pattern
@@ -123,14 +50,14 @@ include ../../atoms/svg-icon/index
 ### example output 
 
 ```html
-<div class="amor-accordion" id="zz92gc8lh8k" data-init-activate="1">
+<div class="amor-accordion" id="z3gfti2l37g" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="e5n9b4do67j"
+      id="fjaoy2dk7a4"
       aria-expanded="false"
-      aria-controls="n9gkimb0glc"
+      aria-controls="k56nq97i1lg"
     >
       heading 1
       <svg
@@ -144,9 +71,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="n9gkimb0glc"
+    id="k56nq97i1lg"
     role="region"
-    aria-labelledby="e5n9b4do67j"
+    aria-labelledby="fjaoy2dk7a4"
     hidden="hidden"
   >
     panel 1
@@ -155,9 +82,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="o4ycxtb908g"
+      id="xi56zwc61fv"
       aria-expanded="true"
-      aria-controls="irj83bn946g"
+      aria-controls="bpcelp7eoua"
     >
       heading 2
       <svg
@@ -171,9 +98,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel active"
-    id="irj83bn946g"
+    id="bpcelp7eoua"
     role="region"
-    aria-labelledby="o4ycxtb908g"
+    aria-labelledby="xi56zwc61fv"
   >
     panel 2
   </div>
@@ -181,9 +108,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="jb8ddwo2ako"
+      id="mb8ddw17gqg"
       aria-expanded="false"
-      aria-controls="xxcx3fn61c4"
+      aria-controls="zx8gjtq4h5u"
     >
       heading 3
       <svg
@@ -197,14 +124,130 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="xxcx3fn61c4"
+    id="zx8gjtq4h5u"
     role="region"
-    aria-labelledby="jb8ddwo2ako"
+    aria-labelledby="mb8ddw17gqg"
     hidden="hidden"
   >
     panel 3
   </div>
 </div>
+
+```
+
+
+---
+
+
+## archiveTimeline
+
+create archive timeline
+
+
+### path 
+
+`components/organisms/archives/timeline.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.archives|the collection that is consist of archives|object||false|
+|props.headingLevel|the level of year as heading|number|2|false|
+|props.displayYearNum|the number of years to be display|number|2|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/heading/index
+
++archiveTimeline({archives: mapArchives(), headingLevel: 2})
+```
+
+
+### example output 
+
+```html
+<div class="amor-timeline">
+  <h2 class="amor-heading--lv-2 amor-timeline__year">
+    2022&rsquo;
+    <span>i18n(label.posts.default)</span>
+  </h2>
+  <ol class="amor-timeline__list">
+    <li class="amor-timeline__list__item">
+      <a
+        class="amor-timeline__link"
+        href="http://example.com/post-hr6cqjdlsokvsv8/"
+      >
+        <span class="amor-timeline__title">Post hr6cqjdlsokvsv8</span>
+      </a>
+    </li>
+    <li class="amor-timeline__list__item">
+      <a
+        class="amor-timeline__link"
+        href="http://example.com/post-hr6cd91idig56mo/"
+      >
+        <span class="amor-timeline__title">Post hr6cd91idig56mo</span>
+      </a>
+    </li>
+    <li class="amor-timeline__list__item">
+      <a
+        class="amor-timeline__link"
+        href="http://example.com/post-hr6cdfp5erqgs5/"
+      >
+        <span class="amor-timeline__title">Post hr6cdfp5erqgs5</span>
+      </a>
+    </li>
+  </ol>
+</div>
+
+```
+
+
+---
+
+
+## articleContent
+
+create content for article
+
+
+### path 
+
+`components/organisms/article-content/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.content|content of post|object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++articleContent({ categories: post.content, })
+```
+
+
+### example output 
+
+```html
+<div
+  class="amor-article-content"
+  categories="<p>Et ullamco occaecat adipisicing exercitation qui qui sit ut deserunt consectetur. Mollit dolor eu et minim veniam occaecat magna officia labore aliqua cillum pariatur aute eiusmod. Cupidatat cillum sint do reprehenderit deserunt cillum anim est esse dolor cupidatat. Tempor pariatur amet voluptate adipisicing deserunt ut pariatur dolor adipisicing deserunt ullamco esse.</p>
+<p>Anim incididunt mollit commodo nisi reprehenderit. In consequat nostrud excepteur eiusmod non fugiat nisi voluptate consectetur est sint incididunt. Id fugiat magna quis velit labore do eiusmod mollit sunt commodo id id. Elit aliqua reprehenderit qui est consequat eiusmod deserunt laborum proident in laboris do excepteur.</p>"
+></div>
 
 ```
 
@@ -329,6 +372,49 @@ include ../../atoms/watermark/index
 ---
 
 
+## hero
+
+create hero component
+
+
+### path 
+
+`components/organisms/hero/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.imgSrc|the source url for hero image|string||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++hero({imgSrc: "hero.jpg"})
+```
+
+
+### example output 
+
+```html
+<div
+  class="amor-hero"
+  role="presentation"
+  style="background-image: url(hero.jpg)"
+></div>
+
+```
+
+
+---
+
+
 ## pagination
 
 create pagination component
@@ -395,102 +481,6 @@ include ../../utils/util
     </svg>
   </a>
 </nav>
-
-```
-
-
----
-
-
-## titleBar
-
-create a title bar located at the top of the page
-
-
-### path 
-
-`components/organisms/title-bar/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.title|the text to use as a title|string||true|
-|props.useLink|whether to use link|boolean|true|true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|beforeSlot|the slot to be placed before title|
-|afterSlot|the slot to be placed after title|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// without slot
-+titleBar({title: config.title, useLink: true})
-```
-
-
-### example output 
-
-```html
-<!-- without slot-->
-<div class="amor-title-bar">
-  <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
-</div>
-
-```
-
-
----
-
-
-## hero
-
-create hero component
-
-
-### path 
-
-`components/organisms/hero/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.imgSrc|the source url for hero image|string||false|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+hero({imgSrc: "hero.jpg"})
-```
-
-
-### example output 
-
-```html
-<div
-  class="amor-hero"
-  role="presentation"
-  style="background-image: url(hero.jpg)"
-></div>
 
 ```
 
@@ -580,14 +570,14 @@ include ../../atoms/buttons/icon
 ---
 
 
-## articleContent
+## titleBar
 
-create content for article
+create a title bar located at the top of the page
 
 
 ### path 
 
-`components/organisms/article-content/index.pug`
+`components/organisms/title-bar/index.pug`
 
 
 ### arguments 
@@ -595,7 +585,17 @@ create content for article
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.content|content of post|object||false|
+|props.title|the text to use as a title|string||true|
+|props.useLink|whether to use link|boolean|true|true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|beforeSlot|the slot to be placed before title|
+|afterSlot|the slot to be placed after title|
 
 
 
@@ -604,18 +604,18 @@ create content for article
 ```jade
 include ../../utils/util
 
-+articleContent({ categories: post.content, })
+// without slot
++titleBar({title: config.title, useLink: true})
 ```
 
 
 ### example output 
 
 ```html
-<div
-  class="amor-article-content"
-  categories="<p>Adipisicing elit minim irure ullamco consequat labore in elit ex cillum. Voluptate cillum cupidatat voluptate ullamco laborum mollit consequat officia tempor aliquip mollit eu ad enim. Cupidatat sit voluptate mollit et dolor incididunt eu aute exercitation ut occaecat. Labore elit ut labore dolore Lorem eu.</p>
-<p>Ipsum excepteur deserunt enim enim anim aute. Duis proident elit est nisi elit magna elit cupidatat. Reprehenderit dolor dolor aliquip laborum ea dolor pariatur culpa minim officia reprehenderit exercitation enim.</p>"
-></div>
+<!-- without slot-->
+<div class="amor-title-bar">
+  <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
+</div>
 
 ```
 

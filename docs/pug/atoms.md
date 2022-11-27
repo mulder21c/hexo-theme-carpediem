@@ -1,5 +1,189 @@
 # Pug Documentation 
 
+## button
+
+basic button component
+
+
+### path 
+
+`components/atoms/buttons/default.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.type|the value of type attribute for button|string|'button'|true|
+|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
+|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++button({
+  type: 'button',
+  size: 'medium',
+  appearance: 'outline',
+}) button
+```
+
+
+### example output 
+
+```html
+<button
+  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
+  type="button"
+>
+  button
+</button>
+
+```
+
+
+---
+
+
+## iconButton
+
+icon(font awesome) button component
+
+
+### path 
+
+`components/atoms/buttons/icon.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.icon|name of icon|string||false|
+|props.label|label of button|string||false|
+|props.type|the value of type attribute for button|string|'button'|true|
+|props.size|size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``|string|'medium'|true|
+|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`|string|'outline'|true|
+|props.layout|layout of button <br> one of `'icon-only', `icon-text``|string|`icon-only`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../svg-icon/index
+
++iconButton({
+  icon: 'tty',
+  label: 'tel',
+  type: 'button',
+  size: 'medium',
+  appearance: 'outline',
+})
+```
+
+
+### example output 
+
+```html
+<button
+  class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--outline amor-btn-icon--icon-only"
+  type="button"
+  aria-label="tel"
+>
+  <svg
+    class="amor-svg-icon amor-btn-icon__icon"
+    focusable="false"
+    aria-hidden="true"
+  >
+    <use xlink:href="/images/solid.svg#tty"></use>
+  </svg>
+</button>
+
+```
+
+
+---
+
+
+## category
+
+category indicator
+
+
+### path 
+
+`components/atoms/category/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.categories|sequence of category|array||false|
+|props.visibleLabel|the visible label for category|string||false|
+|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|string|`lowest`|true|
+|props.useLink|whether to use link|bool|true|true|
+|props.separator|hierarchy separator <br> You can use icon(font awesome) name for separator|string|`>`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../svg-icon/index
+
++category({
+  categories,
+  visibleLabel: '📂',
+  level: `all`,
+  useLink: false,
+  separator: `>`
+})
+```
+
+
+### example output 
+
+```html
+<span class="amor-category">
+  <span
+    class="amor-category__label"
+    role="img"
+    aria-label="i18n(label.category)"
+  >
+    📂
+  </span>
+  <span class="amor-category__list" role="list">
+    <span class="amor-category__content" role="listitem">
+      <span>cate-hr6f3od45l7a9</span>
+    </span>
+    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
+    <span class="amor-category__content" role="listitem">
+      <span>cate-hr6f23ndp33viqo</span>
+    </span>
+    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
+    <span class="amor-category__content" role="listitem">
+      <span>cate-hr6f4sse8ksovbg</span>
+    </span>
+  </span>
+</span>
+
+```
+
+
+---
+
+
 ## cclLicense
 
 ccl license text
@@ -75,260 +259,6 @@ include ../../utils/util
 ---
 
 
-## iconButton
-
-icon(font awesome) button component
-
-
-### path 
-
-`components/atoms/buttons/icon.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.icon|name of icon|string||false|
-|props.label|label of button|string||false|
-|props.type|the value of type attribute for button|string|'button'|true|
-|props.size|size of button- size of button <br> one of `'small'`, `'medium'`, `'large'``|string|'medium'|true|
-|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`, `'ghost'`|string|'outline'|true|
-|props.layout|layout of button <br> one of `'icon-only', `icon-text``|string|`icon-only`|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../svg-icon/index
-
-+iconButton({
-  icon: 'tty',
-  label: 'tel',
-  type: 'button',
-  size: 'medium',
-  appearance: 'outline',
-})
-```
-
-
-### example output 
-
-```html
-<button
-  class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--outline amor-btn-icon--icon-only"
-  type="button"
-  aria-label="tel"
->
-  <svg
-    class="amor-svg-icon amor-btn-icon__icon"
-    focusable="false"
-    aria-hidden="true"
-  >
-    <use xlink:href="/images/solid.svg#tty"></use>
-  </svg>
-</button>
-
-```
-
-
----
-
-
-## button
-
-basic button component
-
-
-### path 
-
-`components/atoms/buttons/default.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.type|the value of type attribute for button|string|'button'|true|
-|props.size|size of button <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`|string|'medium'|true|
-|props.appearance|appearance of button <br> one of `'fill'`, `'outline'`|string|'fill'|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+button({
-  type: 'button',
-  size: 'medium',
-  appearance: 'outline',
-}) button
-```
-
-
-### example output 
-
-```html
-<button
-  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
-  type="button"
->
-  button
-</button>
-
-```
-
-
----
-
-
-## category
-
-category indicator
-
-
-### path 
-
-`components/atoms/category/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.categories|sequence of category|array||false|
-|props.visibleLabel|the visible label for category|string||false|
-|props.level|the level of category to be display <br> one of `'lowest'`, `'top'`, `'all'`|string|`lowest`|true|
-|props.useLink|whether to use link|bool|true|true|
-|props.separator|hierarchy separator <br> You can use icon(font awesome) name for separator|string|`>`|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-include ../svg-icon/index
-
-+category({
-  categories,
-  visibleLabel: '📂',
-  level: `all`,
-  useLink: false,
-  separator: `>`
-})
-```
-
-
-### example output 
-
-```html
-<span class="amor-category">
-  <span
-    class="amor-category__label"
-    role="img"
-    aria-label="i18n(label.category)"
-  >
-    📂
-  </span>
-  <span class="amor-category__list" role="list">
-    <span class="amor-category__content" role="listitem">
-      <span>cate-ndv7eee265mjkmg</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-ndv7p34biolea9o</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-ndv7lflp08bulu8</span>
-    </span>
-  </span>
-</span>
-
-```
-
-
----
-
-
-## datetime
-
-time component
-
-
-### path 
-
-`components/atoms/datetime/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.datetime|the date object|Moment||false|
-|props.id|the value of id attribute|string||true|
-|props.label|the accessible name for date|string||true|
-|props.format|the format of machine readable date to use as datetime attribute|string|`YYYY-MM-DD`|true|
-|props.visibleLabel|the visible label for date|string||true|
-|props.visibleFormat|the format of human readable date|string|`YYYY. MM. DD`|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// simple
-+datetime({
-  datetime: moment(new Date()),
-  label: 'posted ',
-  visibleLabel: '📆 '
-})
-
-// explicit format
-+datetime({
-  datetime: moment(new Date()),
-  label: 'posted ',
-  visibleLabel: '📆 ',
-  visibleFormat: 'YYYY-MM-DD',
-})
-```
-
-
-### example output 
-
-```html
-<!-- simple-->
-<span class="amor-datetime">
-  <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="yrp7kgh2g88" datetime="2022-11-27">
-    2022. 11. 27
-  </time>
-</span>
-<!-- explicit format-->
-<span class="amor-datetime">
-  <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="fxiogn3ke66" datetime="2022-11-27">
-    2022-11-27
-  </time>
-</span>
-
-```
-
-
----
-
-
 ## checkbox
 
 checkbox component
@@ -389,21 +319,21 @@ label(for="no-label-checkbox") checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="tty6aepo7lf"
+    id="ut7cspve2rg"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="tty6aepo7lf">agree</label>
+  <label class="amor-checkbox__label" for="ut7cspve2rg">agree</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="mqg9kd3h1fm"
+    id="jswy4lsgsus"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="mqg9kd3h1fm">check label</label>
+  <label class="amor-checkbox__label" for="jswy4lsgsus">check label</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-checkbox">
@@ -415,175 +345,6 @@ label(for="no-label-checkbox") checkbox
   <span class="amor-checkbox__label" aria-hidden="true"></span>
 </span>
 <label for="no-label-checkbox">checkbox</label>
-
-```
-
-
----
-
-
-## watermark
-
-watermark for theme
-
-
-### path 
-
-`components/atoms/watermark/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.hexo|whether to display tool for generating as hexo|boolean|true|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+watermark()
-```
-
-
-### example output 
-
-```html
-<p class="amor-watermark">
-  Powered by
-  <a href="https://hexo.io/" rel="external noreferrer" target="_blank">Hexo.</a>
-  Theme by
-  <a
-    href="https://github.com/mulder21c"
-    rel="external noreferrer"
-    target="_blank"
-  >
-    mulder21c.
-  </a>
-</p>
-
-```
-
-
----
-
-
-## svgIcon
-
-create inline-svg icon
-
-
-### path 
-
-`components/atoms/svg-icon/index.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|name of icon|string||false|
-|props.type|type of icon|string||true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-+svgIcon({name: 'thumbs-up'})
-```
-
-
-### example output 
-
-```html
-<svg class="amor-svg-icon" focusable="false">
-  <use xlink:href="/images/solid.svg#thumbs-up"></use>
-</svg>
-
-```
-
-
----
-
-
-## boxyRadio
-
-box styled radio component
-
-
-### path 
-
-`components/atoms/radios/boxy.pug`
-
-
-### arguments 
-
-|name|description|type|default|optional|
-|:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.name|name of radio|string||false|
-|props.value|the value of radio|string,number||false|
-|props.id|the value of radio's id attribute and label's for attribute|string||true|
-|props.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
-|props.checked|the checked state of radio|boolean|false|true|
-|props.inputAttrs|the attrs for input:radio|object|{}|true|
-
-
-
-### examples
-
-```jade
-include ../../utils/util
-
-// label property
-+boxyRadio({
-  name: 'answer',
-  value: 1,
-  label: 'boxy radio'
-})
-
-// label from block
-+boxyRadio({
-  name: 'answer',
-  value: 1
-})
-  boxy radio
-```
-
-
-### example output 
-
-```html
-<!-- label property-->
-<label class="amor-radio-boxy">
-  <input
-    class="amor-radio-boxy__control"
-    type="radio"
-    id="b2axvc69q8k"
-    name="answer"
-    value="1"
-  />
-  <span class="amor-radio-boxy__box">boxy radio</span>
-</label>
-<!-- label from block-->
-<label class="amor-radio-boxy">
-  <input
-    class="amor-radio-boxy__control"
-    type="radio"
-    id="mga24o3ri4o"
-    name="answer"
-    value="1"
-  />
-  <span class="amor-radio-boxy__box"><boxy>radio</boxy></span>
-</label>
 
 ```
 
@@ -649,22 +410,22 @@ label(for="no-label-switch") switch button
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="oegiey2n158"
+    id="g3mnel2nf2v"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="oegiey2n158">alarm</label>
+  <label class="amor-switch__label" for="g3mnel2nf2v">alarm</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-switch">
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="qpmslhqfat4"
+    id="rm8fzc55hv8"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="qpmslhqfat4">switch button</label>
+  <label class="amor-switch__label" for="rm8fzc55hv8">switch button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-switch">
@@ -673,6 +434,202 @@ label(for="no-label-switch") switch button
   <span class="amor-switch__label" aria-hidden="true"></span>
 </span>
 <label for="no-label-switch">switch button</label>
+
+```
+
+
+---
+
+
+## datetime
+
+time component
+
+
+### path 
+
+`components/atoms/datetime/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.datetime|the date object|Moment||false|
+|props.id|the value of id attribute|string||true|
+|props.label|the accessible name for date|string||true|
+|props.format|the format of machine readable date to use as datetime attribute|string|`YYYY-MM-DD`|true|
+|props.visibleLabel|the visible label for date|string||true|
+|props.visibleFormat|the format of human readable date|string|`YYYY. MM. DD`|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// simple
++datetime({
+  datetime: moment(new Date()),
+  label: 'posted ',
+  visibleLabel: '📆 '
+})
+
+// explicit format
++datetime({
+  datetime: moment(new Date()),
+  label: 'posted ',
+  visibleLabel: '📆 ',
+  visibleFormat: 'YYYY-MM-DD',
+})
+```
+
+
+### example output 
+
+```html
+<!-- simple-->
+<span class="amor-datetime">
+  <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
+  <time class="amor-datetime__time" id="qtxltk1jt04" datetime="2022-11-27">
+    2022. 11. 27
+  </time>
+</span>
+<!-- explicit format-->
+<span class="amor-datetime">
+  <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
+  <time class="amor-datetime__time" id="juj0ayi6sag" datetime="2022-11-27">
+    2022-11-27
+  </time>
+</span>
+
+```
+
+
+---
+
+
+## heading
+
+heading component
+
+
+### path 
+
+`components/atoms/heading/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.level|the level(rank) of heading from 1 to 6|number||false|
+|props.htmlString|the html string as content of heading|string||true|
+|props.visible|whether an element is visible or not|boolean|true|true|
+
+
+
+### slots 
+
+|name|description|
+|:---:|:---|
+|headingSlot|the slot for heading content|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++heading({ level: 1 }) heading
+```
+
+
+### example output 
+
+```html
+<h1 class="amor-heading--lv-1">heading</h1>
+
+```
+
+
+---
+
+
+## boxyRadio
+
+box styled radio component
+
+
+### path 
+
+`components/atoms/radios/boxy.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.name|name of radio|string||false|
+|props.value|the value of radio|string,number||false|
+|props.id|the value of radio's id attribute and label's for attribute|string||true|
+|props.label|label of radio<br> If do not specify this value, you must author and style label element.|string||true|
+|props.checked|the checked state of radio|boolean|false|true|
+|props.inputAttrs|the attrs for input:radio|object|{}|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
+// label property
++boxyRadio({
+  name: 'answer',
+  value: 1,
+  label: 'boxy radio'
+})
+
+// label from block
++boxyRadio({
+  name: 'answer',
+  value: 1
+})
+  boxy radio
+```
+
+
+### example output 
+
+```html
+<!-- label property-->
+<label class="amor-radio-boxy">
+  <input
+    class="amor-radio-boxy__control"
+    type="radio"
+    id="bcqai7esj1o"
+    name="answer"
+    value="1"
+  />
+  <span class="amor-radio-boxy__box">boxy radio</span>
+</label>
+<!-- label from block-->
+<label class="amor-radio-boxy">
+  <input
+    class="amor-radio-boxy__control"
+    type="radio"
+    id="emenkfqkshg"
+    name="answer"
+    value="1"
+  />
+  <span class="amor-radio-boxy__box"><boxy>radio</boxy></span>
+</label>
 
 ```
 
@@ -731,22 +688,22 @@ label(for="no-label") radio button
   <input
     class="amor-radio__control"
     type="radio"
-    id="ypwe0iqom8o"
+    id="lwffssn80cg"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="ypwe0iqom8o">yes</label>
+  <label class="amor-radio__label" for="lwffssn80cg">yes</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-radio">
   <input
     class="amor-radio__control"
     type="radio"
-    id="jtbh6fj6qqu"
+    id="j1k0bo4m9ik"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="jtbh6fj6qqu">radio button</label>
+  <label class="amor-radio__label" for="j1k0bo4m9ik">radio button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-radio">
@@ -767,14 +724,14 @@ label(for="no-label") radio button
 ---
 
 
-## heading
+## svgIcon
 
-heading component
+create inline-svg icon
 
 
 ### path 
 
-`components/atoms/heading/index.pug`
+`components/atoms/svg-icon/index.pug`
 
 
 ### arguments 
@@ -782,17 +739,8 @@ heading component
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.level|the level(rank) of heading from 1 to 6|number||false|
-|props.htmlString|the html string as content of heading|string||true|
-|props.visible|whether an element is visible or not|boolean|true|true|
-
-
-
-### slots 
-
-|name|description|
-|:---:|:---|
-|headingSlot|the slot for heading content|
+|props.name|name of icon|string||false|
+|props.type|type of icon|string||true|
 
 
 
@@ -801,14 +749,66 @@ heading component
 ```jade
 include ../../utils/util
 
-+heading({ level: 1 }) heading
++svgIcon({name: 'thumbs-up'})
 ```
 
 
 ### example output 
 
 ```html
-<h1 class="amor-heading--lv-1">heading</h1>
+<svg class="amor-svg-icon" focusable="false">
+  <use xlink:href="/images/solid.svg#thumbs-up"></use>
+</svg>
+
+```
+
+
+---
+
+
+## watermark
+
+watermark for theme
+
+
+### path 
+
+`components/atoms/watermark/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.hexo|whether to display tool for generating as hexo|boolean|true|true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++watermark()
+```
+
+
+### example output 
+
+```html
+<p class="amor-watermark">
+  Powered by
+  <a href="https://hexo.io/" rel="external noreferrer" target="_blank">Hexo.</a>
+  Theme by
+  <a
+    href="https://github.com/mulder21c"
+    rel="external noreferrer"
+    target="_blank"
+  >
+    mulder21c.
+  </a>
+</p>
 
 ```
 
