@@ -1,0 +1,56 @@
+.#{$prefix}-author {
+  --profile-image-with: 3rem;
+  --profile-image-padding: 0.5rem;
+  --column-gap: 0.75rem;
+  --row-gap: 0.5rem;
+
+  @include respond-to(tablet) {
+    --profile-image-with: 5rem;
+    --profile-image-padding: 0.75rem;
+    --column-gap: 2rem;
+    --row-gap: 0.75rem;
+  }
+
+  max-width: 80ch;
+  display: grid;
+  grid-template-areas:
+    "image name"
+    "image description";
+  grid-template-columns: var(--profile-image-with) 1fr;
+  row-gap: var(--row-gap);
+  column-gap: var(--column-gap);
+  align-items: center;
+
+  &--no-desc {
+    grid-template-areas: "image name";
+    grid-template-columns: 2rem 1fr;
+  }
+
+  &__gravatar {
+    grid-area: image;
+    border-radius: 50%;
+    padding: var(--profile-image-padding);
+    width: var(--profile-image-with);
+    height: var(--profile-image-with);
+    background-color: var(--box-background-color);
+    box-shadow: 1px 1px 5px rgba(var(--box-shadow-color-rgb), 0.375);
+
+    .#{$prefix}-author--no-desc & {
+      padding: 0.25rem;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    > img {
+      max-width: 100%;
+    }
+  }
+
+  &__name {
+    font-size: var(--font-size-default);
+  }
+
+  &__desc {
+    font-size: var(--font-size-small);
+  }
+}

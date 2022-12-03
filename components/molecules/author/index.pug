@@ -1,0 +1,59 @@
+//- @pugdoc
+  name: articleAuthor
+  description: area for introducing author
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - |
+      {string} [props.gravatar] [`/images/author.svg`]
+      the path or url for gravatar
+    - {string} [props.name] the name of author
+    - {string} [props.description] the description for author
+
+mixin articleAuthor(props= {})
+  -
+    // define types
+    const articleAuthorProps = {
+      gravatar: PropTypes.string,
+      name: PropTypes.string,
+      description: PropTypes.string,
+    };
+
+    // verifying props
+    validateProps(articleAuthorProps)(props);
+
+    const {
+      gravatar,
+      name,
+      description,
+      ...attrs
+    } = {
+      ...props,
+    };
+
+    const { prefix } = theme;
+    const defaultGravatar = `/images/author.svg`;
+    const hasDesc = !!description;
+
+  div(
+    class= [
+      `${prefix}-author`,
+      hasDesc ? `` : `${prefix}-author--no-desc`,
+    ]
+  )&attributes(attrs)
+    span(class= `${prefix}-author__gravatar`)
+      img(
+        src= isDevelopment ?  url_for(gravatar || defaultGravatar)
+          : fullUrl(gravatar || defaultGravatar)
+        alt= ""
+        role="none"
+      )
+    if name
+      p(
+        class= `${prefix}-author__name`
+      )= name
+    if description
+      p(
+        class= `${prefix}-author__desc`
+      )= description

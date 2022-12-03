@@ -50,14 +50,14 @@ include ../../atoms/svg-icon/index
 ### example output 
 
 ```html
-<div class="amor-accordion" id="z3gfti2l37g" data-init-activate="1">
+<div class="amor-accordion" id="p13nosbgsfg" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="fjaoy2dk7a4"
+      id="ir22ljpr304"
       aria-expanded="false"
-      aria-controls="k56nq97i1lg"
+      aria-controls="qbr054e4h3g"
     >
       heading 1
       <svg
@@ -65,15 +65,17 @@ include ../../atoms/svg-icon/index
         focusable="false"
         role="presentation"
       >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
+        <use
+          xlink:href="http://example.com/images/solid.svg#chevron-down"
+        ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel"
-    id="k56nq97i1lg"
+    id="qbr054e4h3g"
     role="region"
-    aria-labelledby="fjaoy2dk7a4"
+    aria-labelledby="ir22ljpr304"
     hidden="hidden"
   >
     panel 1
@@ -82,9 +84,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="xi56zwc61fv"
+      id="ies5hhs5vhc"
       aria-expanded="true"
-      aria-controls="bpcelp7eoua"
+      aria-controls="r695yjgffio"
     >
       heading 2
       <svg
@@ -92,15 +94,17 @@ include ../../atoms/svg-icon/index
         focusable="false"
         role="presentation"
       >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
+        <use
+          xlink:href="http://example.com/images/solid.svg#chevron-down"
+        ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel active"
-    id="bpcelp7eoua"
+    id="r695yjgffio"
     role="region"
-    aria-labelledby="xi56zwc61fv"
+    aria-labelledby="ies5hhs5vhc"
   >
     panel 2
   </div>
@@ -108,9 +112,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="mb8ddw17gqg"
+      id="ll592c4dars"
       aria-expanded="false"
-      aria-controls="zx8gjtq4h5u"
+      aria-controls="sil1qvjcfm6"
     >
       heading 3
       <svg
@@ -118,15 +122,17 @@ include ../../atoms/svg-icon/index
         focusable="false"
         role="presentation"
       >
-        <use xlink:href="/images/solid.svg#chevron-down"></use>
+        <use
+          xlink:href="http://example.com/images/solid.svg#chevron-down"
+        ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel"
-    id="zx8gjtq4h5u"
+    id="sil1qvjcfm6"
     role="region"
-    aria-labelledby="mb8ddw17gqg"
+    aria-labelledby="ll592c4dars"
     hidden="hidden"
   >
     panel 3
@@ -182,25 +188,25 @@ include ../../atoms/heading/index
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-hr6cqjdlsokvsv8/"
+        href="http://example.com/post-4umm2nrm5271ooo/"
       >
-        <span class="amor-timeline__title">Post hr6cqjdlsokvsv8</span>
+        <span class="amor-timeline__title">Post 4umm2nrm5271ooo</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-hr6cd91idig56mo/"
+        href="http://example.com/post-4ummjr1kdaltmj/"
       >
-        <span class="amor-timeline__title">Post hr6cd91idig56mo</span>
+        <span class="amor-timeline__title">Post 4ummjr1kdaltmj</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-hr6cdfp5erqgs5/"
+        href="http://example.com/post-4umm0lc23j59lo/"
       >
-        <span class="amor-timeline__title">Post hr6cdfp5erqgs5</span>
+        <span class="amor-timeline__title">Post 4umm0lc23j59lo</span>
       </a>
     </li>
   </ol>
@@ -245,8 +251,8 @@ include ../../utils/util
 ```html
 <div
   class="amor-article-content"
-  categories="<p>Et ullamco occaecat adipisicing exercitation qui qui sit ut deserunt consectetur. Mollit dolor eu et minim veniam occaecat magna officia labore aliqua cillum pariatur aute eiusmod. Cupidatat cillum sint do reprehenderit deserunt cillum anim est esse dolor cupidatat. Tempor pariatur amet voluptate adipisicing deserunt ut pariatur dolor adipisicing deserunt ullamco esse.</p>
-<p>Anim incididunt mollit commodo nisi reprehenderit. In consequat nostrud excepteur eiusmod non fugiat nisi voluptate consectetur est sint incididunt. Id fugiat magna quis velit labore do eiusmod mollit sunt commodo id id. Elit aliqua reprehenderit qui est consequat eiusmod deserunt laborum proident in laboris do excepteur.</p>"
+  categories="<p>Sunt Lorem tempor amet proident tempor cupidatat labore irure aute ex enim anim sit. Proident aliqua mollit in adipisicing nostrud et sit do anim occaecat aliquip. Commodo et veniam occaecat proident dolore. Pariatur ad elit cillum do qui incididunt ea eiusmod. Irure dolore irure incididunt esse ullamco consectetur proident. Laborum irure ullamco et magna. Minim adipisicing esse tempor sit.</p>
+<p>Duis deserunt anim aute consectetur id qui do. Sit ullamco nisi cupidatat do adipisicing anim ullamco tempor. Irure anim aliquip sunt nulla non nisi. Occaecat est voluptate pariatur ipsum. Et commodo anim quis ea sint nisi exercitation. Reprehenderit pariatur ad officia officia quis nostrud reprehenderit pariatur id et tempor cillum do. Minim excepteur ipsum amet velit non voluptate officia.</p>"
 ></div>
 
 ```
@@ -559,7 +565,7 @@ include ../../atoms/buttons/icon
       focusable="false"
       aria-hidden="true"
     >
-      <use xlink:href="/images/solid.svg#xmark"></use>
+      <use xlink:href="http://example.com/images/solid.svg#xmark"></use>
     </svg>
   </button>
 </div>
