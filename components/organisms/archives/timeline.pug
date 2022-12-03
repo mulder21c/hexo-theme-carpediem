@@ -86,10 +86,6 @@ mixin archiveTimeline(props = {})
       else
         span(class= `${prefix}-timeline__more`)
           a(
-            href= `${
-              isDevelopment
-                ? url_for(`/archives/${year}`)
-                : fullUrl(`/archives/${year}`)
-            }`
+            href= `${fullUrl(`/archives/${year}`)}`
           )
             = _p('label.read_more')

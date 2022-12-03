@@ -2,8 +2,9 @@ const { url_for } = require("hexo-util");
 
 function fullUrlHelper(url) {
   if (!url) return;
-  const { config } = this;
+  const { config, site } = this;
   const { origin, protocol } = new URL(config.url);
+  const isDevelopment = site.mode === `development`;
 
   if (
     /^(https?|file|ftps?|mailto|javascript|data:image\/[^;]{2,9};):/i.test(url)
@@ -15,10 +16,10 @@ function fullUrlHelper(url) {
   }
 
   if (/^\//.test(url)) {
-    return origin + url;
+    return isDevelopment ? url_for.call(this, url) : origin + url;
   }
 
-  return origin + "/" + url;
+  return isDevelopment ? url_for.call(this, url) : origin + "/" + url;
 }
 
 /**

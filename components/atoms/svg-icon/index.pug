@@ -37,7 +37,7 @@ mixin svgIcon(props = {})
     };
 
     const { prefix } = theme;
-    const imagePath = isDevelopment ? url_for(`/images`) : fullUrl(`/images`);
+    const imagePath = fullUrl(`/images`);
     const {
       iconName,
       iconCategory,
