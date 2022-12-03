@@ -21,7 +21,6 @@ label:
     yearly: "%s년에 작성 된 게시글"
   read_more: 더보기
   tags:
-    default: 태그
     no_tags: 태그가 없어요
 
 section:
@@ -29,6 +28,8 @@ section:
   settings: ⚙️ settings
   menu: 📑 menu
   categories: 📂 categories
+  tags: 태그
+  author: 작성자
 
 form:
   theme:

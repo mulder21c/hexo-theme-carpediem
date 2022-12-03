@@ -52,4 +52,11 @@
       flex: 1 1 auto;
     }
   }
+
+  &__author {
+    max-width: 80ch;
+    margin: 3rem auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(var(--separator-border-color-rgb), 0.375);
+  }
 }

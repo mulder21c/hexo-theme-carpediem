@@ -2,6 +2,7 @@ extends /components/templates/common
 include /components/atoms/svg-icon/index
 include /components/atoms/heading/index
 include /components/molecules/article-meta/index
+include /components/molecules/author/index
 include /components/molecules/tags-list/index
 include /components/organisms/hero/index
 include /components/organisms/article-content/index
@@ -39,13 +40,25 @@ block mainContent
         })
           +svgIcon({
             name: `tags`,
-            "aria-hidden": `true`,
-            "aria-label": _p(`label.tags.default`),
+            "aria-hidden": `false`,
+            "aria-label": _p(`section.tags`),
           })
         +tagsList({
           tags: post.tags.data || post.tags || [],
           appearance: `flat`,
           class: `${prefix}-article__tags__list`,
+        })
+
+      div(class= `${prefix}-article__author`)
+        +heading({
+          level: 2,
+          htmlString: _p(`section.author`),
+          visible: false,
+        })
+        +articleAuthor({
+          name: author.name,
+          gravatar: author.gravatar,
+          description: author.description,
         })
 
 block sidebar

@@ -21,7 +21,6 @@ label:
     yearly: "posts at %s"
   read_more: read more
   tags:
-    default: tags
     no_tags: no tags
 
 section:
@@ -29,6 +28,8 @@ section:
   settings: ⚙️ settings
   menu: 📑 menu
   categories: 📂 categories
+  tags: tags
+  author: author
 
 form:
   theme:

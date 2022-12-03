@@ -9,3 +9,8 @@ block prepend heroContent
 block prepend mainContent
   -
     const post = page;
+    const author = {
+      name: config.author,
+      gravatar: theme.profile.gravatar,
+      description: theme.profile.description,
+    };
