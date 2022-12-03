@@ -8,6 +8,9 @@ const path = require("path");
 const cleanDirectory = (directory) => {
   return new Promise((resolve, reject) => {
     try {
+      if (!fs.existsSync(directory)) {
+        fs.mkdirSync(directory);
+      }
       const files = fs.readdirSync(directory);
       (files || []).forEach((file) => {
         fs.unlinkSync(path.join(directory, file), (err) => {
