@@ -1,5 +1,5 @@
 /**
- * @desc give mouse behavior to checkboxes that are not self-labeld
+ * @desc give mouse behavior to checkboxes that are not self-labeled
  * @param {MouseEvent} event
  */
 export function syncCheckbox(event) {

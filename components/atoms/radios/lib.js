@@ -1,5 +1,5 @@
 /**
- * @desc give mouse behavior to radio buttonc that are not self-labeld
+ * @desc give mouse behavior to radio button that are not self-labeled
  * @param {MouseEvent} event
  */
 export function syncRadio(event) {
