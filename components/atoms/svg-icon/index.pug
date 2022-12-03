@@ -37,6 +37,7 @@ mixin svgIcon(props = {})
     };
 
     const { prefix } = theme;
+    const imagePath = isDevelopment ? url_for(`/images`) : fullUrl(`/images`);
     const {
       iconName,
       iconCategory,
@@ -46,4 +47,4 @@ mixin svgIcon(props = {})
     class= `${prefix}-svg-icon`
     focusable= `false`
   )&attributes(attrs)
-    use(xlink:href= `/images/${iconCategory}.svg#${iconName}`)
+    use(xlink:href= `${imagePath}/${iconCategory}.svg#${iconName}`)
