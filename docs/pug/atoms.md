@@ -165,15 +165,15 @@ include ../svg-icon/index
   </span>
   <span class="amor-category__list" role="list">
     <span class="amor-category__content" role="listitem">
-      <span>cate-4umqtkkmkkn4vhg</span>
+      <span>cate-nl6lq35ct14rieg</span>
     </span>
     <span class="amor-category__separator" aria-hidden="true">&gt;</span>
     <span class="amor-category__content" role="listitem">
-      <span>cate-4umq1f033sv9sv</span>
+      <span>cate-nl6l7qeb3t30j7</span>
     </span>
     <span class="amor-category__separator" aria-hidden="true">&gt;</span>
     <span class="amor-category__content" role="listitem">
-      <span>cate-4umqlgnhvucr5cg</span>
+      <span>cate-nl6lp3aosj871go</span>
     </span>
   </span>
 </span>
@@ -319,21 +319,21 @@ label(for="no-label-checkbox") checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="jack8ac15ph"
+    id="esjt77v2hcs"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="jack8ac15ph">agree</label>
+  <label class="amor-checkbox__label" for="esjt77v2hcs">agree</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="maxdujlgnco"
+    id="djnxkf5n9s4"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="maxdujlgnco">check label</label>
+  <label class="amor-checkbox__label" for="djnxkf5n9s4">check label</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-checkbox">
@@ -410,22 +410,22 @@ label(for="no-label-switch") switch button
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="twjqmdrbugn"
+    id="fdxjuq0q9eq"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="twjqmdrbugn">alarm</label>
+  <label class="amor-switch__label" for="fdxjuq0q9eq">alarm</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-switch">
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="ussoqk0p514"
+    id="suqekvjpp34"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="ussoqk0p514">switch button</label>
+  <label class="amor-switch__label" for="suqekvjpp34">switch button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-switch">
@@ -493,14 +493,14 @@ include ../../utils/util
 <!-- simple-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="r9mdii22rso" datetime="2022-12-03">
+  <time class="amor-datetime__time" id="reil0or0dma" datetime="2022-12-03">
     2022. 12. 03
   </time>
 </span>
 <!-- explicit format-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="y0e46nkjr04" datetime="2022-12-03">
+  <time class="amor-datetime__time" id="pyysb76hu0v" datetime="2022-12-03">
     2022-12-03
   </time>
 </span>
@@ -613,7 +613,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="gveihmsm0fg"
+    id="yby06r3iais"
     name="answer"
     value="1"
   />
@@ -624,7 +624,7 @@ include ../../utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="lliss5e76h3"
+    id="rnusnc7ljsg"
     name="answer"
     value="1"
   />
@@ -688,22 +688,22 @@ label(for="no-label") radio button
   <input
     class="amor-radio__control"
     type="radio"
-    id="nmyfdtv70uo"
+    id="tbjatg4hjr8"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="nmyfdtv70uo">yes</label>
+  <label class="amor-radio__label" for="tbjatg4hjr8">yes</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-radio">
   <input
     class="amor-radio__control"
     type="radio"
-    id="zdi7tqtgm74"
+    id="u0c4ljlo3o8"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="zdi7tqtgm74">radio button</label>
+  <label class="amor-radio__label" for="u0c4ljlo3o8">radio button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-radio">

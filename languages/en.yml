@@ -30,6 +30,7 @@ section:
   categories: 📂 categories
   tags: tags
   author: author
+  comments: comments
 
 form:
   theme:

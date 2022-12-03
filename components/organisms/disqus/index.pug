@@ -1,0 +1,33 @@
+//- @pugdoc
+  name: disqus
+  description: create disqus comments
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - {object} props.shortname shortname of disqus
+  examples:
+    - |
+      +disqus({ shortname: theme.disqus.shortname, })
+
+mixin disqus(props= {})
+  -
+    // define types
+    const disqusProps = {
+      shortname: PropTypes.string,
+    };
+
+    // verifying props
+    validateProps(disqusProps)(props);
+
+    const {
+      shortname,
+      ...attrs
+    } = {
+      ...props,
+    };
+
+  if shortname
+    div#disqus_thread(
+      data-shorname= shortname
+    )&attributes(attrs)

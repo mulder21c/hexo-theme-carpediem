@@ -12,7 +12,7 @@ const outputPath = path.resolve(rootPath, "./source/js/");
 const isDevServer = hexo.env.cmd === "server";
 const isCleanStage = hexo.env.cmd === "clean";
 let bundleFileName = `bundle.js`;
-const { prefix: themePrefix } = (() => {
+const { prefix: themePrefix, disqus } = (() => {
   try {
     return jsYml.load(
       fs.readFileSync(path.resolve(rootPath, `./_config.yml`), `utf8`)
@@ -25,6 +25,11 @@ const { prefix: themePrefix } = (() => {
     return {};
   }
 })();
+
+!disqus?.shortname &&
+  sourcePath.push(
+    `!${path.resolve(rootPath, `./components/organisms/disqus/**/*.js`)}`
+  );
 
 cleanDirectory(outputPath).then(() => {
   bundleJS({

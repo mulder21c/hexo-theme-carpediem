@@ -30,6 +30,7 @@ section:
   categories: 📂 categories
   tags: 태그
   author: 작성자
+  comments: 댓글
 
 form:
   theme:

@@ -50,14 +50,14 @@ include ../../atoms/svg-icon/index
 ### example output 
 
 ```html
-<div class="amor-accordion" id="p13nosbgsfg" data-init-activate="1">
+<div class="amor-accordion" id="sblqp88umhg" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="ir22ljpr304"
+      id="m4o62613bcc"
       aria-expanded="false"
-      aria-controls="qbr054e4h3g"
+      aria-controls="fvh1y8lrhko"
     >
       heading 1
       <svg
@@ -73,9 +73,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="qbr054e4h3g"
+    id="fvh1y8lrhko"
     role="region"
-    aria-labelledby="ir22ljpr304"
+    aria-labelledby="m4o62613bcc"
     hidden="hidden"
   >
     panel 1
@@ -84,9 +84,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="ies5hhs5vhc"
+      id="h6beg7a4poc"
       aria-expanded="true"
-      aria-controls="r695yjgffio"
+      aria-controls="v5bx65cptck"
     >
       heading 2
       <svg
@@ -102,9 +102,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel active"
-    id="r695yjgffio"
+    id="v5bx65cptck"
     role="region"
-    aria-labelledby="ies5hhs5vhc"
+    aria-labelledby="h6beg7a4poc"
   >
     panel 2
   </div>
@@ -112,9 +112,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="ll592c4dars"
+      id="delb8o6grdg"
       aria-expanded="false"
-      aria-controls="sil1qvjcfm6"
+      aria-controls="tl277ahf3j3"
     >
       heading 3
       <svg
@@ -130,9 +130,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="sil1qvjcfm6"
+    id="tl277ahf3j3"
     role="region"
-    aria-labelledby="ll592c4dars"
+    aria-labelledby="delb8o6grdg"
     hidden="hidden"
   >
     panel 3
@@ -188,25 +188,25 @@ include ../../atoms/heading/index
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-4umm2nrm5271ooo/"
+        href="http://example.com/post-nl6k89i59187rng/"
       >
-        <span class="amor-timeline__title">Post 4umm2nrm5271ooo</span>
+        <span class="amor-timeline__title">Post nl6k89i59187rng</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-4ummjr1kdaltmj/"
+        href="http://example.com/post-nl6kn5k4rpirr8/"
       >
-        <span class="amor-timeline__title">Post 4ummjr1kdaltmj</span>
+        <span class="amor-timeline__title">Post nl6kn5k4rpirr8</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-4umm0lc23j59lo/"
+        href="http://example.com/post-nl6kmgue8c75s8/"
       >
-        <span class="amor-timeline__title">Post 4umm0lc23j59lo</span>
+        <span class="amor-timeline__title">Post nl6kmgue8c75s8</span>
       </a>
     </li>
   </ol>
@@ -251,8 +251,8 @@ include ../../utils/util
 ```html
 <div
   class="amor-article-content"
-  categories="<p>Sunt Lorem tempor amet proident tempor cupidatat labore irure aute ex enim anim sit. Proident aliqua mollit in adipisicing nostrud et sit do anim occaecat aliquip. Commodo et veniam occaecat proident dolore. Pariatur ad elit cillum do qui incididunt ea eiusmod. Irure dolore irure incididunt esse ullamco consectetur proident. Laborum irure ullamco et magna. Minim adipisicing esse tempor sit.</p>
-<p>Duis deserunt anim aute consectetur id qui do. Sit ullamco nisi cupidatat do adipisicing anim ullamco tempor. Irure anim aliquip sunt nulla non nisi. Occaecat est voluptate pariatur ipsum. Et commodo anim quis ea sint nisi exercitation. Reprehenderit pariatur ad officia officia quis nostrud reprehenderit pariatur id et tempor cillum do. Minim excepteur ipsum amet velit non voluptate officia.</p>"
+  categories="<p>Ex exercitation incididunt deserunt magna dolor sint. Dolor sint voluptate quis enim veniam excepteur. Consequat ullamco proident minim eiusmod. Ullamco consectetur dolor proident non sit. Irure do ipsum commodo excepteur tempor. Aliqua quis tempor voluptate minim laboris pariatur aliqua. Velit voluptate reprehenderit eiusmod exercitation nulla irure irure ex.</p>
+<p>Adipisicing reprehenderit nulla commodo commodo ut dolore est duis enim incididunt consequat culpa. Ipsum incididunt magna commodo ipsum duis fugiat consequat cillum. Culpa sint aliqua proident ipsum et adipisicing laboris excepteur proident. Nisi aliqua fugiat commodo nostrud adipisicing culpa pariatur duis ex sunt ullamco. Quis sunt dolor consectetur cillum laboris cillum laboris commodo.</p>"
 ></div>
 
 ```

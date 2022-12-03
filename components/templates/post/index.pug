@@ -6,6 +6,7 @@ include /components/molecules/author/index
 include /components/molecules/tags-list/index
 include /components/organisms/hero/index
 include /components/organisms/article-content/index
+include /components/organisms/disqus/index
 
 block heroContent
   -
@@ -60,5 +61,17 @@ block mainContent
           gravatar: author.gravatar,
           description: author.description,
         })
+
+
+    if post.comments !== false
+      section(class= `${prefix}-article__comments`)
+        +heading({
+          level: 2,
+          htmlString: _p(`section.comments`),
+          visible: false,
+        })
+
+        if theme.disqus
+          +disqus({ shortname: theme.disqus.shortname })
 
 block sidebar
