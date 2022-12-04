@@ -71,7 +71,7 @@ block mainContent
           visible: false,
         })
 
-        if theme.disqus
+        if theme.disqus && theme.disqus.shortname
           +disqus({ shortname: theme.disqus.shortname })
 
 block sidebar

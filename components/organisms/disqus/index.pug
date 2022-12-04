@@ -14,7 +14,7 @@ mixin disqus(props= {})
   -
     // define types
     const disqusProps = {
-      shortname: PropTypes.string,
+      shortname: PropTypes.string.isRequired,
     };
 
     // verifying props
@@ -27,7 +27,6 @@ mixin disqus(props= {})
       ...props,
     };
 
-  if shortname
-    div#disqus_thread(
-      data-shorname= shortname
-    )&attributes(attrs)
+  div#disqus_thread(
+    data-shorname= shortname
+  )&attributes(attrs)
