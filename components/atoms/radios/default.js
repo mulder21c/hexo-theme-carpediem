@@ -2,7 +2,7 @@ import { syncRadio } from "./lib";
 
 ((window, document) => {
   if (!window.components.has(`radio`)) return;
-  const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
+  const { themePrefix: prefix } = window;
 
   // bind handler to all virtual radio with no label
   const virtualRadios = document.querySelectorAll(

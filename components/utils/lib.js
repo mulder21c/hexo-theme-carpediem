@@ -198,8 +198,8 @@ export function getTabbable(context) {
   );
 }
 
-export const ThemeSetting = ((document, storage) => {
-  const IDENTIFIER = `theme-settings`;
+export const ThemeSetting = ((window, storage) => {
+  const IDENTIFIER = window.themeIdentifier;
   const defaults = {
     colorScheme: `auto`,
     fontSize: `medium`,
@@ -237,7 +237,7 @@ export const ThemeSetting = ((document, storage) => {
   });
 
   return state;
-})(document, localStorage);
+})(window, localStorage);
 
 export default {
   transitionHiddenElement,

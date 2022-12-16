@@ -2,7 +2,7 @@ import { syncCheckbox } from "./lib";
 
 ((window, document) => {
   if (!window.components.has(`checkboxes`)) return;
-  const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
+  const { themePrefix: prefix } = window;
 
   // bind handler to all virtual checkbox with no label
   const virtualCheckboxes = document.querySelectorAll(

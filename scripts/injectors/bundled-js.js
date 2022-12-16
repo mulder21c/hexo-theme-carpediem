@@ -12,24 +12,6 @@ const outputPath = path.resolve(rootPath, "./source/js/");
 const isDevServer = hexo.env.cmd === "server";
 const isCleanStage = hexo.env.cmd === "clean";
 let bundleFileName = `bundle.js`;
-const { prefix: themePrefix, disqus } = (() => {
-  try {
-    return jsYml.load(
-      fs.readFileSync(path.resolve(rootPath, `./_config.yml`), `utf8`)
-    );
-  } catch (err) {
-    console.error(
-      `\x1b[33m%s\x1b[0m`,
-      `[bundle-js] ⚠ Cannot find _config.yml for theme!`
-    );
-    return {};
-  }
-})();
-
-!disqus?.shortname &&
-  sourcePath.push(
-    `!${path.resolve(rootPath, `./components/organisms/disqus/**/*.js`)}`
-  );
 
 cleanDirectory(outputPath).then(() => {
   bundleJS({
@@ -64,16 +46,6 @@ cleanDirectory(outputPath).then(() => {
         }
       );
 
-    hexo.extend.injector.register(
-      `head_end`,
-      `
-        <script>
-          const GLOBAL = { themePrefix: "${themePrefix}" };
-          window.GLOBAL = GLOBAL;
-        </script>
-      `,
-      `default`
-    );
     hexo.extend.injector.register(
       `body_end`,
       `

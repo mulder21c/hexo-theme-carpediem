@@ -3,7 +3,6 @@ import { SlidePanel } from "./lib";
 ((window, document, slidePanels) => {
   if (!window.components.has(`slide-panel`)) return;
   if (!slidePanels.length) return;
-  const { themePrefix: prefix } = GLOBAL || window.GLOBAL;
 
   slidePanels.forEach((panel) => {
     const name = panel.getAttribute(`data-ui-name`);
