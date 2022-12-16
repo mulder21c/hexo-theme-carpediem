@@ -1,0 +1,51 @@
+//- @pugdoc
+  name: linksNavigation
+  description: create hexo external link list
+  beforeEach: |
+    include ../../../utils/util
+  arguments:
+    - {object} props
+    - {object} [props.options] the options for external link list
+    - |
+      {function} [props.options.transform] <br>
+      the function that changes the display of link name
+  examples:
+    - |
+      +linksNavigation()
+
+mixin linksNavigation(props = {})
+  -
+    // define types
+    const linksNavProps = {
+      options: PropTypes.object,
+    };
+
+    // verifying props
+    validateProps(linksNavProps)(props);
+
+    const { prefix } = theme;
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      options: {
+        class: `${prefix}-links-nav`
+      },
+    };
+
+    const {
+      options,
+      ...attrs
+    } = {
+      ...defaultProps,
+      ...(props || {}),
+      options: {
+        ...defaultProps.options,
+        ...(props?.options || {}),
+      }
+    };
+
+  nav(
+    class= options.class
+    aria-label= `links`
+  )&attributes(attrs)
+    | !{listLinks(options)}

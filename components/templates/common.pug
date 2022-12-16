@@ -4,8 +4,9 @@ include /components/atoms/radios/boxy
 include /components/molecules/radio-group/slider
 include /components/molecules/radio-group/boxy
 include /components/molecules/fieldset/default
-include /components/molecules/category-nav/index
-include /components/molecules/menu-nav/index
+include /components/molecules/navigation/category/index
+include /components/molecules/navigation/menu/index
+include /components/molecules/navigation/links/index
 include /components/organisms/accordion/index
 include /components/organisms/title-bar/index
 include /components/organisms/slide-panel/index
@@ -138,6 +139,12 @@ html(lang=config.language)
               = _p(`section.categories`)
             +accordionPanelSlot
               +categoryNavigation()
+
+          if (theme.links && theme.links.length)
+            +accordionHeadingSlot
+              = _p(`section.external-links`)
+            +accordionPanelSlot
+              +linksNavigation()
         block sidebar
 
     footer._footer

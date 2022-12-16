@@ -21,6 +21,11 @@ profile:
     twitter:
     rss: /rss.xml
 
+# links
+links:
+  # - name:
+  #   url:
+
 # Analytics
 analytics:
   google:
@@ -34,10 +39,10 @@ commento:
 
 # for options, see https://remark42.com/docs/configuration/frontend/
 remark:
-  host:
-  site_id:
-  no_footer:
-  locale:
+  host: https://comment.mulder21c.io
+  site_id: mulder21c.io
+  no_footer: true
+  locale: ko
 
 livere:
   uid:
