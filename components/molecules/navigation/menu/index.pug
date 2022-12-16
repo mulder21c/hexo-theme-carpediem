@@ -2,13 +2,13 @@
   name: menuNavigation
   description: create hexo menu list
   beforeEach: |
-    include ../../utils/util
+    include ../../../utils/util
   arguments:
     - {object} props
     - {object} [props.options] the options for menu list
     - |
       {function} [props.options.transform] <br>
-      the function that changes the display of category name
+      the function that changes the display of menu name
   examples:
     - |
       +menuNavigation()
