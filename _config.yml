@@ -3,6 +3,9 @@ prefix: amor
 
 # Header
 menu:
+  - about: "about"
+  - how: "hwo-to"
+  - Archives: /archives
 
 # Favicon
 favicon:
@@ -25,3 +28,37 @@ analytics:
 # Comments
 disqus:
   shortname:
+
+commento:
+  host:
+
+# for options, see https://remark42.com/docs/configuration/frontend/
+remark:
+  host:
+  site_id:
+  no_footer:
+  locale:
+
+livere:
+  uid:
+
+# for options, see https://utteranc.es/
+utterance:
+  repo:
+  issue_term:
+  issue_number:
+
+# for options, see https://giscus.app/
+giscus:
+  repo:
+  repo-id:
+  category:
+  category-id:
+  mapping:
+  strict:
+  reactions-enabled:
+  emit-metadata:
+  input-position:
+  theme:
+
+hero: https://live.staticflickr.com/863/41108552022_58980112e5_h.jpg

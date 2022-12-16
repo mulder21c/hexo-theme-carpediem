@@ -1,0 +1,20 @@
+//- @pugdoc
+  name: giscus
+  description: create giscus comments
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+  examples:
+    - |
+      +utterance()
+
+mixin giscus(props= {})
+  -
+    // define types
+    const giscusProps = {};
+
+    // verifying props
+    validateProps(giscusProps)(props);
+
+  script#giscus()&attributes(props)

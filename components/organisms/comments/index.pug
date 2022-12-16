@@ -1,0 +1,36 @@
+include /components/organisms/comments/disqus
+include /components/organisms/comments/commento
+include /components/organisms/comments/remark
+include /components/organisms/comments/livere
+include /components/organisms/comments/utterance
+
+mixin comments(props= {})
+  -
+    // define types
+    const commentsProps = {};
+
+    // verifying props
+    validateProps(commentsProps)(props);
+
+    const {
+      disqus,
+      commento,
+      remark,
+      livere,
+      utterance,
+    } = theme;
+
+  if disqus && disqus.shortname
+    +disqus(props)
+
+  if commento && commento.host
+    +commento(props)
+
+  if remark && remark.host
+    +remark(props)
+
+  if livere && livere.uid
+    +livere(props)
+
+  if utterance && utterance.repo
+    +utterance(props)

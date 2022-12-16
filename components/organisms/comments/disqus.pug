@@ -1,0 +1,20 @@
+//- @pugdoc
+  name: disqus
+  description: create disqus comments
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+  examples:
+    - |
+      +disqus()
+
+mixin disqus(props= {})
+  -
+    // define types
+    const disqusProps = {};
+
+    // verifying props
+    validateProps(disqusProps)(props);
+
+  div#disqus_thread()&attributes(props)

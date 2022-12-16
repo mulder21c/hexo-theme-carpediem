@@ -1,0 +1,25 @@
+//- @pugdoc
+  name: livere
+  description: create livere comments
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+  examples:
+    - |
+      +livere()
+
+mixin livere(props= {})
+  -
+    // define types
+    const livereProps = {};
+
+    // verifying props
+    validateProps(livereProps)(props);
+
+    const { livere: { uid } } = theme;
+
+  div#lv-container(
+    data-id= `city`
+    data-uid= uid
+  )&attributes(props)

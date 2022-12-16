@@ -1,0 +1,20 @@
+//- @pugdoc
+  name: utterance
+  description: create utterance comments
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+  examples:
+    - |
+      +utterance()
+
+mixin utterance(props= {})
+  -
+    // define types
+    const utteranceProps = {};
+
+    // verifying props
+    validateProps(utteranceProps)(props);
+
+  script#utterance()&attributes(props)

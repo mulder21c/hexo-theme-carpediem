@@ -1,0 +1,20 @@
+//- @pugdoc
+  name: remark
+  description: create remark comments
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+  examples:
+    - |
+      +remark()
+
+mixin remark(props= {})
+  -
+    // define types
+    const remarkProps = {};
+
+    // verifying props
+    validateProps(remarkProps)(props);
+
+  div#remark42()&attributes(props)

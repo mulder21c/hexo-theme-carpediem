@@ -1,0 +1,20 @@
+//- @pugdoc
+  name: commento
+  description: create commento comments
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+  examples:
+    - |
+      +commento()
+
+mixin commento(props= {})
+  -
+    // define types
+    const commentoProps = {};
+
+    // verifying props
+    validateProps(commentoProps)(props);
+
+  div#commento()&attributes(props)
