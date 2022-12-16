@@ -50,14 +50,14 @@ include ../../atoms/svg-icon/index
 ### example output 
 
 ```html
-<div class="amor-accordion" id="sblqp88umhg" data-init-activate="1">
+<div class="amor-accordion" id="gssuf7f3v6o" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="m4o62613bcc"
+      id="v19mbw0bgd8"
       aria-expanded="false"
-      aria-controls="fvh1y8lrhko"
+      aria-controls="np30plfq3eq"
     >
       heading 1
       <svg
@@ -73,9 +73,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="fvh1y8lrhko"
+    id="np30plfq3eq"
     role="region"
-    aria-labelledby="m4o62613bcc"
+    aria-labelledby="v19mbw0bgd8"
     hidden="hidden"
   >
     panel 1
@@ -84,9 +84,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="h6beg7a4poc"
+      id="n9wtxlc6sk8"
       aria-expanded="true"
-      aria-controls="v5bx65cptck"
+      aria-controls="ceusai6i5ig"
     >
       heading 2
       <svg
@@ -102,9 +102,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel active"
-    id="v5bx65cptck"
+    id="ceusai6i5ig"
     role="region"
-    aria-labelledby="h6beg7a4poc"
+    aria-labelledby="n9wtxlc6sk8"
   >
     panel 2
   </div>
@@ -112,9 +112,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="delb8o6grdg"
+      id="xqzkneg9f9g"
       aria-expanded="false"
-      aria-controls="tl277ahf3j3"
+      aria-controls="yng35ui7us8"
     >
       heading 3
       <svg
@@ -130,9 +130,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="tl277ahf3j3"
+    id="yng35ui7us8"
     role="region"
-    aria-labelledby="delb8o6grdg"
+    aria-labelledby="xqzkneg9f9g"
     hidden="hidden"
   >
     panel 3
@@ -188,25 +188,25 @@ include ../../atoms/heading/index
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-nl6k89i59187rng/"
+        href="http://example.com/post-jsg97897muinikg/"
       >
-        <span class="amor-timeline__title">Post nl6k89i59187rng</span>
+        <span class="amor-timeline__title">Post jsg97897muinikg</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-nl6kn5k4rpirr8/"
+        href="http://example.com/post-jsg97v4abfkto88/"
       >
-        <span class="amor-timeline__title">Post nl6kn5k4rpirr8</span>
+        <span class="amor-timeline__title">Post jsg97v4abfkto88</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-nl6kmgue8c75s8/"
+        href="http://example.com/post-jsgam6s43rbuaf8/"
       >
-        <span class="amor-timeline__title">Post nl6kmgue8c75s8</span>
+        <span class="amor-timeline__title">Post jsgam6s43rbuaf8</span>
       </a>
     </li>
   </ol>
@@ -251,8 +251,8 @@ include ../../utils/util
 ```html
 <div
   class="amor-article-content"
-  categories="<p>Ex exercitation incididunt deserunt magna dolor sint. Dolor sint voluptate quis enim veniam excepteur. Consequat ullamco proident minim eiusmod. Ullamco consectetur dolor proident non sit. Irure do ipsum commodo excepteur tempor. Aliqua quis tempor voluptate minim laboris pariatur aliqua. Velit voluptate reprehenderit eiusmod exercitation nulla irure irure ex.</p>
-<p>Adipisicing reprehenderit nulla commodo commodo ut dolore est duis enim incididunt consequat culpa. Ipsum incididunt magna commodo ipsum duis fugiat consequat cillum. Culpa sint aliqua proident ipsum et adipisicing laboris excepteur proident. Nisi aliqua fugiat commodo nostrud adipisicing culpa pariatur duis ex sunt ullamco. Quis sunt dolor consectetur cillum laboris cillum laboris commodo.</p>"
+  categories="<p>Incididunt sint sit est eiusmod est esse aliquip et voluptate consequat. Culpa Lorem laboris id anim esse adipisicing. Reprehenderit nulla officia quis aliqua labore eiusmod nisi non magna do incididunt dolore.</p>
+<p>Commodo veniam aute adipisicing tempor sint labore voluptate pariatur excepteur enim officia. Minim esse aliqua deserunt irure irure proident nostrud duis nisi laborum. Veniam aute esse est nulla nisi consectetur non culpa. Dolore do pariatur aliqua sunt eu enim consequat. Cupidatat Lorem adipisicing non mollit magna tempor labore ex ad laboris. Voluptate elit velit aliqua dolore voluptate nulla tempor ex duis ipsum officia sunt.</p>"
 ></div>
 
 ```
@@ -296,6 +296,234 @@ include ../../molecules/article-card/index
 
 ```html
 <ol class="amor-articles-list"></ol>
+
+```
+
+
+---
+
+
+## commento
+
+create commento comments
+
+
+### path 
+
+`components/organisms/comments/commento.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++commento()
+```
+
+
+### example output 
+
+```html
+<div id="commento"></div>
+
+```
+
+
+---
+
+
+## disqus
+
+create disqus comments
+
+
+### path 
+
+`components/organisms/comments/disqus.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++disqus()
+```
+
+
+### example output 
+
+```html
+<div id="disqus_thread"></div>
+
+```
+
+
+---
+
+
+## giscus
+
+create giscus comments
+
+
+### path 
+
+`components/organisms/comments/giscus.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++giscus()
+```
+
+
+### example output 
+
+```html
+<script id="giscus"></script>
+
+```
+
+
+---
+
+
+## livere
+
+create livere comments
+
+
+### path 
+
+`components/organisms/comments/livere.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++livere()
+```
+
+
+### example output 
+
+```html
+<div id="lv-container" data-id="city"></div>
+
+```
+
+
+---
+
+
+## remark
+
+create remark comments
+
+
+### path 
+
+`components/organisms/comments/remark.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++remark()
+```
+
+
+### example output 
+
+```html
+<div id="remark42"></div>
+
+```
+
+
+---
+
+
+## utterance
+
+create utterance comments
+
+
+### path 
+
+`components/organisms/comments/utterance.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+
++utterance()
+```
+
+
+### example output 
+
+```html
+<script id="utterance"></script>
 
 ```
 

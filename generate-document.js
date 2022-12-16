@@ -16,6 +16,7 @@ const truncate = require("./scripts/helpers/truncate");
 const paginator = require("./scripts/helpers/paginator");
 const listCategories = require("./scripts/helpers/list-categories");
 const listMenus = require("./scripts/helpers/list-menus");
+const listLinks = require("./scripts/helpers/list-links");
 const mapArchives = require(`./scripts/helpers/map-archives`);
 const page = require("./mock");
 const [post] = require("./mock/posts")({
@@ -79,6 +80,7 @@ const locals = {
   paginator,
   listCategories,
   listMenus,
+  listLinks,
   mapArchives,
   moment,
   mode: "production",
@@ -87,6 +89,7 @@ locals.fullUrl = locals.fullUrl.bind(locals);
 locals.paginator = locals.paginator.bind(locals);
 locals.listCategories = locals.listCategories.bind(locals);
 locals.listMenus = locals.listMenus.bind(locals);
+locals.listLinks = locals.listLinks.bind(locals);
 locals.mapArchives = locals.mapArchives.bind(locals);
 
 pugDocGen({
