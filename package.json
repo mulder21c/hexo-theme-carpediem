@@ -13,7 +13,7 @@
     "lint": "yarn lint:js && yarn lint:pug && yarn lint:pug && yarn lint:style && yarn lint:prettier",
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
     "postinstall": "copy-files-from-to",
-    "document": "node generate-document.js"
+    "document": "node ./utils/generate-document.js"
   },
   "keywords": [],
   "author": {

@@ -87,9 +87,7 @@ function PugDocMarkdown(options) {
       lines.push("### slots \n");
       lines.push(
         obj.meta.slots.reduce((table, arg) => {
-          const [, name, desc] = arg.match(
-            /(^[^\s.]*)\s(.*)/
-          );
+          const [, name, desc] = arg.match(/(^[^\s.]*)\s(.*)/);
           return `${table}|${name}|${desc.replace(/\|/g, "\\|")}|\n`;
         }, `|name|description|\n|:---:|:---|\n`)
       );

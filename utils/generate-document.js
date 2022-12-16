@@ -1,40 +1,40 @@
 const fs = require("fs");
 const pugDocGen = require("pug-doc");
-const PugDocMD = require("./docs/lib/pug-doc-markdown.js");
+const PugDocMD = require("./pug-doc-markdown.js");
 const sassDocMD = require("@hidoo/sassdoc-to-markdown").default;
 const path = require("path");
-const rootPath = path.resolve(__dirname);
+const rootPath = path.resolve(__dirname, `../`);
 const vanillaPropTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
 const moment = require("moment");
-const fullUrl = require("./scripts/helpers/full-url");
-const generateUid = require("./scripts/helpers/generate-uid");
-const representativeImage = require("./scripts/helpers/representative-image");
-const getIconCategory = require("./scripts/helpers/get-icon-category");
-const stripHTML = require("./scripts/helpers/strip-html");
-const truncate = require("./scripts/helpers/truncate");
-const paginator = require("./scripts/helpers/paginator");
-const listCategories = require("./scripts/helpers/list-categories");
-const listMenus = require("./scripts/helpers/list-menus");
-const listLinks = require("./scripts/helpers/list-links");
-const mapArchives = require(`./scripts/helpers/map-archives`);
-const page = require("./mock");
-const [post] = require("./mock/posts")({
+const fullUrl = require("../scripts/helpers/full-url");
+const generateUid = require("../scripts/helpers/generate-uid");
+const representativeImage = require("../scripts/helpers/representative-image");
+const getIconCategory = require("../scripts/helpers/get-icon-category");
+const stripHTML = require("../scripts/helpers/strip-html");
+const truncate = require("../scripts/helpers/truncate");
+const paginator = require("../scripts/helpers/paginator");
+const listCategories = require("../scripts/helpers/list-categories");
+const listMenus = require("../scripts/helpers/list-menus");
+const listLinks = require("../scripts/helpers/list-links");
+const mapArchives = require(`../scripts/helpers/map-archives`);
+const page = require("../mock");
+const [post] = require("../mock/posts")({
   domain: `http://example.com`,
   count: 1,
 });
-const posts = require("./mock/posts")({
+const posts = require("../mock/posts")({
   domain: `http://example.com`,
   count: 3,
 });
-const categoryGenerator = require("./mock/categories");
-const propTypesPreset = require("./mock/proptypes-preset");
+const categoryGenerator = require("../mock/categories");
+const propTypesPreset = require("../mock/proptypes-preset");
 
 const config = jsYml.load(
-  fs.readFileSync(path.resolve(__dirname, `../../_config.yml`), `utf8`)
+  fs.readFileSync(path.resolve(rootPath, `../../_config.yml`), `utf8`)
 );
 const theme = jsYml.load(
-  fs.readFileSync(path.resolve(__dirname, `./_config.yml`), `utf8`)
+  fs.readFileSync(path.resolve(rootPath, `./_config.yml`), `utf8`)
 );
 const domain = config.url || `http://example.com`;
 const categories = categoryGenerator({ count: 3, domain });
@@ -98,7 +98,7 @@ pugDocGen({
   locals,
   complete: function () {
     const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/pug/atoms.md"),
+      output: path.resolve(rootPath, "./docs/en/pug/atoms.md"),
       input: path.resolve(rootPath, "./data-atoms.json"),
     });
     stream.on("complete", function () {
@@ -112,7 +112,7 @@ pugDocGen({
   locals,
   complete: function () {
     const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/pug/molecules.md"),
+      output: path.resolve(rootPath, "./docs/en/pug/molecules.md"),
       input: path.resolve(rootPath, "./data-molecules.json"),
     });
     stream.on("complete", function () {
@@ -126,7 +126,7 @@ pugDocGen({
   locals,
   complete: function () {
     const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/pug/organisms.md"),
+      output: path.resolve(rootPath, "./docs/en/pug/organisms.md"),
       input: path.resolve(rootPath, "./data-organisms.json"),
     });
     stream.on("complete", function () {
@@ -140,7 +140,7 @@ pugDocGen({
   locals,
   complete: function () {
     const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/pug/templates.md"),
+      output: path.resolve(rootPath, "./docs/en/pug/templates.md"),
       input: path.resolve(rootPath, "./data-templates.json"),
     });
     stream.on("complete", function () {
@@ -154,7 +154,7 @@ pugDocGen({
   locals,
   complete: function () {
     const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/pug/utils.md"),
+      output: path.resolve(rootPath, "./docs/en/pug/utils.md"),
       input: path.resolve(rootPath, "./data-utils.json"),
     });
     stream.on("complete", function () {
@@ -164,10 +164,10 @@ pugDocGen({
 });
 
 sassDocMD(path.resolve(rootPath, `./source/css/**/*.scss`)).then((md) => {
-  const dir = path.resolve(rootPath, `./docs/scss`);
+  const dir = path.resolve(rootPath, `./docs/en/scss`);
 
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
+    fs.mkdirSync(dir, { recursive: true });
   }
   fs.writeFile(
     path.join(dir, `document.md`),
