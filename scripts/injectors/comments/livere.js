@@ -27,6 +27,6 @@ if (livere?.uid) {
       e.parentNode.insertBefore(j,e);})(document, 'script');
       </script>
     `,
-    `default`
+    `post`
   );
 }

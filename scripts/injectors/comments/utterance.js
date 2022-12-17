@@ -35,7 +35,7 @@ if (utterance?.repo) {
     hexo.extend.injector.register(
       `body_end`,
       `<script>${code}</script>`,
-      `default`
+      `post`
     );
   });
 }

@@ -32,6 +32,6 @@ if (remark?.host) {
       }(remark_config.components || ["embed"], document);
       </script>
     `,
-    `default`
+    `post`
   );
 }

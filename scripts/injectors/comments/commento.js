@@ -21,6 +21,6 @@ if (commento?.host) {
   hexo.extend.injector.register(
     `body_end`,
     `<script defer src=${host.replace(/\/$/, "")}/js/commento.js></script>`,
-    `default`
+    `post`
   );
 }

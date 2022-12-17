@@ -51,7 +51,7 @@ if (disqus?.shortname) {
     hexo.extend.injector.register(
       `body_end`,
       `<script>${code}</script>`,
-      `default`
+      `post`
     );
   });
 }
