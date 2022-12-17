@@ -16,6 +16,7 @@
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
+    gap: 0.25em;
     padding: math.div($padding-vertical, 2) math.div($padding-horizon, 2);
     border: 3px solid transparent;
     width: 100%;

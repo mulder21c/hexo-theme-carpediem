@@ -85,6 +85,7 @@ html(lang=config.language)
           "data-ui-name": "sidebar-accordion"
         })
           +accordionHeadingSlot
+            span(aria-hidden= true) ⚙️
             = _p(`section.settings`)
           +accordionPanelSlot
             +fieldset({direction: `column`})
@@ -130,18 +131,21 @@ html(lang=config.language)
 
           if (theme.menu && theme.menu.length)
             +accordionHeadingSlot
+              span(aria-hidden= true) 📑
               = _p(`section.menu`)
             +accordionPanelSlot
               +menuNavigation()
 
           if (site.categories && site.categories.length)
             +accordionHeadingSlot
+              span(aria-hidden= true) 📂
               = _p(`section.categories`)
             +accordionPanelSlot
               +categoryNavigation()
 
           if (theme.links && theme.links.length)
             +accordionHeadingSlot
+              span(aria-hidden= true) 🔗
               = _p(`section.external-links`)
             +accordionPanelSlot
               +linksNavigation()
