@@ -1,7 +1,8 @@
 const fs = require("fs");
+const glob = require("fast-glob");
 const path = require("path");
-const jsYml = require("js-yaml");
 const cleanDirectory = require("../utils/remove-file");
+const uid = require("../helpers/generate-uid");
 const { bundleJS } = require("../utils/bundler");
 const rootPath = path.resolve(__dirname, "../../");
 const sourcePath = [
@@ -11,24 +12,52 @@ const sourcePath = [
 const outputPath = path.resolve(rootPath, "./source/js/");
 const isDevServer = hexo.env.cmd === "server";
 const isCleanStage = hexo.env.cmd === "clean";
-let bundleFileName = `bundle.js`;
 
-cleanDirectory(outputPath).then(() => {
+/**
+ * Check mtime of existing bundled files
+ * to determine whether to proceed with bundling
+ */
+const { isChanged, fileName } = (() => {
+  const [currFile] = fs.readdirSync(outputPath);
+  if (!currFile) {
+    return {
+      fileName: `${uid()}.js`,
+      isChanged: true,
+    };
+  } else {
+    const { mtime: currFileMtime } = fs.statSync(
+      path.resolve(outputPath, currFile)
+    );
+    const isChanged = Boolean(
+      glob
+        .sync(path.resolve(rootPath, `./components/**/*.js`))
+        .find(
+          (file) => fs.statSync(file)?.mtime.getTime() > currFileMtime.getTime()
+        )
+    );
+    return {
+      fileName: isChanged ? `${uid()}.js` : currFile,
+      isChanged,
+    };
+  }
+})();
+
+// if on clean stage, forcefully clean up
+isCleanStage && cleanDirectory(outputPath);
+
+if (isChanged) {
+  cleanDirectory(outputPath);
   bundleJS({
     rollupOption: {
       input: sourcePath,
-      output: bundleFileName,
+      output: fileName,
     },
     isDevServer,
-  }).then(({ code, map, fileName }) => {
-    if (isCleanStage) return;
-
-    bundleFileName = isDevServer ? fileName : bundleFileName;
-
+  }).then(({ code, map }) => {
     // write bundled file
     fs.writeFileSync(
-      path.resolve(outputPath, `./${bundleFileName}`),
-      `${code}\n//# sourceMappingURL=/js/${bundleFileName}.map`,
+      path.resolve(outputPath, `./${fileName}`),
+      `${code}\n//# sourceMappingURL=/js/${fileName}.map`,
       {
         encoding: `utf8`,
         flag: `w`,
@@ -38,21 +67,21 @@ cleanDirectory(outputPath).then(() => {
     // write map file
     map &&
       fs.writeFileSync(
-        path.resolve(outputPath, `./${bundleFileName}.map`),
+        path.resolve(outputPath, `./${fileName}.map`),
         map.toString(),
         {
           encoding: `utf8`,
           flag: `w`,
         }
       );
-
-    hexo.extend.injector.register(
-      `body_end`,
-      `
-        <script data-component></script>
-        <script src="/js/${bundleFileName}"></script>
-      `,
-      `default`
-    );
   });
-});
+}
+
+hexo.extend.injector.register(
+  `body_end`,
+  `
+    <script data-component></script>
+    <script src="/js/${fileName}"></script>
+  `,
+  `default`
+);

@@ -6,23 +6,14 @@ const path = require("path");
  * @param {string} file
  */
 const cleanDirectory = (directory) => {
-  return new Promise((resolve, reject) => {
-    try {
-      if (!fs.existsSync(directory)) {
-        fs.mkdirSync(directory);
-      }
-      const files = fs.readdirSync(directory);
-      (files || []).forEach((file) => {
-        fs.unlinkSync(path.join(directory, file), (err) => {
-          if (err) throw err;
-        });
-      });
-      setTimeout(() => {
-        resolve();
-      }, 1000);
-    } catch (err) {
-      reject(err);
-    }
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory);
+  }
+  const files = fs.readdirSync(directory);
+  (files || []).forEach((file) => {
+    fs.unlinkSync(path.join(directory, file), (err) => {
+      if (err) throw err;
+    });
   });
 };
 
