@@ -1,8 +1,6 @@
 const fs = require("fs");
 const glob = require("fast-glob");
 const path = require("path");
-const cleanDirectory = require("../utils/remove-file");
-const uid = require("../helpers/generate-uid");
 const { bundleJS } = require("../utils/bundler");
 const rootPath = path.resolve(__dirname, "../../");
 const sourcePath = [
@@ -11,42 +9,32 @@ const sourcePath = [
 ];
 const outputPath = path.resolve(rootPath, "./source/js/");
 const isDevServer = hexo.env.cmd === "server";
-const isCleanStage = hexo.env.cmd === "clean";
+const isGenerateStage = hexo.env.cmd === "generate";
+const fileName = `bundled.js`;
 
 /**
  * Check mtime of existing bundled files
  * to determine whether to proceed with bundling
  */
-const { isChanged, fileName } = (() => {
+const isChanged = (() => {
   const [currFile] = fs.readdirSync(outputPath);
   if (!currFile) {
-    return {
-      fileName: `${uid()}.js`,
-      isChanged: true,
-    };
+    return true;
   } else {
     const { mtime: currFileMtime } = fs.statSync(
       path.resolve(outputPath, currFile)
     );
-    const isChanged = Boolean(
+    return Boolean(
       glob
         .sync(path.resolve(rootPath, `./components/**/*.js`))
         .find(
           (file) => fs.statSync(file)?.mtime.getTime() > currFileMtime.getTime()
         )
     );
-    return {
-      fileName: isChanged ? `${uid()}.js` : currFile,
-      isChanged,
-    };
   }
 })();
 
-// if on clean stage, forcefully clean up
-isCleanStage && cleanDirectory(outputPath);
-
-if (isChanged) {
-  cleanDirectory(outputPath);
+if (isChanged || isGenerateStage) {
   bundleJS({
     rollupOption: {
       input: sourcePath,
@@ -57,7 +45,7 @@ if (isChanged) {
     // write bundled file
     fs.writeFileSync(
       path.resolve(outputPath, `./${fileName}`),
-      `${code}\n//# sourceMappingURL=/js/${fileName}.map`,
+      map ? `${code}\n//# sourceMappingURL=/js/${fileName}.map` : `${code}`,
       {
         encoding: `utf8`,
         flag: `w`,
