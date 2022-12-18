@@ -17,20 +17,25 @@ const fileName = `bundled.js`;
  * to determine whether to proceed with bundling
  */
 const isChanged = (() => {
-  const [currFile] = fs.readdirSync(outputPath);
-  if (!currFile) {
+  const bundled = fs.existsSync(path.resolve(outputPath, fileName));
+  if (!bundled) {
     return true;
   } else {
-    const { mtime: currFileMtime } = fs.statSync(
-      path.resolve(outputPath, currFile)
+    const { mtime: currMtime } = fs.statSync(
+      path.resolve(outputPath, fileName)
     );
-    return Boolean(
+    const isChanged = Boolean(
       glob
         .sync(path.resolve(rootPath, `./components/**/*.js`))
         .find(
-          (file) => fs.statSync(file)?.mtime.getTime() > currFileMtime.getTime()
+          (file) => fs.statSync(file)?.mtime.getTime() > currMtime.getTime()
         )
     );
+    const unMatched =
+      currMtime.getTime() >
+      fs.statSync(path.resolve(outputPath, `${fileName}.map`))?.mtime.getTime();
+
+    return isChanged || unMatched;
   }
 })();
 
