@@ -10,10 +10,10 @@ include /components/organisms/comments/index
 
 block heroContent
   -
-    const postHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
+    const postHero = primaryHero?.path;
 
   if (postHero)
-    +hero(postHero && {imgSrc: postHero.path, class: `${prefix}-home-hero`})
+    +hero({imgSrc: postHero, class: `${prefix}-article__hero`})
 
 block mainContent
   if post
