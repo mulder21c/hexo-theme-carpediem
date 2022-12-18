@@ -1,6 +1,5 @@
 .#{$prefix}-hero {
-  height: 0;
-  padding-top: math.div(9, 21) * 100%;
+  aspect-ratio: 21/9;
   background-size: cover;
   background-origin: padding-box;
   background-position: center center;
