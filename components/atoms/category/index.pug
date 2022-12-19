@@ -123,10 +123,10 @@ mixin category(props = {})
             class= `${prefix}-category__content`
           )
             #{wrapper}(
-              href= useLink ? entry.path : null
+              href= useLink ? fullUrl(entry.path) : null
             )= entry.name
     else
       #{wrapper}(
-        href= useLink ? categoryEntries.path : null
+        href= useLink ? fullUrl(categoryEntries.path) : null
         class= `${prefix}-category__content`
       )= categoryEntries.name
