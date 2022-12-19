@@ -50,17 +50,18 @@ block mainContent
           class: `${prefix}-article__tags__list`,
         })
 
-      div(class= `${prefix}-article__author`)
-        +heading({
-          level: 2,
-          htmlString: _p(`section.author`),
-          visible: false,
-        })
-        +articleAuthor({
-          name: author.name,
-          gravatar: author.gravatar,
-          description: author.description,
-        })
+    section(class= `${prefix}-article__author`)
+      +heading({
+        level: 2,
+        htmlString: _p(`section.author`),
+        visible: false,
+      })
+      +articleAuthor({
+        name: author.name,
+        gravatar: author.gravatar,
+        description: author.description,
+        social: author.social,
+      })
 
     if post.comments !== false
       section(class= `${prefix}-article__comments`)

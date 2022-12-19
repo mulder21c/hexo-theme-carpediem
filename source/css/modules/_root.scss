@@ -114,6 +114,13 @@
         --box-background-color: $color-neutral-10,
         --box-accent-border-color: $color-green-60,
         --box-shadow-color: $color-neutral-80,
+        // social brand color
+        --brand-github-color: #333,
+        --brand-facebook-color: #0165e1,
+        --brand-linkedin-color: #0073ae,
+        --brand-instagram-color: #db0341,
+        --brand-twitter-color: #0071bc,
+        --brand-rss-color: #b35000,
       )
     );
   }
@@ -202,6 +209,13 @@
         // box content
         --box-background-color: $color-neutral-80,
         --box-accent-border-color: $color-green-30,
+        // social brand color
+        --brand-github-color: #8c8c8c,
+        --brand-facebook-color: #5286ff,
+        --brand-linkedin-color: #1b93d1,
+        --brand-instagram-color: #ff425e,
+        --brand-twitter-color: #1da1f2,
+        --brand-rss-color: #ee802f,
       )
     );
   }

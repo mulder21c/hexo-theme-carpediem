@@ -1,3 +1,4 @@
+include /components/atoms/svg-icon/index
 //- @pugdoc
   name: articleAuthor
   description: area for introducing author
@@ -10,6 +11,15 @@
       the path or url for gravatar
     - {string} [props.name] the name of author
     - {string} [props.description] the description for author
+    - {string} [props.social] the social links for author
+  examples:
+    - |
+      +articleAuthor({
+        name: config.author,
+        gravatar: theme.profile.gravatar,
+        description: theme.profile.description,
+        social: theme.profile.social,
+      })
 
 mixin articleAuthor(props= {})
   -
@@ -18,6 +28,7 @@ mixin articleAuthor(props= {})
       gravatar: PropTypes.string,
       name: PropTypes.string,
       description: PropTypes.string,
+      social: PropTypes.object,
     };
 
     // verifying props
@@ -27,6 +38,7 @@ mixin articleAuthor(props= {})
       gravatar,
       name,
       description,
+      social,
       ...attrs
     } = {
       ...props,
@@ -35,6 +47,7 @@ mixin articleAuthor(props= {})
     const { prefix } = theme;
     const defaultGravatar = `/images/author.svg`;
     const hasDesc = !!description;
+    const socialList = Object.entries(social).filter(([name, url]) => url );
 
   div(
     class= [
@@ -52,6 +65,28 @@ mixin articleAuthor(props= {})
       p(
         class= `${prefix}-author__name`
       )= name
+    if socialList.length
+      div(
+        class= `${prefix}-author__social`
+      )
+        each socialItem in socialList
+          - const [socialName, socialURL] = socialItem;
+          a(
+            href= socialURL
+            aria-label= socialName
+            class= `${prefix}-author__social__link`
+          )
+            +svgIcon({
+              name: socialName,
+              role: `presentation`,
+              focusable: `false`,
+              class: [
+                `${prefix}-author__social__icon`,
+                `${prefix}-author__social__icon--${socialName}`,
+              ],
+            })
+
+
     if description
       p(
         class= `${prefix}-author__desc`
