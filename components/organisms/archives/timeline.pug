@@ -8,7 +8,7 @@ include /components/atoms/heading/index
     include ../../atoms/heading/index
   arguments:
     - {object} props
-    - {object} props.archives the collection that is consist of archives
+    - {map} props.archives the collection that is consist of archives
     - {number} props.headingLevel [2] the level of year as heading
     - {number} [props.displayYearNum] [2] the number of years to be display
   examples:
@@ -50,13 +50,9 @@ mixin archiveTimeline(props = {})
   div(class= `${prefix}-timeline`)&attributes(attrs)
     -
       let count = 0;
-      const reverse = (a, b) => Number(a) > Number(b) ? -1 : 1;
-
-    each year in Object.keys(archives).reverse()
-      -
-        const yearlyItem = ++count <= displayYearNum ? archives[year] : {};
-        const months = Object.keys(yearlyItem).sort(reverse);
-
+      const archiveEntries = [...archives.entries()];
+    each archiveEntry in archiveEntries
+      - const [year, monthMap] = archiveEntry;
       +heading({
         level: headingLevel,
         class: `${prefix}-timeline__year`
@@ -67,10 +63,11 @@ mixin archiveTimeline(props = {})
         span
           = _p('label.posts.default')
 
-      if months && months.length
+      if monthMap.size && ++count <= displayYearNum
         ol(class= `${prefix}-timeline__list`)
-          each month in months
-            - const monthlyItem = yearlyItem[month];
+          - const monthEntries = [...monthMap.entries()];
+          each monthEntry in monthEntries
+            - const [month, monthlyItem] = monthEntry;
             if monthlyItem && monthlyItem.length
               each item in monthlyItem
                 li(class= `${prefix}-timeline__list__item`)

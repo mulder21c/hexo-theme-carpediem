@@ -9,6 +9,6 @@ block prepend heroContent
 block prepend mainContent
   -
     const map = mapArchives();
-    const archives = page.year ? {[page.year]: map[page.year]} : map;
+    const archives = page.year ? map.get(page.year) : map;
 
 block sidebar

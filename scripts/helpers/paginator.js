@@ -93,6 +93,11 @@ const pagenasionPartShow = (tags, options, ctx) => {
   }
 };
 
+/**
+ * generate HTML for pagination
+ * @param {object} options @see https://hexo.io/docs/helpers#paginator
+ * @returns {string}
+ */
 function paginatorHelper(options = {}) {
   options = Object.assign(
     {

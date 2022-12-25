@@ -1,20 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const jsYml = require("js-yaml");
-const rootPath = path.resolve(__dirname, "../../../");
-const { livere } = (() => {
-  try {
-    return jsYml.load(
-      fs.readFileSync(path.resolve(rootPath, `./_config.yml`), `utf8`)
-    );
-  } catch (err) {
-    console.error(
-      `\x1b[33m%s\x1b[0m`,
-      `[bundle-js] ⚠ Cannot find _config.yml for theme!`
-    );
-    return {};
-  }
-})();
+const {
+  themeConfig: { livere },
+} = require("../../constants");
 
 if (livere?.uid) {
   hexo.extend.injector.register(

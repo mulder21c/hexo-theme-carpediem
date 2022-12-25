@@ -1,5 +1,11 @@
 const { url_for } = require("hexo-util");
 
+/**
+ * @function fullUrlHelper
+ * @desc Return fully url from relative/absolute URL
+ * @param {String} url
+ * @return {String}
+ */
 function fullUrlHelper(url) {
   if (!url) return;
   const { config, site } = this;
@@ -22,10 +28,4 @@ function fullUrlHelper(url) {
   return isDevelopment ? url_for.call(this, url) : origin + "/" + url;
 }
 
-/**
- * @function fullUrlHelper
- * @desc Return fully url from relative/absolute URL
- * @param {String} url
- * @return {String}
- */
 module.exports = fullUrlHelper;

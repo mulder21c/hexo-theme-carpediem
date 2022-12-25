@@ -37,19 +37,19 @@ include ../../atoms/category/index
 <div class="amor-article-card amor-article-card--link">
   <img
     class="amor-article-card__thumb"
-    src="https://via.placeholder.com/320x180.png?text=2jtb8ji7dn5g8q"
+    src="https://via.placeholder.com/320x180.png?text=7rsbhrg8sbtapt"
     alt=""
     loading="lazy"
     role="none"
   />
   <a
     class="amor-article-card__heading"
-    href="http://example.com/post-2jtb8ji7dn5g8q/"
-    aria-describedby="xdpiubs444l rjsjbjiupeo"
+    href="http://example.com/post-7rsbhrg8sbtapt/"
+    aria-describedby="yzsjp4keo9k hfovmpvkpmc"
   >
-    Post 2jtb8ji7dn5g8q
+    Post 7rsbhrg8sbtapt
   </a>
-  <div class="amor-article-card__meta" id="xdpiubs444l">
+  <div class="amor-article-card__meta" id="yzsjp4keo9k">
     <span class="amor-datetime amor-article-card__meta__item">
       <span
         class="amor-datetime__label"
@@ -58,8 +58,8 @@ include ../../atoms/category/index
       >
         📆
       </span>
-      <time class="amor-datetime__time" id="rn1irc750pu" datetime="2022-12-19">
-        2022. 12. 19
+      <time class="amor-datetime__time" id="phkuzhp9mls" datetime="2022-12-25">
+        2022. 12. 25
       </time>
     </span>
     <span class="amor-category amor-article-card__meta__item">
@@ -72,7 +72,7 @@ include ../../atoms/category/index
       </span>
       <span class="amor-category__list" role="list">
         <span class="amor-category__content" role="listitem">
-          <span>cate-2jtbpa2quqid4c8</span>
+          <span>cate-7rsbu604imv8q7</span>
         </span>
         <span class="amor-category__separator" aria-hidden="true">
           <svg class="amor-svg-icon" focusable="false">
@@ -82,16 +82,17 @@ include ../../atoms/category/index
           </svg>
         </span>
         <span class="amor-category__content" role="listitem">
-          <span>cate-2jtb9mr97ils68g</span>
+          <span>cate-7rsbpc6bd3aeuo</span>
         </span>
       </span>
     </span>
   </div>
-  <p class="amor-article-card__content" id="rjsjbjiupeo">
-    Tempor laboris anim occaecat fugiat veniam incididunt consectetur sit. Ad
-    culpa elit do consequat dolor adipisicing. Anim anim consectetur et dolore
-    eiusmod. Aliqua qui enim enim voluptate excepteur est fugiat sunt. Ex magna
-    dolore enim sint eu. Ad non elit veniam labore consequat sunt nisi
+  <p class="amor-article-card__content" id="hfovmpvkpmc">
+    Amet culpa sunt exercitation aliqua non est est eu esse voluptate
+    adipisicing ipsum. Sit proident occaecat in incididunt mollit enim ex sunt
+    minim mollit occaecat consectetur proident officia. Consectetur aliqua magna
+    occaecat non ad culpa. Deserunt nostrud laborum laborum non enim ex ex ex
+    ipsum
   </p>
 </div>
 
@@ -151,8 +152,8 @@ include ../../atoms/datetime/index
     </span>
     <span class="amor-category__list" role="list">
       <span class="amor-category__content" role="listitem">
-        <a href="http://example.com/categories/cate-2jtbpa2quqid4c8">
-          cate-2jtbpa2quqid4c8
+        <a href="http://example.com/categories/cate-7rsbu604imv8q7">
+          cate-7rsbu604imv8q7
         </a>
       </span>
       <span class="amor-category__separator" aria-hidden="true">
@@ -163,8 +164,8 @@ include ../../atoms/datetime/index
         </svg>
       </span>
       <span class="amor-category__content" role="listitem">
-        <a href="http://example.com/categories/cate-2jtb9mr97ils68g">
-          cate-2jtb9mr97ils68g
+        <a href="http://example.com/categories/cate-7rsbpc6bd3aeuo">
+          cate-7rsbpc6bd3aeuo
         </a>
       </span>
     </span>
@@ -177,10 +178,74 @@ include ../../atoms/datetime/index
     >
       📆
     </span>
-    <time class="amor-datetime__time" id="q8eqqcphpeg" datetime="2022-12-19">
-      2022. 12. 19
+    <time class="amor-datetime__time" id="yjo75egndco" datetime="2022-12-25">
+      2022. 12. 25
     </time>
   </span>
+</div>
+
+```
+
+
+---
+
+
+## articleAuthor
+
+area for introducing author
+
+
+### path 
+
+`components/molecules/author/index.pug`
+
+
+### arguments 
+
+|name|description|type|default|optional|
+|:---:|:---|:---:|:---:|:---:|
+|props||object||false|
+|props.gravatar|the path or url for gravatar|string|`/images/author.svg`|true|
+|props.name|the name of author|string||true|
+|props.description|the description for author|string||true|
+|props.social|the social links for author|string||true|
+
+
+
+### examples
+
+```jade
+include ../../utils/util
+include ../../atoms/svg-icon/index
+
++articleAuthor({
+  name: config.author,
+  gravatar: theme.profile.gravatar,
+  description: theme.profile.description,
+  social: theme.profile.social,
+})
+```
+
+
+### example output 
+
+```html
+<div class="amor-author amor-author--no-desc">
+  <span class="amor-author__gravatar">
+    <img src="http://example.com/images/author.svg" alt="" role="none" />
+  </span>
+  <p class="amor-author__name">John Doe</p>
+  <div class="amor-author__social">
+    <a class="amor-author__social__link" href="/rss.xml" aria-label="rss">
+      <svg
+        class="amor-svg-icon amor-author__social__icon amor-author__social__icon--rss"
+        focusable="false"
+        role="presentation"
+      >
+        <use xlink:href="http://example.com/images/solid.svg#rss"></use>
+      </svg>
+    </a>
+  </div>
 </div>
 
 ```
@@ -245,9 +310,9 @@ include ../../utils/util
 <div
   class="amor-field amor-field--row amor-field--start"
   role="group"
-  aria-labelledby="tsuvlk28l46"
+  aria-labelledby="jocq0cjktp8"
 >
-  <div class="amor-field__label amor-field__label--30" id="tsuvlk28l46">
+  <div class="amor-field__label amor-field__label--30" id="jocq0cjktp8">
     fieldset title
   </div>
   <div class="amor-field__body"><p>fieldset body</p></div>
@@ -256,9 +321,9 @@ include ../../utils/util
 <div
   class="amor-field amor-field--column"
   role="group"
-  aria-labelledby="lskhlscmn1k"
+  aria-labelledby="kcvy6d054bo"
 >
-  <div class="amor-field__label amor-field__label--30" id="lskhlscmn1k">
+  <div class="amor-field__label amor-field__label--30" id="kcvy6d054bo">
     fieldset title
   </div>
   <div class="amor-field__body"><p>fieldset body</p></div>
@@ -305,28 +370,28 @@ include ../../../utils/util
   <ul class="amor-category-nav__list">
     <li class="amor-category-nav__list__item">
       <a
-        href="http://example.com/categories/cate-2jtftts1sssr7r8"
+        href="http://example.com/categories/cate-7rsd9s6ciqld4pg"
         class="amor-category-nav__list__link"
       >
-        cate-2jtftts1sssr7r8
+        cate-7rsd9s6ciqld4pg
       </a>
     </li>
 
     <li class="amor-category-nav__list__item">
       <a
-        href="http://example.com/categories/cate-2jtf0nf7su4nhfg"
+        href="http://example.com/categories/cate-7rsd8o02d1s4hkg"
         class="amor-category-nav__list__link"
       >
-        cate-2jtf0nf7su4nhfg
+        cate-7rsd8o02d1s4hkg
       </a>
     </li>
 
     <li class="amor-category-nav__list__item">
       <a
-        href="http://example.com/categories/cate-2jtfo4i1clo40o8"
+        href="http://example.com/categories/cate-7rsdalna9e64ju"
         class="amor-category-nav__list__link"
       >
-        cate-2jtfo4i1clo40o8
+        cate-7rsdalna9e64ju
       </a>
     </li>
   </ul>
@@ -370,20 +435,7 @@ include ../../../utils/util
 ### example output 
 
 ```html
-<nav class="amor-links-nav" aria-label="links">
-  <ul class="amor-links-nav__list">
-    <li class="amor-links-nav__list__item">
-      <a
-        href="null"
-        class="amor-links-nav__list__link"
-        target="_blank"
-        rel="noopener"
-      >
-        null
-      </a>
-    </li>
-  </ul>
-</nav>
+<nav class="amor-links-nav" aria-label="links"></nav>
 
 ```
 
@@ -519,7 +571,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ixv9prp8hug"
+      id="xtmzu2ton1o"
       name="size"
       value="small"
     />
@@ -529,7 +581,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="jequdrstiec"
+      id="st1obwunv48"
       name="size"
       value="medium"
     />
@@ -539,7 +591,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="k2q8tmq11ns"
+      id="y6q5kdujplo"
       name="size"
       value="large"
     />
@@ -552,7 +604,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="nn7mage4cvo"
+      id="pav90i61vie"
       name="size2"
       value="small"
     />
@@ -562,7 +614,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="duvfh4fd0mg"
+      id="eiignl2470o"
       name="size2"
       value="medium"
     />
@@ -572,7 +624,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="hf4uifkpqnf"
+      id="gwr0hetna8r"
       name="size2"
       value="large"
     />
@@ -660,31 +712,31 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="c2h5gfpblin"
+      id="ecfeceaidko"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="c2h5gfpblin">designer</label>
+    <label class="amor-radio__label" for="ecfeceaidko">designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="rbq3pel2a96"
+      id="djwujgr1n4o"
       name="job"
       value="publisher"
     />
-    <label class="amor-radio__label" for="rbq3pel2a96">publisher</label>
+    <label class="amor-radio__label" for="djwujgr1n4o">publisher</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="m4u6j4rr2ag"
+      id="nici0hqbjqe"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="m4u6j4rr2ag">
+    <label class="amor-radio__label" for="nici0hqbjqe">
       frontend developer
     </label>
   </span>
@@ -692,21 +744,21 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="tntr4miikc8"
+      id="qe2mtd0ofhe"
       name="job"
       value="devops"
     />
-    <label class="amor-radio__label" for="tntr4miikc8">devops</label>
+    <label class="amor-radio__label" for="qe2mtd0ofhe">devops</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="xm26dahac9k"
+      id="o5mb5xklvus"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="xm26dahac9k">iOS developer</label>
+    <label class="amor-radio__label" for="o5mb5xklvus">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
@@ -715,31 +767,31 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="b6ijcfmq7dc"
+      id="lppwt1ouh5g"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="b6ijcfmq7dc">웹 디자이너</label>
+    <label class="amor-radio__label" for="lppwt1ouh5g">웹 디자이너</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="o0x54rk7efo"
+      id="amfsmle1154"
       name="job2"
       value="publisher"
     />
-    <label class="amor-radio__label" for="o0x54rk7efo">웹 퍼블리셔</label>
+    <label class="amor-radio__label" for="amfsmle1154">웹 퍼블리셔</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="xpmqkimr299"
+      id="zsb7imth82g"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="xpmqkimr299">프론트엔드 개발자</label>
+    <label class="amor-radio__label" for="zsb7imth82g">프론트엔드 개발자</label>
   </span>
 </div>
 
@@ -820,13 +872,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="ogre9bjr93k"
+      id="a3u5c57oek4"
       name="size"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="ogre9bjr93k"
+      for="a3u5c57oek4"
     >
       small
     </label>
@@ -836,13 +888,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="crav9wdbkh8"
+      id="soabu1mgcc2"
       name="size"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="crav9wdbkh8"
+      for="soabu1mgcc2"
     >
       medium
     </label>
@@ -852,13 +904,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="qk7u2tnm4c1"
+      id="gng9oivd4a5"
       name="size"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="qk7u2tnm4c1"
+      for="gng9oivd4a5"
     >
       large
     </label>
@@ -870,13 +922,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="s216ddh0rp8"
+      id="kxbmscav7ct"
       name="size2"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="s216ddh0rp8"
+      for="kxbmscav7ct"
     >
       small
     </label>
@@ -886,13 +938,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="r9k6ni05g0o"
+      id="vdmc1j0prha"
       name="size2"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="r9k6ni05g0o"
+      for="vdmc1j0prha"
     >
       medium
     </label>
@@ -902,13 +954,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="iod48mdeju4"
+      id="cdwkwx592p2"
       name="size2"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="iod48mdeju4"
+      for="cdwkwx592p2"
     >
       large
     </label>
@@ -957,13 +1009,13 @@ include ../../utils/util
 <div class="amor-tags-list amor-tags-list--flat">
   <ul>
     <li>
-      <a href="http://example.com/tags/tag-2jtb3n771mn538g/">
-        tag-2jtb3n771mn538g
+      <a href="http://example.com/tags/tag-7rsb41fsr84c1sg/">
+        tag-7rsb41fsr84c1sg
       </a>
     </li>
     <li>
-      <a href="http://example.com/tags/tag-2jtbc9mn3snb2n/">
-        tag-2jtbc9mn3snb2n
+      <a href="http://example.com/tags/tag-7rsbfgls4eo9u4g/">
+        tag-7rsbfgls4eo9u4g
       </a>
     </li>
   </ul>

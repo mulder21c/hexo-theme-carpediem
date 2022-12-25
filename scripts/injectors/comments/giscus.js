@@ -1,21 +1,7 @@
-const fs = require("fs");
-const path = require("path");
-const jsYml = require("js-yaml");
-const rootPath = path.resolve(__dirname, "../../../");
 const { minify } = require("terser");
-const { giscus } = (() => {
-  try {
-    return jsYml.load(
-      fs.readFileSync(path.resolve(rootPath, `./_config.yml`), `utf8`)
-    );
-  } catch (err) {
-    console.error(
-      `\x1b[33m%s\x1b[0m`,
-      `[bundle-js] ⚠ Cannot find _config.yml for theme!`
-    );
-    return {};
-  }
-})();
+const {
+  themeConfig: { giscus },
+} = require("../../constants");
 
 if (giscus?.repo) {
   minify(`

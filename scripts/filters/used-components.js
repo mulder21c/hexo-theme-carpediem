@@ -1,6 +1,7 @@
 /**
  * @desc replace script tag passing used-components list into window object
  * @param {string} html rendered html string
+ * @return {string}
  */
 function setUsedComponentsFilter(html) {
   const locals = this.locals;

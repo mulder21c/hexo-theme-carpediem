@@ -5,6 +5,14 @@
 const fullUrl = require("./full-url");
 const { url_for } = require("hexo-util");
 
+/**
+ * build HTML from menu on theme config
+ * @param {array} menus the menu from theme config
+ * @param {object} options the configuration object
+ * @param {function} options.transform The function that changes the display of tag name
+ * @param {string} options.class class name of tag list
+ * @returns
+ */
 function listMenuHelper(menus, options) {
   if (!options && (!menus || !Array.isArray(menus))) {
     options = menus;

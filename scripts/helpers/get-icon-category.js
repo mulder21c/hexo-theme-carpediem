@@ -1,23 +1,12 @@
-const fs = require("fs");
 const path = require("path");
-const jsYml = require("js-yaml");
-const nodeModulePath = path.resolve(__dirname, `../../node_modules/`);
-const iconsMeta = (() => {
-  try {
-    return jsYml.load(
-      fs.readFileSync(
-        path.resolve(
-          nodeModulePath,
-          `./@fortawesome/fontawesome-free/metadata/icons.yml`
-        ),
-        `utf8`
-      )
-    );
-  } catch (err) {
-    console.warn("\x1b[33m%s\x1b[0m", `⚠ Cannot find fontawesome!`);
-    return {};
-  }
-})();
+const loadYml = require("../utils/load-yaml");
+const iconListPath = path.resolve(
+  __dirname,
+  `../../node_modules/`,
+  `./@fortawesome/fontawesome-free/metadata/icons.yml`
+);
+
+const iconsMeta = (() => loadYml(iconListPath, `⚠ Cannot find fontawesome!`))();
 
 /**
  * @typedef {Object} IconInfo
@@ -34,16 +23,13 @@ const iconsMeta = (() => {
  * @return {IconInfo}
  */
 function getIconCategoryHelper(icon) {
+  const hexo = this;
   const [name, category] = icon.split("/");
   const { styles } = iconsMeta?.[name] || { styles: [] };
   const [style] = styles;
 
   if (category && !styles.includes(category)) {
-    console.warn(
-      "\x1b[33m%s\x1b[0m",
-      `⚠ Cannot find "${icon}" icon from fontawesome.`
-    );
-    return null;
+    hexo.error(`⚠ Cannot find "${icon}" icon from fontawesome.`);
   }
 
   return {

@@ -50,14 +50,14 @@ include ../../atoms/svg-icon/index
 ### example output 
 
 ```html
-<div class="amor-accordion" id="bkyrmh4nthg" data-init-activate="1">
+<div class="amor-accordion" id="s6c5a37adjn" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="kuknag2odi4"
+      id="w14znxoagt7"
       aria-expanded="false"
-      aria-controls="p8cnizfvufi"
+      aria-controls="avl95k837jr"
     >
       heading 1
       <svg
@@ -73,9 +73,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="p8cnizfvufi"
+    id="avl95k837jr"
     role="region"
-    aria-labelledby="kuknag2odi4"
+    aria-labelledby="w14znxoagt7"
     hidden="hidden"
   >
     panel 1
@@ -84,9 +84,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="m2f292183d8"
+      id="w60pvs64nts"
       aria-expanded="true"
-      aria-controls="f11bjg9qk1n"
+      aria-controls="de3dn9qncta"
     >
       heading 2
       <svg
@@ -102,9 +102,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel active"
-    id="f11bjg9qk1n"
+    id="de3dn9qncta"
     role="region"
-    aria-labelledby="m2f292183d8"
+    aria-labelledby="w60pvs64nts"
   >
     panel 2
   </div>
@@ -112,9 +112,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="l5vi2kl08bk"
+      id="au1lv8m59gg"
       aria-expanded="false"
-      aria-controls="lgn9vl3pnac"
+      aria-controls="gadbuk9d7k2"
     >
       heading 3
       <svg
@@ -130,9 +130,9 @@ include ../../atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="lgn9vl3pnac"
+    id="gadbuk9d7k2"
     role="region"
-    aria-labelledby="l5vi2kl08bk"
+    aria-labelledby="au1lv8m59gg"
     hidden="hidden"
   >
     panel 3
@@ -160,7 +160,7 @@ create archive timeline
 |name|description|type|default|optional|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||false|
-|props.archives|the collection that is consist of archives|object||false|
+|props.archives|the collection that is consist of archives|map||false|
 |props.headingLevel|the level of year as heading|number|2|false|
 |props.displayYearNum|the number of years to be display|number|2|true|
 
@@ -188,25 +188,25 @@ include ../../atoms/heading/index
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-2jtb4koquh05k38/"
+        href="http://example.com/post-7rsbm5r4u5vlbdg/"
       >
-        <span class="amor-timeline__title">Post 2jtb4koquh05k38</span>
+        <span class="amor-timeline__title">Post 7rsbm5r4u5vlbdg</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-2jtb9jqvat1j33/"
+        href="http://example.com/post-7rsbp1l0d5vubn/"
       >
-        <span class="amor-timeline__title">Post 2jtb9jqvat1j33</span>
+        <span class="amor-timeline__title">Post 7rsbp1l0d5vubn</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-2jtb7p3u03ug6go/"
+        href="http://example.com/post-7rscd4g2pgdrvd8/"
       >
-        <span class="amor-timeline__title">Post 2jtb7p3u03ug6go</span>
+        <span class="amor-timeline__title">Post 7rscd4g2pgdrvd8</span>
       </a>
     </li>
   </ol>
@@ -251,8 +251,8 @@ include ../../utils/util
 ```html
 <div
   class="amor-article-content"
-  categories="<p>Tempor laboris anim occaecat fugiat veniam incididunt consectetur sit. Ad culpa elit do consequat dolor adipisicing. Anim anim consectetur et dolore eiusmod.</p>
-<p>Aliqua qui enim enim voluptate excepteur est fugiat sunt. Ex magna dolore enim sint eu. Ad non elit veniam labore consequat sunt nisi adipisicing Lorem quis incididunt id in. Consectetur proident reprehenderit voluptate sint nostrud velit reprehenderit do est elit elit adipisicing magna qui. Dolor fugiat sit ut labore ex Lorem ex adipisicing reprehenderit sint commodo consequat in. Do incididunt incididunt proident culpa ea tempor non. Amet esse aliquip laborum anim do Lorem ullamco eu non officia elit non.</p>"
+  categories="<p>Amet culpa sunt exercitation aliqua non est est eu esse voluptate adipisicing ipsum. Sit proident occaecat in incididunt mollit enim ex sunt minim mollit occaecat consectetur proident officia. Consectetur aliqua magna occaecat non ad culpa. Deserunt nostrud laborum laborum non enim ex ex ex ipsum dolore. Cillum qui sint consequat aliqua sunt cillum magna mollit eu nostrud laborum culpa. Reprehenderit fugiat veniam ut voluptate cupidatat. Est aliquip ea veniam laboris ex ea do enim voluptate exercitation occaecat aliqua esse.</p>
+<p>Veniam irure occaecat irure sint aute id et. Duis ex sunt et dolor commodo laboris nulla incididunt ex aliquip Lorem. Dolore voluptate magna consequat commodo commodo laboris occaecat veniam eu et ipsum magna. Duis aliquip laborum duis pariatur quis eu pariatur eu anim. Ullamco in commodo adipisicing in.</p>"
 ></div>
 
 ```

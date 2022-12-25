@@ -1,28 +1,19 @@
 const fs = require("fs");
 const path = require("path");
-const jsYml = require("js-yaml");
-const glob = require("fast-glob");
-const { compileInlineSCSS } = require("../utils/bundler");
-const rootPath = path.resolve(__dirname, "../../");
-const cssSourcePath = path.resolve(rootPath, `./source/css/`);
-const { prefix: themePrefix } = (() => {
-  try {
-    return jsYml.load(
-      fs.readFileSync(path.resolve(rootPath, `./_config.yml`), `utf8`)
-    );
-  } catch (err) {
-    console.error(`\x1b[33m%s\x1b[0m`, `⚠ Cannot find _config.yml for theme!`);
-    return {};
-  }
-})();
+const scssProcessor = require("../renderer/libs/scss-processor");
+const {
+  themeConfig: { prefix: themePrefix },
+  themeSourcePath,
+} = require("../constants");
+const cssSourcePath = path.resolve(themeSourcePath, `./css/`);
 
-const functions = fs.readFileSync(
+const scssFunctions = fs.readFileSync(
   path.join(cssSourcePath, "./helpers/_functions.scss")
 );
-const mixins = fs.readFileSync(
+const sassMixins = fs.readFileSync(
   path.join(cssSourcePath, "./helpers/_mixins.scss")
 );
-const variables = fs.readFileSync(
+const sassVariables = fs.readFileSync(
   path.join(cssSourcePath, "./modules/_variables.scss")
 );
 
@@ -45,15 +36,14 @@ const postCssOption = {
  * @returns {string}
  */
 function compileSCSSHelper(css) {
-  const result = compileInlineSCSS({
-    source: `@use "sass:math"; ${functions} ${mixins} ${variables} ${css}`,
+  return scssProcessor({
+    source: `@use "sass:math"; ${scssFunctions} ${sassMixins} ${sassVariables} ${css}`,
     prepend,
     sassOption,
     postCssOption,
     useCssNano: false,
-  });
-
-  return result;
+    sync: true,
+  }).css;
 }
 
 module.exports = compileSCSSHelper;

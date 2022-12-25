@@ -2,11 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
-const rootPath = path.resolve(__dirname, `../../`);
-const sourcePath = path.resolve(rootPath, "../../source/");
+const { hexoSourcePath } = require("../constants");
 let imageInfo;
 try {
-  imageInfo = require(path.resolve(sourcePath, "./_data/images.db.json"));
+  imageInfo = require(path.resolve(hexoSourcePath, "./_data/images.db.json"));
 } catch (err) {
   imageInfo = [];
 }
@@ -62,7 +61,7 @@ function representativeImageHelper(page) {
       };
     }
   } else {
-    const filePath = path.join(sourcePath, hero);
+    const filePath = path.join(hexoSourcePath, hero);
     const dimension = probe.sync(fs.readFileSync(filePath));
     return {
       path: hero,

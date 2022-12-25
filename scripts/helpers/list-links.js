@@ -2,6 +2,14 @@
  * this is inspired from hexo listCategoriesHelper helper
  */
 
+/**
+ * build HTML from link on theme config
+ * @param {array} links the array that is consists of name and url
+ * @param {object} options the configuration object
+ * @param {function} options.transform The function that changes the display of tag name
+ * @param {string} options.class class name of tag list
+ * @returns
+ */
 function listLinksHelper(links, options) {
   if (!options && (!links || !Array.isArray(links))) {
     options = links;

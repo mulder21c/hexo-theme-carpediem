@@ -1,14 +1,16 @@
-"use strict";
-
 const { url_for } = require("hexo-util");
 
-function mapArchivesHelper(options = {}) {
+/**
+ * generate archives data mapped by year and month
+ * @returns {object}
+ */
+function mapArchivesHelper() {
   const { config } = this;
   const { timezone } = config;
   const posts = this.site.posts.sort("date", -1);
   if (!posts.length) return {};
 
-  const archives = {};
+  const archives = new Map();
   const isDevelopment = this.site.mode === "development";
 
   posts.forEach((post) => {
@@ -19,17 +21,22 @@ function mapArchivesHelper(options = {}) {
     const year = date.year();
     const month = date.month() + 1;
 
-    if (!archives.hasOwnProperty(year)) archives[year] = {};
-    if (!archives[year].hasOwnProperty(month)) archives[year][month] = [];
+    if (!archives.get(year)) archives.set(year, new Map());
+    if (!archives.get(year).get(month)) archives.get(year).set(month, []);
 
-    archives[year][month].push({
-      title: post.title,
-      subtitle: post.subtitle || "",
-      permalink: isDevelopment ? url_for.call(this, post.path) : post.permalink,
-      date,
-      categories: post.categories,
-      tags: post.tags,
-    });
+    archives
+      .get(year)
+      .get(month)
+      .push({
+        title: post.title,
+        subtitle: post.subtitle || "",
+        permalink: isDevelopment
+          ? url_for.call(this, post.path)
+          : post.permalink,
+        date,
+        categories: post.categories,
+        tags: post.tags,
+      });
   });
 
   return archives;

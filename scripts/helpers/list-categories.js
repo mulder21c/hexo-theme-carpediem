@@ -5,6 +5,12 @@
 const fullUrl = require("./full-url");
 const { url_for } = require("hexo-util");
 
+/**
+ * build HTML from categories
+ * @param {object} categories the iterable object of categories from Hexo
+ * @param {object} options @see https://hexo.io/docs/helpers#list-categories
+ * @returns {string}
+ */
 function listCategoriesHelper(categories, options) {
   if (
     !options &&
