@@ -4,11 +4,16 @@ const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
 const { hexoSourcePath } = require("../constants");
 let imageInfo;
-try {
-  imageInfo = require(path.resolve(hexoSourcePath, "./_data/images.db.json"));
-} catch (err) {
-  imageInfo = [];
-}
+const getImageInfo = () => {
+  try {
+    delete require.cache[path.resolve(hexoSourcePath, "./_data/hero.db.json")];
+    return new Map(
+      require(path.resolve(hexoSourcePath, "./_data/hero.db.json"))
+    );
+  } catch (err) {
+    return new Map();
+  }
+};
 
 /**
  * @typedef {Object} ImageProbe
@@ -39,14 +44,17 @@ const prependHttpProtocol = (url) => {
  * @return {ImageProbe}
  */
 function representativeImageHelper(page) {
+  const hexo = this;
+  const log = hexo.log || hexo.log.info;
   const hero = page?.hero || page?.photos?.unshift() || undefined;
   if (!hero) return null;
 
-  const info = imageInfo.find((image) => image.path === hero);
-  if (info) return info;
+  imageInfo = imageInfo || getImageInfo();
+  const info = imageInfo.get(hero);
+  if (info) return { path: hero, ...info };
 
   const isExternal = /^((https?):)?\/\//i.test(hero);
-  console.log(`[helper] getting image size: ${hero}`);
+  log(`Getting hero image size for '${hero}' in memory`);
   if (isExternal) {
     try {
       const image = fetch(prependHttpProtocol(hero));

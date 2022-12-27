@@ -3,7 +3,7 @@ const path = require("path");
 const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
 const truncateFile = require("./libs/truncate-file");
-const { hexoSourcePath } = require("../constants");
+const { hexoSourcePath, themeConfig } = require("../constants");
 const heroDBPath = path.resolve(hexoSourcePath, "./_data/hero.db.json");
 
 /**
@@ -53,7 +53,9 @@ function heroInfoGenerator(data) {
   const [posts] = data;
   const imageInfo = new Map(JSON.parse(getHeroInfo()));
 
-  (posts || []).forEach((post) => {
+  hexo.log.info(`Start generating hero image database.`);
+
+  ([themeConfig, ...posts] || [themeConfig]).forEach((post) => {
     const hero = post?.hero || undefined;
     if (!hero) return;
     if (imageInfo.get(hero)) return;
@@ -80,8 +82,7 @@ function heroInfoGenerator(data) {
       flag: `w`,
     }
   );
-
-  hexo.log.info(`Generated Hero image database.`);
+  hexo.log.info(`Generated hero image database.`);
   hexo.extend.filter.unregister(`before_generate`, heroInfoGenerator);
 }
 
