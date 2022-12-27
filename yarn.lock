@@ -2766,10 +2766,10 @@ eslint-plugin-prettier@^4.2.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-pug@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-pug/-/eslint-plugin-pug-1.2.4.tgz#7ccb85cf3c787fa01500c5763ed7fc8caa4988f2"
-  integrity sha512-p/GrX0BgZx/nx1cw/SSDuxEIdZGBeQdG+Cr5+YnpbvEqD0gO9SPEpWS4csZYKlIzxOCy2WxyyGDLKVsF3LD4Ww==
+eslint-plugin-pug@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-pug/-/eslint-plugin-pug-1.2.5.tgz#a83475c4e7949ea103a89b48057c900d3a4b97f5"
+  integrity sha512-rxsQI8ch1pUtP6jBBbmx3dqesZ+5+FdFgzP61pQgIWUezg5YwV+we0ROqk1JF71xdUrMKJkKbJglJ6lHrsOSzg==
   dependencies:
     lodash "^4.17.20"
     pug-lexer "^5.0.0"
