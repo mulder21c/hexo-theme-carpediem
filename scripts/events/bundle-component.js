@@ -2,7 +2,7 @@ const fs = require("fs");
 const glob = require("fast-glob");
 const path = require("path");
 const rollup = require("./libs/rollup");
-const cleanupDir = require("./libs/cleanup-dir");
+const { cleanUpFiles } = require("./libs/cleanup");
 const { themeRoot, themeSourcePath, bundleName } = require("../constants");
 const sourcePath = [
   path.resolve(themeRoot, `./components/**/*.js`),
@@ -47,7 +47,10 @@ function bundler() {
   })();
 
   if (isChanged) {
-    cleanupDir(outputPath);
+    cleanUpFiles([
+      path.resolve(outputPath, `./${bundleName}`),
+      path.resolve(outputPath, `./${bundleName}.map`),
+    ]);
     return rollup({
       rollupOption: {
         input: sourcePath,
