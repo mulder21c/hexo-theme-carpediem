@@ -14,6 +14,18 @@
     - |
       {integer} [props.labelWidthRatio] [3] the factor of label's width
       in the container
+    - |
+      {string|Array.<string>} [props.labelSlotClassName]
+      the class name of label slot's container
+    - |
+      {string|Array.<string>} [props.bodySlotClassName]
+      the class name of body slot's container
+    - |
+      {object} [props.labelSlotAttrs]
+      the attributes of label slot's container
+    - |
+      {object} [props.bodySlotAttrs]
+      the attributes of body slot's container
   slots:
     - fieldsetLabelSlot the slot for legend of fieldset
     - fieldsetBodySlot the slot for body of fieldset
@@ -49,6 +61,14 @@ mixin fieldset(props = {})
         }
         return true;
       }),
+      labelSlotClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+      ]),
+      bodySlotClassName: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+      ]),
     };
 
     // verifying props
@@ -56,27 +76,36 @@ mixin fieldset(props = {})
 
     // merge user-supplied options with the defaults
     const defaultProps = {
-      id: generateUid(),
+      uid: generateUid(),
       direction: `row`,
       alignItem: `start`,
       labelWidthRatio: 3,
     };
     const {
-      id,
+      uid,
       direction,
       alignItem,
       labelWidthRatio,
+      labelSlotClassName = "",
+      bodySlotClassName = "",
+      labelSlotAttrs = {},
+      bodySlotAttrs = {},
       ...attrs
     } = {
       ...defaultProps,
       ...props,
     };
 
+    const id = labelSlotAttrs.id || uid;
     const { prefix } = theme;
 
     // declaring slots
     let fieldsetLabelSlot = null;
     let fieldsetBodySlot = null;
+    const labelSlotClass = Array.isArray(labelSlotClassName)
+      ? labelSlotClassName : [labelSlotClassName];
+    const bodySlotClass = Array.isArray(bodySlotClassName)
+      ? bodySlotClassName : [bodySlotClassName];
 
   mixin fieldsetLabelSlot
     - fieldsetLabelSlot = block;
@@ -101,8 +130,14 @@ mixin fieldset(props = {})
         {
           [`${prefix}-field__label--${labelWidthRatio * 10}`]: labelWidthRatio
         },
+        ...labelSlotClass,
       ]
-    )
+    )&attributes(labelSlotAttrs)
       - fieldsetLabelSlot();
-    div(class= `${prefix}-field__body`)
+    div(
+      class= [
+        `${prefix}-field__body`,
+        ...bodySlotClass,
+      ]
+    )&attributes(bodySlotAttrs)
       - fieldsetBodySlot();
