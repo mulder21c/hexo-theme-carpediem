@@ -45,13 +45,13 @@ const prependHttpProtocol = (url) => {
  */
 function representativeImageHelper(page) {
   const hexo = this;
-  const log = hexo.log || hexo.log.info;
+  const log = (hexo.log && hexo.log.info) || console.log;
   const hero = page?.hero || page?.photos?.unshift() || undefined;
   if (!hero) return null;
 
   imageInfo = imageInfo || getImageInfo();
-  const info = imageInfo.get(hero);
-  if (info) return { path: hero, ...info };
+  const heroInfo = imageInfo.get(hero);
+  if (heroInfo) return { path: hero, ...heroInfo };
 
   const isExternal = /^((https?):)?\/\//i.test(hero);
   log(`Getting hero image size for '${hero}' in memory`);
