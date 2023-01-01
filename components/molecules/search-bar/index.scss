@@ -1,0 +1,24 @@
+.#{$prefix}-searchbar {
+  margin: 0 auto;
+  max-width: 80ch;
+
+  &__label {
+    @include sr-only;
+  }
+  &__body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__textfield {
+    flex: 1 1 auto;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  &__btn-submit {
+    flex: 0 0 auto;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

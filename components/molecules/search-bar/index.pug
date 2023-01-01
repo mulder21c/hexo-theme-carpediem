@@ -1,0 +1,72 @@
+include ../../atoms/buttons/default
+include ../../atoms/textbox/index
+include ../../molecules/fieldset/default
+
+//- @pugdoc
+  name: searchBar
+  description: create search bar component
+  beforeEach: |
+    include ../../utils/util
+    include ../../atoms/buttons/default
+    include ../../atoms/textbox/index
+    include ../../molecules/fieldset/default
+  arguments:
+    - {object} props
+    - |
+      {string} props.textfieldId the id value for search text field
+    - {string} props.searchBtnId the id value for search button
+  examples:
+    - |
+      +searchBar({
+        textfieldId: `keyword`,
+        searchBtnId: `btn-search`,
+      })
+
+mixin searchBar(props = {})
+  -
+    // define types
+    const searchBarProps = {
+      textfieldId: PropTypes.string.isRequired,
+      searchBtnId: PropTypes.string.isRequired,
+    };
+
+    // verifying props
+    validateProps(searchBarProps)(props);
+
+    const {
+      textfieldId,
+      searchBtnId,
+      ...attrs
+    } = {
+      ...props,
+    };
+    const { prefix } = theme;
+    const labelId = generateUid();
+
+  +fieldset({
+    direction: `column`,
+    labelSlotClassName: `${prefix}-searchbar__label`,
+    bodySlotClassName: `${prefix}-searchbar__body`,
+    labelSlotAttrs: {
+      id: labelId,
+    },
+    class: `${prefix}-searchbar`,
+  })
+    +fieldsetLabelSlot
+      = _p(`label.search`)
+    +fieldsetBodySlot
+      +textbox({
+        id: textfieldId,
+        type: `text`,
+        size: `medium`,
+        class: `${prefix}-searchbar__textfield`,
+        'aria-labelledby': labelId,
+        autocomplete: 'off'
+      })
+      +button({
+        id: searchBtnId,
+        type: `button`,
+        size: `medium`,
+        appearance: `fill`,
+        class: `${prefix}-searchbar__btn-submit`,
+      })= _p(`label.search`)
