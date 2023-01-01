@@ -1,0 +1,80 @@
+//- @pugdoc
+  name: textbox
+  description: input textbox component
+  beforeEach: |
+    include ../../utils/util
+  arguments:
+    - {object} props
+    - |
+      {string} [props.id] the value of textbox's id attribute and label's for
+      attribute <br>
+      If not specified, an auto-generated id is assigned.
+    - {string} [props.name] the value of textbox's name attribute
+    - {string} [props.value] the value of textbox
+    - {string} [props.placeholder] the placeholder of textbox
+    - {string} [props.type] ['text'] the value of type attribute for textbox
+    - |
+      {string} [props.size] ['medium'] size of button
+      <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`
+  examples:
+    - |
+      +textbox({
+        type: 'text',
+        size: 'medium',
+      })
+
+mixin textbox(props = {})
+  -
+    // define types
+    const textboxProps = {
+      id: PropTypes.string,
+      name: PropTypes.string,
+      value: PropTypes.string,
+      placeholder: PropTypes.string,
+      type: PropTypes.oneOf([
+        `text`,
+        `password`,
+        `search`,
+        `tel`,
+      ]),
+      size: PropTypes.oneOf([
+        `small`,
+        `medium`,
+        `large`,
+      ]),
+    };
+
+    // verifying props
+    validateProps(textboxProps)(props);
+
+    // merge user-supplied options with the defaults
+    const defaultProps = {
+      id: generateUid(),
+      type: `text`,
+      size: `medium`,
+    };
+
+    const {
+      id,
+      name,
+      label,
+      value,
+      placeholder,
+      type,
+      size,
+      ...attrs
+    } = {
+      ...defaultProps,
+      ...props,
+    };
+
+    const { prefix } = theme;
+
+  input(
+    id= id
+    name= name || null
+    type= type
+    value= value || null
+    placeholder= placeholder || null
+    class= `${prefix}-textbox ${prefix}-textbox--${size}`
+  )&attributes(attrs)

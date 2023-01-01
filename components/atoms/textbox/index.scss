@@ -1,0 +1,40 @@
+.#{$prefix}-textbox {
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--button-border-radius);
+  font-family: var(--font-family-sans-serif);
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--input-text-color);
+  filter: drop-shadow(2px 2px 2px var(--input-shadow-color));
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: background 0.2s ease-in-out;
+  }
+
+  &:hover {
+    border-color: var(--input-hover-border-color);
+    background-color: var(--input-hover-background-color);
+  }
+
+  &:focus {
+    border-color: var(--input-focus-border-color);
+    background-color: var(--input-focus-background-color);
+    outline: 2px solid var(--input-outline-color);
+    outline-offset: -2px;
+  }
+
+  // sizes
+  &--small {
+    padding: 0 0.75rem;
+  }
+
+  &--medium {
+    min-width: 4.75rem;
+    padding: 0.5rem 1.125rem;
+  }
+
+  &--large {
+    min-width: 6rem;
+    padding: 0.75rem 1.875rem;
+    font-size: var(--font-size-large);
+  }
+}
