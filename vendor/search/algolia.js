@@ -1,5 +1,6 @@
 ((window, document) => {
-  const { themePrefix } = window;
+  const { themePrefix, instantsearch } = window;
+  if (!instantsearch) return;
   const algoliaSearch = ({
     searchBoxId,
     inputId,
