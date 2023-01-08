@@ -5,6 +5,7 @@ const themeSourcePath = path.resolve(themeRoot, "./source");
 const hexoRoot = path.resolve(themeRoot, "./../../");
 const hexoSourcePath = path.resolve(hexoRoot, "./source");
 const bundleName = `bundle.js`;
+const vendorName = `vendor.js`;
 const themeConfig = loadYml(
   path.resolve(themeRoot, `./_config.yml`),
   `⚠ Cannot find theme config!`
@@ -22,4 +23,5 @@ module.exports = {
   themeSourcePath,
   themeConfig,
   bundleName,
+  vendorName,
 };
