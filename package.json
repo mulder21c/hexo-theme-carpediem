@@ -81,7 +81,7 @@
     "pug-lint": "^2.6.0",
     "rollup": "^2.79.1",
     "sass": "^1.57.1",
-    "stylelint": "^14.16.0",
+    "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-standard": "^29.0.0",
     "sync-fetch": "^0.4.2",
