@@ -3,8 +3,6 @@ prefix: amor
 
 # Header
 menu:
-  - about: "about"
-  - how: "hwo-to"
   - Archives: /archives
 
 # Favicon
@@ -39,10 +37,10 @@ commento:
 
 # for options, see https://remark42.com/docs/configuration/frontend/
 remark:
-  host: https://comment.mulder21c.io
-  site_id: mulder21c.io
-  no_footer: true
-  locale: ko
+  host:
+  site_id:
+  no_footer:
+  locale:
 
 livere:
   uid:
@@ -66,6 +64,6 @@ giscus:
   input-position:
   theme:
 
-hero: https://live.staticflickr.com/863/41108552022_58980112e5_h.jpg
+hero:
 
 search: algolia
