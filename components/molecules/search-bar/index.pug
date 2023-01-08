@@ -51,6 +51,7 @@ mixin searchBar(props = {})
       id: labelId,
     },
     class: `${prefix}-searchbar`,
+    id: `searchbox`
   })
     +fieldsetLabelSlot
       = _p(`label.search`)
@@ -61,7 +62,10 @@ mixin searchBar(props = {})
         size: `medium`,
         class: `${prefix}-searchbar__textfield`,
         'aria-labelledby': labelId,
-        autocomplete: 'off'
+        autocomplete: 'off',
+        autocorrect: `off`,
+        autocapitalize: `none`,
+        spellcheck: `false`,
       })
       +button({
         id: searchBtnId,
