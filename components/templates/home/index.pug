@@ -7,7 +7,7 @@ block heroContent
     const listHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
 
   if (listHero)
-    +hero(listHero && {imgSrc: listHero.path, class: `${prefix}-home-hero`})
+    +hero({imgSrc: listHero.path, class: `${prefix}-home-hero`})
 
 block mainContent
   -
