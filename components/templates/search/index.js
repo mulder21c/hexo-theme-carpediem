@@ -1,6 +1,7 @@
 window.addEventListener(`load`, function () {
   const { themePrefix } = window;
   const search = window.uis.get(`search`);
+  if (!search) return;
   // algolia configuration
   search({
     searchBoxId: `#searchbox`,
