@@ -11,7 +11,7 @@ function setUsedComponentsFilter(html) {
   // uis: component's named ui
   const replaceStr = `<script>
     window.components = new Set(${JSON.stringify([...components])});
-    window.uis = new Map();
+    window.uis = window.uis || new Map();
   </script>`;
   return html.replace(sourceStr, replaceStr);
 }
