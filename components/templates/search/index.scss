@@ -1,0 +1,100 @@
+.#{$prefix}-search {
+  &__hero {
+    margin: -2rem -0.75rem 2rem;
+    width: calc(100% + 0.75em * 2);
+
+    &#{&} {
+      aspect-ratio: 16/9;
+
+      @include respond-to(tablet) {
+        aspect-ratio: 21/9;
+      }
+
+      @include respond-to(large) {
+        aspect-ratio: unset;
+        padding-top: 500px;
+      }
+    }
+  }
+
+  &__result {
+    max-width: 80ch;
+    margin: 2rem auto 0;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+
+    &__item {
+      padding: 1em;
+      border: 1px solid var(--card-border-color);
+      border-radius: var(--card-border-radius);
+      background-color: var(--card-background-color);
+      outline-offset: 0;
+
+      &:hover {
+        border-color: var(--card-hover-border-color);
+        outline: 1px solid var(--card-hover-outline-color);
+        background-color: var(--card-hover-background-color);
+        box-shadow: 1px 1px 2px 1px var(--card-hover-shadow-color);
+        cursor: pointer;
+      }
+      &:focus-within,
+      &:active {
+        border-color: var(--card-focus-border-color);
+        outline: 3px solid var(--card-focus-outline-color);
+        background-color: var(--card-hover-background-color);
+        box-shadow: 2px 2px 4px 4px var(--card-focus-shadow-color);
+      }
+
+      &:not(:first-child) {
+        margin-top: 2rem;
+      }
+
+      &::marker {
+        content: "";
+      }
+
+      mark[class$="highlighted"] {
+        display: inline-block;
+        padding: 0 0.25em;
+        border-radius: 0.25em;
+        background-color: var(--button-background-color);
+        color: var(--button-text-color);
+      }
+    }
+
+    &__link[href] {
+      color: inherit;
+      text-decoration: none;
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    &__title {
+      font-size: var(--font-size-heading-level-6);
+      font-weight: var(--font-weight-semi-bold);
+    }
+
+    &__content {
+      margin: 1.5em 0;
+    }
+
+    &__tags {
+      display: inline-flex;
+      flex-flow: row wrap;
+      color: var(--text-color-secondary);
+      column-gap: 1em;
+
+      > span {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+#search-status {
+  @include sr-only;
+}

@@ -1,0 +1,24 @@
+extends /components/templates/common
+include /components/molecules/search-bar/index
+include /components/organisms/hero/index
+
+block heroContent
+  -
+    const searchHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
+  if (searchHero)
+    +hero({imgSrc: searchHero.path, class: `${prefix}-search__hero`})
+
+block mainContent
+  +searchBar({
+    textfieldId: `keyword`,
+    searchBtnId: `btn-search`,
+    id: `search`
+  })
+
+  #search-result
+
+  #search-status(
+    role= "status"
+  )
+
+block sidebar
