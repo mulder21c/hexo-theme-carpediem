@@ -11,6 +11,7 @@ include /components/atoms/heading/index
     - {map} props.archives the collection that is consist of archives
     - {number} props.headingLevel [2] the level of year as heading
     - {number} [props.displayYearNum] [2] the number of years to be display
+    - {number} [props.currYear] The year currently exposed to page
   examples:
     - |
       +archiveTimeline({archives: mapArchives(), headingLevel: 2})
@@ -21,8 +22,8 @@ mixin archiveTimeline(props = {})
     const archivesProps = {
       archives: PropTypes.object.isRequired,
       headingLevel: propTypesPreset.headingLevel.isRequired,
-      sectionHeadingProp: propTypesPreset.heading,
       displayYearNum: PropTypes.number,
+      currYear: PropTypes.number,
     };
 
     // verifying props
@@ -39,6 +40,7 @@ mixin archiveTimeline(props = {})
       archives,
       headingLevel,
       displayYearNum,
+      currYear,
       ...attrs
     } = {
       ...defaultProp,
@@ -50,22 +52,26 @@ mixin archiveTimeline(props = {})
   div(class= `${prefix}-timeline`)&attributes(attrs)
     -
       let count = 0;
-      const archiveEntries = [...archives.entries()];
-    each archiveEntry in archiveEntries
-      - const [year, monthMap] = archiveEntry;
-      +heading({
-        level: headingLevel,
-        class: `${prefix}-timeline__year`
-      })
-        = year
-        | &rsquo;
-        = " "
-        span
-          = _p('label.posts.default')
+      const archiveEntries = currYear
+        ? [[currYear, archives.get(currYear)]]
+        : [...archives.entries()];
 
-      if monthMap.size && ++count <= displayYearNum
+    each archiveEntry in archiveEntries
+      - const [year, subMap] = archiveEntry;
+      if !currYear
+        +heading({
+          level: headingLevel,
+          class: `${prefix}-timeline__year`
+        })
+          = year
+          | &rsquo;
+          = " "
+          span
+            = _p('label.posts.default')
+
+      if subMap.size && ++count <= displayYearNum
         ol(class= `${prefix}-timeline__list`)
-          - const monthEntries = [...monthMap.entries()];
+          - const monthEntries = [...subMap.entries()];
           each monthEntry in monthEntries
             - const [month, monthlyItem] = monthEntry;
             if monthlyItem && monthlyItem.length
