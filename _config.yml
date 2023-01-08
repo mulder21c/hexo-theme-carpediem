@@ -67,3 +67,5 @@ giscus:
   theme:
 
 hero: https://live.staticflickr.com/863/41108552022_58980112e5_h.jpg
+
+search: algolia

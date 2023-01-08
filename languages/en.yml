@@ -22,6 +22,7 @@ label:
   read_more: read more
   tags:
     no_tags: no tags
+  search: search
 
 section:
   side: settings and navigation
@@ -32,6 +33,7 @@ section:
   tags: tags
   author: author
   comments: comments
+  search: search
 
 form:
   theme:
@@ -46,6 +48,3 @@ form:
       small: small
       medium: medium
       large: large
-
-date:
-  month: "%d월"

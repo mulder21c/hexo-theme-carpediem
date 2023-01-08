@@ -1,4 +1,5 @@
 extends /components/templates/common
+include /components/atoms/heading/index
 include /components/molecules/search-bar/index
 include /components/organisms/hero/index
 
@@ -9,6 +10,11 @@ block heroContent
     +hero({imgSrc: searchHero.path, class: `${prefix}-search__hero`})
 
 block mainContent
+  +heading({
+    level: 1,
+    visible: false,
+  })
+    = _p("section.search")
   +searchBar({
     textfieldId: `keyword`,
     searchBtnId: `btn-search`,

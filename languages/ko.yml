@@ -22,6 +22,7 @@ label:
   read_more: 더보기
   tags:
     no_tags: 태그가 없어요
+  search: 검색
 
 section:
   side: 설정 및 내비게이션
@@ -32,6 +33,7 @@ section:
   tags: 태그
   author: 작성자
   comments: 댓글
+  search: search
 
 form:
   theme:
@@ -46,6 +48,3 @@ form:
       small: 작게
       medium: 보통
       large: 크게
-
-date:
-  month: "%d월"

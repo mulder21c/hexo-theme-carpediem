@@ -1,6 +1,7 @@
 include /components/utils/util
 include /components/utils/mixin
 include /components/atoms/radios/boxy
+include /components/atoms/svg-icon/index
 include /components/molecules/radio-group/slider
 include /components/molecules/radio-group/boxy
 include /components/molecules/fieldset/default
@@ -14,7 +15,7 @@ include /components/organisms/footer/index
 
 -
   const {title: siteTitle} = config;
-  const { prefix } = theme;
+  const { prefix, search: useSearch } = theme;
   const hero = representativeImage(theme);
 
 doctype html
@@ -91,21 +92,21 @@ html(lang=config.language)
             +fieldset({direction: `column`})
               +fieldsetLabelSlot
                 = _p(`form.theme.name`)
-                +fieldsetBodySlot
-                  +radioBoxes({
-                    name: `theme`,
-                    options: [
-                      { value: `auto`, },
-                      { value: `light`, },
-                      { value: `dark`, },
-                    ]
-                  })
-                    +radioBoxesLabelSlot
-                      = _p(`form.theme.option.auto`)
-                    +radioBoxesLabelSlot
-                      = _p(`form.theme.option.light`)
-                    +radioBoxesLabelSlot
-                      = _p(`form.theme.option.dark`)
+              +fieldsetBodySlot
+                +radioBoxes({
+                  name: `theme`,
+                  options: [
+                    { value: `auto`, },
+                    { value: `light`, },
+                    { value: `dark`, },
+                  ]
+                })
+                  +radioBoxesLabelSlot
+                    = _p(`form.theme.option.auto`)
+                  +radioBoxesLabelSlot
+                    = _p(`form.theme.option.light`)
+                  +radioBoxesLabelSlot
+                    = _p(`form.theme.option.dark`)
             +fieldset({direction: `column`})
               +fieldsetLabelSlot
                 = _p(`form.font_size.name`)
@@ -149,6 +150,20 @@ html(lang=config.language)
               = _p(`section.external-links`)
             +accordionPanelSlot
               +linksNavigation()
+
+        if (useSearch)
+          a(
+            href= fullUrl(`/search`)
+            class= `${prefix}-side-panel__search`
+          )
+            span(aria-hidden= true) 🔎
+            = _p(`section.search`)
+            +svgIcon({
+              name: `arrow-up-right-from-square`,
+              class: `${prefix}-side-panel__search__icon`
+            })
+
+
         block sidebar
 
     footer._footer
