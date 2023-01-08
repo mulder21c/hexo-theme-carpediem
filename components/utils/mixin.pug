@@ -5,6 +5,7 @@
     include ./util
   example: |
     +pageTitle
+
 mixin pageTitle
   title= getTitle()
 
@@ -15,6 +16,7 @@ mixin pageTitle
     include ./util
   example: |
     +pageSequenceLink
+
 mixin pageSequenceLink
   -
     const { prev_link, prev, next_link, next } = page;
@@ -37,6 +39,7 @@ mixin pageSequenceLink
   description: create preload link element for representational image
   example: |
     +preLoadImage
+
 mixin preLoadImage
   - const imageObj = representativeImage(page);
   if (imageObj)
@@ -54,6 +57,7 @@ mixin preLoadImage
     include ./util
   example: |
     +openGraph
+
 mixin openGraph(props)
   -
     const defaultProps = {
@@ -72,6 +76,7 @@ mixin openGraph(props)
   description: create meta element for site-verification
   example: |
     +siteVerification
+
 mixin siteVerification
   each val, prop in (theme.site_verification || [])
     meta(
@@ -89,6 +94,7 @@ mixin siteVerification
   examples:
     - +styles([])
     - +styles(["//mydomain.com/external/style.css"])
+
 mixin styles(paths = [])
   link(
     rel= `stylesheet`
@@ -105,6 +111,7 @@ mixin styles(paths = [])
   description: create meta element for google analytics, supported only GA 4
   example: |
     +analytics
+
 mixin analytics
   if theme.analytics.google
     script(
@@ -128,6 +135,7 @@ mixin analytics
     include ./util
   example: |
     +jsonLD
+
 mixin jsonLD
   -
     const jsonLdProps = getJsonLdProps(page);
