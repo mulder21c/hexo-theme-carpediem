@@ -8,6 +8,6 @@ block prepend heroContent
 
 block prepend mainContent
   -
-    const posts = (page.posts.data || page.posts || []).slice(0, 5);
+    const posts = page.posts.toArray();
 
 block sidebar

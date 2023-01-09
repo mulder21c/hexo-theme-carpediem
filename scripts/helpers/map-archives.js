@@ -8,7 +8,7 @@ function mapArchivesHelper() {
   const { config } = this;
   const { timezone } = config;
   const posts = this.site.posts.sort("date", -1);
-  if (!posts.length) return {};
+  if (!posts.length) return new Map();
 
   const archives = new Map();
   const isDevelopment = this.site.mode === "development";
