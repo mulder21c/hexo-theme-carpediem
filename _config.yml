@@ -67,3 +67,7 @@ giscus:
 hero:
 
 search: algolia
+
+# the number of items to display on each layout, allowed maximum value is 10
+display:
+  archives: 2

@@ -117,10 +117,14 @@
         "@type": "CollectionPage",
         "mainEntity": {
           "@type": "ItemList",
-          "itemListElement": $posts.map(post => {
-            const jsonLdProps = getJsonLdProps(post);
-            return jsonLdProps.getPostLD();
-          }),
+          "itemListElement": (
+            is_archive()
+              ? getArchivePosts(page.year)
+              : $posts
+            ).map(post => {
+              const jsonLdProps = getJsonLdProps(post);
+              return jsonLdProps.getPostLD();
+            }),
         }
       } : undefined;
     };

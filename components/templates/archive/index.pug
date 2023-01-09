@@ -12,10 +12,11 @@ block heroContent
 
 block mainContent
   -
+    const { display: { archives : MAX_COUNT } } = theme;
     const archiveProp = {
       archives,
       headingLevel: 2,
-      displayYearNum: 2,
+      displayYearNum: MAX_COUNT,
       currYear,
     };
   div
