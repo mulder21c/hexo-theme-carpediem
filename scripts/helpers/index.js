@@ -14,3 +14,4 @@ helper.register(`listLinks`, require(`./list-links`));
 helper.register(`mapArchives`, require(`./map-archives`));
 helper.register(`compileSass`, require(`./compile-sass`));
 helper.register(`getArchivePosts`, require(`./get-archive-posts`));
+helper.register(`open_graph`, require(`./open-graph`));
