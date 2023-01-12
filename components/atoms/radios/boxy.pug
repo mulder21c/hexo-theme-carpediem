@@ -2,31 +2,32 @@
   name: boxyRadio
   description: box styled radio component
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
-    - {string} props.name name of radio
-    - {string|number} props.value the value of radio
+    - {string} props.name the value of radio's name attribute
+    - {string|number} props.value the value of radio's value attribute
     - |
       {string} [props.id] the value of radio's id attribute
-      and label's for attribute
+      and label's for attribute<br>
+      If not specified, an auto-generated id is assigned.
     - |
       {string} [props.label] label of radio<br>
       If do not specify this value, you must author and style label element.
-    - {boolean} [props.checked] [false] the checked state of radio
-    - {object} [props.inputAttrs] [{}] the attrs for input:radio
+    - {boolean} [props.checked] [`false`] the checked state of radio
+    - {object} [props.inputAttrs] the attrs for input:radio
   examples:
     - |
-      // label property
+      // using label property
       +boxyRadio({
-        name: 'answer',
+        name: `answer`,
         value: 1,
-        label: 'boxy radio'
+        label: `boxy radio`
       })
 
-      // label from block
+      // using block instead of label property
       +boxyRadio({
-        name: 'answer',
+        name: `answer`,
         value: 1
       })
         boxy radio

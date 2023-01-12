@@ -1,17 +1,19 @@
 //- @pugdoc
   name: datetime
-  description: time component
+  description: datetime component
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
     - {Moment} props.datetime the date object
-    - {string} [props.id] the value of id attribute
-    - {string} [props.label] the accessible name for date
+    - |
+      {string} [props.id] the value of id attribute<br>
+      If not specified, an auto-generated id is assigned.
+    - {string} [props.label] the accessible name for component
     - |
       {string} [props.format] [`YYYY-MM-DD`] the format of machine readable date
       to use as datetime attribute
-    - {string} [props.visibleLabel] the visible label for date
+    - {string} [props.visibleLabel] the visible label for component
     - |
       {string} [props.visibleFormat] [`YYYY. MM. DD`]
       the format of human readable date
@@ -20,16 +22,16 @@
       // simple
       +datetime({
         datetime: moment(new Date()),
-        label: 'posted ',
-        visibleLabel: '📆 '
+        label: `posted `,
+        visibleLabel: `📆 `
       })
 
       // explicit format
       +datetime({
         datetime: moment(new Date()),
-        label: 'posted ',
-        visibleLabel: '📆 ',
-        visibleFormat: 'YYYY-MM-DD',
+        label: `posted `,
+        visibleLabel: `📆 `,
+        visibleFormat: `YYYY-MM-DD`,
       })
 
 mixin datetime(props = {})

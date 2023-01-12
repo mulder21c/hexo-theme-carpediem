@@ -2,17 +2,32 @@
   name: heading
   description: heading component
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
     - {number} props.level the level(rank) of heading from 1 to 6
     - {string} [props.htmlString] the html string as content of heading
-    - {boolean} [props.visible] [true] whether an element is visible or not
+    - {boolean} [props.visible] [`true`] whether an element is visible or not
   slots:
     - headingSlot the slot for heading content
   examples:
     - |
+      // basic heading
       +heading({ level: 1 }) heading
+
+      // using html
+      +heading({
+        level: 1,
+        htmlString: `<span>HTML heading</span>`
+      })
+
+      // using slot
+      +heading({
+        level: 1,
+      })
+        +headingSlot()
+          | slot content
+
 
 mixin heading(props = {})
   -

@@ -1,19 +1,19 @@
-include ../svg-icon/index
+include /components/atoms/svg-icon/index
 
 //- @pugdoc
   name: category
   description: category indicator
   beforeEach: |
-    include ../../utils/util
-    include ../svg-icon/index
+    include /components/utils/util
+    include /components/atoms/svg-icon/index
   arguments:
     - {object} props
     - {array} props.categories sequence of category
     - {string} props.visibleLabel the visible label for category
     - |
       {string} [props.level] [`lowest`] the level of category to be display
-      <br> one of `'lowest'`, `'top'`, `'all'`
-    - {bool} [props.useLink] [true] whether to use link
+      <br> one of `lowest`, `top`, `all`
+    - {boolean} [props.useLink] [`true`] whether to use link
     - |
       {string} [props.separator] [`>`] hierarchy separator
       <br> You can use icon(font awesome) name for separator
@@ -22,7 +22,7 @@ include ../svg-icon/index
     - |
       +category({
         categories,
-        visibleLabel: '📂',
+        visibleLabel: `📂`,
         level: `all`,
         useLink: false,
         separator: `>`

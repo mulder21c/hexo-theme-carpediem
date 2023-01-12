@@ -1,37 +1,37 @@
 //- @pugdoc
   name: radio
-  description: create input radio element
+  description: basic input radio component
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
-    - {string} props.name name of radio
-    - {string|number|boolean} props.value the value of radio
+    - {string} props.name the value of radio's name attribute
+    - {string|number} props.value the value of radio's value attribute
     - |
       {string} [props.id] the value of radio's id attribute
-      and label's for attribute
+      and label's for attribute<br>
+      If not specified, an auto-generated id is assigned.
     - |
       {string} [props.label] label of radio<br>
-      If do not specify this value, you should provide label
-      as block or separated label element
+      If do not specify this value, you must author and style label element.
     - {boolean} [props.checked] the checked state of radio
     - |
-      {string} [props.labelPosition] ['right'] Where the label is located
+      {string} [props.labelPosition] [`right`] Where the label is located
       relative to the visual indicator<br>
-      One of `'top'`, `'left'`, `'right'`, `'bottom'`
+      One of `top`, `left`, `right`, `bottom`
     - {string|string[]} [props.labelClassName] the class name for label element
-    - {object} [props.inputAttrs] [{}] the attrs for input:radio
+    - {object} [props.inputAttrs] the attrs for input:radio
   examples:
     - |
-      // basic
-      +radio({label: 'yes', name: 'answer', value: 1})
+      // basic radio
+      +radio({label: `yes`, name: `answer`, value: 1})
 
       // using block instead of label property
-      +radio({name: 'answer', value: 1}) radio button
+      +radio({name: `answer`, value: 1}) radio button
 
       // using separated label element
-      +radio({name: 'answer', id: "no-label", value: 1})
-      label(for="no-label") radio button
+      +radio({name: `answer`, id: `no-label`, value: 1})
+      label(for=`no-label`) radio button
 
 mixin radio(props = {})
   -
@@ -43,7 +43,6 @@ mixin radio(props = {})
       value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
-        PropTypes.bool,
       ]).isRequired,
       id: PropTypes.string,
       label: PropTypes.string,

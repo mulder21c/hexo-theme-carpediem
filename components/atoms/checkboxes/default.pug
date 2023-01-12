@@ -2,7 +2,7 @@
   name: checkbox
   description: checkbox component
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
     - |
@@ -12,36 +12,35 @@
     - {string} [props.name] the value of checkbox's name attribute
     - |
       {string} [props.label] label of checkbox <br>
-      If do not specify this value, you should provide label as block
-      or separated label element
-    - {boolean} [props.checked] [false] the checked state of checkbox
-    - {string|number} [props.value] the value of checkbox
+      If do not specify this value, you must author and style label element.
+    - {boolean} [props.checked] [`false`] the checked state of checkbox
+    - {string|number} [props.value] the value of checkbox's value attribute
     - |
-      {string} [props.labelPosition] ['right'] Where the label is located
+      {string} [props.labelPosition] [`right`] Where the label is located
       relative to the visual indicator<br>
-      One of `'top'`, `'left'`, `'right'`, `'bottom'`
-    - {string} [props.labelClassName] [``] the class name for label element
-    - {object} [props.inputAttrs] [{}] the attrs for input:checkbox
+      One of `top`, `left`, `right`, `bottom`
+    - {string} [props.labelClassName] the class name for label element
+    - {object} [props.inputAttrs] the attrs for input:checkbox
   examples:
     - |
-      // basic
+      // basic checkbox
       +checkbox({
-        label: 'agree',
+        label: `agree`,
         checked: true
       })
 
       // using block instead of label property
       +checkbox({
-        name: 'answer',
+        name: `answer`,
         value: 1
       }) check label
 
       // using separated label element
       +checkbox({
-        id: "no-label-checkbox",
+        id: `no-label-checkbox`,
         checked: false,
       })
-      label(for="no-label-checkbox") checkbox
+      label(for=`no-label-checkbox`) checkbox
 
 mixin checkbox(props = {})
   -

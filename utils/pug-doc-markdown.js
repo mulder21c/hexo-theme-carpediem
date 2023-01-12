@@ -63,10 +63,10 @@ function PugDocMarkdown(options) {
           const [, , defaultVal, , , desc] = description.match(
             /(\[(.+)\])*(\s-?)*(\s?)*(.*)/
           );
-          return `${table}|${name}|${desc.replace(/\|/g, "\\|")}|${type}|${
-            defaultVal ?? ""
-          }|${optional}|\n`;
-        }, `|name|description|type|default|optional|\n|:---:|:---|:---:|:---:|:---:|\n`)
+          return `${table}|${name}|${desc.replace(/\|/g, "\\|")}|${
+            Array.isArray(type) ? type.join(" \\| ") : type
+          }|${defaultVal ?? ""}|${optional ? "N" : "Y"}|\n`;
+        }, `|name|description|type|default|required|\n|:---:|:---|:---:|:---:|:---:|\n`)
       );
       lines.push("\n");
     }
@@ -77,8 +77,8 @@ function PugDocMarkdown(options) {
         obj.meta.attributes.reduce((table, arg) => {
           return `${table}|${arg.name}|${arg.description}|${arg.type}|${
             arg.default ?? ""
-          }|${arg.optional}|\n`;
-        }, `|name|description|type|default|optional|\n|:---:|:---|:---:|:---:|:---:|\n`)
+          }|${arg.optional ? "N" : "Y"}|\n`;
+        }, `|name|description|type|default|required|\n|:---:|:---|:---:|:---:|:---:|\n`)
       );
       lines.push("");
     }

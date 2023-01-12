@@ -1,15 +1,15 @@
 //- @pugdoc
   name: svgIcon
-  description: create inline-svg icon
+  description: svg icon component with font awesome
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
     - {string} props.name name of icon
     - {string} [props.type] type of icon
   examples:
     - |
-      +svgIcon({name: 'thumbs-up'})
+      +svgIcon({name: `thumbs-up`})
 
 mixin svgIcon(props = {})
   -

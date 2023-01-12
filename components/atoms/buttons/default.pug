@@ -2,22 +2,22 @@
   name: button
   description: basic button component
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
-    - {string} [props.type] ['button'] the value of type attribute for button
+    - {string} [props.type] [`button`] the value of type attribute for button
     - |
-      {string} [props.size] ['medium'] size of button
-      <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`
+      {string} [props.size] [`medium`] size of button
+      <br> one of `small`, `medium`, `large`, `fluid`
     - |
-      {string} [props.appearance] ['fill'] appearance of button
-      <br> one of `'fill'`, `'outline'`
+      {string} [props.appearance] [`fill`] appearance of button
+      <br> one of `fill`, `outline`
   examples:
     - |
       +button({
-        type: 'button',
-        size: 'medium',
-        appearance: 'outline',
+        type: `button`,
+        size: `medium`,
+        appearance: `outline`,
       }) button
 
 mixin button(props = {})

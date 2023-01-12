@@ -1,33 +1,33 @@
-include ../svg-icon/index
+include /components/atoms/svg-icon/index
 
 //- @pugdoc
   name: iconButton
   description: icon(font awesome) button component
   beforeEach: |
-    include ../../utils/util
-    include ../svg-icon/index
+    include /components/utils/util
+    include /components/atoms/svg-icon/index
   arguments:
     - {object} props
     - {string} props.icon name of icon
     - {string} props.label label of button
-    - {string} [props.type] ['button'] the value of type attribute for button
+    - {string} [props.type] [`button`] the value of type attribute for button
     - |
-      {string} [props.size] ['medium'] size of button- size of button
-      <br> one of `'small'`, `'medium'`, `'large'``
+      {string} [props.size] [`medium`] size of button
+      <br> one of `small`, `medium`, `large`
     - |
-      {string} [props.appearance] ['outline'] appearance of button
-      <br> one of `'fill'`, `'outline'`, `'ghost'`
+      {string} [props.appearance] [`outline`] appearance of button
+      <br> one of `fill`, `outline`, `ghost`
     - |
       {string} [props.layout] [`icon-only`] layout of button
-      <br> one of `'icon-only', `icon-text``
+      <br> one of `icon-only`, `icon-text`
   examples:
     - |
       +iconButton({
-        icon: 'tty',
-        label: 'tel',
-        type: 'button',
-        size: 'medium',
-        appearance: 'outline',
+        icon: `tty`,
+        label: `tel`,
+        type: `button`,
+        size: `medium`,
+        appearance: `outline`,
       })
 
 mixin iconButton(props = {})

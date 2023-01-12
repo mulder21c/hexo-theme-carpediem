@@ -2,7 +2,7 @@
   name: textbox
   description: input textbox component
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
     - |
@@ -10,17 +10,17 @@
       attribute <br>
       If not specified, an auto-generated id is assigned.
     - {string} [props.name] the value of textbox's name attribute
-    - {string} [props.value] the value of textbox
+    - {string} [props.value] the value of textbox's value attribute
     - {string} [props.placeholder] the placeholder of textbox
-    - {string} [props.type] ['text'] the value of type attribute for textbox
+    - {string} [props.type] [`text`] the value of type attribute for textbox
     - |
-      {string} [props.size] ['medium'] size of button
-      <br> one of `'small'`, `'medium'`, `'large'`, `'fluid'`
+      {string} [props.size] [`medium`] size of textbox
+      <br> one of `small`, `medium`, `large`, `'fluid`
   examples:
     - |
       +textbox({
-        type: 'text',
-        size: 'medium',
+        type: `text`,
+        size: `medium`,
       })
 
 mixin textbox(props = {})

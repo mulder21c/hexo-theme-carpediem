@@ -2,10 +2,10 @@
   name: cclLicense
   description: ccl license text
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
-    - {number|number[]} [props.year] of first publication of the work
+    - {number|number[]} [props.year] the year of first publication of the work
     - {string} [props.name] the name of the owner of copyright in the work
     - |
       {string[]} [props.license] the features to apply to license
@@ -113,10 +113,11 @@ mixin cclLicense(props = {})
         class= `${prefix}-license__year`
       )= startYear
     if lastYear
+      = ` ~ `
       time(
         datetime= lastYear
         class= `${prefix}-license__year`
-      )= `~ ${lastYear}`
+      )= `${lastYear}`
 
     span(
       class= `${prefix}-license__name`
