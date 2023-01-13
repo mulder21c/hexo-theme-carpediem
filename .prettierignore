@@ -314,9 +314,6 @@ $RECYCLE.BIN/
 
 .*rc
 
-_config.my.yml
 docs/
-source/images
-images-db.json
 source/js
-*.pug
+__CUSTOM__
