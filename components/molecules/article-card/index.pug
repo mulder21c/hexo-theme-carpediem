@@ -1,13 +1,14 @@
-include ../../atoms/datetime/index
-include ../../atoms/category/index
+include /components/atoms/datetime/index
+include /components/atoms/category/index
 
 //- @pugdoc
   name: articleCard
-  description: create article card component
+  description: article card component
   beforeEach: |
-    include ../../utils/util
-    include ../../atoms/datetime/index
-    include ../../atoms/category/index
+    include /components/utils/util
+    include /components/atoms/datetime/index
+    include /components/atoms/category/index
+
   arguments:
     - {object} props
     - |
@@ -86,14 +87,14 @@ mixin articleCard(props = {})
         class: `${prefix}-article-card__meta__item`
       })
 
-      +category({
-        categories,
-        visibleLabel: '📂',
-        useLink: hasCategoryLink,
-        class: `${prefix}-article-card__meta__item`,
-        level: `all`,
-        separator: `angle-right`,
-      })
+      //- +category({
+      //-   categories,
+      //-   visibleLabel: '📂',
+      //-   useLink: hasCategoryLink,
+      //-   class: `${prefix}-article-card__meta__item`,
+      //-   level: `all`,
+      //-   separator: `angle-right`,
+      //- })
 
     p(
       id= contentId

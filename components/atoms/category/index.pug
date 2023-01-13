@@ -21,9 +21,9 @@ include /components/atoms/svg-icon/index
   examples:
     - |
       +category({
-        categories,
+        categories: post.categories.toArray(),
         visibleLabel: `📂`,
-        level: `all`,
+        level: `top`,
         useLink: false,
         separator: `>`
       })

@@ -156,26 +156,8 @@ include /components/atoms/svg-icon/index
 
 ```html
 <span class="amor-category">
-  <span
-    class="amor-category__label"
-    role="img"
-    aria-label="i18n(label.category)"
-  >
-    📂
-  </span>
-  <span class="amor-category__list" role="list">
-    <span class="amor-category__content" role="listitem">
-      <span>cate-86tgma3cuqoug78</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-86tg7ls29oaob8</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-86tg80cln7uftv</span>
-    </span>
-  </span>
+  <span class="amor-category__label" role="img" aria-label="category">📂</span>
+  <span class="amor-category__content">in occupation</span>
 </span>
 
 ```

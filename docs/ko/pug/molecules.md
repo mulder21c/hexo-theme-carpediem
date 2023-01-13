@@ -1,18 +1,18 @@
-# Pug Documentation 
+# Pug 문서
 
 ## articleCard
 
-article card component
+게시글 카드 컴포넌트
 
 
-### path 
+### 경로
 
 `components/molecules/article-card/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.post|hexo post object @see https://hexo.io/docs/variables.html#Page-Variables|object||Y|
@@ -20,7 +20,7 @@ article card component
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -31,25 +31,25 @@ include /components/atoms/category/index
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div class="amor-article-card amor-article-card--link">
   <img
     class="amor-article-card__thumb"
-    src="https://via.placeholder.com/320x180.png?text=5vi9hnkaglfgr88"
+    src="https://via.placeholder.com/320x180.png?text=28v6qr7l7nke6g8"
     alt=""
     loading="lazy"
     role="none"
   />
   <a
     class="amor-article-card__heading"
-    href="http://example.com/post-5vi9hnkaglfgr88/"
-    aria-describedby="yy1jbtqm4bg wdooml9hifo"
+    href="http://example.com/post-28v6qr7l7nke6g8/"
+    aria-describedby="zxt6iehjri6 q0x75qsop4o"
   >
-    Post 5vi9hnkaglfgr88
+    Post 28v6qr7l7nke6g8
   </a>
-  <div class="amor-article-card__meta" id="yy1jbtqm4bg">
+  <div class="amor-article-card__meta" id="zxt6iehjri6">
     <span class="amor-datetime amor-article-card__meta__item">
       <span
         class="amor-datetime__label"
@@ -58,17 +58,16 @@ include /components/atoms/category/index
       >
         📆
       </span>
-      <time class="amor-datetime__time" id="potrug7vne8" datetime="2023-01-14">
+      <time class="amor-datetime__time" id="qfv1wcuivdk" datetime="2023-01-14">
         2023. 01. 14
       </time>
     </span>
   </div>
-  <p class="amor-article-card__content" id="wdooml9hifo">
-    Minim est amet id qui. Nostrud reprehenderit labore velit et deserunt
-    voluptate cillum fugiat officia consectetur excepteur. Nostrud ipsum
-    consequat irure nostrud aute. Aute sint aute anim aliquip sint esse aliqua.
-    Deserunt aliquip nisi sint minim adipisicing. Eiusmod quis ea nulla cillum
-    sit
+  <p class="amor-article-card__content" id="q0x75qsop4o">
+    Pariatur tempor culpa deserunt qui deserunt amet mollit voluptate eu nostrud
+    eu magna et veniam. Proident cillum eu ullamco enim minim incididunt do
+    dolore ut veniam. Occaecat tempor eu eiusmod est in. Minim enim non enim
+    laborum duis amet. Nulla reprehenderit eu nostrud veniam veniam magna aute.
   </p>
 </div>
 
@@ -83,14 +82,14 @@ include /components/atoms/category/index
 create meta info component for article
 
 
-### path 
+### 경로
 
 `components/molecules/article-meta/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.categories|sequence of category|object||Y|
@@ -99,7 +98,7 @@ create meta info component for article
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -114,7 +113,7 @@ include ../../atoms/datetime/index
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div class="amor-article-meta">
@@ -128,8 +127,8 @@ include ../../atoms/datetime/index
     </span>
     <span class="amor-category__list" role="list">
       <span class="amor-category__content" role="listitem">
-        <a href="https://www.mulder21c.io/categories/cate-5vi9mdra12glt5o">
-          cate-5vi9mdra12glt5o
+        <a href="https://www.mulder21c.io/categories/cate-28v6ivst9dum3vo">
+          cate-28v6ivst9dum3vo
         </a>
       </span>
       <span class="amor-category__separator" aria-hidden="true">
@@ -140,8 +139,8 @@ include ../../atoms/datetime/index
         </svg>
       </span>
       <span class="amor-category__content" role="listitem">
-        <a href="https://www.mulder21c.io/categories/cate-5vi9vg2ihrnqv2o">
-          cate-5vi9vg2ihrnqv2o
+        <a href="https://www.mulder21c.io/categories/cate-28v6i9ocbk09ufg">
+          cate-28v6i9ocbk09ufg
         </a>
       </span>
     </span>
@@ -154,7 +153,7 @@ include ../../atoms/datetime/index
     >
       📆
     </span>
-    <time class="amor-datetime__time" id="ugh2aisi8bo" datetime="2023-01-14">
+    <time class="amor-datetime__time" id="nwwrxfuabfo" datetime="2023-01-14">
       2023. 01. 14
     </time>
   </span>
@@ -171,14 +170,14 @@ include ../../atoms/datetime/index
 area for introducing author
 
 
-### path 
+### 경로
 
 `components/molecules/author/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.gravatar|the path or url for gravatar|string|`/images/author.svg`|N|
@@ -188,7 +187,7 @@ area for introducing author
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -203,7 +202,7 @@ include ../../atoms/svg-icon/index
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div class="amor-author amor-author--no-desc">
@@ -235,14 +234,14 @@ include ../../atoms/svg-icon/index
 create group containing label and body
 
 
-### path 
+### 경로
 
 `components/molecules/fieldset/default.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.direction|how items are placed in the container <br>One of `'row'`, `'column'`|string|'row'|N|
@@ -255,7 +254,7 @@ create group containing label and body
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -264,7 +263,7 @@ create group containing label and body
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -283,16 +282,16 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <!-- row-->
 <div
   class="amor-field amor-field--row amor-field--start"
   role="group"
-  aria-labelledby="swprrl94puk"
+  aria-labelledby="sd4otrp93ds"
 >
-  <div class="amor-field__label amor-field__label--30" id="swprrl94puk">
+  <div class="amor-field__label amor-field__label--30" id="sd4otrp93ds">
     fieldset title
   </div>
   <div class="amor-field__body"><p>fieldset body</p></div>
@@ -301,9 +300,9 @@ include /components/utils/util
 <div
   class="amor-field amor-field--column"
   role="group"
-  aria-labelledby="g4db0co7608"
+  aria-labelledby="s20lwjq8tso"
 >
-  <div class="amor-field__label amor-field__label--30" id="g4db0co7608">
+  <div class="amor-field__label amor-field__label--30" id="s20lwjq8tso">
     fieldset title
   </div>
   <div class="amor-field__body"><p>fieldset body</p></div>
@@ -320,21 +319,21 @@ include /components/utils/util
 create hexo category list
 
 
-### path 
+### 경로
 
 `components/molecules/navigation/category/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.options|@see https://hexo.io/ko/docs/helpers#list-categories|object||N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include ../../../utils/util
@@ -343,35 +342,35 @@ include ../../../utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <nav class="amor-category-nav" aria-label="categories">
   <ul class="amor-category-nav__list">
     <li class="amor-category-nav__list__item">
       <a
-        href="https://www.mulder21c.io/categories/cate-5vib20lh61ndldg"
+        href="https://www.mulder21c.io/categories/cate-28v8rcetf67s76"
         class="amor-category-nav__list__link"
       >
-        cate-5vib20lh61ndldg
+        cate-28v8rcetf67s76
       </a>
     </li>
 
     <li class="amor-category-nav__list__item">
       <a
-        href="https://www.mulder21c.io/categories/cate-5vibbs05n2235i"
+        href="https://www.mulder21c.io/categories/cate-28v8usb2rqhs99"
         class="amor-category-nav__list__link"
       >
-        cate-5vibbs05n2235i
+        cate-28v8usb2rqhs99
       </a>
     </li>
 
     <li class="amor-category-nav__list__item">
       <a
-        href="https://www.mulder21c.io/categories/cate-5vib29269emu2tg"
+        href="https://www.mulder21c.io/categories/cate-28v8f4hg5aihrn"
         class="amor-category-nav__list__link"
       >
-        cate-5vib29269emu2tg
+        cate-28v8f4hg5aihrn
       </a>
     </li>
   </ul>
@@ -388,14 +387,14 @@ include ../../../utils/util
 create hexo external link list
 
 
-### path 
+### 경로
 
 `components/molecules/navigation/links/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.options|the options for external link list|object||N|
@@ -403,7 +402,7 @@ create hexo external link list
 
 
 
-### examples
+### 예시
 
 ```jade
 include ../../../utils/util
@@ -412,7 +411,7 @@ include ../../../utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <nav class="amor-links-nav" aria-label="links"></nav>
@@ -428,14 +427,14 @@ include ../../../utils/util
 create hexo menu list
 
 
-### path 
+### 경로
 
 `components/molecules/navigation/menu/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.options|the options for menu list|object||N|
@@ -443,7 +442,7 @@ create hexo menu list
 
 
 
-### examples
+### 예시
 
 ```jade
 include ../../../utils/util
@@ -452,7 +451,7 @@ include ../../../utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <nav class="amor-menu-nav" aria-label="menu">
@@ -479,14 +478,14 @@ include ../../../utils/util
 create radio group component
 
 
-### path 
+### 경로
 
 `components/molecules/radio-group/boxy.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.name|attribute of radio|string||Y|
@@ -494,7 +493,7 @@ create radio group component
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -502,7 +501,7 @@ create radio group component
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -533,7 +532,7 @@ include ../../atoms/radios/boxy
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <!-- basic-->
@@ -542,7 +541,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="bh3reh6i5i4"
+      id="rd2rpcmr0r8"
       name="size"
       value="small"
     />
@@ -552,7 +551,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="q90ztg2s3ak"
+      id="rtq1kx30hvs"
       name="size"
       value="medium"
     />
@@ -562,7 +561,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="dvn9gi3hssf"
+      id="kqyg3qggtv4"
       name="size"
       value="large"
     />
@@ -575,7 +574,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="cinvs4c2kae"
+      id="ime5pl39fqs"
       name="size2"
       value="small"
     />
@@ -585,7 +584,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="v9wpomp39mf"
+      id="hd27mju53a8"
       name="size2"
       value="medium"
     />
@@ -595,7 +594,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ajw9peecku8"
+      id="b6g606ehlng"
       name="size2"
       value="large"
     />
@@ -614,14 +613,14 @@ include ../../atoms/radios/boxy
 create radio group component
 
 
-### path 
+### 경로
 
 `components/molecules/radio-group/default.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.name|attribute of radio|string||Y|
@@ -631,7 +630,7 @@ create radio group component
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -639,7 +638,7 @@ create radio group component
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -674,7 +673,7 @@ include ../../atoms/radios/default
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <!-- basic-->
@@ -683,31 +682,31 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="o731vfck4jc"
+      id="tv9yr25i0mb"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="o731vfck4jc">designer</label>
+    <label class="amor-radio__label" for="tv9yr25i0mb">designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="pthgnllaa38"
+      id="e9ngti6epp8"
       name="job"
       value="publisher"
     />
-    <label class="amor-radio__label" for="pthgnllaa38">publisher</label>
+    <label class="amor-radio__label" for="e9ngti6epp8">publisher</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ajn029aq14d"
+      id="ppg8uihj0s8"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ajn029aq14d">
+    <label class="amor-radio__label" for="ppg8uihj0s8">
       frontend developer
     </label>
   </span>
@@ -715,21 +714,21 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="j4s7dq69efg"
+      id="m5au4ykjm0g"
       name="job"
       value="devops"
     />
-    <label class="amor-radio__label" for="j4s7dq69efg">devops</label>
+    <label class="amor-radio__label" for="m5au4ykjm0g">devops</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="zysiwge3dgg"
+      id="pnufge2laa8"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="zysiwge3dgg">iOS developer</label>
+    <label class="amor-radio__label" for="pnufge2laa8">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
@@ -738,31 +737,31 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="rpg8ui77j6g"
+      id="nbouwso3194"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="rpg8ui77j6g">웹 디자이너</label>
+    <label class="amor-radio__label" for="nbouwso3194">웹 디자이너</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e90ztgg0nio"
+      id="zvzx4lairl8"
       name="job2"
       value="publisher"
     />
-    <label class="amor-radio__label" for="e90ztgg0nio">웹 퍼블리셔</label>
+    <label class="amor-radio__label" for="zvzx4lairl8">웹 퍼블리셔</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="ubt5dg6g9eo"
+      id="w7y55htuiar"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ubt5dg6g9eo">프론트엔드 개발자</label>
+    <label class="amor-radio__label" for="w7y55htuiar">프론트엔드 개발자</label>
   </span>
 </div>
 
@@ -777,14 +776,14 @@ include ../../atoms/radios/default
 create radio group component
 
 
-### path 
+### 경로
 
 `components/molecules/radio-group/slider.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.name|attribute of radio|string||Y|
@@ -793,7 +792,7 @@ create radio group component
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -801,7 +800,7 @@ create radio group component
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -834,7 +833,7 @@ include ../../atoms/radios/default
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <!-- basic-->
@@ -843,13 +842,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="hw32nmig5t3"
+      id="khd8rj9m5g6"
       name="size"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="hw32nmig5t3"
+      for="khd8rj9m5g6"
     >
       small
     </label>
@@ -859,13 +858,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="emojid5kkh8"
+      id="qsgf91aak6g"
       name="size"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="emojid5kkh8"
+      for="qsgf91aak6g"
     >
       medium
     </label>
@@ -875,13 +874,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="mb4b15ghd28"
+      id="ics9nl5h6po"
       name="size"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="mb4b15ghd28"
+      for="ics9nl5h6po"
     >
       large
     </label>
@@ -893,13 +892,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="y45a5t4hjj4"
+      id="kf35hy437c8"
       name="size2"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="y45a5t4hjj4"
+      for="kf35hy437c8"
     >
       small
     </label>
@@ -909,13 +908,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="uzrn6ltlm1c"
+      id="a8mzhsm2um8"
       name="size2"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="uzrn6ltlm1c"
+      for="a8mzhsm2um8"
     >
       medium
     </label>
@@ -925,13 +924,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="f0258cson3t"
+      id="vhibszuo748"
       name="size2"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="f0258cson3t"
+      for="vhibszuo748"
     >
       large
     </label>
@@ -949,14 +948,14 @@ include ../../atoms/radios/default
 create search bar component
 
 
-### path 
+### 경로
 
 `components/molecules/search-bar/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.textfieldId|the id value for search text field|string||Y|
@@ -964,7 +963,7 @@ create search bar component
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -979,18 +978,18 @@ include ../../molecules/fieldset/default
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div
   class="amor-field amor-field--column amor-searchbar"
   role="group"
-  aria-labelledby="o8xhjjtn9po"
+  aria-labelledby="ykrzkktd10o"
   id="searchbox"
 >
   <div
     class="amor-field__label amor-field__label--30 amor-searchbar__label"
-    id="o8xhjjtn9po"
+    id="ykrzkktd10o"
   >
     i18n(label.search)
   </div>
@@ -999,7 +998,7 @@ include ../../molecules/fieldset/default
       class="amor-textbox amor-textbox--medium amor-searchbar__textfield"
       id="keyword"
       type="text"
-      aria-labelledby="o8xhjjtn9po"
+      aria-labelledby="ykrzkktd10o"
       autocomplete="off"
       autocorrect="off"
       autocapitalize="none"
@@ -1026,21 +1025,21 @@ include ../../molecules/fieldset/default
 create tags list
 
 
-### path 
+### 경로
 
 `components/molecules/tags-list/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.tags|sequence of tags|object||Y|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -1051,19 +1050,19 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div class="amor-tags-list amor-tags-list--flat">
   <ul>
     <li>
-      <a href="http://example.com/tags/tag-5vi9ppp9tbbj7sg/">
-        tag-5vi9ppp9tbbj7sg
+      <a href="http://example.com/tags/tag-28v646fmhshjoug/">
+        tag-28v646fmhshjoug
       </a>
     </li>
     <li>
-      <a href="http://example.com/tags/tag-5vi9707b3an4c7g/">
-        tag-5vi9707b3an4c7g
+      <a href="http://example.com/tags/tag-28v6tm6tb3noh98/">
+        tag-28v6tm6tb3noh98
       </a>
     </li>
   </ul>
@@ -1073,5 +1072,3 @@ include /components/utils/util
 
 
 ---
-
-

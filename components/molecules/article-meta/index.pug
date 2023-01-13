@@ -1,11 +1,11 @@
-include /components/atoms/category/index
-include /components/atoms/datetime/index
+include ../atoms/category/index
+include ../atoms/datetime/index
 
 //- @pugdoc
   name: articleMeta
   description: create meta info component for article
   beforeEach: |
-    include ../../utils/util
+    include /components/utils/util
     include ../../atoms/category/index
     include ../../atoms/datetime/index
   arguments:

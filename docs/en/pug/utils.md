@@ -22,7 +22,7 @@ include ./util
 ### example output 
 
 ```html
-<title>Hexo</title>
+<title>The tracks of mulder21c</title>
 
 ```
 
@@ -52,8 +52,8 @@ include ./util
 ### example output 
 
 ```html
-<link rel="prev" href="http://example.com///" />
-<link rel="next" href="http://example.com//page/2/" />
+<link rel="prev" href="https://www.mulder21c.io//" />
+<link rel="next" href="https://www.mulder21c.io/page/2/" />
 
 ```
 
@@ -111,9 +111,9 @@ and the stylesheet specified.
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|paths||array||false|
+|paths||array||Y|
 
 
 
@@ -166,12 +166,12 @@ include ./util
   {
     "@context": "http://schema.org",
     "@type": "CollectionPage",
-    "@name": "Hexo",
+    "@name": "The tracks of mulder21c",
     "url": "",
-    "copyrightHolder": { "@type": "Person", "name": "John Doe" },
+    "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
     "author": {
       "@type": "Person",
-      "name": "John Doe",
+      "name": "mulder21c",
       "url": "https://www.facebook.com/mulder21c"
     },
     "mainEntity": {
@@ -179,57 +179,57 @@ include ./util
       "itemListElement": [
         {
           "@type": "BlogPosting",
-          "@name": "Hexo",
+          "@name": "The tracks of mulder21c",
           "url": "",
-          "copyrightHolder": { "@type": "Person", "name": "John Doe" },
+          "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
           "image": {
             "@type": "imageObject",
-            "url": "https://via.placeholder.com/1600x900.png?text=7rs94ss8hqft548"
+            "url": "https://via.placeholder.com/1600x900.png?text=5vi8iejt1miueco"
           },
           "author": {
             "@type": "Person",
-            "name": "John Doe",
+            "name": "mulder21c",
             "url": "https://www.facebook.com/mulder21c"
           },
-          "headline": "Post 7rs94ss8hqft548",
-          "keywords": "tag-7rsbgpigg9tumto, tag-7rsbtouhc30a2vo",
-          "dateCreated": "2022-12-25T08:08:58.506Z"
+          "headline": "Post 5vi8iejt1miueco",
+          "keywords": "tag-5vi9gamf2n80p5o, tag-5vi9llcgb09aamo",
+          "dateCreated": "2023-01-13T16:25:06.888Z"
         },
         {
           "@type": "BlogPosting",
-          "@name": "Hexo",
+          "@name": "The tracks of mulder21c",
           "url": "",
-          "copyrightHolder": { "@type": "Person", "name": "John Doe" },
+          "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
           "image": {
             "@type": "imageObject",
-            "url": "https://via.placeholder.com/1600x900.png?text=7rsbrek80osk4no"
+            "url": "https://via.placeholder.com/1600x900.png?text=5vi9o71dmkcng7"
           },
           "author": {
             "@type": "Person",
-            "name": "John Doe",
+            "name": "mulder21c",
             "url": "https://www.facebook.com/mulder21c"
           },
-          "headline": "Post 7rsbrek80osk4no",
-          "keywords": "tag-7rsbqi5qn2jfedo, tag-7rsb5lpm6rht3d8",
-          "dateCreated": "2022-12-25T08:08:58.507Z"
+          "headline": "Post 5vi9o71dmkcng7",
+          "keywords": "tag-5vi9bfdcglaohcg, tag-5vi9doe346itnc8",
+          "dateCreated": "2023-01-13T16:25:06.889Z"
         },
         {
           "@type": "BlogPosting",
-          "@name": "Hexo",
+          "@name": "The tracks of mulder21c",
           "url": "",
-          "copyrightHolder": { "@type": "Person", "name": "John Doe" },
+          "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
           "image": {
             "@type": "imageObject",
-            "url": "https://via.placeholder.com/1600x900.png?text=7rsbag83578tmp8"
+            "url": "https://via.placeholder.com/1600x900.png?text=5vi9bjsjtluijmo"
           },
           "author": {
             "@type": "Person",
-            "name": "John Doe",
+            "name": "mulder21c",
             "url": "https://www.facebook.com/mulder21c"
           },
-          "headline": "Post 7rsbag83578tmp8",
-          "keywords": "tag-7rsbn288tchotg8, tag-7rsb92op658g4go",
-          "dateCreated": "2022-12-25T08:08:58.507Z"
+          "headline": "Post 5vi9bjsjtluijmo",
+          "keywords": "tag-5vi9dje6tds4i8g, tag-5vi9tkg0t924rfg",
+          "dateCreated": "2023-01-13T16:25:06.889Z"
         }
       ]
     }

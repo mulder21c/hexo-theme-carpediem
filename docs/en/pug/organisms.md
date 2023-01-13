@@ -12,12 +12,12 @@ create accordion component aria pattern
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.headingLevel|heading level of header in accordion|string|2|false|
-|props.activatedIndex|The index number of the panel that you want to initially open|number||true|
-|props.useSection|Whether to separate each item into sections|boolean|false|true|
+|props||object||Y|
+|props.headingLevel|heading level of header in accordion|string|2|Y|
+|props.activatedIndex|The index number of the panel that you want to initially open|number||N|
+|props.useSection|Whether to separate each item into sections|boolean|false|N|
 
 
 
@@ -33,7 +33,7 @@ create accordion component aria pattern
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 include ../../atoms/heading/index
 include ../../atoms/svg-icon/index
 
@@ -50,14 +50,14 @@ include ../../atoms/svg-icon/index
 ### example output 
 
 ```html
-<div class="amor-accordion" id="s6c5a37adjn" data-init-activate="1">
+<div class="amor-accordion" id="hno7vbojt7a" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="w14znxoagt7"
+      id="fx6hefis02g"
       aria-expanded="false"
-      aria-controls="avl95k837jr"
+      aria-controls="lsl6bl9ndlm"
     >
       heading 1
       <svg
@@ -66,16 +66,16 @@ include ../../atoms/svg-icon/index
         role="presentation"
       >
         <use
-          xlink:href="http://example.com/images/solid.svg#chevron-down"
+          xlink:href="https://www.mulder21c.io/images/solid.svg#chevron-down"
         ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel"
-    id="avl95k837jr"
+    id="lsl6bl9ndlm"
     role="region"
-    aria-labelledby="w14znxoagt7"
+    aria-labelledby="fx6hefis02g"
     hidden="hidden"
   >
     panel 1
@@ -84,9 +84,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="w60pvs64nts"
+      id="hrd0i89jhas"
       aria-expanded="true"
-      aria-controls="de3dn9qncta"
+      aria-controls="jn7qcfl912n"
     >
       heading 2
       <svg
@@ -95,16 +95,16 @@ include ../../atoms/svg-icon/index
         role="presentation"
       >
         <use
-          xlink:href="http://example.com/images/solid.svg#chevron-down"
+          xlink:href="https://www.mulder21c.io/images/solid.svg#chevron-down"
         ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel active"
-    id="de3dn9qncta"
+    id="jn7qcfl912n"
     role="region"
-    aria-labelledby="w60pvs64nts"
+    aria-labelledby="hrd0i89jhas"
   >
     panel 2
   </div>
@@ -112,9 +112,9 @@ include ../../atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="au1lv8m59gg"
+      id="pm0xkn0gbis"
       aria-expanded="false"
-      aria-controls="gadbuk9d7k2"
+      aria-controls="snypx252cj2"
     >
       heading 3
       <svg
@@ -123,16 +123,16 @@ include ../../atoms/svg-icon/index
         role="presentation"
       >
         <use
-          xlink:href="http://example.com/images/solid.svg#chevron-down"
+          xlink:href="https://www.mulder21c.io/images/solid.svg#chevron-down"
         ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel"
-    id="gadbuk9d7k2"
+    id="snypx252cj2"
     role="region"
-    aria-labelledby="au1lv8m59gg"
+    aria-labelledby="pm0xkn0gbis"
     hidden="hidden"
   >
     panel 3
@@ -157,19 +157,20 @@ create archive timeline
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.archives|the collection that is consist of archives|map||false|
-|props.headingLevel|the level of year as heading|number|2|false|
-|props.displayYearNum|the number of years to be display|number|2|true|
+|props||object||Y|
+|props.archives|the collection that is consist of archives|map||Y|
+|props.headingLevel|the level of year as heading|number|2|Y|
+|props.displayYearNum|the number of years to be display|number|2|N|
+|props.currYear|The year currently exposed to page|number||N|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 include ../../atoms/heading/index
 
 +archiveTimeline({archives: mapArchives(), headingLevel: 2})
@@ -181,32 +182,32 @@ include ../../atoms/heading/index
 ```html
 <div class="amor-timeline">
   <h2 class="amor-heading--lv-2 amor-timeline__year">
-    2022&rsquo;
+    2023&rsquo;
     <span>i18n(label.posts.default)</span>
   </h2>
   <ol class="amor-timeline__list">
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-7rsbm5r4u5vlbdg/"
+        href="http://example.com/post-5vi90of7l4mrlbg/"
       >
-        <span class="amor-timeline__title">Post 7rsbm5r4u5vlbdg</span>
+        <span class="amor-timeline__title">Post 5vi90of7l4mrlbg</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-7rsbp1l0d5vubn/"
+        href="http://example.com/post-5vi9jk8futa9ih8/"
       >
-        <span class="amor-timeline__title">Post 7rsbp1l0d5vubn</span>
+        <span class="amor-timeline__title">Post 5vi9jk8futa9ih8</span>
       </a>
     </li>
     <li class="amor-timeline__list__item">
       <a
         class="amor-timeline__link"
-        href="http://example.com/post-7rscd4g2pgdrvd8/"
+        href="http://example.com/post-5viatev7p2hn1d8/"
       >
-        <span class="amor-timeline__title">Post 7rscd4g2pgdrvd8</span>
+        <span class="amor-timeline__title">Post 5viatev7p2hn1d8</span>
       </a>
     </li>
   </ol>
@@ -230,17 +231,17 @@ create content for article
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.content|content of post|object||false|
+|props||object||Y|
+|props.content|content of post|object||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +articleContent({ categories: post.content, })
 ```
@@ -251,8 +252,8 @@ include ../../utils/util
 ```html
 <div
   class="amor-article-content"
-  categories="<p>Amet culpa sunt exercitation aliqua non est est eu esse voluptate adipisicing ipsum. Sit proident occaecat in incididunt mollit enim ex sunt minim mollit occaecat consectetur proident officia. Consectetur aliqua magna occaecat non ad culpa. Deserunt nostrud laborum laborum non enim ex ex ex ipsum dolore. Cillum qui sint consequat aliqua sunt cillum magna mollit eu nostrud laborum culpa. Reprehenderit fugiat veniam ut voluptate cupidatat. Est aliquip ea veniam laboris ex ea do enim voluptate exercitation occaecat aliqua esse.</p>
-<p>Veniam irure occaecat irure sint aute id et. Duis ex sunt et dolor commodo laboris nulla incididunt ex aliquip Lorem. Dolore voluptate magna consequat commodo commodo laboris occaecat veniam eu et ipsum magna. Duis aliquip laborum duis pariatur quis eu pariatur eu anim. Ullamco in commodo adipisicing in.</p>"
+  categories="<p>Minim est amet id qui. Nostrud reprehenderit labore velit et deserunt voluptate cillum fugiat officia consectetur excepteur. Nostrud ipsum consequat irure nostrud aute. Aute sint aute anim aliquip sint esse aliqua. Deserunt aliquip nisi sint minim adipisicing. Eiusmod quis ea nulla cillum sit Lorem non cillum cupidatat incididunt esse occaecat. Sunt mollit magna cillum nisi reprehenderit reprehenderit dolor id est.</p>
+<p>Occaecat quis sunt aliqua sit aute ut in. Anim reprehenderit nisi reprehenderit est officia consequat nostrud anim aliqua dolor commodo laboris pariatur laboris. Consectetur et irure eu pariatur velit pariatur consectetur reprehenderit et incididunt magna ea reprehenderit minim. Commodo nisi tempor consectetur cillum culpa consequat ex esse officia velit do ea.</p>"
 ></div>
 
 ```
@@ -273,17 +274,17 @@ create accordion component
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.posts|hexo page.posts @see https://hexo.io/docs/variables.html#Page-Variables|array||false|
+|props||object||Y|
+|props.posts|hexo page.posts @see https://hexo.io/docs/variables.html#Page-Variables|array||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 include ../../molecules/article-card/index
 
 +articlesList({
@@ -315,16 +316,16 @@ create commento comments
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
+|props||object||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +commento()
 ```
@@ -353,16 +354,16 @@ create disqus comments
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
+|props||object||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +disqus()
 ```
@@ -391,16 +392,16 @@ create giscus comments
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
+|props||object||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +giscus()
 ```
@@ -429,16 +430,16 @@ create livere comments
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
+|props||object||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +livere()
 ```
@@ -467,16 +468,16 @@ create remark comments
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
+|props||object||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +remark()
 ```
@@ -505,16 +506,16 @@ create utterance comments
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
+|props||object||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +utterance()
 ```
@@ -544,7 +545,7 @@ generate footer content
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 include ../../atoms/ccl-license/index
 include ../../atoms/watermark/index
 
@@ -571,7 +572,7 @@ include ../../atoms/watermark/index
         d="m11.89 10.34l-1.34.7c-.14-.3-.31-.51-.52-.63c-.21-.12-.41-.18-.58-.18c-.9 0-1.34.59-1.34 1.77c0 .54.11.97.34 1.29c.22.32.55.48 1 .48c.58 0 .99-.27 1.23-.86l1.23.63c-.26.49-.62.87-1.09 1.15c-.46.28-.97.42-1.53.42c-.9 0-1.62-.27-2.17-.82C6.58 13.74 6.3 13 6.3 12c0-.95.28-1.7.83-2.26c.56-.56 1.26-.84 2.1-.84c1.24-.01 2.13.48 2.66 1.44m5.77 0l-1.32.7c-.14-.3-.34-.51-.53-.63c-.21-.12-.41-.18-.6-.18c-.89 0-1.34.59-1.34 1.77c0 .54.13.97.34 1.29c.23.32.56.48 1 .48c.59 0 1-.27 1.24-.86l1.25.63c-.28.49-.65.87-1.11 1.15c-.47.28-.97.42-1.52.42c-.9 0-1.63-.27-2.17-.82c-.54-.55-.81-1.29-.81-2.29c0-.95.28-1.7.83-2.26c.55-.56 1.25-.84 2.08-.84c1.26-.01 2.14.48 2.66 1.44M12 3.5a8.5 8.5 0 0 1 8.5 8.5a8.5 8.5 0 0 1-8.5 8.5A8.5 8.5 0 0 1 3.5 12A8.5 8.5 0 0 1 12 3.5M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
       ></path>
     </svg>
-    <span class="amor-license__name">John Doe</span>
+    <span class="amor-license__name">mulder21c</span>
     <span class="amor-license__link">
       (
       <a
@@ -618,17 +619,17 @@ create hero component
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.imgSrc|the source url for hero image|string||false|
+|props||object||Y|
+|props.imgSrc|the source url for hero image|string||Y|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +hero({imgSrc: "hero.jpg"})
 ```
@@ -661,18 +662,18 @@ create pagination component
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.options|paginator's option of hexo @see https://hexo.io/ko/docs/helpers#paginator|object||true|
-|props.labelRef|the id of related content|string||true|
+|props||object||Y|
+|props.options|paginator's option of hexo @see https://hexo.io/ko/docs/helpers#paginator|object||N|
+|props.labelRef|the id of related content|string||N|
 
 
 
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 +pagination({
   options: {
@@ -734,13 +735,13 @@ create a sliding panel
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.label|the label of panel|string||false|
-|props.useCloseBtn|whether to use the close button|boolean|true|true|
-|props.closeBtnPosition|the position of close button|string|`top-right`|true|
-|props.tag|the HTML tag name for the element enclosing the panel|string|`section`|true|
+|props||object||Y|
+|props.label|the label of panel|string||Y|
+|props.useCloseBtn|whether to use the close button|boolean|true|N|
+|props.closeBtnPosition|the position of close button|string|`top-right`|N|
+|props.tag|the HTML tag name for the element enclosing the panel|string|`section`|N|
 
 
 
@@ -755,7 +756,7 @@ create a sliding panel
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 include ../../atoms/svg-icon/index
 include ../../atoms/buttons/icon
 
@@ -793,7 +794,7 @@ include ../../atoms/buttons/icon
       focusable="false"
       aria-hidden="true"
     >
-      <use xlink:href="http://example.com/images/solid.svg#xmark"></use>
+      <use xlink:href="https://www.mulder21c.io/images/solid.svg#xmark"></use>
     </svg>
   </button>
 </div>
@@ -816,11 +817,11 @@ create a title bar located at the top of the page
 
 ### arguments 
 
-|name|description|type|default|optional|
+|name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props||object||false|
-|props.title|the text to use as a title|string||true|
-|props.useLink|whether to use link|boolean|true|true|
+|props||object||Y|
+|props.title|the text to use as a title|string||N|
+|props.useLink|whether to use link|boolean|true|N|
 
 
 
@@ -836,7 +837,7 @@ create a title bar located at the top of the page
 ### examples
 
 ```jade
-include ../../utils/util
+include /components/utils/util
 
 // without slot
 +titleBar({title: config.title, useLink: true})
@@ -848,7 +849,7 @@ include ../../utils/util
 ```html
 <!-- without slot-->
 <div class="amor-title-bar">
-  <h1 class="amor-title-bar__title"><a href="/">Hexo</a></h1>
+  <h1 class="amor-title-bar__title"><a href="/">The tracks of mulder21c</a></h1>
 </div>
 
 ```

@@ -61,7 +61,7 @@ export class SlidePanel {
 
   /**
    * toggle aria-expanded attributes value on trigger button
-   * @param {bool} state
+   * @param {boolean} state
    */
   setTriggerState(state) {
     this.trigger.setAttribute(`aria-expanded`, JSON.stringify(state));

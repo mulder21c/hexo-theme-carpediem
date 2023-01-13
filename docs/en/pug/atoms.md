@@ -143,9 +143,9 @@ include /components/utils/util
 include /components/atoms/svg-icon/index
 
 +category({
-  categories,
+  categories: post.categories.toArray(),
   visibleLabel: `📂`,
-  level: `all`,
+  level: `top`,
   useLink: false,
   separator: `>`
 })
@@ -156,26 +156,8 @@ include /components/atoms/svg-icon/index
 
 ```html
 <span class="amor-category">
-  <span
-    class="amor-category__label"
-    role="img"
-    aria-label="i18n(label.category)"
-  >
-    📂
-  </span>
-  <span class="amor-category__list" role="list">
-    <span class="amor-category__content" role="listitem">
-      <span>cate-4s4kri55ripoca8</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-4s4k3n57sgqrm7g</span>
-    </span>
-    <span class="amor-category__separator" aria-hidden="true">&gt;</span>
-    <span class="amor-category__content" role="listitem">
-      <span>cate-4s4kh0pit4n6rdo</span>
-    </span>
-  </span>
+  <span class="amor-category__label" role="img" aria-label="category">📂</span>
+  <span class="amor-category__content">in occupation</span>
 </span>
 
 ```
@@ -320,21 +302,21 @@ label(for=`no-label-checkbox`) checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="pyyqhjhoihm"
+    id="sgzp1qin9ma"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="pyyqhjhoihm">agree</label>
+  <label class="amor-checkbox__label" for="sgzp1qin9ma">agree</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="lqz06kg3b38"
+    id="z0oucbl9cn8"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="lqz06kg3b38">check label</label>
+  <label class="amor-checkbox__label" for="z0oucbl9cn8">check label</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-checkbox">
@@ -411,22 +393,22 @@ label(for="no-label-switch") switch button
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="o9mbvuf2mui"
+    id="zatsze2dubs"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="o9mbvuf2mui">alarm</label>
+  <label class="amor-switch__label" for="zatsze2dubs">alarm</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-switch">
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="dfjv4sftav4"
+    id="hwnmj96jkbg"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="dfjv4sftav4">switch button</label>
+  <label class="amor-switch__label" for="hwnmj96jkbg">switch button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-switch">
@@ -494,15 +476,15 @@ include /components/utils/util
 <!-- simple-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="sotrugeb63g" datetime="2023-01-14">
-    2023. 01. 14
+  <time class="amor-datetime__time" id="z9fw6ukj7fs" datetime="2023-01-17">
+    2023. 01. 17
   </time>
 </span>
 <!-- explicit format-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="o0krlkc3fkk" datetime="2023-01-14">
-    2023-01-14
+  <time class="amor-datetime__time" id="h4devbjm5lk" datetime="2023-01-17">
+    2023-01-17
   </time>
 </span>
 
@@ -633,7 +615,7 @@ include /components/utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="qs1uujkbnrg"
+    id="hr6kt839b3a"
     name="answer"
     value="1"
   />
@@ -644,7 +626,7 @@ include /components/utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="dbr054n1vhk"
+    id="lpmojig3en2"
     name="answer"
     value="1"
   />
@@ -708,22 +690,22 @@ label(for=`no-label`) radio button
   <input
     class="amor-radio__control"
     type="radio"
-    id="umaqwmq0l6e"
+    id="lm43hof38lq"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="umaqwmq0l6e">yes</label>
+  <label class="amor-radio__label" for="lm43hof38lq">yes</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-radio">
   <input
     class="amor-radio__control"
     type="radio"
-    id="z3il1u6259g"
+    id="sdvoeep1chg"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="z3il1u6259g">radio button</label>
+  <label class="amor-radio__label" for="sdvoeep1chg">radio button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-radio">
@@ -825,7 +807,7 @@ include /components/utils/util
 ### example output 
 
 ```html
-<input class="amor-textbox amor-textbox--medium" id="kt48in6ug6g" type="text" />
+<input class="amor-textbox amor-textbox--medium" id="j2xkycrh84s" type="text" />
 
 ```
 
