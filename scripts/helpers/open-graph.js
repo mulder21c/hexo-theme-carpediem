@@ -66,11 +66,7 @@ const og = (name, content, escape) => {
 };
 
 function openGraphHelper(options = {}) {
-  const {
-    config,
-    page,
-    theme: { hero: themeHero },
-  } = this;
+  const { config, page, theme: { hero: themeHero } = { hero: "" } } = this;
   const { content, hero } = page;
   let images = options.image || options.images || page.photos || [];
   let description =

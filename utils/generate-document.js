@@ -1,182 +1,159 @@
 const fs = require("fs");
+const path = require("path");
+const Hexo = require("hexo");
 const pugDocGen = require("pug-doc");
 const PugDocMD = require("./pug-doc-markdown.js");
 const sassDocMD = require("@hidoo/sassdoc-to-markdown").default;
-const path = require("path");
 const rootPath = path.resolve(__dirname, `../`);
-const vanillaPropTypes = require("vanilla-prop-types");
 const jsYml = require("js-yaml");
-const moment = require("moment");
-const fullUrl = require("../scripts/helpers/full-url");
-const generateUid = require("../scripts/helpers/generate-uid");
-const representativeImage = require("../scripts/helpers/representative-image");
-const getIconCategory = require("../scripts/helpers/get-icon-category");
-const stripHTML = require("../scripts/helpers/strip-html");
-const truncate = require("../scripts/helpers/truncate");
-const paginator = require("../scripts/helpers/paginator");
-const listCategories = require("../scripts/helpers/list-categories");
-const listMenus = require("../scripts/helpers/list-menus");
-const listLinks = require("../scripts/helpers/list-links");
-const mapArchives = require(`../scripts/helpers/map-archives`);
 const page = require("../mock");
-const [post] = require("../mock/posts")({
-  domain: `http://example.com`,
-  count: 1,
-});
-const posts = require("../mock/posts")({
-  domain: `http://example.com`,
-  count: 3,
-});
-const categoryGenerator = require("../mock/categories");
-const propTypesPreset = require("../mock/proptypes-preset");
 
-const config = jsYml.load(
-  fs.readFileSync(path.resolve(rootPath, `../../_config.yml`), `utf8`)
-);
+const hexo = new Hexo(path.resolve(process.cwd(), "../../"), {
+  config: path.resolve(process.cwd(), "../../_config.yml"),
+});
+
 const theme = jsYml.load(
   fs.readFileSync(path.resolve(rootPath, `./_config.yml`), `utf8`)
 );
-const domain = config.url || `http://example.com`;
-const categories = categoryGenerator({ count: 3, domain });
 
-const locals = {
-  isMock: true,
-  page,
-  post,
-  categories,
-  config,
-  theme,
-  site: {
-    vanillaPropTypes,
-    categories,
-    propTypesPreset,
-    posts,
-    components: new Set(),
-    isDevelopment: false,
-  },
-  url: `URL`,
-  is_home: () => true,
-  is_post: () => false,
-  is_archive: () => false,
-  is_category: () => false,
-  is_tag: () => false,
-  url_for: (url) => url,
-  open_graph: (obj) => `
-    <meta property="og:title" content="Hexo">
-    <meta property="og:url" content="http://example.com/">
-    <meta property="og:site_name" content="Hexo">
-    <meta property="og:locale" content="ko_KR">
-    <meta property="article:author" content="John Doe">
-    <meta name="twitter:card" content="summary">
-    ...
-  `,
-  representativeImage,
-  fullUrl,
-  getIconCategory,
-  generateUid,
-  stripHTML,
-  _p: (str) => `i18n(${str})`,
-  truncate,
-  paginator,
-  listCategories,
-  listMenus,
-  listLinks,
-  mapArchives,
-  moment,
-  mode: "production",
-};
-locals.fullUrl = locals.fullUrl.bind(locals);
-locals.paginator = locals.paginator.bind(locals);
-locals.listCategories = locals.listCategories.bind(locals);
-locals.listMenus = locals.listMenus.bind(locals);
-locals.listLinks = locals.listLinks.bind(locals);
-locals.mapArchives = locals.mapArchives.bind(locals);
+hexo.init().then(function () {
+  hexo.database.load().then(function () {
+    const locals = {
+      isMock: true,
+      page,
+      post: hexo.locals.toObject().posts.eq(0),
+      ...hexo.locals.toObject(),
+      site: {
+        ...hexo.locals.toObject(),
+        mode: "production",
+      },
+      config: hexo.config,
+      theme,
+      url: hexo.config.url,
+      is_home: () => true,
+      is_post: () => false,
+      is_archive: () => false,
+      is_category: () => false,
+      is_tag: () => false,
+      url_for: (url) => url,
+      _p: (str) => {
+        switch (str) {
+          case "label.category":
+            return `category`;
+        }
+      },
+      mode: `production`,
+    };
 
-pugDocGen({
-  input: path.resolve(rootPath, "./components/atoms/**/*.pug"),
-  output: "./data-atoms.json",
-  locals,
-  complete: function () {
-    const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/en/pug/atoms.md"),
-      input: path.resolve(rootPath, "./data-atoms.json"),
-    });
-    stream.on("complete", function () {
-      fs.unlink(path.resolve(rootPath, "./data-atoms.json"), () => {});
-    });
-  },
-});
-pugDocGen({
-  input: path.resolve(rootPath, "./components/molecules/**/*.pug"),
-  output: "./data-molecules.json",
-  locals,
-  complete: function () {
-    const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/en/pug/molecules.md"),
-      input: path.resolve(rootPath, "./data-molecules.json"),
-    });
-    stream.on("complete", function () {
-      fs.unlink(path.resolve(rootPath, "./data-molecules.json"), () => {});
-    });
-  },
-});
-pugDocGen({
-  input: path.resolve(rootPath, "./components/organisms/**/*.pug"),
-  output: "./data-organisms.json",
-  locals,
-  complete: function () {
-    const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/en/pug/organisms.md"),
-      input: path.resolve(rootPath, "./data-organisms.json"),
-    });
-    stream.on("complete", function () {
-      fs.unlink(path.resolve(rootPath, "./data-organisms.json"), () => {});
-    });
-  },
-});
-pugDocGen({
-  input: path.resolve(rootPath, "./components/templates/**/*.pug"),
-  output: "./data-templates.json",
-  locals,
-  complete: function () {
-    const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/en/pug/templates.md"),
-      input: path.resolve(rootPath, "./data-templates.json"),
-    });
-    stream.on("complete", function () {
-      fs.unlink(path.resolve(rootPath, "./data-templates.json"), () => {});
-    });
-  },
-});
-pugDocGen({
-  input: path.resolve(rootPath, "./components/utils/**/*.pug"),
-  output: "./data-utils.json",
-  locals,
-  complete: function () {
-    const stream = new PugDocMD({
-      output: path.resolve(rootPath, "./docs/en/pug/utils.md"),
-      input: path.resolve(rootPath, "./data-utils.json"),
-    });
-    stream.on("complete", function () {
-      fs.unlink(path.resolve(rootPath, "./data-utils.json"), () => {});
-    });
-  },
-});
+    locals.representativeImage =
+      require("../scripts/helpers/representative-image").bind(locals);
+    locals.getIconCategory =
+      require("../scripts/helpers/get-icon-category").bind(locals);
+    locals.stripHTML = require("../scripts/helpers/strip-html").bind(locals);
+    locals.truncate = require("../scripts/helpers/truncate").bind(locals);
+    locals.paginator = require("../scripts/helpers/paginator").bind(locals);
+    locals.listCategories = require("../scripts/helpers/list-categories").bind(
+      locals
+    );
+    locals.listMenus = require("../scripts/helpers/list-menus").bind(locals);
+    locals.listLinks = require("../scripts/helpers/list-links").bind(locals);
+    locals.mapArchives = require(`../scripts/helpers/map-archives`).bind(
+      locals
+    );
+    locals.moment = require("moment").bind(locals);
+    locals.generateUid = require("../scripts/helpers/generate-uid").bind(
+      locals
+    );
+    locals.fullUrl = require("../scripts/helpers/full-url").bind(locals);
+    locals.open_graph = require("../scripts/helpers/open-graph").bind(locals);
 
-sassDocMD(path.resolve(rootPath, `./source/css/**/*.scss`)).then((md) => {
-  const dir = path.resolve(rootPath, `./docs/en/scss`);
+    pugDocGen({
+      input: path.resolve(rootPath, "./components/atoms/**/*.pug"),
+      output: "./data-atoms.json",
+      locals,
+      complete: function () {
+        const stream = new PugDocMD({
+          output: path.resolve(rootPath, "./docs/en/pug/atoms.md"),
+          input: path.resolve(rootPath, "./data-atoms.json"),
+        });
+        stream.on("complete", function () {
+          fs.unlink(path.resolve(rootPath, "./data-atoms.json"), () => {});
+        });
+      },
+    });
+    // pugDocGen({
+    //   input: path.resolve(rootPath, "./components/molecules/**/*.pug"),
+    //   output: "./data-molecules.json",
+    //   locals,
+    //   complete: function () {
+    //     const stream = new PugDocMD({
+    //       output: path.resolve(rootPath, "./docs/en/pug/molecules.md"),
+    //       input: path.resolve(rootPath, "./data-molecules.json"),
+    //     });
+    //     stream.on("complete", function () {
+    //       fs.unlink(path.resolve(rootPath, "./data-molecules.json"), () => {});
+    //     });
+    //   },
+    // });
+    // pugDocGen({
+    //   input: path.resolve(rootPath, "./components/organisms/**/*.pug"),
+    //   output: "./data-organisms.json",
+    //   locals,
+    //   complete: function () {
+    //     const stream = new PugDocMD({
+    //       output: path.resolve(rootPath, "./docs/en/pug/organisms.md"),
+    //       input: path.resolve(rootPath, "./data-organisms.json"),
+    //     });
+    //     stream.on("complete", function () {
+    //       fs.unlink(path.resolve(rootPath, "./data-organisms.json"), () => {});
+    //     });
+    //   },
+    // });
+    // pugDocGen({
+    //   input: path.resolve(rootPath, "./components/templates/**/*.pug"),
+    //   output: "./data-templates.json",
+    //   locals,
+    //   complete: function () {
+    //     const stream = new PugDocMD({
+    //       output: path.resolve(rootPath, "./docs/en/pug/templates.md"),
+    //       input: path.resolve(rootPath, "./data-templates.json"),
+    //     });
+    //     stream.on("complete", function () {
+    //       fs.unlink(path.resolve(rootPath, "./data-templates.json"), () => {});
+    //     });
+    //   },
+    // });
+    // pugDocGen({
+    //   input: path.resolve(rootPath, "./components/utils/**/*.pug"),
+    //   output: "./data-utils.json",
+    //   locals,
+    //   complete: function () {
+    //     const stream = new PugDocMD({
+    //       output: path.resolve(rootPath, "./docs/en/pug/utils.md"),
+    //       input: path.resolve(rootPath, "./data-utils.json"),
+    //     });
+    //     stream.on("complete", function () {
+    //       fs.unlink(path.resolve(rootPath, "./data-utils.json"), () => {});
+    //     });
+    //   },
+    // });
 
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.writeFile(
-    path.join(dir, `document.md`),
-    md,
-    {
-      encoding: `utf-8`,
-    },
-    (err) => {
-      if (err) throw err;
-    }
-  );
+    sassDocMD(path.resolve(rootPath, `./source/css/**/*.scss`)).then((md) => {
+      const dir = path.resolve(rootPath, `./docs/en/scss`);
+
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFile(
+        path.join(dir, `document.md`),
+        md,
+        {
+          encoding: `utf-8`,
+        },
+        (err) => {
+          if (err) throw err;
+        }
+      );
+    });
+  });
 });
