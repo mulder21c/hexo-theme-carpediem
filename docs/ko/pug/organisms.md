@@ -1,36 +1,36 @@
-# Pug Documentation 
+# Pug Documentation
 
 ## accordion
 
-accordion component
+아코디언 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/accordion/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.headingLevel|heading level of header in accordion|string|2|Y|
-|props.activatedIndex|The index number of the panel that you want to initially open|number||N|
-|props.useSection|Whether to separate each item into sections|boolean|false|N|
+|props.headingLevel|아코디언 헤더의 헤딩 수준|string|2|Y|
+|props.activatedIndex|초기에 열어둘 패널의 인덱스 번호|number||N|
+|props.useSection|각 항목을 섹션으로 분리(아웃라인) 할 것인지 여부|false|N|
 
 
 
-### slots 
+### 슬롯
 
-|name|description|
+|이름|설명|
 |:---:|:---|
-|accordionHeadingSlot|the slot for heading of accordion item|
-|accordionPanelSlot|the slot for panel of accordion item|
+|accordionHeadingSlot|아코디언 항목 헤딩 슬롯|
+|accordionPanelSlot|아코디언 항목 패널 슬롯|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -47,17 +47,17 @@ include /components/atoms/svg-icon/index
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
-<div class="amor-accordion" id="kivl0z4nafu" data-init-activate="1">
+<div class="amor-accordion" id="ps1jypdo08s" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="variv2t7iji"
+      id="uz41k3ris2s"
       aria-expanded="false"
-      aria-controls="uopntnp63ks"
+      aria-controls="khqq92m7a54"
     >
       heading 1
       <svg
@@ -73,9 +73,9 @@ include /components/atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="uopntnp63ks"
+    id="khqq92m7a54"
     role="region"
-    aria-labelledby="variv2t7iji"
+    aria-labelledby="uz41k3ris2s"
     hidden="hidden"
   >
     panel 1
@@ -84,9 +84,9 @@ include /components/atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="i1onltp8vv6"
+      id="id51to95l2g"
       aria-expanded="true"
-      aria-controls="pzweqkvbm3g"
+      aria-controls="r9dohtjebio"
     >
       heading 2
       <svg
@@ -102,9 +102,9 @@ include /components/atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel active"
-    id="pzweqkvbm3g"
+    id="r9dohtjebio"
     role="region"
-    aria-labelledby="i1onltp8vv6"
+    aria-labelledby="id51to95l2g"
   >
     panel 2
   </div>
@@ -112,9 +112,9 @@ include /components/atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="ugo3xemvnm4"
+      id="d2d7bymq527"
       aria-expanded="false"
-      aria-controls="ovudlipnpl8"
+      aria-controls="c8zyz6tvf0r"
     >
       heading 3
       <svg
@@ -130,9 +130,9 @@ include /components/atoms/svg-icon/index
   </div>
   <div
     class="amor-accordion__panel"
-    id="ovudlipnpl8"
+    id="c8zyz6tvf0r"
     role="region"
-    aria-labelledby="ugo3xemvnm4"
+    aria-labelledby="d2d7bymq527"
     hidden="hidden"
   >
     panel 3
@@ -147,27 +147,27 @@ include /components/atoms/svg-icon/index
 
 ## archiveTimeline
 
-archive timeline component
+아카이브 타임라인 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/archives/timeline.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.archives|the map object that is mapped by year and month|map||Y|
-|props.headingLevel|the level(rank) of heading in the year section of the timeline|number|2|Y|
-|props.displayYearNum|the number of latest years to display the list of posts by year|number|2|N|
-|props.currYear|The year currently exposed to page|number||N|
+|props.archives|연 및 월로 매핑된 map 객체|map||Y|
+|props.headingLevel|타임라인의 연도별 섹션에서 헤딩 수준|number|2|Y|
+|props.displayYearNum|연도별 게시글 목록을 노출할 최신 연도 개수|number|2|N|
+|props.currYear|페이지에 노출 된 현재 연도|number||N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -180,7 +180,7 @@ include /components/atoms/heading/index
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div class="amor-timeline">
@@ -190,7 +190,10 @@ include /components/atoms/heading/index
   </h2>
   <ol class="amor-timeline__list">
     <li class="amor-timeline__list__item">
-      <a class="amor-timeline__link" href="https://mulder21c.io/lorem-ipsum/">
+      <a
+        class="amor-timeline__link"
+        href="https://www.mulder21c.io/lorem-ipsum/"
+      >
         <span class="amor-timeline__title">Lorem Ipsum</span>
       </a>
     </li>
@@ -205,24 +208,24 @@ include /components/atoms/heading/index
 
 ## articleContent
 
-content for article
+아티클 콘텐츠
 
 
-### path 
+### 경로
 
 `components/organisms/article-content/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.content|content of post|object||Y|
+|props.content|게시글 콘텐츠|object||Y|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -231,7 +234,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div class="amor-article-content">
@@ -307,58 +310,56 @@ include /components/utils/util
 
 ## articlesList
 
-article list
+게시글 목록
 
 
-### path 
+### 경로
 
 `components/organisms/articles-list/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.posts|hexo page.posts @see https://hexo.io/docs/variables.html#Page-Variables|array||Y|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
 include /components/molecules/article-card/index
 
 +articlesList({
-  posts: posts.toArray(),
+  posts,
 })
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <ol class="amor-articles-list">
   <li class="amor-articles-list__item">
-    <div
-      class="amor-article-card amor-article-card--no-thumb amor-article-card--link"
-    >
+    <div class="amor-article-card amor-article-card--link">
       <a
         class="amor-article-card__heading"
-        href="https://mulder21c.io/lorem-ipsum/"
-        aria-describedby="cwlxcboopqt fma7tfs1qcf"
+        href="https://www.mulder21c.io/lorem-ipsum/"
+        aria-describedby="gv9xum90fpp pm8dydv1m7g"
       >
         Lorem Ipsum
       </a>
-      <div class="amor-article-card__meta" id="cwlxcboopqt">
+      <div class="amor-article-card__meta" id="gv9xum90fpp">
         <span class="amor-datetime amor-article-card__meta__item">
           <span class="amor-datetime__label" role="img" aria-label="published">
             📆
           </span>
           <time
             class="amor-datetime__time"
-            id="wm07u29aiku"
+            id="kr6qw6l8p5g"
             datetime="2000-01-01"
           >
             2000. 01. 01
@@ -375,7 +376,7 @@ include /components/molecules/article-card/index
           </span>
         </span>
       </div>
-      <p class="amor-article-card__content" id="fma7tfs1qcf">
+      <p class="amor-article-card__content" id="pm8dydv1m7g">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis
         lacus, pharetra posuere tincidunt eu, vulputate eget ex. Lorem ipsum
         dolor sit amet, consectetur adipiscing elit. Quisque accumsan in ligula
@@ -394,23 +395,23 @@ include /components/molecules/article-card/index
 
 ## commento
 
-commento comments component
+commento 댓글 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/comments/commento.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object|`{}`|N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -419,7 +420,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div id="commento"></div>
@@ -432,23 +433,23 @@ include /components/utils/util
 
 ## disqus
 
-disqus comments component
+disqus 댓글 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/comments/disqus.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object|`{}`|N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -457,7 +458,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div id="disqus_thread"></div>
@@ -470,23 +471,23 @@ include /components/utils/util
 
 ## giscus
 
-giscus comments component
+giscus 댓글 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/comments/giscus.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object|`{}`|N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -495,7 +496,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <script id="giscus"></script>
@@ -508,23 +509,23 @@ include /components/utils/util
 
 ## comments
 
-comments component
+댓글 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/comments/index.pug`
 
 
-### arguments 
+### 매개변수
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
-|props|the props for used comment component|object||N|
+|props|사용된 댓글 컴포넌트에 대한 props|object||N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -538,7 +539,7 @@ include /components/organisms/comments/utterance
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div id="disqus_thread"></div>
@@ -551,23 +552,23 @@ include /components/organisms/comments/utterance
 
 ## livere
 
-livere comments component
+livere 댓글 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/comments/livere.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object|`{}`|N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -576,7 +577,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div id="lv-container" data-id="city"></div>
@@ -589,23 +590,23 @@ include /components/utils/util
 
 ## remark
 
-remark comments component
+remark42 댓글 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/comments/remark.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object|`{}`|N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -614,7 +615,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div id="remark42"></div>
@@ -627,23 +628,23 @@ include /components/utils/util
 
 ## utterance
 
-utterance comments component
+utterance 댓글 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/comments/utterance.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object|`{}`|N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -652,7 +653,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <script id="utterance"></script>
@@ -665,15 +666,15 @@ include /components/utils/util
 
 ## footerContent
 
-footer content
+푸터 콘텐츠
 
 
-### path 
+### 경로
 
 `components/organisms/footer/index.pug`
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -684,7 +685,7 @@ include /components/atoms/watermark/index
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div class="amor-footer">
@@ -740,24 +741,24 @@ include /components/atoms/watermark/index
 
 ## hero
 
-hero component
+hero 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/hero/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.imgSrc|the source url for hero image|string||Y|
+|props.imgSrc|hero 이미지 URL|string||Y|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -766,7 +767,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div
@@ -783,25 +784,25 @@ include /components/utils/util
 
 ## pagination
 
-pagination component
+페이지네이션 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/pagination/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.options|paginator's option of hexo @see https://hexo.io/ko/docs/helpers#paginator|object||N|
-|props.labelRef|the id of related content|string||N|
+|props.options|hexo paginator 옵션 @see https://hexo.io/ko/docs/helpers#paginator|object||N|
+|props.labelRef|연관 콘텐츠의 id|string||N|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -815,7 +816,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <nav class="amor-pagination">
@@ -829,7 +830,7 @@ include /components/utils/util
   <a class="amor-pagination__item" href="//page/2">2</a>
   <a class="amor-pagination__item" href="//page/3">3</a>
   <a class="amor-pagination__next" rel="next" href="//page/2">
-    <svg role="img" aria-label="next page" focusable="false">
+    <svg role="img" aria-label="다음 페이지" focusable="false">
       <use xlink:href="/images/solid.svg#angle-right"></use>
     </svg>
   </a>
@@ -843,35 +844,35 @@ include /components/utils/util
 
 ## slidePanel
 
-sliding panel component
+슬라이딩 패널 컴포넌트
 
 
-### path 
+### 경로
 
 `components/organisms/slide-panel/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.label|the label of panel|string||Y|
-|props.useCloseBtn|whether to use the close button|boolean|true|N|
-|props.closeBtnPosition|the position of close button|string|`top-right`|N|
-|props.tag|the HTML tag name for the element enclosing the panel|string|`section`|N|
+|props.label|패널의 레이블|string||Y|
+|props.useCloseBtn|닫기 버튼 사용 여부|boolean|true|N|
+|props.closeBtnPosition|닫기 버튼 위치|string|`top-right`|N|
+|props.tag|패널을 감싸는 엘리먼트의 HTML tag 이름|string|`section`|N|
 
 
 
-### slots 
+### 슬롯
 
-|name|description|
+|이름|설명|
 |:---:|:---|
-|panelBodySlot|the slot for body of panel|
+|panelBodySlot|패널 내용 슬롯|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -883,15 +884,15 @@ include /components/atoms/buttons/icon
   useCloseBtn: true,
   closeBtnPosition: `top-right`,
   tag: 'div',
-  class: 'side',
+  class: '_side',
   id: 'slide-nav',
 })
   +panelBodySlot
-    | slide panel
+    slide panel
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <div
@@ -925,34 +926,34 @@ include /components/atoms/buttons/icon
 
 ## titleBar
 
-a title bar located at the top of the page
+페이지 상단에 위치한 타이틀 바
 
 
-### path 
+### 경로
 
 `components/organisms/title-bar/index.pug`
 
 
-### arguments 
+### 매개변수
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.title|the text to use as a title|string||Y|
-|props.useLink|whether to use link|boolean|true|N|
+|props.title|타이틀로 사용할 텍스트|string||Y|
+|props.useLink|링크 사용 여부|boolean|true|N|
 
 
 
-### slots 
+### 슬롯
 
-|name|description|
+|이름|설명|
 |:---:|:---|
-|beforeSlot|the slot to be placed before title|
-|afterSlot|the slot to be placed after title|
+|beforeSlot|타이틀 앞에 배치되는 슬롯|
+|afterSlot|타이틀 뒤에 배치되는 슬롯|
 
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -962,7 +963,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### 예시 출력 결과
 
 ```html
 <!-- without slot-->
@@ -974,5 +975,3 @@ include /components/utils/util
 
 
 ---
-
-

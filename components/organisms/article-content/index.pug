@@ -1,6 +1,6 @@
 //- @pugdoc
   name: articleContent
-  description: create content for article
+  description: content for article
   beforeEach: |
     include /components/utils/util
   arguments:
@@ -8,7 +8,7 @@
     - {object} props.content content of post
   examples:
     - |
-      +articleContent({ categories: post.content, })
+      +articleContent({ content: post.content, })
 
 mixin articleContent(props = {})
   -

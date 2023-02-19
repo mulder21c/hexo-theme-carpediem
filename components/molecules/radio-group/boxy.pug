@@ -1,21 +1,21 @@
-include ../atoms/radios/boxy
+include /components/atoms/radios/boxy
 
 //- @pugdoc
   name: radioBoxes
-  description: create radio group component
+  description: boxy radio group component
   see: test
   beforeEach: |
     include /components/utils/util
-    include ../../atoms/radios/boxy
+    include /components/atoms/radios/boxy
   arguments:
     - {object} props
-    - {string} props.name attribute of radio
+    - {string} props.name the name attribute of radio
     - |
       {array} props.options the array that consists of options
       for radio component
   slots:
     - |
-      radioBoxesLabelSlot the slot for label.
+      radioBoxesLabelSlot the slot for label. <br>
       the number of slots must be equal to number of option items
   examples:
     - |

@@ -1,8 +1,8 @@
 //- @pugdoc
   name: categoryNavigation
-  description: create hexo category list
+  description: category list in navigation
   beforeEach: |
-    include ../../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
     - | {object} [props.options]
@@ -48,4 +48,4 @@ mixin categoryNavigation(props = {})
     class= options.class
     aria-label= `categories`
   )&attributes(attrs)
-    | !{listCategories(options)}
+    | !{list_categories(options)}

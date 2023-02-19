@@ -1,16 +1,16 @@
 //- @pugdoc
   name: fieldset
-  description: create group containing label and body
+  description: group containing label and body
   beforeEach: |
     include /components/utils/util
   arguments:
     - {object} props
     - |
-      {string} [props.direction] ['row'] how items are placed in the container
-      <br>One of `'row'`, `'column'`
+      {string} [props.direction] [row] how items are placed in the container
+      <br>One of `row`, `column`
     - |
-      {string} [props.alignItem] ['start'] alignment of items on the cross axis
-      <br>One of `'start'`, `'center'`
+      {string} [props.alignItem] [start] alignment of items on the cross axis
+      <br>One of `start`, `center`
     - |
       {integer} [props.labelWidthRatio] [3] the factor of label's width
       in the container
@@ -27,21 +27,21 @@
       {object} [props.bodySlotAttrs]
       the attributes of body slot's container
   slots:
-    - fieldsetLabelSlot the slot for legend of fieldset
+    - fieldsetLabelSlot the slot for label of fieldset
     - fieldsetBodySlot the slot for body of fieldset
   examples:
     - |
       // row
       +fieldset({direction: `row`})
-        +fieldsetLabelSlot fieldset title
+        +fieldsetLabelSlot label
         +fieldsetBodySlot
-          p fieldset body
+          p body
 
       // column
       +fieldset({direction: `column`})
-        +fieldsetLabelSlot fieldset title
+        +fieldsetLabelSlot label
         +fieldsetBodySlot
-          p fieldset body
+          p body
 
 mixin fieldset(props = {})
   -
@@ -69,6 +69,8 @@ mixin fieldset(props = {})
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
       ]),
+      labelSlotAttrs: PropTypes.object,
+      bodySlotAttrs: PropTypes.object,
     };
 
     // verifying props

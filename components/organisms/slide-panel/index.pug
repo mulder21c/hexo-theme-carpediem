@@ -3,11 +3,11 @@ include /components/atoms/buttons/icon
 
 //- @pugdoc
   name: slidePanel
-  description: create a sliding panel
+  description: sliding panel component
   beforeEach: |
     include /components/utils/util
-    include ../../atoms/svg-icon/index
-    include ../../atoms/buttons/icon
+    include /components/atoms/svg-icon/index
+    include /components/atoms/buttons/icon
   arguments:
     - {object} props
     - {string} props.label the label of panel
@@ -27,11 +27,11 @@ include /components/atoms/buttons/icon
         useCloseBtn: true,
         closeBtnPosition: `top-right`,
         tag: 'div',
-        class: '_side',
+        class: 'side',
         id: 'slide-nav',
       })
         +panelBodySlot
-          slide panel
+          | slide panel
 
 mixin slidePanel(props = {})
   -
@@ -55,6 +55,7 @@ mixin slidePanel(props = {})
 
     // merge user-supplied options with the defaults
     const defaultProps = {
+      id: generateUid(),
       useCloseBtn: true,
       closeBtnPosition: `top-right`,
       tag: `section`,

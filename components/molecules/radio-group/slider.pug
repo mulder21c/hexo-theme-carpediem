@@ -2,20 +2,20 @@ include /components/atoms/radios/default
 
 //- @pugdoc
   name: radioSlider
-  description: create radio group component
+  description: radio slider component
   see: test
   beforeEach: |
     include /components/utils/util
-    include ../../atoms/radios/default
+    include /components/atoms/radios/default
   arguments:
     - {object} props
-    - {string} props.name attribute of radio
+    - {string} props.name the name attribute of radio
     - |
       {array} props.options the array that consists of options
       for radio component
     - |
       {string} [props.labelPosition] [`bottom`] Where the label is located
-      relative to the visual indicator<br>One of `'top'`, `'bottom'`
+      relative to the visual indicator<br>One of `top`, `bottom`
   slots:
     - |
       radioSliderLabelSlot the slot for label.

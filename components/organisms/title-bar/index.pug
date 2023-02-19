@@ -1,11 +1,11 @@
 //- @pugdoc
   name: titleBar
-  description: create a title bar located at the top of the page
+  description: a title bar located at the top of the page
   beforeEach: |
     include /components/utils/util
   arguments:
     - {object} props
-    - {string} [props.title] the text to use as a title
+    - {string} props.title the text to use as a title
     - {boolean} [props.useLink] [true] whether to use link
   slots:
     - beforeSlot the slot to be placed before title

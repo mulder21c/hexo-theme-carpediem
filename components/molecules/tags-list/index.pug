@@ -5,11 +5,15 @@
     include /components/utils/util
   arguments:
     - {object} props
-    - {object} props.tags sequence of tags
+    - {array} props.tags sequence of tags
+    - |
+      {string} [props.appearance] [`flat`] Style to display tags list <br>
+      One of `list` and `flat`
+    - {boolean} [props.useLink] [true] whether to use link
   examples:
     - |
       +tagsList({
-        tags: post.tags.data || post.tags || [],
+        tags: post.tags.toArray(),
       })
 
 mixin tagsList(props = {})

@@ -55,28 +55,28 @@ export class Accordion {
    * @param {Event} event - click event
    */
   handleKeyDown(event) {
-    const { keyCode, target } = event;
+    const { code, target } = event;
     const { tabs } = this;
     const isTab = target.matches(this.tabSelector);
     if (!isTab) return;
     const lastIdx = tabs.length - 1;
     let currIdx = [...tabs].indexOf(target);
     let nextIdx;
-    switch (keyCode) {
-      case 35: // end
+    switch (code.toLowerCase()) {
+      case `end`:
         event.preventDefault();
         tabs[lastIdx].focus();
         break;
-      case 36: // home
+      case `home`:
         event.preventDefault();
         tabs[0].focus();
         break;
-      case 38: // arrow up
+      case `arrowup`:
         event.preventDefault();
         nextIdx = --currIdx < 0 ? lastIdx : currIdx;
         tabs[nextIdx].focus();
         break;
-      case 40: // arrow down
+      case `arrowdown`: // arrow down
         event.preventDefault();
         nextIdx = ++currIdx > lastIdx ? 0 : currIdx;
         tabs[nextIdx].focus();

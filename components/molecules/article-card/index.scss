@@ -15,6 +15,30 @@
   background-color: var(--card-background-color);
   outline-offset: 0;
 
+  @include respond-to(tablet) {
+    grid-template-columns: 7fr 3fr;
+    grid-template-areas:
+      "heading thumb"
+      "meta thumb"
+      "body thumb";
+    column-gap: 2rem;
+
+    &--no-thumb {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "heading"
+        "meta"
+        "body";
+    }
+  }
+
+  &--no-thumb {
+    grid-template-areas:
+      "heading"
+      "meta"
+      "body";
+  }
+
   &#{$link-card} {
     &:hover {
       border-color: var(--card-hover-border-color);
@@ -30,17 +54,6 @@
       background-color: var(--card-hover-background-color);
       box-shadow: 2px 2px 4px 4px var(--card-focus-shadow-color);
     }
-  }
-
-  @include respond-to(tablet) {
-    grid-template-columns: 7fr 3fr;
-    grid-template-areas:
-      "heading thumb"
-      "meta thumb"
-      "body thumb";
-  }
-  @include respond-to(pc) {
-    grid-template-columns: 7fr 2fr;
   }
 
   &__thumb {
@@ -74,17 +87,12 @@
 
     @include respond-to(tablet) {
       margin-top: 0;
-      margin-right: 2em;
     }
   }
 
   &__meta {
     grid-area: meta;
     margin: 0 0 0.75em;
-
-    @include respond-to(tablet) {
-      margin-right: 2em;
-    }
 
     &__item {
       display: flex;
@@ -101,9 +109,5 @@
   &__content {
     grid-area: body;
     @include lineEllipsis(3);
-
-    @include respond-to(tablet) {
-      margin-right: 2em;
-    }
   }
 }

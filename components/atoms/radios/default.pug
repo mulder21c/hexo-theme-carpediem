@@ -100,7 +100,7 @@ mixin radio(props = {})
       `${prefix}-radio`,
       ...(Array.isArray(className) ? className : [className]),
     ]
-  )
+  )&attributes(attrs)
     input(
       type= `radio`
       id= id

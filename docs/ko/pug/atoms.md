@@ -157,7 +157,7 @@ include /components/atoms/svg-icon/index
 ```html
 <span class="amor-category">
   <span class="amor-category__label" role="img" aria-label="category">📂</span>
-  <span class="amor-category__content">in occupation</span>
+  <span class="amor-category__content">mockup</span>
 </span>
 
 ```

@@ -1,22 +1,22 @@
-include ../atoms/category/index
-include ../atoms/datetime/index
+include /components/atoms/category/index
+include /components/atoms/datetime/index
 
 //- @pugdoc
   name: articleMeta
-  description: create meta info component for article
+  description: meta info component for article
   beforeEach: |
     include /components/utils/util
-    include ../../atoms/category/index
-    include ../../atoms/datetime/index
+    include /components/atoms/category/index
+    include /components/atoms/datetime/index
   arguments:
     - {object} props
     - {object} props.categories sequence of category
-    - {object} props.date date of article
-    - {object} props.updated updated date of article
+    - {Moment} props.date published date of article
+    - {Moment} props.updated updated date of article
   examples:
     - |
       +articleMeta({
-        categories: post.categories.data || post.categories || [],
+        categories: post.categories.toArray(),
         date: post.date,
         updated: post.updated,
       })

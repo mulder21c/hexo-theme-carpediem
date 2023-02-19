@@ -1,13 +1,13 @@
 //- @pugdoc
   name: linksNavigation
-  description: create hexo external link list
+  description: external links list in navigation
   beforeEach: |
-    include ../../../utils/util
+    include /components/utils/util
   arguments:
     - {object} props
     - {object} [props.options] the options for external link list
     - |
-      {function} [props.options.transform] <br>
+      {function} [props.options.transform]
       the function that changes the display of link name
   examples:
     - |

@@ -2,10 +2,10 @@ include /components/molecules/article-card/index
 
 //- @pugdoc
   name: articlesList
-  description: create accordion component
+  description: article list
   beforeEach: |
     include /components/utils/util
-    include ../../molecules/article-card/index
+    include /components/molecules/article-card/index
   arguments:
     - {object} props
     - |
@@ -14,7 +14,7 @@ include /components/molecules/article-card/index
   examples:
     - |
       +articlesList({
-        posts: (posts || []),
+        posts: posts.toArray(),
       })
 
 mixin articlesList(props = {})
@@ -36,7 +36,7 @@ mixin articlesList(props = {})
 
     const { prefix } = theme;
 
-  ol(class=`${prefix}-articles-list`)
+  ol(class=`${prefix}-articles-list`)&attributes(attrs)
     each post in posts
       li(class= `${prefix}-articles-list__item`)
         +articleCard({post, isLink: true})

@@ -104,7 +104,7 @@ mixin cclLicense(props = {})
 
   p(
     class= `${prefix}-license`
-  )
+  )&attributes(attrs)
     | !{ccImage}
 
     if startYear

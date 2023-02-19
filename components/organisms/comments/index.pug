@@ -4,6 +4,22 @@ include /components/organisms/comments/remark
 include /components/organisms/comments/livere
 include /components/organisms/comments/utterance
 
+//- @pugdoc
+  name: comments
+  description: comments component
+  beforeEach: |
+    include /components/utils/util
+    include /components/organisms/comments/disqus
+    include /components/organisms/comments/commento
+    include /components/organisms/comments/remark
+    include /components/organisms/comments/livere
+    include /components/organisms/comments/utterance
+  arguments:
+    - {object} [props] the props for used comment component
+  examples:
+    - |
+      +comments()
+
 mixin comments(props= {})
   -
     // define types

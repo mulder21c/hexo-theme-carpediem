@@ -1,20 +1,20 @@
-include ../../atoms/buttons/default
-include ../../atoms/textbox/index
-include ../../molecules/fieldset/default
+include /components/atoms/buttons/default
+include /components/atoms/textbox/index
+include /components/molecules/fieldset/default
 
 //- @pugdoc
   name: searchBar
-  description: create search bar component
+  description: search bar component
   beforeEach: |
     include /components/utils/util
-    include ../../atoms/buttons/default
-    include ../../atoms/textbox/index
-    include ../../molecules/fieldset/default
+    include /components/atoms/buttons/default
+    include /components/atoms/textbox/index
+    include /components/molecules/fieldset/default
   arguments:
     - {object} props
     - |
-      {string} props.textfieldId the id value for search text field
-    - {string} props.searchBtnId the id value for search button
+      {string} props.textfieldId the id attribute value for search text field
+    - {string} props.searchBtnId the id attribute value for search button
   examples:
     - |
       +searchBar({
@@ -43,16 +43,19 @@ mixin searchBar(props = {})
     const { prefix } = theme;
     const labelId = generateUid();
 
-  +fieldset({
-    direction: `column`,
-    labelSlotClassName: `${prefix}-searchbar__label`,
-    bodySlotClassName: `${prefix}-searchbar__body`,
-    labelSlotAttrs: {
-      id: labelId,
-    },
-    class: `${prefix}-searchbar`,
-    id: `searchbox`
-  })
+    const fieldsetConfig = {
+      direction: `column`,
+      labelSlotClassName: `${prefix}-searchbar__label`,
+      bodySlotClassName: `${prefix}-searchbar__body`,
+      labelSlotAttrs: {
+        id: labelId,
+      },
+      class: `${prefix}-searchbar`,
+      id: `searchbox`,
+      ...attrs,
+    };
+
+  +fieldset(fieldsetConfig)
     +fieldsetLabelSlot
       = _p(`label.search`)
     +fieldsetBodySlot

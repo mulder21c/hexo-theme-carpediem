@@ -103,7 +103,7 @@ include /components/atoms/svg-icon/index
     focusable="false"
     aria-hidden="true"
   >
-    <use xlink:href="https://www.mulder21c.io/images/solid.svg#tty"></use>
+    <use xlink:href="https://mulder21c.io/images/solid.svg#tty"></use>
   </svg>
 </button>
 
@@ -157,7 +157,7 @@ include /components/atoms/svg-icon/index
 ```html
 <span class="amor-category">
   <span class="amor-category__label" role="img" aria-label="category">📂</span>
-  <span class="amor-category__content">in occupation</span>
+  <span class="amor-category__content">mockup</span>
 </span>
 
 ```
@@ -302,21 +302,21 @@ label(for=`no-label-checkbox`) checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="sgzp1qin9ma"
+    id="dlkd334gg57"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="sgzp1qin9ma">agree</label>
+  <label class="amor-checkbox__label" for="dlkd334gg57">agree</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="z0oucbl9cn8"
+    id="exsomhjuqrc"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="z0oucbl9cn8">check label</label>
+  <label class="amor-checkbox__label" for="exsomhjuqrc">check label</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-checkbox">
@@ -393,22 +393,22 @@ label(for="no-label-switch") switch button
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="zatsze2dubs"
+    id="bzxda2uareo"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="zatsze2dubs">alarm</label>
+  <label class="amor-switch__label" for="bzxda2uareo">alarm</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-switch">
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="hwnmj96jkbg"
+    id="s1q1lyg0ae4"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="hwnmj96jkbg">switch button</label>
+  <label class="amor-switch__label" for="s1q1lyg0ae4">switch button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-switch">
@@ -476,15 +476,15 @@ include /components/utils/util
 <!-- simple-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="z9fw6ukj7fs" datetime="2023-01-17">
-    2023. 01. 17
+  <time class="amor-datetime__time" id="mmkjkdi34no" datetime="2023-02-19">
+    2023. 02. 19
   </time>
 </span>
 <!-- explicit format-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="h4devbjm5lk" datetime="2023-01-17">
-    2023-01-17
+  <time class="amor-datetime__time" id="ku5f25q0igk" datetime="2023-02-19">
+    2023-02-19
   </time>
 </span>
 
@@ -615,7 +615,7 @@ include /components/utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="hr6kt839b3a"
+    id="bjw22w478ik"
     name="answer"
     value="1"
   />
@@ -626,7 +626,7 @@ include /components/utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="lpmojig3en2"
+    id="teze45ps6lr"
     name="answer"
     value="1"
   />
@@ -690,22 +690,22 @@ label(for=`no-label`) radio button
   <input
     class="amor-radio__control"
     type="radio"
-    id="lm43hof38lq"
+    id="cn9p3h8djc8"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="lm43hof38lq">yes</label>
+  <label class="amor-radio__label" for="cn9p3h8djc8">yes</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-radio">
   <input
     class="amor-radio__control"
     type="radio"
-    id="sdvoeep1chg"
+    id="bcm0eg4jakc"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="sdvoeep1chg">radio button</label>
+  <label class="amor-radio__label" for="bcm0eg4jakc">radio button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-radio">
@@ -759,7 +759,7 @@ include /components/utils/util
 
 ```html
 <svg class="amor-svg-icon" focusable="false">
-  <use xlink:href="https://www.mulder21c.io/images/solid.svg#thumbs-up"></use>
+  <use xlink:href="https://mulder21c.io/images/solid.svg#thumbs-up"></use>
 </svg>
 
 ```
@@ -807,7 +807,7 @@ include /components/utils/util
 ### example output 
 
 ```html
-<input class="amor-textbox amor-textbox--medium" id="j2xkycrh84s" type="text" />
+<input class="amor-textbox amor-textbox--medium" id="uew8hsb6opa" type="text" />
 
 ```
 

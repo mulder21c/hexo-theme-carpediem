@@ -8,7 +8,7 @@ helper.register(`representativeImage`, require(`./representative-image`));
 helper.register(`stripHTML`, require(`./strip-html`));
 helper.register(`truncate`, require(`./truncate`));
 helper.register(`paginator`, require(`./paginator`));
-helper.register(`listCategories`, require(`./list-categories`));
+helper.register(`list_categories`, require(`./list-categories`));
 helper.register(`listMenus`, require(`./list-menus`));
 helper.register(`listLinks`, require(`./list-links`));
 helper.register(`mapArchives`, require(`./map-archives`));

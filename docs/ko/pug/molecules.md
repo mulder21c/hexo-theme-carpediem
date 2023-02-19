@@ -15,8 +15,8 @@
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.post|hexo post object @see https://hexo.io/docs/variables.html#Page-Variables|object||Y|
-|props.isLink|Whether to operate the card as a link|boolean|false|N|
+|props.post|hexo post 객체 https://hexo.io/docs/variables.html#Page-Variables|object||Y|
+|props.isLink|카드를 링크로 작동 시킬지 여부|boolean|false|N|
 
 
 
@@ -35,39 +35,39 @@ include /components/atoms/category/index
 
 ```html
 <div class="amor-article-card amor-article-card--link">
-  <img
-    class="amor-article-card__thumb"
-    src="https://via.placeholder.com/320x180.png?text=28v6qr7l7nke6g8"
-    alt=""
-    loading="lazy"
-    role="none"
-  />
   <a
     class="amor-article-card__heading"
-    href="http://example.com/post-28v6qr7l7nke6g8/"
-    aria-describedby="zxt6iehjri6 q0x75qsop4o"
+    href="https://www.mulder21c.io/lorem-ipsum/"
+    aria-describedby="od8v8gnssu8 kgcvvsaa1so"
   >
-    Post 28v6qr7l7nke6g8
+    Lorem Ipsum
   </a>
-  <div class="amor-article-card__meta" id="zxt6iehjri6">
+  <div class="amor-article-card__meta" id="od8v8gnssu8">
     <span class="amor-datetime amor-article-card__meta__item">
-      <span
-        class="amor-datetime__label"
-        role="img"
-        aria-label="i18n(label.date.published)"
-      >
+      <span class="amor-datetime__label" role="img" aria-label="published">
         📆
       </span>
-      <time class="amor-datetime__time" id="qfv1wcuivdk" datetime="2023-01-14">
-        2023. 01. 14
+      <time class="amor-datetime__time" id="zc1e4wvchmk" datetime="2000-01-01">
+        2000. 01. 01
       </time>
     </span>
+    <span class="amor-category amor-article-card__meta__item">
+      <span class="amor-category__label" role="img" aria-label="category">
+        📂
+      </span>
+      <span class="amor-category__list" role="list">
+        <span class="amor-category__content" role="listitem">
+          <span>document</span>
+        </span>
+      </span>
+    </span>
   </div>
-  <p class="amor-article-card__content" id="q0x75qsop4o">
-    Pariatur tempor culpa deserunt qui deserunt amet mollit voluptate eu nostrud
-    eu magna et veniam. Proident cillum eu ullamco enim minim incididunt do
-    dolore ut veniam. Occaecat tempor eu eiusmod est in. Minim enim non enim
-    laborum duis amet. Nulla reprehenderit eu nostrud veniam veniam magna aute.
+  <p class="amor-article-card__content" id="kgcvvsaa1so">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis
+    lacus, pharetra posuere tincidunt eu, vulputate eget ex. Lorem ipsum dolor
+    sit amet, consectetur adipiscing elit. Quisque accumsan in ligula in
+    pulvinar. Nulla dapibus orci a ipsum consectetur, quis convallis velit
+    tincidunt.
   </p>
 </div>
 
@@ -79,7 +79,7 @@ include /components/atoms/category/index
 
 ## articleMeta
 
-create meta info component for article
+게시글에 대한 메타 정보 컴포넌트
 
 
 ### 경로
@@ -92,9 +92,9 @@ create meta info component for article
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.categories|sequence of category|object||Y|
-|props.date|date of article|object||Y|
-|props.updated|updated date of article|object||Y|
+|props.categories|카테고리 배열|object||Y|
+|props.date|게시글 발행 날짜|Moment||Y|
+|props.updated|게시글 업데이트 날짜|Moment||Y|
 
 
 
@@ -102,11 +102,11 @@ create meta info component for article
 
 ```jade
 include /components/utils/util
-include ../../atoms/category/index
-include ../../atoms/datetime/index
+include /components/atoms/category/index
+include /components/atoms/datetime/index
 
 +articleMeta({
-  categories: post.categories.data || post.categories || [],
+  categories: post.categories.toArray(),
   date: post.date,
   updated: post.updated,
 })
@@ -118,43 +118,21 @@ include ../../atoms/datetime/index
 ```html
 <div class="amor-article-meta">
   <span class="amor-category amor-article-meta__categories">
-    <span
-      class="amor-category__label"
-      role="img"
-      aria-label="i18n(label.category)"
-    >
+    <span class="amor-category__label" role="img" aria-label="category">
       📂
     </span>
     <span class="amor-category__list" role="list">
       <span class="amor-category__content" role="listitem">
-        <a href="https://www.mulder21c.io/categories/cate-28v6ivst9dum3vo">
-          cate-28v6ivst9dum3vo
-        </a>
-      </span>
-      <span class="amor-category__separator" aria-hidden="true">
-        <svg class="amor-svg-icon" focusable="false">
-          <use
-            xlink:href="https://www.mulder21c.io/images/solid.svg#angle-right"
-          ></use>
-        </svg>
-      </span>
-      <span class="amor-category__content" role="listitem">
-        <a href="https://www.mulder21c.io/categories/cate-28v6i9ocbk09ufg">
-          cate-28v6i9ocbk09ufg
-        </a>
+        <a href="https://www.mulder21c.io/categories/document/">document</a>
       </span>
     </span>
   </span>
   <span class="amor-datetime amor-article-meta__date">
-    <span
-      class="amor-datetime__label"
-      role="img"
-      aria-label="i18n(label.date.published)"
-    >
+    <span class="amor-datetime__label" role="img" aria-label="published">
       📆
     </span>
-    <time class="amor-datetime__time" id="nwwrxfuabfo" datetime="2023-01-14">
-      2023. 01. 14
+    <time class="amor-datetime__time" id="xoni1koa0v4" datetime="2000-01-01">
+      2000. 01. 01
     </time>
   </span>
 </div>
@@ -167,7 +145,7 @@ include ../../atoms/datetime/index
 
 ## articleAuthor
 
-area for introducing author
+작성자 소개
 
 
 ### 경로
@@ -180,10 +158,10 @@ area for introducing author
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.gravatar|the path or url for gravatar|string|`/images/author.svg`|N|
-|props.name|the name of author|string||N|
-|props.description|the description for author|string||N|
-|props.social|the social links for author|string||N|
+|props.gravatar|gravatar 경로 또는 URL|string|`/images/author.svg`|N|
+|props.name|작성자 이름|string||N|
+|props.description|작성자 설명|string||N|
+|props.social|작성자 소셜 서비스 링크|string||N|
 
 
 
@@ -191,7 +169,7 @@ area for introducing author
 
 ```jade
 include /components/utils/util
-include ../../atoms/svg-icon/index
+include /components/atoms/svg-icon/index
 
 +articleAuthor({
   name: config.author,
@@ -231,7 +209,7 @@ include ../../atoms/svg-icon/index
 
 ## fieldset
 
-create group containing label and body
+레이블과 내용으로 구성된 그룹
 
 
 ### 경로
@@ -244,22 +222,22 @@ create group containing label and body
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.direction|how items are placed in the container <br>One of `'row'`, `'column'`|string|'row'|N|
-|props.alignItem|alignment of items on the cross axis <br>One of `'start'`, `'center'`|string|'start'|N|
-|props.labelWidthRatio|the factor of label's width in the container|integer|3|N|
-|props.labelSlotClassName|the class name of label slot's container|string \| Array\<string>||N|
-|props.bodySlotClassName|the class name of body slot's container|string \| Array\<string>||N|
-|props.labelSlotAttrs|the attributes of label slot's container|object||N|
-|props.bodySlotAttrs|the attributes of body slot's container|object||N|
+|props.direction|컨테이너에 배치되는 방법<br>`row`, `column` 중 하나|string|row|N|
+|props.alignItem|교차축에 있는 항목 정렬 방법<br>`start`, `center` 중 하나|string|start|N|
+|props.labelWidthRatio|컨테이너의 레이블 너비 비율|integer|3|N|
+|props.labelSlotClassName|레이블 슬롯 컨테이너의 클래스 이름|string \| Array\<string>||N|
+|props.bodySlotClassName|내용 슬롯 컨테이너의 클래스 이름|string \| Array\<string>||N|
+|props.labelSlotAttrs|레이블 슬롯 컨테이너의 어트리뷰트|object||N|
+|props.bodySlotAttrs|내용 슬롯 컨테이너의 어트리뷰트|object||N|
 
 
 
 ### slots
 
-|name|description|
+|이름|설명|
 |:---:|:---|
-|fieldsetLabelSlot|the slot for legend of fieldset|
-|fieldsetBodySlot|the slot for body of fieldset|
+|fieldsetLabelSlot|필드셋에 대한 레이블 슬롯|
+|fieldsetBodySlot|필드셋에 대한 내용 슬롯|
 
 
 
@@ -270,15 +248,15 @@ include /components/utils/util
 
 // row
 +fieldset({direction: `row`})
-  +fieldsetLabelSlot fieldset title
+  +fieldsetLabelSlot label
   +fieldsetBodySlot
-    p fieldset body
+    p body
 
 // column
 +fieldset({direction: `column`})
-  +fieldsetLabelSlot fieldset title
+  +fieldsetLabelSlot label
   +fieldsetBodySlot
-    p fieldset body
+    p body
 ```
 
 
@@ -289,23 +267,23 @@ include /components/utils/util
 <div
   class="amor-field amor-field--row amor-field--start"
   role="group"
-  aria-labelledby="sd4otrp93ds"
+  aria-labelledby="tq9hpglkc4k"
 >
-  <div class="amor-field__label amor-field__label--30" id="sd4otrp93ds">
-    fieldset title
+  <div class="amor-field__label amor-field__label--30" id="tq9hpglkc4k">
+    label
   </div>
-  <div class="amor-field__body"><p>fieldset body</p></div>
+  <div class="amor-field__body"><p>body</p></div>
 </div>
 <!-- column-->
 <div
   class="amor-field amor-field--column"
   role="group"
-  aria-labelledby="s20lwjq8tso"
+  aria-labelledby="nv7smaknm2c"
 >
-  <div class="amor-field__label amor-field__label--30" id="s20lwjq8tso">
-    fieldset title
+  <div class="amor-field__label amor-field__label--30" id="nv7smaknm2c">
+    label
   </div>
-  <div class="amor-field__body"><p>fieldset body</p></div>
+  <div class="amor-field__body"><p>body</p></div>
 </div>
 
 ```
@@ -316,7 +294,7 @@ include /components/utils/util
 
 ## categoryNavigation
 
-create hexo category list
+내비게이션 카테고리 목록
 
 
 ### 경로
@@ -349,29 +327,22 @@ include ../../../utils/util
   <ul class="amor-category-nav__list">
     <li class="amor-category-nav__list__item">
       <a
-        href="https://www.mulder21c.io/categories/cate-28v8rcetf67s76"
+        href="https://www.mulder21c.io/categories/document/"
         class="amor-category-nav__list__link"
       >
-        cate-28v8rcetf67s76
+        document
       </a>
-    </li>
 
-    <li class="amor-category-nav__list__item">
-      <a
-        href="https://www.mulder21c.io/categories/cate-28v8usb2rqhs99"
-        class="amor-category-nav__list__link"
-      >
-        cate-28v8usb2rqhs99
-      </a>
-    </li>
-
-    <li class="amor-category-nav__list__item">
-      <a
-        href="https://www.mulder21c.io/categories/cate-28v8f4hg5aihrn"
-        class="amor-category-nav__list__link"
-      >
-        cate-28v8f4hg5aihrn
-      </a>
+      <ul class="amor-category-nav__list amor-category-nav__list--child">
+        <li class="amor-category-nav__list__item">
+          <a
+            href="https://www.mulder21c.io/categories/document/mockup/"
+            class="amor-category-nav__list__link"
+          >
+            mockup
+          </a>
+        </li>
+      </ul>
     </li>
   </ul>
 </nav>
@@ -384,7 +355,7 @@ include ../../../utils/util
 
 ## linksNavigation
 
-create hexo external link list
+내비게이션 외부링크 목록
 
 
 ### 경로
@@ -397,15 +368,15 @@ create hexo external link list
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.options|the options for external link list|object||N|
-|props.options.transform|<br> the function that changes the display of link name|function||N|
+|props.options|외부 링크 목록에 대한 옵션|object||N|
+|props.options.transform|링크 이름 가공 함수|function||N|
 
 
 
 ### 예시
 
 ```jade
-include ../../../utils/util
+include /components/utils/util
 
 +linksNavigation()
 ```
@@ -414,7 +385,31 @@ include ../../../utils/util
 ### 예시 출력 결과
 
 ```html
-<nav class="amor-links-nav" aria-label="links"></nav>
+<nav class="amor-links-nav" aria-label="links">
+  <ul class="amor-links-nav__list">
+    <li class="amor-links-nav__list__item">
+      <a
+        href="https://my-portfolio.com"
+        class="amor-links-nav__list__link"
+        target="_blank"
+        rel="noopener"
+      >
+        portfolio
+      </a>
+    </li>
+
+    <li class="amor-links-nav__list__item">
+      <a
+        href="https://my-works.com"
+        class="amor-links-nav__list__link"
+        target="_blank"
+        rel="noopener"
+      >
+        works
+      </a>
+    </li>
+  </ul>
+</nav>
 
 ```
 
@@ -424,7 +419,7 @@ include ../../../utils/util
 
 ## menuNavigation
 
-create hexo menu list
+내비게이션 메뉴 목록
 
 
 ### 경로
@@ -437,15 +432,15 @@ create hexo menu list
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.options|the options for menu list|object||N|
-|props.options.transform|<br> the function that changes the display of menu name|function||N|
+|props.options|메뉴 목록에 대한 옵션|object||N|
+|props.options.transform|메뉴 이름 가공 함수|function||N|
 
 
 
 ### 예시
 
 ```jade
-include ../../../utils/util
+include /components/utils/util
 
 +menuNavigation()
 ```
@@ -457,10 +452,7 @@ include ../../../utils/util
 <nav class="amor-menu-nav" aria-label="menu">
   <ul class="amor-menu-nav__list">
     <li class="amor-menu-nav__list__item">
-      <a
-        href="https://www.mulder21c.io/archives"
-        class="amor-menu-nav__list__link"
-      >
+      <a href="https://mulder21c.io/archives" class="amor-menu-nav__list__link">
         Archives
       </a>
     </li>
@@ -475,7 +467,7 @@ include ../../../utils/util
 
 ## radioBoxes
 
-create radio group component
+박스형 라디오 버튼 그룹 컴포넌트
 
 
 ### 경로
@@ -488,16 +480,16 @@ create radio group component
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.name|attribute of radio|string||Y|
-|props.options|the array that consists of options for radio component|array||Y|
+|props.name|라디오 버튼의 name 어트리뷰트|string||Y|
+|props.options|라디오 컴포넌트 옵션으로 구성된 배열|array||Y|
 
 
 
 ### slots
 
-|name|description|
+|이름|설명|
 |:---:|:---|
-|radioBoxesLabelSlot|the slot for label.|
+|radioBoxesLabelSlot|레이블 슬롯 <br>슬롯 개수는 옵션 항목 개수와 동일해야 합니다.|
 
 
 
@@ -505,7 +497,7 @@ create radio group component
 
 ```jade
 include /components/utils/util
-include ../../atoms/radios/boxy
+include /components/atoms/radios/boxy
 
 // basic
 +radioBoxes({
@@ -541,7 +533,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="rd2rpcmr0r8"
+      id="zeyaonanckc"
       name="size"
       value="small"
     />
@@ -551,7 +543,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="rtq1kx30hvs"
+      id="n3yocg2lkku"
       name="size"
       value="medium"
     />
@@ -561,7 +553,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="kqyg3qggtv4"
+      id="sz0kcmfniqo"
       name="size"
       value="large"
     />
@@ -574,7 +566,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ime5pl39fqs"
+      id="gk2dbm0p4jc"
       name="size2"
       value="small"
     />
@@ -584,7 +576,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="hd27mju53a8"
+      id="oduqpy91cc1"
       name="size2"
       value="medium"
     />
@@ -594,7 +586,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="b6g606ehlng"
+      id="n9zjikbdvhg"
       name="size2"
       value="large"
     />
@@ -610,7 +602,7 @@ include ../../atoms/radios/boxy
 
 ## radioGroup
 
-create radio group component
+기본 라디오 그룹 컴포넌트
 
 
 ### 경로
@@ -623,18 +615,18 @@ create radio group component
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.name|attribute of radio|string||Y|
-|props.options|the array that consists of options for radio component without name and labelPosition|array||Y|
-|props.columns|column counts|number||N|
-|props.labelPosition|Where the label is located relative to the visual indicator<br> One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|`right`|N|
+|props.name|라디오 버튼의 name 어트리뷰트|string||Y|
+|props.options|name과 labelPosition을 제외환 라디오 컴포넌트 옵션으로 구성된 배열|array||Y|
+|props.columns|열 개수|number||N|
+|props.labelPosition|눈에 보이는 표시기를 기준으로 레이블이 위치되는 곳<br>`top`, `left`, `right`, `bottom` 중 하나|string|`right`|N|
 
 
 
 ### slots
 
-|name|description|
+|이름|설명|
 |:---:|:---|
-|radioGroupLabelSlot|the slot for label.|
+|radioGroupLabelSlot|레이블 슬롯|
 
 
 
@@ -642,16 +634,16 @@ create radio group component
 
 ```jade
 include /components/utils/util
-include ../../atoms/radios/default
+include /components/atoms/radios/default
 
 // basic
 +radioGroup({
   name: `job`,
   labelPosition: `right`,
   options: [
-    { label: `designer`, value: `designer`, },
-    { label: `publisher`, value: `publisher`, },
-    { label: `frontend developer`, value: `frontend`, },
+    { label: `Web Designer`, value: `designer`, },
+    { label: `Web Front-End Developer`, value: `frontend`, },
+    { label: `Web Back-End Developer`, value: `backend`, },
     { label: `devops`, value: `devops`, },
     { label: `iOS developer`, value: `ios`, },
   ],
@@ -663,13 +655,13 @@ include ../../atoms/radios/default
   columns: 3,
   options: [
     { value: `designer`, },
-    { value: `publisher`, },
-    { value: `frontend`, }
+    { value: `frontend`, },
+    { value: `backend`, }
   ],
 })
-  +radioGroupLabelSlot 웹 디자이너
-  +radioGroupLabelSlot 웹 퍼블리셔
-  +radioGroupLabelSlot 프론트엔드 개발자
+  +radioGroupLabelSlot Web Designer
+  +radioGroupLabelSlot Web Front-End Developer
+  +radioGroupLabelSlot Web Back-End Developer
 ```
 
 
@@ -682,53 +674,55 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="tv9yr25i0mb"
+      id="v6i2ajcclrk"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="tv9yr25i0mb">designer</label>
+    <label class="amor-radio__label" for="v6i2ajcclrk">Web Designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e9ngti6epp8"
-      name="job"
-      value="publisher"
-    />
-    <label class="amor-radio__label" for="e9ngti6epp8">publisher</label>
-  </span>
-  <span class="amor-radio amor-radio-group__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="ppg8uihj0s8"
+      id="wibr6l9df2k"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ppg8uihj0s8">
-      frontend developer
+    <label class="amor-radio__label" for="wibr6l9df2k">
+      Web Front-End Developer
     </label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="m5au4ykjm0g"
+      id="dshgnk8k6f8"
       name="job"
-      value="devops"
+      value="backend"
     />
-    <label class="amor-radio__label" for="m5au4ykjm0g">devops</label>
+    <label class="amor-radio__label" for="dshgnk8k6f8">
+      Web Back-End Developer
+    </label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="pnufge2laa8"
+      id="ku78b182c8k"
+      name="job"
+      value="devops"
+    />
+    <label class="amor-radio__label" for="ku78b182c8k">devops</label>
+  </span>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="x7aw4la8gbo"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="pnufge2laa8">iOS developer</label>
+    <label class="amor-radio__label" for="x7aw4la8gbo">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
@@ -737,31 +731,35 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="nbouwso3194"
+      id="l6y5zh6i6o8"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="nbouwso3194">웹 디자이너</label>
+    <label class="amor-radio__label" for="l6y5zh6i6o8">Web Designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="zvzx4lairl8"
-      name="job2"
-      value="publisher"
-    />
-    <label class="amor-radio__label" for="zvzx4lairl8">웹 퍼블리셔</label>
-  </span>
-  <span class="amor-radio amor-radio-group__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="w7y55htuiar"
+      id="ixep7mqf95o"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="w7y55htuiar">프론트엔드 개발자</label>
+    <label class="amor-radio__label" for="ixep7mqf95o">
+      Web Front-End Developer
+    </label>
+  </span>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="bmhmvztrtjo"
+      name="job2"
+      value="backend"
+    />
+    <label class="amor-radio__label" for="bmhmvztrtjo">
+      Web Back-End Developer
+    </label>
   </span>
 </div>
 
@@ -773,7 +771,7 @@ include ../../atoms/radios/default
 
 ## radioSlider
 
-create radio group component
+라디오 슬라이더 컴포넌트
 
 
 ### 경로
@@ -786,17 +784,17 @@ create radio group component
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.name|attribute of radio|string||Y|
-|props.options|the array that consists of options for radio component|array||Y|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`|string|`bottom`|N|
+|props.name|라디오 버튼의 name 어트리뷰트|string||Y|
+|props.options|라디오 컴포넌트 옵션으로 구성된 배열|array||Y|
+|props.labelPosition|눈에 보이는 표시기를 기준으로 레이블이 위치되는 곳<br>`top`, `bottom` 중 하나|string|`bottom`|N|
 
 
 
 ### slots
 
-|name|description|
+|이름|설명|
 |:---:|:---|
-|radioSliderLabelSlot|the slot for label.|
+|radioSliderLabelSlot|레이블 슬롯|
 
 
 
@@ -804,7 +802,7 @@ create radio group component
 
 ```jade
 include /components/utils/util
-include ../../atoms/radios/default
+include /components/atoms/radios/default
 
 // basic
 +radioSlider({
@@ -945,7 +943,7 @@ include ../../atoms/radios/default
 
 ## searchBar
 
-create search bar component
+검색바 컴포넌트
 
 
 ### 경로
@@ -958,8 +956,8 @@ create search bar component
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.textfieldId|the id value for search text field|string||Y|
-|props.searchBtnId|the id value for search button|string||Y|
+|props.textfieldId|검색어 텍스트 입력상자의 id 어트리뷰트 값|string||Y|
+|props.searchBtnId|검색 버튼의 id 어트리뷰트 값|string||Y|
 
 
 
@@ -967,9 +965,9 @@ create search bar component
 
 ```jade
 include /components/utils/util
-include ../../atoms/buttons/default
-include ../../atoms/textbox/index
-include ../../molecules/fieldset/default
+include /components/atoms/buttons/default
+include /components/atoms/textbox/index
+include /components/molecules/fieldset/default
 
 +searchBar({
   textfieldId: `keyword`,
@@ -984,21 +982,21 @@ include ../../molecules/fieldset/default
 <div
   class="amor-field amor-field--column amor-searchbar"
   role="group"
-  aria-labelledby="ykrzkktd10o"
+  aria-labelledby="ss4anihdggs"
   id="searchbox"
 >
   <div
     class="amor-field__label amor-field__label--30 amor-searchbar__label"
-    id="ykrzkktd10o"
+    id="ss4anihdggs"
   >
-    i18n(label.search)
+    search
   </div>
   <div class="amor-field__body amor-searchbar__body">
     <input
       class="amor-textbox amor-textbox--medium amor-searchbar__textfield"
       id="keyword"
       type="text"
-      aria-labelledby="ykrzkktd10o"
+      aria-labelledby="ss4anihdggs"
       autocomplete="off"
       autocorrect="off"
       autocapitalize="none"
@@ -1009,7 +1007,7 @@ include ../../molecules/fieldset/default
       type="button"
       id="btn-search"
     >
-      i18n(label.search)
+      search
     </button>
   </div>
 </div>
@@ -1035,7 +1033,9 @@ create tags list
 |이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.tags|sequence of tags|object||Y|
+|props.tags|태그 배열|array||Y|
+|props.appearance|태그 목록 노출 스타일<br>`list`과 `flat` 중 하나|string|`flat`|N|
+|props.useLink|링크 사용 여부|boolean|true|N|
 
 
 
@@ -1055,16 +1055,7 @@ include /components/utils/util
 ```html
 <div class="amor-tags-list amor-tags-list--flat">
   <ul>
-    <li>
-      <a href="http://example.com/tags/tag-28v646fmhshjoug/">
-        tag-28v646fmhshjoug
-      </a>
-    </li>
-    <li>
-      <a href="http://example.com/tags/tag-28v6tm6tb3noh98/">
-        tag-28v6tm6tb3noh98
-      </a>
-    </li>
+    <li><a href="https://mulder21c.io/tags/mockup/">mockup</a></li>
   </ul>
 </div>
 

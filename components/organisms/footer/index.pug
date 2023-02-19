@@ -3,11 +3,11 @@ include /components/atoms/watermark/index
 
 //- @pugdoc
   name: footerContent
-  description: generate footer content
+  description: footer content
   beforeEach: |
     include /components/utils/util
-    include ../../atoms/ccl-license/index
-    include ../../atoms/watermark/index
+    include /components/atoms/ccl-license/index
+    include /components/atoms/watermark/index
   examples:
     - |
       +footerContent()
@@ -15,7 +15,9 @@ include /components/atoms/watermark/index
 mixin footerContent
   - const { prefix } = theme;
 
-  div(class= `${prefix}-footer`)
+  div(
+    class= `${prefix}-footer`
+  )&attributes(attrs)
     +cclLicense({
       name: config.author,
       license: [`by`, `nc`, `nd`],

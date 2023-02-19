@@ -8,7 +8,7 @@ block prepend heroContent
 
 block prepend mainContent
   -
-    const posts = page.posts.data || page.posts || [];
+    const posts = page.posts.toArray();
     const headingId = generateUid();
     const headingProp = {
       htmlString: page.category,

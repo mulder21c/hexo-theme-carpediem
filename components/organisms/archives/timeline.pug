@@ -2,19 +2,26 @@ include /components/atoms/heading/index
 
 //- @pugdoc
   name: archiveTimeline
-  description: create archive timeline
+  description: archive timeline component
   beforeEach: |
     include /components/utils/util
-    include ../../atoms/heading/index
+    include /components/atoms/heading/index
   arguments:
     - {object} props
-    - {map} props.archives the collection that is consist of archives
-    - {number} props.headingLevel [2] the level of year as heading
-    - {number} [props.displayYearNum] [2] the number of years to be display
+    - {map} props.archives the map object that is mapped by year and month
+    - |
+      {number} props.headingLevel [2]
+      the level(rank) of heading in the year section of the timeline
+    - |
+      {number} [props.displayYearNum] [2]
+      the number of latest years to display the list of posts by year
     - {number} [props.currYear] The year currently exposed to page
   examples:
     - |
-      +archiveTimeline({archives: mapArchives(), headingLevel: 2})
+      +archiveTimeline({
+        archives: mapArchives(),
+        headingLevel: 2,
+      })
 
 mixin archiveTimeline(props = {})
   -

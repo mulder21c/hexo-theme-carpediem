@@ -50,14 +50,14 @@ mixin articleCard(props = {})
     const contentId = generateUid();
     const metaId = generateUid();
     const datetime = post.updated || post.date;
-    const categories = post.categories.data;
-    const tags = post.tags;
+    const categories = post.categories.toArray();
     const thumb = post.thumbnail || post.hero || post?.photos?.unshift();
     const hasCategoryLink = !isLink;
 
   div(
     class= [
       `${prefix}-article-card`,
+      { [`${prefix}-article-card--no-thumb`]: !thumb },
       { [`${prefix}-article-card--link`]: isLink },
     ]
   )&attributes(attrs)
@@ -87,14 +87,14 @@ mixin articleCard(props = {})
         class: `${prefix}-article-card__meta__item`
       })
 
-      //- +category({
-      //-   categories,
-      //-   visibleLabel: '📂',
-      //-   useLink: hasCategoryLink,
-      //-   class: `${prefix}-article-card__meta__item`,
-      //-   level: `all`,
-      //-   separator: `angle-right`,
-      //- })
+      +category({
+        categories,
+        visibleLabel: '📂',
+        useLink: hasCategoryLink,
+        class: `${prefix}-article-card__meta__item`,
+        level: `all`,
+        separator: `angle-right`,
+      })
 
     p(
       id= contentId

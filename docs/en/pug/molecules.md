@@ -34,41 +34,42 @@ include /components/atoms/category/index
 ### example output 
 
 ```html
-<div class="amor-article-card amor-article-card--link">
-  <img
-    class="amor-article-card__thumb"
-    src="https://via.placeholder.com/320x180.png?text=5vi9hnkaglfgr88"
-    alt=""
-    loading="lazy"
-    role="none"
-  />
+<div
+  class="amor-article-card amor-article-card--no-thumb amor-article-card--link"
+>
   <a
     class="amor-article-card__heading"
-    href="http://example.com/post-5vi9hnkaglfgr88/"
-    aria-describedby="yy1jbtqm4bg wdooml9hifo"
+    href="https://mulder21c.io/lorem-ipsum/"
+    aria-describedby="cnm6oy825vo fcdroeqkdjo"
   >
-    Post 5vi9hnkaglfgr88
+    Lorem Ipsum
   </a>
-  <div class="amor-article-card__meta" id="yy1jbtqm4bg">
+  <div class="amor-article-card__meta" id="cnm6oy825vo">
     <span class="amor-datetime amor-article-card__meta__item">
-      <span
-        class="amor-datetime__label"
-        role="img"
-        aria-label="i18n(label.date.published)"
-      >
+      <span class="amor-datetime__label" role="img" aria-label="published">
         📆
       </span>
-      <time class="amor-datetime__time" id="potrug7vne8" datetime="2023-01-14">
-        2023. 01. 14
+      <time class="amor-datetime__time" id="h5jkscuaiab" datetime="2000-01-01">
+        2000. 01. 01
       </time>
     </span>
+    <span class="amor-category amor-article-card__meta__item">
+      <span class="amor-category__label" role="img" aria-label="category">
+        📂
+      </span>
+      <span class="amor-category__list" role="list">
+        <span class="amor-category__content" role="listitem">
+          <span>document</span>
+        </span>
+      </span>
+    </span>
   </div>
-  <p class="amor-article-card__content" id="wdooml9hifo">
-    Minim est amet id qui. Nostrud reprehenderit labore velit et deserunt
-    voluptate cillum fugiat officia consectetur excepteur. Nostrud ipsum
-    consequat irure nostrud aute. Aute sint aute anim aliquip sint esse aliqua.
-    Deserunt aliquip nisi sint minim adipisicing. Eiusmod quis ea nulla cillum
-    sit
+  <p class="amor-article-card__content" id="fcdroeqkdjo">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis
+    lacus, pharetra posuere tincidunt eu, vulputate eget ex. Lorem ipsum dolor
+    sit amet, consectetur adipiscing elit. Quisque accumsan in ligula in
+    pulvinar. Nulla dapibus orci a ipsum consectetur, quis convallis velit
+    tincidunt.
   </p>
 </div>
 
@@ -80,7 +81,7 @@ include /components/atoms/category/index
 
 ## articleMeta
 
-create meta info component for article
+meta info component for article
 
 
 ### path 
@@ -94,8 +95,8 @@ create meta info component for article
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.categories|sequence of category|object||Y|
-|props.date|date of article|object||Y|
-|props.updated|updated date of article|object||Y|
+|props.date|published date of article|Moment||Y|
+|props.updated|updated date of article|Moment||Y|
 
 
 
@@ -103,11 +104,11 @@ create meta info component for article
 
 ```jade
 include /components/utils/util
-include ../../atoms/category/index
-include ../../atoms/datetime/index
+include /components/atoms/category/index
+include /components/atoms/datetime/index
 
 +articleMeta({
-  categories: post.categories.data || post.categories || [],
+  categories: post.categories.toArray(),
   date: post.date,
   updated: post.updated,
 })
@@ -119,43 +120,21 @@ include ../../atoms/datetime/index
 ```html
 <div class="amor-article-meta">
   <span class="amor-category amor-article-meta__categories">
-    <span
-      class="amor-category__label"
-      role="img"
-      aria-label="i18n(label.category)"
-    >
+    <span class="amor-category__label" role="img" aria-label="category">
       📂
     </span>
     <span class="amor-category__list" role="list">
       <span class="amor-category__content" role="listitem">
-        <a href="https://www.mulder21c.io/categories/cate-5vi9mdra12glt5o">
-          cate-5vi9mdra12glt5o
-        </a>
-      </span>
-      <span class="amor-category__separator" aria-hidden="true">
-        <svg class="amor-svg-icon" focusable="false">
-          <use
-            xlink:href="https://www.mulder21c.io/images/solid.svg#angle-right"
-          ></use>
-        </svg>
-      </span>
-      <span class="amor-category__content" role="listitem">
-        <a href="https://www.mulder21c.io/categories/cate-5vi9vg2ihrnqv2o">
-          cate-5vi9vg2ihrnqv2o
-        </a>
+        <a href="https://mulder21c.io/categories/document/">document</a>
       </span>
     </span>
   </span>
   <span class="amor-datetime amor-article-meta__date">
-    <span
-      class="amor-datetime__label"
-      role="img"
-      aria-label="i18n(label.date.published)"
-    >
+    <span class="amor-datetime__label" role="img" aria-label="published">
       📆
     </span>
-    <time class="amor-datetime__time" id="ugh2aisi8bo" datetime="2023-01-14">
-      2023. 01. 14
+    <time class="amor-datetime__time" id="ksoqnn1gmto" datetime="2000-01-01">
+      2000. 01. 01
     </time>
   </span>
 </div>
@@ -168,7 +147,7 @@ include ../../atoms/datetime/index
 
 ## articleAuthor
 
-area for introducing author
+introducing author
 
 
 ### path 
@@ -192,7 +171,7 @@ area for introducing author
 
 ```jade
 include /components/utils/util
-include ../../atoms/svg-icon/index
+include /components/atoms/svg-icon/index
 
 +articleAuthor({
   name: config.author,
@@ -208,7 +187,7 @@ include ../../atoms/svg-icon/index
 ```html
 <div class="amor-author amor-author--no-desc">
   <span class="amor-author__gravatar">
-    <img src="https://www.mulder21c.io/images/author.svg" alt="" role="none" />
+    <img src="https://mulder21c.io/images/author.svg" alt="" role="none" />
   </span>
   <p class="amor-author__name">mulder21c</p>
   <div class="amor-author__social">
@@ -218,7 +197,7 @@ include ../../atoms/svg-icon/index
         focusable="false"
         role="presentation"
       >
-        <use xlink:href="https://www.mulder21c.io/images/solid.svg#rss"></use>
+        <use xlink:href="https://mulder21c.io/images/solid.svg#rss"></use>
       </svg>
     </a>
   </div>
@@ -232,7 +211,7 @@ include ../../atoms/svg-icon/index
 
 ## fieldset
 
-create group containing label and body
+group containing label and body
 
 
 ### path 
@@ -245,8 +224,8 @@ create group containing label and body
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.direction|how items are placed in the container <br>One of `'row'`, `'column'`|string|'row'|N|
-|props.alignItem|alignment of items on the cross axis <br>One of `'start'`, `'center'`|string|'start'|N|
+|props.direction|how items are placed in the container <br>One of `row`, `column`|string|row|N|
+|props.alignItem|alignment of items on the cross axis <br>One of `start`, `center`|string|start|N|
 |props.labelWidthRatio|the factor of label's width in the container|integer|3|N|
 |props.labelSlotClassName|the class name of label slot's container|string \| Array\<string>||N|
 |props.bodySlotClassName|the class name of body slot's container|string \| Array\<string>||N|
@@ -259,7 +238,7 @@ create group containing label and body
 
 |name|description|
 |:---:|:---|
-|fieldsetLabelSlot|the slot for legend of fieldset|
+|fieldsetLabelSlot|the slot for label of fieldset|
 |fieldsetBodySlot|the slot for body of fieldset|
 
 
@@ -271,15 +250,15 @@ include /components/utils/util
 
 // row
 +fieldset({direction: `row`})
-  +fieldsetLabelSlot fieldset title
+  +fieldsetLabelSlot label
   +fieldsetBodySlot
-    p fieldset body
+    p body
 
 // column
 +fieldset({direction: `column`})
-  +fieldsetLabelSlot fieldset title
+  +fieldsetLabelSlot label
   +fieldsetBodySlot
-    p fieldset body
+    p body
 ```
 
 
@@ -290,23 +269,23 @@ include /components/utils/util
 <div
   class="amor-field amor-field--row amor-field--start"
   role="group"
-  aria-labelledby="swprrl94puk"
+  aria-labelledby="zlsoumfn3vi"
 >
-  <div class="amor-field__label amor-field__label--30" id="swprrl94puk">
-    fieldset title
+  <div class="amor-field__label amor-field__label--30" id="zlsoumfn3vi">
+    label
   </div>
-  <div class="amor-field__body"><p>fieldset body</p></div>
+  <div class="amor-field__body"><p>body</p></div>
 </div>
 <!-- column-->
 <div
   class="amor-field amor-field--column"
   role="group"
-  aria-labelledby="g4db0co7608"
+  aria-labelledby="zcippmfr2j8"
 >
-  <div class="amor-field__label amor-field__label--30" id="g4db0co7608">
-    fieldset title
+  <div class="amor-field__label amor-field__label--30" id="zcippmfr2j8">
+    label
   </div>
-  <div class="amor-field__body"><p>fieldset body</p></div>
+  <div class="amor-field__body"><p>body</p></div>
 </div>
 
 ```
@@ -317,7 +296,7 @@ include /components/utils/util
 
 ## categoryNavigation
 
-create hexo category list
+category list in navigation
 
 
 ### path 
@@ -337,7 +316,7 @@ create hexo category list
 ### examples
 
 ```jade
-include ../../../utils/util
+include /components/utils/util
 
 +categoryNavigation()
 ```
@@ -350,29 +329,22 @@ include ../../../utils/util
   <ul class="amor-category-nav__list">
     <li class="amor-category-nav__list__item">
       <a
-        href="https://www.mulder21c.io/categories/cate-5vib20lh61ndldg"
+        href="https://mulder21c.io/categories/document/"
         class="amor-category-nav__list__link"
       >
-        cate-5vib20lh61ndldg
+        document
       </a>
-    </li>
 
-    <li class="amor-category-nav__list__item">
-      <a
-        href="https://www.mulder21c.io/categories/cate-5vibbs05n2235i"
-        class="amor-category-nav__list__link"
-      >
-        cate-5vibbs05n2235i
-      </a>
-    </li>
-
-    <li class="amor-category-nav__list__item">
-      <a
-        href="https://www.mulder21c.io/categories/cate-5vib29269emu2tg"
-        class="amor-category-nav__list__link"
-      >
-        cate-5vib29269emu2tg
-      </a>
+      <ul class="amor-category-nav__list amor-category-nav__list--child">
+        <li class="amor-category-nav__list__item">
+          <a
+            href="https://mulder21c.io/categories/document/mockup/"
+            class="amor-category-nav__list__link"
+          >
+            mockup
+          </a>
+        </li>
+      </ul>
     </li>
   </ul>
 </nav>
@@ -385,7 +357,7 @@ include ../../../utils/util
 
 ## linksNavigation
 
-create hexo external link list
+external links list in navigation
 
 
 ### path 
@@ -399,14 +371,14 @@ create hexo external link list
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.options|the options for external link list|object||N|
-|props.options.transform|<br> the function that changes the display of link name|function||N|
+|props.options.transform|the function that changes the display of link name|function||N|
 
 
 
 ### examples
 
 ```jade
-include ../../../utils/util
+include /components/utils/util
 
 +linksNavigation()
 ```
@@ -415,7 +387,31 @@ include ../../../utils/util
 ### example output 
 
 ```html
-<nav class="amor-links-nav" aria-label="links"></nav>
+<nav class="amor-links-nav" aria-label="links">
+  <ul class="amor-links-nav__list">
+    <li class="amor-links-nav__list__item">
+      <a
+        href="https://my-portfolio.com"
+        class="amor-links-nav__list__link"
+        target="_blank"
+        rel="noopener"
+      >
+        portfolio
+      </a>
+    </li>
+
+    <li class="amor-links-nav__list__item">
+      <a
+        href="https://my-works.com"
+        class="amor-links-nav__list__link"
+        target="_blank"
+        rel="noopener"
+      >
+        works
+      </a>
+    </li>
+  </ul>
+</nav>
 
 ```
 
@@ -425,7 +421,7 @@ include ../../../utils/util
 
 ## menuNavigation
 
-create hexo menu list
+menu list in navigation
 
 
 ### path 
@@ -439,14 +435,14 @@ create hexo menu list
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.options|the options for menu list|object||N|
-|props.options.transform|<br> the function that changes the display of menu name|function||N|
+|props.options.transform|the function that changes the display of menu name|function||N|
 
 
 
 ### examples
 
 ```jade
-include ../../../utils/util
+include /components/utils/util
 
 +menuNavigation()
 ```
@@ -458,10 +454,7 @@ include ../../../utils/util
 <nav class="amor-menu-nav" aria-label="menu">
   <ul class="amor-menu-nav__list">
     <li class="amor-menu-nav__list__item">
-      <a
-        href="https://www.mulder21c.io/archives"
-        class="amor-menu-nav__list__link"
-      >
+      <a href="https://mulder21c.io/archives" class="amor-menu-nav__list__link">
         Archives
       </a>
     </li>
@@ -476,7 +469,7 @@ include ../../../utils/util
 
 ## radioBoxes
 
-create radio group component
+boxy radio group component
 
 
 ### path 
@@ -489,7 +482,7 @@ create radio group component
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.name|attribute of radio|string||Y|
+|props.name|the name attribute of radio|string||Y|
 |props.options|the array that consists of options for radio component|array||Y|
 
 
@@ -498,7 +491,7 @@ create radio group component
 
 |name|description|
 |:---:|:---|
-|radioBoxesLabelSlot|the slot for label.|
+|radioBoxesLabelSlot|the slot for label. <br>the number of slots must be equal to number of option items|
 
 
 
@@ -506,7 +499,7 @@ create radio group component
 
 ```jade
 include /components/utils/util
-include ../../atoms/radios/boxy
+include /components/atoms/radios/boxy
 
 // basic
 +radioBoxes({
@@ -542,7 +535,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="bh3reh6i5i4"
+      id="wy27qeapsn8"
       name="size"
       value="small"
     />
@@ -552,7 +545,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="q90ztg2s3ak"
+      id="wpc8awfdqqo"
       name="size"
       value="medium"
     />
@@ -562,7 +555,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="dvn9gi3hssf"
+      id="pev62susq5k"
       name="size"
       value="large"
     />
@@ -575,7 +568,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="cinvs4c2kae"
+      id="gr0s92vm9eo"
       name="size2"
       value="small"
     />
@@ -585,7 +578,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="v9wpomp39mf"
+      id="trh7j48b1hn"
       name="size2"
       value="medium"
     />
@@ -595,7 +588,7 @@ include ../../atoms/radios/boxy
     <input
       class="amor-radio-boxy__control"
       type="radio"
-      id="ajw9peecku8"
+      id="prqwbo2ug4g"
       name="size2"
       value="large"
     />
@@ -611,7 +604,7 @@ include ../../atoms/radios/boxy
 
 ## radioGroup
 
-create radio group component
+basic radio group component
 
 
 ### path 
@@ -624,10 +617,10 @@ create radio group component
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.name|attribute of radio|string||Y|
+|props.name|the name attribute of radio|string||Y|
 |props.options|the array that consists of options for radio component without name and labelPosition|array||Y|
 |props.columns|column counts|number||N|
-|props.labelPosition|Where the label is located relative to the visual indicator<br> One of `'top'`, `'left'`, `'right'`, `'bottom'`|string|`right`|N|
+|props.labelPosition|Where the label is located relative to the visual indicator<br> One of `top`, `left`, `right`, `bottom`|string|`right`|N|
 
 
 
@@ -635,7 +628,7 @@ create radio group component
 
 |name|description|
 |:---:|:---|
-|radioGroupLabelSlot|the slot for label.|
+|radioGroupLabelSlot|the slot for label.the number of slots must be equal to number of option items|
 
 
 
@@ -643,16 +636,16 @@ create radio group component
 
 ```jade
 include /components/utils/util
-include ../../atoms/radios/default
+include /components/atoms/radios/default
 
 // basic
 +radioGroup({
   name: `job`,
   labelPosition: `right`,
   options: [
-    { label: `designer`, value: `designer`, },
-    { label: `publisher`, value: `publisher`, },
-    { label: `frontend developer`, value: `frontend`, },
+    { label: `Web Designer`, value: `designer`, },
+    { label: `Web Front-End Developer`, value: `frontend`, },
+    { label: `Web Back-End Developer`, value: `backend`, },
     { label: `devops`, value: `devops`, },
     { label: `iOS developer`, value: `ios`, },
   ],
@@ -664,13 +657,13 @@ include ../../atoms/radios/default
   columns: 3,
   options: [
     { value: `designer`, },
-    { value: `publisher`, },
-    { value: `frontend`, }
+    { value: `frontend`, },
+    { value: `backend`, }
   ],
 })
-  +radioGroupLabelSlot 웹 디자이너
-  +radioGroupLabelSlot 웹 퍼블리셔
-  +radioGroupLabelSlot 프론트엔드 개발자
+  +radioGroupLabelSlot Web Designer
+  +radioGroupLabelSlot Web Front-End Developer
+  +radioGroupLabelSlot Web Back-End Developer
 ```
 
 
@@ -683,53 +676,55 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="o731vfck4jc"
+      id="u8h2vna8u02"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="o731vfck4jc">designer</label>
+    <label class="amor-radio__label" for="u8h2vna8u02">Web Designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="pthgnllaa38"
-      name="job"
-      value="publisher"
-    />
-    <label class="amor-radio__label" for="pthgnllaa38">publisher</label>
-  </span>
-  <span class="amor-radio amor-radio-group__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="ajn029aq14d"
+      id="sgs3gjlcgbs"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ajn029aq14d">
-      frontend developer
+    <label class="amor-radio__label" for="sgs3gjlcgbs">
+      Web Front-End Developer
     </label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="j4s7dq69efg"
+      id="t3q798nb9b4"
       name="job"
-      value="devops"
+      value="backend"
     />
-    <label class="amor-radio__label" for="j4s7dq69efg">devops</label>
+    <label class="amor-radio__label" for="t3q798nb9b4">
+      Web Back-End Developer
+    </label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="zysiwge3dgg"
+      id="pzu7npufmdk"
+      name="job"
+      value="devops"
+    />
+    <label class="amor-radio__label" for="pzu7npufmdk">devops</label>
+  </span>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="o8jdbohe6ks"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="zysiwge3dgg">iOS developer</label>
+    <label class="amor-radio__label" for="o8jdbohe6ks">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
@@ -738,31 +733,35 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="rpg8ui77j6g"
+      id="pddwhm99dus"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="rpg8ui77j6g">웹 디자이너</label>
+    <label class="amor-radio__label" for="pddwhm99dus">Web Designer</label>
   </span>
   <span class="amor-radio amor-radio-group__item">
     <input
       class="amor-radio__control"
       type="radio"
-      id="e90ztgg0nio"
-      name="job2"
-      value="publisher"
-    />
-    <label class="amor-radio__label" for="e90ztgg0nio">웹 퍼블리셔</label>
-  </span>
-  <span class="amor-radio amor-radio-group__item">
-    <input
-      class="amor-radio__control"
-      type="radio"
-      id="ubt5dg6g9eo"
+      id="jh08hj4rtvo"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ubt5dg6g9eo">프론트엔드 개발자</label>
+    <label class="amor-radio__label" for="jh08hj4rtvo">
+      Web Front-End Developer
+    </label>
+  </span>
+  <span class="amor-radio amor-radio-group__item">
+    <input
+      class="amor-radio__control"
+      type="radio"
+      id="yew37hmn6o2"
+      name="job2"
+      value="backend"
+    />
+    <label class="amor-radio__label" for="yew37hmn6o2">
+      Web Back-End Developer
+    </label>
   </span>
 </div>
 
@@ -774,7 +773,7 @@ include ../../atoms/radios/default
 
 ## radioSlider
 
-create radio group component
+radio slider component
 
 
 ### path 
@@ -787,9 +786,9 @@ create radio group component
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.name|attribute of radio|string||Y|
+|props.name|the name attribute of radio|string||Y|
 |props.options|the array that consists of options for radio component|array||Y|
-|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `'top'`, `'bottom'`|string|`bottom`|N|
+|props.labelPosition|Where the label is located relative to the visual indicator<br>One of `top`, `bottom`|string|`bottom`|N|
 
 
 
@@ -797,7 +796,7 @@ create radio group component
 
 |name|description|
 |:---:|:---|
-|radioSliderLabelSlot|the slot for label.|
+|radioSliderLabelSlot|the slot for label.the number of slots must be equal to number of option items|
 
 
 
@@ -805,7 +804,7 @@ create radio group component
 
 ```jade
 include /components/utils/util
-include ../../atoms/radios/default
+include /components/atoms/radios/default
 
 // basic
 +radioSlider({
@@ -843,13 +842,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="hw32nmig5t3"
+      id="lcnybh3kpae"
       name="size"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="hw32nmig5t3"
+      for="lcnybh3kpae"
     >
       small
     </label>
@@ -859,13 +858,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="emojid5kkh8"
+      id="dlsylrlh3th"
       name="size"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="emojid5kkh8"
+      for="dlsylrlh3th"
     >
       medium
     </label>
@@ -875,13 +874,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="mb4b15ghd28"
+      id="q59iygog2k9"
       name="size"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="mb4b15ghd28"
+      for="q59iygog2k9"
     >
       large
     </label>
@@ -893,13 +892,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="y45a5t4hjj4"
+      id="ztceb4p6vdk"
       name="size2"
       value="small"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="y45a5t4hjj4"
+      for="ztceb4p6vdk"
     >
       small
     </label>
@@ -909,13 +908,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="uzrn6ltlm1c"
+      id="v3f637jdc5u"
       name="size2"
       value="medium"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="uzrn6ltlm1c"
+      for="v3f637jdc5u"
     >
       medium
     </label>
@@ -925,13 +924,13 @@ include ../../atoms/radios/default
     <input
       class="amor-radio__control"
       type="radio"
-      id="f0258cson3t"
+      id="me42uhegfgk"
       name="size2"
       value="large"
     />
     <label
       class="amor-radio__label amor-radio__label--column"
-      for="f0258cson3t"
+      for="me42uhegfgk"
     >
       large
     </label>
@@ -946,7 +945,7 @@ include ../../atoms/radios/default
 
 ## searchBar
 
-create search bar component
+search bar component
 
 
 ### path 
@@ -959,8 +958,8 @@ create search bar component
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.textfieldId|the id value for search text field|string||Y|
-|props.searchBtnId|the id value for search button|string||Y|
+|props.textfieldId|the id attribute value for search text field|string||Y|
+|props.searchBtnId|the id attribute value for search button|string||Y|
 
 
 
@@ -968,9 +967,9 @@ create search bar component
 
 ```jade
 include /components/utils/util
-include ../../atoms/buttons/default
-include ../../atoms/textbox/index
-include ../../molecules/fieldset/default
+include /components/atoms/buttons/default
+include /components/atoms/textbox/index
+include /components/molecules/fieldset/default
 
 +searchBar({
   textfieldId: `keyword`,
@@ -985,21 +984,21 @@ include ../../molecules/fieldset/default
 <div
   class="amor-field amor-field--column amor-searchbar"
   role="group"
-  aria-labelledby="o8xhjjtn9po"
+  aria-labelledby="pj69lemsj58"
   id="searchbox"
 >
   <div
     class="amor-field__label amor-field__label--30 amor-searchbar__label"
-    id="o8xhjjtn9po"
+    id="pj69lemsj58"
   >
-    i18n(label.search)
+    search
   </div>
   <div class="amor-field__body amor-searchbar__body">
     <input
       class="amor-textbox amor-textbox--medium amor-searchbar__textfield"
       id="keyword"
       type="text"
-      aria-labelledby="o8xhjjtn9po"
+      aria-labelledby="pj69lemsj58"
       autocomplete="off"
       autocorrect="off"
       autocapitalize="none"
@@ -1010,7 +1009,7 @@ include ../../molecules/fieldset/default
       type="button"
       id="btn-search"
     >
-      i18n(label.search)
+      search
     </button>
   </div>
 </div>
@@ -1036,7 +1035,9 @@ create tags list
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
-|props.tags|sequence of tags|object||Y|
+|props.tags|sequence of tags|array||Y|
+|props.appearance|Style to display tags list <br> One of `list` and `flat`|string|`flat`|N|
+|props.useLink|whether to use link|boolean|true|N|
 
 
 
@@ -1046,7 +1047,7 @@ create tags list
 include /components/utils/util
 
 +tagsList({
-  tags: post.tags.data || post.tags || [],
+  tags: post.tags.toArray(),
 })
 ```
 
@@ -1056,16 +1057,7 @@ include /components/utils/util
 ```html
 <div class="amor-tags-list amor-tags-list--flat">
   <ul>
-    <li>
-      <a href="http://example.com/tags/tag-5vi9ppp9tbbj7sg/">
-        tag-5vi9ppp9tbbj7sg
-      </a>
-    </li>
-    <li>
-      <a href="http://example.com/tags/tag-5vi9707b3an4c7g/">
-        tag-5vi9707b3an4c7g
-      </a>
-    </li>
+    <li><a href="https://mulder21c.io/tags/mockup/">mockup</a></li>
   </ul>
 </div>
 
