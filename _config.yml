@@ -30,7 +30,7 @@ analytics:
 
 # Comments
 disqus:
-  shortname:
+  shortname: example
 
 commento:
   host:
@@ -65,6 +65,11 @@ giscus:
   theme:
 
 hero:
+  index: https://farm1.staticflickr.com/863/41108552022_61413423d5_b.jpg
+  archive: https://mulder21c.github.io/upload/2021/props-function-vue.jpg
+  category:
+  tag:
+  search:
 
 search: algolia
 

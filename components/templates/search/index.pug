@@ -4,10 +4,9 @@ include /components/molecules/search-bar/index
 include /components/organisms/hero/index
 
 block heroContent
-  -
-    const searchHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
-  if (searchHero)
-    +hero({imgSrc: searchHero.path, class: `${prefix}-search__hero`})
+
+  if (hero)
+    +hero({imgSrc: hero.path, class: `${prefix}-home-hero`})
 
 block mainContent
   +heading({

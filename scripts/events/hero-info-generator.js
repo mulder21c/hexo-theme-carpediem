@@ -1,3 +1,5 @@
+// @ts-check
+
 const fs = require("fs");
 const path = require("path");
 const fetch = require("sync-fetch");
@@ -52,10 +54,12 @@ function heroInfoGenerator(data) {
   const hexo = this;
   const [posts] = data;
   const imageInfo = new Map(JSON.parse(getHeroInfo()));
-
   hexo.log.info(`Start generating hero image database.`);
+  const themeHeros = Object.values(themeConfig.hero || {}).map((val) => ({
+    hero: val,
+  }));
 
-  ([themeConfig, ...posts] || [themeConfig]).forEach((post) => {
+  [...themeHeros, ...posts].forEach((post) => {
     const hero = post?.hero || undefined;
     if (!hero) return;
     if (imageInfo.get(hero)) return;

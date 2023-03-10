@@ -2,9 +2,7 @@ extends /components/templates/post/index
 
 block prepend heroContent
   -
-    const primaryHero = {
-      path: page.hero,
-    };
+    const hero = representativeImage(page);
 
 block prepend mainContent
   -

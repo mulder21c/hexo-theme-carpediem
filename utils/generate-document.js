@@ -6,7 +6,6 @@ const PugDocMD = require("./pug-doc-markdown.js");
 const sassDocMD = require("@hidoo/sassdoc-to-markdown").default;
 const rootPath = path.resolve(__dirname, `../`);
 const jsYml = require("js-yaml");
-const page = require("../mock");
 
 const hexo = new Hexo(path.resolve(process.cwd(), "../../"), {
   config: path.resolve(process.cwd(), "../../_config.yml"),
@@ -19,16 +18,27 @@ const theme = jsYml.load(
 hexo.init().then(function () {
   hexo.database.load().then(function () {
     const locals = {
-      isMock: true,
-      page,
-      post: hexo.locals.toObject().posts.eq(0),
       ...hexo.locals.toObject(),
+      isMock: true,
+      post: hexo.locals.toObject().posts.eq(0),
       site: {
         ...hexo.locals.toObject(),
         mode: "production",
       },
       config: hexo.config,
-      theme,
+      theme: {
+        ...theme,
+        links: [
+          {
+            name: `portfolio`,
+            url: `https://my-portfolio.com`,
+          },
+          {
+            name: `works`,
+            url: `https://my-works.com`,
+          },
+        ],
+      },
       url: hexo.config.url,
       is_home: () => true,
       is_post: () => false,
@@ -40,11 +50,39 @@ hexo.init().then(function () {
         switch (str) {
           case "label.category":
             return `category`;
+          case "label.date.published":
+            return `published`;
+          case "label.search":
+            return `search`;
+          case "label.posts.default":
+            return `posts`;
+          case "label.pagination.prev":
+            return `prev page`;
+          case "label.pagination.next":
+            return `next page`;
+          case "label.posts.yearly":
+            return `timeline of posts`;
         }
       },
       mode: `production`,
     };
 
+    locals.post.permalink = locals.post.toObject().permalink;
+    locals.page = {
+      base: "",
+      total: 2,
+      current: 1,
+      current_url: "",
+      posts: hexo.locals.toObject().posts,
+      prev: 0,
+      prev_link: "",
+      next: 2,
+      next_link: "page/2/",
+      __index: true,
+      path: "index.html",
+      lang: "ko",
+      canonical_path: "index.html",
+    };
     locals.representativeImage =
       require("../scripts/helpers/representative-image").bind(locals);
     locals.getIconCategory =
@@ -52,7 +90,7 @@ hexo.init().then(function () {
     locals.stripHTML = require("../scripts/helpers/strip-html").bind(locals);
     locals.truncate = require("../scripts/helpers/truncate").bind(locals);
     locals.paginator = require("../scripts/helpers/paginator").bind(locals);
-    locals.listCategories = require("../scripts/helpers/list-categories").bind(
+    locals.list_categories = require("../scripts/helpers/list-categories").bind(
       locals
     );
     locals.listMenus = require("../scripts/helpers/list-menus").bind(locals);
@@ -81,62 +119,48 @@ hexo.init().then(function () {
         });
       },
     });
-    // pugDocGen({
-    //   input: path.resolve(rootPath, "./components/molecules/**/*.pug"),
-    //   output: "./data-molecules.json",
-    //   locals,
-    //   complete: function () {
-    //     const stream = new PugDocMD({
-    //       output: path.resolve(rootPath, "./docs/en/pug/molecules.md"),
-    //       input: path.resolve(rootPath, "./data-molecules.json"),
-    //     });
-    //     stream.on("complete", function () {
-    //       fs.unlink(path.resolve(rootPath, "./data-molecules.json"), () => {});
-    //     });
-    //   },
-    // });
-    // pugDocGen({
-    //   input: path.resolve(rootPath, "./components/organisms/**/*.pug"),
-    //   output: "./data-organisms.json",
-    //   locals,
-    //   complete: function () {
-    //     const stream = new PugDocMD({
-    //       output: path.resolve(rootPath, "./docs/en/pug/organisms.md"),
-    //       input: path.resolve(rootPath, "./data-organisms.json"),
-    //     });
-    //     stream.on("complete", function () {
-    //       fs.unlink(path.resolve(rootPath, "./data-organisms.json"), () => {});
-    //     });
-    //   },
-    // });
-    // pugDocGen({
-    //   input: path.resolve(rootPath, "./components/templates/**/*.pug"),
-    //   output: "./data-templates.json",
-    //   locals,
-    //   complete: function () {
-    //     const stream = new PugDocMD({
-    //       output: path.resolve(rootPath, "./docs/en/pug/templates.md"),
-    //       input: path.resolve(rootPath, "./data-templates.json"),
-    //     });
-    //     stream.on("complete", function () {
-    //       fs.unlink(path.resolve(rootPath, "./data-templates.json"), () => {});
-    //     });
-    //   },
-    // });
-    // pugDocGen({
-    //   input: path.resolve(rootPath, "./components/utils/**/*.pug"),
-    //   output: "./data-utils.json",
-    //   locals,
-    //   complete: function () {
-    //     const stream = new PugDocMD({
-    //       output: path.resolve(rootPath, "./docs/en/pug/utils.md"),
-    //       input: path.resolve(rootPath, "./data-utils.json"),
-    //     });
-    //     stream.on("complete", function () {
-    //       fs.unlink(path.resolve(rootPath, "./data-utils.json"), () => {});
-    //     });
-    //   },
-    // });
+    pugDocGen({
+      input: path.resolve(rootPath, "./components/molecules/**/*.pug"),
+      output: "./data-molecules.json",
+      locals,
+      complete: function () {
+        const stream = new PugDocMD({
+          output: path.resolve(rootPath, "./docs/en/pug/molecules.md"),
+          input: path.resolve(rootPath, "./data-molecules.json"),
+        });
+        stream.on("complete", function () {
+          fs.unlink(path.resolve(rootPath, "./data-molecules.json"), () => {});
+        });
+      },
+    });
+    pugDocGen({
+      input: path.resolve(rootPath, "./components/organisms/**/*.pug"),
+      output: "./data-organisms.json",
+      locals,
+      complete: function () {
+        const stream = new PugDocMD({
+          output: path.resolve(rootPath, "./docs/en/pug/organisms.md"),
+          input: path.resolve(rootPath, "./data-organisms.json"),
+        });
+        stream.on("complete", function () {
+          fs.unlink(path.resolve(rootPath, "./data-organisms.json"), () => {});
+        });
+      },
+    });
+    pugDocGen({
+      input: path.resolve(rootPath, "./components/utils/**/*.pug"),
+      output: "./data-utils.json",
+      locals,
+      complete: function () {
+        const stream = new PugDocMD({
+          output: path.resolve(rootPath, "./docs/en/pug/utils.md"),
+          input: path.resolve(rootPath, "./data-utils.json"),
+        });
+        stream.on("complete", function () {
+          fs.unlink(path.resolve(rootPath, "./data-utils.json"), () => {});
+        });
+      },
+    });
 
     sassDocMD(path.resolve(rootPath, `./source/css/**/*.scss`)).then((md) => {
       const dir = path.resolve(rootPath, `./docs/en/scss`);

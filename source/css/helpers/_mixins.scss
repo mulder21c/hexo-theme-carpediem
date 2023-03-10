@@ -1,5 +1,9 @@
 /// generate media query for responsive
 /// @param {String} $breakpoint breakpoint name
+/// @example
+///   @include respond-to(tablet) { ... }
+///   // @media(min-width: 768px) { ... }
+///
 @mixin respond-to($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media (min-width: #{inspect(map-get($breakpoints, $breakpoint))}) {
@@ -13,11 +17,26 @@
 /// generate at-rule for font-face
 /// @param {String} $name font's name to be used for font-family
 /// @param {String} $path path to font files based on a web root
-/// @param {String} $filename name of file name without extension
+/// @param {String} $filename name of file without extension
 /// @param {Number} $weight font-weight
 /// @param {String} $style font-style
-/// @param {List} $exts list that contains extension of font files
+/// @param {List} $exts space-delimited list of font file extensions
 /// @param {String} $range range of unicode
+/// @example
+///   @include font-face(
+///     "Noto Serif",
+///     "/fonts/noto/",
+///     "noto-serif-kr-400",
+///     400,
+///     normal,
+///     woff woff2,
+///     null
+///   );
+///   // font-family: "Noto Serif";
+///   // src: url("/fonts/noto/noto-serif-kr-400.woff") format("woff"),url("/fonts/noto/noto-serif-kr-400.woff2") format("woff2");
+///   // font-weight: 400;
+///   // font-style: normal;
+///
 @mixin font-face(
   $name,
   $path,
@@ -54,7 +73,12 @@
 
 /// generate prefers-color-scheme media query
 /// and block for [data-scheme="{scheme}"] selector
-/// @param {String} $theme color scheme to apply the style to
+/// @param {String} $scheme color scheme to apply the style to
+/// @example
+///   @include colorScheme(dark) { ... }
+///   // selector[data-scheme=dark] { ... }
+///   // @media(prefers-color-scheme: dark) { ... }
+///
 @mixin colorScheme($scheme) {
   $schemes: ("light", "dark");
 
@@ -80,7 +104,11 @@
 }
 
 /// generate @keyframes rules
-/// @param {String} $name
+/// @param {String} $name the name of keyframe
+/// @example
+///   @include keyframes(bounce) { ... }
+///   // @keyframes bounce { ... }
+///
 @mixin keyframes($name) {
   @if not $name or $name == "" {
     @warn "not defined animation name.";
@@ -93,7 +121,7 @@
 
 /// generate properties for animation
 /// @param {Map} $options
-/// @param {String} $options.name - the name of keyframe
+/// @param {String} $options.name - the name of animation
 /// @param {Number} $options.duration [0] - the length of time that an animation should take to complete one cycle
 /// @param {String} $options.func [ease-in-out] - how an animation progresses through the duration of each cycle
 /// @param {Number} $options.delay [0] - the amount of time to wait from applying the animation to an element before beginning to perform the animation
@@ -101,6 +129,17 @@
 /// @param {String} $options.direction [normal] - whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.
 /// @param {String} $options.fill [none] - how a CSS animation applies styles to its target before and after its execution
 /// @param {String} $options.state [running] - whether an animation is running or paused
+/// @example
+///   @include animation((name: bounce, duration: 1s));
+///   // animation-name: bounce;
+///   // animation-duration: 1s;
+///   // animation-timing-function: ease-in-out;
+///   // animation-delay: 0s;
+///   // animation-iteration-count: 1;
+///   // animation-direction: normal;
+///   // animation-fill-mode: none;
+///   // animation-play-state: running;
+///
 @mixin animation($options) {
   $default: (
     name: "",
@@ -140,6 +179,9 @@
 }
 
 /// visually hidden for screen reader
+/// @example
+///   @include sr-only;
+///
 @mixin sr-only {
   overflow: hidden !important;
   position: relative !important;
@@ -154,6 +196,20 @@
 
 /// generate ellipsis by lines
 /// @param {Number} $line-to-show the number of lines
+/// @example
+///   @include lineEllipsis(1);
+///   // overflow: hidden;
+///   // text-overflow: ellipsis;
+///   // white-space: nowrap;
+///
+///   @include lineEllipsis(3);
+///   // overflow: hidden;
+///   // text-overflow: ellipsis;
+///   // display: block;
+///   // display: -webkit-box;
+///   // -webkit-box-orient: vertical;
+///   // -webkit-line-clamp: 3;
+///
 @mixin lineEllipsis($line-to-show) {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -167,8 +223,13 @@
   }
 }
 
-/// generate css variable for color 2-way that contains hex code and r, g, b run
+/// generate css variable for color in two ways that are hex code and r, g, b
 /// @param {Map} $colorMap map containing variable's name & color value
+/// @example
+///   @include defineColorVar((--background-color: $color-neutral-05));
+///   // --background-color: #f2f2f2;
+///   // --background-color-rgb: 242,242,242;
+///
 @mixin defineColorVar($colorMap) {
   @each $name, $color in $colorMap {
     $rgb: toRGB($color);

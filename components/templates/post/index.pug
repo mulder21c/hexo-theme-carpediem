@@ -9,11 +9,9 @@ include /components/organisms/article-content/index
 include /components/organisms/comments/index
 
 block heroContent
-  -
-    const postHero = primaryHero?.path;
 
-  if (postHero)
-    +hero({imgSrc: postHero, class: `${prefix}-article__hero`})
+  if (hero)
+    +hero({imgSrc: hero.path, class: `${prefix}-home-hero`})
 
 block mainContent
   if post
@@ -25,7 +23,7 @@ block mainContent
           class: `${prefix}-article__heading`,
         })
         +articleMeta({
-          categories: post.categories.data || post.categories || [],
+          categories: post.categories.toArray(),
           date: post.date,
           updated: post.updated,
         })
@@ -45,7 +43,7 @@ block mainContent
             "aria-label": _p(`section.tags`),
           })
         +tagsList({
-          tags: post.tags.data || post.tags || [],
+          tags: post.tags.toArray(),
           appearance: `flat`,
           class: `${prefix}-article__tags__list`,
         })

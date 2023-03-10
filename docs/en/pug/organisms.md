@@ -50,14 +50,14 @@ include /components/atoms/svg-icon/index
 ### example output 
 
 ```html
-<div class="amor-accordion" id="kivl0z4nafu" data-init-activate="1">
+<div class="amor-accordion" id="z8t9k22c3j4" data-init-activate="1">
   <div class="amor-accordion__header">
     <button
       class="amor-accordion__tab"
       type="button"
-      id="variv2t7iji"
+      id="mbp30qkplb8"
       aria-expanded="false"
-      aria-controls="uopntnp63ks"
+      aria-controls="il74fwgl1q5"
     >
       heading 1
       <svg
@@ -66,16 +66,16 @@ include /components/atoms/svg-icon/index
         role="presentation"
       >
         <use
-          xlink:href="https://mulder21c.io/images/solid.svg#chevron-down"
+          xlink:href="https://www.mulder21c.io/images/solid.svg#chevron-down"
         ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel"
-    id="uopntnp63ks"
+    id="il74fwgl1q5"
     role="region"
-    aria-labelledby="variv2t7iji"
+    aria-labelledby="mbp30qkplb8"
     hidden="hidden"
   >
     panel 1
@@ -84,9 +84,9 @@ include /components/atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="i1onltp8vv6"
+      id="i43d1fc284s"
       aria-expanded="true"
-      aria-controls="pzweqkvbm3g"
+      aria-controls="cdhc3u8m5jg"
     >
       heading 2
       <svg
@@ -95,16 +95,16 @@ include /components/atoms/svg-icon/index
         role="presentation"
       >
         <use
-          xlink:href="https://mulder21c.io/images/solid.svg#chevron-down"
+          xlink:href="https://www.mulder21c.io/images/solid.svg#chevron-down"
         ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel active"
-    id="pzweqkvbm3g"
+    id="cdhc3u8m5jg"
     role="region"
-    aria-labelledby="i1onltp8vv6"
+    aria-labelledby="i43d1fc284s"
   >
     panel 2
   </div>
@@ -112,9 +112,9 @@ include /components/atoms/svg-icon/index
     <button
       class="amor-accordion__tab"
       type="button"
-      id="ugo3xemvnm4"
+      id="on5l43hcsmi"
       aria-expanded="false"
-      aria-controls="ovudlipnpl8"
+      aria-controls="n91jwaevcq8"
     >
       heading 3
       <svg
@@ -123,16 +123,16 @@ include /components/atoms/svg-icon/index
         role="presentation"
       >
         <use
-          xlink:href="https://mulder21c.io/images/solid.svg#chevron-down"
+          xlink:href="https://www.mulder21c.io/images/solid.svg#chevron-down"
         ></use>
       </svg>
     </button>
   </div>
   <div
     class="amor-accordion__panel"
-    id="ovudlipnpl8"
+    id="n91jwaevcq8"
     role="region"
-    aria-labelledby="ugo3xemvnm4"
+    aria-labelledby="on5l43hcsmi"
     hidden="hidden"
   >
     panel 3
@@ -190,7 +190,10 @@ include /components/atoms/heading/index
   </h2>
   <ol class="amor-timeline__list">
     <li class="amor-timeline__list__item">
-      <a class="amor-timeline__link" href="https://mulder21c.io/lorem-ipsum/">
+      <a
+        class="amor-timeline__link"
+        href="https://www.mulder21c.io/lorem-ipsum/"
+      >
         <span class="amor-timeline__title">Lorem Ipsum</span>
       </a>
     </li>
@@ -346,19 +349,19 @@ include /components/molecules/article-card/index
     >
       <a
         class="amor-article-card__heading"
-        href="https://mulder21c.io/lorem-ipsum/"
-        aria-describedby="cwlxcboopqt fma7tfs1qcf"
+        href="https://www.mulder21c.io/lorem-ipsum/"
+        aria-describedby="clpr743u7nk t13eqtj2hko"
       >
         Lorem Ipsum
       </a>
-      <div class="amor-article-card__meta" id="cwlxcboopqt">
+      <div class="amor-article-card__meta" id="clpr743u7nk">
         <span class="amor-datetime amor-article-card__meta__item">
           <span class="amor-datetime__label" role="img" aria-label="published">
             📆
           </span>
           <time
             class="amor-datetime__time"
-            id="wm07u29aiku"
+            id="a758gfbcp04"
             datetime="2000-01-01"
           >
             2000. 01. 01
@@ -375,7 +378,7 @@ include /components/molecules/article-card/index
           </span>
         </span>
       </div>
-      <p class="amor-article-card__content" id="fma7tfs1qcf">
+      <p class="amor-article-card__content" id="t13eqtj2hko">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis
         lacus, pharetra posuere tincidunt eu, vulputate eget ex. Lorem ipsum
         dolor sit amet, consectetur adipiscing elit. Quisque accumsan in ligula
@@ -827,7 +830,6 @@ include /components/utils/util
     1
   </a>
   <a class="amor-pagination__item" href="//page/2">2</a>
-  <a class="amor-pagination__item" href="//page/3">3</a>
   <a class="amor-pagination__next" rel="next" href="//page/2">
     <svg role="img" aria-label="next page" focusable="false">
       <use xlink:href="/images/solid.svg#angle-right"></use>
@@ -912,7 +914,7 @@ include /components/atoms/buttons/icon
       focusable="false"
       aria-hidden="true"
     >
-      <use xlink:href="https://mulder21c.io/images/solid.svg#xmark"></use>
+      <use xlink:href="https://www.mulder21c.io/images/solid.svg#xmark"></use>
     </svg>
   </button>
 </div>
@@ -967,7 +969,7 @@ include /components/utils/util
 ```html
 <!-- without slot-->
 <div class="amor-title-bar">
-  <h1 class="amor-title-bar__title"><a href="/">The Tracks of mulder21c</a></h1>
+  <h1 class="amor-title-bar__title"><a href="/">The tracks of mulder21c</a></h1>
 </div>
 
 ```

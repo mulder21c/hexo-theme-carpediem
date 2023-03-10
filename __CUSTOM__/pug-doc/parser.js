@@ -300,7 +300,7 @@ function compilePug(src, meta, filename, locals) {
         compileDebug: true,
         basedir: process.cwd(),
       });
-      console.log(`[error] `, err)
+      console.log(`[error] `, filename, err)
       const templateFuncDebug = pugRuntimeWrap(compiledDebug, "tmp");
       templateFuncDebug(locals || {});
 

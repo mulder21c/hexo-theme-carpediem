@@ -103,7 +103,7 @@ include /components/atoms/svg-icon/index
     focusable="false"
     aria-hidden="true"
   >
-    <use xlink:href="https://mulder21c.io/images/solid.svg#tty"></use>
+    <use xlink:href="https://www.mulder21c.io/images/solid.svg#tty"></use>
   </svg>
 </button>
 
@@ -302,21 +302,21 @@ label(for=`no-label-checkbox`) checkbox
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="dlkd334gg57"
+    id="e1uebgq06hg"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="dlkd334gg57">agree</label>
+  <label class="amor-checkbox__label" for="e1uebgq06hg">agree</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-checkbox">
   <input
     class="amor-checkbox__control"
     type="checkbox"
-    id="exsomhjuqrc"
+    id="mrxsht0pf3h"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="exsomhjuqrc">check label</label>
+  <label class="amor-checkbox__label" for="mrxsht0pf3h">check label</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-checkbox">
@@ -393,22 +393,22 @@ label(for="no-label-switch") switch button
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="bzxda2uareo"
+    id="d4fs7krhfk8"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="bzxda2uareo">alarm</label>
+  <label class="amor-switch__label" for="d4fs7krhfk8">alarm</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-switch">
   <input
     class="amor-switch__control"
     type="checkbox"
-    id="s1q1lyg0ae4"
+    id="bmmycu6fimo"
     checked="checked"
   />
   <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="s1q1lyg0ae4">switch button</label>
+  <label class="amor-switch__label" for="bmmycu6fimo">switch button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-switch">
@@ -476,15 +476,15 @@ include /components/utils/util
 <!-- simple-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="mmkjkdi34no" datetime="2023-02-19">
-    2023. 02. 19
+  <time class="amor-datetime__time" id="eyc1dk2qih4" datetime="2023-03-11">
+    2023. 03. 11
   </time>
 </span>
 <!-- explicit format-->
 <span class="amor-datetime">
   <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="ku5f25q0igk" datetime="2023-02-19">
-    2023-02-19
+  <time class="amor-datetime__time" id="nqyg3qe0mio" datetime="2023-03-11">
+    2023-03-11
   </time>
 </span>
 
@@ -615,7 +615,7 @@ include /components/utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="bjw22w478ik"
+    id="gemw2z1bnn4"
     name="answer"
     value="1"
   />
@@ -626,7 +626,7 @@ include /components/utils/util
   <input
     class="amor-radio-boxy__control"
     type="radio"
-    id="teze45ps6lr"
+    id="j80adt7ne96"
     name="answer"
     value="1"
   />
@@ -690,22 +690,22 @@ label(for=`no-label`) radio button
   <input
     class="amor-radio__control"
     type="radio"
-    id="cn9p3h8djc8"
+    id="rt59lctmm21"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="cn9p3h8djc8">yes</label>
+  <label class="amor-radio__label" for="rt59lctmm21">yes</label>
 </span>
 <!-- using block instead of label property-->
 <span class="amor-radio">
   <input
     class="amor-radio__control"
     type="radio"
-    id="bcm0eg4jakc"
+    id="cuvlk2cn18d"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="bcm0eg4jakc">radio button</label>
+  <label class="amor-radio__label" for="cuvlk2cn18d">radio button</label>
 </span>
 <!-- using separated label element-->
 <span class="amor-radio">
@@ -759,7 +759,7 @@ include /components/utils/util
 
 ```html
 <svg class="amor-svg-icon" focusable="false">
-  <use xlink:href="https://mulder21c.io/images/solid.svg#thumbs-up"></use>
+  <use xlink:href="https://www.mulder21c.io/images/solid.svg#thumbs-up"></use>
 </svg>
 
 ```
@@ -807,7 +807,7 @@ include /components/utils/util
 ### example output 
 
 ```html
-<input class="amor-textbox amor-textbox--medium" id="uew8hsb6opa" type="text" />
+<input class="amor-textbox amor-textbox--medium" id="frnijzco7sg" type="text" />
 
 ```
 

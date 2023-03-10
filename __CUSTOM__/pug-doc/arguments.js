@@ -102,7 +102,6 @@ function parseJSDocParam(str, escapeName) {
   const original = str;
   let name;
   if (escapeName) {
-    console.log(str);
     name = getJSDocName(str);
     str = str.replace(name, name.replace("-", "_", "g"));
   }

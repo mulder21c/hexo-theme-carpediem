@@ -1,2 +1,0 @@
-# Pug Documentation 
-

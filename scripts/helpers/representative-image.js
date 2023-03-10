@@ -16,7 +16,7 @@ const getImageInfo = () => {
 };
 
 /**
- * @typedef {Object} ImageProbe
+ * @typedef {Object | null} ImageProbe
  * @property {string} path
  * @property {number} width
  * @property {number} height
@@ -46,7 +46,24 @@ const prependHttpProtocol = (url) => {
 function representativeImageHelper(page) {
   const hexo = this;
   const log = (hexo.log && hexo.log.info) || console.log;
-  const hero = page?.hero || page?.photos?.unshift() || undefined;
+  const isArchive = (page) => Boolean(page.archive);
+  const isCategory = (page) => Boolean(page.category);
+  const isTag = (page) => Boolean(page.tag);
+  const isPage = (page) => Boolean(page.__page);
+  const isPost = (page) => Boolean(page.__post);
+  const getHeroByLayout = (theme) => {
+    if (isArchive(page)) return theme.hero?.archive;
+    if (isCategory(page)) return theme.hero?.category;
+    if (isCategory(page)) return theme.hero?.category;
+    if (isTag(page)) return theme.hero?.tag;
+    return theme.hero?.index;
+  };
+
+  const hero =
+    isPage(page) || isPost(page)
+      ? page.hero || page?.photos?.unshift()
+      : getHeroByLayout(page) || undefined;
+
   if (!hero) return null;
 
   imageInfo = imageInfo || getImageInfo();

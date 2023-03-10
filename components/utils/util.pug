@@ -90,7 +90,7 @@
       "alternativeHeadline": $subtitle || undefined,
     });
     const getKeywords = () => ({
-      "keywords": ($tags.data || $tags || [])
+      "keywords": $tags.toArray()
         .map(tag => tag.name)
         .join(', ') || undefined,
     });

@@ -1,34 +1,46 @@
-/// Slightly lighten a color
+/// Slightly lighten a color by mixing with white
 /// @param {Color} $color color to tint
 /// @param {Number} $percentage percentage of `$color`
 /// @return {Color}
-
+/// @example
+///   tint(#f00, 10)
+///   // #ff1a1a
+///
 @function tint($color, $percentage) {
   @return mix(white, $color, $percentage);
 }
 
-/// Slightly darken a color
+/// Slightly darken a color by mixing with black
 /// @param {Color} $color color to shade
 /// @param {Number} $percentage percentage of `$color`
 /// @return {Color}
-
+/// @example
+///   shade(#f00, 10)
+///   // #e60000
+///
 @function shade($color, $percentage) {
   @return mix(black, $color, $percentage);
 }
 
 /// Remove units from a given value
-/// @param {Number} numbers containing units
+/// @param {Number} $num numbers containing units
 /// @return {Number}
-
+/// @example
+///   stripUnit(16px)
+///   // 16
+///
 @function stripUnit($num) {
   @return math.div($num, ($num * 0 + 1));
 }
 
 /// Convert a given value in rem
-/// @param {Number} value to convert
-/// @param {Number} the value that is the basis for the conversion
+/// @param {Number} $value value to convert
+/// @param {Number} $base-value the value that is the basis for the conversion
 /// @return {Number}
-
+/// @example
+///   convertRem(32px, 16px)
+///   // 2
+///
 @function convertRem($value, $base-value) {
   @if not $base-value {
     @error "not defined $base-value";
@@ -43,9 +55,12 @@
 
 /// get font size from sizes of divided evenly
 /// between the minimum and maximum values
-/// @param {Number} divided step
+/// @param {Number} $step divided step
 /// @return {Number}
-
+/// @example
+///   getFontSize(2)
+///   // get the second smallest font size
+///
 @function getFontSize($step) {
   @if not $font-size-largest {
     @error "can not found $font-size-largest";
@@ -70,9 +85,12 @@
 }
 
 /// get rgb(r, g, b) format from Hex color
-/// @param {Color} color Hex color
+/// @param {Color} $color Hex color
 /// @return {Color}
-
+/// @example
+///   toRGB(#fff);
+///   // 255,255,255
+///
 @function toRGB($color) {
   @if (alpha($color) == 1) {
     @return red($color), green($color), blue($color);
@@ -82,14 +100,17 @@
 }
 
 /// url encode
-/// @param {Color} color Hex color
+/// @param {Color} $color the color in name, hex or rgb format
 /// @return {String}
+/// @example
+///   encodeColor(#f00)
+///   // "%23FF0000"
 ///
-@function encodecolor($string) {
-  @if type-of($string) == "color" {
-    $hex: str-slice(ie-hex-str($string), 4);
-    $string: unquote("#{$hex}");
+@function encodeColor($color) {
+  @if type-of($color) == "color" {
+    $hex: str-slice(ie-hex-str($color), 4);
+    $color: unquote("#{$hex}");
   }
-  $string: "%23" + $string;
-  @return $string;
+  $color: "%23" + $color;
+  @return $color;
 }

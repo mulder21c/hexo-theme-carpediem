@@ -1,8 +1,8 @@
 //- @pugdoc
   name: pageTitle
-  description: create title element based on post type
+  description: title element based on layout type
   beforeEach: |
-    include ./util
+    include /components/utils/util
   example: |
     +pageTitle
 
@@ -11,9 +11,9 @@ mixin pageTitle
 
 //- @pugdoc
   name: pageSequenceLink
-  description: create relational link element
+  description: sequential link elements
   beforeEach: |
-    include ./util
+    include /components/utils/util
   example: |
     +pageSequenceLink
 
@@ -36,12 +36,13 @@ mixin pageSequenceLink
 
 //- @pugdoc
   name: preLoadImage
-  description: create preload link element for representational image
+  description: preload link element for representational image
   example: |
     +preLoadImage
 
 mixin preLoadImage
-  - const imageObj = representativeImage(page);
+  -
+    const imageObj = representativeImage(page);
   if (imageObj)
     link(
       rel= `preload`
@@ -54,9 +55,11 @@ mixin preLoadImage
   name: openGraph
   description: create og meta element
   beforeEach: |
-    include ./util
+    include /components/utils/util
   example: |
-    +openGraph
+    +openGraph({
+      url: `https://example.com`
+    })
 
 mixin openGraph(props)
   -
@@ -132,7 +135,7 @@ mixin analytics
   name: jsonLD
   description: create JSON-LD script element
   beforeEach: |
-    include ./util
+    include /components/utils/util
   example: |
     +jsonLD
 

@@ -3,11 +3,9 @@ include /components/organisms/hero/index
 include /components/organisms/articles-list/index
 
 block heroContent
-  -
-    const listHero = (primaryHero && primaryHero.path) ? primaryHero : hero;
 
-  if (listHero)
-    +hero({imgSrc: listHero.path, class: `${prefix}-home-hero`})
+  if (hero)
+    +hero({imgSrc: hero.path, class: `${prefix}-home-hero`})
 
 block mainContent
   -

@@ -1,0 +1,15 @@
+extends /components/templates/post/index
+
+block prepend heroContent
+  -
+    const hero = representativeImage(page);
+
+block prepend mainContent
+  -
+    const post = page;
+    const author = {
+      name: config.author,
+      gravatar: theme.profile.gravatar,
+      description: theme.profile.description,
+      social: theme.profile.social,
+    };

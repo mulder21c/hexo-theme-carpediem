@@ -66,7 +66,7 @@ const og = (name, content, escape) => {
 };
 
 function openGraphHelper(options = {}) {
-  const { config, page, theme: { hero: themeHero } = { hero: "" } } = this;
+  const { config, page, theme } = this;
   const { content, hero } = page;
   let images = options.image || options.images || page.photos || [];
   let description =
@@ -90,12 +90,23 @@ function openGraphHelper(options = {}) {
   const language =
     options.language || page.lang || page.language || config.language;
   const author = options.author || config.author;
+  const { is_archive, is_category, is_tag } = this;
+  const getHeroByLayout = (theme) => {
+    if (is_archive() && theme.hero?.archive)
+      return [fullUrl.call(this, theme.hero.archive)];
+    if (is_category() && theme.hero?.category)
+      return [fullUrl.call(this, theme.hero.category)];
+    if (is_tag() && theme.hero?.tag)
+      return [fullUrl.call(this, theme.hero.tag)];
+    if (theme.hero?.index) return [fullUrl.call(this, theme.hero?.index)];
+    return [];
+  };
 
   if (!Array.isArray(images)) images = [images];
   images = [
     ...new Set([
       ...(hero ? [fullUrl.call(this, hero)] : []),
-      ...(themeHero ? [fullUrl.call(this, themeHero)] : []),
+      ...(theme.hero ? getHeroByLayout(theme) : []),
       ...images,
     ]),
   ];

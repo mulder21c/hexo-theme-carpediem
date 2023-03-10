@@ -1,11 +1,11 @@
-# Pug Documentation 
+# Pug Documentation
 
 ## pageTitle
 
-title element based on layout type
+layout 유형별 title 엘리먼트
 
 
-### path 
+### path
 
 `components/utils/mixin.pug`
 
@@ -19,10 +19,10 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
-<title>The tracks of mulder21c</title>
+<title>The Tracks of mulder21c</title>
 
 ```
 
@@ -32,10 +32,10 @@ include /components/utils/util
 
 ## pageSequenceLink
 
-sequential link elements
+sequential link 엘리먼트
 
 
-### path 
+### path
 
 `components/utils/mixin.pug`
 
@@ -49,10 +49,10 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
-<link rel="next" href="https://www.mulder21c.io/page/2/" />
+<link rel="next" href="https://mulder21c.io/page/2/" />
 
 ```
 
@@ -65,7 +65,7 @@ include /components/utils/util
 create og meta element
 
 
-### path 
+### path
 
 `components/utils/mixin.pug`
 
@@ -81,24 +81,16 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="The tracks of mulder21c" />
+<meta property="og:title" content="The Tracks of mulder21c" />
 <meta property="og:url" content="https://example.com/" />
-<meta property="og:site_name" content="The tracks of mulder21c" />
+<meta property="og:site_name" content="The Tracks of mulder21c" />
 <meta property="og:locale" content="ko_KR" />
-<meta
-  property="og:image"
-  content="https://farm1.staticflickr.com/863/41108552022_61413423d5_b.jpg"
-/>
 <meta property="article:author" content="mulder21c" />
 <meta name="twitter:card" content="summary" />
-<meta
-  name="twitter:image"
-  content="https://farm1.staticflickr.com/863/41108552022_61413423d5_b.jpg"
-/>
 
 ```
 
@@ -113,12 +105,12 @@ and the stylesheet specified.
 
 
 
-### path 
+### path
 
 `components/utils/mixin.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -136,7 +128,7 @@ and the stylesheet specified.
 ```
 
 
-### example output 
+### example output
 
 ```html
 <link rel="stylesheet" href="/css/index.css" />
@@ -154,7 +146,7 @@ and the stylesheet specified.
 create JSON-LD script element
 
 
-### path 
+### path
 
 `components/utils/mixin.pug`
 
@@ -168,14 +160,14 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "CollectionPage",
-    "@name": "The tracks of mulder21c",
+    "@name": "The Tracks of mulder21c",
     "url": "https://",
     "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
     "author": {
@@ -188,7 +180,7 @@ include /components/utils/util
       "itemListElement": [
         {
           "@type": "BlogPosting",
-          "@name": "The tracks of mulder21c",
+          "@name": "The Tracks of mulder21c",
           "url": "https://",
           "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
           "author": {
@@ -209,5 +201,3 @@ include /components/utils/util
 
 
 ---
-
-
