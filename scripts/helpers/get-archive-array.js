@@ -3,9 +3,9 @@
  * @function
  * @alias archive_array
  * @desc Get archive post list
- * @param {number} year the archive year.
- *  if year is specify, return all posts for year.
- *  otherwise, return posts up to last `MAX_YEAR_LEN` (_config.yml) years.
+ * @param {number} year the archive year.<br>
+ * If year is specify, return all posts for year.
+ * Otherwise, return posts up to last `MAX_YEAR_LEN` (_config.yml) years.
  * @returns {array} array of posts
  * @example
  * - const archiveItems = getArchivePostsArray();

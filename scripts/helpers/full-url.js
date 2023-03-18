@@ -5,7 +5,7 @@ const { url_for } = require("hexo-util");
  * @function
  * @alias full_url
  * @desc Get fully url from relative/absolute URL. <br>
- *  In development mode, keep the given URL for demonstration
+ * In development mode, keep the given URL for demonstration
  * @param {string} url
  * @return {string | void}
  * @example

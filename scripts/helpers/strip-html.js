@@ -5,8 +5,8 @@ const { stripHTML } = require(`hexo-util`);
  * @function
  * @alias strip_html
  * @desc Strip HTML tags from string <br>
- *  The addition of highlightJS generated line indicator and special character
- *  conversion is different from hexo one.
+ * The addition of highlightJS generated line indicator and special character
+ * conversion is different from hexo one.
  * @param {string} str - the original string
  * @return {string}
  * @example

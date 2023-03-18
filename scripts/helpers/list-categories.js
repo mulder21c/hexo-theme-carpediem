@@ -1,4 +1,3 @@
-// this is inspired from hexo listCategoriesHelper helper
 const full_url = require("./full-url");
 const { url_for } = require("hexo-util");
 
@@ -6,7 +5,8 @@ const { url_for } = require("hexo-util");
  * @public
  * @function
  * @alias list_categories
- * @desc Insert a list of all categories
+ * @desc Insert a list of all categories <br>
+ * This is inspired from hexo listCategoriesHelper helper
  * @param {object} categories the iterable object of categories from Hexo
  * @param {object} options See {@link https://hexo.io/docs/helpers#list-categories}
  * @returns {string}

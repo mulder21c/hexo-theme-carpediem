@@ -60,9 +60,9 @@ const og = (name, content, escape) => {
  * @public
  * @function
  * @alias open_graph
- * @desc Insert OpenGraph data
- *  This is inspired from hexo openGraphHelper. <br>
- *  Added hero config on theme and page into images entry
+ * @desc Insert OpenGraph data <br>
+ * This is inspired from hexo openGraphHelper. <br>
+ * Added hero config on theme and page into images entry
  * @param {object} options See {@link https://hexo.io/docs/helpers#open-graph}
  * @return {string}
  * @example

@@ -189,7 +189,7 @@ hexo.init().then(function () {
         separators: true,
       })
       .then((output) => {
-        const dir = path.resolve(rootPath, `./docs/en/helpers/`);
+        const dir = path.resolve(rootPath, `./docs/en/script/`);
 
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir, { recursive: true });

@@ -20,7 +20,7 @@ const iconsMeta = (() => loadYml(iconListPath, `⚠ Cannot find fontawesome!`))(
  * @alias icon_info
  * @desc Get name and category of icon from fontawesome
  * @param {string} icon - the name of icon,
- *  you can predefine icon styles with slashes and words after slashes
+ * you can predefine icon category with slashes and words after slashes
  * @return {IconInfo}
  * @example
  * - const { iconName, iconCategory } = icon_info("bell")

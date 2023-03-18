@@ -3,11 +3,11 @@
  * @function
  * @alias list_links
  * @desc Insert a list of external links <br>
- *  This is inspired from hexo listCategoriesHelper helper
- * @param {array} links the array that is consists of name and url
+ * This is inspired from hexo listCategoriesHelper helper
+ * @param {Array<{name: string, url: string}>} links the array of object that is consists of name and url
  * @param {object} options the configuration object
- * @param {function} options.transform The function that changes the display of tag name
- * @param {string} options.class class name of tag list
+ * @param {function} options.transform The function that changes the display of link name
+ * @param {string} options.class class name of link list
  * @returns {string}
  * @example
  * div

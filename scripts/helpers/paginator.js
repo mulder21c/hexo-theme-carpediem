@@ -95,7 +95,7 @@ const pagenasionPartShow = (tags, options, ctx) => {
  * @function
  * @alias paginator
  * @desc Insert pagination <br>
- *  This is inspired from hexo paginator helper. Improved accessibility more.
+ * This is inspired from hexo paginator helper. Improved accessibility more.
  * @param {object} options @see {@link https://hexo.io/docs/helpers#paginator}
  * @returns {string}
  * @example

@@ -34,8 +34,8 @@ const postCssOption = {
  * @public
  * @function
  * @alias compile_sass
- * @desc Compile page-specific sa(c)ss
- * @param {string} css sa(c)ss for processing of post
+ * @desc Compile post(page)-specific SA(C)SS
+ * @param {string} css SA(C)SS for processing
  * @returns {string}
  * @example
  * if page.style

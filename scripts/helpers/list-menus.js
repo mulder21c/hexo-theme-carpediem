@@ -1,4 +1,3 @@
-// this is inspired from hexo listCategoriesHelper helper
 const full_url = require("./full-url");
 const { url_for } = require("hexo-util");
 
@@ -6,11 +5,12 @@ const { url_for } = require("hexo-util");
  * @public
  * @function
  * @alias list_menus
- * @desc Insert a list of menu
- * @param {array} menus the menu from theme config
+ * @desc Insert a list of menu <br>
+ * This is inspired from hexo listCategoriesHelper helper
+ * @param {object[]} menus the menu from theme config
  * @param {object} options the configuration object
- * @param {function} options.transform The function that changes the display of tag name
- * @param {string} options.class class name of tag list
+ * @param {function} options.transform The function that changes the display of menu name
+ * @param {string} options.class class name of menu list
  * @returns {string}
  * @example
  * div
