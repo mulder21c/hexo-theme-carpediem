@@ -174,7 +174,7 @@ include /components/utils/util
 include /components/atoms/heading/index
 
 +archiveTimeline({
-  archives: mapArchives(),
+  archives: archive_map(),
   headingLevel: 2,
 })
 ```

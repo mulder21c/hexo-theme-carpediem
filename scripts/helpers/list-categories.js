@@ -1,15 +1,18 @@
-/**
- * this is inspired from hexo listCategoriesHelper helper
- */
-
-const fullUrl = require("./full-url");
+// this is inspired from hexo listCategoriesHelper helper
+const full_url = require("./full-url");
 const { url_for } = require("hexo-util");
 
 /**
- * build HTML from categories
+ * @public
+ * @function
+ * @alias list_categories
+ * @desc Insert a list of all categories
  * @param {object} categories the iterable object of categories from Hexo
- * @param {object} options @see https://hexo.io/docs/helpers#list-categories
+ * @param {object} options See {@link https://hexo.io/docs/helpers#list-categories}
  * @returns {string}
+ * @example
+ * div
+ *  | !{list_categories({})}
  */
 function listCategoriesHelper(categories, options) {
   if (
@@ -87,7 +90,7 @@ function listCategoriesHelper(categories, options) {
             href="${
               isDevelopment
                 ? url_for.call(this, cat.path)
-                : fullUrl.call(this, cat.path)
+                : full_url.call(this, cat.path)
             }${suffix}"
             class="${className}__list__link ${
         isCurrent ? `${className}__list__link--current` : ``
@@ -116,7 +119,7 @@ function listCategoriesHelper(categories, options) {
         <a class="${className}__link" href="${
         isDevelopment
           ? url_for.call(this, cat.path)
-          : fullUrl.call(this, cat.path)
+          : full_url.call(this, cat.path)
       }${suffix}">
           ${transform ? transform(cat.name) : cat.name}
           ${

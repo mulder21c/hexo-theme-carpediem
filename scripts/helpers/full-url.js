@@ -1,10 +1,15 @@
 const { url_for } = require("hexo-util");
 
 /**
- * @function fullUrlHelper
- * @desc Return fully url from relative/absolute URL
- * @param {String} url
- * @return {String}
+ * @public
+ * @function
+ * @alias full_url
+ * @desc Get fully url from relative/absolute URL. <br>
+ *  In development mode, keep the given URL for demonstration
+ * @param {string} url
+ * @return {string | void}
+ * @example
+ * a(href= full_url(`/search`)
  */
 function fullUrlHelper(url) {
   if (!url) return;

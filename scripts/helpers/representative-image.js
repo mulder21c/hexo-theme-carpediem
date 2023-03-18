@@ -15,33 +15,34 @@ const getImageInfo = () => {
   }
 };
 
+// If the URL does not contain a protocol,
+// prepend protocol that is taken the protocol from the URL in the hexo config
+const prependHttpProtocol = (ctx, url) => {
+  const hasHttpProtocol = /https?:\/\//i.test(url);
+  const { protocol } = new URL(ctx.config.url);
+  return hasHttpProtocol ? url : `${protocol}${url}`;
+};
+
 /**
  * @typedef {Object | null} ImageProbe
  * @property {string} path
  * @property {number} width
  * @property {number} height
- * @property {string} type
+ * @property {string} type type of image, usually file name extension
  * @property {string} mime
  * @property {string} wUnits
  * @property {string} hUnits
  */
 
 /**
- * If the URL does not contain a protocol,
- * prepend protocol that is taken the protocol from the URL in the hexo config
- * @param {string} url
- * @returns {string}
- */
-const prependHttpProtocol = (url) => {
-  const hasHttpProtocol = /https?:\/\//i.test(url);
-  const { protocol } = new URL(hexo.config.url);
-  return hasHttpProtocol ? url : `${protocol}${url}`;
-};
-
-/**
+ * @public
+ * @function
+ * @alias representative_image
  * @desc Get representative image object
- * @param {object} page page from hexo
+ * @param {object} page page object from hexo
  * @return {ImageProbe}
+ * @example
+ * - const hero = representative_image(theme);
  */
 function representativeImageHelper(page) {
   const hexo = this;
@@ -74,7 +75,7 @@ function representativeImageHelper(page) {
   log(`Getting hero image size for '${hero}' in memory`);
   if (isExternal) {
     try {
-      const image = fetch(prependHttpProtocol(hero));
+      const image = fetch(prependHttpProtocol(hexo, hero));
       const dimension = probe.sync(image.buffer());
       return {
         path: hero,

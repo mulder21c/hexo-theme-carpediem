@@ -81,7 +81,7 @@ mixin radioBoxes(props = {})
     each option, idx in options
       -
         const radioOption = {
-          id: generateUid(),
+          id: generate_uid(),
           name,
           ...option,
           class: `${prefix}-radio-boxes__item`

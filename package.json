@@ -79,6 +79,7 @@
     "husky": "^8.0.1",
     "josa": "^3.0.1",
     "js-yaml": "^4.1.0",
+    "jsdoc-to-markdown": "^8.0.0",
     "lint-staged": "^13.1.0",
     "lodash": "^4.17.21",
     "lorem-ipsum": "^2.0.8",

@@ -1,17 +1,36 @@
 /**
  * @see https://github.com/cloudfour/transition-hidden-element
- * @param {Function} opts.onTransitionBefore the callback function
+ * @param {object} opts
+ * @param {HTMLElement} opts.element - The element we're showing and hiding
+ * @param {string} opts.transitionClassName -
+ *  The class defining the transition property
+ * @param {string} opts.visibleClass - The class to add when showing the element
+ * @param {number} opts.timeoutDuration — If `waitMode` is set to `'timeout'`
+ * @param {string} [opts.transitionEndClassName=""]- The class to add after
+ *  transition ends
+ * @param {string} [opts.waitMode="transitionend"]- Determine how the
+ *  library should check that hiding transitions are complete.
+ *  The options are `'transitionEnd'`,
+ *  `'timeout'`, and `'immediate'` (to hide immediately)
+ * @param {string} [opts.hideMode="hidden"] - Determine how the library should
+ *  hide elements. The options are `hidden` (use the `hidden` attribute), and
+ *  `display` (use the CSS `display` property). Defaults to `hidden`
+ * @param {string} [opts.displayValue="block"] - When using the `display`
+ *  `hideMode`, this parameter determines what the CSS `display` property
+ *  should be set to when the element is shown. e.g. `block`, `inline`,
+ *  `inline-block`. Defaults to `block`.
+ * @param {Function | null} [opts.onTransitionBefore=null] the callback function
  *  to run after transition starts
- * @param {Function} opts.onTransitionEnd the callback function
+ * @param {Function | null} [opts.onTransitionEnd=null] the callback function
  *  to run after transition ends
  */
 export function transitionHiddenElement({
   element,
   transitionClassName,
-  transitionEndClassName,
   visibleClass,
-  waitMode = "transitionend",
   timeoutDuration,
+  transitionEndClassName = ``,
+  waitMode = "transitionend",
   hideMode = "hidden",
   displayValue = "block",
   onTransitionBefore = null,

@@ -2,11 +2,11 @@ extends /components/templates/archive/index
 
 block prepend heroContent
   -
-    const hero = representativeImage(theme);
+    const hero = representative_image(theme);
 
 block prepend mainContent
   -
-    const archives = mapArchives();
+    const archives = archive_map();
     const currYear = page.year;
 
 block sidebar

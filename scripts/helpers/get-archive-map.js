@@ -1,8 +1,32 @@
 const { url_for } = require("hexo-util");
+/**
+ * @typedef {object} archivePost post data object for archive
+ * @property {string} title
+ * @property {string} subtitle
+ * @property {string} permalink
+ * @property {Moment} date
+ * @property {SchemaTypeArray} categories
+ */
 
 /**
- * generate archives data mapped by year and month
- * @returns {object}
+ * @typedef {Map<number, archivePost[]>} monthlyPosts
+ */
+
+/**
+ * @typedef {Map<number, monthlyPosts>} yearlyPosts
+ */
+
+/**
+ * @public
+ * @function
+ * @alias archive_map
+ * @desc Get archives data mapped by year and month
+ * @returns {yearlyPosts}
+ * @example
+ * +archiveTimeline({
+ *   archives: archive_map(),
+ *   headingLevel: 2,
+ * })
  */
 function mapArchivesHelper() {
   const { config } = this;

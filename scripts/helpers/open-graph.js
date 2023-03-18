@@ -1,17 +1,7 @@
-/**
- * this is inspired from hexo openGraphHelper
- * added hero config on theme and page into images entry
- */
-
-const fullUrl = require("./full-url");
+const full_url = require("./full-url");
 const { isMoment, isDate } = require("moment");
-const {
-  encodeURL,
-  prettyUrls,
-  htmlTag,
-  stripHTML,
-  escapeHTML,
-} = require("hexo-util");
+const { encodeURL, prettyUrls, htmlTag, escapeHTML } = require("hexo-util");
+const stripHTML = require("./strip-html");
 const { default: moize } = require("moize");
 
 const localeMap = {
@@ -65,6 +55,19 @@ const og = (name, content, escape) => {
   return `<meta property="${name}">\n`;
 };
 
+/**
+ *
+ * @public
+ * @function
+ * @alias open_graph
+ * @desc Insert OpenGraph data
+ *  This is inspired from hexo openGraphHelper. <br>
+ *  Added hero config on theme and page into images entry
+ * @param {object} options See {@link https://hexo.io/docs/helpers#open-graph}
+ * @return {string}
+ * @example
+ *  | !{ open_graph() }
+ */
 function openGraphHelper(options = {}) {
   const { config, page, theme } = this;
   const { content, hero } = page;
@@ -93,19 +96,19 @@ function openGraphHelper(options = {}) {
   const { is_archive, is_category, is_tag } = this;
   const getHeroByLayout = (theme) => {
     if (is_archive() && theme.hero?.archive)
-      return [fullUrl.call(this, theme.hero.archive)];
+      return [full_url.call(this, theme.hero.archive)];
     if (is_category() && theme.hero?.category)
-      return [fullUrl.call(this, theme.hero.category)];
+      return [full_url.call(this, theme.hero.category)];
     if (is_tag() && theme.hero?.tag)
-      return [fullUrl.call(this, theme.hero.tag)];
-    if (theme.hero?.index) return [fullUrl.call(this, theme.hero?.index)];
+      return [full_url.call(this, theme.hero.tag)];
+    if (theme.hero?.index) return [full_url.call(this, theme.hero?.index)];
     return [];
   };
 
   if (!Array.isArray(images)) images = [images];
   images = [
     ...new Set([
-      ...(hero ? [fullUrl.call(this, hero)] : []),
+      ...(hero ? [full_url.call(this, hero)] : []),
       ...(theme.hero ? getHeroByLayout(theme) : []),
       ...images,
     ]),
@@ -114,7 +117,7 @@ function openGraphHelper(options = {}) {
   if (description) {
     description = escapeHTML(
       stripHTML(description).substring(0, 200).trim() // Remove prefixing/trailing spaces
-    ).replace(/\n/g, " "); // Replace new lines by spaces
+    ).replace(/(\n|\s)+/g, " "); // Replace new lines and spaces runs by one spaces
   }
 
   if (content) {

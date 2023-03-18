@@ -47,8 +47,8 @@ mixin articleCard(props = {})
     };
 
     const { prefix } = theme;
-    const contentId = generateUid();
-    const metaId = generateUid();
+    const contentId = generate_uid();
+    const metaId = generate_uid();
     const datetime = post.updated || post.date;
     const categories = post.categories.toArray();
     const thumb = post.thumbnail || post.hero || post?.photos?.unshift();
@@ -99,4 +99,4 @@ mixin articleCard(props = {})
     p(
       id= contentId
       class= `${prefix}-article-card__content`
-    )= truncate(stripHTML(post.content), 300)
+    )= truncate(strip_html(post.content), 300)

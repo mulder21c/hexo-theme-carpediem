@@ -37,11 +37,11 @@ mixin svgIcon(props = {})
     };
 
     const { prefix } = theme;
-    const imagePath = fullUrl(`/images`);
+    const imagePath = full_url(`/images`);
     const {
       iconName,
       iconCategory,
-    } = getIconCategory(`${name}${type && ('/' + type) || ""}`);
+    } = icon_info(`${name}${type && ('/' + type) || ""}`);
 
   svg(
     class= `${prefix}-svg-icon`

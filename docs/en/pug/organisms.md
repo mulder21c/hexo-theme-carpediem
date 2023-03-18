@@ -1,16 +1,16 @@
-# Pug Documentation 
+# Pug Documentation
 
 ## accordion
 
 accordion component
 
 
-### path 
+### path
 
 `components/organisms/accordion/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -21,7 +21,7 @@ accordion component
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -47,7 +47,7 @@ include /components/atoms/svg-icon/index
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div class="amor-accordion" id="z8t9k22c3j4" data-init-activate="1">
@@ -150,12 +150,12 @@ include /components/atoms/svg-icon/index
 archive timeline component
 
 
-### path 
+### path
 
 `components/organisms/archives/timeline.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -174,13 +174,13 @@ include /components/utils/util
 include /components/atoms/heading/index
 
 +archiveTimeline({
-  archives: mapArchives(),
+  archives: archive_map(),
   headingLevel: 2,
 })
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div class="amor-timeline">
@@ -211,12 +211,12 @@ include /components/atoms/heading/index
 content for article
 
 
-### path 
+### path
 
 `components/organisms/article-content/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -234,7 +234,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div class="amor-article-content">
@@ -313,12 +313,12 @@ include /components/utils/util
 article list
 
 
-### path 
+### path
 
 `components/organisms/articles-list/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -339,7 +339,7 @@ include /components/molecules/article-card/index
 ```
 
 
-### example output 
+### example output
 
 ```html
 <ol class="amor-articles-list">
@@ -400,12 +400,12 @@ include /components/molecules/article-card/index
 commento comments component
 
 
-### path 
+### path
 
 `components/organisms/comments/commento.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -422,7 +422,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div id="commento"></div>
@@ -438,12 +438,12 @@ include /components/utils/util
 disqus comments component
 
 
-### path 
+### path
 
 `components/organisms/comments/disqus.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -460,7 +460,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div id="disqus_thread"></div>
@@ -476,12 +476,12 @@ include /components/utils/util
 giscus comments component
 
 
-### path 
+### path
 
 `components/organisms/comments/giscus.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -498,7 +498,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <script id="giscus"></script>
@@ -514,12 +514,12 @@ include /components/utils/util
 comments component
 
 
-### path 
+### path
 
 `components/organisms/comments/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -541,7 +541,7 @@ include /components/organisms/comments/utterance
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div id="disqus_thread"></div>
@@ -557,12 +557,12 @@ include /components/organisms/comments/utterance
 livere comments component
 
 
-### path 
+### path
 
 `components/organisms/comments/livere.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -579,7 +579,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div id="lv-container" data-id="city"></div>
@@ -595,12 +595,12 @@ include /components/utils/util
 remark comments component
 
 
-### path 
+### path
 
 `components/organisms/comments/remark.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -617,7 +617,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div id="remark42"></div>
@@ -633,12 +633,12 @@ include /components/utils/util
 utterance comments component
 
 
-### path 
+### path
 
 `components/organisms/comments/utterance.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -655,7 +655,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <script id="utterance"></script>
@@ -671,7 +671,7 @@ include /components/utils/util
 footer content
 
 
-### path 
+### path
 
 `components/organisms/footer/index.pug`
 
@@ -687,7 +687,7 @@ include /components/atoms/watermark/index
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div class="amor-footer">
@@ -746,12 +746,12 @@ include /components/atoms/watermark/index
 hero component
 
 
-### path 
+### path
 
 `components/organisms/hero/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -769,7 +769,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div
@@ -789,12 +789,12 @@ include /components/utils/util
 pagination component
 
 
-### path 
+### path
 
 `components/organisms/pagination/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -818,7 +818,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <nav class="amor-pagination">
@@ -848,12 +848,12 @@ include /components/utils/util
 sliding panel component
 
 
-### path 
+### path
 
 `components/organisms/slide-panel/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -865,7 +865,7 @@ sliding panel component
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -893,7 +893,7 @@ include /components/atoms/buttons/icon
 ```
 
 
-### example output 
+### example output
 
 ```html
 <div
@@ -930,12 +930,12 @@ include /components/atoms/buttons/icon
 a title bar located at the top of the page
 
 
-### path 
+### path
 
 `components/organisms/title-bar/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -945,7 +945,7 @@ a title bar located at the top of the page
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -964,7 +964,7 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <!-- without slot-->
@@ -976,5 +976,3 @@ include /components/utils/util
 
 
 ---
-
-

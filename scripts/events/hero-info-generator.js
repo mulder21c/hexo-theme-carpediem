@@ -1,4 +1,6 @@
-// @ts-check
+/**
+ * @module heroInfoGenerator
+ */
 
 const fs = require("fs");
 const path = require("path");
@@ -10,7 +12,6 @@ const heroDBPath = path.resolve(hexoSourcePath, "./_data/hero.db.json");
 
 /**
  * check has protocol
- * @ignore
  * @param {string} path
  * @returns {boolean}
  */

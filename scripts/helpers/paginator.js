@@ -1,6 +1,3 @@
-/**
- * this is inspired from hexo paginator helper
- */
 const { htmlTag, url_for } = require("hexo-util");
 const createLink = (options, ctx) => {
   const { base, format } = options;
@@ -94,9 +91,15 @@ const pagenasionPartShow = (tags, options, ctx) => {
 };
 
 /**
- * generate HTML for pagination
- * @param {object} options @see https://hexo.io/docs/helpers#paginator
+ * @public
+ * @function
+ * @alias paginator
+ * @desc Insert pagination <br>
+ *  This is inspired from hexo paginator helper. Improved accessibility more.
+ * @param {object} options @see {@link https://hexo.io/docs/helpers#paginator}
  * @returns {string}
+ * @example
+ *  | !{ paginator({ base: `/` }) }
  */
 function paginatorHelper(options = {}) {
   options = Object.assign(

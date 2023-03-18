@@ -1,19 +1,22 @@
-/**
- * this is inspired from hexo listCategoriesHelper helper
- */
-
-const fullUrl = require("./full-url");
+// this is inspired from hexo listCategoriesHelper helper
+const full_url = require("./full-url");
 const { url_for } = require("hexo-util");
 
 /**
- * build HTML from menu on theme config
+ * @public
+ * @function
+ * @alias list_menus
+ * @desc Insert a list of menu
  * @param {array} menus the menu from theme config
  * @param {object} options the configuration object
  * @param {function} options.transform The function that changes the display of tag name
  * @param {string} options.class class name of tag list
- * @returns
+ * @returns {string}
+ * @example
+ * div
+ *  | !{list_menus({})}
  */
-function listMenuHelper(menus, options) {
+function listMenusHelper(menus, options) {
   if (!options && (!menus || !Array.isArray(menus))) {
     options = menus;
     menus = this.theme.menu;
@@ -39,7 +42,7 @@ function listMenuHelper(menus, options) {
             href="${
               isDevelopment
                 ? url_for.call(this, path)
-                : fullUrl.call(this, path)
+                : full_url.call(this, path)
             }"
             class="${className}__list__link ${
         isCurrent ? `${className}__list__link--current` : ``
@@ -56,4 +59,4 @@ function listMenuHelper(menus, options) {
   return `<ul class="${className}__list">${list()}</ul>`;
 }
 
-module.exports = listMenuHelper;
+module.exports = listMenusHelper;

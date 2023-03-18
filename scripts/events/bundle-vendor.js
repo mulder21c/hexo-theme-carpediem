@@ -16,32 +16,34 @@ if (themeConfig.search) {
     path.resolve(themeRoot, `./vendor/search/${themeConfig.search}.js`)
   );
 }
+// the singleton to interpolate using regular expressions
 const FIX_PATTERN_MAP = {
   pattern: ``,
   matches: {},
   addPattern(key, val) {
-    this.pattern += `${this.pattern ? `|` : ``}{${key}}`;
-    this.matches[`{${key}}`] = val;
+    this.pattern += `${this.pattern ? `|` : ``}${key}`;
+    this.matches[`${key}`] = val;
   },
 };
 
 FIX_PATTERN_MAP.addPattern(`themePrefix`, themeConfig.prefix);
 switch (themeConfig.search) {
   case "algolia":
-    FIX_PATTERN_MAP.addPattern(`algoliaAppId`, hexoConfig.algolia.appId);
-    FIX_PATTERN_MAP.addPattern(`algoliaApiKey`, hexoConfig.algolia.apiKey);
+    FIX_PATTERN_MAP.addPattern(`{algoliaAppId}`, hexoConfig.algolia.appId);
+    FIX_PATTERN_MAP.addPattern(`{algoliaApiKey}`, hexoConfig.algolia.apiKey);
     FIX_PATTERN_MAP.addPattern(
-      `algoliaIndexName`,
+      `{algoliaIndexName}`,
       hexoConfig.algolia.indexName
     );
     break;
 }
 
 /**
- * bundling component's javascript
- * @returns {Promise}
+ * bundling vendor javascript
+ * @this Hexo
+ * @returns {Promise<void>}
  */
-function bundler() {
+function bundleVendor() {
   const hexo = this;
   const isDevServer = hexo.env.cmd === "server";
 
@@ -83,8 +85,8 @@ function bundler() {
       );
 
     hexo.log.info(`Successfully Vendor's JavaScript Bundled`);
-    hexo.extend.filter.unregister(`before_generate`, bundler);
+    hexo.extend.filter.unregister(`before_generate`, bundleVendor);
   });
 }
 
-module.exports = bundler;
+module.exports = bundleVendor;

@@ -1,6 +1,12 @@
 /**
- * @desc Generate unique id
+ * @public
+ * @function
+ * @alias generate_uid
+ * @desc Generate unique id consisting of lowercase letters and numbers,
+ *  like `i49ygg04c64`
  * @return {string}
+ * @example
+ * a(id= generate_uid())
  */
 function generateUidHelper() {
   const chars = `abcdefghijklmnopqrstuvwxyz`;

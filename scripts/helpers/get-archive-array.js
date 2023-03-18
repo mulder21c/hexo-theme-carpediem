@@ -1,9 +1,18 @@
 /**
- * get post list archive list
- * @param {number} year the archive year
+ * @public
+ * @function
+ * @alias archive_array
+ * @desc Get archive post list
+ * @param {number} year the archive year.
+ *  if year is specify, return all posts for year.
+ *  otherwise, return posts up to last `MAX_YEAR_LEN` (_config.yml) years.
  * @returns {array} array of posts
+ * @example
+ * - const archiveItems = getArchivePostsArray();
+ * - const archiveItems = getArchivePostsArray(2023);
+ *
  */
-function getArchivePostsHelper(year) {
+function getArchivePostsArrayHelper(year) {
   const {
     config,
     theme: {
@@ -45,4 +54,4 @@ function getArchivePostsHelper(year) {
   return result;
 }
 
-module.exports = getArchivePostsHelper;
+module.exports = getArchivePostsArrayHelper;

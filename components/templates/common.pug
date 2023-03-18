@@ -46,7 +46,7 @@ html(lang=config.language)
     +styles([])
     if page.style
       style
-       != compileSass(page.style)
+       != compile_sass(page.style)
     +jsonLD
     +analytics
   body
@@ -152,7 +152,7 @@ html(lang=config.language)
 
         if (useSearch)
           a(
-            href= fullUrl(`/search`)
+            href= full_url(`/search`)
             class= `${prefix}-side-panel__search`
           )
             span(aria-hidden= true) 🔎

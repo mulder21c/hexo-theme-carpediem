@@ -2,12 +2,12 @@ extends /components/templates/list/index
 
 block prepend heroContent
   -
-    const hero = representativeImage(theme);
+    const hero = representative_image(theme);
 
 block prepend mainContent
   -
     const posts = page.posts.toArray();
-    const headingId = generateUid();
+    const headingId = generate_uid();
     const headingProp = {
       htmlString: page.category,
     };

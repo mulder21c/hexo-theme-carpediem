@@ -11,22 +11,18 @@ const cleanUpDirectory = (directory) => {
   }
   const files = fs.readdirSync(directory);
   (files || []).forEach((file) => {
-    fs.unlinkSync(path.join(directory, file), (err) => {
-      if (err) throw new Error(err);
-    });
+    fs.unlinkSync(path.join(directory, file));
   });
 };
 
 /**
  * clean up files
- * @param {array} flies the path for cleaning up
+ * @param {array} files the path for cleaning up
  */
 const cleanUpFiles = (files) => {
   files.forEach((file) => {
     if (!fs.existsSync(file)) return;
-    fs.unlinkSync(file, (err) => {
-      if (err) throw new Error(err);
-    });
+    fs.unlinkSync(file);
   });
 };
 

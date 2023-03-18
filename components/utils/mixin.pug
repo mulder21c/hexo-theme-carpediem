@@ -42,12 +42,12 @@ mixin pageSequenceLink
 
 mixin preLoadImage
   -
-    const imageObj = representativeImage(page);
+    const imageObj = representative_image(page);
   if (imageObj)
     link(
       rel= `preload`
       as= `image`
-      href= fullUrl(imageObj.path)
+      href= full_url(imageObj.path)
       crossorigin= "anonymous"
     )
 

@@ -46,7 +46,7 @@ mixin accordion(props = {})
 
     // merge user-supplied options with the defaults
     const defaultProps = {
-      id: generateUid(),
+      id: generate_uid(),
       headingLevel: 2,
       useSection: false,
     };
@@ -92,8 +92,8 @@ mixin accordion(props = {})
     block
     each _, idx in accordionHeadingSlots
       -
-        const headingId = generateUid();
-        const panelId = generateUid();
+        const headingId = generate_uid();
+        const panelId = generate_uid();
 
       +accordionHeadingWrapper(useSection)
         button(

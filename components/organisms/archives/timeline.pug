@@ -19,7 +19,7 @@ include /components/atoms/heading/index
   examples:
     - |
       +archiveTimeline({
-        archives: mapArchives(),
+        archives: archive_map(),
         headingLevel: 2,
       })
 
@@ -96,6 +96,6 @@ mixin archiveTimeline(props = {})
       else
         span(class= `${prefix}-timeline__more`)
           a(
-            href= `${fullUrl(`/archives/${year}`)}`
+            href= `${full_url(`/archives/${year}`)}`
           )
             = _p('label.read_more')

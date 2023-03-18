@@ -9,20 +9,24 @@ const iconListPath = path.resolve(
 const iconsMeta = (() => loadYml(iconListPath, `⚠ Cannot find fontawesome!`))();
 
 /**
- * @typedef {Object} IconInfo
+ * @typedef {object} IconInfo
  * @property {string} iconName
  * @property {string} iconCategory
  */
 
 /**
+ * @public
+ * @function
+ * @alias icon_info
  * @desc Get name and category of icon from fontawesome
  * @param {string} icon - the name of icon,
  *  you can predefine icon styles with slashes and words after slashes
- * @example getIconCategory("bell")
- * @example getIconCategory("bell/regular")
  * @return {IconInfo}
+ * @example
+ * - const { iconName, iconCategory } = icon_info("bell")
+ * - const { iconName, iconCategory } = icon_info("bell/regular")
  */
-function getIconCategoryHelper(icon) {
+function getIconInfoHelper(icon) {
   const hexo = this;
   const [name, category] = icon.split("/");
   const { styles } = iconsMeta?.[name] || { styles: [] };
@@ -38,4 +42,4 @@ function getIconCategoryHelper(icon) {
   };
 }
 
-module.exports = getIconCategoryHelper;
+module.exports = getIconInfoHelper;

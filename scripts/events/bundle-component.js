@@ -11,10 +11,11 @@ const sourcePath = [
 const outputPath = path.resolve(themeSourcePath, "./js/");
 
 /**
- * bundling component's javascript
- * @returns {Promise}
+ * bundle component-specific javascript files using Rollup
+ * @this Hexo
+ * @returns {Promise<void>}
  */
-function bundler() {
+function bundleComponent() {
   const hexo = this;
   const isDevServer = hexo.env.cmd === "server";
 
@@ -51,8 +52,8 @@ function bundler() {
       );
 
     hexo.log.info(`Successfully Component's JavaScript Bundled`);
-    hexo.extend.filter.unregister(`before_generate`, bundler);
+    hexo.extend.filter.unregister(`before_generate`, bundleComponent);
   });
 }
 
-module.exports = bundler;
+module.exports = bundleComponent;

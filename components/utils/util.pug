@@ -10,7 +10,7 @@
       ? _p(`title.archives.yearly`, year)
       : _p(`title.archives.default`);
     if (is_category()) pageTitle = category;
-    if (is_tag()) pageTitle = _p(`title.tag`, tag, getJosa(tag, '와'));
+    if (is_tag()) pageTitle = _p(`title.tag`, tag, kor_josa(tag, '와'));
     return pageTitle.includes(siteTitle)
       ? pageTitle
       : `${pageTitle} - ${siteTitle}`;
@@ -41,7 +41,7 @@
         collection: `CollectionPage`,
       }[type];
     };
-    const representImg = representativeImage(page);
+    const representImg = representative_image(page);
 
     const getType = type => ({ "@type": getDataType(type) });
     const getName = () => ({ "@name": getTitle() });
@@ -58,7 +58,7 @@
         "image": representImg
           ? {
               "@type": "imageObject",
-              "url": fullUrl(representImg.path),
+              "url": full_url(representImg.path),
               "width": representImg.width
                 ? `${representImg.width}${representImg.wUnits}`
                 : undefined,
@@ -78,7 +78,7 @@
           "image": theme.profile.gravatar
               ? {
                   "@type": "imageObject",
-                  "url": fullUrl(theme.profile.gravatar),
+                  "url": full_url(theme.profile.gravatar),
                 }
               : undefined,
           "url": $profileUrl || undefined,
@@ -119,7 +119,7 @@
           "@type": "ItemList",
           "itemListElement": (
             is_archive()
-              ? getArchivePosts(page.year)
+              ? archive_array(page.year)
               : $posts
             ).map(post => {
               const jsonLdProps = getJsonLdProps(post);

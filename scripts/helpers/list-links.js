@@ -1,14 +1,17 @@
 /**
- * this is inspired from hexo listCategoriesHelper helper
- */
-
-/**
- * build HTML from link on theme config
+ * @public
+ * @function
+ * @alias list_links
+ * @desc Insert a list of external links <br>
+ *  This is inspired from hexo listCategoriesHelper helper
  * @param {array} links the array that is consists of name and url
  * @param {object} options the configuration object
  * @param {function} options.transform The function that changes the display of tag name
  * @param {string} options.class class name of tag list
- * @returns
+ * @returns {string}
+ * @example
+ * div
+ *  | !{list_links({})}
  */
 function listLinksHelper(links, options) {
   if (!options && (!links || !Array.isArray(links))) {

@@ -4,8 +4,10 @@ const Hexo = require("hexo");
 const pugDocGen = require("pug-doc");
 const PugDocMD = require("./pug-doc-markdown.js");
 const sassDocMD = require("@hidoo/sassdoc-to-markdown").default;
+const jsdoc2md = require("jsdoc-to-markdown");
 const rootPath = path.resolve(__dirname, `../`);
 const jsYml = require("js-yaml");
+const { truncate } = require("lodash");
 
 const hexo = new Hexo(path.resolve(process.cwd(), "../../"), {
   config: path.resolve(process.cwd(), "../../_config.yml"),
@@ -17,6 +19,7 @@ const theme = jsYml.load(
 
 hexo.init().then(function () {
   hexo.database.load().then(function () {
+    // the data needed to generate documents
     const locals = {
       ...hexo.locals.toObject(),
       isMock: true,
@@ -83,26 +86,25 @@ hexo.init().then(function () {
       lang: "ko",
       canonical_path: "index.html",
     };
-    locals.representativeImage =
+    locals.representative_image =
       require("../scripts/helpers/representative-image").bind(locals);
-    locals.getIconCategory =
-      require("../scripts/helpers/get-icon-category").bind(locals);
-    locals.stripHTML = require("../scripts/helpers/strip-html").bind(locals);
+    locals.icon_info = require("../scripts/helpers/get-icon-info").bind(locals);
+    locals.strip_html = require("../scripts/helpers/strip-html").bind(locals);
     locals.truncate = require("../scripts/helpers/truncate").bind(locals);
     locals.paginator = require("../scripts/helpers/paginator").bind(locals);
     locals.list_categories = require("../scripts/helpers/list-categories").bind(
       locals
     );
-    locals.listMenus = require("../scripts/helpers/list-menus").bind(locals);
-    locals.listLinks = require("../scripts/helpers/list-links").bind(locals);
-    locals.mapArchives = require(`../scripts/helpers/map-archives`).bind(
+    locals.list_menus = require("../scripts/helpers/list-menus").bind(locals);
+    locals.list_links = require("../scripts/helpers/list-links").bind(locals);
+    locals.archive_map = require(`../scripts/helpers/get-archive-map`).bind(
       locals
     );
     locals.moment = require("moment").bind(locals);
-    locals.generateUid = require("../scripts/helpers/generate-uid").bind(
+    locals.generate_uid = require("../scripts/helpers/generate-uid").bind(
       locals
     );
-    locals.fullUrl = require("../scripts/helpers/full-url").bind(locals);
+    locals.full_url = require("../scripts/helpers/full-url").bind(locals);
     locals.open_graph = require("../scripts/helpers/open-graph").bind(locals);
 
     pugDocGen({
@@ -179,5 +181,21 @@ hexo.init().then(function () {
         }
       );
     });
+
+    jsdoc2md
+      .render({
+        files: "./scripts/helpers/*.js",
+        "example-lang": "jade",
+        separators: true,
+      })
+      .then((output) => {
+        const dir = path.resolve(rootPath, `./docs/en/helpers/`);
+
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+
+        fs.writeFileSync(path.resolve(dir, `helpers.md`), output);
+      });
   });
 });

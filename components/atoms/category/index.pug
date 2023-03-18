@@ -74,7 +74,7 @@ mixin category(props = {})
     const isIconName = str => {
       if (str.length < 2) return false;
       if (/^[&\\]/.test(str)) return false; // HTML Entity
-      return !!getIconCategory(str);
+      return !!icon_info(str);
     };
 
     // get entries to display from categories
@@ -123,10 +123,10 @@ mixin category(props = {})
             class= `${prefix}-category__content`
           )
             #{wrapper}(
-              href= useLink ? fullUrl(entry.path) : null
+              href= useLink ? full_url(entry.path) : null
             )= entry.name
     else
       #{wrapper}(
-        href= useLink ? fullUrl(categoryEntries.path) : null
+        href= useLink ? full_url(categoryEntries.path) : null
         class= `${prefix}-category__content`
       )= categoryEntries.name

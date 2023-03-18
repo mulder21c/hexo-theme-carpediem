@@ -6,7 +6,7 @@ const terser = require("@rollup/plugin-terser");
 const { themeRoot } = require("../../constants");
 
 /**
- * @typedef {Object} BundledJS
+ * @typedef {object} BundledJS
  * @property {string} code the result code of bundling javascript files
  * @property {object} map the sourceMap object of bundling javascript files
  * @property {string} fileName the fileName from result output of rollup
@@ -14,7 +14,8 @@ const { themeRoot } = require("../../constants");
 
 /**
  * bundle & transpile with babel through rollup
- * @param {object} param.rollupOption @see https://rollupjs.org/guide/en/#inputoptions-object
+ * @param {object} param
+ * @param {object} param.rollupOption options for rollup, See {@link https://rollupjs.org/guide/en/#inputoptions-object}
  * @param {boolean} param.isDevServer whether it is in dev-server or not
  * @returns {Promise<BundledJS>}
  */

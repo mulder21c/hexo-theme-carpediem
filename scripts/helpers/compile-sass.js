@@ -31,9 +31,16 @@ const postCssOption = {
 };
 
 /**
- * @function compileSCSSHelper
+ * @public
+ * @function
+ * @alias compile_sass
+ * @desc Compile page-specific sa(c)ss
  * @param {string} css sa(c)ss for processing of post
  * @returns {string}
+ * @example
+ * if page.style
+ *   style
+ *     != compile_sass(page.style)
  */
 function compileSCSSHelper(css) {
   return scssProcessor({
