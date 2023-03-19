@@ -5,12 +5,12 @@
 layout 유형별 title 엘리먼트
 
 
-### path
+### 경로
 
 `components/utils/mixin.pug`
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -19,7 +19,7 @@ include /components/utils/util
 ```
 
 
-### example output
+### 예시 출력 결과
 
 ```html
 <title>The Tracks of mulder21c</title>
@@ -35,12 +35,12 @@ include /components/utils/util
 sequential link 엘리먼트
 
 
-### path
+### 경로
 
 `components/utils/mixin.pug`
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -49,7 +49,7 @@ include /components/utils/util
 ```
 
 
-### example output
+### 예시 출력 결과
 
 ```html
 <link rel="next" href="https://mulder21c.io/page/2/" />
@@ -60,17 +60,52 @@ include /components/utils/util
 ---
 
 
-## openGraph
+## preLoadImage
 
-create og meta element
+대표 이미지에 대한 preload link 엘리먼트
 
 
-### path
+### 경로
 
 `components/utils/mixin.pug`
 
 
-### examples
+### 예시
+
+```jade
+include /components/utils/util
+
++preLoadImage
+```
+
+
+### 예시 출력 결과
+
+```html
+<link
+  rel="preload"
+  as="image"
+  href="xxxxxxxx.jpg"
+  crossorigin="anonymous"
+/>
+
+```
+
+
+---
+
+
+## openGraph
+
+og 메타 엘리먼트 생성
+
+
+### 경로
+
+`components/utils/mixin.pug`
+
+
+### 예시
 
 ```jade
 include /components/utils/util
@@ -81,7 +116,7 @@ include /components/utils/util
 ```
 
 
-### example output
+### 예시 출력 결과
 
 ```html
 <meta property="og:type" content="blog" />
@@ -89,8 +124,38 @@ include /components/utils/util
 <meta property="og:url" content="https://example.com/" />
 <meta property="og:site_name" content="The Tracks of mulder21c" />
 <meta property="og:locale" content="ko_KR" />
+<meta property="og:image" content="41108552022_61413423d5_b.jpg" />
 <meta property="article:author" content="mulder21c" />
 <meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="41108552022_61413423d5_b.jpg" />
+
+```
+
+
+---
+
+
+## siteVerification
+
+site-verification을 위한 meta 엘리먼트 생성
+
+
+### 경로
+
+`components/utils/mixin.pug`
+
+
+### 예시
+
+```jade
++siteVerification
+```
+
+
+### 예시 출력 결과
+
+```html
+<meta name="google" content="xxxx" />
 
 ```
 
@@ -100,25 +165,25 @@ include /components/utils/util
 
 ## styles
 
-create style elements from the stylesheet created by the theme
-and the stylesheet specified.
+테마에 의해 생성된 스타일 시트 및 지정된 스타일 시트로부터
+style 엘리먼트 생성
 
 
 
-### path
+### 경로
 
 `components/utils/mixin.pug`
 
 
 ### arguments
 
-|name|description|type|default|required|
+|이름|설명|유형|기본 값|필수 여부|
 |:---:|:---|:---:|:---:|:---:|
 |paths||array||Y|
 
 
 
-### examples
+### 예시
 
 ```jade
 +styles([])
@@ -128,7 +193,7 @@ and the stylesheet specified.
 ```
 
 
-### example output
+### 예시 출력 결과
 
 ```html
 <link rel="stylesheet" href="/css/index.css" />
@@ -143,15 +208,15 @@ and the stylesheet specified.
 
 ## jsonLD
 
-create JSON-LD script element
+JSON-LD script 엘리먼트 생성
 
 
-### path
+### 경로
 
 `components/utils/mixin.pug`
 
 
-### examples
+### 예시
 
 ```jade
 include /components/utils/util
@@ -160,7 +225,7 @@ include /components/utils/util
 ```
 
 
-### example output
+### 예시 출력 결과
 
 ```html
 <script type="application/ld+json">
@@ -168,8 +233,14 @@ include /components/utils/util
     "@context": "http://schema.org",
     "@type": "CollectionPage",
     "@name": "The Tracks of mulder21c",
-    "url": "https://",
+    "url": "https://mulder21c.io/",
     "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
+    "image": {
+      "@type": "imageObject",
+      "url": "41108552022_61413423d5_b.jpg",
+      "width": "1024px",
+      "height": "684px"
+    },
     "author": {
       "@type": "Person",
       "name": "mulder21c",
@@ -181,8 +252,14 @@ include /components/utils/util
         {
           "@type": "BlogPosting",
           "@name": "The Tracks of mulder21c",
-          "url": "https://",
+          "url": "https://mulder21c.io/",
           "copyrightHolder": { "@type": "Person", "name": "mulder21c" },
+          "image": {
+            "@type": "imageObject",
+            "url": "41108552022_61413423d5_b.jpg",
+            "width": "1024px",
+            "height": "684px"
+          },
           "author": {
             "@type": "Person",
             "name": "mulder21c",
