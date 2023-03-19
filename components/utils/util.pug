@@ -1,4 +1,8 @@
-- const stripFileName = (url) => url.replace(/([^\\\/]+)$/g, ``);
+-
+  const stripFileName = (url) => {
+    const { origin, pathname } = new URL(url);
+    return `${origin}${pathname.replace(/[^\/][\w\-]+(\.([\w\-])+)+$/g, "")}`
+  };
 -
   const getTitle = () => {
     const { title, year, month, tag, category } = page;
