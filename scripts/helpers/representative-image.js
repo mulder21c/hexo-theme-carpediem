@@ -14,6 +14,7 @@ const getImageInfo = () => {
     return new Map();
   }
 };
+const { themeConfig } = require("../constants");
 
 // If the URL does not contain a protocol,
 // prepend protocol that is taken the protocol from the URL in the hexo config
@@ -63,7 +64,7 @@ function representativeImageHelper(page) {
   const hero =
     isPage(page) || isPost(page)
       ? page.hero || page?.photos?.unshift()
-      : getHeroByLayout(page) || undefined;
+      : getHeroByLayout(themeConfig) || undefined;
 
   if (!hero) return null;
 
