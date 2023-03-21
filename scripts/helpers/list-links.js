@@ -27,7 +27,7 @@ function listLinksHelper(links, options) {
 
   const list = () => {
     return links.reduce((html, link) => {
-      const { name, url } = link;
+      const [[name, url]] = Object.entries(link);
       return `${html}
         <li class="${className}__list__item">
           <a
