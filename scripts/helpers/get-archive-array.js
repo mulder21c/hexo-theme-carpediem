@@ -15,9 +15,7 @@
 function getArchivePostsArrayHelper(year) {
   const {
     config,
-    theme: {
-      display: { archives: MAX_YEAR_LEN },
-    },
+    theme: { latest_years_count: MAX_YEAR_LEN },
   } = this;
   const { timezone } = config;
   const posts = this.site.posts.sort("date", -1);
