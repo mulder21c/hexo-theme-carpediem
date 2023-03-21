@@ -1,14 +1,24 @@
 # Prefix
+#   You can use prefix to to avoid conflicts with third party CSS
 prefix: amor
 
-# Header
+# menu
+#   menu list to display in navigation
+#   Array.<{name: url}>
 menu:
   - Archives: /archives
+
+# links
+#   External link list to display in navigation
+#   Array.<{name: url}>
+links:
 
 # Favicon
 favicon:
 
 # Profile
+#   These links are displayed to the author information
+#   You can include additional social links that are not listed below, if you want
 profile:
   gravatar:
   social:
@@ -19,23 +29,19 @@ profile:
     twitter:
     rss: /rss.xml
 
-# links
-links:
-  # - name:
-  #   url:
-
 # Analytics
+#   Add a G-ID including "G-"
 analytics:
   google:
 
 # Comments
+#   Complete the settings for the comment system you want to use.
 disqus:
-  shortname: example
+  shortname:
 
 commento:
   host:
 
-# for options, see https://remark42.com/docs/configuration/frontend/
 remark:
   host:
   site_id:
@@ -45,13 +51,11 @@ remark:
 livere:
   uid:
 
-# for options, see https://utteranc.es/
 utterance:
   repo:
   issue_term:
   issue_number:
 
-# for options, see https://giscus.app/
 giscus:
   repo:
   repo-id:
@@ -64,15 +68,18 @@ giscus:
   input-position:
   theme:
 
+# Hero image
+#   Hero image to apply to each layout
+#   Layouts without specified hero do not display hero images.
 hero:
-  index: https://farm1.staticflickr.com/863/41108552022_61413423d5_b.jpg
-  archive: https://mulder21c.github.io/upload/2021/props-function-vue.jpg
+  index:
+  archive:
   category:
   tag:
   search:
 
+# Search script you will use
 search: algolia
 
-# the number of items to display on each layout, allowed maximum value is 10
-display:
-  archives: 2
+# The number of items to display in article list on archive,
+latest_years_count: 3
