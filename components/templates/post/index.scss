@@ -40,9 +40,26 @@
   }
 
   &__heading {
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin: 0.5em -0.75rem 1em;
+    font-size: var(--font-size-heading-level-4);
     font-family: var(--font-family-sans-serif);
+
+    @include respond-to(tablet) {
+      margin: 0.5em 0 1em;
+      font-size: var(--font-size-heading-level-1);
+    }
+
+    &--sub {
+      display: inline-block;
+      width: 100%;
+      font-size: var(--font-size-heading-level-6);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.6;
+
+      @include respond-to(tablet) {
+        font-size: var(--font-size-heading-level-4);
+      }
+    }
   }
 
   &__tags {

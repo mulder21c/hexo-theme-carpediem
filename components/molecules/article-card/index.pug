@@ -74,7 +74,10 @@ mixin articleCard(props = {})
       href= isDevelopment ? url_for(post.path) : post.permalink
       aria-describedby= `${metaId} ${contentId}`
       class= `${prefix}-article-card__heading`
-    )= post.title
+    )
+      span(class= `${prefix}-article-card__heading--primary`)= post.title
+      if post.subtitle
+        span(class= `${prefix}-article-card__heading--sub`)= post.subtitle
 
     div(
       id= metaId

@@ -19,9 +19,11 @@ block mainContent
       div(class= `${prefix}-article__header`)
         +heading({
           level: 1,
-          htmlString: post.title,
           class: `${prefix}-article__heading`,
         })
+          = post.title
+          if post.subtitle
+            span(class= `${prefix}-article__heading--sub`)= post.subtitle
         +articleMeta({
           categories: post.categories.toArray(),
           date: post.date,
