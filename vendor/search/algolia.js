@@ -46,6 +46,9 @@
       );
     };
     const truncateContent = (content) => {
+      if (getLenWithoutTag(content) <= truncateLen)
+        return content.replace(/\n/g, `<br>`).replace(/&amp;/g, `&`);
+
       const paragraphs = content.split(`\n`);
       const firstMatchIdx = paragraphs.findIndex((html) =>
         html.includes(`<mark`)

@@ -3,7 +3,7 @@ const { rollup } = require("rollup");
 const multi = require("@rollup/plugin-multi-entry");
 const { babel, getBabelOutputPlugin } = require("@rollup/plugin-babel");
 const terser = require("@rollup/plugin-terser");
-const { themeRoot } = require("../../constants");
+const { themeRoot, vendorName } = require("../../constants");
 
 /**
  * @typedef {object} BundledJS
@@ -20,9 +20,10 @@ const { themeRoot } = require("../../constants");
  * @returns {Promise<BundledJS>}
  */
 function bundleJS({ rollupOption, isDevServer }) {
+  const isVender = rollupOption.output === vendorName;
   const inputOption = {
     ...rollupOption,
-    plugins: [multi(), babel({ babelHelpers: `bundled` }), terser()],
+    plugins: [multi()],
   };
   const outputOption = {
     format: "es",
@@ -31,6 +32,7 @@ function bundleJS({ rollupOption, isDevServer }) {
         configFile: path.resolve(themeRoot, "babel.config.js"),
         sourceMaps: !!isDevServer,
       }),
+      !isDevServer && (isVender ? terser({ mangle: false }) : terser()),
     ],
     sourcemap: !!isDevServer,
   };

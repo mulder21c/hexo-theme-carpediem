@@ -10,7 +10,7 @@ window.addEventListener(`load`, function () {
     hitsId: `#search-result`,
     statusId: `#search-status`,
     noResultTemplate: `<p>No results for <q>{query}</q></p>`,
-    itemTemplate: ({ themePrefix, permalink, title, content, tags = [] }) => {
+    itemTemplate: ({ permalink, title, content, tags = [] }) => {
       return (
         `<a href="${permalink}" class="${themePrefix}-search__list__link">` +
         `<b class="${themePrefix}-search__list__title">${title}</b>` +

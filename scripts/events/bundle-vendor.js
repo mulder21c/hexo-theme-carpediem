@@ -48,7 +48,7 @@ function bundleVendor() {
   const isDevServer = hexo.env.cmd === "server";
 
   if (!isDevServer) {
-    cleanUpFiles([path.resolve(themeRoot, `./${vendorName}.map`)]);
+    cleanUpFiles([path.resolve(outputPath, `./${vendorName}.map`)]);
   }
   return rollup({
     rollupOption: {
