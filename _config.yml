@@ -17,7 +17,7 @@ links:
 favicon:
 
 # Profile
-#   These links are displayed to the author information
+#   These links are displayed to the author information on post template
 #   You can include additional social links that are not listed below, if you want
 profile:
   gravatar:
