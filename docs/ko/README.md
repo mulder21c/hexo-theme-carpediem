@@ -188,3 +188,144 @@ style:
 | `modules` |    `_root.scss`    | `:root`로 적용된 CSS 변수 |
 | `modules` | `_typography.scss` | 글꼴 선언                 |
 | `modules` | `_variables.scss`  | SCSS 변수 선언            |
+
+
+## 스크린샷
+
+### 모바일 <i style="font-size: 0.75em;font-weight:normal">＜ 768px</i>
+
+<details open>
+  <summary>메인 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-main.webp" width="320" style="margin-top:1rem;max-width:100%" >
+
+</details>
+<details>
+  <summary>메뉴 - 닫힘 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>메뉴 - 모두 열림 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu-open.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>아카이브 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-archive.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>검색 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-search.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+
+### 태블릿 <i style="font-size: 0.75em;font-weight:normal">＜ 1024px</i>
+
+<details open>
+  <summary>메인 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-main.webp" width="720" style="margin-top:1rem;max-width:100%" >
+
+</details>
+<details>
+  <summary>메뉴 - 닫힘 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>메뉴 - 모두 열림 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu-open.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>아카이브 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-archive.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>검색 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-search.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+
+### PC <i style="font-size: 0.75em;font-weight:normal">＜ 1280px</i>
+
+<details open>
+  <summary>메인 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-main.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+
+</details>
+<details>
+  <summary>메뉴 - 닫힘 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>메뉴 - 모두 열림 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu-open.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>아카이브 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-archive.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>검색 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-search.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+
+### 대화면 <i style="font-size: 0.75em;font-weight:normal">≥ 1280px</i>
+
+<details open>
+  <summary>메인 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-main.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+
+</details>
+<details>
+  <summary>메뉴 - 닫힘 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>메뉴 - 모두 열림 상태</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu-open.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>아카이브 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-archive.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>검색 페이지</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-search.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  
+</details>
+<details>
+  <summary>스크롤바 (모든 스크린사이즈에 동일)</summary>
+  
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/with-scroll.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  
+</details>
