@@ -121,6 +121,13 @@ search layout을 사용하는 빈 페이지를 생성하는 것만으로 검색 
 
 </details>
 
+<details>
+  <summary> <b>문법 강조</b> </summary>
+
+  Prism.js 만 지원됩니다.
+
+</details>
+
 ## 설치
 
 먼저, 이 저장소를 클론합니다.

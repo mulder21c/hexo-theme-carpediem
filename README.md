@@ -123,6 +123,13 @@ Sourcemaps are provided for js and css in development mode for easy debugging.
 
 </details>
 
+<details>
+  <summary> <b>Syntax highlight</b> </summary>
+
+  Support only Prism.js 
+
+</details>
+
 ## Installation
 
 First, clone this repository
