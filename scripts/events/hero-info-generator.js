@@ -63,6 +63,7 @@ function heroInfoGenerator(data) {
   [...themeHeros, ...posts].forEach((post) => {
     const hero = post?.hero || undefined;
     if (!hero) return;
+    if (typeof hero !== `string`) throw new Error(`hero must be string.`);
     if (imageInfo.get(hero)) return;
     if (hasProtocol(hero)) {
       try {

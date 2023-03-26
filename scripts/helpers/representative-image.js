@@ -67,6 +67,7 @@ function representativeImageHelper(page) {
       : getHeroByLayout(themeConfig) || undefined;
 
   if (!hero) return null;
+  if (typeof hero !== `string`) throw new Error(`hero must be string.`);
 
   imageInfo = imageInfo || getImageInfo();
   const heroInfo = imageInfo.get(hero);
