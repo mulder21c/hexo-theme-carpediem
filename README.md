@@ -209,31 +209,31 @@ Below is a brief description of the SCSS file.
 <details open>
   <summary>Main page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-main.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-main.webp" width="320" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu.webp" width="320" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Menu - opened all</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu-open.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu-open.webp" width="320" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Archive Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-archive.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-archive.webp" width="320" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Search Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-search.webp" width="320" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-search.webp" width="320" style="margin-top:16px;max-width:100%" >
   
 </details>
 
@@ -242,31 +242,31 @@ Below is a brief description of the SCSS file.
 <details open>
   <summary>Main page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-main.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-main.webp" width="720" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu.webp" width="720" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Menu - opened all</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu-open.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu-open.webp" width="720" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Archive Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-archive.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-archive.webp" width="720" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Search Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-search.webp" width="720" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-search.webp" width="720" style="margin-top:16px;max-width:100%" >
   
 </details>
 
@@ -275,31 +275,31 @@ Below is a brief description of the SCSS file.
 <details open>
   <summary>Main page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-main.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-main.webp" width="1200" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu.webp" width="1200" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Menu - opened all</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu-open.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu-open.webp" width="1200" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Archive Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-archive.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-archive.webp" width="1200" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Search Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-search.webp" width="1200" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-search.webp" width="1200" style="margin-top:16px;max-width:100%" >
   
 </details>
 
@@ -308,36 +308,41 @@ Below is a brief description of the SCSS file.
 <details open>
   <summary>Main page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-main.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-main.webp" width="1336" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu.webp" width="1336" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Menu - opened all</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu-open.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu-open.webp" width="1336" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Archive Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-archive.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-archive.webp" width="1336" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>Search Page</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-search.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-search.webp" width="1336" style="margin-top:16px;max-width:100%" >
   
 </details>
 <details>
   <summary>scroll bar (all screen size)</summary>
   
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/with-scroll.webp" width="1336" style="margin-top:1rem;max-width:100%" >
+  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/with-scroll.webp" width="1336" style="margin-top:16px;max-width:100%" >
   
 </details>
+
+## Feedback
+
+You can submit a bug or feature suggestion at 
+[issue](https://github.com/mulder21c/hexo-theme-amorfati-v2/issues/new/choose).
