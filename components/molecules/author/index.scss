@@ -16,7 +16,7 @@
   grid-template-areas:
     "image name"
     "image description"
-    "social social";
+    "_ social";
   grid-template-columns: var(--profile-image-with) 1fr;
   row-gap: var(--row-gap);
   column-gap: var(--column-gap);
