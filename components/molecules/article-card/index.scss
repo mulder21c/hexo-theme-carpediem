@@ -61,10 +61,11 @@
     margin: -1em -1em 0;
     width: calc(100% + 2em);
     object-fit: cover;
+    object-position: center;
     aspect-ratio: math.div(16, 9);
 
     @include respond-to(tablet) {
-      margin: -1em -1em -1em 0;
+      margin: -1em -1em;
       min-width: calc(100% + 2em);
       min-height: calc(100% + 2em);
       aspect-ratio: math.div(4, 3);
