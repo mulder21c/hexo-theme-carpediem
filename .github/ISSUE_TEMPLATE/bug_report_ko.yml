@@ -1,0 +1,86 @@
+name: 버그 리포트
+description: |
+  문제가 발생했다면 알려주세요
+body:
+  - type: markdown
+    id: overall
+    attributes:
+      value: |
+        다음 이슈 템플릿을 따라 관련 정보를 알려주세요.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 체크리스트
+      description: |
+        다음 항목들을 확인해주세요.
+      options:
+        - label: 노드 16.16.0 이상 버전 사용 중
+          required: true
+        - label: 현재 [issues](https://github.com/mulder21c/hexo-theme-amorfati-v2/issues)를 검색해보았지만 도움을 얻을 수 없었다.
+          required: true
+  - type: markdown
+    id: basic-info
+    attributes:
+      value: |
+        ### 이슈 상세 내용
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 재현 절차
+      description: 오류 동작을 재현하기 위한 절차를 작성해주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: 기대했던 동작
+      description: 기대했던 동작에 대해 명확하고 간결하게 작성해주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: 실제 동작
+      description: 발생한 문제를 명확하고 간결하게 작성해주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 스크린샷
+      description: 문제를 설명하는데 도움이 되는 스크린샷을 추가해주세요.
+    validations:
+      required: false
+  - type: markdown
+    id: env
+    attributes:
+      value: |
+        ### 환경 정보
+  - type: textarea
+    id: node-version
+    attributes:
+      label: node & npm 버전
+      description: "`node -v && npm -v`의 출력 결과를 붙여 넣으세요."
+      render: Text
+    validations:
+      required: true
+  - type: textarea
+    id: device
+    attributes:
+      label: 기기 정보
+      description: |
+        다음 정보를 모두 기재해주세요
+        - 기기
+        - OS
+        - OS 버전
+        - 브라우저
+        - 브라우저 버전
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: 추가 정보
+      description: 문제에 대한 위 정보 외 추가 정보를 작성해주세요
+    validations:
+      required: false

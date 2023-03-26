@@ -1,0 +1,86 @@
+name: Bug Report
+description: |
+  If you found some bugs, please create a report to me
+body:
+  - type: markdown
+    id: overall
+    attributes:
+      value: |
+        Please follow below issue template to provide relevant information.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: |
+        Please check the following items.
+      options:
+        - label: I am using this theme on node version 16.16.0+.
+          required: true
+        - label: I have already searched for current [issues](https://github.com/mulder21c/hexo-theme-amorfati-v2/issues). Which does not help me.
+          required: true
+  - type: markdown
+    id: basic-info
+    attributes:
+      value: |
+        ### details for issue
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To reproduce
+      description: Steps to reproduce the behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: A clear and concise description of what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+    validations:
+      required: false
+  - type: markdown
+    id: env
+    attributes:
+      value: |
+        ### environment information
+  - type: textarea
+    id: node-version
+    attributes:
+      label: node & npm version
+      description: "Paste output from `node -v && npm -v`"
+      render: Text
+    validations:
+      required: true
+  - type: textarea
+    id: device
+    attributes:
+      label: device information
+      description: |
+        Please complete the following information
+        - Device
+        - OS
+        - OS version
+        - Browser
+        - Browser version
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+    validations:
+      required: false
