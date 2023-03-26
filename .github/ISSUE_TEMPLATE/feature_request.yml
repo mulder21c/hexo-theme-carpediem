@@ -1,0 +1,29 @@
+name: Feature Request
+description: |
+  If you have any ideas for this theme or components that you need , please suggest.
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Request type
+      options:
+        - Feature Request
+        - Component Request
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem to Be solved
+      description: |
+        A clear and concise description of what you wish to resolve with this feature request.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: suggested solution
+      description: |
+        A concise description of your preferred solution. Things to address include:
+        - details of the technical implementation
+        - For components, the UI design you expect

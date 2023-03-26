@@ -1,0 +1,29 @@
+name: 기능 요청
+description: |
+  이 테마에 대한 아이디어나 필요한 컴포넌트가 있다면 제안해주세요.
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: 요청 유형
+      options:
+        - 기능 요청
+        - 컴포넌트 요청
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 해결하고자 하는 문제
+      description: |
+        이 기능 요청으로 해결하려는 내용에 대한 명확하고 간결한 설명.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: 제안 솔루션
+      description: |
+        생각하는 솔루션에 대한 간략한 설명. 다음을 포함시켜주세요:
+        - 기술 구현의 세부 사항
+        - 컴포넌트의 경우, 예상하는 UI 디자인
