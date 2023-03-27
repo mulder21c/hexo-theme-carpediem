@@ -173,15 +173,19 @@ style:
 
 ### 헬퍼
 
-[Helper 문서](./docs/en/script/helpers.md) 참고
+[헬퍼 문서](./script/helpers.md) 참고
+
+### 태그
+
+[태그 문서](./script/tags.md) 참고
 
 ### 컴포넌트
 
-[컴포넌트 문서](./docs/en/pug/index.md) 참고
+[컴포넌트 문서](./pug/index.md) 참고
 
 ### 스타일 (SCSS)
 
-믹스인 및 함수에 대한 자세한 내용은 [SCSS 문서](./docs/en/scss/document.md) 참고
+믹스인 및 함수에 대한 자세한 내용은 [SCSS 문서](./scss/document.md) 참고
 
 다음은 SCSS 파일에 대한 간략한 설명입니다.
 

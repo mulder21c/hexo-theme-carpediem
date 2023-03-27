@@ -177,7 +177,11 @@ style:
 
 ### Helpers
 
-See [Helper Document](./docs/en/script/helpers.md)
+See [Helpers Document](./docs/en/script/helpers.md)
+
+### Tags
+
+See [Tags Document](./docs/en/script/tags.md)
 
 ### Components
 
