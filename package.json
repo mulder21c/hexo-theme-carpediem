@@ -79,7 +79,7 @@
     "prettier": "^2.8.7",
     "probe-image-size": "^7.2.3",
     "pug-doc": "^2.23.1",
-    "pug-lint": "^2.6.0",
+    "pug-lint": "^2.7.0",
     "rollup": "^3.9.1",
     "sass": "^1.59.2",
     "stylelint": "^15.3.0",
