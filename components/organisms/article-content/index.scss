@@ -205,6 +205,81 @@
     font-weight: var(--font-weight-medium);
     font-size: 0.875em;
   }
+
+  details {
+    margin: 1rem 0;
+    padding: 0.25rem 0.75rem;
+
+    figure,
+    blockquote {
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    &:not(:is(blockquote details)) {
+      margin: 1rem -0.75rem;
+
+      figure,
+      blockquote {
+        margin: 1rem -0.75rem;
+        width: calc(100% + 1.5rem);
+      }
+
+      @include respond-to(tablet) {
+        margin: 1rem 0;
+
+        figure,
+        blockquote {
+          margin: 1rem 0;
+          width: 100%;
+        }
+      }
+    }
+
+    summary {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      border-radius: 0.25em;
+      margin: 0 -0.75em;
+      padding: 0.25em 0.5em;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        margin-right: 0.5em;
+        width: 1.25em;
+        height: 1.25em;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512' fill='#{encodeColor($color-green-60)}'%3E%3Cpath d='M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        transition: transform 0.2s;
+      }
+
+      &:focus {
+        outline: var(--outline-width-bold) solid var(--button-outline-color);
+        outline-offset: -2px;
+        outline-color: var(--button-outline-color);
+
+        @include respond-to(tablet) {
+          outline-offset: 0;
+        }
+      }
+    }
+
+    &[open] {
+      summary {
+        margin-bottom: 1rem;
+        &::before {
+          transform: rotate(90deg);
+          transform-origin: center center;
+        }
+      }
+    }
+  }
 }
 
 // prismjs xonokai

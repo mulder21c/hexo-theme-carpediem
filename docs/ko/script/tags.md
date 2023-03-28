@@ -1,5 +1,25 @@
 ## Tags
 
+<a name="disclosure"></a>
+
+## disclosure
+토글 위젯 생성
+
+**Kind**: global function  
+**Access**: public  
+**사용법**  
+```markdown
+{% disclosure [label] [open:boolean] %}
+```
+**예제**  
+```markdown
+{% disclosure 더보기... open:false %}
+  Contents...
+{% enddisclosure %}
+```
+
+* * *
+
 <a name="figcaption"></a>
 
 ## figcaption

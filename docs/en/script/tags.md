@@ -1,5 +1,25 @@
 ## Tags
 
+<a name="disclosure"></a>
+
+## disclosure
+generate disclosure widget
+
+**Kind**: global function  
+**Access**: public  
+**Example**  
+```markdown
+{% disclosure [label] [open:boolean] %}
+```
+**Example**  
+```markdown
+{% disclosure more... open:false %}
+  Contents...
+{% enddisclosure %}
+```
+
+* * *
+
 <a name="figcaption"></a>
 
 ## figcaption
