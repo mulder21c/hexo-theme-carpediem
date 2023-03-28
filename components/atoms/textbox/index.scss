@@ -1,5 +1,5 @@
 .#{$prefix}-textbox {
-  border: 1px solid var(--input-border-color);
+  border: var(--border-width-thin) solid var(--input-border-color);
   border-radius: var(--button-border-radius);
   font-family: var(--font-family-sans-serif);
   font-weight: var(--font-weight-semi-bold);
@@ -18,7 +18,7 @@
   &:focus {
     border-color: var(--input-focus-border-color);
     background-color: var(--input-focus-background-color);
-    outline: 2px solid var(--input-outline-color);
+    outline: var(--outline-width-regular) solid var(--input-outline-color);
     outline-offset: -2px;
   }
 

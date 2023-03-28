@@ -9,7 +9,7 @@
     }
 
     &__item {
-      border-top: 1px solid var(--separator-border-color);
+      border-top: var(--border-width-thin) solid var(--separator-border-color);
       font-weight: var(--font-weight-semi-bold);
       line-height: 1.8;
       color: var(--text-color-secondary);

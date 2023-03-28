@@ -28,7 +28,7 @@
 
   // appearance
   &--fill {
-    border: 1px solid var(--button-border-color);
+    border: var(--border-width-thin) solid var(--button-border-color);
     background-color: var(--button-background-color);
     color: var(--button-text-color);
     filter: drop-shadow(2px 2px 2px var(--button-shadow-color));
@@ -51,7 +51,7 @@
     }
 
     &:focus {
-      outline: 3px solid var(--button-outline-color);
+      outline: var(--outline-width-bold) solid var(--button-outline-color);
       background-color: var(--button-focus-background-color);
       border-color: var(--button-focus-border-color);
       filter: drop-shadow(2px 2px 2px var(--button-focus-shadow-color));
@@ -59,7 +59,7 @@
   }
 
   &--outline {
-    border: 1px solid var(--button-border-color);
+    border: var(--border-width-thin) solid var(--button-border-color);
     background-color: var(--background-color);
     background-image: linear-gradient(
       var(--button-hover-background-color),
@@ -92,7 +92,7 @@
     }
 
     &:focus {
-      outline: 3px solid var(--button-outline-color);
+      outline: var(--outline-width-bold) solid var(--button-outline-color);
       border-color: var(--button-focus-border-color);
       background-color: var(--background-color);
       filter: drop-shadow(1px 1px 1px var(--button-focus-shadow-color));

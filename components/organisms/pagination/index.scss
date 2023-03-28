@@ -51,7 +51,7 @@
     }
 
     &:focus:not(&--current) {
-      outline: 3px solid var(--button-outline-color);
+      outline: var(--outline-width-bold) solid var(--button-outline-color);
       background-color: var(--background-color);
     }
   }

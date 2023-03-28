@@ -75,8 +75,8 @@
 
   table {
     table-layout: fixed;
-    border-top: 1px solid var(--table-border-color);
-    border-bottom: 1px solid var(--table-border-color);
+    border-top: var(--border-width-thin) solid var(--table-border-color);
+    border-bottom: var(--border-width-thin) solid var(--table-border-color);
     margin: 1rem 0;
     width: 100%;
     border-spacing: 0;
@@ -96,10 +96,11 @@
 
     th {
       background-color: var(--table-header-cell-background-color);
-      border: 1px solid var(--table-header-cell-border-color);
+      border: var(--border-width-thin) solid
+        var(--table-header-cell-border-color);
     }
     td {
-      border: 1px solid var(--table-cell-border-color);
+      border: var(--border-width-thin) solid var(--table-cell-border-color);
     }
   }
 
@@ -244,9 +245,10 @@ pre[class*="language-"] code {
   }
 
   &::-webkit-scrollbar-thumb {
-    outline: 2px solid rgba(var(--track-thumb-outline-color-dark-rgb), 1);
+    outline: var(--outline-width-regular) solid
+      rgba(var(--track-thumb-outline-color-dark-rgb), 1);
     outline-offset: -2px;
-    border: 1px inset var(--track-thumb-border-color-dark);
+    border: var(--border-width-thin) inset var(--track-thumb-border-color-dark);
     border-radius: calc(1rem / 2 - 2px);
     width: calc(1rem - 4px);
     height: calc(1rem - 4px);
@@ -271,7 +273,8 @@ pre[class*="language-"] code {
     background-size: contain;
   }
   &::-webkit-scrollbar-button:single-button:hover {
-    outline: 2px solid var(--track-hover-button-border-color);
+    outline: var(--outline-width-regular) solid
+      var(--track-hover-button-border-color);
     background-color: var(--track-hover-button-background-color);
   }
   &::-webkit-scrollbar-button:single-button:horizontal:decrement {

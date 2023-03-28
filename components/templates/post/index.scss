@@ -98,7 +98,8 @@
     max-width: 80ch;
     margin: 3rem auto;
     padding-top: 2rem;
-    border-top: 1px solid rgba(var(--separator-border-color-rgb), 0.375);
+    border-top: var(--border-width-thin) solid
+      rgba(var(--separator-border-color-rgb), 0.375);
   }
 
   &__comments {

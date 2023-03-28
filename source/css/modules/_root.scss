@@ -23,6 +23,13 @@
   --font-weight-bold: #{$font-weight-bold};
   --font-weight-extra-bold: #{$font-weight-extra-bold};
 
+  --border-width-thin: 1px;
+  --border-width-regular: 2px;
+  --border-width-bold: 3px;
+  --outline-width-thin: 1px;
+  --outline-width-regular: 2px;
+  --outline-width-bold: 3px;
+
   --button-border-radius: 0.25rem;
   --input-border-radius: 0.25rem;
   --card-border-radius: 0.5rem;

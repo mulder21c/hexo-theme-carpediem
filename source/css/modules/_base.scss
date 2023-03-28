@@ -41,7 +41,7 @@ html {
   }
 
   ::-webkit-scrollbar-thumb {
-    border: 2px solid var(--track-thumb-border-color);
+    border: var(--border-width-regular) solid var(--track-thumb-border-color);
     border-radius: calc(1.125rem / 2 - 2px);
     width: calc(1.125rem - 4px);
     height: calc(1.125rem - 4px);
@@ -64,7 +64,8 @@ html {
     background-size: contain;
   }
   ::-webkit-scrollbar-button:single-button:hover {
-    outline: 2px solid var(--track-hover-button-border-color);
+    outline: var(--outline-width-regular) solid
+      var(--track-hover-button-border-color);
     background-color: var(--track-hover-button-background-color);
   }
   ::-webkit-scrollbar-button:single-button:horizontal:decrement {
@@ -143,7 +144,7 @@ button,
   text-decoration-color: var(--text-link-decoration-color);
 
   &:focus {
-    outline: 3px solid var(--text-link-outline-color);
+    outline: var(--outline-width-bold) solid var(--text-link-outline-color);
     outline-offset: 2px;
   }
 }

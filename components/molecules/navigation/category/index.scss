@@ -22,7 +22,7 @@
 
       #{$parent-list}:not(#{$parent-list}--child) > & {
         padding-top: 0.75rem;
-        border-top: 1px solid var(--separator-border-color);
+        border-top: var(--border-width-thin) solid var(--separator-border-color);
         font-weight: var(--font-weight-semi-bold);
         color: var(--text-color-secondary);
 

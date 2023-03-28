@@ -25,7 +25,7 @@
       display: inline-block;
       margin-right: 0.5rem;
       border-radius: 50%;
-      border: 2px solid var(--input-border-color);
+      border: var(--border-width-regular) solid var(--input-border-color);
       width: 1.25rem;
       height: 1.25rem;
       background-color: var(--background-color);
@@ -37,7 +37,7 @@
       }
 
       #{$control}:focus + & {
-        outline: 2px solid var(--input-outline-color);
+        outline: var(--outline-width-regular) solid var(--input-outline-color);
         outline-offset: 1px;
         border-color: var(--input-border-color);
       }
