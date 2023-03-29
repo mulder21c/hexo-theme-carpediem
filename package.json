@@ -83,7 +83,6 @@
     "rollup": "^3.9.1",
     "sass": "^1.59.2",
     "stylelint": "^15.3.0",
-    "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-standard": "^31.0.0",
     "sync-fetch": "^0.4.2",
     "terser": "^5.16.6",
