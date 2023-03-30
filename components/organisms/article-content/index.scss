@@ -146,9 +146,9 @@
     }
   }
 
-  & img:not(:where(figure) img),
-  & video:not(:where(figure) video),
-  & audio:not(:where(figure) audio) {
+  & img:not(figure img),
+  & video:not(figure video),
+  & audio:not(figure audio) {
     max-width: 100%;
 
     @include respond-to(tablet) {
@@ -240,7 +240,7 @@
       width: 100%;
     }
 
-    &:not(:is(blockquote details)) {
+    &:not(blockquote details) {
       margin: 1rem -0.75rem;
 
       figure,
@@ -303,6 +303,11 @@
         }
       }
     }
+  }
+
+  ol,
+  ul {
+    padding-inline-start: 1.75rem;
   }
 }
 

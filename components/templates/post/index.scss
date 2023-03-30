@@ -34,8 +34,8 @@
       var(--background-color)
     );
 
-    :where(.#{$prefix}-article__hero + .#{$prefix}-article) & {
-      margin-top: -7em;
+    .#{$prefix}-hero + .#{$prefix}-article & {
+      margin-top: -4rem;
     }
   }
 
