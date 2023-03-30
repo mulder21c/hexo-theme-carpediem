@@ -46,6 +46,7 @@
       content: "• • •";
     }
   }
+
   blockquote {
     overflow: auto;
     box-sizing: border-box;
@@ -75,7 +76,7 @@
     cite {
       font-style: normal;
 
-      &:first-child {
+      &:not(footer cite) {
         display: inline-flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
@@ -93,8 +94,16 @@
         }
       }
 
-      &:not(:first-child) {
-        margin-left: 0.5em;
+      &:where(footer cite) {
+        &::before {
+          content: "\2014 \00A0";
+        }
+      }
+
+      &:where(strong + cite) {
+        &::before {
+          margin-left: 0.5em;
+        }
       }
     }
 
@@ -103,12 +112,6 @@
       padding-top: 1em;
       border-top: var(--border-width-thin) dashed var(--separator-border-color);
       color: var(--text-color-secondary);
-
-      strong + cite {
-        &::before {
-          content: "\2014 \00A0";
-        }
-      }
     }
   }
 
