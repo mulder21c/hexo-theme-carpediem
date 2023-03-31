@@ -1,21 +1,22 @@
 /**
  * @public
- * @desc generate disclosure  widget
+ * @desc generate disclosure widget
  * @alias disclosure
+ * @property label {string} visible label
+ * @property open {boolean} whether to be opened
  * @example
- * {% disclosure [label] [open:boolean] %}
+ * {% disclosure [label] [open] %}
  * @example
- * {% disclosure more... open:false %}
+ * {% disclosure more... false %}
  *   Contents...
  * {% enddisclosure %}
  */
 function disclosureTag(ctx) {
   return function (args, content) {
     const [label, open] = args;
-    const [_, state] = (open || "").split(":");
 
     return `<details ${
-      state ? `open` : ``
+      open ? `open` : ``
     }><summary>${label}</summary>${content}</details>`;
   };
 }

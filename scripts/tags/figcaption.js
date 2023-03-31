@@ -3,8 +3,9 @@
  * @desc generate figcaption element <br>
  * It must be used in `{% figure %}`
  * @alias figcaption
+ * @property caption {string} caption text content
  * @example
- * {% figcaption [caption string] %}
+ * {% figcaption [caption] %}
  * @example
  * {% figure %}
  *   <img src="xxxx.jpg" alt="" >
