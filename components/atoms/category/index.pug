@@ -106,22 +106,22 @@ mixin category(props = {})
         class= `${prefix}-category__list`
       )
         each entry, idx in categoryEntries
-          if idx > 0
-            span(
-              aria-hidden= `true`
-              class= `${prefix}-category__separator`
-            )
-              if isIconName(separator)
-                +svgIcon({
-                  name: separator,
-                  focusable: `false`,
-                })
-              else
-                = separator
           span(
             role= `listitem`
             class= `${prefix}-category__content`
           )
+            if idx > 0
+              span(
+                aria-hidden= `true`
+                class= `${prefix}-category__separator`
+              )
+                if isIconName(separator)
+                  +svgIcon({
+                    name: separator,
+                    focusable: `false`,
+                  })
+                else
+                  = separator
             #{wrapper}(
               href= useLink ? full_url(entry.path) : null
             )= entry.name
