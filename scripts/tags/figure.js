@@ -14,8 +14,15 @@
  */
 function figureTag(ctx) {
   return function (args, content) {
-    const [attrs, cn] = args;
-    return `<figure ${attrs} class="figure ${cn}">${content}</figure>`;
+    const [align, float] = args;
+    const useFloat = float && JSON.parse(float);
+    return `
+      <figure class="figure ${align ? "figure--" + align : ""}${
+      useFloat ? "--float" : ""
+    }">
+        ${content}
+      </figure>
+    `;
   };
 }
 
