@@ -174,7 +174,8 @@ a[href] {
   @extend %anchor-default;
 }
 
-:where(article, ._footer) a {
+:where(article, ._footer)
+  a:not(:where([class*="footnote"], [class*="footnote"] a)) {
   @extend %anchor-animate;
 }
 
