@@ -329,219 +329,200 @@
   ul {
     padding-inline-start: 1.75rem;
   }
+
+  .strike {
+    text-decoration: line-through;
+  }
+
+  .footnotes {
+    &::before {
+      content: "• • •";
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      border: 0;
+      height: 4rem;
+    }
+  }
+
+  .footnote {
+    &-ref > a {
+      text-decoration: none;
+      font-size: var(--font-size-small);
+    }
+    &-item {
+    }
+    &-backref {
+      display: inline-flex;
+      width: 0.75em;
+      height: 0.75em;
+      vertical-align: middle;
+      color: currentColor;
+    }
+  }
 }
 
-// prismjs xonokai
 /**
-* xonokai theme for JavaScript, CSS and HTML
-* based on: https://github.com/MoOx/sass-prism-theme-base by Maxime Thirouin ~ MoOx --> http://moox.fr/ , which is Loosely based on Monokai textmate theme by http://www.monokai.nl/
-* license: MIT; http://moox.mit-license.org/
-*/
+ * a11y-dark theme for JavaScript, CSS, and HTML
+ * Based on the okaidia theme: https://github.com/PrismJS/prism/blob/gh-pages/themes/prism-okaidia.css
+ * @author ericwbailey
+ */
+
 code[class*="language-"],
 pre[class*="language-"] {
-  font-family: var(--font-family-code);
-  font-size: 1em;
-  color: #76d9e6;
-  text-shadow: none;
-  tab-size: 2;
-  hyphens: none;
+  color: #f8f8f2;
+  background: none;
+  font-family: Hack, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  text-align: left;
   white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
   word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
 }
 
-pre > code[class*="language-"] {
-  font-size: 1em;
-}
-
+/* Code blocks */
 pre[class*="language-"] {
-  margin: 1em -0.75rem;
-  background: #2a2a2a;
-
-  @include respond-to(tablet) {
-    max-width: 100%;
-    border-radius: 10px;
-    margin: 1em 0;
-  }
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
 }
 
+:not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  overflow: auto;
-  position: relative;
-  padding: 1em 1.5em 1em 1em;
+  background: #2b2b2b;
 }
 
-pre[class*="language-"] code {
-  overflow: auto;
-  display: block;
-  padding-bottom: 0.25em;
-  white-space: pre;
-  word-break: keep-all;
-
-  &::-webkit-scrollbar {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: rgba(var(--track-background-color-rgb, 0.25));
-  }
-
-  &::-webkit-scrollbar-thumb {
-    outline: var(--outline-width-regular) solid
-      rgba(var(--track-thumb-outline-color-dark-rgb), 1);
-    outline-offset: -2px;
-    border: var(--border-width-thin) inset var(--track-thumb-border-color-dark);
-    border-radius: calc(1rem / 2 - 2px);
-    width: calc(1rem - 4px);
-    height: calc(1rem - 4px);
-    background-clip: padding-box;
-    background: rgba(var(--track-thumb-color-rgb, 0.25));
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(var(--track-hover-thumb-color-rgb, 0.5));
-  }
-
-  &::-webkit-scrollbar-button:single-button {
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    align-items: center;
-    height: 1rem;
-    width: 1.5rem;
-    background-color: var(--track-button-background-color);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
-  &::-webkit-scrollbar-button:single-button:hover {
-    outline: var(--outline-width-regular) solid
-      var(--track-hover-button-border-color);
-    background-color: var(--track-hover-button-background-color);
-  }
-  &::-webkit-scrollbar-button:single-button:horizontal:decrement {
-    border-radius: 0.5rem 0 0 0.5rem;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' fill='#{encodeColor($color-blue-grey-65)}'%3E%3Cpath d='M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z'/%3E%3C/svg%3E");
-  }
-  &::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' fill='#{encodeColor($color-blue-grey-15)}'%3E%3Cpath d='M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z'/%3E%3C/svg%3E");
-  }
-  &::-webkit-scrollbar-button:single-button:horizontal:increment {
-    border-radius: 0 0.5rem 0.5rem 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' fill='#{encodeColor($color-blue-grey-65)}'%3E%3Cpath d='M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z'/%3E%3C/svg%3E");
-  }
-  &::-webkit-scrollbar-button:single-button:horizontal:increment:hover {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' fill='#{encodeColor($color-blue-grey-15)}'%3E%3Cpath d='M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z'/%3E%3C/svg%3E");
-  }
-
-  // for firefox
-  scrollbar-color: rgba(var(--track-thumb-color-rgb, 0.25))
-    rgba(var(--track-background-color-rgb, 0.25));
-}
-
+/* Inline code */
 :not(pre) > code[class*="language-"] {
-  display: inline-flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0 0.5em;
-  border-radius: 0.25em;
-  background: #2a2a2a;
-}
-
-.token.namespace {
-  opacity: 0.7;
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: $color-neutral-40;
+  color: #d4d0ab;
 }
 
-.token.operator,
+.token.punctuation {
+  color: #fefefe;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #ffa07a;
+}
+
 .token.boolean,
 .token.number {
-  color: #a77afe;
-}
-
-.token.attr-name,
-.token.string {
-  color: #e6d06c;
-}
-
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-  color: #e6d06c;
+  color: #00e0e0;
 }
 
 .token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
 .token.inserted {
-  color: #a6e22d;
+  color: #abe338;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #00e0e0;
 }
 
 .token.atrule,
 .token.attr-value,
-.token.keyword,
-.token.important,
-.token.deleted {
-  color: #ef3b7d;
+.token.function {
+  color: #ffd700;
+}
+
+.token.keyword {
+  color: #00e0e0;
 }
 
 .token.regex,
-.token.statement {
-  color: #76d9e6;
-}
-
-.token.placeholder,
-.token.variable {
-  color: #fff;
+.token.important {
+  color: #ffd700;
 }
 
 .token.important,
-.token.statement,
 .token.bold {
   font-weight: bold;
-}
-
-.token.punctuation {
-  color: #bebec5;
-}
-
-.token.entity {
-  cursor: help;
 }
 
 .token.italic {
   font-style: italic;
 }
 
-code.language-markup {
-  color: #f9f9f9;
+.token.entity {
+  cursor: help;
 }
 
-code.language-markup .token.tag {
-  color: #ef3b7d;
-}
+@media screen and (-ms-high-contrast: active) {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: windowText;
+    background: window;
+  }
 
-code.language-markup .token.attr-name {
-  color: #a6e22d;
-}
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: window;
+  }
 
-code.language-markup .token.attr-value {
-  color: #e6d06c;
-}
+  .token.important {
+    background: highlight;
+    color: window;
+    font-weight: normal;
+  }
 
-code.language-markup .token.style,
-code.language-markup .token.script {
-  color: #76d9e6;
-}
+  .token.atrule,
+  .token.attr-value,
+  .token.function,
+  .token.keyword,
+  .token.operator,
+  .token.selector {
+    font-weight: bold;
+  }
 
-code.language-markup .token.script .token.keyword {
-  color: #76d9e6;
+  .token.attr-value,
+  .token.comment,
+  .token.doctype,
+  .token.function,
+  .token.keyword,
+  .token.operator,
+  .token.property,
+  .token.string {
+    color: highlight;
+  }
+
+  .token.attr-value,
+  .token.url {
+    font-weight: normal;
+  }
 }
 
 /* Line highlight plugin */
