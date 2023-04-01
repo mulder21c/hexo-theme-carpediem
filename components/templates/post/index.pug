@@ -24,31 +24,34 @@ block mainContent
           = post.title
           if post.subtitle
             span(class= `${prefix}-article__heading--sub`)= post.subtitle
-        +articleMeta({
-          categories: post.categories.toArray(),
-          date: post.date,
-          updated: post.updated,
-        })
+        if post.categories
+          +articleMeta({
+            categories: post.categories.toArray(),
+            date: post.date,
+            updated: post.updated,
+          })
 
       +articleContent({
         content: page.content,
       })
 
-      div(class= `${prefix}-article__tags`)
+      section(class= `${prefix}-article__tags`)
         +heading({
           level: 2,
           class: `${prefix}-article__tags__heading`,
         })
+          span(class= `sr-only`)
+            = _p(`section.tags`)
           +svgIcon({
             name: `tags`,
             "aria-hidden": `false`,
-            "aria-label": _p(`section.tags`),
           })
-        +tagsList({
-          tags: post.tags.toArray(),
-          appearance: `flat`,
-          class: `${prefix}-article__tags__list`,
-        })
+        if post.tags
+          +tagsList({
+            tags: post.tags.toArray(),
+            appearance: `flat`,
+            class: `${prefix}-article__tags__list`,
+          })
 
     section(class= `${prefix}-article__author`)
       +heading({
