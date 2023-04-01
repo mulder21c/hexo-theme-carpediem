@@ -128,6 +128,14 @@ search layout을 사용하는 빈 페이지를 생성하는 것만으로 검색 
 
 </details>
 
+<details>
+  <summary> <b>footnotes</b> </summary>
+
+  각주를 지원합니다.  
+  [hexo-renderer-markdown-it](https://github.com/hexojs/hexo-renderer-markdown-it)의
+  설치와 markdown-it-footnote 플러그인 활성화가 필요합니다.
+</details>
+
 ## 설치
 
 먼저, 이 저장소를 클론합니다.

@@ -130,6 +130,14 @@ Sourcemaps are provided for js and css in development mode for easy debugging.
 
 </details>
 
+<details>
+  <summary> <b>footnotes</b> </summary>
+
+  Support footnotes, need to install 
+  [hexo-renderer-markdown-it](https://github.com/hexojs/hexo-renderer-markdown-it)
+  and active markdown-it-footnote plugin
+</details>
+
 ## Installation
 
 First, clone this repository
