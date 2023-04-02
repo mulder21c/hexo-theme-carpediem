@@ -1,0 +1,21 @@
+{
+  "puglint.enable": true,
+  "cSpell.words": [
+    "amorfati",
+    "commitlint",
+    "Josa",
+    "lintfix",
+    "postposition",
+    "prettierignore",
+    "pugdoc"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.validate": [
+    "html",
+    "javascript",
+  ],
+  "eslint.codeActionsOnSave.mode": "problems",
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false,
+  }
+}
