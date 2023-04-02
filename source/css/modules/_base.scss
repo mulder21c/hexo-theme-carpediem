@@ -185,4 +185,9 @@ a[href] {
 
 .sr-only {
   @include sr-only;
+
+  &--inline {
+    @include sr-only;
+    display: inline-block;
+  }
 }
