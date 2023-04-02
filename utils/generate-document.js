@@ -185,7 +185,7 @@ hexo.init().then(function () {
     jsdoc2md
       .render({
         files: "./scripts/helpers/*.js",
-        "example-lang": "markdown",
+        "example-lang": "jade",
         separators: true,
       })
       .then((output) => {
@@ -201,7 +201,7 @@ hexo.init().then(function () {
     jsdoc2md
       .render({
         files: "./scripts/tags/*.js",
-        "example-lang": "jade",
+        "example-lang": "markdown",
         separators: true,
       })
       .then((output) => {
