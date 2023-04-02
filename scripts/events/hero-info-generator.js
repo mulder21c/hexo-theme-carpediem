@@ -64,8 +64,8 @@ function heroInfoGenerator(data) {
     const hero = post?.hero || undefined;
     if (!hero) return;
     if (typeof hero !== `string`) throw new Error(`hero must be string.`);
-    if (imageInfo.get(hero)) return;
     if (hasProtocol(hero)) {
+      if (imageInfo.get(hero)) return;
       try {
         const imgObj = fetch(prependHttpProtocol.bind(hexo)(hero));
         const dimension = probe.sync(imgObj.buffer());
@@ -75,8 +75,11 @@ function heroInfoGenerator(data) {
       }
     } else {
       const filePath = path.join(hexoSourcePath, hero);
+      const { mtime } = fs.statSync(filePath);
+      const info = imageInfo.get(hero);
+      if (imageInfo.get(hero) && info.mtime >= mtime.getTime()) return;
       const dimension = probe.sync(fs.readFileSync(filePath));
-      imageInfo.set(hero, dimension);
+      imageInfo.set(hero, { ...dimension, mtime: mtime.getTime() });
     }
   });
 
