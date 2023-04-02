@@ -17,5 +17,8 @@
   "eslint.codeActionsOnSave.mode": "problems",
   "[markdown]": {
     "files.trimTrailingWhitespace": false,
-  }
+  },
+  "cssVariables.lookupFiles": [
+    "./source/css/*"
+  ]
 }
