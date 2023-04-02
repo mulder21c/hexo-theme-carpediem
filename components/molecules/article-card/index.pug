@@ -98,8 +98,7 @@ mixin articleCard(props = {})
         level: `all`,
         separator: `angle-right`,
       })
-
     p(
       id= contentId
       class= `${prefix}-article-card__content`
-    )= truncate(strip_html(post.content), 300)
+    )!= truncate(strip_html(post.content), 300)
