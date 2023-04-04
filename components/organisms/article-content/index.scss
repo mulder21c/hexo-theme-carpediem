@@ -155,18 +155,27 @@
   & img:not(figure img),
   & video:not(figure video),
   & audio:not(figure audio) {
-    max-width: 100%;
+    filter: drop-shadow(1px 1px 0.25em rgba(var(--box-shadow-color-rgb), 0.25));
 
     @include respond-to(tablet) {
+      max-width: 100%;
       margin-right: unset;
       margin-left: unset;
       width: auto;
     }
 
     &.block {
+      max-width: 100vw;
       margin: 1rem -0.75rem;
       width: calc(100% + (0.75rem * 2));
       display: block;
+
+      @include respond-to(tablet) {
+        max-width: 100%;
+        margin-right: unset;
+        margin-left: unset;
+        width: auto;
+      }
 
       &.--align-right {
         margin-left: auto;
@@ -180,6 +189,7 @@
   }
 
   .figure {
+    max-width: 100vw;
     margin: 1rem -0.75rem;
     width: calc(100% + (0.75rem * 2));
 
