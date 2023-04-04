@@ -246,7 +246,9 @@
     }
   }
 
-  code:not([class*="language-"]) {
+  code:not([class*="language-"]),
+  kbd,
+  var {
     display: inline-flex;
     flex-flow: row;
     justify-content: center;
