@@ -137,6 +137,10 @@ small {
   font-size: var(--font-size-small);
 }
 
+[id] {
+  scroll-margin-top: 5rem;
+}
+
 %anchor-default {
   display: inline-block;
   border-radius: 0.125em;
