@@ -1,5 +1,5 @@
 const { htmlTag } = require("hexo-util");
-const parse = require("../utils/safe-eval");
+const parse = require("../utils/parse-custom-tag-param");
 
 /**
  * @public
@@ -14,10 +14,15 @@ const parse = require("../utils/safe-eval");
  * {% youtube id, type, [cookie], [aspect ratio] %}
  * @example
  * {% youtube XXXXXX %}
+ *
  * {% youtube XXXXXX video %}
+ *
  * {% youtube XXXXXX true %}
+ *
  * {% youtube XXXXXX true 4/3 %}
+ *
  * {% youtube XXXXXX 4/3 %}
+ *
  * {% youtube XXXXXX video false 1.3333 %}
  */
 const youtubeTag = (ctx) => {
@@ -28,11 +33,8 @@ const youtubeTag = (ctx) => {
     cookie = false,
     aspectRatio = 16 / 9,
   ]) {
-    if (!id || !type) {
-      const msg = !id
-        ? `The id of youtube is not defined.`
-        : `The type of youtube is not defined.`;
-      log.error(msg);
+    if (!id) {
+      log.error(`The id of youtube is missed.`);
       return;
     }
     if (typeof parse(type) === `number`) {

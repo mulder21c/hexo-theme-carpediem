@@ -1,27 +1,48 @@
 ## Tags
 
+<dl>
+<dt><a href="#disclosure">disclosure</a></dt>
+<dd><p>generate disclosure widget</p>
+</dd>
+<dt><a href="#figcaption">figcaption</a></dt>
+<dd><p>generate figcaption element <br>
+It must be used in <code>{% figure %}</code></p>
+</dd>
+<dt><a href="#figure">figure</a></dt>
+<dd><p>generate figure element</p>
+</dd>
+<dt><a href="#youtube">youtube</a></dt>
+<dd><p>generate youtube embed code</p>
+</dd>
+</dl>
+
 <a name="disclosure"></a>
 
 ## disclosure
 generate disclosure widget
 
-**Kind**: global function  
-**Access**: public  
+**Syntax**
+```markdown
+{% disclosure label [open] %}
+content
+{% enddisclosure %}
+```
+
 **Properties**
 
-| Name | Type | Description |
-| --- | --- | --- |
-| label | <code>string</code> | visible label |
-| open | <code>boolean</code> | whether to be opened |
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| label | <code>string</code> |  | visible label |
+| [open] | <code>boolean</code> | <code>false</code> | whether to be opened |
 
-**Usage**  
-```markdown
-{% disclosure [label] [open] %}
-```
 **Example**  
 ```markdown
-{% disclosure more... false %}
-  Contents...
+{% disclosure "show more" %}
+  More Contents...
+{% enddisclosure %}
+
+{% disclosure "description for chat" true %}
+  This chart is...
 {% enddisclosure %}
 ```
 
@@ -33,24 +54,20 @@ generate disclosure widget
 generate figcaption element <br>
 It must be used in `{% figure %}`
 
-**Kind**: global function  
-**Access**: public  
+**Syntax**
+```markdown
+{% figcaption caption %}
+```
+
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | caption | <code>string</code> | caption text content |
 
-**Usage**  
-```markdown
-{% figcaption [caption] %}
-```
 **Example**  
 ```markdown
-{% figure %}
-  <img src="xxxx.jpg" alt="" >
-  {% figcaption "이미지 캡션" %}
-{% endfigure %}
+{% figcaption "This image is ..." %}
 ```
 
 * * *
@@ -60,22 +77,31 @@ It must be used in `{% figure %}`
 ## figure
 generate figure element
 
-**Kind**: global function  
-**Access**: public  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| align | <code>string</code> | alignment for figure. One of `left`, `center` or `right` |
-| float | <code>boolean</code> | whether to use float |
-
-**Usage**  
+**Syntax**
 ```markdown
 {% figure [align] [float] %}
+content
+{% endfigure %}
 ```
+
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| [align] | <code>string</code> |  | alignment for figure. One of `left`, `center` or `right` |
+| [float] | <code>boolean</code> | <code>false</code> | whether to use float |
+
 **Example**  
 ```markdown
 {% figure %}
+  <img src="xxxx.jpg" alt="" >
+{% endfigure %}
+
+{% figure right %}
+  <img src="xxxx.jpg" alt="" >
+{% endfigure %}
+
+{% figure left true %}
   <img src="xxxx.jpg" alt="" >
 {% endfigure %}
 ```
@@ -104,10 +130,15 @@ generate youtube embed code
 **Example**  
 ```markdown
 {% youtube XXXXXX %}
+
 {% youtube XXXXXX video %}
+
 {% youtube XXXXXX true %}
+
 {% youtube XXXXXX true 4/3 %}
+
 {% youtube XXXXXX 4/3 %}
+
 {% youtube XXXXXX video false 1.3333 %}
 ```
 
