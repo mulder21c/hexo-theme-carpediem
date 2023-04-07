@@ -81,3 +81,35 @@ figure 엘리먼트 생성
 ```
 
 * * *
+
+<a name="youtube"></a>
+
+## youtube
+유튜부 삽입 코드 생성
+
+**문법**
+```markdown
+{% youtube id, type, [cookie], [aspect ratio] %}
+```
+
+**매개변수**
+
+| 이름 | 우형 | 기본 값 | 설명 |
+| --- | --- | --- | --- |
+| id | <code>string</code> |  | 유튜브 영상 id |
+| [type] | <code>string</code> | <code>&quot;video&quot;</code> | `video` 또는 `playlist` 중 하나 |
+| [cookie] | <code>boolean</code> | <code>false</code> | 프라이버시 강화 모드 사용 여부 |
+| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비. 문자열은 "16/9"와 같은 분수 표현이어야 합니다. |
+
+
+**예제**  
+```markdown
+{% youtube XXXXXX %}
+{% youtube XXXXXX video %}
+{% youtube XXXXXX true %}
+{% youtube XXXXXX true 4/3 %}
+{% youtube XXXXXX 4/3 %}
+{% youtube XXXXXX video false 1.3333 %}
+```
+
+* * *

@@ -81,3 +81,34 @@ generate figure element
 ```
 
 * * *
+
+<a name="youtube"></a>
+
+## youtube
+generate youtube embed code
+
+**Syntax**
+```markdown
+{% youtube id, type, [cookie], [aspect ratio] %}
+```
+
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| id | <code>string</code> |  | id of youtube video |
+| [type] | <code>string</code> | <code>&quot;video&quot;</code> | One of `video` or `playlist` |
+| [cookie] | <code>boolean</code> | <code>false</code> | whether to use privacy-enhanced mode |
+| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. The string format must be a fractional representation, such as 16/9. |
+
+**Example**  
+```markdown
+{% youtube XXXXXX %}
+{% youtube XXXXXX video %}
+{% youtube XXXXXX true %}
+{% youtube XXXXXX true 4/3 %}
+{% youtube XXXXXX 4/3 %}
+{% youtube XXXXXX video false 1.3333 %}
+```
+
+* * *
