@@ -164,8 +164,9 @@ body {
 }
 
 ._container {
+  $main-container-horizon-space: 0.75rem !global;
   grid-area: main;
-  padding: 2rem 0.75rem 7.5rem;
+  padding: 2rem $main-container-horizon-space 7.5rem;
 }
 
 ._footer {

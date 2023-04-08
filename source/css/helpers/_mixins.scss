@@ -239,3 +239,20 @@
     }
   }
 }
+
+@mixin fitViewport($options) {
+  $breakpoint: map-get($options, breakpoint);
+  $margin-horizontal: map-get($options, margin);
+
+  max-width: 100vw;
+  margin-right: -1 * $margin-horizontal;
+  margin-left: -1 * $margin-horizontal;
+  width: calc(100% + $margin-horizontal * 2);
+
+  @include respond-to($breakpoint) {
+    max-width: 100%;
+    margin-right: unset;
+    margin-left: unset;
+    width: auto;
+  }
+}

@@ -56,8 +56,14 @@
   blockquote {
     overflow: auto;
     box-sizing: border-box;
-    margin: 1rem -0.75rem;
-    width: calc(100% + (0.75rem * 2));
+    @include fitViewport(
+      (
+        breakpoint: tablet,
+        margin: $main-container-horizon-space,
+      )
+    );
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding: 3rem 2rem;
     background-color: var(--box-background-color);
     background-size: 2em 2em, 2em 2em;
@@ -73,8 +79,6 @@
     }
 
     @include respond-to(tablet) {
-      margin: 1rem 0;
-      width: 100%;
       border-radius: 5px;
       border-left: 5px solid var(--box-accent-border-color);
     }
@@ -158,25 +162,16 @@
     filter: drop-shadow(1px 1px 0.25em rgba(var(--box-shadow-color-rgb), 0.25));
     max-width: 100%;
 
-    @include respond-to(tablet) {
-      max-width: 100%;
-      margin-right: unset;
-      margin-left: unset;
-      width: auto;
-    }
-
     &.block {
-      max-width: 100vw;
-      margin: 1rem -0.75rem;
-      width: calc(100% + (0.75rem * 2));
       display: block;
+      @include fitViewport(
+        (
+          breakpoint: tablet,
+          margin: $main-container-horizon-space,
+        )
+      );
 
       @include respond-to(tablet) {
-        max-width: 100%;
-        margin-right: unset;
-        margin-left: unset;
-        width: auto;
-
         &--right {
           margin-left: auto;
 
@@ -204,14 +199,17 @@
   }
 
   .figure {
-    max-width: 100vw;
-    margin: 1rem -0.75rem;
-    width: calc(100% + (0.75rem * 2));
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    @include fitViewport(
+      (
+        breakpoint: tablet,
+        margin: $main-container-horizon-space,
+      )
+    );
 
     @include respond-to(tablet) {
-      max-width: 100%;
       display: table;
-      margin: 1rem 0;
       width: fit-content;
 
       &--right {
@@ -288,7 +286,14 @@
     }
 
     &:not(blockquote details) {
-      margin: 1rem -0.75rem;
+      @include fitViewport(
+        (
+          breakpoint: tablet,
+          margin: $main-container-horizon-space,
+        )
+      );
+      margin-top: 1rem;
+      margin-bottom: 1rem;
 
       figure,
       blockquote {
@@ -297,8 +302,6 @@
       }
 
       @include respond-to(tablet) {
-        margin: 1rem 0;
-
         figure,
         blockquote {
           margin: 1rem 0;
@@ -390,16 +393,14 @@
   }
 
   .video-container {
-    max-width: 100vw;
-    margin: 1rem -0.75rem;
-    width: calc(100% + (0.75rem * 2));
-
-    @include respond-to(tablet) {
-      max-width: 100%;
-      margin-right: 0;
-      margin-left: 0;
-      width: 100%;
-    }
+    @include fitViewport(
+      (
+        breakpoint: tablet,
+        margin: $main-container-horizon-space,
+      )
+    );
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     iframe {
       width: 100%;
@@ -438,10 +439,20 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
+  @include fitViewport(
+    (
+      breakpoint: tablet,
+      margin: $main-container-horizon-space,
+    )
+  );
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 1em;
-  margin: 0.5em 0;
   overflow: auto;
-  border-radius: 0.3em;
+
+  @include respond-to(tablet) {
+    border-radius: 0.3em;
+  }
 }
 
 :not(pre) > code[class*="language-"],
