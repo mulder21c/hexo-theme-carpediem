@@ -115,7 +115,7 @@ generate youtube embed code
 
 **Syntax**
 ```markdown
-{% youtube id, type, [cookie], [aspect ratio] %}
+{% youtube id, type, [cookie], [aspect ratio], [title] %}
 ```
 
 **Properties**
@@ -126,20 +126,21 @@ generate youtube embed code
 | [type] | <code>string</code> | <code>&quot;video&quot;</code> | One of `video` or `playlist` |
 | [cookie] | <code>boolean</code> | <code>false</code> | whether to use privacy-enhanced mode |
 | [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. The string format must be a fractional representation, such as 16/9. |
+| [title] | <code>string</code> |  | the title for youtube video. This property is used as accessible name iframe |
 
 **Example**  
 ```markdown
 {% youtube XXXXXX %}
-
-{% youtube XXXXXX video %}
-
+<!-- Use title -->
+{% youtube XXXXXX "This video is..." %}
+<!-- Use playlist type -->
+{% youtube XXXXXX playlist %}
+<!-- Allow youtube cookie -->
 {% youtube XXXXXX true %}
-
-{% youtube XXXXXX true 4/3 %}
-
+<!-- Specify aspect-ratio of video -->
 {% youtube XXXXXX 4/3 %}
-
-{% youtube XXXXXX video false 1.3333 %}
+<!-- Combine options -->
+{% youtube XXXXXX playlist 4/3 "2023 Top K-pop" }
 ```
 
 * * *

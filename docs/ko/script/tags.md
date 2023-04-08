@@ -115,7 +115,7 @@ content
 
 **문법**
 ```markdown
-{% youtube id, type, [cookie], [aspect ratio] %}
+{% youtube id, type, [cookie], [aspect ratio], [title] %}
 ```
 
 **매개변수**
@@ -126,20 +126,21 @@ content
 | [type] | <code>string</code> | <code>&quot;video&quot;</code> | `video` 또는 `playlist` 중 하나 |
 | [cookie] | <code>boolean</code> | <code>false</code> | 프라이버시 강화 모드 사용 여부 |
 | [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비. 문자열은 "16/9"와 같은 분수 표현이어야 합니다. |
+| [title] | <code>string</code> |  | 유튜브 비디오 타이틀. 이 속성은 iframe에 대한 접근 가능한 이름으로 사용됩니다. |
 
 **예제**  
 ```markdown
 {% youtube XXXXXX %}
-
-{% youtube XXXXXX video %}
-
+<!-- 타이틀 사용 -->
+{% youtube XXXXXX "This video is..." %}
+<!-- playlist 유형 사용 -->
+{% youtube XXXXXX playlist %}
+<!-- 유튜브 쿠키 허용 -->
 {% youtube XXXXXX true %}
-
-{% youtube XXXXXX true 4/3 %}
-
+<!-- 비디오 종횡비 지정 -->
 {% youtube XXXXXX 4/3 %}
-
-{% youtube XXXXXX video false 1.3333 %}
+<!-- 옵션 조합 -->
+{% youtube XXXXXX playlist 4/3 "2023 Top K-pop" }
 ```
 
 * * *
