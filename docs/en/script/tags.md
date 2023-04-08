@@ -11,6 +11,9 @@ It must be used in <code>{% figure %}</code></p>
 <dt><a href="#figure">figure</a></dt>
 <dd><p>generate figure element</p>
 </dd>
+<dt><a href="#viewer360">viewer360</a></dt>
+<dd><p>generate 360 image viewer</p>
+</dd>
 <dt><a href="#vimeo">vimeo</a></dt>
 <dd><p>generate vimeo embed code</p>
 </dd>
@@ -94,7 +97,7 @@ content
 | [align] | <code>string</code> |  | alignment for figure. One of `left`, `center` or `right` |
 | [float] | <code>boolean</code> | <code>false</code> | whether to use float |
 
-**Example**  
+**Example**
 ```markdown
 {% figure %}
   <img src="xxxx.jpg" alt="" >
@@ -107,6 +110,31 @@ content
 {% figure left true %}
   <img src="xxxx.jpg" alt="" >
 {% endfigure %}
+```
+
+* * *
+
+<a name="viewer360"></a>
+
+## viewer360
+generate 360 image viewer
+
+**Syntax**
+```markdown
+{% viewer360 imageURL [aspectRatio] %}
+```
+
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| imageURL | <code>string</code> |  | the URL of image |
+| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of container. |
+
+**Example**  
+```markdown
+{% viewer360 https://my.ima.ge/picture.jpg %}
+{% viewer360 https://my.ima.ge/picture.jpg 4/3 %}
 ```
 
 * * *

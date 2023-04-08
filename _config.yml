@@ -78,6 +78,10 @@ hero:
   tag:
   search:
 
+# 360 Image Viewer
+#   Whether to use 360 image viewer. If true, use 360 viewer
+viewer360: false
+
 # Search script you will use
 search: algolia
 

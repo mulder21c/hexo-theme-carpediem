@@ -11,6 +11,9 @@
 <dt><a href="#figure">figure</a></dt>
 <dd><p>figure 엘리먼트 생성</p>
 </dd>
+<dt><a href="#viewer360">viewer360</a></dt>
+<dd><p>360 이미지 뷰어 생성</p>
+</dd>
 <dt><a href="#vimeo">vimeo</a></dt>
 <dd><p>vimeo 삽입 코드 생성</p>
 </dd>
@@ -107,6 +110,31 @@ content
 {% figure left true %}
   <img src="xxxx.jpg" alt="" >
 {% endfigure %}
+```
+
+* * *
+
+<a name="viewer360"></a>
+
+## viewer360
+360 이미지 뷰어 생성
+
+**문법**
+```markdown
+{% viewer360 imageURL [aspectRatio] %}
+```
+
+**매개변수**
+
+| 이름 | 유형 | 기본 값 | 설명 |
+| --- | --- | --- | --- |
+| imageURL | <code>string</code> |  | 이미지 URL |
+| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | 컨테이너 종횡비 |
+
+**예제**
+```markdown
+{% viewer360 https://my.ima.ge/picture.jpg %}
+{% viewer360 https://my.ima.ge/picture.jpg 4/3 %}
 ```
 
 * * *

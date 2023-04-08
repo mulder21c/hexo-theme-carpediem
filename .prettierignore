@@ -318,3 +318,4 @@ docs/
 source/js
 __CUSTOM__
 README.md
+source/css/vendor/**/*.css

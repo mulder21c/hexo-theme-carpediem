@@ -410,6 +410,35 @@
       height: 100%;
     }
   }
+
+  .viewer-360 {
+    @include fitViewport(
+      (
+        breakpoint: tablet,
+        margin: $main-container-horizon-space,
+      )
+    );
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
+
+    &:focus {
+      @include respond-to(tablet) {
+        outline: var(--outline-width-bold) solid var(--button-outline-color);
+        outline-offset: 3px;
+        outline-color: var(--button-outline-color);
+      }
+
+      .pnlm-render-container {
+        outline: var(--outline-width-bold) solid var(--button-outline-color);
+        outline-offset: -3px;
+        outline-color: var(--button-outline-color);
+
+        @include respond-to(tablet) {
+          outline: 0;
+        }
+      }
+    }
+  }
 }
 
 /**

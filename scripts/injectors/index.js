@@ -3,7 +3,7 @@ const fsPromises = require("fs/promises");
 const path = require("path");
 const { minify } = require("terser");
 const {
-  themeConfig: { prefix: themePrefix },
+  themeConfig: { prefix: themePrefix, viewer360 },
   themeRoot,
   bundleName,
   vendorName,
@@ -23,6 +23,14 @@ Promise.all([globalVars]).then(([globalVars]) => {
     `default`
   );
 
+  if (viewer360) {
+    injector.register(
+      `head_end`,
+      `<link rel="stylesheet" href="/css/vendor/pannellum.css" />`,
+      `post`
+    );
+  }
+
   // bundle
   injector.register(
     `body_end`,
@@ -36,6 +44,14 @@ Promise.all([globalVars]).then(([globalVars]) => {
       `<script src="/js/algoliasearch-lite.umd.js"></script>
        <script src="/js/instantsearch.production.min.js"></script>`,
       `search`
+    );
+  }
+
+  if (viewer360) {
+    injector.register(
+      `head_end`,
+      `<script src="/js/pannellum.js"></script>`,
+      `post`
     );
   }
 
