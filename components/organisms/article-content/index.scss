@@ -39,7 +39,7 @@
     clear: both;
   }
   p {
-    margin: 1em 0;
+    margin: 1.7em 0;
   }
   hr {
     display: flex;
@@ -62,8 +62,8 @@
         margin: $main-container-horizon-space,
       )
     );
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
     padding: 3rem 2rem;
     background-color: var(--box-background-color);
     background-size: 2em 2em, 2em 2em;
@@ -129,7 +129,7 @@
     table-layout: fixed;
     border-top: var(--border-width-thin) solid var(--table-border-color);
     border-bottom: var(--border-width-thin) solid var(--table-border-color);
-    margin: 1rem 0;
+    margin: 1.7em 0;
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
@@ -164,6 +164,9 @@
 
     &.block {
       display: block;
+      margin-top: 1.7em;
+      margin-bottom: 1.7em;
+
       @include fitViewport(
         (
           breakpoint: tablet,
@@ -172,6 +175,8 @@
       );
 
       @include respond-to(tablet) {
+        border-radius: 5px;
+
         &--right {
           margin-left: auto;
 
@@ -199,8 +204,8 @@
   }
 
   .figure {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
     @include fitViewport(
       (
         breakpoint: tablet,
@@ -276,12 +281,12 @@
   }
 
   details {
-    margin: 1rem 0;
+    margin: 1.7em 0;
     padding: 0.25rem 0.75rem;
 
     figure,
     blockquote {
-      margin: 1rem 0;
+      margin: 1.7em 0;
       width: 100%;
     }
 
@@ -292,19 +297,17 @@
           margin: $main-container-horizon-space,
         )
       );
-      margin-top: 1rem;
-      margin-bottom: 1rem;
 
       figure,
       blockquote {
-        margin: 1rem -0.75rem;
+        margin: 1.7em -0.75rem;
         width: calc(100% + 1.5rem);
       }
 
       @include respond-to(tablet) {
         figure,
         blockquote {
-          margin: 1rem 0;
+          margin: 1.7em 0;
           width: 100%;
         }
       }
@@ -399,8 +402,8 @@
         margin: $main-container-horizon-space,
       )
     );
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
 
     iframe {
       width: 100%;
@@ -445,8 +448,8 @@ pre[class*="language-"] {
       margin: $main-container-horizon-space,
     )
   );
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.7em;
+  margin-bottom: 1.7em;
   padding: 1em;
   overflow: auto;
 
