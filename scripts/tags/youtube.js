@@ -29,7 +29,7 @@ const parse = require("../utils/parse-custom-tag-param");
  */
 const youtubeTag = (ctx) => {
   const log = ctx?.log || console;
-  return function youtubeTag([
+  return function ([
     id,
     type = `video`,
     cookie = false,

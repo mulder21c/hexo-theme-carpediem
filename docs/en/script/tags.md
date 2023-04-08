@@ -1,4 +1,4 @@
-## Tags
+## Functions
 
 <dl>
 <dt><a href="#disclosure">disclosure</a></dt>
@@ -10,6 +10,9 @@ It must be used in <code>{% figure %}</code></p>
 </dd>
 <dt><a href="#figure">figure</a></dt>
 <dd><p>generate figure element</p>
+</dd>
+<dt><a href="#vimeo">vimeo</a></dt>
+<dd><p>generate vimeo embed code</p>
 </dd>
 <dt><a href="#youtube">youtube</a></dt>
 <dd><p>generate youtube embed code</p>
@@ -104,6 +107,37 @@ content
 {% figure left true %}
   <img src="xxxx.jpg" alt="" >
 {% endfigure %}
+```
+
+* * *
+
+<a name="vimeo"></a>
+
+## vimeo
+generate vimeo embed code
+
+**Syntax**
+```markdown
+{% vimeo id, [aspect ratio], [title] %}
+```
+
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| id | <code>string</code> |  | id of vimeo video |
+| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. The string format must be a fractional representation, such as 16/9. |
+| [title] | <code>string</code> |  | the title for vimeo video. This property is used as accessible name iframe |
+
+**Example**  
+```markdown
+{% vimeo XXXXXX %}
+<!-- Use title -->
+{% vimeo XXXXXX "This video is..." %}
+<!-- Specify aspect-ratio of video -->
+{% vimeo XXXXXX 4/3 %}
+<!-- Combine options -->
+{% vimeo XXXXXX "2023 Top K-pop" }
 ```
 
 * * *

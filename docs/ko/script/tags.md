@@ -11,8 +11,11 @@
 <dt><a href="#figure">figure</a></dt>
 <dd><p>figure 엘리먼트 생성</p>
 </dd>
+<dt><a href="#vimeo">vimeo</a></dt>
+<dd><p>vimeo 삽입 코드 생성</p>
+</dd>
 <dt><a href="#youtube">youtube</a></dt>
-<dd><p>유튜부 삽입 코드 생성</p>
+<dd><p>유튜브 삽입 코드 생성</p>
 </dd>
 </dl>
 
@@ -104,6 +107,37 @@ content
 {% figure left true %}
   <img src="xxxx.jpg" alt="" >
 {% endfigure %}
+```
+
+* * *
+
+<a name="vimeo"></a>
+
+## vimeo
+vimeo 삽입 코드 생성
+
+**문법**
+```markdown
+{% vimeo id, [aspect ratio], [title] %}
+```
+
+**매개변수**
+
+| 이름 | 유형 | 기본 값 | 설명 |
+| --- | --- | --- | --- |
+| id | <code>string</code> |  | vimeo 영상 id |
+| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비. 문자열은 "16/9"와 같은 분수 표현이어야 합니다. |
+| [title] | <code>string</code> |  | vimeo 비디오 타이틀. 이 속성은 iframe에 대한 접근 가능한 이름으로 사용됩니다. |
+
+**Example**  
+```markdown
+{% vimeo XXXXXX %}
+<!-- 타이틀 사용 -->
+{% vimeo XXXXXX "This video is..." %}
+<!-- 비디오 종횡비 지정 -->
+{% vimeo XXXXXX 4/3 %}
+<!-- 옵션 조합 -->
+{% vimeo XXXXXX "2023 Top K-pop" }
 ```
 
 * * *
