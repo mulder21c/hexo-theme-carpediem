@@ -26,17 +26,26 @@ function viewer360Tag(ctx) {
       return;
     }
 
-    return htmlTag(
+    const viewer = htmlTag(
       `div`,
       {
         class: "viewer-360",
         "data-image": imageURL,
-        role: "application",
+      },
+      ``,
+      false
+    );
+
+    return htmlTag(
+      `div`,
+      {
+        class: "viewer-360__container",
+        role: "region",
         "aria-roledescription": "360 photo viewer",
         "aria-label": label,
         style: `aspect-ratio: ${aspectRatio}`,
       },
-      ``,
+      viewer,
       false
     );
   };

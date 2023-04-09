@@ -412,14 +412,16 @@
   }
 
   .viewer-360 {
-    @include fitViewport(
-      (
-        breakpoint: tablet,
-        margin: $main-container-horizon-space,
-      )
-    );
-    margin-top: 1.7em;
-    margin-bottom: 1.7em;
+    &__container {
+      @include fitViewport(
+        (
+          breakpoint: tablet,
+          margin: $main-container-horizon-space,
+        )
+      );
+      margin-top: 1.7em;
+      margin-bottom: 1.7em;
+    }
 
     &:focus {
       @include respond-to(tablet) {
