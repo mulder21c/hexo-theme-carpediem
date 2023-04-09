@@ -41,7 +41,7 @@ content
 | label | <code>string</code> |  | visible label |
 | [open] | <code>boolean</code> | <code>false</code> | whether to be opened |
 
-**Example**  
+**Example**
 ```markdown
 {% disclosure "show more" %}
   More Contents...
@@ -71,7 +71,7 @@ It must be used in `{% figure %}`
 | --- | --- | --- |
 | caption | <code>string</code> | caption text content |
 
-**Example**  
+**Example**
 ```markdown
 {% figcaption "This image is ..." %}
 ```
@@ -121,7 +121,7 @@ generate 360 image viewer
 
 **Syntax**
 ```markdown
-{% viewer360 imageURL [aspectRatio] %}
+{% viewer360 imageURL label [aspectRatio] %}
 ```
 
 **Properties**
@@ -129,12 +129,13 @@ generate 360 image viewer
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | imageURL | <code>string</code> |  | the URL of image |
+| label | <code>string</code> |  | the alternative text for image |
 | [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of container. |
 
-**Example**  
+**Example**
 ```markdown
-{% viewer360 https://my.ima.ge/picture.jpg %}
-{% viewer360 https://my.ima.ge/picture.jpg 4/3 %}
+{% viewer360 https://my.ima.ge/picture.jpg "This image is..." %}
+{% viewer360 https://my.ima.ge/picture.jpg  "This image is..." 4/3 %}
 ```
 
 * * *
@@ -157,7 +158,7 @@ generate vimeo embed code
 | [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. The string format must be a fractional representation, such as 16/9. |
 | [title] | <code>string</code> |  | the title for vimeo video. This property is used as accessible name iframe |
 
-**Example**  
+**Example**
 ```markdown
 {% vimeo XXXXXX %}
 <!-- Use title -->
@@ -190,7 +191,7 @@ generate youtube embed code
 | [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. The string format must be a fractional representation, such as 16/9. |
 | [title] | <code>string</code> |  | the title for youtube video. This property is used as accessible name iframe |
 
-**Example**  
+**Example**
 ```markdown
 {% youtube XXXXXX %}
 <!-- Use title -->

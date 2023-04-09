@@ -6,25 +6,34 @@ const parse = require("../utils/parse-custom-tag-param");
  * @desc generate 360 image viewer
  * @alias viewer360
  * @property {string} imageURL the URL of image
+ * @property {string} label the alternative text for image
  * @property {string|number} [aspectRatio= 16/9] - the aspect ratio of container.
  * @syntax
- * {% viewer360 imageURL [aspectRatio] %}
+ * {% viewer360 imageURL label [aspectRatio] %}
  * @example
- * {% viewer360 https://my.ima.ge/picture.jpg %}
- * {% viewer360 https://my.ima.ge/picture.jpg 4/3 %}
+ * {% viewer360 https://my.ima.ge/picture.jpg "This image is..." %}
+ * {% viewer360 https://my.ima.ge/picture.jpg "This image is..." 4/3 %}
  */
 function viewer360Tag(ctx) {
   const log = ctx?.log || console;
-  return function ([image, aspectRatio = 16 / 9]) {
-    if (!image || typeof parse(image) === `number`) {
+  return function ([imageURL, label, aspectRatio = 16 / 9]) {
+    if (!imageURL) {
       log.error(`The image URL is missed.`);
       return;
     }
+    if (!label || typeof parse(label) === "number") {
+      log.error(`The label is missed.`);
+      return;
+    }
+
     return htmlTag(
       `div`,
       {
         class: "viewer-360",
-        "data-image": image,
+        "data-image": imageURL,
+        role: "application",
+        "aria-roledescription": "360 photo viewer",
+        "aria-label": label,
         style: `aspect-ratio: ${aspectRatio}`,
       },
       ``,
