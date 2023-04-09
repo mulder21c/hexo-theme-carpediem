@@ -3,7 +3,8 @@ const parse = require("../utils/parse-custom-tag-param");
 
 /**
  * @public
- * @desc generate 360 image viewer
+ * @desc generate 360 image viewer <br>
+ * To use this plug-in, need to enable `viewer360` in config of theme.
  * @alias viewer360
  * @property {string} imageURL the URL of image
  * @property {string} label the alternative text for image

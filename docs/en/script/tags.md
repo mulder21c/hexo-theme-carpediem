@@ -117,7 +117,8 @@ content
 <a name="viewer360"></a>
 
 ## viewer360
-generate 360 image viewer
+generate 360 image viewer <br>
+To use this plug-in, need to enable `viewer360` in config of theme.
 
 **Syntax**
 ```markdown
