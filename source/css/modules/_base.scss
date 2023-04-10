@@ -114,7 +114,8 @@ body {
   text-rendering: optimizeLegibility;
   background-color: var(--background-color);
   color: var(--text-color-primary);
-  word-break: break-all;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 input,
