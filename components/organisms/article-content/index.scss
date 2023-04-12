@@ -86,6 +86,13 @@
     cite {
       font-style: normal;
 
+      > a {
+        max-width: 100%;
+        display: inline-block;
+        vertical-align: bottom;
+        @include lineEllipsis(1);
+      }
+
       &:not(footer cite) {
         display: inline-flex;
         flex-flow: row nowrap;
