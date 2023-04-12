@@ -45,7 +45,6 @@
 
   const generateControl = ({ func, label, content }) => {
     const control = document.createElement(`button`);
-    console.log(func);
     control.dataset.func = func;
     control.setAttribute(`type`, `button`);
     control.setAttribute(`aria-label`, label);
