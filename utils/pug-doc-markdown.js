@@ -3,7 +3,7 @@
 
 const compact = require("lodash/compact");
 const JSONStream = require("JSONStream");
-const mkdirp = require("mkdirp");
+const { mkdirp } = require("mkdirp");
 const path = require("path");
 const fs = require("fs");
 const prettier = require("prettier");
