@@ -20,14 +20,14 @@ favicon:
 #   These links are displayed to the author information on post template
 #   You can include additional social links that are not listed below, if you want
 profile:
-  gravatar:
+  gravatar: /images/favicon.png
   social:
-    github:
-    facebook:
+    github: https://github.com/mulder21c
+    facebook: https://facebook.com/mulder21c
     linkedin:
     instagram:
     twitter:
-    rss: /rss.xml
+    rss:
 
 # Analytics
 #   Add a G-ID including "G-"
@@ -43,10 +43,10 @@ commento:
   host:
 
 remark:
-  host:
-  site_id:
-  no_footer:
-  locale:
+  host: https://comment.mulder21c.io
+  site_id: mulder21c
+  no_footer: true
+  locale: ko
 
 livere:
   uid:
@@ -80,7 +80,7 @@ hero:
 
 # 360 Image Viewer
 #   Whether to use 360 image viewer. If true, use 360 viewer
-viewer360: false
+viewer360: true
 
 # Search script you will use
 search: algolia
