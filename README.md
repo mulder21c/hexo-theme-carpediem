@@ -4,6 +4,8 @@ Amorfati is fully customizable and component-based Hexo theme.
 
 [한국어 ![](https://flagcdn.com/w20/kr.webp)](./docs/ko/README.md)
 
+![Mock up](https://cdn.mulder21c.io/images/amorfati/screenshots/preview.jpg)
+
 ## Requirements
 
 - Node v16.16.0+

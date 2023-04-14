@@ -4,6 +4,8 @@ Amorfati는 완전히 커스텀 할 수 있는 컴포넌트 기반의 Hexo 테�
 
 [영어 ![](https://flagcdn.com/w20/us.webp)](../../README.md)
 
+![목업](https://cdn.mulder21c.io/images/amorfati/screenshots/preview.jpg)
+
 ## 요구사항
 
 - Node v16.16.0+
