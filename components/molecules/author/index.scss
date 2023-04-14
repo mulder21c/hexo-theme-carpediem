@@ -1,12 +1,10 @@
 .#{$prefix}-author {
   --profile-image-with: 3rem;
-  --profile-image-padding: 0.5rem;
   --column-gap: 0.75rem;
   --row-gap: 0.5rem;
 
   @include respond-to(tablet) {
     --profile-image-with: 5rem;
-    --profile-image-padding: 0.75rem;
     --column-gap: 2rem;
     --row-gap: 0.75rem;
   }
@@ -32,7 +30,6 @@
   &__gravatar {
     grid-area: image;
     border-radius: 50%;
-    padding: var(--profile-image-padding);
     width: var(--profile-image-with);
     height: var(--profile-image-with);
     background-color: var(--box-background-color);
