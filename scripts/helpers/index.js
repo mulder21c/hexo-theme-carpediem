@@ -1,5 +1,6 @@
 const helper = hexo.extend.helper;
 
+helper.register(`asset_url`, require(`./asset-url`)(hexo));
 helper.register(`compile_sass`, require(`./compile-sass`));
 helper.register(`full_url`, require(`./full-url`));
 helper.register(`generate_uid`, require(`./generate-uid`));

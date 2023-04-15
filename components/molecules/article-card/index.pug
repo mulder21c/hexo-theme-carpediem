@@ -51,7 +51,10 @@ mixin articleCard(props = {})
     const metaId = generate_uid();
     const datetime = post.updated || post.date;
     const categories = post.categories.toArray();
-    const thumb = post.thumbnail || post.hero || post?.photos?.unshift();
+    const thumb =
+      asset_url(post.thumbnail, post)
+      || asset_url(post._id, post)
+      || post?.photos?.unshift();
     const hasCategoryLink = !isLink;
 
   div(
