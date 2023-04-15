@@ -54,6 +54,7 @@ const getHeroInfo = () => {
 function heroInfoGenerator(data) {
   const hexo = this;
   const [posts] = data;
+  const PostAsset = hexo.model("PostAsset");
   const imageInfo = new Map(JSON.parse(getHeroInfo()));
   hexo.log.info(`Start generating hero image database.`);
   const themeHeros = Object.values(themeConfig.hero || {}).map((val) => ({
@@ -61,7 +62,7 @@ function heroInfoGenerator(data) {
   }));
 
   [...themeHeros, ...posts].forEach((post) => {
-    const hero = post?.hero || undefined;
+    let hero = post?.hero || undefined;
     if (!hero) return;
     if (typeof hero !== `string`) throw new Error(`hero must be string.`);
     if (hasProtocol(hero)) {
@@ -74,7 +75,16 @@ function heroInfoGenerator(data) {
         imageInfo.set(hero, {});
       }
     } else {
-      const filePath = path.join(hexoSourcePath, hero);
+      let filePath = path.join(hexoSourcePath, hero);
+      if (!fs.existsSync(filePath)) {
+        const asset = PostAsset.findOne({ post: post._id, slug: hero });
+        if (!asset) {
+          hexo.log.error(`${filePath} is not exists.`);
+          return;
+        }
+        filePath = asset.source;
+        hero = asset.path;
+      }
       const { mtime } = fs.statSync(filePath);
       const info = imageInfo.get(hero);
       if (imageInfo.get(hero) && info.mtime >= mtime.getTime()) return;

@@ -10,8 +10,11 @@ helper.register(`kor_josa`, require(`./kor-josa`));
 helper.register(`list_categories`, require(`./list-categories`));
 helper.register(`list_links`, require(`./list-links`));
 helper.register(`list_menus`, require(`./list-menus`));
-helper.register(`open_graph`, require(`./open-graph`));
+helper.register(`open_graph`, require(`./open-graph`)(hexo));
 helper.register(`paginator`, require(`./paginator`));
-helper.register(`representative_image`, require(`./representative-image`));
+helper.register(
+  `representative_image`,
+  require(`./representative-image`)(hexo)
+);
 helper.register(`strip_html`, require(`./strip-html`));
 helper.register(`truncate`, require(`./truncate`));

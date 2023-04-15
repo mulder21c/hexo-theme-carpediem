@@ -1,8 +1,11 @@
+const fs = require("fs");
+const path = require("path");
 const full_url = require("./full-url");
 const { isMoment, isDate } = require("moment");
 const { encodeURL, prettyUrls, htmlTag, escapeHTML } = require("hexo-util");
 const stripHTML = require("./strip-html");
 const { default: moize } = require("moize");
+const { hexoSourcePath } = require("../constants");
 
 const localeMap = {
   en: "en_US",
@@ -68,168 +71,181 @@ const og = (name, content, escape) => {
  * @example
  *  | !{ open_graph() }
  */
-function openGraphHelper(options = {}) {
-  const { config, page, theme } = this;
-  const { content, hero } = page;
-  let images = options.image || options.images || page.photos || [];
-  let description =
-    options.description ||
-    page.description ||
-    page.excerpt ||
-    content ||
-    config.description;
-  let keywords =
-    (page.tags && page.tags.length ? page.tags : undefined) ||
-    config.keywords ||
-    false;
-  const title = options.title || page.title || config.title;
-  const type = options.type || (this.is_post() ? "article" : "website");
-  const url = prettyUrls(options.url || this.url, config.pretty_urls);
-  const siteName = options.site_name || config.title;
-  const twitterCard = options.twitter_card || "summary";
-  const date = options.date !== false ? options.date || page.date : false;
-  const updated =
-    options.updated !== false ? options.updated || page.updated : false;
-  const language =
-    options.language || page.lang || page.language || config.language;
-  const author = options.author || config.author;
-  const { is_archive, is_category, is_tag } = this;
-  const getHeroByLayout = (theme) => {
-    if (is_archive() && theme.hero?.archive)
-      return [full_url.call(this, theme.hero.archive)];
-    if (is_category() && theme.hero?.category)
-      return [full_url.call(this, theme.hero.category)];
-    if (is_tag() && theme.hero?.tag)
-      return [full_url.call(this, theme.hero.tag)];
-    if (theme.hero?.index) return [full_url.call(this, theme.hero?.index)];
-    return [];
-  };
+const openGraphHelper = (ctx) => {
+  const PostAsset = ctx.model("PostAsset");
 
-  if (!Array.isArray(images)) images = [images];
-  images = [
-    ...new Set([
-      ...(hero ? [full_url.call(this, hero)] : []),
-      ...(theme.hero ? getHeroByLayout(theme) : []),
-      ...images,
-    ]),
-  ];
+  return function (options = {}) {
+    const { config, page, theme } = this;
+    const { content, hero } = page;
+    let images = options.image || options.images || page.photos || [];
+    let description =
+      options.description ||
+      page.description ||
+      page.excerpt ||
+      content ||
+      config.description;
+    let keywords =
+      (page.tags && page.tags.length ? page.tags : undefined) ||
+      config.keywords ||
+      false;
+    const title = options.title || page.title || config.title;
+    const type = options.type || (this.is_post() ? "article" : "website");
+    const url = prettyUrls(options.url || this.url, config.pretty_urls);
+    const siteName = options.site_name || config.title;
+    const twitterCard = options.twitter_card || "summary";
+    const date = options.date !== false ? options.date || page.date : false;
+    const updated =
+      options.updated !== false ? options.updated || page.updated : false;
+    const language =
+      options.language || page.lang || page.language || config.language;
+    const author = options.author || config.author;
+    const { is_archive, is_category, is_tag } = this;
+    const getHeroByLayout = (theme) => {
+      if (is_archive() && theme.hero?.archive)
+        return [full_url.call(this, theme.hero.archive)];
+      if (is_category() && theme.hero?.category)
+        return [full_url.call(this, theme.hero.category)];
+      if (is_tag() && theme.hero?.tag)
+        return [full_url.call(this, theme.hero.tag)];
+      if (theme.hero?.index) return [full_url.call(this, theme.hero?.index)];
+      return [];
+    };
 
-  if (description) {
-    description = escapeHTML(
-      stripHTML(description).substring(0, 200).trim() // Remove prefixing/trailing spaces
-    ).replace(/(\n|\s)+/g, " "); // Replace new lines and spaces runs by one spaces
-  }
-
-  if (content) {
-    images = images.slice();
-
-    if (content.includes("<img")) {
-      let img;
-      const imgPattern = /<img [^>]*src=['"]([^'"]+)([^>]*>)/gi;
-      while ((img = imgPattern.exec(content)) !== null) {
-        images.push(img[1]);
+    if (!Array.isArray(images)) images = [images];
+    let postHero = null;
+    if (hero) {
+      if (fs.existsSync(path.join(hexoSourcePath, hero))) {
+        postHero = full_url.call(this, hero);
+      } else {
+        const asset = PostAsset.findOne({ post: page._id, slug: hero });
+        if (asset) postHero = [full_url.call(this, asset.path)] || [];
       }
     }
-  }
+    images = [
+      ...new Set([
+        ...(postHero ? [postHero] : []),
+        ...(theme.hero ? getHeroByLayout(theme) : []),
+        ...images,
+      ]),
+    ];
 
-  let result = "";
-
-  if (description) {
-    result += meta("description", description);
-  }
-
-  result += og("og:type", type);
-  result += og("og:title", title);
-
-  if (url) {
-    result += og("og:url", encodeURL(url), false);
-  } else {
-    result += og("og:url");
-  }
-
-  result += og("og:site_name", siteName);
-  if (description) {
-    result += og("og:description", description, false);
-  }
-
-  if (language) {
-    result += og("og:locale", localeToTerritory(language), false);
-  }
-
-  images = images
-    .map((path) => new URL(path, url || config.url).toString())
-    .filter((url) => !url.startsWith("data:"));
-
-  images.forEach((path) => {
-    result += og("og:image", path, false);
-  });
-
-  if (date) {
-    if ((isMoment(date) || isDate(date)) && !isNaN(date.valueOf())) {
-      result += og("article:published_time", date.toISOString());
+    if (description) {
+      description = escapeHTML(
+        stripHTML(description).substring(0, 200).trim() // Remove prefixing/trailing spaces
+      ).replace(/(\n|\s)+/g, " "); // Replace new lines and spaces runs by one spaces
     }
-  }
 
-  if (updated) {
-    if ((isMoment(updated) || isDate(updated)) && !isNaN(updated.valueOf())) {
-      result += og("article:modified_time", updated.toISOString());
+    if (content) {
+      images = images.slice();
+
+      if (content.includes("<img")) {
+        let img;
+        const imgPattern = /<img [^>]*src=['"]([^'"]+)([^>]*>)/gi;
+        while ((img = imgPattern.exec(content)) !== null) {
+          images.push(img[1]);
+        }
+      }
     }
-  }
 
-  if (author) {
-    result += og("article:author", author);
-  }
+    let result = "";
 
-  if (keywords) {
-    if (typeof keywords === "string") keywords = [keywords];
+    if (description) {
+      result += meta("description", description);
+    }
 
-    keywords
-      .map((tag) => {
-        return tag.name ? tag.name : tag;
-      })
-      .filter(Boolean)
-      .forEach((keyword) => {
-        result += og("article:tag", keyword);
-      });
-  }
+    result += og("og:type", type);
+    result += og("og:title", title);
 
-  result += meta("twitter:card", twitterCard);
+    if (url) {
+      result += og("og:url", encodeURL(url), false);
+    } else {
+      result += og("og:url");
+    }
 
-  if (options.twitter_image) {
-    let twitter_image = options.twitter_image;
-    twitter_image = new URL(twitter_image, url || config.url);
-    result += meta("twitter:image", twitter_image, false);
-  } else if (images.length) {
-    result += meta("twitter:image", images[0], false);
-  }
+    result += og("og:site_name", siteName);
+    if (description) {
+      result += og("og:description", description, false);
+    }
 
-  if (options.twitter_id) {
-    let twitterId = options.twitter_id;
-    if (!twitterId.startsWith("@")) twitterId = `@${twitterId}`;
+    if (language) {
+      result += og("og:locale", localeToTerritory(language), false);
+    }
 
-    result += meta("twitter:creator", twitterId);
-  }
+    images = images
+      .map((path) => new URL(path, url || config.url).toString())
+      .filter((url) => !url.startsWith("data:"));
 
-  if (options.twitter_site) {
-    result += meta("twitter:site", options.twitter_site, false);
-  }
+    images.forEach((path) => {
+      result += og("og:image", path, false);
+    });
 
-  if (options.google_plus) {
-    result += `${htmlTag("link", {
-      rel: "publisher",
-      href: options.google_plus,
-    })}\n`;
-  }
+    if (date) {
+      if ((isMoment(date) || isDate(date)) && !isNaN(date.valueOf())) {
+        result += og("article:published_time", date.toISOString());
+      }
+    }
 
-  if (options.fb_admins) {
-    result += og("fb:admins", options.fb_admins);
-  }
+    if (updated) {
+      if ((isMoment(updated) || isDate(updated)) && !isNaN(updated.valueOf())) {
+        result += og("article:modified_time", updated.toISOString());
+      }
+    }
 
-  if (options.fb_app_id) {
-    result += og("fb:app_id", options.fb_app_id);
-  }
+    if (author) {
+      result += og("article:author", author);
+    }
 
-  return result.trim();
-}
+    if (keywords) {
+      if (typeof keywords === "string") keywords = [keywords];
+
+      keywords
+        .map((tag) => {
+          return tag.name ? tag.name : tag;
+        })
+        .filter(Boolean)
+        .forEach((keyword) => {
+          result += og("article:tag", keyword);
+        });
+    }
+
+    result += meta("twitter:card", twitterCard);
+
+    if (options.twitter_image) {
+      let twitter_image = options.twitter_image;
+      twitter_image = new URL(twitter_image, url || config.url);
+      result += meta("twitter:image", twitter_image, false);
+    } else if (images.length) {
+      result += meta("twitter:image", images[0], false);
+    }
+
+    if (options.twitter_id) {
+      let twitterId = options.twitter_id;
+      if (!twitterId.startsWith("@")) twitterId = `@${twitterId}`;
+
+      result += meta("twitter:creator", twitterId);
+    }
+
+    if (options.twitter_site) {
+      result += meta("twitter:site", options.twitter_site, false);
+    }
+
+    if (options.google_plus) {
+      result += `${htmlTag("link", {
+        rel: "publisher",
+        href: options.google_plus,
+      })}\n`;
+    }
+
+    if (options.fb_admins) {
+      result += og("fb:admins", options.fb_admins);
+    }
+
+    if (options.fb_app_id) {
+      result += og("fb:app_id", options.fb_app_id);
+    }
+
+    return result.trim();
+  };
+};
 
 module.exports = openGraphHelper;
