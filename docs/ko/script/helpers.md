@@ -1,6 +1,11 @@
 ## Functions
 
 <dl>
+<dt><a href="#asset_url">asset_url(slug, [post])</a> ⇒ <code>string</code></dt>
+<dd><p>asset URL 가져옴<br>
+asset이 <code>_posts</code>에 있는 경우, post asset으로부터 URL을 가져옴.
+그렇지 않으면 source로부터 URL을 가져옴.</p>
+</dd>
 <dt><a href="#compile_sass">compile_sass(css)</a> ⇒ <code>string</code></dt>
 <dd><p>포스트(페이지)별 SA(C)SS 컴파일</p>
 </dd>
@@ -16,7 +21,7 @@
 <dd><p>아카이브 게시글 목록 가져옴</p>
 </dd>
 <dt><a href="#archive_map">archive_map()</a> ⇒ <code><a href="#yearlyPosts">yearlyPosts</a></code></dt>
-<dd><p>연도 및 월로 매핑  된 아카이브 데이터를 가져옴</p>
+<dd><p>연도 및 월로 매핑 된 아카이브 데이터를 가져옴</p>
 </dd>
 <dt><a href="#icon_info">icon_info(icon)</a> ⇒ <code><a href="#IconInfo">IconInfo</a></code></dt>
 <dd><p>fontawesome으로부터 아이콘의 이름과 카테고리를 가져옴</p>
@@ -75,6 +80,28 @@ hexo 것과의 차이입니다.</p>
 <dd></dd>
 </dl>
 
+<a name="asset_url"></a>
+
+## asset\_url(slug, [post]) ⇒ <code>string</code>
+asset URL 가져옴 <br>
+asset이 `_posts`에 있는 경우, post asset으로부터 URL을 가져옴.
+그렇지 않으면 source로부터 URL을 가져옴.
+
+**Kind**: global function  
+**Access**: public  
+
+| 매개변수 | 유형 | 설명 |
+| --- | --- | --- |
+| slug | <code>string</code> | asset의 slug |
+| [post] | <code>object</code> | Hexo post 데이터 |
+
+**예제"*
+```jade
+asset_url(post.thumbnail, post)
+```
+
+* * *
+
 <a name="compile_sass"></a>
 
 ## compile\_sass(css) ⇒ <code>string</code>
@@ -87,7 +114,7 @@ hexo 것과의 차이입니다.</p>
 | --- | --- | --- |
 | css | <code>string</code> | 처리할 SA(C)SS |
 
-**Example**  
+**예제"*
 ```jade
 if page.style
   style
@@ -109,7 +136,7 @@ if page.style
 | --- | --- |
 | url | <code>string</code> | 
 
-**Example**  
+**예제"*
 ```jade
 a(href= full_url(`/search`)
 ```
@@ -123,7 +150,7 @@ a(href= full_url(`/search`)
 
 **Kind**: global function  
 **Access**: public  
-**Example**  
+**예제"*
 ```jade
 a(id= generate_uid())
 ```
@@ -143,7 +170,7 @@ a(id= generate_uid())
 | --- | --- | --- |
 | year | <code>number</code> | 아카이브 연도. <br> 연도가 지정 된되는 경우, 연도에 대한 모든 게시글을 반환합니다. 그렇지 않으면, 마지막 `MAX_YEAR_LEN`년까지 게시글을 반환합니다. |
 
-**Example**  
+**예제"*
 ```jade
 - const archiveItems = getArchivePostsArray();
 - const archiveItems = getArchivePostsArray(2023);
@@ -158,7 +185,7 @@ a(id= generate_uid())
 
 **Kind**: global function  
 **Access**: public  
-**Example**  
+**예제"*
 ```jade
 +archiveTimeline({
   archives: archive_map(),
@@ -180,7 +207,7 @@ fontawesome으로부터 아이콘의 이름과 카테고리를 가져옴
 | --- | --- | --- |
 | icon | <code>string</code> | 아이콘 이름, 아이콘 카테고리를 슬래시와 슬래시 뒤의 문자로 미리 정의하는 것도 가능합니다 |
 
-**Example**  
+**예제"*
 ```jade
 - const { iconName, iconCategory } = icon_info("bell")
 - const { iconName, iconCategory } = icon_info("bell/regular")
@@ -201,7 +228,7 @@ fontawesome으로부터 아이콘의 이름과 카테고리를 가져옴
 | word | <code>string</code> | 조사를 붙이기 원하는 단어 |
 | postposition | <code>string</code> | 조사 종류 (은/는, 이/가, 을/를) |
 
-**Example**  
+**예제"*
 ```jade
 p= title + kor_josa(title, "은")
 p= title + kor_josa(title, "는")
@@ -227,7 +254,7 @@ Hexo의 listCategoriesHelper 헬퍼에서 염감을 받았습니다
 | categories | <code>object</code> | Hexo의 이터러블 카테고리 객체 |
 | options | <code>object</code> | [https://hexo.io/docs/helpers#list-categories](https://hexo.io/docs/helpers#list-categories) 참고 |
 
-**Example**  
+**예제"*
 ```jade
 div
  | !{list_categories({})}
@@ -251,7 +278,7 @@ Hexo의 listCategoriesHelper 헬퍼에서 염감을 받았습니다
 | options.transform | <code>function</code> | 링크 이름 표현을 변경하는 함수 |
 | options.class | <code>string</code> | 링크 목록의 클래스 이름 |
 
-**Example**  
+**예제"*
 ```jade
 div
  | !{list_links({})}
@@ -275,7 +302,7 @@ Hexo의 listCategoriesHelper 헬퍼에서 염감을 받았습니다
 | options.transform | <code>function</code> | 메뉴 이름 표현을 변경하는 함수 |
 | options.class | <code>string</code> | 메뉴 목록의 클래스 이름 |
 
-**Example**  
+**예제"*
 ```jade
 div
  | !{list_menus({})}
@@ -297,7 +324,7 @@ hexo의 openGraphHelper에서 영감을 받았습니다. <br>
 | --- | --- | --- |
 | options | <code>object</code> | [https://hexo.io/docs/helpers#open-graph](https://hexo.io/docs/helpers#open-graph) 참고 |
 
-**Example**  
+**예제"*
 ```jade
 | !{ open_graph() }
 ```
@@ -317,7 +344,7 @@ hexo panigator 헬퍼에서 영감을 받았습니다. 좀 더 접근 가능하�
 | --- | --- | --- |
 | options | <code>object</code> | [https://hexo.io/docs/helpers#paginator](https://hexo.io/docs/helpers#paginator) 참고 |
 
-**Example**  
+**예제"*
 ```jade
 | !{ paginator({ base: `/` }) }
 ```
@@ -336,7 +363,7 @@ hexo panigator 헬퍼에서 영감을 받았습니다. 좀 더 접근 가능하�
 | --- | --- | --- |
 | page | <code>object</code> | hexo의 page 객체 |
 
-**Example**  
+**예제"*
 ```jade
 - const hero = representative_image(theme);
 ```
@@ -357,7 +384,7 @@ hexo 것과의 차이입니다.
 | --- | --- | --- |
 | str | <code>string</code> | 본래 문자열 |
 
-**Example**  
+**예제"*
 ```jade
 p= strip_html(post.content)
 ```
@@ -387,9 +414,9 @@ p= strip_html(post.content)
 아키이브에 대한 게시글 데이터 객체
 
 **Kind**: global typedef  
-**Properties**
+**프로퍼티**
 
-| Name | 유형 |
+| 이름 | 유형 |
 | --- | --- |
 | title | <code>string</code> | 
 | subtitle | <code>string</code> | 
@@ -418,9 +445,9 @@ p= strip_html(post.content)
 
 ## IconInfo : <code>object</code>
 **Kind**: global typedef  
-**Properties**
+**프로퍼티**
 
-| Name | 유형 |
+| 이름 | 유형 |
 | --- | --- |
 | iconName | <code>string</code> | 
 | iconCategory | <code>string</code> | 
@@ -431,10 +458,10 @@ p= strip_html(post.content)
 <a name="ImageProbe"></a>
 
 ## ImageProbe : <code>Object</code> \| <code>null</code>
-**Kind**: global typedef  
-**Properties**
+**Kind**: global typedef 
+**프로퍼티**
 
-| Name | 유형 | 설명 |
+| 이름 | 유형 | 설명 |
 | --- | --- | --- |
 | path | <code>string</code> |  |
 | width | <code>number</code> |  |

@@ -1,6 +1,11 @@
 ## Functions
 
 <dl>
+<dt><a href="#asset_url">asset_url(slug, [post])</a> ⇒ <code>string</code></dt>
+<dd><p>Get URL of asset. <br>
+If asset is in <code>_posts</code>, then return URL from post-asset.
+Otherwise return URL from source.</p>
+</dd>
 <dt><a href="#compile_sass">compile_sass(css)</a> ⇒ <code>string</code></dt>
 <dd><p>Compile post(page)-specific SA(C)SS</p>
 </dd>
@@ -74,6 +79,28 @@ to understand due to truncated by letter</p>
 <dt><a href="#ImageProbe">ImageProbe</a> : <code>Object</code> | <code>null</code></dt>
 <dd></dd>
 </dl>
+
+<a name="asset_url"></a>
+
+## asset\_url(slug, [post]) ⇒ <code>string</code>
+Get URL of asset. <br>
+If asset is in `_posts`, then return URL from post-asset.
+Otherwise return URL from source.
+
+**Kind**: global function  
+**Access**: public  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| slug | <code>string</code> | the slug of asset |
+| [post] | <code>object</code> | the Post data from Hexo |
+
+**Example**  
+```jade
+asset_url(post.thumbnail, post)
+```
+
+* * *
 
 <a name="compile_sass"></a>
 
