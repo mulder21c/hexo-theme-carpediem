@@ -1,9 +1,8 @@
-const fs = require("fs");
-const path = require("path");
 const full_url = require("./full-url");
 const { isMoment, isDate } = require("moment");
 const { encodeURL, prettyUrls, htmlTag, escapeHTML } = require("hexo-util");
 const stripHTML = require("./strip-html");
+const getAssetInfo = require("../utils/get-asset-info");
 const { default: moize } = require("moize");
 const { hexoSourcePath } = require("../constants");
 
@@ -72,7 +71,7 @@ const og = (name, content, escape) => {
  *  | !{ open_graph() }
  */
 const openGraphHelper = (ctx) => {
-  const PostAsset = ctx.model("PostAsset");
+  const { getUrl: getAssetURL } = getAssetInfo(ctx);
 
   return function (options = {}) {
     const { config, page, theme } = this;
@@ -112,15 +111,7 @@ const openGraphHelper = (ctx) => {
     };
 
     if (!Array.isArray(images)) images = [images];
-    let postHero = null;
-    if (hero) {
-      if (fs.existsSync(path.join(hexoSourcePath, hero))) {
-        postHero = full_url.call(this, hero);
-      } else {
-        const asset = PostAsset.findOne({ post: page._id, slug: hero });
-        if (asset) postHero = [full_url.call(this, asset.path)] || [];
-      }
-    }
+    const postHero = full_url.call(this, getAssetURL(hero, page));
     images = [
       ...new Set([
         ...(postHero ? [postHero] : []),

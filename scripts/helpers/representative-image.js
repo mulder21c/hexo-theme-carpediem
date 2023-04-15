@@ -3,6 +3,7 @@ const path = require("path");
 const fetch = require("sync-fetch");
 const probe = require("probe-image-size");
 const full_url = require("./full-url");
+const getAssetInfo = require("../utils/get-asset-info");
 const { hexoSourcePath } = require("../constants");
 let imageInfo;
 const getImageInfo = () => {
@@ -47,11 +48,10 @@ const prependHttpProtocol = (ctx, url) => {
  * - const hero = representative_image(theme);
  */
 const representativeImageHelper = (ctx) => {
-  const PostAsset = ctx.model("PostAsset");
+  const { getUrl: getAssetURL, getSource: getAssetSource } = getAssetInfo(ctx);
 
   return function (page) {
     const hexo = this;
-    const log = (hexo.log && hexo.log.info) || console.log;
     const isArchive = (page) => Boolean(page.archive);
     const isCategory = (page) => Boolean(page.category);
     const isTag = (page) => Boolean(page.tag);
@@ -65,7 +65,7 @@ const representativeImageHelper = (ctx) => {
       return theme.hero?.index;
     };
 
-    let hero =
+    const hero =
       isPage(page) || isPost(page)
         ? page.hero || page?.photos?.unshift()
         : getHeroByLayout(themeConfig) || undefined;
@@ -74,17 +74,10 @@ const representativeImageHelper = (ctx) => {
     if (typeof hero !== `string`) throw new Error(`hero must be string.`);
 
     imageInfo = imageInfo || getImageInfo();
-
-    if (!fs.existsSync(path.join(hexoSourcePath, hero))) {
-      const asset = PostAsset.findOne({ post: page._id, slug: hero });
-      if (asset) hero = asset.path;
-    }
-
-    const heroInfo = imageInfo.get(hero);
-    if (heroInfo) return { path: full_url.call(this, hero), ...heroInfo };
+    const heroInfo = imageInfo.get(getAssetURL(hero, page));
+    if (heroInfo) return { path: hero, ...heroInfo };
 
     const isExternal = /^((https?):)?\/\//i.test(hero);
-    log(`Getting hero image size for '${hero}' in memory`);
     if (isExternal) {
       try {
         const image = fetch(prependHttpProtocol(hexo, hero));
@@ -99,10 +92,10 @@ const representativeImageHelper = (ctx) => {
         };
       }
     } else {
-      const filePath = path.join(hexoSourcePath, hero);
+      const filePath = getAssetSource(hero, page);
       const dimension = probe.sync(fs.readFileSync(filePath));
       return {
-        path: full_url.call(this, hero),
+        path: full_url.call(this, getAssetURL(hero, page)),
         ...dimension,
       };
     }
