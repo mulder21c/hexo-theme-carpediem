@@ -8,7 +8,7 @@ const getAssetInfo = (ctx) => {
   const PostAsset = ctx.model("PostAsset");
   const urlRegExp = /^((https?):)?\/\//i;
 
-  function getInfo(slug, post, prop) {
+  function getInfo(slug, prop, post) {
     if (!slug) return slug;
     if (urlRegExp.test(slug)) return slug;
     if (!post_asset_folder) return slug;
@@ -25,9 +25,11 @@ const getAssetInfo = (ctx) => {
   }
 
   return {
-    getUrl: (slug, post) => getInfo(slug, post, `path`) || slug,
-    getSource: (slug, post) => {
-      const source = getInfo(slug, post, `source`);
+    getUrl: function (slug, post) {
+      return getInfo(slug, `path`, post) || slug;
+    },
+    getSource: function (slug, post) {
+      const source = getInfo(slug, `source`, post);
       return source || path.join(hexoSourcePath, slug);
     },
   };

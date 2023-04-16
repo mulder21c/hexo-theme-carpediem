@@ -65,37 +65,38 @@ const representativeImageHelper = (ctx) => {
       return theme.hero?.index;
     };
 
-    const hero =
+    const slug =
       isPage(page) || isPost(page)
         ? page.hero || page?.photos?.unshift()
         : getHeroByLayout(themeConfig) || undefined;
 
-    if (!hero) return null;
-    if (typeof hero !== `string`) throw new Error(`hero must be string.`);
+    if (!slug) return null;
+    if (typeof slug !== `string`) throw new Error(`hero must be string.`);
 
     imageInfo = imageInfo || getImageInfo();
-    const heroInfo = imageInfo.get(getAssetURL(hero, page));
-    if (heroInfo) return { path: hero, ...heroInfo };
+    const hero = getAssetURL(slug, page);
+    const heroInfo = imageInfo.get(hero);
+    if (heroInfo) return { path: full_url.call(this, hero), ...heroInfo };
 
-    const isExternal = /^((https?):)?\/\//i.test(hero);
+    const isExternal = /^((https?):)?\/\//i.test(slug);
     if (isExternal) {
       try {
-        const image = fetch(prependHttpProtocol(hexo, hero));
+        const image = fetch(prependHttpProtocol(hexo, slug));
         const dimension = probe.sync(image.buffer());
         return {
-          path: hero,
+          path: slug,
           ...dimension,
         };
       } catch (error) {
         return {
-          path: hero,
+          path: slug,
         };
       }
     } else {
-      const filePath = getAssetSource(hero, page);
+      const filePath = getAssetSource(slug, page);
       const dimension = probe.sync(fs.readFileSync(filePath));
       return {
-        path: full_url.call(this, getAssetURL(hero, page)),
+        path: full_url.call(this, hero),
         ...dimension,
       };
     }
