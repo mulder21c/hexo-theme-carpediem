@@ -6,15 +6,24 @@
   arguments:
     - {object} props
     - {string} props.imgSrc the source url for hero image
+    - {string} [props.bgColor] the background color in hex code
+    - {string} [props.fullWidth] whether to use full viewport width image
   examples:
     - |
       +hero({imgSrc: "hero.jpg"})
 
-mixin hero(props = {})
+mixin hero(props = {bgColor: null, fullWidth: false})
   -
+    const regExpHexCode = /^([a-f0-9]{6}|[a-f0-9]{3})$/i;
     // define types
     const heroProps = {
       imgSrc: PropTypes.string.isRequired,
+      bgColor: PropTypes.string.custom(({prop = ""}) => {
+        if (prop === ``) return true;
+        if (regExpHexCode.test(prop)) return true;
+        else return new Error('The bgColor must be hex code.');
+      }),
+      fullWidth: PropTypes.bool,
     };
 
     // verifying props
@@ -22,13 +31,26 @@ mixin hero(props = {})
 
     const {
       imgSrc,
+      bgColor,
+      fullWidth,
       ...attrs
     } = props;
 
     const { prefix } = theme;
+    const layout = page.layout;
 
   div(
-    role= `presentation`
-    style= `background-image:url(${imgSrc})`
-    class= `${prefix}-hero`
+    class= [
+      `${prefix}-hero`,
+      {[`${prefix}-hero--${layout}`]: layout},
+      {[`${prefix}-hero--with-color`]: Boolean(bgColor)},
+      {[`${prefix}-hero--full`]: fullWidth}
+    ]
+    aria-hidden="true"
+    style= bgColor && `background-color:#${bgColor};`
   )&attributes(attrs)
+    img(
+      src=imgSrc
+      alt=""
+      class= `${prefix}-hero__image`
+    )

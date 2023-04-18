@@ -1,22 +1,4 @@
 .#{$prefix} {
-  &-home-hero {
-    margin: -2rem -0.75rem 2rem;
-    width: calc(100% + 0.75em * 2);
-
-    &#{&} {
-      aspect-ratio: 16/9;
-
-      @include respond-to(tablet) {
-        aspect-ratio: 21/9;
-      }
-
-      @include respond-to(large) {
-        aspect-ratio: unset;
-        padding-top: 500px;
-      }
-    }
-  }
-
   &-home-list {
     margin: 0 auto;
     max-width: 80ch;

@@ -1,28 +1,9 @@
 .#{$prefix}-article {
   margin: 0 auto;
 
-  &__hero {
-    margin: -2rem -0.75rem 2rem;
-    width: calc(100% + 0.75em * 2);
-    height: auto;
-    padding-top: unset;
-
-    &#{&} {
-      aspect-ratio: 4/3;
-
-      @include respond-to(tablet) {
-        aspect-ratio: 21/9;
-      }
-
-      @include respond-to(large) {
-        aspect-ratio: unset;
-        padding-top: 500px;
-      }
-    }
-  }
-
   &__header {
     max-width: 100ch;
+    position: relative;
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
@@ -34,8 +15,28 @@
       var(--background-color)
     );
 
+    @include respond-to(pc) {
+      .#{$prefix}-hero--with-color + .#{$prefix}-article &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        box-shadow: 0 0 6px rgba(var(--panel-shadow-color-rgb), 0.2);
+        width: 100%;
+        height: 2rem;
+        border-radius: 0.25rem;
+        clip-path: ellipse(100% 80% at 50% 20%);
+      }
+    }
+
     .#{$prefix}-hero + .#{$prefix}-article & {
-      margin-top: -4rem;
+      margin-top: -3rem;
+      transform: translateZ(1px);
+
+      @include respond-to(mobile) {
+        margin-top: -4rem;
+      }
     }
   }
 

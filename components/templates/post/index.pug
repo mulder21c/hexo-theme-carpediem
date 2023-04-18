@@ -11,7 +11,11 @@ include /components/organisms/comments/index
 block heroContent
 
   if (hero)
-    +hero({imgSrc: hero.path, class: `${prefix}-home-hero`})
+    +hero({
+      imgSrc: hero.path,
+      bgColor: heroBgColor,
+      fullWidth: heroFullWidth,
+    })
 
 block mainContent
   if post
