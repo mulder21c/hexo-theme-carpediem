@@ -51,8 +51,24 @@ mixin hero(props)
       ...attrs
     } = props;
 
-    const { prefix } = theme;
+    const { prefix, img_sizes: {hero: responsiveConf} } = theme;
     const layout = page.layout;
+    const regExpSource = /(.+)(\.\w+)$/i;
+    const usedResponsiveImage = Boolean(responsiveConf?.extensions);
+    const { small, large } = responsiveConf;
+    const MIME_TYPES = {
+      avif: `image/avif`,
+      bmp: `image/bmp`,
+      gif: `image/gif`,
+      ico: `image/vnd.microsoft.icon`,
+      jpg: `image/jpeg`,
+      jpeg: `image/jpeg`,
+      png: `image/png`,
+      svg: `image/svg+xml`,
+      tif: `image/tiff`,
+      tiff: `image/tiff`,
+      webp: `image/webp`,
+    };
 
   div(
     class= [
@@ -64,12 +80,52 @@ mixin hero(props)
     aria-hidden="true"
     style= bgColor && `background-color:#${bgColor};`
   )&attributes(attrs)
-    img(
-      src=imgSrc
-      alt=""
-      width= width
-      height= height
-      class= `${prefix}-hero__image`
-      role="none"
-      loading="lazy"
-    )
+    if usedResponsiveImage
+      picture(
+        role="none"
+      )
+        each imgType in (responsiveConf && responsiveConf.extensions || [])
+          -
+            const src = url_for(imgSrc);
+          source(
+            media= `(max-width: ${large}px)`
+            srcset= [
+              [
+                imgSrc.replace(regExpSource, `$1.large@2.${imgType}`),
+                `2x`
+              ].join(" "),
+              [
+                imgSrc.replace(regExpSource, `$1.large@1.${imgType}`),
+                `1x`
+              ].join(" ")
+            ].join(", ")
+            type= MIME_TYPES[imgType]
+          )
+          source(
+            media= `(max-width: ${small}px)`
+            srcset= [
+              [
+                imgSrc.replace(regExpSource, `$1.small@2.${imgType}`),
+                `2x`
+              ].join(" "),
+              [
+                imgSrc.replace(regExpSource, `$1.small@1.${imgType}`),
+                `1x`
+              ].join(" ")
+            ].join(", ")
+            type= MIME_TYPES[imgType]
+          )
+        img(
+          src=imgSrc
+          class= `${prefix}-hero__image`
+          alt=""
+          role="none"
+          loading="lazy"
+        )
+    else
+      img(
+        src=imgSrc
+        alt=""
+        class= `${prefix}-hero__image`
+        role="none"
+      )

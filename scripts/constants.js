@@ -24,4 +24,5 @@ module.exports = {
   themeConfig,
   bundleName,
   vendorName,
+  responseImage: themeConfig.img_sizes || {},
 };

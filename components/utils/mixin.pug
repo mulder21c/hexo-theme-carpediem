@@ -101,6 +101,7 @@ mixin styles(paths = [])
   link(
     rel= `stylesheet`
     href= url_for(`/css/index.css`)
+    media="screen"
   )
   each path in paths
     link(

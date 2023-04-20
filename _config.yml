@@ -20,14 +20,14 @@ favicon:
 #   These links are displayed to the author information on post template
 #   You can include additional social links that are not listed below, if you want
 profile:
-  gravatar: /images/favicon.png
+  gravatar:
   social:
-    github: https://github.com/mulder21c
-    facebook: https://facebook.com/mulder21c
+    github:
+    facebook:
     linkedin:
     instagram:
     twitter:
-    rss:
+    rss: /rss.xml
 
 # Analytics
 #   Add a G-ID including "G-"
@@ -43,10 +43,10 @@ commento:
   host:
 
 remark:
-  host: https://comment.mulder21c.io
-  site_id: mulder21c
-  no_footer: true
-  locale: ko
+  host:
+  site_id:
+  no_footer:
+  locale:
 
 livere:
   uid:
@@ -72,7 +72,7 @@ giscus:
 #   Hero image to apply to each layout
 #   Layouts without specified hero do not display hero images.
 hero:
-  index:
+  index: //farm1.staticflickr.com/863/41108552022_61413423d5_b.jpg
   archive:
   category:
   tag:
@@ -80,10 +80,36 @@ hero:
 
 # 360 Image Viewer
 #   Whether to use 360 image viewer. If true, use 360 viewer
-viewer360: true
+viewer360: false
 
 # Search script you will use
 search: algolia
 
 # The number of items to display in article list on archive,
 latest_years_count: 3
+
+# responsive image sizes
+#   if you want to use responsive images, you can set this configure
+img_sizes:
+  #   configure for responsive hero images
+  hero:
+    # supported file types. {Array.<string>}
+    #   recommended webp for optimization
+    #   if this entry is empty, not use responsive images for hero
+    extensions:
+      - webp
+      - jpg
+    #   maximum width in px of small image
+    small: 760
+    #   maximum width in px of large image
+    large: 1280
+  #   configure for responsive images in article
+  post:
+    # supported file types. {Array.<string>}
+    #   recommended webp for optimization
+    #   if this entry is empty, not use responsive images for hero
+    extensions:
+    #   maximum width in px of small image
+    small: 760
+    #   maximum width in px of large image
+    large: 980
