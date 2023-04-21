@@ -45,7 +45,17 @@
         collection: `CollectionPage`,
       }[type];
     };
+    const urlRegExp = /^((https?):)?\/\//i;
+    const regExpSource = /(.+)(\.\w+)$/i;
     const representImg = representative_image(page);
+    if (
+      representImg &&
+      theme?.img_sizes?.hero?.extensions &&
+      !urlRegExp.test(representImg.path)
+    ) {
+      representImg.path
+        = representImg.path.replace(regExpSource, `$1.large@1$2`);
+    }
 
     const getType = type => ({ "@type": getDataType(type) });
     const getName = () => ({ "@name": getTitle() });

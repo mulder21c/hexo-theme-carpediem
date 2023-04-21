@@ -4,7 +4,7 @@ const { encodeURL, prettyUrls, htmlTag, escapeHTML } = require("hexo-util");
 const stripHTML = require("./strip-html");
 const getAssetInfo = require("../utils/get-asset-info");
 const { default: moize } = require("moize");
-const { hexoSourcePath } = require("../constants");
+const { themeConfig } = require("../constants");
 
 const localeMap = {
   en: "en_US",
@@ -109,9 +109,21 @@ const openGraphHelper = (ctx) => {
       if (theme.hero?.index) return [full_url.call(this, theme.hero?.index)];
       return [];
     };
+    const urlRegExp = /^((https?):)?\/\//i;
+    const regExpSource = /(.+)(\.\w+)$/i;
 
     if (!Array.isArray(images)) images = [images];
-    const postHero = full_url.call(this, getAssetURL(hero, page));
+    let assetUrl = getAssetURL(hero, page);
+
+    if (
+      assetUrl &&
+      themeConfig?.img_sizes?.hero?.extensions &&
+      !urlRegExp.test(assetUrl)
+    ) {
+      assetUrl = assetUrl.replace(regExpSource, `$1.large@1$2`);
+    }
+
+    const postHero = full_url.call(this, assetUrl);
     images = [
       ...new Set([
         ...(postHero ? [postHero] : []),

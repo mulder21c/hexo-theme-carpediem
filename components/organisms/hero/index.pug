@@ -26,6 +26,7 @@ mixin hero(props)
       ...props,
     };
     const regExpHexCode = /^([a-f0-9]{6}|[a-f0-9]{3})$/i;
+    const urlRegExp = /^((https?):)?\/\//i;
     // define types
     const heroProps = {
       imgSrc: PropTypes.string.isRequired,
@@ -80,7 +81,14 @@ mixin hero(props)
     aria-hidden="true"
     style= bgColor && `background-color:#${bgColor};`
   )&attributes(attrs)
-    if usedResponsiveImage
+    -
+      let assetPath = page.canonical_path && page.canonical_path;
+      assetPath = assetPath.split("/").splice(0, 1).join("/");
+      console.log(assetPath)
+      const canUsePicture
+        = usedResponsiveImage && !urlRegExp.test(imgSrc)
+          && imgSrc.includes(assetPath + '/');
+    if canUsePicture
       picture(
         role="none"
       )

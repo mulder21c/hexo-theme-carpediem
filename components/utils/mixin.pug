@@ -43,7 +43,19 @@ mixin pageSequenceLink
 mixin preLoadImage
   -
     const imageObj = representative_image(page);
-  if (imageObj)
+    const urlRegExp = /^((https?):)?\/\//i;
+    const regExpSource = /(.+)(\.\w+)$/i;
+
+  if imageObj
+    -
+      if (
+        theme.img_sizes
+        && theme.img_sizes.hero
+        && theme.img_sizes.hero.extensions
+        && !urlRegExp.test(imageObj.path)
+      ) {
+        imageObj.path = imageObj.path.replace(regExpSource, `$1.large@1$2`);
+      }
     link(
       rel= `preload`
       as= `image`
