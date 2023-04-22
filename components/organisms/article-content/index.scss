@@ -168,6 +168,7 @@
   & audio:not(figure audio) {
     filter: drop-shadow(1px 1px 0.25em rgba(var(--box-shadow-color-rgb), 0.25));
     max-width: 100%;
+    height: auto;
 
     &.block {
       display: block;
@@ -252,8 +253,9 @@
     video,
     audio {
       max-width: 100%;
-      width: 100%;
       display: block;
+      width: 100%;
+      height: auto;
     }
 
     figcaption {
