@@ -1362,12 +1362,12 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.4.0.tgz#1ee0c174e472c84b23cb46c995154dc383e3b4fe"
   integrity sha512-0NyytTlPJwB/BF5LtRV8rrABDbe3TdTXqNB3PdZ+UUUZAEIrdOJdmABqKjt4AXwIoJNaRVVZEXxpNrqvE1GAYQ==
 
-"@hidoo/sassdoc-to-markdown@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@hidoo/sassdoc-to-markdown/-/sassdoc-to-markdown-0.8.0.tgz#84a8d9b16c7561ccaf360348a59fbd77523b2cde"
-  integrity sha512-uk9zczEXEOKbXNCMJWu0T3oU96tH1mcGNoTBMEEp+gg74u2hWMO6XZllpqICaGTYf776eLHfOJht+fExif2Kiw==
+"@hidoo/sassdoc-to-markdown@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@hidoo/sassdoc-to-markdown/-/sassdoc-to-markdown-0.9.0.tgz#be327e0a927891998e8b4b6fa10d9e7a6d0fd04f"
+  integrity sha512-iJIPqdYP6e2e1kWgMczzSCabzqKQRRqp15ZOo8v/O8v9ca/S5pGPy5/o2Ijkouo5JM6TNjwPtcj18AhudCnmCA==
   dependencies:
-    fs-extra "10.0.0"
+    fs-extra "10.1.0"
     glob "7.2.3"
     handlebars "4.7.7"
     mdast-util-inject "1.1.0"
@@ -3353,10 +3353,10 @@ fraction.js@^4.2.0:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
-fs-extra@10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.0.tgz#9ff61b655dde53fb34a82df84bb214ce802e17c1"
-  integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
+fs-extra@10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
+  integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
