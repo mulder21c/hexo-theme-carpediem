@@ -44,7 +44,8 @@ const postCssOption = {
  */
 function compileSCSSHelper(css) {
   return scssProcessor({
-    source: `@use "sass:math"; ${scssFunctions} ${sassMixins} ${sassVariables} ${css}`,
+    source: `@use "sass:math"; /** automated imports; **/
+      ${scssFunctions} ${sassMixins} ${sassVariables} ${css}`,
     prepend,
     sassOption,
     postCssOption,
