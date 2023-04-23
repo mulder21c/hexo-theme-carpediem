@@ -84,7 +84,6 @@ mixin hero(props)
     -
       let assetPath = page.canonical_path && page.canonical_path;
       assetPath = assetPath.split("/").splice(0, 1).join("/");
-      console.log(assetPath)
       const canUsePicture
         = usedResponsiveImage && !urlRegExp.test(imgSrc)
           && imgSrc.includes(assetPath + '/');
