@@ -460,6 +460,11 @@
       }
     }
   }
+
+  .text-emoticon {
+    white-space: nowrap;
+    word-break: keep-all;
+  }
 }
 
 /**
