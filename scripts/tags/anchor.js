@@ -1,7 +1,5 @@
 const { htmlTag } = require("hexo-util");
-
-const rUrl =
-  /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[.!/\\w]*))?)/;
+const { urlExp } = require("../utils/tag-util");
 
 /**
  * Link tag
@@ -17,7 +15,7 @@ function anchorTag(args, content) {
 
   // Find link URL and text
   for (let item = args.shift(); (item = args.shift()); ) {
-    if (rUrl.test(item)) {
+    if (urlExp.test(item)) {
       url = item;
       break;
     } else {

@@ -1,5 +1,4 @@
 const { htmlTag } = require("hexo-util");
-const parse = require("../utils/parse-custom-tag-param");
 
 /**
  * @public
