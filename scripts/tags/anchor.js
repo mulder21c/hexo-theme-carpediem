@@ -14,7 +14,7 @@ function anchorTag(args, content) {
   let external = false;
 
   // Find link URL and text
-  for (let item = args.shift(); (item = args.shift()); ) {
+  for (let item; (item = args.shift()); ) {
     if (urlExp.test(item)) {
       url = item;
       break;
