@@ -1,5 +1,5 @@
 const { htmlTag } = require("hexo-util");
-const parse = require("../utils/parse-custom-tag-param");
+const { urlExp, isRatioFormat } = require("../utils/tag-util");
 
 /**
  * @public
@@ -8,24 +8,32 @@ const parse = require("../utils/parse-custom-tag-param");
  * @alias viewer360
  * @property {string} imageURL the URL of image
  * @property {string} label the alternative text for image
- * @property {string|number} [aspectRatio= 16/9] - the aspect ratio of container.
+ * @property {string} [aspectRatio= 16/9] - the aspect ratio of container.
+ * <br>It must be in W/H format, such as 16/9.
  * @syntax
  * {% viewer360 imageURL label [aspectRatio] %}
  * @example
- * {% viewer360 https://my.ima.ge/picture.jpg "This image is..." %}
- * {% viewer360 https://my.ima.ge/picture.jpg "This image is..." 4/3 %}
+ * {% viewer360 https://my.ima.ge/picture.jpg This image is... %}
+ * {% viewer360 https://my.ima.ge/picture.jpg This image is... 4/3 %}
  */
 function viewer360Tag(ctx) {
   const log = ctx?.log || console;
-  return function ([imageURL, label, aspectRatio = 16 / 9]) {
-    if (!imageURL) {
+  return function ([imageURL, ...args]) {
+    let label = ``;
+    let aspectRatio = 16 / 9;
+
+    if (!urlExp.test(imageURL)) {
       log.error(`The image URL is missed.`);
       return;
     }
-    if (!label || typeof parse(label) === "number") {
-      log.error(`The label is missed.`);
-      return;
+
+    // get aspect ratio from arguments
+    if (isRatioFormat(args[args.length - 1])) {
+      aspectRatio = args.pop();
     }
+
+    // complete label from remain arguments
+    label = args.join(` `);
 
     const viewer = htmlTag(
       `div`,

@@ -9,15 +9,16 @@ const { htmlTag } = require("hexo-util");
  * @syntax
  * {% figcaption caption %}
  * @example
- * {% figcaption "This image is ..." %}
+ * {% figcaption This image is ... %}
  */
 function figcaptionTag(ctx) {
   const log = ctx?.log || console;
-  return function ([caption]) {
-    if (!caption) {
+  return function (args) {
+    if (!args.length) {
       log.error(`The caption is missed.`);
       return;
     }
+    const caption = args.join(" ");
     return htmlTag(`figcaption`, { class: "figure__caption" }, caption, false);
   };
 }

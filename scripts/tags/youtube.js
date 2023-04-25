@@ -1,5 +1,5 @@
 const { htmlTag } = require("hexo-util");
-const parse = require("../utils/parse-custom-tag-param");
+const { isRatioFormat } = require("../utils/tag-util");
 
 /**
  * @public
@@ -8,8 +8,8 @@ const parse = require("../utils/parse-custom-tag-param");
  * @property {string} id id of youtube video
  * @property {string} [type= video] One of `video` or `playlist`
  * @property {boolean} [cookie= false] whether to use privacy-enhanced mode
- * @property {string|number} [aspectRatio= 16/9] - the aspect ratio of video.
- * The string format must be a fractional representation, such as 16/9.
+ * @property {string} [aspectRatio= 16/9] - the aspect ratio of video.<b>
+ * It must be in W/H format, such as 16/9.
  * @property {string} [title] the title for youtube video. This property is
  * used as accessible name iframe
  * @syntax
@@ -29,55 +29,20 @@ const parse = require("../utils/parse-custom-tag-param");
  */
 const youtubeTag = (ctx) => {
   const log = ctx?.log || console;
-  return function ([
-    id,
-    type = `video`,
-    cookie = false,
-    aspectRatio = 16 / 9,
-    title,
-  ]) {
-    if (!id) {
-      log.error(`The id of youtube is missed.`);
-      return;
+  return function ([id, type = `video`, ...args]) {
+    let cookie = false;
+    let aspectRatio = 16 / 9;
+    let title = ``;
+
+    if ([`true`, `false`].includes(args[0])) {
+      cookie = args.shift() === `true`;
     }
 
-    if (
-      typeof parse(type) === `string` &&
-      ![`video`, `playlist`].includes(type)
-    ) {
-      // case: {% youtube id title %}
-      title = type;
-      type = `video`;
-    } else if (typeof parse(type) === `number`) {
-      // case: {% youtube id aspectRatio [title] %}
-      title = cookie;
-      cookie = false;
-      aspectRatio = type;
-      type = `video`;
-    } else if (typeof parse(type) === `boolean`) {
-      // case: {$ youtube id cookie [aspectRatio] [title] %}
-      title = typeof parse(cookie) === `string` ? cookie : aspectRatio;
-      aspectRatio = typeof parse(cookie) === `number` ? cookie : 16 / 9;
-      cookie = type;
-      type = `video`;
-    } else {
-      // case: {% youtube id type [cookie] [aspectRatio] [title] %}
-      if (typeof parse(cookie) === `string`) {
-        // case: {% youtube id type title %}
-        title = cookie;
-        cookie = false;
-        aspectRatio = 16 / 9;
-      } else if (typeof parse(cookie) === `number`) {
-        // case: {% youtube id type aspectRatio [title] %}
-        title = aspectRatio;
-        aspectRatio = cookie;
-        cookie = false;
-      } else if (typeof parse(cookie) === `boolean`) {
-        title = typeof parse(aspectRatio) === `number` ? title : aspectRatio;
-        aspectRatio =
-          typeof parse(aspectRatio) === `string` ? 16 / 9 : aspectRatio;
-      }
+    if (isRatioFormat(args[0])) {
+      aspectRatio = args.shift();
     }
+
+    title = args.join(" ");
 
     const ytLink = cookie
       ? "https://www.youtube.com"

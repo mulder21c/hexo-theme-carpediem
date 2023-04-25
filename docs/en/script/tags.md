@@ -43,11 +43,11 @@ content
 
 **Example**
 ```markdown
-{% disclosure "show more" %}
+{% disclosure show more %}
   More Contents...
 {% enddisclosure %}
 
-{% disclosure "description for chat" true %}
+{% disclosure description for chat true %}
   This chart is...
 {% enddisclosure %}
 ```
@@ -73,7 +73,7 @@ It must be used in `{% figure %}`
 
 **Example**
 ```markdown
-{% figcaption "This image is ..." %}
+{% figcaption This image is ... %}
 ```
 
 * * *
@@ -131,12 +131,12 @@ To use this plug-in, need to enable `viewer360` in config of theme.
 | --- | --- | --- | --- |
 | imageURL | <code>string</code> |  | the URL of image |
 | label | <code>string</code> |  | the alternative text for image |
-| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of container. |
+| [aspectRatio] | <code>string</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of container.<br>It must be in W/H format, such as 16/9 |
 
 **Example**
 ```markdown
-{% viewer360 https://my.ima.ge/picture.jpg "This image is..." %}
-{% viewer360 https://my.ima.ge/picture.jpg  "This image is..." 4/3 %}
+{% viewer360 https://my.ima.ge/picture.jpg This image is... %}
+{% viewer360 https://my.ima.ge/picture.jpg This image is... 4/3 %}
 ```
 
 * * *
@@ -156,7 +156,7 @@ generate vimeo embed code
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | id | <code>string</code> |  | id of vimeo video |
-| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. The string format must be a fractional representation, such as 16/9. |
+| [aspectRatio] | <code>string</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. <br>It must be in W/H format, such as 16/9 |
 | [title] | <code>string</code> |  | the title for vimeo video. This property is used as accessible name iframe |
 
 **Example**
@@ -166,8 +166,6 @@ generate vimeo embed code
 {% vimeo XXXXXX "This video is..." %}
 <!-- Specify aspect-ratio of video -->
 {% vimeo XXXXXX 4/3 %}
-<!-- Combine options -->
-{% vimeo XXXXXX "2023 Top K-pop" }
 ```
 
 * * *
@@ -189,7 +187,7 @@ generate youtube embed code
 | id | <code>string</code> |  | id of youtube video |
 | [type] | <code>string</code> | <code>&quot;video&quot;</code> | One of `video` or `playlist` |
 | [cookie] | <code>boolean</code> | <code>false</code> | whether to use privacy-enhanced mode |
-| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video. The string format must be a fractional representation, such as 16/9. |
+| [aspectRatio] | <code>string</code> | <code>&quot;16/9&quot;</code> | the aspect ratio of video.<br> It must be in W/H format, such as 16/9. |
 | [title] | <code>string</code> |  | the title for youtube video. This property is used as accessible name iframe |
 
 **Example**

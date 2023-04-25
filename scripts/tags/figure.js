@@ -1,5 +1,4 @@
 const { htmlTag } = require("hexo-util");
-const parse = require("../utils/parse-custom-tag-param");
 
 /**
  * @public
@@ -28,21 +27,18 @@ const parse = require("../utils/parse-custom-tag-param");
 function figureTag(ctx) {
   const log = ctx?.log || console;
   return function ([align, float = false], content) {
-    if (typeof parse(align) === `boolean`) {
+    if ([`true`, `false`].includes(align)) {
       log.error(`The float cannot be used alone.`);
       return;
     }
-    const useFloat = float && JSON.parse(float);
+    const useFloat = float && float === `true`;
     const suffix = align && [align, useFloat ? `--float` : ``].join("");
 
-    return htmlTag(
-      `figure`,
-      {
-        class: [`figure`, suffix ? `figure--${suffix}` : ``].join(" "),
-      },
-      content,
-      false
-    );
+    const attrs = {
+      class: [`figure`, suffix ? `figure--${suffix}` : ``].join(" "),
+    };
+
+    return htmlTag(`figure`, attrs, content, false);
   };
 }
 

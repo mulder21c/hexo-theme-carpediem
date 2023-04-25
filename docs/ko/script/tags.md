@@ -43,11 +43,11 @@ content
 
 **예제**
 ```markdown
-{% disclosure "더 보기" %}
+{% disclosure 더 보기 %}
   More Contents...
 {% enddisclosure %}
 
-{% disclosure "차트 설명" true %}
+{% disclosure 차트 설명 true %}
   이 차트는...
 {% enddisclosure %}
 ```
@@ -73,7 +73,7 @@ figcaption 엘리먼트 생성 <br>
 
 **예제**
 ```markdown
-{% figcaption "이 이미지는 ..." %}
+{% figcaption 이 이미지는 ... %}
 ```
 
 * * *
@@ -131,12 +131,12 @@ content
 | --- | --- | --- | --- |
 | imageURL | <code>string</code> |  | 이미지 URL |
 | label | <code>string</code> |  | 이미지에 대한 대체 텍스트 |
-| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | 컨테이너 종횡비 |
+| [aspectRatio] | <code>string</code> | <code>&quot;16/9&quot;</code> | 컨테이너 종횡비<br>16/9와 같이 W/H 형식이어야 합니다. |
 
 **예제**
 ```markdown
-{% viewer360 https://my.ima.ge/picture.jpg "이 이미지는..." %}
-{% viewer360 https://my.ima.ge/picture.jpg  "이 이미지는..." 4/3 %}
+{% viewer360 https://my.ima.ge/picture.jpg 이 이미지는... %}
+{% viewer360 https://my.ima.ge/picture.jpg 이 이미지는... 4/3 %}
 ```
 
 * * *
@@ -156,7 +156,7 @@ vimeo 삽입 코드 생성
 | 이름 | 유형 | 기본 값 | 설명 |
 | --- | --- | --- | --- |
 | id | <code>string</code> |  | vimeo 영상 id |
-| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비. 문자열은 "16/9"와 같은 분수 표현이어야 합니다. |
+| [aspectRatio] | <code>string</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비.<br>16/9와 같이 W/H 형식이어야 합니다. |
 | [title] | <code>string</code> |  | vimeo 비디오 타이틀. 이 속성은 iframe에 대한 접근 가능한 이름으로 사용됩니다. |
 
 **Example**
@@ -166,8 +166,6 @@ vimeo 삽입 코드 생성
 {% vimeo XXXXXX "This video is..." %}
 <!-- 비디오 종횡비 지정 -->
 {% vimeo XXXXXX 4/3 %}
-<!-- 옵션 조합 -->
-{% vimeo XXXXXX "2023 Top K-pop" }
 ```
 
 * * *
@@ -189,7 +187,7 @@ vimeo 삽입 코드 생성
 | id | <code>string</code> |  | 유튜브 영상 id |
 | [type] | <code>string</code> | <code>&quot;video&quot;</code> | `video` 또는 `playlist` 중 하나 |
 | [cookie] | <code>boolean</code> | <code>false</code> | 프라이버시 강화 모드 사용 여부 |
-| [aspectRatio] | <code>string</code> \| <code>number</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비. 문자열은 "16/9"와 같은 분수 표현이어야 합니다. |
+| [aspectRatio] | <code>string</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비.<br>16/9와 같이 W/H 형식이어야 합니다.  |
 | [title] | <code>string</code> |  | 유튜브 비디오 타이틀. 이 속성은 iframe에 대한 접근 가능한 이름으로 사용됩니다. |
 
 **예제**
