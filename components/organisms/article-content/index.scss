@@ -167,8 +167,8 @@
   & video:not(figure video),
   & audio:not(figure audio) {
     filter: drop-shadow(1px 1px 0.25em rgba(var(--box-shadow-color-rgb), 0.25));
-    max-width: 100%;
-    height: auto;
+    max-inline-size: 100%;
+    block-size: auto;
 
     &.block {
       display: block;
