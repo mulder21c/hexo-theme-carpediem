@@ -95,20 +95,6 @@ mixin hero(props)
           -
             const src = url_for(imgSrc);
           source(
-            media= `(max-width: ${large}px)`
-            srcset= [
-              [
-                imgSrc.replace(regExpSource, `$1.large@2.${imgType}`),
-                `2x`
-              ].join(" "),
-              [
-                imgSrc.replace(regExpSource, `$1.large@1.${imgType}`),
-                `1x`
-              ].join(" ")
-            ].join(", ")
-            type= MIME_TYPES[imgType]
-          )
-          source(
             media= `(max-width: ${small}px)`
             srcset= [
               [
@@ -117,6 +103,20 @@ mixin hero(props)
               ].join(" "),
               [
                 imgSrc.replace(regExpSource, `$1.small@1.${imgType}`),
+                `1x`
+              ].join(" ")
+            ].join(", ")
+            type= MIME_TYPES[imgType]
+          )
+          source(
+            media= `(max-width: ${large}px)`
+            srcset= [
+              [
+                imgSrc.replace(regExpSource, `$1.large@2.${imgType}`),
+                `2x`
+              ].join(" "),
+              [
+                imgSrc.replace(regExpSource, `$1.large@1.${imgType}`),
                 `1x`
               ].join(" ")
             ].join(", ")
