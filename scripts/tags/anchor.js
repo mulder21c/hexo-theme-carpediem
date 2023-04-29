@@ -5,13 +5,12 @@ const { urlExp } = require("../utils/tag-util");
  * Link tag
  *
  * Syntax:
- *   {% anchor text url [external] [relations] %}
+ *   {% anchor text url [relations] %}
  */
 
 function anchorTag(args, content) {
   let url = "";
   const text = [];
-  let external = false;
 
   // Find link URL and text
   for (let item; (item = args.shift()); ) {
@@ -23,19 +22,12 @@ function anchorTag(args, content) {
     }
   }
 
-  if ([`true`, `false`].includes(args[0])) {
-    external = args.unshift();
-  }
-
-  const rel = args.join(" ");
-
   const attrs = {
     href: url,
-    target: external ? "_blank" : null,
-    rel,
+    rel: args.join(" "),
   };
 
-  return htmlTag("a", attrs, text.join(" "));
+  return htmlTag("a", attrs, text.join(" "), false);
 }
 
 module.exports = anchorTag;
