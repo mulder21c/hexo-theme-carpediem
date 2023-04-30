@@ -86,13 +86,25 @@
     @if ($scheme == "light") {
       @content;
       @media (prefers-color-scheme: dark) {
-        :root[data-scheme="light"] & {
-          @content;
+        @if (#{&} == ":root") {
+          &[data-scheme="light"] {
+            @content;
+          }
+        } @else {
+          :root[data-scheme="light"] & {
+            @content;
+          }
         }
       }
     } @else if ($scheme == "dark") {
-      :root [data-scheme="dark"] & {
-        @content;
+      @if (#{&} == ":root") {
+        &[data-scheme="dark"] {
+          @content;
+        }
+      } @else {
+        :root[data-scheme="dark"] & {
+          @content;
+        }
       }
       @media (prefers-color-scheme: dark) {
         @content;
