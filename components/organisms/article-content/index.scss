@@ -130,6 +130,12 @@
       border-top: var(--border-width-thin) dashed var(--separator-border-color);
       color: var(--text-color-secondary);
     }
+    p:first-child {
+      margin-top: 0;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   table {
