@@ -45,7 +45,7 @@ const postCssOption = {
 function compileSCSSHelper(css) {
   return scssProcessor({
     source: `@use "sass:math"; /** automated imports; **/
-      ${scssFunctions} ${sassMixins} ${sassVariables} ${css}`,
+      ${scssFunctions} ${sassMixins} ${sassVariables} @layer custom {${css}}`,
     prepend,
     sassOption,
     postCssOption,

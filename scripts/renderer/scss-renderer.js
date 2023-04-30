@@ -49,6 +49,7 @@ function scssRenderer(data, option) {
       sassOption,
       postCssOption,
     }).then(({ css, map }) => {
+      css = `@layer theme {${css}}`;
       if (!isGenerateStage && map) {
         fs.writeFileSync(
           path.resolve(cssSourcePath, `./index.css.map`),
