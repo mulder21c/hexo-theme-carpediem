@@ -10,7 +10,7 @@ const { urlExp } = require("../utils/tag-util");
 
 function anchorTag(args, content) {
   let url = "";
-  const text = [];
+  const text = [args.shift()];
 
   // Find link URL and text
   for (let item; (item = args.shift()); ) {
