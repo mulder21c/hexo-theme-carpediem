@@ -184,8 +184,7 @@
     @extend %anchor-default;
   }
 
-  :where(article, ._footer)
-    a:not(:where([class*="footnote"], [class*="footnote"] a)) {
+  :where(article, ._footer) a {
     @extend %anchor-animate;
   }
 
