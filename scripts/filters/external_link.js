@@ -1,4 +1,3 @@
-// @ts-check
 const { isExternalLink } = require("hexo-util");
 const rATag =
   /<a(?:\s+?|\s+?[^<>]+?\s+?)href=["']((?:https?:|\/\/)[^<>"']+)["'][^<>]*>/gi;
