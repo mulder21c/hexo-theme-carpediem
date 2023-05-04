@@ -24,6 +24,7 @@ block mainContent
     article(class= `${prefix}-article`)
       div(class= `${prefix}-article__header`)
         +heading({
+          id: generate_slug(post.title),
           level: 1,
           class: `${prefix}-article__heading`,
         })

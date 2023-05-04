@@ -3,6 +3,7 @@ const helper = hexo.extend.helper;
 helper.register(`asset_url`, require(`./asset-url`)(hexo));
 helper.register(`compile_sass`, require(`./compile-sass`));
 helper.register(`full_url`, require(`./full-url`));
+helper.register(`generate_slug`, require(`./generate-slug`));
 helper.register(`generate_uid`, require(`./generate-uid`));
 helper.register(`archive_array`, require(`./get-archive-array`));
 helper.register(`archive_map`, require(`./get-archive-map`));
