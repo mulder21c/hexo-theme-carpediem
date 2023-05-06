@@ -68,9 +68,11 @@ function heroInfoGenerator(data) {
     if (hasProtocol(hero)) {
       if (imageInfo.get(hero)) return;
       try {
+        console.log(`start processing: `, hero);
         const imgObj = fetch(prependHttpProtocol.bind(hexo)(hero));
         const dimension = probe.sync(imgObj.buffer());
         imageInfo.set(hero, dimension);
+        console.log(`end processing: `, hero);
       } catch (error) {
         imageInfo.set(hero, {});
       }
