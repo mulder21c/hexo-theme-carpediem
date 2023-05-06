@@ -6,14 +6,25 @@
   arguments:
     - {object} props
     - {string} props.imgSrc the source url for hero image
-    - {string} [props.bgColor= null] the background color in hex code
-    - {string} [props.fullWidth= false] whether to use full viewport width image
+    - {string} [props.bgColor] the background color in hex code
+    - |
+      {boolean} [props.fullWidth= false]
+      whether to use full viewport width image
+    - {number} [props.width] the width of hero image
+    - {number} [props.height] the height of hero image
   examples:
     - |
       +hero({imgSrc: "hero.jpg"})
 
-mixin hero(props = {bgColor: null, fullWidth: false})
+mixin hero(props)
   -
+    props = props && {
+      bgColor: undefined,
+      fullWidth: false,
+      width: undefined,
+      height: undefined,
+      ...props,
+    };
     const regExpHexCode = /^([a-f0-9]{6}|[a-f0-9]{3})$/i;
     // define types
     const heroProps = {
@@ -24,6 +35,8 @@ mixin hero(props = {bgColor: null, fullWidth: false})
         else return new Error('The bgColor must be hex code.');
       }),
       fullWidth: PropTypes.bool,
+      width: PropTypes.number,
+      height: PropTypes.number,
     };
 
     // verifying props
@@ -33,6 +46,8 @@ mixin hero(props = {bgColor: null, fullWidth: false})
       imgSrc,
       bgColor,
       fullWidth,
+      width,
+      height,
       ...attrs
     } = props;
 
@@ -52,5 +67,9 @@ mixin hero(props = {bgColor: null, fullWidth: false})
     img(
       src=imgSrc
       alt=""
+      width= width
+      height= height
       class= `${prefix}-hero__image`
+      role="none"
+      loading="lazy"
     )

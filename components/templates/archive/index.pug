@@ -6,7 +6,11 @@ include /components/organisms/archives/timeline
 block heroContent
 
   if (hero)
-    +hero({imgSrc: hero.path, class: `${prefix}-home-hero`})
+    +hero({
+      imgSrc: hero.path,
+      width: hero.width,
+      height: hero.height,
+    })
 
 block mainContent
   -

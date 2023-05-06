@@ -755,8 +755,10 @@ hero 컴포넌트
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.imgSrc|hero 이미지 URL|string||Y|
-|props.bgColor|배경색 hex 코드|string|null|N|
+|props.bgColor|배경색 hex 코드|string||N|
 |props.fullWidth|뷰포트 전체 너비 이미지 사용 여부|boolean|false|N|
+|props.width|hero 이미지 너비|number||N|
+|props.height|hero 이미지 높이|number||N|
 
 
 

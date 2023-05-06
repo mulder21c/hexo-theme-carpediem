@@ -757,8 +757,10 @@ hero component
 |:---:|:---|:---:|:---:|:---:|
 |props||object||Y|
 |props.imgSrc|the source url for hero image|string||Y|
-|props.bgColor|the background color in hex code|string|null|N|
+|props.bgColor|the background color in hex code|string||N|
 |props.fullWidth|whether to use full viewport width image|boolean|false|N|
+|props.width|the width of hero image|number||N|
+|props.height|the height of hero image|number||N|
 
 
 
