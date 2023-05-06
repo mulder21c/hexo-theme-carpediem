@@ -124,8 +124,10 @@ mixin hero(props)
           )
         img(
           src=imgSrc
-          class= `${prefix}-hero__image`
           alt=""
+          width= width
+          height= height
+          class= `${prefix}-hero__image`
           role="none"
           loading="lazy"
         )
@@ -133,6 +135,8 @@ mixin hero(props)
       img(
         src=imgSrc
         alt=""
+        width= width
+        height= height
         class= `${prefix}-hero__image`
         role="none"
       )
