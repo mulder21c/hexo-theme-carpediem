@@ -177,7 +177,7 @@ vimeo 삽입 코드 생성
 
 **문법**
 ```markdown
-{% youtube id, type, [cookie], [aspect ratio], [title] %}
+{% youtube id, [type], [privacy], [aspect ratio], [title] %}
 ```
 
 **매개변수**
@@ -186,7 +186,7 @@ vimeo 삽입 코드 생성
 | --- | --- | --- | --- |
 | id | <code>string</code> |  | 유튜브 영상 id |
 | [type] | <code>string</code> | <code>&quot;video&quot;</code> | `video` 또는 `playlist` 중 하나 |
-| [cookie] | <code>boolean</code> | <code>false</code> | 프라이버시 강화 모드 사용 여부 |
+| [privacy] | <code>boolean</code> | <code>false</code> | 프라이버시 강화 모드 사용 여부 |
 | [aspectRatio] | <code>string</code> | <code>&quot;16/9&quot;</code> | 영상 종횡비.<br>16/9와 같이 W/H 형식이어야 합니다.  |
 | [title] | <code>string</code> |  | 유튜브 비디오 타이틀. 이 속성은 iframe에 대한 접근 가능한 이름으로 사용됩니다. |
 
@@ -197,7 +197,7 @@ vimeo 삽입 코드 생성
 {% youtube XXXXXX "This video is..." %}
 <!-- playlist 유형 사용 -->
 {% youtube XXXXXX playlist %}
-<!-- 유튜브 쿠키 허용 -->
+<!-- 유튜브 프라이버시 강화 모드 사용 -->
 {% youtube XXXXXX true %}
 <!-- 비디오 종횡비 지정 -->
 {% youtube XXXXXX 4/3 %}
