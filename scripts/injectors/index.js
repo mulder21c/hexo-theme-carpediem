@@ -49,7 +49,7 @@ Promise.all([globalVars]).then(([globalVars]) => {
 
   if (viewer360) {
     injector.register(
-      `head_end`,
+      `body_end`,
       `<script src="/js/pannellum.js"></script>`,
       `post`
     );
