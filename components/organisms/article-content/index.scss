@@ -169,12 +169,16 @@
     }
   }
 
-  & img:not(figure img),
-  & video:not(figure video),
-  & audio:not(figure audio) {
-    filter: drop-shadow(1px 1px 0.25em rgba(var(--box-shadow-color-rgb), 0.25));
+  img:not(figure img),
+  video:not(figure video),
+  audio:not(figure audio) {
     max-inline-size: 100%;
     block-size: auto;
+    filter: drop-shadow(1px 1px 0.25em rgba(var(--box-shadow-color-rgb), 0.25));
+
+    @include respond-to(tablet) {
+      max-height: 640px;
+    }
 
     &.block {
       display: block;
