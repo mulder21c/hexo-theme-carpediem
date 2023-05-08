@@ -42,7 +42,7 @@
     "not ie_mob > 0"
   ],
   "devDependencies": {
-    "@babel/core": "^7.21.3",
+    "@babel/core": "^7.21.8",
     "@babel/eslint-parser": "^7.21.3",
     "@babel/preset-env": "^7.21.4",
     "@commitlint/cli": "^17.5.1",
