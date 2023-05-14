@@ -60,6 +60,7 @@
       (
         breakpoint: tablet,
         margin: $main-container-horizon-space,
+        noLimitHeight: true,
       )
     );
     margin-top: 1.7em;
@@ -500,6 +501,7 @@ pre[class*="language-"] {
     (
       breakpoint: tablet,
       margin: $main-container-horizon-space,
+      noLimitHeight: true,
     )
   );
   margin-top: 1.7em;
