@@ -1,3 +1,5 @@
+const { browsers } = require("./package.json");
+
 module.exports = function (api) {
   api.cache(true);
 
@@ -7,6 +9,7 @@ module.exports = function (api) {
   return {
     presets,
     plugins,
+    targets: browsers,
     sourceType: "script",
     comments: false,
   };
