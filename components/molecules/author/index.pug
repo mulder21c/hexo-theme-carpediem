@@ -35,8 +35,8 @@ mixin articleAuthor(props= {})
     // verifying props
     validateProps(articleAuthorProps)(props);
 
-    const {
-      gravatar,
+    let {
+      gravatar: avatar,
       name,
       description,
       social,
@@ -46,9 +46,12 @@ mixin articleAuthor(props= {})
     };
 
     const { prefix } = theme;
-    const defaultGravatar = `/images/author.svg`;
+    const defaultAavatar = `/images/author.svg`;
     const hasDesc = !!description;
     const socialList = Object.entries(social).filter(([name, url]) => url );
+    const isEmail =
+      str => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(str);
+    avatar = isEmail(avatar) ? gravatar(avatar, 180) : avatar || defaultAvatar;
 
   div(
     class= [
@@ -58,7 +61,7 @@ mixin articleAuthor(props= {})
   )&attributes(attrs)
     span(class= `${prefix}-author__gravatar`)
       img(
-        src= full_url(gravatar || defaultGravatar)
+        src= full_url(avatar)
         alt= ""
         role="none"
       )

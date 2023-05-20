@@ -30,6 +30,7 @@
   }
 
   &__gravatar {
+    overflow: hidden;
     grid-area: image;
     border-radius: 50%;
     padding: var(--profile-image-padding);
