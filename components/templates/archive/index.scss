@@ -1,11 +1,17 @@
 .#{$prefix} {
   &-archives {
+    max-width: 80ch;
+    margin: 0 auto;
+
     &__heading {
-      padding-left: 2rem;
       font-family: var(--font-family-sans-serif);
       font-size: var(--font-size-heading-level-2);
       font-weight: var(--font-weight-semi-bold);
       color: var(--text-color-accent);
+
+      @include respond-to(pc) {
+        margin-left: -2rem;
+      }
 
       &::first-letter {
         text-transform: capitalize;

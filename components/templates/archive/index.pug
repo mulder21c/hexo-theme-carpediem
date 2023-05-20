@@ -21,7 +21,7 @@ block mainContent
       displayYearNum: MAX_COUNT,
       currYear,
     };
-  div
+  div(class= `${prefix}-archives`)
     if (page.year)
       +heading({
         level: 1,
