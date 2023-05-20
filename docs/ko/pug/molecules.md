@@ -34,35 +34,35 @@ include /components/atoms/category/index
 ### 예시 출력 결과
 
 ```html
-<div class="amor-article-card amor-article-card--link">
+<div class="crpdm-article-card crpdm-article-card--link">
   <a
-    class="amor-article-card__heading"
+    class="crpdm-article-card__heading"
     href="https://www.mulder21c.io/lorem-ipsum/"
     aria-describedby="od8v8gnssu8 kgcvvsaa1so"
   >
     Lorem Ipsum
   </a>
-  <div class="amor-article-card__meta" id="od8v8gnssu8">
-    <span class="amor-datetime amor-article-card__meta__item">
-      <span class="amor-datetime__label" role="img" aria-label="published">
+  <div class="crpdm-article-card__meta" id="od8v8gnssu8">
+    <span class="crpdm-datetime crpdm-article-card__meta__item">
+      <span class="crpdm-datetime__label" role="img" aria-label="published">
         📆
       </span>
-      <time class="amor-datetime__time" id="zc1e4wvchmk" datetime="2000-01-01">
+      <time class="crpdm-datetime__time" id="zc1e4wvchmk" datetime="2000-01-01">
         2000. 01. 01
       </time>
     </span>
-    <span class="amor-category amor-article-card__meta__item">
-      <span class="amor-category__label" role="img" aria-label="category">
+    <span class="crpdm-category crpdm-article-card__meta__item">
+      <span class="crpdm-category__label" role="img" aria-label="category">
         📂
       </span>
-      <span class="amor-category__list" role="list">
-        <span class="amor-category__content" role="listitem">
+      <span class="crpdm-category__list" role="list">
+        <span class="crpdm-category__content" role="listitem">
           <span>document</span>
         </span>
       </span>
     </span>
   </div>
-  <p class="amor-article-card__content" id="kgcvvsaa1so">
+  <p class="crpdm-article-card__content" id="kgcvvsaa1so">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis
     lacus, pharetra posuere tincidunt eu, vulputate eget ex. Lorem ipsum dolor
     sit amet, consectetur adipiscing elit. Quisque accumsan in ligula in
@@ -116,22 +116,22 @@ include /components/atoms/datetime/index
 ### 예시 출력 결과
 
 ```html
-<div class="amor-article-meta">
-  <span class="amor-category amor-article-meta__categories">
-    <span class="amor-category__label" role="img" aria-label="category">
+<div class="crpdm-article-meta">
+  <span class="crpdm-category crpdm-article-meta__categories">
+    <span class="crpdm-category__label" role="img" aria-label="category">
       📂
     </span>
-    <span class="amor-category__list" role="list">
-      <span class="amor-category__content" role="listitem">
+    <span class="crpdm-category__list" role="list">
+      <span class="crpdm-category__content" role="listitem">
         <a href="https://www.mulder21c.io/categories/document/">document</a>
       </span>
     </span>
   </span>
-  <span class="amor-datetime amor-article-meta__date">
-    <span class="amor-datetime__label" role="img" aria-label="published">
+  <span class="crpdm-datetime crpdm-article-meta__date">
+    <span class="crpdm-datetime__label" role="img" aria-label="published">
       📆
     </span>
-    <time class="amor-datetime__time" id="xoni1koa0v4" datetime="2000-01-01">
+    <time class="crpdm-datetime__time" id="xoni1koa0v4" datetime="2000-01-01">
       2000. 01. 01
     </time>
   </span>
@@ -183,15 +183,15 @@ include /components/atoms/svg-icon/index
 ### 예시 출력 결과
 
 ```html
-<div class="amor-author amor-author--no-desc">
-  <span class="amor-author__gravatar">
+<div class="crpdm-author crpdm-author--no-desc">
+  <span class="crpdm-author__gravatar">
     <img src="https://www.mulder21c.io/images/author.svg" alt="" role="none" />
   </span>
-  <p class="amor-author__name">mulder21c</p>
-  <div class="amor-author__social">
-    <a class="amor-author__social__link" href="/rss.xml" aria-label="rss">
+  <p class="crpdm-author__name">mulder21c</p>
+  <div class="crpdm-author__social">
+    <a class="crpdm-author__social__link" href="/rss.xml" aria-label="rss">
       <svg
-        class="amor-svg-icon amor-author__social__icon amor-author__social__icon--rss"
+        class="crpdm-svg-icon crpdm-author__social__icon crpdm-author__social__icon--rss"
         focusable="false"
         role="presentation"
       >
@@ -265,25 +265,25 @@ include /components/utils/util
 ```html
 <!-- row-->
 <div
-  class="amor-field amor-field--row amor-field--start"
+  class="crpdm-field crpdm-field--row crpdm-field--start"
   role="group"
   aria-labelledby="tq9hpglkc4k"
 >
-  <div class="amor-field__label amor-field__label--30" id="tq9hpglkc4k">
+  <div class="crpdm-field__label crpdm-field__label--30" id="tq9hpglkc4k">
     label
   </div>
-  <div class="amor-field__body"><p>body</p></div>
+  <div class="crpdm-field__body"><p>body</p></div>
 </div>
 <!-- column-->
 <div
-  class="amor-field amor-field--column"
+  class="crpdm-field crpdm-field--column"
   role="group"
   aria-labelledby="nv7smaknm2c"
 >
-  <div class="amor-field__label amor-field__label--30" id="nv7smaknm2c">
+  <div class="crpdm-field__label crpdm-field__label--30" id="nv7smaknm2c">
     label
   </div>
-  <div class="amor-field__body"><p>body</p></div>
+  <div class="crpdm-field__body"><p>body</p></div>
 </div>
 
 ```
@@ -323,21 +323,21 @@ include ../../../utils/util
 ### 예시 출력 결과
 
 ```html
-<nav class="amor-category-nav" aria-label="categories">
-  <ul class="amor-category-nav__list">
-    <li class="amor-category-nav__list__item">
+<nav class="crpdm-category-nav" aria-label="categories">
+  <ul class="crpdm-category-nav__list">
+    <li class="crpdm-category-nav__list__item">
       <a
         href="https://www.mulder21c.io/categories/document/"
-        class="amor-category-nav__list__link"
+        class="crpdm-category-nav__list__link"
       >
         document
       </a>
 
-      <ul class="amor-category-nav__list amor-category-nav__list--child">
-        <li class="amor-category-nav__list__item">
+      <ul class="crpdm-category-nav__list crpdm-category-nav__list--child">
+        <li class="crpdm-category-nav__list__item">
           <a
             href="https://www.mulder21c.io/categories/document/mockup/"
-            class="amor-category-nav__list__link"
+            class="crpdm-category-nav__list__link"
           >
             mockup
           </a>
@@ -385,12 +385,12 @@ include /components/utils/util
 ### 예시 출력 결과
 
 ```html
-<nav class="amor-links-nav" aria-label="links">
-  <ul class="amor-links-nav__list">
-    <li class="amor-links-nav__list__item">
+<nav class="crpdm-links-nav" aria-label="links">
+  <ul class="crpdm-links-nav__list">
+    <li class="crpdm-links-nav__list__item">
       <a
         href="https://my-portfolio.com"
-        class="amor-links-nav__list__link"
+        class="crpdm-links-nav__list__link"
         target="_blank"
         rel="noopener"
       >
@@ -398,10 +398,10 @@ include /components/utils/util
       </a>
     </li>
 
-    <li class="amor-links-nav__list__item">
+    <li class="crpdm-links-nav__list__item">
       <a
         href="https://my-works.com"
-        class="amor-links-nav__list__link"
+        class="crpdm-links-nav__list__link"
         target="_blank"
         rel="noopener"
       >
@@ -449,10 +449,10 @@ include /components/utils/util
 ### 예시 출력 결과
 
 ```html
-<nav class="amor-menu-nav" aria-label="menu">
-  <ul class="amor-menu-nav__list">
-    <li class="amor-menu-nav__list__item">
-      <a href="https://mulder21c.io/archives" class="amor-menu-nav__list__link">
+<nav class="crpdm-menu-nav" aria-label="menu">
+  <ul class="crpdm-menu-nav__list">
+    <li class="crpdm-menu-nav__list__item">
+      <a href="https://mulder21c.io/archives" class="crpdm-menu-nav__list__link">
         Archives
       </a>
     </li>
@@ -528,69 +528,69 @@ include /components/atoms/radios/boxy
 
 ```html
 <!-- basic-->
-<div class="amor-radio-boxes">
-  <label class="amor-radio-boxy amor-radio-boxes__item">
+<div class="crpdm-radio-boxes">
+  <label class="crpdm-radio-boxy crpdm-radio-boxes__item">
     <input
-      class="amor-radio-boxy__control"
+      class="crpdm-radio-boxy__control"
       type="radio"
       id="zeyaonanckc"
       name="size"
       value="small"
     />
-    <span class="amor-radio-boxy__box">small</span>
+    <span class="crpdm-radio-boxy__box">small</span>
   </label>
-  <label class="amor-radio-boxy amor-radio-boxes__item">
+  <label class="crpdm-radio-boxy crpdm-radio-boxes__item">
     <input
-      class="amor-radio-boxy__control"
+      class="crpdm-radio-boxy__control"
       type="radio"
       id="n3yocg2lkku"
       name="size"
       value="medium"
     />
-    <span class="amor-radio-boxy__box">medium</span>
+    <span class="crpdm-radio-boxy__box">medium</span>
   </label>
-  <label class="amor-radio-boxy amor-radio-boxes__item">
+  <label class="crpdm-radio-boxy crpdm-radio-boxes__item">
     <input
-      class="amor-radio-boxy__control"
+      class="crpdm-radio-boxy__control"
       type="radio"
       id="sz0kcmfniqo"
       name="size"
       value="large"
     />
-    <span class="amor-radio-boxy__box">large</span>
+    <span class="crpdm-radio-boxy__box">large</span>
   </label>
 </div>
 <!-- label with slot-->
-<div class="amor-radio-boxes">
-  <label class="amor-radio-boxy amor-radio-boxes__item">
+<div class="crpdm-radio-boxes">
+  <label class="crpdm-radio-boxy crpdm-radio-boxes__item">
     <input
-      class="amor-radio-boxy__control"
+      class="crpdm-radio-boxy__control"
       type="radio"
       id="gk2dbm0p4jc"
       name="size2"
       value="small"
     />
-    <span class="amor-radio-boxy__box">small 1</span>
+    <span class="crpdm-radio-boxy__box">small 1</span>
   </label>
-  <label class="amor-radio-boxy amor-radio-boxes__item">
+  <label class="crpdm-radio-boxy crpdm-radio-boxes__item">
     <input
-      class="amor-radio-boxy__control"
+      class="crpdm-radio-boxy__control"
       type="radio"
       id="oduqpy91cc1"
       name="size2"
       value="medium"
     />
-    <span class="amor-radio-boxy__box">medium 2</span>
+    <span class="crpdm-radio-boxy__box">medium 2</span>
   </label>
-  <label class="amor-radio-boxy amor-radio-boxes__item">
+  <label class="crpdm-radio-boxy crpdm-radio-boxes__item">
     <input
-      class="amor-radio-boxy__control"
+      class="crpdm-radio-boxy__control"
       type="radio"
       id="n9zjikbdvhg"
       name="size2"
       value="large"
     />
-    <span class="amor-radio-boxy__box">large 3</span>
+    <span class="crpdm-radio-boxy__box">large 3</span>
   </label>
 </div>
 
@@ -669,95 +669,95 @@ include /components/atoms/radios/default
 
 ```html
 <!-- basic-->
-<div class="amor-radio-group">
-  <span class="amor-radio amor-radio-group__item">
+<div class="crpdm-radio-group">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="v6i2ajcclrk"
       name="job"
       value="designer"
     />
-    <label class="amor-radio__label" for="v6i2ajcclrk">Web Designer</label>
+    <label class="crpdm-radio__label" for="v6i2ajcclrk">Web Designer</label>
   </span>
-  <span class="amor-radio amor-radio-group__item">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="wibr6l9df2k"
       name="job"
       value="frontend"
     />
-    <label class="amor-radio__label" for="wibr6l9df2k">
+    <label class="crpdm-radio__label" for="wibr6l9df2k">
       Web Front-End Developer
     </label>
   </span>
-  <span class="amor-radio amor-radio-group__item">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="dshgnk8k6f8"
       name="job"
       value="backend"
     />
-    <label class="amor-radio__label" for="dshgnk8k6f8">
+    <label class="crpdm-radio__label" for="dshgnk8k6f8">
       Web Back-End Developer
     </label>
   </span>
-  <span class="amor-radio amor-radio-group__item">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="ku78b182c8k"
       name="job"
       value="devops"
     />
-    <label class="amor-radio__label" for="ku78b182c8k">devops</label>
+    <label class="crpdm-radio__label" for="ku78b182c8k">devops</label>
   </span>
-  <span class="amor-radio amor-radio-group__item">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="x7aw4la8gbo"
       name="job"
       value="ios"
     />
-    <label class="amor-radio__label" for="x7aw4la8gbo">iOS developer</label>
+    <label class="crpdm-radio__label" for="x7aw4la8gbo">iOS developer</label>
   </span>
 </div>
 <!-- label with slot-->
-<div class="amor-radio-group amor-radio-group--col-3">
-  <span class="amor-radio amor-radio-group__item">
+<div class="crpdm-radio-group crpdm-radio-group--col-3">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="l6y5zh6i6o8"
       name="job2"
       value="designer"
     />
-    <label class="amor-radio__label" for="l6y5zh6i6o8">Web Designer</label>
+    <label class="crpdm-radio__label" for="l6y5zh6i6o8">Web Designer</label>
   </span>
-  <span class="amor-radio amor-radio-group__item">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="ixep7mqf95o"
       name="job2"
       value="frontend"
     />
-    <label class="amor-radio__label" for="ixep7mqf95o">
+    <label class="crpdm-radio__label" for="ixep7mqf95o">
       Web Front-End Developer
     </label>
   </span>
-  <span class="amor-radio amor-radio-group__item">
+  <span class="crpdm-radio crpdm-radio-group__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="bmhmvztrtjo"
       name="job2"
       value="backend"
     />
-    <label class="amor-radio__label" for="bmhmvztrtjo">
+    <label class="crpdm-radio__label" for="bmhmvztrtjo">
       Web Back-End Developer
     </label>
   </span>
@@ -835,49 +835,49 @@ include /components/atoms/radios/default
 
 ```html
 <!-- basic-->
-<div class="amor-radio-slider">
-  <span class="amor-radio amor-radio-slider__item">
+<div class="crpdm-radio-slider">
+  <span class="crpdm-radio crpdm-radio-slider__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="khd8rj9m5g6"
       name="size"
       value="small"
     />
     <label
-      class="amor-radio__label amor-radio__label--column"
+      class="crpdm-radio__label crpdm-radio__label--column"
       for="khd8rj9m5g6"
     >
       small
     </label>
   </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <span class="amor-radio amor-radio-slider__item">
+  <span class="crpdm-radio-slider__bar" aria-hidden="true"></span>
+  <span class="crpdm-radio crpdm-radio-slider__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="qsgf91aak6g"
       name="size"
       value="medium"
     />
     <label
-      class="amor-radio__label amor-radio__label--column"
+      class="crpdm-radio__label crpdm-radio__label--column"
       for="qsgf91aak6g"
     >
       medium
     </label>
   </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <span class="amor-radio amor-radio-slider__item">
+  <span class="crpdm-radio-slider__bar" aria-hidden="true"></span>
+  <span class="crpdm-radio crpdm-radio-slider__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="ics9nl5h6po"
       name="size"
       value="large"
     />
     <label
-      class="amor-radio__label amor-radio__label--column"
+      class="crpdm-radio__label crpdm-radio__label--column"
       for="ics9nl5h6po"
     >
       large
@@ -885,49 +885,49 @@ include /components/atoms/radios/default
   </span>
 </div>
 <!-- label with slot-->
-<div class="amor-radio-slider">
-  <span class="amor-radio amor-radio-slider__item">
+<div class="crpdm-radio-slider">
+  <span class="crpdm-radio crpdm-radio-slider__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="kf35hy437c8"
       name="size2"
       value="small"
     />
     <label
-      class="amor-radio__label amor-radio__label--column"
+      class="crpdm-radio__label crpdm-radio__label--column"
       for="kf35hy437c8"
     >
       small
     </label>
   </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <span class="amor-radio amor-radio-slider__item">
+  <span class="crpdm-radio-slider__bar" aria-hidden="true"></span>
+  <span class="crpdm-radio crpdm-radio-slider__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="a8mzhsm2um8"
       name="size2"
       value="medium"
     />
     <label
-      class="amor-radio__label amor-radio__label--column"
+      class="crpdm-radio__label crpdm-radio__label--column"
       for="a8mzhsm2um8"
     >
       medium
     </label>
   </span>
-  <span class="amor-radio-slider__bar" aria-hidden="true"></span>
-  <span class="amor-radio amor-radio-slider__item">
+  <span class="crpdm-radio-slider__bar" aria-hidden="true"></span>
+  <span class="crpdm-radio crpdm-radio-slider__item">
     <input
-      class="amor-radio__control"
+      class="crpdm-radio__control"
       type="radio"
       id="vhibszuo748"
       name="size2"
       value="large"
     />
     <label
-      class="amor-radio__label amor-radio__label--column"
+      class="crpdm-radio__label crpdm-radio__label--column"
       for="vhibszuo748"
     >
       large
@@ -980,20 +980,20 @@ include /components/molecules/fieldset/default
 
 ```html
 <div
-  class="amor-field amor-field--column amor-searchbar"
+  class="crpdm-field crpdm-field--column crpdm-searchbar"
   role="group"
   aria-labelledby="ss4anihdggs"
   id="searchbox"
 >
   <div
-    class="amor-field__label amor-field__label--30 amor-searchbar__label"
+    class="crpdm-field__label crpdm-field__label--30 crpdm-searchbar__label"
     id="ss4anihdggs"
   >
     search
   </div>
-  <div class="amor-field__body amor-searchbar__body">
+  <div class="crpdm-field__body crpdm-searchbar__body">
     <input
-      class="amor-textbox amor-textbox--medium amor-searchbar__textfield"
+      class="crpdm-textbox crpdm-textbox--medium crpdm-searchbar__textfield"
       id="keyword"
       type="text"
       aria-labelledby="ss4anihdggs"
@@ -1003,7 +1003,7 @@ include /components/molecules/fieldset/default
       spellcheck="false"
     />
     <button
-      class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--fill amor-searchbar__btn-submit"
+      class="crpdm-btn-basic crpdm-btn-basic--medium crpdm-btn-basic--fill crpdm-searchbar__btn-submit"
       type="button"
       id="btn-search"
     >
@@ -1053,7 +1053,7 @@ include /components/utils/util
 ### 예시 출력 결과
 
 ```html
-<div class="amor-tags-list amor-tags-list--flat">
+<div class="crpdm-tags-list crpdm-tags-list--flat">
   <ul>
     <li><a href="https://mulder21c.io/tags/mockup/">mockup</a></li>
   </ul>

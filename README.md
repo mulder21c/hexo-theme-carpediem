@@ -1,15 +1,15 @@
-# Amorfati
+# Carpediem
 
-Amorfati is fully customizable and component-based Hexo theme.
+Carpediem is fully customizable and component-based Hexo theme.
 
 [한국어 ![](https://flagcdn.com/w20/kr.webp)](./docs/ko/README.md)
 
-![Mock up](https://cdn.mulder21c.io/images/amorfati/screenshots/preview.jpg)
+![Mock up](https://cdn.mulder21c.io/images/carpediem/screenshots/preview.jpg)
 
 ## Requirements
 
 - Node v16.16.0+
-- Hexo v6.3.0
+- Hexo v6.3.0+
 
 ## Support Browsers
 
@@ -23,7 +23,7 @@ Amorfati is fully customizable and component-based Hexo theme.
 
 Inspired by atomic design system, so made component-based using pug mixins.
 
-You can find all the components used in this theme in `./components/`.  
+You can find all the components used in this theme in `./components/`.
 Each component consists of `pug`, `scss` and optionally `js` for UI function
 implementation.
 
@@ -35,7 +35,7 @@ cascading problems and maintain its own style.
 <details>
   <summary> <b>More accessible</b> </summary>
 
-Tried to meet as many items as possible in WCAG 2.1 Level AA.  
+Tried to meet as many items as possible in WCAG 2.1 Level AA.
 Checked for compliance for WCAG using the Axe tool.
 
 </details>
@@ -43,7 +43,7 @@ Checked for compliance for WCAG using the Axe tool.
 <details>
   <summary> <b>Auto toggle light/dark mode</b> </summary>
 
-Support automatic light/dark mode based on system settings.  
+Support automatic light/dark mode based on system settings.
 It is also possible to fix it in a certain mode.
 
 </details>
@@ -60,7 +60,7 @@ It is also possible to fix it in a certain mode.
 <details>
   <summary> <b>Post-specific style</b> </summary>
 
-Support post-specific style.  
+Support post-specific style.
 You can write style in SCSS and use predefined SCSS functions and mixins.
 
 </details>
@@ -94,7 +94,7 @@ Support external links in navigation
 
 Support algolia search
 
-Need to install [hexo-algoliasearch](https://github.com/LouisBarranqueiro/hexo-algoliasearch).  
+Need to install [hexo-algoliasearch](https://github.com/LouisBarranqueiro/hexo-algoliasearch).
 You can activate the search page just creating an empty page that uses the
 search layout.
 
@@ -103,7 +103,7 @@ search layout.
 <details>
   <summary> <b>Internationalization</b>  </summary>
 
-Support i18n based on `languages` configuration.  
+Support i18n based on `languages` configuration.
 Currently supported languages are
 
 - English
@@ -128,14 +128,14 @@ Sourcemaps are provided for js and css in development mode for easy debugging.
 <details>
   <summary> <b>Syntax highlight</b> </summary>
 
-  Support only Prism.js 
+  Support only Prism.js
 
 </details>
 
 <details>
   <summary> <b>footnotes</b> </summary>
 
-  Support footnotes, need to install 
+  Support footnotes, need to install
   [hexo-renderer-markdown-it](https://github.com/hexojs/hexo-renderer-markdown-it)
   and active markdown-it-footnote plugin
 </details>
@@ -146,13 +146,13 @@ First, clone this repository
 
 ```bash
 $ cd your/hexo/directory
-$ git clone -b master --single-branch --depth=1 https://github.com/mulder21c/hexo-theme-amorfati-v2.git themes/amorfati
+$ git clone -b master --single-branch --depth=1 https://github.com/mulder21c/hexo-theme-carpediem.git themes/carpediem
 ```
 
 Then, install dependencies
 
 ```bash
-$ cd themes/amorfati
+$ cd themes/carpediem
 $ npm install
 ```
 
@@ -222,141 +222,141 @@ Below is a brief description of the SCSS file.
 
 <details open>
   <summary>Main page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-main.webp" width="320" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-main.webp" width="320" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-menu.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Menu - opened all</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu-open.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-menu-open.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Archive Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-archive.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-archive.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Search Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-search.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-search.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ### tablet <i style="font-size: 0.75em;font-weight:normal">＜ 1024px</i>
 
 <details open>
   <summary>Main page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-main.webp" width="720" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-main.webp" width="720" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-menu.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Menu - opened all</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu-open.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-menu-open.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Archive Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-archive.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-archive.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Search Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-search.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-search.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ### pc <i style="font-size: 0.75em;font-weight:normal">＜ 1280px</i>
 
 <details open>
   <summary>Main page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-main.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-main.webp" width="1200" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-menu.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Menu - opened all</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu-open.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-menu-open.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Archive Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-archive.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-archive.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Search Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-search.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-search.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ### larger <i style="font-size: 0.75em;font-weight:normal">≥ 1280px</i>
 
 <details open>
   <summary>Main page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-main.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-main.webp" width="1336" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>Menu - closed</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-menu.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Menu - opened all</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu-open.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-menu-open.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Archive Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-archive.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-archive.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>Search Page</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-search.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-search.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>scroll bar (all screen size)</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/with-scroll.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/with-scroll.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ## Feedback
 
-You can submit a bug or feature suggestion at 
-[issue](https://github.com/mulder21c/hexo-theme-amorfati-v2/issues/new/choose).
+You can submit a bug or feature suggestion at
+[issue](https://github.com/mulder21c/hexo-theme-carpediem/issues/new/choose).

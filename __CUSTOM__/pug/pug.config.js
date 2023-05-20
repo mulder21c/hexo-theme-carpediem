@@ -2,6 +2,6 @@ const path = require("path");
 
 module.exports = {
   compile: {
-    basedir: path.resolve(__dirname, `themes/amorfati`),
+    basedir: path.resolve(__dirname, `themes/carpediem`),
   },
 };

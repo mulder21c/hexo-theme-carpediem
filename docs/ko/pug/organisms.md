@@ -50,10 +50,10 @@ include /components/atoms/svg-icon/index
 ### 예시 출력 결과
 
 ```html
-<div class="amor-accordion" id="ps1jypdo08s" data-init-activate="1">
-  <div class="amor-accordion__header">
+<div class="crpdm-accordion" id="ps1jypdo08s" data-init-activate="1">
+  <div class="crpdm-accordion__header">
     <button
-      class="amor-accordion__tab"
+      class="crpdm-accordion__tab"
       type="button"
       id="uz41k3ris2s"
       aria-expanded="false"
@@ -61,7 +61,7 @@ include /components/atoms/svg-icon/index
     >
       heading 1
       <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
+        class="crpdm-svg-icon crpdm-accordion__tab__icon"
         focusable="false"
         role="presentation"
       >
@@ -72,7 +72,7 @@ include /components/atoms/svg-icon/index
     </button>
   </div>
   <div
-    class="amor-accordion__panel"
+    class="crpdm-accordion__panel"
     id="khqq92m7a54"
     role="region"
     aria-labelledby="uz41k3ris2s"
@@ -80,9 +80,9 @@ include /components/atoms/svg-icon/index
   >
     panel 1
   </div>
-  <div class="amor-accordion__header">
+  <div class="crpdm-accordion__header">
     <button
-      class="amor-accordion__tab"
+      class="crpdm-accordion__tab"
       type="button"
       id="id51to95l2g"
       aria-expanded="true"
@@ -90,7 +90,7 @@ include /components/atoms/svg-icon/index
     >
       heading 2
       <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
+        class="crpdm-svg-icon crpdm-accordion__tab__icon"
         focusable="false"
         role="presentation"
       >
@@ -101,16 +101,16 @@ include /components/atoms/svg-icon/index
     </button>
   </div>
   <div
-    class="amor-accordion__panel active"
+    class="crpdm-accordion__panel active"
     id="r9dohtjebio"
     role="region"
     aria-labelledby="id51to95l2g"
   >
     panel 2
   </div>
-  <div class="amor-accordion__header">
+  <div class="crpdm-accordion__header">
     <button
-      class="amor-accordion__tab"
+      class="crpdm-accordion__tab"
       type="button"
       id="d2d7bymq527"
       aria-expanded="false"
@@ -118,7 +118,7 @@ include /components/atoms/svg-icon/index
     >
       heading 3
       <svg
-        class="amor-svg-icon amor-accordion__tab__icon"
+        class="crpdm-svg-icon crpdm-accordion__tab__icon"
         focusable="false"
         role="presentation"
       >
@@ -129,7 +129,7 @@ include /components/atoms/svg-icon/index
     </button>
   </div>
   <div
-    class="amor-accordion__panel"
+    class="crpdm-accordion__panel"
     id="c8zyz6tvf0r"
     role="region"
     aria-labelledby="d2d7bymq527"
@@ -183,18 +183,18 @@ include /components/atoms/heading/index
 ### 예시 출력 결과
 
 ```html
-<div class="amor-timeline">
-  <h2 class="amor-heading--lv-2 amor-timeline__year">
+<div class="crpdm-timeline">
+  <h2 class="crpdm-heading--lv-2 crpdm-timeline__year">
     2000&rsquo;
     <span>posts</span>
   </h2>
-  <ol class="amor-timeline__list">
-    <li class="amor-timeline__list__item">
+  <ol class="crpdm-timeline__list">
+    <li class="crpdm-timeline__list__item">
       <a
-        class="amor-timeline__link"
+        class="crpdm-timeline__link"
         href="https://www.mulder21c.io/lorem-ipsum/"
       >
-        <span class="amor-timeline__title">Lorem Ipsum</span>
+        <span class="crpdm-timeline__title">Lorem Ipsum</span>
       </a>
     </li>
   </ol>
@@ -237,7 +237,7 @@ include /components/utils/util
 ### 예시 출력 결과
 
 ```html
-<div class="amor-article-content">
+<div class="crpdm-article-content">
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis
     lacus, pharetra posuere tincidunt eu, vulputate eget ex. Lorem ipsum dolor
@@ -342,41 +342,41 @@ include /components/molecules/article-card/index
 ### 예시 출력 결과
 
 ```html
-<ol class="amor-articles-list">
-  <li class="amor-articles-list__item">
-    <div class="amor-article-card amor-article-card--link">
+<ol class="crpdm-articles-list">
+  <li class="crpdm-articles-list__item">
+    <div class="crpdm-article-card crpdm-article-card--link">
       <a
-        class="amor-article-card__heading"
+        class="crpdm-article-card__heading"
         href="https://www.mulder21c.io/lorem-ipsum/"
         aria-describedby="gv9xum90fpp pm8dydv1m7g"
       >
         Lorem Ipsum
       </a>
-      <div class="amor-article-card__meta" id="gv9xum90fpp">
-        <span class="amor-datetime amor-article-card__meta__item">
-          <span class="amor-datetime__label" role="img" aria-label="published">
+      <div class="crpdm-article-card__meta" id="gv9xum90fpp">
+        <span class="crpdm-datetime crpdm-article-card__meta__item">
+          <span class="crpdm-datetime__label" role="img" aria-label="published">
             📆
           </span>
           <time
-            class="amor-datetime__time"
+            class="crpdm-datetime__time"
             id="kr6qw6l8p5g"
             datetime="2000-01-01"
           >
             2000. 01. 01
           </time>
         </span>
-        <span class="amor-category amor-article-card__meta__item">
-          <span class="amor-category__label" role="img" aria-label="category">
+        <span class="crpdm-category crpdm-article-card__meta__item">
+          <span class="crpdm-category__label" role="img" aria-label="category">
             📂
           </span>
-          <span class="amor-category__list" role="list">
-            <span class="amor-category__content" role="listitem">
+          <span class="crpdm-category__list" role="list">
+            <span class="crpdm-category__content" role="listitem">
               <span>document</span>
             </span>
           </span>
         </span>
       </div>
-      <p class="amor-article-card__content" id="pm8dydv1m7g">
+      <p class="crpdm-article-card__content" id="pm8dydv1m7g">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis
         lacus, pharetra posuere tincidunt eu, vulputate eget ex. Lorem ipsum
         dolor sit amet, consectetur adipiscing elit. Quisque accumsan in ligula
@@ -688,8 +688,8 @@ include /components/atoms/watermark/index
 ### 예시 출력 결과
 
 ```html
-<div class="amor-footer">
-  <p class="amor-license">
+<div class="crpdm-footer">
+  <p class="crpdm-license">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -697,15 +697,15 @@ include /components/atoms/watermark/index
       role="img"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 24 24"
-      class="amor-license__icon"
+      class="crpdm-license__icon"
     >
       <path
         fill="currentColor"
         d="m11.89 10.34l-1.34.7c-.14-.3-.31-.51-.52-.63c-.21-.12-.41-.18-.58-.18c-.9 0-1.34.59-1.34 1.77c0 .54.11.97.34 1.29c.22.32.55.48 1 .48c.58 0 .99-.27 1.23-.86l1.23.63c-.26.49-.62.87-1.09 1.15c-.46.28-.97.42-1.53.42c-.9 0-1.62-.27-2.17-.82C6.58 13.74 6.3 13 6.3 12c0-.95.28-1.7.83-2.26c.56-.56 1.26-.84 2.1-.84c1.24-.01 2.13.48 2.66 1.44m5.77 0l-1.32.7c-.14-.3-.34-.51-.53-.63c-.21-.12-.41-.18-.6-.18c-.89 0-1.34.59-1.34 1.77c0 .54.13.97.34 1.29c.23.32.56.48 1 .48c.59 0 1-.27 1.24-.86l1.25.63c-.28.49-.65.87-1.11 1.15c-.47.28-.97.42-1.52.42c-.9 0-1.63-.27-2.17-.82c-.54-.55-.81-1.29-.81-2.29c0-.95.28-1.7.83-2.26c.55-.56 1.25-.84 2.08-.84c1.26-.01 2.14.48 2.66 1.44M12 3.5a8.5 8.5 0 0 1 8.5 8.5a8.5 8.5 0 0 1-8.5 8.5A8.5 8.5 0 0 1 3.5 12A8.5 8.5 0 0 1 12 3.5M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
       ></path>
     </svg>
-    <span class="amor-license__name">mulder21c</span>
-    <span class="amor-license__link">
+    <span class="crpdm-license__name">mulder21c</span>
+    <span class="crpdm-license__link">
       (
       <a
         href="https://creativecommons.org/licenses/by-nc-nd/4.0"
@@ -717,7 +717,7 @@ include /components/atoms/watermark/index
       )
     </span>
   </p>
-  <p class="amor-watermark">
+  <p class="crpdm-watermark">
     Powered by
     <a href="https://hexo.io/" rel="external noreferrer" target="_blank">
       Hexo.
@@ -775,7 +775,7 @@ include /components/utils/util
 
 ```html
 <div
-  class="amor-hero"
+  class="crpdm-hero"
   role="presentation"
   style="background-image: url(hero.jpg)"
 ></div>
@@ -823,17 +823,17 @@ include /components/utils/util
 ### 예시 출력 결과
 
 ```html
-<nav class="amor-pagination">
+<nav class="crpdm-pagination">
   <a
-    class="amor-pagination__item amor-pagination__item--current"
+    class="crpdm-pagination__item crpdm-pagination__item--current"
     href="/"
     aria-current="page"
   >
     1
   </a>
-  <a class="amor-pagination__item" href="//page/2">2</a>
-  <a class="amor-pagination__item" href="//page/3">3</a>
-  <a class="amor-pagination__next" rel="next" href="//page/2">
+  <a class="crpdm-pagination__item" href="//page/2">2</a>
+  <a class="crpdm-pagination__item" href="//page/3">3</a>
+  <a class="crpdm-pagination__next" rel="next" href="//page/2">
     <svg role="img" aria-label="다음 페이지" focusable="false">
       <use xlink:href="/images/solid.svg#angle-right"></use>
     </svg>
@@ -900,7 +900,7 @@ include /components/atoms/buttons/icon
 
 ```html
 <div
-  class="slide-panel amor-slide-panel amor-slide-panel--btn-top side"
+  class="slide-panel crpdm-slide-panel crpdm-slide-panel--btn-top side"
   id="slide-nav"
   aria-label="setting"
   role="region"
@@ -908,12 +908,12 @@ include /components/atoms/buttons/icon
 >
   <div class="side__inner">slide panel</div>
   <button
-    class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--ghost amor-btn-icon--icon-only closer amor-slide-panel__btn-close amor-slide-panel__btn-close--top amor-slide-panel__btn-close--right"
+    class="crpdm-btn-icon crpdm-btn-icon--medium crpdm-btn-icon--ghost crpdm-btn-icon--icon-only closer crpdm-slide-panel__btn-close crpdm-slide-panel__btn-close--top crpdm-slide-panel__btn-close--right"
     type="button"
     aria-label="close setting"
   >
     <svg
-      class="amor-svg-icon amor-btn-icon__icon"
+      class="crpdm-svg-icon crpdm-btn-icon__icon"
       focusable="false"
       aria-hidden="true"
     >
@@ -971,8 +971,8 @@ include /components/utils/util
 
 ```html
 <!-- without slot-->
-<div class="amor-title-bar">
-  <h1 class="amor-title-bar__title"><a href="/">The Tracks of mulder21c</a></h1>
+<div class="crpdm-title-bar">
+  <h1 class="crpdm-title-bar__title"><a href="/">The Tracks of mulder21c</a></h1>
 </div>
 
 ```

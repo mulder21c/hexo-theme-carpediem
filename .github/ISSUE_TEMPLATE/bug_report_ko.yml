@@ -16,7 +16,7 @@ body:
       options:
         - label: 노드 16.16.0 이상 버전 사용 중
           required: true
-        - label: 현재 [issues](https://github.com/mulder21c/hexo-theme-amorfati-v2/issues)를 검색해보았지만 도움을 얻을 수 없었다.
+        - label: 현재 [issues](https://github.com/mulder21c/hexo-theme-carpediem/issues)를 검색해보았지만 도움을 얻을 수 없었다.
           required: true
   - type: markdown
     id: basic-info

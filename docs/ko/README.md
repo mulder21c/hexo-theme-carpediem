@@ -1,15 +1,15 @@
-# Amorfati
+# Carpediem
 
-Amorfati는 완전히 커스텀 할 수 있는 컴포넌트 기반의 Hexo 테마입니다.
+Carpediem은 완전히 커스텀 할 수 있는 컴포넌트 기반의 Hexo 테마입니다.
 
 [영어 ![](https://flagcdn.com/w20/us.webp)](../../README.md)
 
-![목업](https://cdn.mulder21c.io/images/amorfati/screenshots/preview.jpg)
+![목업](https://cdn.mulder21c.io/images/carpediem/screenshots/preview.jpg)
 
 ## 요구사항
 
 - Node v16.16.0+
-- Hexo v6.3.0
+- Hexo v6.3.0+
 
 ## 지원 브라우저
 
@@ -24,7 +24,7 @@ Amorfati는 완전히 커스텀 할 수 있는 컴포넌트 기반의 Hexo 테�
 아토믹 디자인 시스템에서 영감을 받아, pug mixins를 이용하여 컴포넌트 기반으로
 제작되었습니다.
 
-이 테마에 사용 된 모든 컴포넌트는 `./components/`에 있습니다.  
+이 테마에 사용 된 모든 컴포넌트는 `./components/`에 있습니다.
 각 컴포넌트는 `pug`, `scss` 및 UI 기능을 위해 선택적으로 `js`로 구성됩니다.
 
 BEM CSS 방법론에 따라, 각 컴포넌트는 캐스캐이딩 문제를 완전히 방지하고 자체 스타일을 유지할
@@ -35,7 +35,7 @@ BEM CSS 방법론에 따라, 각 컴포넌트는 캐스캐이딩 문제를 완�
 <details>
   <summary> <b>접근성</b> </summary>
 
-가능한 WCAG 2.1 AA 레벨의 많은 항목을 준수하도록 노력하였습니다.   
+가능한 WCAG 2.1 AA 레벨의 많은 항목을 준수하도록 노력하였습니다.
 Axe 도구를 이용하여 WCAG에 대한 적합성이 검사되었습니다.
 
 </details>
@@ -43,7 +43,7 @@ Axe 도구를 이용하여 WCAG에 대한 적합성이 검사되었습니다.
 <details>
   <summary> <b>자동 라이트/다크 모드 전환</b> </summary>
 
-시스템 설정에 따른 자동 라이드/다크 모드를 지원합니다.  
+시스템 설정에 따른 자동 라이드/다크 모드를 지원합니다.
 물론 특정 모드로 고정도 가능합니다.
 
 </details>
@@ -60,7 +60,7 @@ Axe 도구를 이용하여 WCAG에 대한 적합성이 검사되었습니다.
 <details>
   <summary> <b>포트스별 스타일</b> </summary>
 
-포스트별 스타일을 지원합니다.  
+포스트별 스타일을 지원합니다.
 SCSS로 스타일을 작성할 수 있고 사전 정의된 SCSS function 및 mixin을 사용할 수 있습니다.
 
 </details>
@@ -77,7 +77,7 @@ SCSS로 스타일을 작성할 수 있고 사전 정의된 SCSS function 및 mix
 - remark
 - utterance
 
-특정 포스트에서만 댓글을 사용하지 않기 원한다면, front-matter에서 댓글을 비활성화 할 수 
+특정 포스트에서만 댓글을 사용하지 않기 원한다면, front-matter에서 댓글을 비활성화 할 수
 있습니다.
 
 </details>
@@ -94,8 +94,8 @@ SCSS로 스타일을 작성할 수 있고 사전 정의된 SCSS function 및 mix
 
 alogila 검색을 지원합니다.
 
-[hexo-algoliasearch](https://github.com/LouisBarranqueiro/hexo-algoliasearch) 
-설치가 필요합니다.  
+[hexo-algoliasearch](https://github.com/LouisBarranqueiro/hexo-algoliasearch)
+설치가 필요합니다.
 search layout을 사용하는 빈 페이지를 생성하는 것만으로 검색 페이지를 활성화 할 수 있습니다.
 
 </details>
@@ -116,7 +116,7 @@ search layout을 사용하는 빈 페이지를 생성하는 것만으로 검색 
 
 컴포넌트의 파일을 수정하기만 하면, 이 컴포넌트를 사용하는 모든 곳에 자동으로 반영됩니다.
 
-컬러, 글자, 테두리 같은 많은 스타일 속성들이 `source/css/modules/_root.scss`의 CSS 변수 
+컬러, 글자, 테두리 같은 많은 스타일 속성들이 `source/css/modules/_root.scss`의 CSS 변수
 및 `source/css/modules/_variables.scss`의 SCSS 변수로 관리됩니다.
 
 쉬운 디버깅을 위해 개발 모드에서 js 및 css에 대한 소스맵이 제공됩니다.
@@ -133,7 +133,7 @@ search layout을 사용하는 빈 페이지를 생성하는 것만으로 검색 
 <details>
   <summary> <b>footnotes</b> </summary>
 
-  각주를 지원합니다.  
+  각주를 지원합니다.
   [hexo-renderer-markdown-it](https://github.com/hexojs/hexo-renderer-markdown-it)의
   설치와 markdown-it-footnote 플러그인 활성화가 필요합니다.
 </details>
@@ -144,13 +144,13 @@ search layout을 사용하는 빈 페이지를 생성하는 것만으로 검색 
 
 ```bash
 $ cd your/hexo/directory
-$ git clone -b master --single-branch --depth=1 https://github.com/mulder21c/hexo-theme-amorfati-v2.git themes/amorfati
+$ git clone -b master --single-branch --depth=1 https://github.com/mulder21c/hexo-theme-carpediem.git themes/carpediem
 ```
 
 이후, 의존성 패키지를 설치합니다.
 
 ```bash
-$ cd themes/amorfati
+$ cd themes/carpediem
 $ npm install
 ```
 
@@ -217,141 +217,141 @@ style:
 
 <details open>
   <summary>메인 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-main.webp" width="320" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-main.webp" width="320" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>메뉴 - 닫힘 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-menu.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>메뉴 - 모두 열림 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-menu-open.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-menu-open.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>아카이브 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-archive.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-archive.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>검색 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/mobile-search.webp" width="320" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/mobile-search.webp" width="320" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ### 태블릿 <i style="font-size: 0.75em;font-weight:normal">＜ 1024px</i>
 
 <details open>
   <summary>메인 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-main.webp" width="720" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-main.webp" width="720" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>메뉴 - 닫힘 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-menu.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>메뉴 - 모두 열림 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-menu-open.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-menu-open.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>아카이브 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-archive.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-archive.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>검색 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/tablet-search.webp" width="720" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/tablet-search.webp" width="720" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ### PC <i style="font-size: 0.75em;font-weight:normal">＜ 1280px</i>
 
 <details open>
   <summary>메인 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-main.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-main.webp" width="1200" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>메뉴 - 닫힘 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-menu.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>메뉴 - 모두 열림 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-menu-open.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-menu-open.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>아카이브 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-archive.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-archive.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>검색 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/pc-search.webp" width="1200" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/pc-search.webp" width="1200" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ### 대화면 <i style="font-size: 0.75em;font-weight:normal">≥ 1280px</i>
 
 <details open>
   <summary>메인 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-main.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-main.webp" width="1336" style="margin-top:16px;max-width:100%" >
 
 </details>
 <details>
   <summary>메뉴 - 닫힘 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-menu.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>메뉴 - 모두 열림 상태</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-menu-open.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-menu-open.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>아카이브 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-archive.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-archive.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>검색 페이지</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/larger-search.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/larger-search.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 <details>
   <summary>스크롤바 (모든 스크린사이즈에 동일)</summary>
-  
-  <img src="https://cdn.mulder21c.io/images/amorfati/screenshots/with-scroll.webp" width="1336" style="margin-top:16px;max-width:100%" >
-  
+
+  <img src="https://cdn.mulder21c.io/images/carpediem/screenshots/with-scroll.webp" width="1336" style="margin-top:16px;max-width:100%" >
+
 </details>
 
 ## 피드백
 
-[issue](https://github.com/mulder21c/hexo-theme-amorfati-v2/issues/new/choose)에서
+[issue](https://github.com/mulder21c/hexo-theme-carpediem/issues/new/choose)에서
 버그 및 기능 요청을 제출할 수 있습니다.

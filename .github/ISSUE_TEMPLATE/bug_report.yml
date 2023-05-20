@@ -16,7 +16,7 @@ body:
       options:
         - label: I am using this theme on node version 16.16.0+.
           required: true
-        - label: I have already searched for current [issues](https://github.com/mulder21c/hexo-theme-amorfati-v2/issues). Which does not help me.
+        - label: I have already searched for current [issues](https://github.com/mulder21c/hexo-theme-carpediem/issues). Which does not help me.
           required: true
   - type: markdown
     id: basic-info

@@ -1,16 +1,16 @@
-# Pug Documentation 
+# Pug Documentation
 
 ## button
 
 basic button component
 
 
-### path 
+### path
 
 `components/atoms/buttons/default.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -34,11 +34,11 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <button
-  class="amor-btn-basic amor-btn-basic--medium amor-btn-basic--outline"
+  class="crpdm-btn-basic crpdm-btn-basic--medium crpdm-btn-basic--outline"
   type="button"
 >
   button
@@ -55,12 +55,12 @@ include /components/utils/util
 icon(font awesome) button component
 
 
-### path 
+### path
 
 `components/atoms/buttons/icon.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -90,16 +90,16 @@ include /components/atoms/svg-icon/index
 ```
 
 
-### example output 
+### example output
 
 ```html
 <button
-  class="amor-btn-icon amor-btn-icon--medium amor-btn-icon--outline amor-btn-icon--icon-only"
+  class="crpdm-btn-icon crpdm-btn-icon--medium crpdm-btn-icon--outline crpdm-btn-icon--icon-only"
   type="button"
   aria-label="tel"
 >
   <svg
-    class="amor-svg-icon amor-btn-icon__icon"
+    class="crpdm-svg-icon crpdm-btn-icon__icon"
     focusable="false"
     aria-hidden="true"
   >
@@ -118,12 +118,12 @@ include /components/atoms/svg-icon/index
 category indicator
 
 
-### path 
+### path
 
 `components/atoms/category/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -152,12 +152,12 @@ include /components/atoms/svg-icon/index
 ```
 
 
-### example output 
+### example output
 
 ```html
-<span class="amor-category">
-  <span class="amor-category__label" role="img" aria-label="category">📂</span>
-  <span class="amor-category__content">mockup</span>
+<span class="crpdm-category">
+  <span class="crpdm-category__label" role="img" aria-label="category">📂</span>
+  <span class="crpdm-category__content">mockup</span>
 </span>
 
 ```
@@ -171,12 +171,12 @@ include /components/atoms/svg-icon/index
 ccl license text
 
 
-### path 
+### path
 
 `components/atoms/ccl-license/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -201,10 +201,10 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
-<p class="amor-license">
+<p class="crpdm-license">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -212,18 +212,18 @@ include /components/utils/util
     role="img"
     preserveAspectRatio="xMidYMid meet"
     viewBox="0 0 24 24"
-    class="amor-license__icon"
+    class="crpdm-license__icon"
   >
     <path
       fill="currentColor"
       d="m11.89 10.34l-1.34.7c-.14-.3-.31-.51-.52-.63c-.21-.12-.41-.18-.58-.18c-.9 0-1.34.59-1.34 1.77c0 .54.11.97.34 1.29c.22.32.55.48 1 .48c.58 0 .99-.27 1.23-.86l1.23.63c-.26.49-.62.87-1.09 1.15c-.46.28-.97.42-1.53.42c-.9 0-1.62-.27-2.17-.82C6.58 13.74 6.3 13 6.3 12c0-.95.28-1.7.83-2.26c.56-.56 1.26-.84 2.1-.84c1.24-.01 2.13.48 2.66 1.44m5.77 0l-1.32.7c-.14-.3-.34-.51-.53-.63c-.21-.12-.41-.18-.6-.18c-.89 0-1.34.59-1.34 1.77c0 .54.13.97.34 1.29c.23.32.56.48 1 .48c.59 0 1-.27 1.24-.86l1.25.63c-.28.49-.65.87-1.11 1.15c-.47.28-.97.42-1.52.42c-.9 0-1.63-.27-2.17-.82c-.54-.55-.81-1.29-.81-2.29c0-.95.28-1.7.83-2.26c.55-.56 1.25-.84 2.08-.84c1.26-.01 2.14.48 2.66 1.44M12 3.5a8.5 8.5 0 0 1 8.5 8.5a8.5 8.5 0 0 1-8.5 8.5A8.5 8.5 0 0 1 3.5 12A8.5 8.5 0 0 1 12 3.5M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
     ></path>
   </svg>
-  <time class="amor-license__year" datetime="2012">2012</time>
+  <time class="crpdm-license__year" datetime="2012">2012</time>
   ~
-  <time class="amor-license__year" datetime="2022">2022</time>
-  <span class="amor-license__name">mulder21c</span>
-  <span class="amor-license__link">
+  <time class="crpdm-license__year" datetime="2022">2022</time>
+  <span class="crpdm-license__name">mulder21c</span>
+  <span class="crpdm-license__link">
     (
     <a
       href="https://creativecommons.org/licenses/by-nc-nd/4.0"
@@ -247,12 +247,12 @@ include /components/utils/util
 checkbox component
 
 
-### path 
+### path
 
 `components/atoms/checkboxes/default.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -294,38 +294,38 @@ label(for=`no-label-checkbox`) checkbox
 ```
 
 
-### example output 
+### example output
 
 ```html
 <!-- basic checkbox-->
-<span class="amor-checkbox">
+<span class="crpdm-checkbox">
   <input
-    class="amor-checkbox__control"
+    class="crpdm-checkbox__control"
     type="checkbox"
     id="e1uebgq06hg"
     checked="checked"
   />
-  <label class="amor-checkbox__label" for="e1uebgq06hg">agree</label>
+  <label class="crpdm-checkbox__label" for="e1uebgq06hg">agree</label>
 </span>
 <!-- using block instead of label property-->
-<span class="amor-checkbox">
+<span class="crpdm-checkbox">
   <input
-    class="amor-checkbox__control"
+    class="crpdm-checkbox__control"
     type="checkbox"
     id="mrxsht0pf3h"
     name="answer"
     value="1"
   />
-  <label class="amor-checkbox__label" for="mrxsht0pf3h">check label</label>
+  <label class="crpdm-checkbox__label" for="mrxsht0pf3h">check label</label>
 </span>
 <!-- using separated label element-->
-<span class="amor-checkbox">
+<span class="crpdm-checkbox">
   <input
-    class="amor-checkbox__control"
+    class="crpdm-checkbox__control"
     type="checkbox"
     id="no-label-checkbox"
   />
-  <span class="amor-checkbox__label" aria-hidden="true"></span>
+  <span class="crpdm-checkbox__label" aria-hidden="true"></span>
 </span>
 <label for="no-label-checkbox">checkbox</label>
 
@@ -340,12 +340,12 @@ label(for=`no-label-checkbox`) checkbox
 switch button component
 
 
-### path 
+### path
 
 `components/atoms/checkboxes/switch.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -385,36 +385,36 @@ label(for="no-label-switch") switch button
 ```
 
 
-### example output 
+### example output
 
 ```html
 <!-- basic switch button-->
-<span class="amor-switch">
+<span class="crpdm-switch">
   <input
-    class="amor-switch__control"
+    class="crpdm-switch__control"
     type="checkbox"
     id="d4fs7krhfk8"
     checked="checked"
   />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="d4fs7krhfk8">alarm</label>
+  <span class="crpdm-switch__btn" aria-hidden="true"></span>
+  <label class="crpdm-switch__label" for="d4fs7krhfk8">alarm</label>
 </span>
 <!-- using block instead of label property-->
-<span class="amor-switch">
+<span class="crpdm-switch">
   <input
-    class="amor-switch__control"
+    class="crpdm-switch__control"
     type="checkbox"
     id="bmmycu6fimo"
     checked="checked"
   />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <label class="amor-switch__label" for="bmmycu6fimo">switch button</label>
+  <span class="crpdm-switch__btn" aria-hidden="true"></span>
+  <label class="crpdm-switch__label" for="bmmycu6fimo">switch button</label>
 </span>
 <!-- using separated label element-->
-<span class="amor-switch">
-  <input class="amor-switch__control" type="checkbox" id="no-label-switch" />
-  <span class="amor-switch__btn" aria-hidden="true"></span>
-  <span class="amor-switch__label" aria-hidden="true"></span>
+<span class="crpdm-switch">
+  <input class="crpdm-switch__control" type="checkbox" id="no-label-switch" />
+  <span class="crpdm-switch__btn" aria-hidden="true"></span>
+  <span class="crpdm-switch__label" aria-hidden="true"></span>
 </span>
 <label for="no-label-switch">switch button</label>
 
@@ -429,12 +429,12 @@ label(for="no-label-switch") switch button
 datetime component
 
 
-### path 
+### path
 
 `components/atoms/datetime/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -470,20 +470,20 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <!-- simple-->
-<span class="amor-datetime">
-  <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="eyc1dk2qih4" datetime="2023-03-11">
+<span class="crpdm-datetime">
+  <span class="crpdm-datetime__label" role="img" aria-label="posted ">📆</span>
+  <time class="crpdm-datetime__time" id="eyc1dk2qih4" datetime="2023-03-11">
     2023. 03. 11
   </time>
 </span>
 <!-- explicit format-->
-<span class="amor-datetime">
-  <span class="amor-datetime__label" role="img" aria-label="posted ">📆</span>
-  <time class="amor-datetime__time" id="nqyg3qe0mio" datetime="2023-03-11">
+<span class="crpdm-datetime">
+  <span class="crpdm-datetime__label" role="img" aria-label="posted ">📆</span>
+  <time class="crpdm-datetime__time" id="nqyg3qe0mio" datetime="2023-03-11">
     2023-03-11
   </time>
 </span>
@@ -499,12 +499,12 @@ include /components/utils/util
 heading component
 
 
-### path 
+### path
 
 `components/atoms/heading/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -515,7 +515,7 @@ heading component
 
 
 
-### slots 
+### slots
 
 |name|description|
 |:---:|:---|
@@ -546,15 +546,15 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <!-- basic heading-->
-<h1 class="amor-heading--lv-1">heading</h1>
+<h1 class="crpdm-heading--lv-1">heading</h1>
 <!-- using html-->
-<h1 class="amor-heading--lv-1"><span>HTML heading</span></h1>
+<h1 class="crpdm-heading--lv-1"><span>HTML heading</span></h1>
 <!-- using slot-->
-<h1 class="amor-heading--lv-1">slot content</h1>
+<h1 class="crpdm-heading--lv-1">slot content</h1>
 
 ```
 
@@ -567,12 +567,12 @@ include /components/utils/util
 box styled radio component
 
 
-### path 
+### path
 
 `components/atoms/radios/boxy.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -607,30 +607,30 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
 <!-- using label property-->
-<label class="amor-radio-boxy">
+<label class="crpdm-radio-boxy">
   <input
-    class="amor-radio-boxy__control"
+    class="crpdm-radio-boxy__control"
     type="radio"
     id="gemw2z1bnn4"
     name="answer"
     value="1"
   />
-  <span class="amor-radio-boxy__box">boxy radio</span>
+  <span class="crpdm-radio-boxy__box">boxy radio</span>
 </label>
 <!-- using block instead of label property-->
-<label class="amor-radio-boxy">
+<label class="crpdm-radio-boxy">
   <input
-    class="amor-radio-boxy__control"
+    class="crpdm-radio-boxy__control"
     type="radio"
     id="j80adt7ne96"
     name="answer"
     value="1"
   />
-  <span class="amor-radio-boxy__box"><boxy>radio</boxy></span>
+  <span class="crpdm-radio-boxy__box"><boxy>radio</boxy></span>
 </label>
 
 ```
@@ -644,12 +644,12 @@ include /components/utils/util
 basic input radio component
 
 
-### path 
+### path
 
 `components/atoms/radios/default.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -682,41 +682,41 @@ label(for=`no-label`) radio button
 ```
 
 
-### example output 
+### example output
 
 ```html
 <!-- basic radio-->
-<span class="amor-radio">
+<span class="crpdm-radio">
   <input
-    class="amor-radio__control"
+    class="crpdm-radio__control"
     type="radio"
     id="rt59lctmm21"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="rt59lctmm21">yes</label>
+  <label class="crpdm-radio__label" for="rt59lctmm21">yes</label>
 </span>
 <!-- using block instead of label property-->
-<span class="amor-radio">
+<span class="crpdm-radio">
   <input
-    class="amor-radio__control"
+    class="crpdm-radio__control"
     type="radio"
     id="cuvlk2cn18d"
     name="answer"
     value="1"
   />
-  <label class="amor-radio__label" for="cuvlk2cn18d">radio button</label>
+  <label class="crpdm-radio__label" for="cuvlk2cn18d">radio button</label>
 </span>
 <!-- using separated label element-->
-<span class="amor-radio">
+<span class="crpdm-radio">
   <input
-    class="amor-radio__control"
+    class="crpdm-radio__control"
     type="radio"
     id="no-label"
     name="answer"
     value="1"
   />
-  <span class="amor-radio__label" aria-hidden="true"></span>
+  <span class="crpdm-radio__label" aria-hidden="true"></span>
 </span>
 <label for="no-label">radio button</label>
 
@@ -731,12 +731,12 @@ label(for=`no-label`) radio button
 svg icon component with font awesome
 
 
-### path 
+### path
 
 `components/atoms/svg-icon/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -755,10 +755,10 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
-<svg class="amor-svg-icon" focusable="false">
+<svg class="crpdm-svg-icon" focusable="false">
   <use xlink:href="https://www.mulder21c.io/images/solid.svg#thumbs-up"></use>
 </svg>
 
@@ -773,12 +773,12 @@ include /components/utils/util
 input textbox component
 
 
-### path 
+### path
 
 `components/atoms/textbox/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -804,10 +804,10 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
-<input class="amor-textbox amor-textbox--medium" id="frnijzco7sg" type="text" />
+<input class="crpdm-textbox crpdm-textbox--medium" id="frnijzco7sg" type="text" />
 
 ```
 
@@ -820,12 +820,12 @@ include /components/utils/util
 watermark for theme
 
 
-### path 
+### path
 
 `components/atoms/watermark/index.pug`
 
 
-### arguments 
+### arguments
 
 |name|description|type|default|required|
 |:---:|:---|:---:|:---:|:---:|
@@ -843,10 +843,10 @@ include /components/utils/util
 ```
 
 
-### example output 
+### example output
 
 ```html
-<p class="amor-watermark">
+<p class="crpdm-watermark">
   Powered by
   <a href="https://hexo.io/" rel="external noreferrer" target="_blank">Hexo.</a>
   Theme by
@@ -863,5 +863,3 @@ include /components/utils/util
 
 
 ---
-
-
