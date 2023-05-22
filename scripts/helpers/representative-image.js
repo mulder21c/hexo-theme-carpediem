@@ -57,11 +57,12 @@ const representativeImageHelper = (ctx) => {
     const isTag = (page) => Boolean(page.tag);
     const isPage = (page) => Boolean(page.__page);
     const isPost = (page) => Boolean(page.__post);
+    const isSearch = (page) => Boolean(page.__search);
     const getHeroByLayout = (theme) => {
       if (isArchive(page)) return theme.hero?.archive;
       if (isCategory(page)) return theme.hero?.category;
-      if (isCategory(page)) return theme.hero?.category;
       if (isTag(page)) return theme.hero?.tag;
+      if (isSearch(page)) return theme.hero?.search;
       return theme.hero?.index;
     };
 

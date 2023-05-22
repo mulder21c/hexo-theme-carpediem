@@ -2,4 +2,4 @@ extends /components/templates/search/index
 
 block prepend heroContent
   -
-    const hero = representative_image(theme);
+    const hero = representative_image({...theme, __search: true});
