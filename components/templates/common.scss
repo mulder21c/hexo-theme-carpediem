@@ -79,6 +79,8 @@ body {
 
   &.open {
     left: 0;
+    z-index: var(--highest--z-index);
+    transform: translateZ(100px);
 
     @include respond-to(large) {
       left: initial;
