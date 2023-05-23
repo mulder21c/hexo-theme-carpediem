@@ -47,7 +47,7 @@
     };
     const truncateContent = (content) => {
       if (getLenWithoutTag(content) <= truncateLen)
-        return content.replace(/\n/g, `<br>`).replace(/&amp;/g, `&`);
+        return content.replace(/(\s?\n\s?)+/g, `\n`).replace(/&amp;/g, `&`);
 
       const paragraphs = content.split(`\n`);
       const firstMatchIdx = paragraphs.findIndex((html) =>
@@ -74,7 +74,7 @@
         len = getLenWithoutTag(str);
         direction = direction * -1;
       }
-      return str.replace(/\n/g, `<br>`).replace(/&amp;/g, `&`);
+      return str.replace(/&amp;/g, `&`) + "…";
     };
 
     const searchClient = algoliasearch(`{algoliaAppId}`, `{algoliaApiKey}`);

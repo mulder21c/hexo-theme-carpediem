@@ -4,6 +4,7 @@
   font-family: var(--font-family-sans-serif);
   font-weight: var(--font-weight-semi-bold);
   color: var(--input-text-color);
+  background-color: var(--input-background-color);
   filter: drop-shadow(2px 2px 2px var(--input-shadow-color));
 
   @media (prefers-reduced-motion: no-preference) {
