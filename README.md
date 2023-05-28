@@ -6,6 +6,8 @@ Carpediem is fully customizable and component-based Hexo theme.
 
 ![Mock up](https://cdn.mulder21c.io/images/carpediem/screenshots/preview.jpg)
 
+[live demo](https://mulder21c.io)
+
 ## Requirements
 
 - Node v16.16.0+
