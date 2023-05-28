@@ -6,6 +6,8 @@ Carpediem은 완전히 커스텀 할 수 있는 컴포넌트 기반의 Hexo 테�
 
 ![목업](https://cdn.mulder21c.io/images/carpediem/screenshots/preview.jpg)
 
+[라이브 데모](https://mulder21c.io)
+
 ## 요구사항
 
 - Node v16.16.0+
