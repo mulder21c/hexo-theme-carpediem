@@ -7459,10 +7459,10 @@ value-or-function@^3.0.0:
   resolved "https://registry.yarnpkg.com/value-or-function/-/value-or-function-3.0.0.tgz#1c243a50b595c1be54a754bfece8563b9ff8d813"
   integrity sha512-jdBB2FrWvQC/pnPtIqcLsMaQgjhdb6B7tk1MMyTKapox+tQZbdRP4uLxu/JY0t7fbfDCUMnuelzEYv5GsxHhdg==
 
-vanilla-prop-types@^1.8.6:
-  version "1.8.6"
-  resolved "https://registry.yarnpkg.com/vanilla-prop-types/-/vanilla-prop-types-1.8.6.tgz#fa7abf142899b6c8811eb05b4c0ee17c483bdc7a"
-  integrity sha512-Ge9dxeC1bVYMqblEz5NrBCByoD0DrtNr7vNV10WQWvDAHpres115I6fkuau7/zRKL8FY3E7mEyGiERDcluDqag==
+vanilla-prop-types@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vanilla-prop-types/-/vanilla-prop-types-2.0.0.tgz#bfb11af7478db564644892e5edeab0907ed5d770"
+  integrity sha512-E5qR76RbKyhMI6Qao05Viv3jCkXLotHwdBlBNojiW/miQF13Apo9eQMhlwWcmtkaqrPGyUAZf+wkJUBEC0ALaQ==
   dependencies:
     is-callable "^1.2.2"
     lodash "^4.17.20"
