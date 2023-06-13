@@ -146,7 +146,7 @@ search layout을 사용하는 빈 페이지를 생성하는 것만으로 검색 
 
 ```bash
 $ cd your/hexo/directory
-$ git clone -b master --single-branch --depth=1 https://github.com/mulder21c/hexo-theme-carpediem.git themes/carpediem
+$ git clone -b main --single-branch --depth=1 https://github.com/mulder21c/hexo-theme-carpediem.git themes/carpediem
 ```
 
 이후, 의존성 패키지를 설치합니다.
