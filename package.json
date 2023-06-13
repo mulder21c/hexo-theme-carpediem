@@ -42,9 +42,9 @@
     "not ie_mob > 0"
   ],
   "devDependencies": {
-    "@babel/core": "^7.21.8",
+    "@babel/core": "^7.22.5",
     "@babel/eslint-parser": "^7.21.3",
-    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-env": "^7.22.5",
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.4.4",
     "@fortawesome/fontawesome-free": "^6.4.0",
@@ -52,7 +52,7 @@
     "@prettier/plugin-xml": "^2.2.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-multi-entry": "^6.0.0",
-    "@rollup/plugin-terser": "^0.4.1",
+    "@rollup/plugin-terser": "^0.4.3",
     "JSONStream": "^1.3.5",
     "autoprefixer": "^10.4.14",
     "concat-with-sourcemaps": "^1.1.0",
@@ -80,13 +80,13 @@
     "probe-image-size": "^7.2.3",
     "pug-doc": "^2.23.1",
     "pug-lint": "^2.7.0",
-    "rollup": "^3.9.1",
-    "sass": "^1.62.1",
-    "stylelint": "^15.6.0",
+    "rollup": "^3.25.1",
+    "sass": "^1.63.3",
+    "stylelint": "^15.7.0",
     "stylelint-config-standard": "^33.0.0",
     "sync-fetch": "^0.4.2",
     "terser": "^5.16.9",
-    "vanilla-prop-types": "^1.8.6"
+    "vanilla-prop-types": "^2.0.0"
   },
   "dependencies": {}
 }
