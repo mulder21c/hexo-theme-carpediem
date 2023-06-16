@@ -109,6 +109,11 @@
     // for firefox
     scrollbar-color: rgba(var(--track-thumb-color-rgb, 0.25))
       rgba(var(--track-background-color-rgb, 0.25));
+
+    ::selection {
+      background-color: var(--text-selection-color-background);
+      color: var(--text-selection-color);
+    }
   }
 
   body {
