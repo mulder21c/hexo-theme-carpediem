@@ -517,6 +517,11 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   background: #2b2b2b;
+
+  ::selection {
+    background-color: var(--text-selection-dark-color-background);
+    color: var(--text-selection-dark-color);
+  }
 }
 
 /* Inline code */
