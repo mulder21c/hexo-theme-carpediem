@@ -85,7 +85,7 @@
     "stylelint": "^15.7.0",
     "stylelint-config-standard": "^33.0.0",
     "sync-fetch": "^0.5.2",
-    "terser": "^5.16.9",
+    "terser": "^5.18.1",
     "vanilla-prop-types": "^2.0.0"
   },
   "dependencies": {}
