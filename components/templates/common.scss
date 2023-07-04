@@ -10,6 +10,7 @@ body {
     "side main"
     "side footer";
   width: 100%;
+  background-color: var(--panel-background-color);
 
   @include respond-to(tablet) {
     grid-template-columns: min-content 1fr;
@@ -157,6 +158,7 @@ body {
 ._header {
   overflow: hidden;
   grid-area: header;
+  background-color: var(--background-color);
 
   @include respond-to(large) {
     position: sticky;
@@ -169,6 +171,7 @@ body {
   $main-container-horizon-space: 0.75rem !global;
   grid-area: main;
   padding: 2rem $main-container-horizon-space 7.5rem;
+  background-color: var(--background-color);
 }
 
 ._footer {
