@@ -1,11 +1,16 @@
 @use "sass:math";
+
+@layer base, theme, custom;
 @import "./helpers/functions";
 @import "./helpers/mixins";
 @import "./modules/variables";
-@import "./modules/root";
-@import "./modules/typography";
-@import "./modules/animations";
-@import "./modules/base";
+
+@layer base {
+  @import "./modules/root";
+  @import "./modules/typography";
+  @import "./modules/animations";
+  @import "./modules/base";
+}
 
 /** automated imports; don't remove this line **/
 

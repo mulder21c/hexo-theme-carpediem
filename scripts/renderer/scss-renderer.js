@@ -27,10 +27,11 @@ function scssRenderer(data, option) {
   }
 
   return new Promise(function (resolve, reject) {
-    const prepend = glob.sync([componentsScssFiles]).reduce((code, path) => {
-      // generate global variable & import statement
-      return `${code}@import "${path}";\n`;
-    }, `$prefix: ${themePrefix};\n`);
+    const prepend =
+      glob.sync([componentsScssFiles]).reduce((code, path) => {
+        // generate global variable & import statement
+        return `${code}@import "${path}";\n`;
+      }, `$prefix: ${themePrefix};\n@layer theme {\n`) + "\n}";
 
     const sassOption = {
       loadPaths: [cssSourcePath, componentsPath],
