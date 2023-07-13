@@ -6,8 +6,9 @@ const {
   themeConfig: { prefix: themePrefix },
   themeRoot,
 } = require("../constants");
-const componentsPath = path.resolve(themeRoot, `components/**/*.scss`);
+const componentsScssFiles = path.resolve(themeRoot, `components/**/*.scss`);
 const cssSourcePath = path.resolve(themeRoot, `./source/css/`);
+const componentsPath = path.resolve(themeRoot, `./components/`);
 
 /**
  * handler for renderer of hexo
@@ -26,13 +27,13 @@ function scssRenderer(data, option) {
   }
 
   return new Promise(function (resolve, reject) {
-    const prepend = glob.sync([componentsPath]).reduce((code, path) => {
+    const prepend = glob.sync([componentsScssFiles]).reduce((code, path) => {
       // generate global variable & import statement
       return `${code}@import "${path}";\n`;
     }, `$prefix: ${themePrefix};\n`);
 
     const sassOption = {
-      loadPaths: [cssSourcePath],
+      loadPaths: [cssSourcePath, componentsPath],
       sourceMap: true,
       sourceMapIncludeSources: true,
       style: `compressed`,
@@ -49,11 +50,11 @@ function scssRenderer(data, option) {
       sassOption,
       postCssOption,
     }).then(({ css, map }) => {
-      css = `@layer base, theme, custom;\n@layer theme {${css}}`;
+      css = `${css}`;
       if (!isGenerateStage && map) {
         fs.writeFileSync(
           path.resolve(cssSourcePath, `./index.css.map`),
-          map.toString(),
+          Buffer.from(JSON.stringify(map), "utf-8"),
           {
             encoding: `utf8`,
             flag: `w`,
