@@ -82,7 +82,7 @@
     "pug-lint": "^2.7.0",
     "rollup": "^3.25.1",
     "sass": "^1.63.6",
-    "stylelint": "^15.7.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard": "^33.0.0",
     "sync-fetch": "^0.5.2",
     "terser": "^5.16.9",
