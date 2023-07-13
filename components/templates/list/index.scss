@@ -30,6 +30,14 @@
         color: var(--text-color-accent);
         text-transform: capitalize;
       }
+
+      .category-seperator {
+        margin: 0 0.25em;
+        width: 0.85em;
+        height: 0.85em;
+        line-height: inherit;
+        vertical-align: middle;
+      }
     }
 
     &__pagination {
