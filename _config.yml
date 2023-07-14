@@ -34,6 +34,10 @@ profile:
 analytics:
   google:
 
+# Adsense
+#   Add a ca-pub-ID including "ca-pub-"
+adsense:
+
 # Comments
 #   Complete the settings for the comment system you want to use.
 disqus:

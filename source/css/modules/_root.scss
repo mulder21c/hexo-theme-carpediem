@@ -48,6 +48,10 @@
         --text-color-accent: $color-green-70,
         --text-color-accent-secondary: $color-green-60,
         --text-color-accent-tertiary: $color-green-50,
+        --text-selection-color-background: $color-green-65,
+        --text-selection-color: $white,
+        --text-selection-dark-color-background: $color-teal-20,
+        --text-selection-dark-color: $black,
         // link text
         --text-link-color: $color-blue-70,
         --text-link-hover-color: $color-neutral-05,
@@ -144,6 +148,8 @@
         --text-color-accent: $color-green-15,
         --text-color-accent-secondary: $color-green-25,
         --text-color-accent-tertiary: $color-green-40,
+        --text-selection-color-background: $color-teal-20,
+        --text-selection-color: $black,
         // link text
         --text-link-color: $color-blue-25,
         --text-link-hover-color: $color-blue-grey-95,

@@ -165,3 +165,20 @@ mixin jsonLD
     };
   script(type= `application/ld+json`)
     | !{ JSON.stringify(jsonLD) }
+
+//- @pugdoc
+  name: adsense
+  description: create meta element for google adsense
+  example: |
+    +adsence
+
+mixin adsense
+  if theme.adsense
+    -
+      const url =
+      `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=`;
+    script(
+      async
+      src= `${url}${theme.adsense}`
+      crossorigin="anonymous"
+    )

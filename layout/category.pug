@@ -7,9 +7,21 @@ block prepend heroContent
 block prepend mainContent
   -
     const posts = page.posts.toArray();
+    const [post] = posts;
+    const currCategories= post.categories.toArray();
+    const seperator
+      = `<svg class="crpdm-svg-icon category-seperator" focusable="false">`
+        + `<use xlink:href="/images/solid.svg#angle-right"></use></svg>`;
+    const title = currCategories.reduce(
+      (title, category, idx) => {
+        const { name } = category.toObject();
+        return `${title}${idx ? seperator : ""}${name}`;
+      },
+      ``
+    );
     const headingId = generate_uid();
     const headingProp = {
-      htmlString: page.category,
+      htmlString: title,
     };
     const headingScope = `category`;
 
