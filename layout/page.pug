@@ -10,6 +10,6 @@ block prepend mainContent
     const author = {
       name: config.author,
       gravatar: theme.profile.gravatar,
-      description: theme.profile.description,
+      description: theme.profile.description || config.description,
       social: theme.profile.social,
     };
