@@ -80,7 +80,7 @@
     "probe-image-size": "^7.2.3",
     "pug-doc": "^2.23.1",
     "pug-lint": "^2.7.0",
-    "rollup": "^3.25.1",
+    "rollup": "^3.26.3",
     "sass": "^1.63.6",
     "stylelint": "^15.10.1",
     "stylelint-config-standard": "^33.0.0",
