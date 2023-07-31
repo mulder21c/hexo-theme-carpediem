@@ -258,7 +258,7 @@ generate at-rule for font-face
 |`$weight`|**[Number](https://sass-lang.com/documentation/values/numbers)**|font-weight|-|
 |`$style`|**[String](https://sass-lang.com/documentation/values/strings)**|font-style|-|
 |`$exts`|**[List](https://sass-lang.com/documentation/values/lists)**|space-delimited list of font file extensions|-|
-|`$range`|**[String](https://sass-lang.com/documentation/values/strings)**|range of unicode|-|
+|`$range`|**[List](https://sass-lang.com/documentation/values/lists)**, **[Null](https://sass-lang.com/documentation/values/null)**|range of unicode|-|
 
 ## Examples
 
