@@ -21,7 +21,7 @@
 /// @param {Number} $weight font-weight
 /// @param {String} $style font-style
 /// @param {List} $exts space-delimited list of font file extensions
-/// @param {String} $range range of unicode
+/// @param {List|null} $range range of unicode
 /// @example
 ///   @include font-face(
 ///     "Noto Serif",
