@@ -258,7 +258,7 @@ font-face at 규칙 생성
 |`$weight`|**[Number](https://sass-lang.com/documentation/values/numbers)**|글꼴 굵기|-|
 |`$style`|**[String](https://sass-lang.com/documentation/values/strings)**|글꼴 스타일|-|
 |`$exts`|**[List](https://sass-lang.com/documentation/values/lists)**|공백으로 구분 된 글꼴 파일 확장자 목록|-|
-|`$range`|**[String](https://sass-lang.com/documentation/values/strings)**|유니코드 범위|-|
+|`$range`|**[List](https://sass-lang.com/documentation/values/lists)**, **[Null](https://sass-lang.com/documentation/values/null)**|유니코드 범위|-|
 
 ## 예제
 
