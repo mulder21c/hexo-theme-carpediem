@@ -11,6 +11,9 @@ It must be used in <code>{% figure %}</code></p>
 <dt><a href="#figure">figure</a></dt>
 <dd><p>generate figure element</p>
 </dd>
+<dt><a href="#series">series</a></dt>
+<dd><p>generate list of links for series posts</p>
+</dd>
 <dt><a href="#viewer360">viewer360</a></dt>
 <dd><p>generate 360 image viewer</p>
 </dd>
@@ -110,6 +113,34 @@ content
 {% figure left true %}
   <img src="xxxx.jpg" alt="" >
 {% endfigure %}
+```
+
+<a name="series"></a>
+
+## series
+generate list of links for series posts
+
+**Syntax**: 
+```markdown
+{% series title [level] [filenames [, subjects]] %}
+```
+
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| title | <code>string</code> |  | title of series |
+| [level] | <code>number</code> | <code>2</code> | The level of heading for series section |
+| [filenames] | <code>Array.&lt;string&gt;</code> |  | The file name of post without extension. The subject of a post to represent instead of link, if not posted yet a post. |
+
+**Expamle**: 
+```markdown
+{%
+ series
+ series of a11y
+ a11y-introduction
+ "four principles for a11y"
+%} 
 ```
 
 * * *
