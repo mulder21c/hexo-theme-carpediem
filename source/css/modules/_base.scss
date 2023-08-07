@@ -187,7 +187,8 @@ a[href] {
   @extend %anchor-default;
 }
 
-:where(article, ._footer) a {
+article a[href],
+._footer a[href] {
   @extend %anchor-animate;
 }
 
