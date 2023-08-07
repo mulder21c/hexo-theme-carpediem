@@ -465,6 +465,38 @@
       }
     }
   }
+
+  .series {
+    overflow: hidden;
+    border: 1px solid var(--separator-border-color);
+    border-radius: 0.5em;
+
+    &__heading {
+      margin: 0;
+      padding: 1em;
+      background-color: var(--box-background-color);
+      font-size: var(--font-size-heading-level-6);
+    }
+
+    &__list {
+      padding: 0 1em;
+      padding-inline-start: 2rem;
+      &-item {
+        margin: 0.5em 0;
+
+        &--not-published {
+          color: var(--text-color-tertiary);
+        }
+
+        > a[aria-current] {
+          &::after {
+            content: " 👈";
+            letter-spacing: 0.5em;
+          }
+        }
+      }
+    }
+  }
 }
 
 /**
