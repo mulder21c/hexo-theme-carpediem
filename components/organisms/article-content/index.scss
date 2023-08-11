@@ -282,6 +282,10 @@
         caption-side: bottom;
       }
     }
+
+    &:has(table) {
+      max-height: unset;
+    }
   }
 
   code:not([class*="language-"]),
