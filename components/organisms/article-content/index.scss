@@ -285,6 +285,13 @@
 
     &:has(table) {
       max-height: unset;
+      margin-top: 1.7em;
+      margin-bottom: 1.7em;
+
+      table {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
   }
 
