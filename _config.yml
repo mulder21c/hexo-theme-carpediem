@@ -87,7 +87,7 @@ hero:
 viewer360: false
 
 # Search script you will use
-search: algolia
+search:
 
 # The number of items to display in article list on archive,
 latest_years_count: 3
