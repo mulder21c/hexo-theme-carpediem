@@ -6,7 +6,12 @@ const {
   themeConfig: { prefix: themePrefix },
   themeRoot,
 } = require("../constants");
-const componentsScssFiles = path.resolve(themeRoot, `components/**/*.scss`);
+const isWindows = process.platform === `win32`;
+const componentsScssFiles = isWindows
+  ? glob.win32.convertPathToPattern(
+      path.resolve(themeRoot, `components/**/*.scss`)
+    )
+  : path.resolve(themeRoot, `components/**/*.scss`);
 const cssSourcePath = path.resolve(themeRoot, `./source/css/`);
 const componentsPath = path.resolve(themeRoot, `./components/`);
 
@@ -29,6 +34,7 @@ function scssRenderer(data, option) {
   return new Promise(function (resolve, reject) {
     const prepend =
       glob.sync([componentsScssFiles]).reduce((code, path) => {
+        if (isWindows) path = glob.win32.convertPathToPattern(path);
         // generate global variable & import statement
         return `${code}@import "${path}";\n`;
       }, `$prefix: ${themePrefix};\n@layer theme {\n`) + "\n}";
