@@ -72,7 +72,7 @@
     "lodash": "^4.17.21",
     "lorem-ipsum": "^2.0.8",
     "mkdirp": "^3.0.1",
-    "postcss": "^8.4.23",
+    "postcss": "^8.4.31",
     "postcss-html": "^1.5.0",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^9.0.0",
