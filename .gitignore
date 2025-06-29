@@ -245,3 +245,7 @@ $RECYCLE.BIN/
 *storybook.log
 
 storybook-static
+scripts
+source/js
+source/css
+src/styles/css-modules-map.json
