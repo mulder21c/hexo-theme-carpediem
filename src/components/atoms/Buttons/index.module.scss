@@ -1,0 +1,35 @@
+.btn-basic {
+  --label-size: 1rem;
+  --padding-vertical: 0.625rem;
+  --padding-horizontal: 1rem;
+  --min-width: 6rem;
+  --min-height: 2.75rem;
+
+  min-width: var(--min-width, 6rem);
+  min-height: var(--min-height, 7.75rem);
+  padding: var(--padding-horizontal, 0.625rem) var(--padding-vertical, 1rem);
+  font-size: var(--label-size, 1rem);
+  color: var.$green;
+
+  &--small {
+    --label-size: 0.875rem;
+    --padding-vertical: 0.5rem;
+    --padding-horizontal: 0.75rem;
+    --min-width: 4.5rem;
+    --min-height: 1.5rem;
+  }
+
+  &--large {
+    --label-size: 1.125rem;
+    --padding-vertical: 0.75rem;
+    --padding-horizontal: 1.25rem;
+    --min-width: 8rem;
+    --min-height: 3rem;
+  }
+
+  &--fluid {
+    --padding-vertical: 0.625rem;
+    --padding-horizontal: 1rem;
+    --min-width: 100%;
+  }
+}
