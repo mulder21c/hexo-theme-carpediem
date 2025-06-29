@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires, no-underscore-dangle, global-require, @typescript-eslint/no-explicit-any, import/no-extraneous-dependencies, import/no-dynamic-require */
+
 /**
  * TSX Renderer for Hexo
  *
@@ -44,9 +46,13 @@ interface TSXConfig {
 }
 
 class TSXRendererError extends Error {
-  constructor(message: string, public readonly filePath: string, public readonly originalError?: Error) {
+  constructor(
+    message: string,
+    public readonly filePath: string,
+    public readonly originalError?: Error,
+  ) {
     super(message);
-    this.name = 'TSXRendererError';
+    this.name = "TSXRendererError";
   }
 }
 
@@ -112,6 +118,32 @@ function getAllTSXFiles(): Array<string> {
 }
 
 /**
+ * Override module resolution to support path aliases
+ */
+function overrideModuleResolution(): void {
+  if (!matchPath || originalResolveFilename) return;
+
+  const Module = require("module");
+  originalResolveFilename = Module._resolveFilename;
+
+  Module._resolveFilename = function resolveFn(
+    request: string,
+    parent: any,
+    isMain: boolean,
+    options?: any,
+  ) {
+    // Only resolve path aliases, not all module requests
+    if (typeof request === "string" && request.startsWith("@/")) {
+      const resolvedPath = matchPath!(request);
+      if (resolvedPath) {
+        return originalResolveFilename.call(this, resolvedPath, parent, isMain, options);
+      }
+    }
+    return originalResolveFilename.call(this, request, parent, isMain, options);
+  };
+}
+
+/**
  * Setup path aliases for module resolution
  */
 function setupPathAliases(): void {
@@ -129,27 +161,6 @@ function setupPathAliases(): void {
     const log = hexo?.log || console;
     log.warn("Failed to setup path aliases:", error);
   }
-}
-
-/**
- * Override module resolution to support path aliases
- */
-function overrideModuleResolution(): void {
-  if (!matchPath || originalResolveFilename) return;
-
-  const Module = require('module');
-  originalResolveFilename = Module._resolveFilename;
-
-  Module._resolveFilename = function(request: string, parent: any, isMain: boolean, options?: any) {
-    // Only resolve path aliases, not all module requests
-    if (typeof request === 'string' && request.startsWith('@/')) {
-      const resolvedPath = matchPath!(request);
-      if (resolvedPath) {
-        return originalResolveFilename.call(this, resolvedPath, parent, isMain, options);
-      }
-    }
-    return originalResolveFilename.call(this, request, parent, isMain, options);
-  };
 }
 
 /**
@@ -173,7 +184,9 @@ function registerTypeScript(): void {
 
     isTypeScriptRegistered = true;
   } catch (error) {
-    throw new Error(`Failed to register TypeScript: ${error instanceof Error ? error.message : String(error)}`);
+    throw new Error(
+      `Failed to register TypeScript: ${error instanceof Error ? error.message : String(error)}`,
+    );
   }
 }
 
@@ -185,7 +198,7 @@ function clearRequireCache(filePath: string): void {
   delete require.cache[require.resolve(filePath)];
 
   // Also clear any files that might import this component
-  Object.keys(require.cache).forEach(cachedPath => {
+  Object.keys(require.cache).forEach((cachedPath) => {
     if (cachedPath.includes(path.dirname(filePath))) {
       delete require.cache[cachedPath];
     }
@@ -204,14 +217,14 @@ function loadComponent(filePath: string): React.ComponentType<any> {
     if (!Component) {
       throw new TSXRendererError(
         "Cannot find default export or named export in TSX file",
-        filePath
+        filePath,
       );
     }
 
-    if (typeof Component !== 'function') {
+    if (typeof Component !== "function") {
       throw new TSXRendererError(
         "Exported component is not a valid React component (must be a function or class)",
-        filePath
+        filePath,
       );
     }
 
@@ -223,7 +236,7 @@ function loadComponent(filePath: string): React.ComponentType<any> {
     throw new TSXRendererError(
       `Failed to load component: ${error instanceof Error ? error.message : String(error)}`,
       filePath,
-      error instanceof Error ? error : undefined
+      error instanceof Error ? error : undefined,
     );
   }
 }
@@ -231,7 +244,10 @@ function loadComponent(filePath: string): React.ComponentType<any> {
 /**
  * Create React element from component and options
  */
-function createReactElement(Component: React.ComponentType<any>, options: object): React.ReactElement {
+function createReactElement(
+  Component: React.ComponentType<any>,
+  options: object,
+): React.ReactElement {
   try {
     // Pass Hexo instance and other options as props to the component
     const props = { ...options, hexo };
@@ -239,8 +255,8 @@ function createReactElement(Component: React.ComponentType<any>, options: object
   } catch (error) {
     throw new TSXRendererError(
       `Failed to create React element: ${error instanceof Error ? error.message : String(error)}`,
-      'unknown',
-      error instanceof Error ? error : undefined
+      "unknown",
+      error instanceof Error ? error : undefined,
     );
   }
 }
@@ -270,13 +286,14 @@ function renderTSX(data: StoreFunctionData, options: object): string {
 
     return renderToStaticMarkup(element);
   } catch (error) {
-    const tsxError = error instanceof TSXRendererError
-      ? error
-      : new TSXRendererError(
-          `Failed to render TSX component: ${error instanceof Error ? error.message : String(error)}`,
-          fullPath,
-          error instanceof Error ? error : undefined
-        );
+    const tsxError =
+      error instanceof TSXRendererError
+        ? error
+        : new TSXRendererError(
+            `Failed to render TSX component: ${error instanceof Error ? error.message : String(error)}`,
+            fullPath,
+            error instanceof Error ? error : undefined,
+          );
 
     log.error(`TSX rendering error (${fullPath}):`, tsxError);
     throw tsxError;
@@ -291,12 +308,12 @@ function initializeFileWatcher(): void {
   const filesToWatch = getAllTSXFiles();
 
   if (filesToWatch.length === 0) {
-    log.info('No TSX files found to watch.');
+    log.info("No TSX files found to watch.");
     return;
   }
 
   const watcher = chokidar.watch(filesToWatch, {
-    persistent: false
+    persistent: false,
   });
 
   watcher.on("change", (filePath) => {
@@ -327,7 +344,7 @@ function initializeFileWatcher(): void {
   });
 
   watcher.on("error", (error) => {
-    log.error('TSX file watcher error:', error);
+    log.error("TSX file watcher error:", error);
   });
 
   log.info(`TSX file watcher initialized. Watching ${filesToWatch.length} files.`);
@@ -338,19 +355,14 @@ function initializeFileWatcher(): void {
  */
 function cleanup(): void {
   if (originalResolveFilename) {
-    const Module = require('module');
+    const Module = require("module");
     Module._resolveFilename = originalResolveFilename;
     originalResolveFilename = null;
   }
 }
 
 // Register TSX renderer with Hexo
-hexo.extend.renderer.register(
-  "tsx",
-  "html",
-  renderTSX,
-  true,
-);
+hexo.extend.renderer.register("tsx", "html", renderTSX, true);
 
 // Initialize when Hexo is ready
 hexo.on("ready", () => {
@@ -358,19 +370,19 @@ hexo.on("ready", () => {
 
   try {
     initializeFileWatcher();
-    log.info('TSX renderer initialized successfully.');
+    log.info("TSX renderer initialized successfully.");
   } catch (error) {
-    log.error('Failed to initialize TSX renderer:', error);
+    log.error("Failed to initialize TSX renderer:", error);
   }
 });
 
 // Cleanup on process exit
-process.on('exit', cleanup);
-process.on('SIGINT', () => {
+process.on("exit", cleanup);
+process.on("SIGINT", () => {
   cleanup();
   process.exit(0);
 });
-process.on('SIGTERM', () => {
+process.on("SIGTERM", () => {
   cleanup();
   process.exit(0);
 });

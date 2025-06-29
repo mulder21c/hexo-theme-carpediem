@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 /**
  * @fileoverview SCSS Renderer for Hexo
  *
@@ -96,6 +98,9 @@ const createConfig = (): ScssConfig => {
 // Constants
 const config = createConfig();
 const SCSS_IMPORTS_TEMPLATE = `
+  @use "sass:math";
+  @use "sass:map";
+  @use "sass:color";
   @use "${config.paths.styles}/helpers/functions" as func;
   @use "${config.paths.styles}/helpers/mixins" as mixin;
   @use "${config.paths.styles}/modules/variables" as var;
@@ -110,10 +115,7 @@ const cssModulesMap: CssModulesMap = {};
  * @returns Array of file patterns
  */
 function getScssFilePatterns(): Array<string> {
-  return [
-    config.filePatterns.mainScss,
-    config.filePatterns.componentScss,
-  ];
+  return [config.filePatterns.mainScss, config.filePatterns.componentScss];
 }
 
 /**
@@ -173,7 +175,10 @@ async function processWithPostcss(
 ): Promise<string> {
   const srcPath = path.resolve(config.paths.projectRoot, "src").replace(/\\/g, "/");
   // Create a unique ID for the module based on its path
-  const modulesId = filePath.replace(/\\/g, "/").replace(/\.[^/.]+$/, "").replace(srcPath, "");
+  const modulesId = filePath
+    .replace(/\\/g, "/")
+    .replace(/\.[^/.]+$/, "")
+    .replace(srcPath, "");
 
   // Set up PostCSS plugins - always include cssnano for minification
   const plugins: Array<AcceptedPlugin> = [cssnano({ preset: config.postcss.preset })];
@@ -224,7 +229,7 @@ async function processScssFile(filePath: string): Promise<string> {
   } catch (error) {
     (hexo?.log?.error || console.error)(`Error processing ${filePath}: `, error);
 
-    return '';
+    return "";
   }
 }
 
@@ -234,11 +239,9 @@ async function processScssFile(filePath: string): Promise<string> {
  * @returns Combined CSS content
  */
 async function combineScssFiles(scssFiles: Array<string>): Promise<string> {
-  const cssResults = await Promise.all(
-    scssFiles.map(file => processScssFile(file))
-  );
+  const cssResults = await Promise.all(scssFiles.map((file) => processScssFile(file)));
 
-  return cssResults.join('');
+  return cssResults.join("");
 }
 
 /**
@@ -278,9 +281,9 @@ async function renderScss(): Promise<void> {
     // Save the CSS modules mapping
     await saveCssModulesMap();
 
-    log.info('SCSS rendering completed: CSS and module maps have been generated.');
+    log.info("SCSS rendering completed: CSS and module maps have been generated.");
   } catch (error) {
-    log.error('SCSS rendering error:', error);
+    log.error("SCSS rendering error:", error);
   }
 }
 
@@ -292,9 +295,12 @@ async function renderScss(): Promise<void> {
  */
 async function optimizeCss(css: string, filePath: string): Promise<string> {
   try {
-    const result = await postcss([cssnano({ preset: config.postcss.preset })]).process(css, {
-      from: filePath,
-    });
+    const result = await postcss([cssnano({ preset: config.postcss.preset })]).process(
+      css,
+      {
+        from: filePath,
+      },
+    );
 
     return result.css;
   } catch (error) {
@@ -325,7 +331,7 @@ hexo.extend.renderer.register(
 
       return optimizedCss;
     } catch (error) {
-      log.error('CSS rendering error:', error);
+      log.error("CSS rendering error:", error);
 
       return data.text || ""; // Return original content on error
     }
@@ -340,12 +346,12 @@ function initializeFileWatcher(): void {
   const filesToWatch = getAllScssFiles();
 
   if (filesToWatch.length === 0) {
-    log.info('No SCSS files found to watch.');
+    log.info("No SCSS files found to watch.");
     return;
   }
 
   const watcher = chokidar.watch(filesToWatch, {
-    persistent: false
+    persistent: false,
   });
 
   watcher.on("change", (filePath) => {
@@ -355,12 +361,12 @@ function initializeFileWatcher(): void {
   });
 
   watcher.on("error", (error) => {
-    log.error('File watcher error:', error);
+    log.error("File watcher error:", error);
   });
 }
 
 // Initialize when Hexo is ready
-hexo.on("ready", async (context) => {
+hexo.on("ready", async () => {
   initializeFileWatcher();
   renderScss();
 });

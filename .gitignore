@@ -246,6 +246,7 @@ $RECYCLE.BIN/
 
 storybook-static
 scripts
+!src/scripts/
 source/js
 source/css
 src/styles/css-modules-map.json

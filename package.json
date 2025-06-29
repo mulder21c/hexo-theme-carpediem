@@ -93,7 +93,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --ext .js,.jsx,.ts,.tsx src layout .storybook"
+      "eslint --ext .js,.jsx,.ts,.tsx src"
     ],
     "*.scss": [
       "stylelint \"src/**/*.scss\" \"layout/**/*.scss\""
