@@ -16,7 +16,8 @@
     "lint:ts": "eslint --ext .js,.jsx,.ts,.tsx src layout .storybook",
     "lint:ts:fix": "eslint --ext .js,.jsx,.ts,.tsx src layout .storybook --fix",
     "lint:style": "stylelint \"src/**/*.scss\" \"layout/**/*.scss\"",
-    "lint:style:fix": "stylelint \"src/**/*.scss\" \"layout/**/*.scss\" --fix"
+    "lint:style:fix": "stylelint \"src/**/*.scss\" \"layout/**/*.scss\" --fix",
+    "prepare": "husky"
   },
   "license": "MIT",
   "type": "commonjs",
@@ -61,7 +62,9 @@
     "eslint-plugin-stylelint": "^0.1.1",
     "glob": "^11.0.3",
     "hexo": "^7.3.0",
+    "husky": "^9.1.7",
     "jest": "^30.0.2",
+    "lint-staged": "^16.1.2",
     "memory-fs": "^0.5.0",
     "mini-css-extract-plugin": "^2.9.2",
     "mkdirp": "^3.0.1",
@@ -87,5 +90,13 @@
   },
   "peerDependencies": {
     "hexo": ">=6.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --ext .js,.jsx,.ts,.tsx src layout .storybook"
+    ],
+    "*.scss": [
+      "stylelint \"src/**/*.scss\" \"layout/**/*.scss\""
+    ]
   }
 }
