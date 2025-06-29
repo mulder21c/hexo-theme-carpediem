@@ -243,3 +243,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/hexo,yarn,node,macos,windows,visualstudiocode
 *storybook.log
+
+storybook-static

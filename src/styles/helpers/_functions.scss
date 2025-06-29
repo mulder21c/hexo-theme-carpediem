@@ -1,0 +1,22 @@
+@use "sass:math";
+@use "sass:map";
+@use "sass:color";
+
+@function create-color-palette($base-color, $steps: 21) {
+  $shades: ();
+  $hue: color.channel($base-color, "hue", $space: hsl);
+  $saturation: color.channel($base-color, "saturation", $space: hsl);
+  $lightness: color.channel($base-color, "lightness", $space: hsl);
+  $step-value: math.div(100, ($steps - 1));
+  $middle-index: math.floor(math.div($steps, 2));
+
+  @for $i from 0 through $steps - 1 {
+    $adjustment: ($i - $middle-index) * $step-value * 0.5;
+    $adjusted-lightness: $lightness + $adjustment;
+    $adjusted-lightness: max(min($adjusted-lightness, 100%), 0%);
+    $shade: hsl($hue, $saturation, $adjusted-lightness);
+    $shades: map.set($shades, math.floor($i * $step-value), $shade);
+  }
+
+  @return $shades;
+}
