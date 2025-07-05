@@ -9,5 +9,10 @@
   "stylelint.validate": [
     "css",
     "scss"
+  ],
+  "cSpell.words": [
+    "autodocs",
+    "contenteditable",
+    "tabindex"
   ]
 }

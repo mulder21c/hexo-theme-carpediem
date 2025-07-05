@@ -17,6 +17,11 @@ const config = {
     options: {}
   },
   webpackFinal: async (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, '../src')
+    };
+
     // Disable URL processing in CSS loader
     const cssRule = config.module.rules.find(rule =>
       rule.test && rule.test.toString().includes('.css')

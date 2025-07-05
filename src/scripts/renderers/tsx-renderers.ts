@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires, no-underscore-dangle, global-require, @typescript-eslint/no-explicit-any, import/no-extraneous-dependencies, import/no-dynamic-require */
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-var-requires, no-underscore-dangle, global-require, @typescript-eslint/no-explicit-any */
 
 /**
  * TSX Renderer for Hexo
@@ -338,6 +339,7 @@ function initializeFileWatcher(): void {
 
     try {
       clearRequireCache(filePath);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       // File doesn't exist anymore, so cache clearing might fail - that's ok
     }

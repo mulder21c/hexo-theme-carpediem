@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import type { ButtonProps } from "./Button";
-import styles from "../../../styles/css-modules-map.json";
+import styles from "@/styles/css-modules-map.json";
 
 const cx = classNames.bind(styles["/components/atoms/Buttons/index.module"]);
 
@@ -15,7 +15,6 @@ function DefaultButton({
 }: ButtonProps) {
   return (
     <button
-      // eslint-disable-next-line react/button-has-type
       type={type}
       className={cx(
         "btn-basic",

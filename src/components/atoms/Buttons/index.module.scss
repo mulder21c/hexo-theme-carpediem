@@ -1,35 +1,155 @@
-.btn-basic {
-  --label-size: 1rem;
-  --padding-vertical: 0.625rem;
-  --padding-horizontal: 1rem;
-  --min-width: 6rem;
-  --min-height: 2.75rem;
-
-  min-width: var(--min-width, 6rem);
-  min-height: var(--min-height, 7.75rem);
-  padding: var(--padding-horizontal, 0.625rem) var(--padding-vertical, 1rem);
-  font-size: var(--label-size, 1rem);
-  color: var.$green;
-
-  &--small {
-    --label-size: 0.875rem;
-    --padding-vertical: 0.5rem;
-    --padding-horizontal: 0.75rem;
-    --min-width: 4.5rem;
-    --min-height: 1.5rem;
-  }
-
-  &--large {
-    --label-size: 1.125rem;
-    --padding-vertical: 0.75rem;
-    --padding-horizontal: 1.25rem;
-    --min-width: 8rem;
-    --min-height: 3rem;
-  }
-
-  &--fluid {
+/// 기본 버튼 스타일 정의
+/// @group Buttons
+/// @access public
+///
+/// @property {Length} --label-size - 버튼 라벨 텍스트 크기
+/// @property {Length} --padding-vertical - 버튼 수직 패딩
+/// @property {Length} --padding-horizontal - 버튼 수평 패딩
+/// @property {Length} --min-width - 버튼 최소 너비
+/// @property {Length} --min-height - 버튼 최소 높이
+///
+@layer atom {
+  .btn-basic {
+    --label-size: 1rem;
     --padding-vertical: 0.625rem;
     --padding-horizontal: 1rem;
-    --min-width: 100%;
+    --min-width: fit-content;
+    --min-height: 2.75rem;
+    --transition-duration: 0.3s;
+
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--min-width);
+    min-height: var(--min-height);
+    padding: var(--padding-horizontal) var(--padding-vertical);
+    overflow: hidden;
+    font-family: var(--sans-serif);
+    font-size: var(--label-size);
+    font-weight: 500;
+    appearance: none;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: color var(--transition-duration) ease;
+    }
+
+    &--small {
+      --label-size: 0.875rem;
+      --padding-vertical: 0.5rem;
+      --padding-horizontal: 0.75rem;
+      --min-width: 4.5rem;
+      --min-height: 1.5rem;
+    }
+
+    &--large {
+      --label-size: 1.125rem;
+      --padding-vertical: 0.75rem;
+      --padding-horizontal: 1.25rem;
+      --min-width: 8rem;
+      --min-height: 3rem;
+    }
+
+    &--fluid {
+      --padding-vertical: 0.625rem;
+      --padding-horizontal: 1rem;
+
+      width: 100%; // fallback
+      width: stretch;
+    }
+
+    &--fill {
+      color: var(--btn-primary-text);
+      background-color: var(--btn-primary-surface);
+      border-color: var(--btn-primary-border-color);
+
+      &::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        width: 300%;
+        height: 300%;
+        content: "";
+        background: radial-gradient(
+          ellipse at bottom left,
+          var(--doc-bg) 0%,
+          var(--doc-bg) 50%,
+          transparent 50%,
+          transparent 100%
+        );
+        transform: scale(0);
+        transform-origin: bottom left;
+
+        @media (prefers-reduced-motion: no-preference) {
+          transition: transform var(--transition-duration) ease-out;
+        }
+      }
+
+      &:focus,
+      &:hover {
+        color: var(--btn-primary-surface);
+
+        @media (prefers-reduced-motion: reduce) {
+          background-color: var(--doc-bg);
+        }
+
+        &::before {
+          transform: scale(1);
+        }
+      }
+    }
+
+    &--outline {
+      color: var(--btn-primary-surface);
+      background-color: var(--doc-bg);
+      border-color: var(--btn-primary-surface);
+
+      &::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        width: 300%;
+        height: 300%;
+        content: "";
+        background: radial-gradient(
+          ellipse at bottom left,
+          var(--btn-primary-surface) 0%,
+          var(--btn-primary-surface) 50%,
+          transparent 50%,
+          transparent 100%
+        );
+        transform: scale(0);
+        transform-origin: bottom left;
+
+        @media (prefers-reduced-motion: no-preference) {
+          transition: transform var(--transition-duration) ease-out;
+        }
+      }
+
+      &:focus,
+      &:hover {
+        color: var(--btn-primary-text);
+
+        @media (prefers-reduced-motion: reduce) {
+          background-color: var(--btn-primary-surface);
+        }
+
+        &::before {
+          transform: scale(1);
+        }
+      }
+
+      &:focus,
+      &:focus-visible {
+        border-color: var(--doc-bg);
+      }
+    }
   }
 }

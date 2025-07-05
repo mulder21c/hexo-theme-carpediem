@@ -146,6 +146,8 @@
     --text-primary: #{map.get(var.$neutral-palette, 25)};
     --focus-ring-color: #{map.get(var.$teal-palette, 20)};
     --focus-ring-shadow-color: #{map.get(var.$teal-palette, 20)};
+    --focus-ring-reversal-color: #{map.get(var.$teal-palette, 20)};
+    --focus-ring-reversal-shadow-color: #{map.get(var.$green-palette, 75)};
 
     /* Button */
     --btn-primary-surface: #{map.get(var.$green-palette, 20)};
