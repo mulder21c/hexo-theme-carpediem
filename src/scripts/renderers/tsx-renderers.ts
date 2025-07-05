@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires, no-underscore-dangle, global-require, @typescript-eslint/no-explicit-any, @typescript-eslint/no-require-imports, import/no-extraneous-dependencies */
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, no-underscore-dangle, global-require, @typescript-eslint/no-explicit-any */
 
 /**
  * TSX Renderer for Hexo
