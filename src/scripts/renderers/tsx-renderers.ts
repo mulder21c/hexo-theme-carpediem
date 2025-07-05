@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires, no-underscore-dangle, global-require, @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-var-requires, no-underscore-dangle, global-require, @typescript-eslint/no-explicit-any, @typescript-eslint/no-require-imports, import/no-extraneous-dependencies */
 
 /**
  * TSX Renderer for Hexo
@@ -211,6 +210,7 @@ function clearRequireCache(filePath: string): void {
  */
 function loadComponent(filePath: string): React.ComponentType<any> {
   try {
+    // eslint-disable-next-line import/no-dynamic-require
     const moduleExports = require(filePath);
 
     const Component = moduleExports.default || moduleExports;

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * @fileoverview SCSS Renderer for Hexo
  *

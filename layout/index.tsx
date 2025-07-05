@@ -1,31 +1,8 @@
 import React from "react";
 import DefaultButton from "@/components/atoms/Buttons/Default";
+import type { LayoutProps } from "./index.d";
 
-interface LayoutProps {
-  config: {
-    language: string;
-  };
-  theme: {
-    favicon?: string;
-  };
-  url_for: (path: string) => string;
-  children?: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  page?: any;
-  head_content?: React.ReactNode;
-  body_content?: React.ReactNode;
-}
-
-const Layout: React.FC<LayoutProps> = ({
-  config,
-  theme,
-  url_for,
-  head_content,
-  body_content,
-}) => {
-  // doctype은 renderToString으로 React 컴포넌트를 HTML로 변환할 때 자동으로 추가됩니다.
-  // 하지만 명시적으로 추가하려면 아래와 같이 dangerouslySetInnerHTML을 사용할 수 있습니다.
-
+function Layout({ config, theme, url_for, head_content, body_content }: LayoutProps) {
   return (
     <html lang={config.language}>
       <head>
@@ -46,6 +23,6 @@ const Layout: React.FC<LayoutProps> = ({
       </body>
     </html>
   );
-};
+}
 
 export default Layout;
