@@ -11,11 +11,18 @@
   $middle-index: math.floor(math.div($steps, 2));
 
   @for $i from 0 through $steps - 1 {
-    $adjustment: ($i - $middle-index) * $step-value * 0.5;
-    $adjusted-lightness: $lightness + $adjustment;
-    $adjusted-lightness: max(min($adjusted-lightness, 100%), 0%);
-    $shade: hsl($hue, $saturation, $adjusted-lightness);
-    $shades: map.set($shades, math.floor($i * $step-value), $shade);
+    $current-step: math.floor($i * $step-value);
+    $lightness: $current-step * 1%;
+    $adjusted-saturation: $saturation;
+
+    @if $current-step < 10 {
+      $adjusted-saturation: $saturation * math.div($current-step, 10);
+    } @else if $current-step > 90 {
+      $adjusted-saturation: $saturation * (1 - math.div($current-step - 90, 10));
+    }
+
+    $shade: hsl($hue, $adjusted-saturation, $lightness);
+    $shades: map.set($shades, $current-step, $shade);
   }
 
   @return $shades;

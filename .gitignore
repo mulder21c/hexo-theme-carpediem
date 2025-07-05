@@ -248,5 +248,5 @@ storybook-static
 scripts
 !src/scripts/
 source/js
-source/css
+source/css/*.css
 src/styles/css-modules-map.json

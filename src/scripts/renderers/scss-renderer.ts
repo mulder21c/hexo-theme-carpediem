@@ -24,6 +24,8 @@ import sass from "sass";
 import postcss, { AcceptedPlugin } from "postcss";
 import cssnano from "cssnano";
 import postcssModules from "postcss-modules";
+import autoprefixer from "autoprefixer";
+import postcssPresetEnv from "postcss-preset-env";
 import { mkdirpSync } from "mkdirp";
 import type { StoreFunctionData } from "hexo/dist/extend/renderer";
 
@@ -47,6 +49,11 @@ interface ScssConfig {
   };
   postcss: {
     preset: string;
+    presetEnv: {
+      stage: number;
+      features: Record<string, boolean>;
+      browsers: string[];
+    };
   };
   cssModules: {
     generateScopedName: string;
@@ -88,6 +95,14 @@ const createConfig = (): ScssConfig => {
     },
     postcss: {
       preset: "default",
+      presetEnv: {
+        stage: 3,
+        features: {
+          "nesting-rules": true,
+          "custom-properties": true,
+        },
+        browsers: ["> 2%", "last 3 versions", "not dead"],
+      },
     },
     cssModules: {
       generateScopedName: "[local]_[hash:base64:8]",
@@ -98,11 +113,13 @@ const createConfig = (): ScssConfig => {
 // Constants
 const config = createConfig();
 const SCSS_IMPORTS_TEMPLATE = `
-  @use "sass:math";
+  @use "sass:list";
   @use "sass:map";
+  @use "sass:math";
   @use "sass:color";
+  @use "sass:string";
   @use "${config.paths.styles}/helpers/functions" as func;
-  @use "${config.paths.styles}/helpers/mixins" as mixin;
+  @use "${config.paths.styles}/helpers/mixins" as *;
   @use "${config.paths.styles}/modules/variables" as var;
 `;
 
@@ -180,8 +197,16 @@ async function processWithPostcss(
     .replace(/\.[^/.]+$/, "")
     .replace(srcPath, "");
 
-  // Set up PostCSS plugins - always include cssnano for minification
-  const plugins: Array<AcceptedPlugin> = [cssnano({ preset: config.postcss.preset })];
+  // Set up PostCSS plugins - always include postcss-preset-env, autoprefixer and cssnano for minification
+  const plugins: Array<AcceptedPlugin> = [
+    postcssPresetEnv({
+      stage: config.postcss.presetEnv.stage,
+      features: config.postcss.presetEnv.features,
+      browsers: config.postcss.presetEnv.browsers,
+    }),
+    autoprefixer(),
+    cssnano({ preset: config.postcss.preset }),
+  ];
 
   // For CSS modules, add the postcss-modules plugin to generate class name mappings
   if (isModule) {
@@ -295,12 +320,17 @@ async function renderScss(): Promise<void> {
  */
 async function optimizeCss(css: string, filePath: string): Promise<string> {
   try {
-    const result = await postcss([cssnano({ preset: config.postcss.preset })]).process(
-      css,
-      {
-        from: filePath,
-      },
-    );
+    const result = await postcss([
+      postcssPresetEnv({
+        stage: config.postcss.presetEnv.stage,
+        features: config.postcss.presetEnv.features,
+        browsers: config.postcss.presetEnv.browsers,
+      }),
+      autoprefixer(),
+      cssnano({ preset: config.postcss.preset }),
+    ]).process(css, {
+      from: filePath,
+    });
 
     return result.css;
   } catch (error) {
