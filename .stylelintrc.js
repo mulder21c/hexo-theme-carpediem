@@ -12,5 +12,5 @@ module.exports = {
     "selector-class-pattern": null,
     "no-descending-specificity": null,
   },
-  ignoreFiles: ["node_modules/**", "dist/**", "source/**"]
+  ignoreFiles: ["node_modules/**", "dist/**", "source/**/*.css"]
 };

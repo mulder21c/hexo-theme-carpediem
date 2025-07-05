@@ -36,6 +36,7 @@ module.exports = {
       },
       typescript: {
         alwaysTryTypes: true,
+        project: "./tsconfig.json",
       },
     },
     react: {
@@ -44,11 +45,11 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
-    "react/react-in-jsx-scope": "off", // React 17부터는 import React 선언이 필요 없음
-    "react/prop-types": "off", // TypeScript를 사용하므로 prop-types는 필요 없음
-    "react/require-default-props": "off", // TypeScript의 optional props와 충돌할 수 있음
-    "import/prefer-default-export": "off", // 단일 export에 대한 제한 완화
-    "react/jsx-props-no-spreading": "off", // props spreading 허용
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off",
     "no-console": [
       "error",
       {
@@ -59,8 +60,8 @@ module.exports = {
   ignorePatterns: [
     "node_modules",
     "dist",
-    "source", // 빌드 결과물 제외
-    "*.js", // 프로젝트 루트의 JS 설정 파일들은 제외
-    "!.eslintrc.js", // eslintrc.js는 린팅 대상에 포함
+    "source",
+    "*.js",
+    "!.eslintrc.js",
   ],
 };

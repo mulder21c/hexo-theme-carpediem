@@ -33,7 +33,6 @@ import type { StoreFunctionData } from "hexo/dist/extend/renderer";
 interface ScssConfig {
   paths: {
     projectRoot: string;
-    src: string;
     outputCss: string;
     outputMap: string;
     styles: string;
@@ -76,15 +75,14 @@ const createConfig = (): ScssConfig => {
   return {
     paths: {
       projectRoot,
-      src: path.join(projectRoot, "src"),
       outputCss: path.join(projectRoot, "source/css"),
       outputMap: path.join(projectRoot, "src/styles"),
       styles: path.join(projectRoot, "src/styles"),
       components: path.join(projectRoot, "src/components"),
     },
     filePatterns: {
-      mainScss: "/styles/index.scss",
-      componentScss: "/components/**/*.scss",
+      mainScss: "source/css/index.scss",
+      componentScss: "src/components/**/*.scss",
     },
     sass: {
       style: "compressed",
@@ -140,7 +138,7 @@ function getScssFilePatterns(): Array<string> {
  * @returns Array of SCSS file paths
  */
 function findScssFiles(searchPath: string): Array<string> {
-  return glob.sync(`${config.paths.src}${searchPath}`);
+  return glob.sync(`${config.paths.projectRoot}${searchPath}`);
 }
 
 /**

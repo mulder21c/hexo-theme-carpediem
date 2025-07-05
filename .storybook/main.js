@@ -17,6 +17,19 @@ const config = {
     options: {}
   },
   webpackFinal: async (config) => {
+    // Disable URL processing in CSS loader
+    const cssRule = config.module.rules.find(rule =>
+      rule.test && rule.test.toString().includes('.css')
+    );
+    if (cssRule) {
+      const cssLoader = cssRule.use.find(loader =>
+        loader.loader && loader.loader.includes('css-loader')
+      );
+      if (cssLoader && cssLoader.options) {
+        cssLoader.options.url = false;
+      }
+    }
+
     // Configuration for SCSS modules
     config.module.rules.push({
       test: /\.module\.scss$/,
@@ -31,7 +44,8 @@ const config = {
     });
 
     return config;
-  }
+  },
+  staticDirs: [path.resolve(__dirname, '../source')],
 };
 
 module.exports = config;

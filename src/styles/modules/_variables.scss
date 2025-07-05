@@ -25,3 +25,8 @@ $yellow-palette: fn.create-color-palette($yellow) !default;
 $green-palette: fn.create-color-palette($green) !default;
 $teal-palette: fn.create-color-palette($teal) !default;
 $cyan-palette: fn.create-color-palette($cyan) !default;
+
+// fonts
+$font-serif: "Noto Serif", serif;
+$font-sans-serif: "Pretendard", sans-serif;
+$font-code: "Hack";

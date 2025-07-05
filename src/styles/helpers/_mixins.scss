@@ -1,0 +1,66 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
+
+/// Generates @font-face declaration with multiple font formats
+///
+/// @param {String} $name - Font family name
+/// @param {String} $path - Path to font files directory or URL
+/// @param {String} $filename - Font filename without extension
+/// @param {Number} $weight [400] - Font weight
+/// @param {String} $style [normal] - Font style
+/// @param {List} $exts [woff2 woff ttf otf] - Font file extensions to include
+/// @param {String} $range [null] - Unicode range for the font
+///
+/// @example scss
+///   @include font-face(
+///     'Open Sans',
+///     '/fonts',
+///     'opensans-regular',
+///     400,
+///     normal,
+///     woff2 woff
+///   );
+///
+@mixin font-face(
+  $name,
+  $path,
+  $filename,
+  $weight: 400,
+  $style: normal,
+  $exts: woff2 woff ttf otf,
+  $range: null
+) {
+  $src: null;
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+    woff: "woff",
+    woff2: "woff2",
+  );
+
+  // Check if the path ends with a slash and handle it
+  $normalized-path: if(string.slice($path, -1) != "/", $path + "/", $path);
+
+  @each $ext in $exts {
+    $format: if(map.has-key($formats, $ext), map.get($formats, $ext), $ext);
+    $src: list.append(
+      $src,
+      url(string.quote($normalized-path + $filename + "." + $ext))
+        format(string.quote($format)),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: string.quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+    font-display: swap;
+
+    @if $range {
+      unicode-range: $range;
+    }
+  }
+}

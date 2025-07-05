@@ -1,0 +1,200 @@
+@layer base, theme, organism, molecule, atom;
+@include font-face(
+  "Noto Serif",
+  "/fonts/noto-serif-kr/",
+  "noto-serif-kr-200",
+  200,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Noto Serif",
+  "/fonts/noto-serif-kr/",
+  "noto-serif-kr-400",
+  400,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Noto Serif",
+  "/fonts/noto-serif-kr/",
+  "noto-serif-kr-700",
+  700,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-thin",
+  100,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-extralight",
+  200,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-light",
+  300,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-normal",
+  400,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-medium",
+  500,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-semibold",
+  600,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-bold",
+  700,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Pretendard",
+  "/fonts/pretendard/",
+  "pretendard-extrabold",
+  800,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Hack",
+  "/fonts/hack/",
+  "hack-regular-subset",
+  400,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Hack",
+  "/fonts/hack/",
+  "hack-bold-subset",
+  600,
+  normal,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Hack",
+  "/fonts/hack/",
+  "hack-italic-subset",
+  400,
+  italic,
+  woff2 woff,
+  null
+);
+@include font-face(
+  "Hack",
+  "/fonts/hack/",
+  "hack-bolditalic-subset",
+  600,
+  italic,
+  woff2 woff,
+  null
+);
+
+@layer theme {
+  :root {
+    /** fonts */
+    --serif: "Noto Serif", serif;
+    --sans-serif: "Pretendard", sans-serif;
+
+    /** common */
+    --doc-bg: #{map.get(var.$neutral-palette, 95)};
+    --text-primary: #{map.get(var.$neutral-palette, 25)};
+    --focus-ring-color: #{map.get(var.$teal-palette, 20)};
+    --focus-ring-shadow-color: #{map.get(var.$teal-palette, 20)};
+
+    /* Button */
+    --btn-primary-surface: #{map.get(var.$green-palette, 20)};
+    --btn-primary-focus-surface: #{map.get(var.$green-palette, 15)};
+    --btn-primary-text: #{var.$white};
+    --btn-primary-border-color: #{map.get(var.$green-palette, 20)};
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body,
+  p,
+  figure,
+  blockquote {
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    line-height: 1.8;
+    color: var(--text-primary);
+    background-color: var(--doc-bg);
+  }
+
+  a[href],
+  area[href],
+  button,
+  input,
+  select,
+  textarea,
+  iframe,
+  summary,
+  [tabindex]:not([tabindex^="-"]),
+  [contenteditable=""],
+  [contenteditable="true"],
+  video[controls],
+  audio[controls] {
+    &:focus,
+    &:focus-visible {
+      outline: 0;
+      box-shadow: (0 0 2px 4px var(--focus-ring-shadow-color));
+    }
+  }
+}
