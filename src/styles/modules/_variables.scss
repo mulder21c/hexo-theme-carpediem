@@ -5,7 +5,7 @@ $white: #fff !default;
 $black: #000 !default;
 $neutral: #808080 !default;
 $blue: #0d6efd !default;
-$blue-grey: #607d8b !default;
+$blue-gray: #607d8b !default;
 $purple: #6f42c1 !default;
 $red: #dc3545 !default;
 $orange: #fd7e14 !default;
@@ -17,7 +17,7 @@ $cyan: #0dcaf0 !default;
 // color palettes
 $neutral-palette: fn.create-color-palette($neutral) !default;
 $blue-palette: fn.create-color-palette($blue) !default;
-$blue-grey-palette: fn.create-color-palette($blue-grey) !default;
+$blue-gray-palette: fn.create-color-palette($blue-gray) !default;
 $purple-palette: fn.create-color-palette($purple) !default;
 $red-palette: fn.create-color-palette($red) !default;
 $orange-palette: fn.create-color-palette($orange) !default;
