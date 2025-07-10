@@ -1,3 +1,5 @@
+import type { FeatherIconName } from "feather-icons-react";
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * HTML button type attribute
@@ -12,3 +14,22 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    */
   appearance?: "fill" | "outline";
 }
+
+export interface IconButtonProps extends Omit<ButtonProps, "size"> {
+  /**
+   * Accessible name for button
+   */
+  label: string;
+  /**
+   * Button size
+   */
+  size?: "small" | "medium" | "large";
+  /**
+   * Icon Name
+   */
+  icon: FeatherIconName;
+  /**
+   * Icon stroke thickness
+   */
+  stroke?: "thin" | "medium" | "bold";
+};
