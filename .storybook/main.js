@@ -17,6 +17,10 @@ const config = {
     name: "@storybook/react-webpack5",
     options: {}
   },
+  typescript: {
+    reactDocgen: `react-docgen-typescript`,
+    check: false,
+  },
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
