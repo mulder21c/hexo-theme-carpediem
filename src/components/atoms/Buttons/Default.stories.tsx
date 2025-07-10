@@ -5,22 +5,18 @@ const meta: Meta<typeof DefaultButton> = {
   title: "Components/Atoms/Button/Default",
   component: DefaultButton,
   parameters: {},
-  tags: ["autodocs"],
   argTypes: {
+    children: {
+      table: { disable: true },
+    },
     size: {
       control: { type: "select" },
-      description: `Button size`,
-      options: ["small", "medium", "large", "fluid"],
     },
     appearance: {
       control: { type: "select" },
-      description: `Button appearance`,
-      options: ["fill", "outline"],
     },
     type: {
       control: { type: "select" },
-      description: `HTML button type attribute`,
-      options: ["button", "reset", "submit"],
     },
   },
 };

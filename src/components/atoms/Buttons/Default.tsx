@@ -17,6 +17,7 @@ function DefaultButton({
     <button
       type={type}
       className={cx(
+        "btn",
         "btn-basic",
         `btn-basic--${size}`,
         `btn-basic--${appearance}`,

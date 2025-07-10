@@ -9,28 +9,17 @@
 /// @property {Length} --min-height - 버튼 최소 높이
 ///
 @layer atom {
-  .btn-basic {
-    --label-size: 1rem;
-    --padding-vertical: 0.625rem;
-    --padding-horizontal: 1rem;
-    --min-width: fit-content;
-    --min-height: 2.75rem;
+  .btn {
     --transition-duration: 0.3s;
 
     position: relative;
     z-index: 1;
     display: inline-flex;
     flex-flow: row;
-    gap: 4px;
     align-items: center;
     justify-content: center;
-    min-width: var(--min-width);
-    min-height: var(--min-height);
-    padding: var(--padding-horizontal) var(--padding-vertical);
     overflow: hidden;
-    font-family: var(--sans-serif);
-    font-size: var(--label-size);
-    font-weight: 500;
+    line-height: inherit;
     appearance: none;
     border-style: solid;
     border-width: 2px;
@@ -39,21 +28,37 @@
     @media (prefers-reduced-motion: no-preference) {
       transition: color var(--transition-duration) ease;
     }
+  }
+
+  .btn-basic {
+    --label-size: 1rem;
+    --padding-vertical: 0.3125rem;
+    --padding-horizontal: 1rem;
+    --min-width: fit-content;
+    --min-height: 2.75rem;
+
+    gap: 4px;
+    min-width: var(--min-width);
+    min-height: var(--min-height);
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    font-family: var(--sans-serif);
+    font-size: var(--label-size);
+    font-weight: 500;
 
     &--small {
       --label-size: 0.875rem;
-      --padding-vertical: 0.5rem;
+      --padding-vertical: 0.1875rem;
       --padding-horizontal: 0.75rem;
       --min-width: 4.5rem;
-      --min-height: 1.5rem;
+      --min-height: 2.25rem;
     }
 
     &--large {
       --label-size: 1.125rem;
-      --padding-vertical: 0.75rem;
+      --padding-vertical: 0.6875rem;
       --padding-horizontal: 1.25rem;
       --min-width: 8rem;
-      --min-height: 3rem;
+      --min-height: 3.75rem;
     }
 
     &--fluid {
