@@ -15,7 +15,6 @@ function IconButton({
   appearance = "fill",
   icon,
   stroke = "medium",
-  triggerType = "hover",
   placement = "right",
   alignment = "center",
   className,
@@ -26,12 +25,7 @@ function IconButton({
   const cid = id ?? uid;
 
   return (
-    <Tooltip
-      triggerId={cid}
-      placement={placement}
-      alignment={alignment}
-      triggerType={triggerType}
-    >
+    <Tooltip triggerId={cid} placement={placement} alignment={alignment}>
       <button
         id={cid}
         // eslint-disable-next-line react/button-has-type

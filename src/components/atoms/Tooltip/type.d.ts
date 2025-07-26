@@ -2,7 +2,6 @@ import type { TooltipManager } from "./ui";
 
 export type Placement = "top" | "bottom" | "left" | "right";
 export type Alignment = "start" | "center" | "end";
-export type TriggerType = "hover" | "click";
 
 /** Configuration options for a tooltip instance */
 export interface TooltipConfig {
@@ -12,8 +11,6 @@ export interface TooltipConfig {
   alignment: Alignment;
   /** The ID of the element that triggers this tooltip */
   triggerId: string;
-  /** The event type that triggers the tooltip */
-  triggerType: TriggerType;
 }
 
 /** Represents the calculated position of a tooltip in the viewport */

@@ -34,7 +34,6 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
   args: {
     triggerId: "basic-tooltip",
-    triggerType: "click",
     placement: "top",
     alignment: "center",
   },
