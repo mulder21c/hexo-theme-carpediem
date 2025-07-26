@@ -7,7 +7,13 @@ const iconNames = Object.keys(icons);
 const meta: Meta<typeof IconButton> = {
   title: "Components/Atoms/Button/Icon",
   component: IconButton,
-  parameters: {},
+  parameters: {
+    docs: {
+      story: {
+        autoplay: true,
+      },
+    },
+  },
   tags: ["autodocs"],
   argTypes: {
     size: {
@@ -30,6 +36,9 @@ const meta: Meta<typeof IconButton> = {
   args: {
     label: "activity",
     icon: "activity",
+  },
+  play: async () => {
+    new window.TooltipManager();
   },
 };
 
