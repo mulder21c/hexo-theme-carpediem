@@ -10,7 +10,6 @@ const config = {
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-docs",
-    "@storybook/addon-onboarding",
     "@storybook/addon-a11y",
   ],
   framework: {
@@ -21,6 +20,11 @@ const config = {
     reactDocgen: `react-docgen-typescript`,
     check: false,
   },
+  previewHead: (head) => `
+    ${head}
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/ui.js"></script>
+  `,
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,

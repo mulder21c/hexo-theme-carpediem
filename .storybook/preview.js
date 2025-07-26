@@ -1,5 +1,4 @@
 /** @type { import('@storybook/react-webpack5').Preview } */
-import "../source/css/style.css";
 import localeKo from "./locale/ko.json";
 
 const preview = {
