@@ -17,7 +17,7 @@ module.exports = {
     },
     ecmaVersion: "latest",
     sourceType: "module",
-    project: "./tsconfig.json",
+    project: ["./tsconfig.json", "./tsconfig.scripts.json"],
   },
   plugins: [
     "react",
@@ -33,7 +33,7 @@ module.exports = {
       },
       typescript: {
         alwaysTryTypes: true,
-        project: "./tsconfig.json",
+        project: ["./tsconfig.json", "./tsconfig.scripts.json"],
       },
     },
     react: {

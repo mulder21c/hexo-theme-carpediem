@@ -17,7 +17,8 @@
     "lint:ts:fix": "eslint --ext .js,.jsx,.ts,.tsx src layout --fix",
     "lint:style": "stylelint \"src/**/*.scss\" \"layout/**/*.scss\"",
     "lint:style:fix": "stylelint \"src/**/*.scss\" \"layout/**/*.scss\" --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "license": "MIT",
   "type": "commonjs",
@@ -52,7 +53,7 @@
     "chokidar": "^4.0.3",
     "concurrently": "^9.1.2",
     "css-loader": "^6.11.0",
-    "esbuild": "^0.25.5",
+    "esbuild": "^0.25.6",
     "esbuild-register": "^3.6.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.5",
@@ -88,6 +89,7 @@
     "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-order": "^7.0.0",
     "stylelint-prettier": "^5.0.3",
+    "terser": "^5.43.1",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",

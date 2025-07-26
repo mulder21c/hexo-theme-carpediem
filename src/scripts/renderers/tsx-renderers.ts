@@ -17,9 +17,15 @@ import chokidar from "chokidar";
 import { glob } from "glob";
 import { register } from "ts-node";
 import { createMatchPath, MatchPath } from "tsconfig-paths";
+import type Hexo from "hexo";
 import type { StoreFunctionData } from "hexo/dist/extend/renderer";
 
 // Type definitions
+interface ComponentProps {
+  hexo: Hexo;
+  [key: string]: unknown;
+}
+
 interface TSConfig {
   compilerOptions: {
     baseUrl?: string;
@@ -86,7 +92,14 @@ function createConfig(): TSXConfig {
 const config = createConfig();
 let matchPath: MatchPath | null = null;
 let isTypeScriptRegistered = false;
-let originalResolveFilename: any = null;
+let originalResolveFilename:
+  | ((
+      request: string,
+      parent: NodeModule,
+      isMain: boolean,
+      options?: { [key: string]: any },
+    ) => string)
+  | null = null;
 
 // Utility Functions
 /**
@@ -128,18 +141,18 @@ function overrideModuleResolution(): void {
 
   Module._resolveFilename = function resolveFn(
     request: string,
-    parent: any,
+    parent: NodeJS.Module,
     isMain: boolean,
-    options?: any,
+    options?: { [key: string]: any },
   ) {
     // Only resolve path aliases, not all module requests
     if (typeof request === "string" && request.startsWith("@/")) {
       const resolvedPath = matchPath!(request);
       if (resolvedPath) {
-        return originalResolveFilename.call(this, resolvedPath, parent, isMain, options);
+        return originalResolveFilename?.call(this, resolvedPath, parent, isMain, options);
       }
     }
-    return originalResolveFilename.call(this, request, parent, isMain, options);
+    return originalResolveFilename?.call(this, request, parent, isMain, options);
   };
 }
 
@@ -210,7 +223,6 @@ function clearRequireCache(filePath: string): void {
  */
 function loadComponent(filePath: string): React.ComponentType<any> {
   try {
-    // eslint-disable-next-line import/no-dynamic-require
     const moduleExports = require(filePath);
 
     const Component = moduleExports.default || moduleExports;
@@ -246,7 +258,7 @@ function loadComponent(filePath: string): React.ComponentType<any> {
  * Create React element from component and options
  */
 function createReactElement(
-  Component: React.ComponentType<any>,
+  Component: React.ComponentType<ComponentProps>,
   options: object,
 ): React.ReactElement {
   try {
