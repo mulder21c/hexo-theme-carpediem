@@ -9,9 +9,6 @@
  * - File watching for development
  * - Safe error handling and logging
  * - Configurable paths and options
- *
- * @author Your Name
- * @version 2.0.0
  */
 
 import fs from "fs";
