@@ -12,29 +12,21 @@ const cx = classNames.bind(styles["/components/atoms/Tooltip/index.module"]);
 
 const TooltipContext = createContext<TooltipConfig>({
   triggerId: "",
-  triggerType: "hover",
   placement: "top",
   alignment: "center",
 });
 
-function Tooltip({
-  triggerId,
-  triggerType,
-  placement,
-  alignment,
-  children,
-}: TooltipProps) {
+function Tooltip({ triggerId, placement, alignment, children }: TooltipProps) {
   const uid = useId();
   const cid = triggerId || uid;
 
   const values = useMemo(
     () => ({
       triggerId: cid,
-      triggerType,
       placement,
       alignment,
     }),
-    [cid, triggerType, placement, alignment],
+    [cid, placement, alignment],
   );
 
   return <TooltipContext.Provider value={values}>{children}</TooltipContext.Provider>;
@@ -49,15 +41,13 @@ function Container({ className, children, ...remainProps }: TooltipContainerProp
 }
 
 function Content({ className, children, ...remainProps }: TooltipContentProps) {
-  const { triggerId, triggerType, placement, alignment } = useContext(TooltipContext);
-  console.info(`[Context values]`, triggerId, triggerType, placement, alignment);
+  const { triggerId, placement, alignment } = useContext(TooltipContext);
 
   return (
     <span
       role="tooltip"
       data-component="tooltip"
       data-trigger={triggerId}
-      data-trigger-type={triggerType}
       data-placement={placement}
       data-alignment={alignment}
       className={cx("tooltip", className)}

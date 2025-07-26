@@ -1,10 +1,4 @@
-import type {
-  Placement,
-  Alignment,
-  TriggerType,
-  TooltipConfig,
-  TooltipPosition,
-} from "./type";
+import type { Placement, Alignment, TooltipConfig, TooltipPosition } from "./type";
 
 /**
  * Class responsible for managing tooltips in the application
@@ -70,15 +64,12 @@ export class TooltipManager {
         "top") as Placement;
       const alignment = (tooltipElement.getAttribute("data-alignment") ||
         "center") as Alignment;
-      const triggerType = (tooltipElement.getAttribute("data-trigger-type") ||
-        "hover") as TriggerType;
       const arrowElement = tooltipElement.querySelector<HTMLElement>("[data-arrow]");
 
       this.tooltips.set(tooltipElement, {
         triggerId,
         placement,
         alignment,
-        triggerType,
         arrowElement,
       });
 
@@ -110,75 +101,32 @@ export class TooltipManager {
       throw new Error(`Cannot found trigger.`);
     }
 
-    switch (config.triggerType) {
-      case "hover":
-        let hoverTimeout: number;
+    let hoverTimeout: number;
 
-        const showTooltipHandler = () => {
-          clearTimeout(hoverTimeout);
-          this.showTooltip(tooltipElement, trigger);
-        };
+    const showTooltipHandler = () => {
+      clearTimeout(hoverTimeout);
+      this.showTooltip(tooltipElement, trigger);
+    };
 
-        const hideTooltipHandler = () => {
-          hoverTimeout = window.setTimeout(() => {
-            if (!tooltipElement.matches(":hover")) {
-              this.hideTooltip(tooltipElement);
-            }
-          }, 700);
-        };
+    const hideTooltipHandler = () => {
+      hoverTimeout = window.setTimeout(() => {
+        if (!tooltipElement.matches(":hover")) {
+          this.hideTooltip(tooltipElement);
+        }
+      }, 700);
+    };
 
-        // 트리거에 대한 이벤트
-        trigger.addEventListener("mouseenter", showTooltipHandler);
-        trigger.addEventListener("mouseleave", hideTooltipHandler);
+    // 트리거에 대한 이벤트
+    trigger.addEventListener("mouseenter", showTooltipHandler);
+    trigger.addEventListener("mouseleave", hideTooltipHandler);
 
-        // 툴팁에 대한 이벤트
-        tooltipElement.addEventListener("mouseenter", showTooltipHandler);
-        tooltipElement.addEventListener("mouseleave", hideTooltipHandler);
+    // 툴팁에 대한 이벤트
+    tooltipElement.addEventListener("mouseenter", showTooltipHandler);
+    tooltipElement.addEventListener("mouseleave", hideTooltipHandler);
 
-        // 키보드 접근성 유지
-        trigger.addEventListener("focus", () =>
-          this.showTooltip(tooltipElement, trigger),
-        );
-        trigger.addEventListener("blur", () => this.hideTooltip(tooltipElement));
-        break;
-
-      case "click":
-        trigger.addEventListener("click", (e) => {
-          e.stopPropagation();
-
-          if (this.activeTooltip === tooltipElement) {
-            this.hideTooltip(tooltipElement);
-          } else {
-            this.showTooltip(tooltipElement, trigger);
-
-            const clickOutside = (event: MouseEvent) => {
-              if (
-                !tooltipElement.contains(event.target as Node) &&
-                !trigger.contains(event.target as Node)
-              ) {
-                this.hideTooltip(tooltipElement);
-                document.removeEventListener("click", clickOutside);
-              }
-            };
-
-            document.addEventListener("click", clickOutside);
-          }
-        });
-
-        trigger.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (this.activeTooltip === tooltipElement) {
-              this.hideTooltip(tooltipElement);
-            } else {
-              this.showTooltip(tooltipElement, trigger);
-            }
-          }
-        });
-        break;
-    }
+    // 키보드 접근성 유지
+    trigger.addEventListener("focus", () => this.showTooltip(tooltipElement, trigger));
+    trigger.addEventListener("blur", () => this.hideTooltip(tooltipElement));
   }
 
   /**
