@@ -1,0 +1,38 @@
+.tooltip {
+  --padding-vertical: 0.3125rem;
+  --padding-horizontal: 1rem;
+
+  position: absolute;
+  z-index: 1000;
+  width: max-content;
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  background-color: var(--panel-bg);
+  border: var(--panel-border-width) solid var(--panel-border-color);
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  &#{&} {
+    font-weight: 500;
+    color: var(--panel-text);
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__arrow {
+    position: absolute;
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    aspect-ratio: 1;
+    background-color: inherit;
+    border: var(--panel-border-width) solid var(--panel-border-color);
+    transform: rotate(45deg);
+  }
+}

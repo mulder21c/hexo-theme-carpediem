@@ -1,3 +1,4 @@
+import type { TooltipConfig } from "@/components/atoms/Tooltip/type";
 import type { FeatherIconName } from "feather-icons-react";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,7 +16,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   appearance?: "fill" | "outline";
 }
 
-export interface IconButtonProps extends Omit<ButtonProps, "size"> {
+export interface IconButtonProps extends Partial<TooltipConfig>, Omit<ButtonProps, "size"> {
   /**
    * Accessible name for button
    */
