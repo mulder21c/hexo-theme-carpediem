@@ -1,0 +1,15 @@
+export const TOOLTIP_CONSTANTS = {
+  LAYOUT: {
+    TOOLTIP_OFFSET: 16,
+    VIEWPORT_MARGIN: 20,
+  },
+  ANIMATION: {
+    TRANSITION_DURATION: 200,
+    HIDDEN_OPACITY: "0",
+    VISIBLE_OPACITY: "1",
+  },
+  STYLE: {
+    ARROW_Z_INDEX: "1",
+    ARROW_POSITION_OFFSET: 4,
+  },
+} as const;
