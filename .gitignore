@@ -250,3 +250,5 @@ scripts
 source/js
 source/css/*.css
 src/styles/css-modules-map.json
+.kiro
+.cursor

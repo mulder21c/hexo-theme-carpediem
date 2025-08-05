@@ -14,5 +14,6 @@
     "autodocs",
     "contenteditable",
     "tabindex"
-  ]
+  ],
+  "kiroAgent.configureMCP": "Disabled"
 }

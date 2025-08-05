@@ -23,7 +23,6 @@ const config = {
   previewHead: (head) => `
     ${head}
     <link rel="stylesheet" href="/css/style.css" />
-    <script src="/js/ui.js"></script>
   `,
   webpackFinal: async (config) => {
     config.resolve.alias = {
