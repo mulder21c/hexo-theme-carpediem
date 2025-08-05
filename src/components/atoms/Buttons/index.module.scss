@@ -1,12 +1,12 @@
-/// 기본 버튼 스타일 정의
+/// Basic button style definitions
 /// @group Buttons
 /// @access public
 ///
-/// @property {Length} --label-size - 버튼 라벨 텍스트 크기
-/// @property {Length} --padding-vertical - 버튼 수직 패딩
-/// @property {Length} --padding-horizontal - 버튼 수평 패딩
-/// @property {Length} --min-width - 버튼 최소 너비
-/// @property {Length} --min-height - 버튼 최소 높이
+/// @property {Length} --label-size - Button label text size
+/// @property {Length} --padding-vertical - Button vertical padding
+/// @property {Length} --padding-horizontal - Button horizontal padding
+/// @property {Length} --min-width - Button minimum width
+/// @property {Length} --min-height - Button minimum height
 ///
 @layer atom {
   .btn {

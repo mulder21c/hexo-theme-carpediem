@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "@/styles/css-modules-map.json";
-import type { ButtonProps } from "./Button";
+import type { ButtonProps } from "./type";
 
 const cx = classNames.bind(styles["/components/atoms/Buttons/index.module"]);
 

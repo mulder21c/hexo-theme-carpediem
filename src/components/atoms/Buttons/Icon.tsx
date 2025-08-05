@@ -3,7 +3,7 @@ import FeatherIcon from "feather-icons-react";
 import classNames from "classnames/bind";
 import Tooltip from "@/components/atoms/Tooltip";
 import styles from "@/styles/css-modules-map.json";
-import type { IconButtonProps } from "./Button";
+import type { IconButtonProps } from "./type";
 
 const cx = classNames.bind(styles["/components/atoms/Buttons/index.module"]);
 
