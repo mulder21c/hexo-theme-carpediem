@@ -1,11 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import icons from "feather-icons-react/build/icons.json";
 import IconButton from "./Icon";
+import { TooltipManager } from "@/components/atoms/Tooltip/ui";
+import type { Meta, StoryObj } from "@storybook/react";
 
 const iconNames = Object.keys(icons);
 
 const meta: Meta<typeof IconButton> = {
-  title: "Components/Atoms/Button/Icon",
+  title: "Atoms/Button/Icon",
   component: IconButton,
   parameters: {
     docs: {
@@ -38,7 +39,7 @@ const meta: Meta<typeof IconButton> = {
     icon: "activity",
   },
   play: async () => {
-    new window.TooltipManager();
+    new TooltipManager();
   },
 };
 

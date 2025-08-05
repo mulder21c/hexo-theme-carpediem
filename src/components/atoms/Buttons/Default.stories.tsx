@@ -2,7 +2,7 @@ import DefaultButton from "./Default";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof DefaultButton> = {
-  title: "Components/Atoms/Button/Default",
+  title: "Atoms/Button/Default",
   component: DefaultButton,
   parameters: {},
   argTypes: {
