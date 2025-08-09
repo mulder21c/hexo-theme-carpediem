@@ -1,10 +1,10 @@
+import dedent from "ts-dedent";
 import DefaultButton from "./Default";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof DefaultButton> = {
-  title: "Atoms/Button/Default",
+  title: "Atoms/Button/Default Button",
   component: DefaultButton,
-  parameters: {},
   argTypes: {
     children: {
       table: { disable: true },
@@ -17,6 +17,44 @@ const meta: Meta<typeof DefaultButton> = {
     },
     type: {
       control: { type: "select" },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: dedent`## Overview
+
+The Default Button component is a fundamental UI element that triggers actions when clicked.
+It provides consistent styling and behavior across the application with various size and
+appearance options.
+
+## Key Features
+
+### 🎨 Appearance Variations
+- Multiple visual styles for different action hierarchies
+- Consistent theming across all variations
+
+### 📏 Size Options
+- Flexible sizing from compact to full-width layouts
+- Responsive design considerations built-in
+
+### ♿ Accessibility Support
+- **Semantic HTML**: Uses proper \`<button>\` element
+- **Keyboard Navigation**: Fully accessible via keyboard
+- **Focus Management**: Clear focus indicators
+
+## Usage
+
+The button accepts all standard HTML button attributes and can be used for form submissions,
+navigation, or triggering actions.
+
+## Usage Considerations
+
+1. **Button Type**: Use appropriate \`type\` prop (button, submit, reset)
+2. **Meaningful Labels**: Provide clear, descriptive button text
+3. **Consistent Styling**: Choose appearance based on action hierarchy
+4. **Responsive Design**: Consider using fluid size for mobile layouts`,
+      },
     },
   },
 };
