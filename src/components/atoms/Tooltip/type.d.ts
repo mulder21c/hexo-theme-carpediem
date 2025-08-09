@@ -8,9 +8,23 @@ export type Alignment = "start" | "center" | "end";
  * Configuration options for a tooltip instance
  */
 export type TooltipConfig = {
-  /** The placement direction of the tooltip */
+  /**
+   * The placement direction of the tooltip
+   *
+   * `top`: Tooltip appears above the trigger element <br />
+   * `bottom`: Tooltip appears below the trigger element <br />
+   * `left`: Tooltip appears to the left of the trigger element <br />
+   * `right`: Tooltip appears to the right of the trigger element
+   */
   placement: Placement;
-  /** The alignment of the tooltip */
+  /**
+   * The alignment of the tooltip
+   *
+   * `start`: Tooltip aligns to the start edge (left for horizontal, top for vertical placement)
+   * <br />
+   * `center`: Tooltip centers relative to the trigger element (default) <br />
+   * `end`: Tooltip aligns to the end edge (right for horizontal, bottom for vertical placement)
+   */
   alignment: Alignment;
   /** The ID of the element that triggers this tooltip */
   triggerId: string;
