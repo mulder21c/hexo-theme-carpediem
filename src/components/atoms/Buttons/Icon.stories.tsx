@@ -1,8 +1,11 @@
+import React from "react";
 import dedent from "ts-dedent";
 import icons from "feather-icons-react/build/icons.json";
 import IconButton from "./Icon";
 import { TooltipManager } from "@/components/atoms/Tooltip/ui";
+import { useArgs, useEffect } from "storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
+import type { IconButtonProps } from "./type";
 
 const iconNames = Object.keys(icons);
 
@@ -84,7 +87,9 @@ const meta: Meta<typeof IconButton> = {
     icon: "activity",
   },
   play: async () => {
-    new TooltipManager();
+    window.tooltip?.destroy();
+
+    window.tooltip = new TooltipManager();
   },
 };
 
@@ -96,10 +101,45 @@ export const Fill: Story = {
   args: {
     appearance: "fill",
   },
+
+  render: function (args) {
+    const [options] = useArgs<IconButtonProps>();
+
+    useEffect(() => {
+      if (window.tooltip) {
+        window.tooltip.destroy();
+
+        const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
+        tooltip?.setAttribute("data-placement", options.placement || "right");
+        tooltip?.setAttribute("data-alignment", options.alignment || "center");
+
+        window.tooltip = new TooltipManager();
+      }
+    }, [options]);
+
+    return <IconButton {...args} {...options} />;
+  },
 };
 
 export const Outline: Story = {
   args: {
     appearance: "outline",
+  },
+  render: function (args) {
+    const [options] = useArgs<IconButtonProps>();
+
+    useEffect(() => {
+      if (window.tooltip) {
+        window.tooltip.destroy();
+
+        const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
+        tooltip?.setAttribute("data-placement", options.placement || "right");
+        tooltip?.setAttribute("data-alignment", options.alignment || "center");
+
+        window.tooltip = new TooltipManager();
+      }
+    }, [options]);
+
+    return <IconButton {...args} {...options} />;
   },
 };

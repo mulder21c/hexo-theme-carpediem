@@ -45,6 +45,8 @@ function IconButton({
         </Tooltip.Content>
         <FeatherIcon
           icon={icon}
+          width={undefined}
+          height={undefined}
           className={cx("btn-icon__icon", `btn-icon__icon--${stroke}`)}
         />
       </button>

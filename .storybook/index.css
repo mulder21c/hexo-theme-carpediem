@@ -1,0 +1,3 @@
+html:has(.sb-show-main) {
+  background-color: transparent;
+}

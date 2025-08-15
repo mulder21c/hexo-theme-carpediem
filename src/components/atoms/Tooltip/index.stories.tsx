@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import dedent from "ts-dedent";
 import Tooltip from "./index";
 import { TooltipManager } from "./ui";
-import { useArgs } from "storybook/preview-api";
+import { useArgs, useEffect } from "storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
-import { TooltipConfig } from "./type";
+import type { TooltipConfig } from "./type";
 
 const meta = {
   title: "Atoms/Tooltip",
@@ -74,12 +74,19 @@ be a containing block. If the trigger cannot be a containing block, you can wrap
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
+export const Primary: Story = {
   args: {
     triggerId: "basic-tooltip",
     placement: "top",
     alignment: "center",
   },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: "50px 30px" }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: function (args) {
     const [options] = useArgs<TooltipConfig>();
 

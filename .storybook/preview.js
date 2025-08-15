@@ -1,5 +1,6 @@
 /** @type { import('@storybook/react-webpack5').Preview } */
 import localeKo from "./locale/ko.json";
+import "./index.css";
 
 const preview = {
   tags: ["autodocs"],
