@@ -181,6 +181,11 @@
 }
 
 @layer base {
+  :root {
+    --font-size-ratio: 1;
+    --base-font-size: 16px;
+  }
+
   *,
   *::before,
   *::after {

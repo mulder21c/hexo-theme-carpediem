@@ -1,16 +1,17 @@
 @use "sass:map";
 @use "sass:list";
 @use "sass:string";
+@use "../modules/variables" as var;
 
 /// Generates @font-face declaration with multiple font formats
 ///
 /// @param {String} $name - Font family name
 /// @param {String} $path - Path to font files directory or URL
 /// @param {String} $filename - Font filename without extension
-/// @param {Number} $weight [400] - Font weight
-/// @param {String} $style [normal] - Font style
-/// @param {List} $exts [woff2 woff ttf otf] - Font file extensions to include
-/// @param {String} $range [null] - Unicode range for the font
+/// @param {Number} $weight [400] - Font weight [optional]
+/// @param {String} $style [normal] - Font style [optional]
+/// @param {List} $exts [woff2 woff ttf otf] - Font file extensions to include [optional]
+/// @param {String} $range [null] - Unicode range for the font [optional]
 ///
 /// @example scss
 ///   @include font-face(
@@ -73,4 +74,29 @@
   border: 0;
   clip: rect(0, 0, 0, 0);
   clip-path: inset(100%);
+}
+
+///
+/// @mixin typo
+/// @param {String} $size [base] - Font size key from the $font-sizes
+/// @param {String} $lineHeight - Line height key from the $line-heights [optional]
+/// @param {Number} $weight - Font weight value [optional]
+/// @see $font-sizes
+/// @see $line-heights
+///
+@mixin typo($size: "base", $lineHeight: null, $weight: null) {
+  $size-ratio: map.get(var.$font-sizes, $size);
+  $actual-font-size: calc(var(--base-font-size) * $size-ratio * var(--font-size-ratio));
+
+  font-size: $actual-font-size;
+
+  @if $context {
+    $line-height: map.get(var.$line-heights, $lineHeight);
+
+    line-height: $line-height;
+  }
+
+  @if $weight {
+    font-weight: $weight;
+  }
 }

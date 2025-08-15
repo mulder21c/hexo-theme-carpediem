@@ -1,6 +1,8 @@
 @use "../helpers/functions" as fn;
 
-// base colors
+/// Base Color Palette
+/// Primary colors used throughout the design system
+/// @group colors
 $white: #fff !default;
 $black: #000 !default;
 $neutral: #808080 !default;
@@ -14,7 +16,11 @@ $green: #198754 !default;
 $teal: #20c997 !default;
 $cyan: #0dcaf0 !default;
 
-// color palettes
+/// Color Palette Maps
+/// Generated color palettes with tints and shades
+/// Each palette contains 50, 100, 200, ..., 900 variants
+/// @group colors
+/// @requires {function} fn.create-color-palette
 $neutral-palette: fn.create-color-palette($neutral) !default;
 $blue-palette: fn.create-color-palette($blue) !default;
 $blue-gray-palette: fn.create-color-palette($blue-gray) !default;
@@ -26,7 +32,42 @@ $green-palette: fn.create-color-palette($green) !default;
 $teal-palette: fn.create-color-palette($teal) !default;
 $cyan-palette: fn.create-color-palette($cyan) !default;
 
-// fonts
+/// Typography Font Stacks
+/// Font families with appropriate fallbacks
+/// @group typography
 $font-serif: "Noto Serif", serif;
 $font-sans-serif: "Pretendard", sans-serif;
 $font-code: "Hack";
+
+/// Font Size Scale
+/// @type Map
+/// @group typography
+/// @prop {Number} xs - Extra small text
+/// @prop {Number} sm - Small text
+/// @prop {Number} base - Base body text
+/// @prop {Number} lg - Large text
+/// @prop {Number} xl - Extra large text
+/// @prop {Number} 2xl - 2X large text
+/// @prop {Number} 3xl - 3X large text
+$font-sizes: (
+  "xs": 0.875,
+  "sm": 0.92,
+  "base": 1,
+  "lg": 1.15,
+  "xl": 1.35,
+  "2xl": 1.6,
+  "3xl": 2,
+) !default;
+
+/// Line Height Scale
+/// optimized for readability
+/// @type Map
+/// @group typography
+/// @prop {Number} base - Standard text line height
+/// @prop {Number} heading - Optimized for headings and titles
+/// @prop {Number} body - Enhanced readability for long-form content
+$line-heights: (
+  "base": 1.5,
+  "heading": 1.3,
+  "body": 1.6,
+) !default;

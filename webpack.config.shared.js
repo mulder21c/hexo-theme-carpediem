@@ -32,8 +32,9 @@ const getScssLoaders = (isModule = false, isDev = false) => {
           @use "sass:map";
           @use "sass:string";
           @use "sass:math";
-          @use "${stylePath.replace(/\\/g, '/')}/modules/variables" as var;
           @use "${stylePath.replace(/\\/g, '/')}/helpers/functions" as fn;
+          @use "${stylePath.styles}/helpers/mixins" as *;
+          @use "${stylePath.replace(/\\/g, '/')}/modules/variables" as var;
         `,
       },
     }
