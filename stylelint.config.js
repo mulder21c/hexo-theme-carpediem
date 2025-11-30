@@ -1,0 +1,55 @@
+/** @type {import('stylelint').Config} */
+export default {
+  extends: [
+    'stylelint-config-standard-scss',
+    'stylelint-config-prettier-scss',
+  ],
+  plugins: ['stylelint-order'],
+  rules: {
+    'order/properties-order': [
+      'position',
+      'top',
+      'right',
+      'bottom',
+      'left',
+      'z-index',
+      // Box Model
+      'display',
+      'float',
+      'width',
+      'height',
+      'margin',
+      'margin-top',
+      'margin-right',
+      'margin-bottom',
+      'margin-left',
+      'padding',
+      'padding-top',
+      'padding-right',
+      'padding-bottom',
+      'padding-left',
+      // Typography
+      'font',
+      'font-family',
+      'font-size',
+      'font-weight',
+      'line-height',
+      'text-align',
+      'text-decoration',
+      'text-transform',
+      'color',
+      // Visual
+      'background',
+      'background-color',
+      'background-image',
+      'background-repeat',
+      'background-position',
+      'border',
+      'border-radius',
+      // Misc
+      'opacity',
+      'cursor',
+      'transition',
+    ],
+  },
+};
