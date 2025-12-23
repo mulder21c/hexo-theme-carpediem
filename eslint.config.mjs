@@ -1,5 +1,4 @@
 // @ts-check
-
 import eslint from "@eslint/js";
 import { defineConfig } from "eslint/config";
 import eslintConfigPrettier from "eslint-config-prettier";
