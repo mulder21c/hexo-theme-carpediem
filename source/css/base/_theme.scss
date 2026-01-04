@@ -28,11 +28,48 @@
   // focus ring
   --focus-ring: #{color("green", 700)};
 
+  // button colors
+  --btn-surface-primary: #{color("green", 600)};
+  --btn-surface-primary-hover: #{color("green", 700)};
+  --btn-border-primary: #{color("green", 600)};
+  --btn-border-primary-hover: #{color("green", 700)};
+  --btn-text-primary: #{color("neutral", 50)};
+  --btn-text-primary-hover: #{color("neutral", 50)};
+  --btn-surface-secondary: #{color("neutral", 600)};
+  --btn-surface-secondary-hover: #{color("neutral", 700)};
+  --btn-border-secondary: #{color("neutral", 650)};
+  --btn-border-secondary-hover: #{color("neutral", 750)};
+  --btn-text-secondary: var(--white);
+  --btn-text-secondary-hover: var(--white);
+
+  @media (prefers-contrast: more) {
+    --btn-surface-primary: #{color("green", 650)};
+    --btn-surface-primary-hover: #{color("green", 800)};
+    --btn-border-primary: #{color("green", 650)};
+    --btn-border-primary-hover: #{color("green", 800)};
+    --btn-surface-secondary: #{color("neutral", 700)};
+    --btn-surface-secondary-hover: #{color("neutral", 850)};
+    --btn-border-secondary: #{color("neutral", 700)};
+    --btn-border-secondary-hover: #{color("neutral", 850)};
+  }
+
   @media (prefers-color-scheme: dark) {
     --white: #{color("black")};
     --black: #{color("white")};
     --light: #{color("bluegray", 800)};
     --dark: #{color("neutral", 50)};
     --bg-color-primary: #{color("bluegray", 800)};
+
+    // button colors
+    --btn-surface-primary: #{color("mintgreen", 500)};
+    --btn-surface-primary-hover: #{color("mintgreen", 300)};
+    --btn-border-primary: #{color("mintgreen", 500)};
+    --btn-border-primary-hover: #{color("mintgreen", 300)};
+    --btn-text-primary: #{color("bluegray", 800)};
+    --btn-text-primary-hover: #{color("bluegray", 800)};
+    --btn-surface-secondary: #{color("neutral", 450)};
+    --btn-surface-secondary-hover: #{color("neutral", 300)};
+    --btn-border-secondary: #{color("neutral", 450)};
+    --btn-border-secondary-hover: #{color("neutral", 300)};
   }
 }

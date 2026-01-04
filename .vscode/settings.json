@@ -1,0 +1,21 @@
+{
+  "cSpell.words": [
+    "autodocs",
+    "bluegray",
+    "lacostegreen",
+    "mintgreen",
+    "pretendard",
+    "xwide"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.configFile": "stylelint.config.mjs",
+  "stylelint.snippet": ["css", "scss"],
+  "stylelint.validate": ["css", "scss"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  }
+}
