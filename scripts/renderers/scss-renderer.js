@@ -109,6 +109,18 @@ function collectScssFiles(root) {
 }
 
 /**
+ * Resolves SCSS path aliases to actual paths.
+ * Converts @source alias to source path for Sass loadPaths resolution.
+ * @param {string} scssContent - SCSS content with aliases
+ * @returns {string} SCSS content with resolved aliases
+ */
+function resolveScssAliases(scssContent) {
+  // Replace @source alias with source path
+  // Matches: @use "@source/..." or @import "@source/..."
+  return scssContent.replace(/(@use|@import)\s+["']@source\//g, '$1 "source/');
+}
+
+/**
  * Merges multiple SCSS files into a single string.
  * @param {string[]} filePaths - Array of file paths to merge
  * @param {string} root - Theme root directory
@@ -145,8 +157,11 @@ async function compileScss(scssContent, sourcePath) {
   const sourceCssDir = path.join(themeRoot, "source", "css");
   const fileDir = path.dirname(sourcePath);
 
+  // Resolve path aliases before compilation
+  const resolvedContent = resolveScssAliases(scssContent);
+
   try {
-    const result = await sass.compileStringAsync(scssContent, {
+    const result = await sass.compileStringAsync(resolvedContent, {
       loadPaths: [fileDir, sourceCssDir, themeRoot],
       style: "expanded",
       sourceMap: false,

@@ -1,5 +1,6 @@
 /** @type {import('stylelint').Config} */
 export default {
+  syntax: "scss",
   extends: ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
   plugins: ["stylelint-order"],
   rules: {
