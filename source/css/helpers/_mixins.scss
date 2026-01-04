@@ -1,1 +1,219 @@
-@mixin flex-center { display: flex; justify-content: center; }
+@use 'sass:string';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+@use '../modules/variables' as *;
+
+// Breakpoint mixin for responsive design
+// Usage: @include breakpoint('tablet') { ... }
+// Usage: @include breakpoint(768px) { ... }
+@mixin breakpoint($size) {
+  @if meta.type-of($size) == 'string' {
+    @if map.has-key($breakpoints, $size) {
+      $size: map.get($breakpoints, $size);
+    } @else {
+      @error "Unknown breakpoint: #{$size}";
+    }
+  }
+
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+// Max-width breakpoint mixin
+// Usage: @include breakpoint-max('tablet') { ... }
+@mixin breakpoint-max($size) {
+  @if meta.type-of($size) == 'string' {
+    @if map.has-key($breakpoints, $size) {
+      $size: map.get($breakpoints, $size);
+    } @else {
+      @error "Unknown breakpoint: #{$size}";
+    }
+  }
+
+  $max-size: $size - 1px;
+  @media (max-width: $max-size) {
+    @content;
+  }
+}
+
+// Range breakpoint mixin
+// Usage: @include breakpoint-between('tablet', 'desktop') { ... }
+@mixin breakpoint-between($min, $max) {
+  $min-size: $min;
+  $max-size: $max;
+
+  @if meta.type-of($min) == 'string' {
+    @if map.has-key($breakpoints, $min) {
+      $min-size: map.get($breakpoints, $min);
+    } @else {
+      @error "Unknown breakpoint: #{$min}";
+    }
+  }
+
+  @if meta.type-of($max) == 'string' {
+    @if map.has-key($breakpoints, $max) {
+      $max-size: map.get($breakpoints, $max);
+    } @else {
+      @error "Unknown breakpoint: #{$max}";
+    }
+  }
+
+  @if $min-size >= $max-size {
+    @error "breakpoint-between: min breakpoint (#{$min-size}) must be less than max breakpoint (#{$max-size})";
+  }
+
+  $max-size-calc: $max-size - 1px;
+  @media (min-width: $min-size) and (max-width: $max-size-calc) {
+    @content;
+  }
+}
+
+// Mobile-first responsive mixins
+@mixin mobile-only {
+  @include breakpoint-max('tablet') {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @include breakpoint('tablet') {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @include breakpoint('desktop') {
+    @content;
+  }
+}
+
+@mixin wide-up {
+  @include breakpoint('wide') {
+    @content;
+  }
+}
+
+/// Generates @font-face declaration with multiple font formats
+///
+/// @param {String} $name - Font family name
+/// @param {String} $path - Path to font files directory or URL
+/// @param {String} $filename - Font filename without extension
+/// @param {Number} $weight [400] - Font weight [optional]
+/// @param {String} $style [normal] - Font style [optional]
+/// @param {List} $exts [woff2 woff ttf otf] - Font file extensions to include [optional]
+/// @param {String} $range [null] - Unicode range for the font [optional]
+///
+/// @example scss
+///   @include font-face(
+///     'pretendard',
+///     '/fonts',
+///     'pretendard-regular',
+///     400,
+///     normal,
+///     woff2 woff
+///   );
+///
+@mixin font-face(
+  $name,
+  $path,
+  $filename,
+  $weight: 400,
+  $style: normal,
+  $exts: woff2 woff ttf otf,
+  $range: null
+) {
+  $src: null;
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+    woff: "woff",
+    woff2: "woff2",
+  );
+
+  // Check if the path ends with a slash and handle it
+  $normalized-path: if(string.slice($path, -1) != "/", $path + "/", $path);
+
+  @each $ext in $exts {
+    $format: if(map.has-key($formats, $ext), map.get($formats, $ext), $ext);
+    $src: list.append(
+      $src,
+      url(string.quote($normalized-path + $filename + "." + $ext))
+        format(string.quote($format)),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: string.quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+    font-display: swap;
+
+    @if $range {
+      unicode-range: $range;
+    }
+  }
+}
+
+/// Typography mixin for consistent font sizing and styling
+///
+/// @param {String} $size [base] - Font size key from the $font-sizes map
+/// @param {Number} $weight [null] - Font weight value (100-900, multiples of 100) [optional]
+/// @param {String} $lineHeightKey [null] - Line height key from the $line-heights map [optional]
+/// @see $font-sizes
+/// @see $line-heights
+///
+/// @example scss
+///   // Basic usage with default size
+///   .text {
+///     @include typo();
+///   }
+///
+///   // With custom size and line height
+///   .heading {
+///     @include typo('xl', 700, 'heading');
+///   }
+///
+///   // Size only
+///   .small-text {
+///     @include typo('sm');
+///   }
+///
+@mixin typo($size: "base", $weight: null, $lineHeightKey: null) {
+  // Validate font size key
+  @if not map.has-key($font-sizes, $size) {
+    @error "typo: Unknown font size key '#{$size}'. Available keys: #{map.keys($font-sizes)}";
+  }
+
+  $size-ratio: map.get($font-sizes, $size);
+  $actual-font-size: calc(var(--base-font-size) * $size-ratio * var(--font-size-ratio));
+
+  font-size: $actual-font-size;
+
+  @if $lineHeightKey {
+    // Validate line height key
+    @if not map.has-key($line-heights, $lineHeightKey) {
+      @error "typo: Unknown line height key '#{$lineHeightKey}'. Available keys: #{map.keys($line-heights)}";
+    }
+
+    $line-height: map.get($line-heights, $lineHeightKey);
+
+    line-height: $line-height;
+  }
+
+  @if $weight {
+    // Validate font weight (should be 100-900, multiples of 100, or normal/bold)
+    @if meta.type-of($weight) == 'number' {
+      @if $weight < 100 or $weight > 900 or ($weight % 100 != 0) {
+        @error "typo: Invalid font weight '#{$weight}'. Must be between 100-900 in multiples of 100";
+      }
+    } @else if $weight != 'normal' and $weight != 'bold' {
+      @error "typo: Invalid font weight '#{$weight}'. Must be a number (100-900) or 'normal'/'bold'";
+    }
+
+    font-weight: $weight;
+  }
+}

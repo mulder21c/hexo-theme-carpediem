@@ -1,1 +1,187 @@
-$primary-color: #007bff;
+// Breakpoints
+$breakpoints: (
+  'mobile': 320px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'wide': 1280px,
+  'xwide': 1440px
+) !default;
+
+/// Typography Font Stacks
+/// Font families with appropriate fallbacks
+/// @group typography
+$font-serif: "Noto Serif", serif;
+$font-sans-serif: "Pretendard", sans-serif;
+$font-code: "Hack";
+
+/// Font Size Scale
+/// @type Map
+/// @group typography
+/// @prop {Number} xs - Extra small text
+/// @prop {Number} sm - Small text
+/// @prop {Number} md - Medium text
+/// @prop {Number} lg - Large text
+/// @prop {Number} xl - Extra large text
+/// @prop {Number} 2xl - 2X large text
+/// @prop {Number} 3xl - 3X large text
+$font-sizes: (
+  "xs": 0.8,
+  "sm": 0.9,
+  "md": 1,
+  "lg": 1.25,
+  "xl": 1.5,
+  "2xl": 2,
+  "3xl": 2.5,
+) !default;
+
+/// Line Height Scale
+/// optimized for readability
+/// @type Map
+/// @group typography
+/// @prop {Number} body - Standard text line height
+/// @prop {Number} heading - Optimized for headings and titles
+/// @prop {Number} caption - Optimized for captions and small text
+/// @prop {Number} label - Optimized for labels and small text
+/// @prop {Number} emphasis - Optimized for emphasis text
+$line-heights: (
+  "body": 1.6,
+  "heading": 1.3,
+  "caption": 1.5,
+  "label": 1.25,
+  "emphasis": 1.75
+) !default;
+
+/// Colors
+/// @type Map
+/// @group colors
+/// @prop {Color} neutral - Neutral colors
+/// @prop {Color} darkgreen - Dark green colors
+/// @prop {Color} green - Green colors
+$colors: (
+  "white": #fff,
+  "black": #000,
+  "neutral": (
+    50: #f8f9fa,
+    100: #f1f3f5,
+    150: #ececec,
+    200: #e5e7eb,
+    250: #e0e0e0,
+    300: #d4d4d4,
+    350: #bdbdbd,
+    400: #b0b0b0,
+    450: #a3a3a3,
+    500: #949494,
+    550: #868686,
+    600: #757575,
+    650: #666,
+    700: #525252,
+    750: #464646,
+    800: #333,
+    850: #232323,
+    900: #181818,
+    950: #0d0d0d,
+  ),
+  "bluegray": (
+    50: #e9f1fa,
+    100: #d2e4f5,
+    150: #bbd6f0,
+    200: #a4c9eb,
+    250: #8dbbe6,
+    300: #76aedf,
+    350: #5fa0da,
+    400: #4893d5,
+    450: #3685cc,
+    500: #69c,
+    550: #4e7bb1,
+    600: #406590,
+    650: #335070,
+    700: #263a50,
+    750: #1a2433,
+    800: #10161c,
+    850: #080c10,
+    900: #04060a,
+    950: #020304,
+  ),
+  "green": (
+    50: #e6f9e6,
+    100: #c0f0c0,
+    150: #99e699,
+    200: #66d966,
+    250: #3c3,
+    300: #29b32a,
+    350: #219921,
+    400: #1a801a,
+    450: #166f16,
+    500: #008000,
+    550: #007300,
+    600: #060,
+    650: #005900,
+    700: #004d00,
+    750: #004000,
+    800: #030,
+    850: #002600,
+    900: #001a00,
+    950: #010,
+  ),
+  "mintgreen": (
+    50: #e6fbf3,
+    100: #c0f6e2,
+    150: #99f0d1,
+    200: #73ebc1,
+    250: #4de6b0,
+    300: #38dfa0,
+    350: #3be09e,
+    400: #3ee09c,
+    450: #3edf93,
+    500: #3eb489, // 메인 컬러
+    550: #36a67d,
+    600: #2e986f,
+    650: #268b61,
+    700: #1e7d53,
+    750: #166f45,
+    800: #0e6137,
+    850: #064329,
+    900: #00251a,
+    950: #00130f,
+  ),
+);
+
+/// Border Radius Scale
+/// @type Map
+/// @group radius
+/// @prop {Number} xs - Extra small border radius
+/// @prop {Number} sm - Small border radius
+/// @prop {Number} md - Medium border radius
+/// @prop {Number} lg - Large border radius
+/// @prop {Number} xl - Extra large border radius
+/// @prop {Number} 2xl - 2X large border radius
+/// @prop {Number} circle - Circle border radius
+$radius: (
+  "xs": 0.125rem,
+  "sm": 0.25rem,
+  "md": 0.5rem,
+  "lg": 0.75rem,
+  "xl": 1rem,
+  "2xl": 1.5rem,
+  "circle": 9999px,
+) !default;
+
+/// Spacing Scale
+/// @type Map
+/// @group spacing
+/// @prop {Number} xs - Extra small spacing
+/// @prop {Number} sm - Small spacing
+/// @prop {Number} md - Medium spacing
+/// @prop {Number} lg - Large spacing
+/// @prop {Number} xl - Extra large spacing
+/// @prop {Number} 2xl - 2X large spacing
+/// @prop {Number} 3xl - 3X large spacing
+$spacing: (
+  "xs": 0.125rem,
+  "sm": 0.25rem,
+  "md": 0.5rem,
+  "lg": 0.75rem,
+  "xl": 1rem,
+  "2xl": 1.5rem,
+  "3xl": 2rem,
+) !default;

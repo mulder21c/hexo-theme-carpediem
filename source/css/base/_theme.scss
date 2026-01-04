@@ -1,0 +1,38 @@
+@use "../helpers/functions" as *;
+
+:root {
+  --bg-color-primary: #{color("neutral", 50)};
+  --white: #{color("white")};
+  --black: #{color("black")};
+  --light: #{color("neutral", 50)};
+  --dark: #{color("bluegray", 800)};
+
+  // border radius
+  --border-radius-xs: #{radius("xs")};
+  --border-radius-sm: #{radius("sm")};
+  --border-radius-md: #{radius("md")};
+  --border-radius-lg: #{radius("lg")};
+  --border-radius-xl: #{radius("xl")};
+  --border-radius-2xl: #{radius("2xl")};
+  --border-radius-circle: #{radius("circle")};
+
+  // spacing
+  --spacing-xs: #{spacing("xs")};
+  --spacing-sm: #{spacing("sm")};
+  --spacing-md: #{spacing("md")};
+  --spacing-lg: #{spacing("lg")};
+  --spacing-xl: #{spacing("xl")};
+  --spacing-2xl: #{spacing("2xl")};
+  --spacing-3xl: #{spacing("3xl")};
+
+  // focus ring
+  --focus-ring: #{color("green", 700)};
+
+  @media (prefers-color-scheme: dark) {
+    --white: #{color("black")};
+    --black: #{color("white")};
+    --light: #{color("bluegray", 800)};
+    --dark: #{color("neutral", 50)};
+    --bg-color-primary: #{color("bluegray", 800)};
+  }
+}

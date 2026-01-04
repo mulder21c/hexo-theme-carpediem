@@ -1,3 +1,94 @@
-/**
-  SCSS Functions
-*/
+@use "sass:color";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "../modules/variables" as *;
+
+
+@function color($color, $tone: 50, $format: "hex") {
+  $hex-color: null;
+
+  // Get color value from $colors map
+  @if not map.has-key($colors, $color) {
+    @error "Color '#{$color}' not found in $colors map.";
+  }
+
+  $color-value: map.get($colors, $color);
+
+  // Check if the value is a map (color group) or a single color
+  @if meta.type-of($color-value) == 'map' {
+    // Color group: get hex color for specific tone
+    @if not map.has-key($color-value, $tone) {
+      @error "Tone '#{$tone}' not found for color '#{$color}'.";
+    }
+
+    $hex-color: map.get($color-value, $tone);
+  } @else {
+    // Single color: return directly (tone parameter is ignored)
+    $hex-color: $color-value;
+  }
+
+  // Return based on format
+  @if $format == 'rgb' {
+    // Return as RGB format: rgb(red, green, blue)
+    @return rgb(color.channel($hex-color, "red"), color.channel($hex-color, "green"), color.channel($hex-color, "blue"));
+  } @else if $format == 'hex' {
+    // Return as hex code format
+    @return $hex-color;
+  } @else {
+    @error "Invalid format '#{$format}'. Use 'hex' or 'rgb'.";
+  }
+}
+
+/// Border radius function for consistent border radius values
+///
+/// @param {String} $key [md] - Border radius key from the $radius map
+/// @return {Number} Border radius value
+/// @see $radius
+///
+/// @example scss
+///   // Basic usage with default size
+///   .button {
+///     border-radius: radius();
+///   }
+///
+///   // With custom size
+///   .card {
+///     border-radius: radius('lg');
+///   }
+///
+///   // Circle radius
+///   .avatar {
+///     border-radius: radius('circle');
+///   }
+///
+@function radius($key: "md") {
+  // Validate radius key
+  @if not map.has-key($radius, $key) {
+    @error "radius: Unknown radius key '#{$key}'. Available keys: #{map.keys($radius)}";
+  }
+
+  @return map.get($radius, $key);
+}
+
+/// Spacing function for consistent spacing values
+///
+/// @param {String} $key [md] - Spacing key from the $spacing map
+/// @return {Number} Spacing value
+/// @see $spacing
+///
+/// @example scss
+///   // Basic usage with default spacing
+///   padding: spacing();
+///
+///   // With custom spacing key
+///   margin-bottom: spacing('lg');
+///
+@function spacing($key: "md") {
+  // Validate spacing key
+  @if not map.has-key($spacing, $key) {
+    @error "spacing: Unknown spacing key '#{$key}'. Available keys: #{map.keys($spacing)}";
+  }
+
+  @return map.get($spacing, $key);
+}

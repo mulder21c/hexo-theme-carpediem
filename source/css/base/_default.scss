@@ -1,0 +1,153 @@
+@use "../helpers/mixins" as *;
+
+// Pretendard font-face declarations
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-thin',
+  100,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-extralight',
+  200,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-light',
+  300,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-regular',
+  400,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-medium',
+  500,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-semibold',
+  600,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-bold',
+  700,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Pretendard',
+  '/fonts/pretendard',
+  'pretendard-extrabold',
+  800,
+  normal,
+  (woff2 woff)
+);
+
+// Hack font-face declarations
+@include font-face(
+  'Hack',
+  '/fonts/hack',
+  'hack-regular',
+  400,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Hack',
+  '/fonts/hack',
+  'hack-italic',
+  400,
+  italic,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Hack',
+  '/fonts/hack',
+  'hack-bold',
+  700,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Hack',
+  '/fonts/hack',
+  'hack-bolditalic',
+  700,
+  italic,
+  (woff2 woff)
+);
+
+// Noto Serif KR font-face declarations
+@include font-face(
+  'Noto Serif KR',
+  '/fonts/noto-serif-kr',
+  'noto-serif-kr-200',
+  200,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Noto Serif KR',
+  '/fonts/noto-serif-kr',
+  'noto-serif-kr-400',
+  400,
+  normal,
+  (woff2 woff)
+);
+
+@include font-face(
+  'Noto Serif KR',
+  '/fonts/noto-serif-kr',
+  'noto-serif-kr-700',
+  700,
+  normal,
+  (woff2 woff)
+);
+
+@layer base {
+  :root {
+    --font-serif: "Noto Serif KR", serif;
+    --font-sans-serif: "Pretendard", sans-serif;
+    --font-code: "Hack";
+    --base-font-size: 16px;
+    --font-size-ratio: 1;
+  }
+
+  html {
+    background-color: var(--bg-color-primary);
+  }
+}
