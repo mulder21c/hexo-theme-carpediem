@@ -182,7 +182,7 @@
 ///     @include typo('sm');
 ///   }
 ///
-@mixin typo($size: "base", $weight: null, $lineHeightKey: null) {
+@mixin typo($size: "md", $weight: null, $lineHeightKey: null) {
   // Validate font size key
   @if not map.has-key($font-sizes, $size) {
     @error "typo: Unknown font size key '#{$size}'. Available keys: #{map.keys($font-sizes)}";

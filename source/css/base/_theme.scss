@@ -43,6 +43,7 @@
   --btn-text-secondary-hover: var(--white);
 
   @media (prefers-contrast: more) {
+    // button colors
     --btn-surface-primary: #{color("green", 650)};
     --btn-surface-primary-hover: #{color("green", 800)};
     --btn-border-primary: #{color("green", 650)};
