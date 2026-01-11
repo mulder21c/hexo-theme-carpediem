@@ -48,6 +48,15 @@ export default defineConfig(
     rules: {
       // Prettier integration
       "prettier/prettier": "error",
+      // TypeScript unused vars - ignore variables starting with _
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
       // React 17+ JSX Transform (React import 불필요)
       "react/react-in-jsx-scope": "off",
       "react/jsx-uses-react": "off",

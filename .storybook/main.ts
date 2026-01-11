@@ -1,6 +1,6 @@
-import type { StorybookConfig } from "@storybook/react-webpack5";
 import path from "path";
 import { fileURLToPath } from "url";
+import type { StorybookConfig } from "@storybook/react-webpack5";
 import type { Configuration } from "webpack";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,7 +18,16 @@ const config: StorybookConfig = {
     reactDocgen: `react-docgen-typescript`,
     check: true,
   },
-  staticDirs: [{ from: "../source/fonts", to: "/fonts" }],
+  staticDirs: [
+    { from: "../source/fonts", to: "/fonts" },
+    { from: "../source/js", to: "/js" },
+  ],
+  previewBody: (body) => {
+    return `
+      ${body}
+      <script defer src="/js/ui.js"></script>
+    `;
+  },
   webpackFinal: async (config: Configuration) => {
     if (!config.resolve) {
       config.resolve = {};

@@ -1,3 +1,12 @@
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+} from "@storybook/addon-docs/blocks";
+import React from "react";
 import type { Preview } from "@storybook/react-webpack5";
 import "../source/css/index.scss";
 
@@ -20,6 +29,18 @@ const preview: Preview = {
       },
     },
     layout: "centered",
+    docs: {
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories includePrimary={false} />
+        </>
+      ),
+    },
   },
   initialGlobals: {
     backgrounds: {

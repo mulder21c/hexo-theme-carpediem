@@ -284,7 +284,7 @@ function needsRebuild(sourceFiles, outputFile) {
   const normalizePaths = (files) => files.map((f) => path.normalize(f)).sort();
 
   // Check if source file list has changed
-  const metadataPath = outputFile + ".metadata.json";
+  const metadataPath = path.join(themeRoot, "source", ".cache", "ui.js.metadata.json");
   const cachedFiles = normalizePaths(getCachedSourceFiles(metadataPath));
   const currentFiles = normalizePaths(sourceFiles);
 
@@ -373,7 +373,7 @@ async function bundleUi() {
     writeOutputFile(minifiedCode, outputPath);
 
     // 6. Save source file list metadata for change detection
-    const metadataPath = outputPath + ".metadata.json";
+    const metadataPath = path.join(themeRoot, "source", ".cache", "ui.js.metadata.json");
     saveCachedSourceFiles(uiFiles, metadataPath);
 
     log.info("UI bundling completed successfully.");

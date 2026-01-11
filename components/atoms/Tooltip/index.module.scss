@@ -1,0 +1,57 @@
+@use "@source/css/helpers/mixins" as *;
+
+@layer atoms {
+  .tooltip {
+    --padding-vertical: var(--spacing-sm);
+    --padding-horizontal: var(--spacing-xl);
+
+    position: absolute;
+    z-index: 1000;
+    width: max-content;
+    padding: var(--padding-vertical) var(--padding-horizontal);
+    background-color: var(--tooltip-bg);
+    border: 1px solid var(--tooltip-border);
+    border-radius: var(--border-radius-sm);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    @include typo("md", 500, "body");
+
+    &:is(&) {
+      color: var(--tooltip-text);
+    }
+
+    &[hidden] {
+      display: none;
+    }
+
+    &--vertical {
+      max-width: calc(90vw - var(--spacing-xl) * 2);
+      max-width: calc(90dvw - var(--spacing-xl) * 2);
+      max-height: calc(40vh - var(--spacing-xl) * 2);
+      max-height: calc(40dvh - var(--spacing-xl) * 2);
+    }
+
+    &--horizontal {
+      max-width: calc(40vw - var(--spacing-xl) * 2);
+      max-width: calc(40dvw - var(--spacing-xl) * 2);
+      max-height: calc(90vh - var(--spacing-xl) * 2);
+      max-height: calc(90dvh - var(--spacing-xl) * 2);
+    }
+
+    &__container {
+      position: relative;
+      display: inline-flex;
+    }
+
+    &__arrow {
+      position: absolute;
+      z-index: -10;
+      width: 10px;
+      height: 10px;
+      aspect-ratio: 1;
+      background-color: inherit;
+      border: 1px solid var(--tooltip-border);
+      transform: rotate(45deg) translateZ(-10px);
+    }
+  }
+}

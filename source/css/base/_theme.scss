@@ -42,6 +42,11 @@
   --btn-text-secondary: var(--white);
   --btn-text-secondary-hover: var(--white);
 
+  // tooltip colors
+  --tooltip-bg: #{color("green", 650)};
+  --tooltip-border: #{color("green", 750)};
+  --tooltip-text: #{color("neutral", 50)};
+
   @media (prefers-contrast: more) {
     // button colors
     --btn-surface-primary: #{color("green", 650)};
