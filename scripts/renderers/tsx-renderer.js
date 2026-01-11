@@ -1,10 +1,10 @@
-const { renderToStaticMarkup } = require("react-dom/server");
-const React = require("react");
-const path = require("path");
-const { register, create } = require("ts-node");
-const Module = require("module");
 const fs = require("fs");
+const Module = require("module");
+const path = require("path");
 const log = require("hexo-log").default({ debug: false, silent: false });
+const React = require("react");
+const { renderToStaticMarkup } = require("react-dom/server");
+const { register, create } = require("ts-node");
 
 const themeRoot = path.resolve(__dirname, "../..");
 const tsconfigPath = path.join(themeRoot, "tsconfig.json");

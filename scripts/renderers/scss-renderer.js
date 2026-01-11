@@ -1,11 +1,11 @@
-const sass = require("sass");
-const postcss = require("postcss");
-const postcssModules = require("postcss-modules");
+const fs = require("fs");
+const path = require("path");
 const autoprefixer = require("autoprefixer");
 const cssnano = require("cssnano");
-const path = require("path");
-const fs = require("fs");
 const log = require("hexo-log").default({ debug: false, silent: false });
+const postcss = require("postcss");
+const postcssModules = require("postcss-modules");
+const sass = require("sass");
 const { storeCssModulesMap } = require("./css-modules-cache");
 
 /**

@@ -1,5 +1,5 @@
-const path = require("path");
 const fs = require("fs");
+const path = require("path");
 const log = require("hexo-log").default({ debug: false, silent: false });
 
 const themeRoot = path.resolve(__dirname, "../..");
