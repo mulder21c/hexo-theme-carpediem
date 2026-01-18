@@ -1,6 +1,6 @@
 import dedent from "ts-dedent";
 import Button from "./Base";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof Button> = {
   title: "Atoms/Button/BaseButton",

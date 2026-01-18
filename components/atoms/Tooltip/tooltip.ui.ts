@@ -6,10 +6,10 @@ import {
 } from "./type";
 
 // Constants for timing and positioning
-const SHOW_DELAY = 200;
-const HIDE_DELAY = 100;
+export const SHOW_DELAY = 200;
+export const HIDE_DELAY = 200;
+export const TRANSITION_DURATION = 200;
 const LONG_PRESS_DELAY = 500;
-const TRANSITION_DURATION = 200;
 const TOUCH_MOVE_TOLERANCE = 10;
 const TOOLTIP_OFFSET = 12;
 const VIEWPORT_PADDING = 8;

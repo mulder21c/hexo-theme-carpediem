@@ -5,6 +5,7 @@
     "lacostegreen",
     "mintgreen",
     "pretendard",
+    "unhover",
     "xwide"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",

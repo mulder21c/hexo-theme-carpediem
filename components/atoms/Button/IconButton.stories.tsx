@@ -3,7 +3,7 @@ import { useArgs } from "storybook/internal/preview-api";
 import dedent from "ts-dedent";
 import IconButton from "./IconButton";
 import type { IconButtonProps } from "./type";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof IconButton> = {
   title: "Atoms/Button/IconButton",

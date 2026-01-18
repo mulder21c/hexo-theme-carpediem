@@ -7,7 +7,7 @@ import {
   Stories,
 } from "@storybook/addon-docs/blocks";
 import React from "react";
-import type { Preview } from "@storybook/react-webpack5";
+import type { Preview } from "@storybook/react-vite";
 import "../source/css/index.scss";
 
 const preview: Preview = {
@@ -16,6 +16,7 @@ const preview: Preview = {
       color: /(background|color)$/i,
       date: /Date$/i,
     },
+
     backgrounds: {
       options: {
         light: {
@@ -28,7 +29,9 @@ const preview: Preview = {
         },
       },
     },
+
     layout: "centered",
+
     docs: {
       page: () => (
         <>
@@ -40,6 +43,13 @@ const preview: Preview = {
           <Stories includePrimary={false} />
         </>
       ),
+    },
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: "todo",
     },
   },
   initialGlobals: {
