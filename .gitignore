@@ -244,6 +244,9 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/hexo,yarn,node,macos,windows,visualstudiocode
 *storybook.log
 
+# Ai Tools
 .cursor
+.gemini
+.serena
 
 storybook-static
