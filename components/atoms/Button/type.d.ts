@@ -1,3 +1,6 @@
+import type { TooltipConfig } from "@components/atoms/Tooltip/type";
+import type { FeatherIconName } from "feather-icons-react";
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * HTML button type attribute
@@ -29,4 +32,24 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    * <Button size="large">Large Button</Button>
    */
   size: "small" | "medium" | "large";
+}
+
+export interface IconButtonProps
+  extends ButtonProps, Omit<TooltipConfig, "triggerId" | "tooltipId"> {
+  /**
+   * Accessible label for the icon button
+   * @example
+   * <IconButton label="Plus Button" icon="plus" />
+   */
+  label: string;
+  /**
+   * Icon button icon
+   * @example
+   * <IconButton icon="plus">Plus Button</IconButton>
+   */
+  icon: FeatherIconName;
+  /**
+   * Icon stroke thickness
+   */
+  stroke?: "thin" | "medium" | "bold";
 }

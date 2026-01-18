@@ -137,4 +137,53 @@
       @include typo("lg", 500, label);
     }
   }
+
+  .btn-icon {
+    --height: 2.75rem;
+    --icon-size: 1.25rem;
+
+    height: var(--height);
+    aspect-ratio: 1;
+    border-style: solid;
+    border-width: 2px;
+
+    &--small {
+      border-radius: var(--border-radius-md);
+      @include typo("sm", 500, label);
+    }
+
+    &--medium {
+      --height: 3.5rem;
+      --icon-size: 1.75rem;
+
+      border-radius: var(--border-radius-md);
+      @include typo("md", 500, label);
+    }
+
+    &--large {
+      --height: 4.25rem;
+      --icon-size: 2rem;
+
+      border-radius: var(--border-radius-lg);
+      @include typo("lg", 500, label);
+    }
+
+    &__icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      aspect-ratio: 1;
+
+      &--thin {
+        stroke-width: 1px;
+      }
+
+      &--medium {
+        stroke-width: 3px;
+      }
+
+      &--bold {
+        stroke-width: 5px;
+      }
+    }
+  }
 }
