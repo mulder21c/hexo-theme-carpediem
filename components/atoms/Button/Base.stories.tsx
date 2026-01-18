@@ -11,28 +11,24 @@ const meta: Meta<typeof Button> = {
       table: {
         category: "Appearance",
       },
-      description: "Button visual style variant",
     },
     color: {
       control: "select",
       table: {
         category: "Appearance",
       },
-      description: "Button color scheme",
     },
     size: {
       control: "select",
       table: {
         category: "Appearance",
       },
-      description: "Button size",
     },
     type: {
       control: "select",
       table: {
         category: "Behavior",
       },
-      description: "HTML button type attribute",
     },
     children: {
       control: "text",

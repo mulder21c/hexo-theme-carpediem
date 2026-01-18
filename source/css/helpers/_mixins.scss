@@ -1,14 +1,14 @@
-@use 'sass:string';
-@use 'sass:map';
-@use 'sass:list';
-@use 'sass:meta';
-@use '../modules/variables' as *;
+@use "sass:string";
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "../modules/variables" as *;
 
 // Breakpoint mixin for responsive design
 // Usage: @include breakpoint('tablet') { ... }
 // Usage: @include breakpoint(768px) { ... }
 @mixin breakpoint($size) {
-  @if meta.type-of($size) == 'string' {
+  @if meta.type-of($size) == "string" {
     @if map.has-key($breakpoints, $size) {
       $size: map.get($breakpoints, $size);
     } @else {
@@ -24,7 +24,7 @@
 // Max-width breakpoint mixin
 // Usage: @include breakpoint-max('tablet') { ... }
 @mixin breakpoint-max($size) {
-  @if meta.type-of($size) == 'string' {
+  @if meta.type-of($size) == "string" {
     @if map.has-key($breakpoints, $size) {
       $size: map.get($breakpoints, $size);
     } @else {
@@ -44,7 +44,7 @@
   $min-size: $min;
   $max-size: $max;
 
-  @if meta.type-of($min) == 'string' {
+  @if meta.type-of($min) == "string" {
     @if map.has-key($breakpoints, $min) {
       $min-size: map.get($breakpoints, $min);
     } @else {
@@ -52,7 +52,7 @@
     }
   }
 
-  @if meta.type-of($max) == 'string' {
+  @if meta.type-of($max) == "string" {
     @if map.has-key($breakpoints, $max) {
       $max-size: map.get($breakpoints, $max);
     } @else {
@@ -72,25 +72,25 @@
 
 // Mobile-first responsive mixins
 @mixin mobile-only {
-  @include breakpoint-max('tablet') {
+  @include breakpoint-max("tablet") {
     @content;
   }
 }
 
 @mixin tablet-up {
-  @include breakpoint('tablet') {
+  @include breakpoint("tablet") {
     @content;
   }
 }
 
 @mixin desktop-up {
-  @include breakpoint('desktop') {
+  @include breakpoint("desktop") {
     @content;
   }
 }
 
 @mixin wide-up {
-  @include breakpoint('wide') {
+  @include breakpoint("wide") {
     @content;
   }
 }
@@ -206,11 +206,11 @@
 
   @if $weight {
     // Validate font weight (should be 100-900, multiples of 100, or normal/bold)
-    @if meta.type-of($weight) == 'number' {
+    @if meta.type-of($weight) == "number" {
       @if $weight < 100 or $weight > 900 or ($weight % 100 != 0) {
         @error "typo: Invalid font weight '#{$weight}'. Must be between 100-900 in multiples of 100";
       }
-    } @else if $weight != 'normal' and $weight != 'bold' {
+    } @else if $weight != "normal" and $weight != "bold" {
       @error "typo: Invalid font weight '#{$weight}'. Must be a number (100-900) or 'normal'/'bold'";
     }
 

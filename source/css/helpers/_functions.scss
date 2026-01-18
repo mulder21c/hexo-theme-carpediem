@@ -4,7 +4,6 @@
 @use "sass:string";
 @use "../modules/variables" as *;
 
-
 @function color($color, $tone: 50, $format: "hex") {
   $hex-color: null;
 
@@ -16,7 +15,7 @@
   $color-value: map.get($colors, $color);
 
   // Check if the value is a map (color group) or a single color
-  @if meta.type-of($color-value) == 'map' {
+  @if meta.type-of($color-value) == "map" {
     // Color group: get hex color for specific tone
     @if not map.has-key($color-value, $tone) {
       @error "Tone '#{$tone}' not found for color '#{$color}'.";
@@ -29,10 +28,14 @@
   }
 
   // Return based on format
-  @if $format == 'rgb' {
+  @if $format == "rgb" {
     // Return as RGB format: rgb(red, green, blue)
-    @return rgb(color.channel($hex-color, "red"), color.channel($hex-color, "green"), color.channel($hex-color, "blue"));
-  } @else if $format == 'hex' {
+    @return rgb(
+      color.channel($hex-color, "red"),
+      color.channel($hex-color, "green"),
+      color.channel($hex-color, "blue")
+    );
+  } @else if $format == "hex" {
     // Return as hex code format
     @return $hex-color;
   } @else {
