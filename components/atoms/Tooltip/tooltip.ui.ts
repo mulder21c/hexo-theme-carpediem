@@ -683,14 +683,22 @@ export class TooltipManager {
       arrow.style.right = ARROW_OFFSET;
       arrow.style.borderBottomColor = "transparent";
       arrow.style.borderLeftColor = "transparent";
-      const triggerCenter = triggerRect.top + triggerRect.height / 2;
-      arrowTop = triggerCenter - tooltipTop - arrowSize / 2;
+      if (triggerRect.height < tooltipRect.height) {
+        const triggerCenter = triggerRect.top + triggerRect.height / 2;
+        arrowTop = triggerCenter - tooltipTop - arrowSize / 2;
+      } else {
+        arrowTop = tooltipRect.height / 2 - arrowSize / 2;
+      }
     } else if (placement === "right") {
       arrow.style.left = ARROW_OFFSET;
       arrow.style.borderTopColor = "transparent";
       arrow.style.borderRightColor = "transparent";
-      const triggerCenter = triggerRect.top + triggerRect.height / 2;
-      arrowTop = triggerCenter - tooltipTop - arrowSize / 2;
+      if (triggerRect.height < tooltipRect.height) {
+        const triggerCenter = triggerRect.top + triggerRect.height / 2;
+        arrowTop = triggerCenter - tooltipTop - arrowSize / 2;
+      } else {
+        arrowTop = tooltipRect.height / 2 - arrowSize / 2;
+      }
     }
 
     const borderRadius = ARROW_BORDER_RADIUS;
