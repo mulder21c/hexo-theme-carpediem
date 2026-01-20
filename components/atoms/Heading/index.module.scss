@@ -1,0 +1,27 @@
+@use "@source/css/helpers/mixins" as *;
+
+.heading {
+  &--level-1 {
+    @include typo("3xl", 700, "heading");
+  }
+
+  &--level-2 {
+    @include typo("2xl", 700, "heading");
+  }
+
+  &--level-3 {
+    @include typo("xl", 700, "heading");
+  }
+
+  &--level-4 {
+    @include typo("lg", 700, "heading");
+  }
+
+  &--level-5 {
+    @include typo("md", 700, "heading");
+  }
+
+  &--level-6 {
+    @include typo("sm", 700, "heading");
+  }
+}
