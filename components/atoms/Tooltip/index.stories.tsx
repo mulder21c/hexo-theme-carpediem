@@ -39,14 +39,17 @@ const meta: Meta<typeof Tooltip> = {
     docs: {
       description: {
         component: dedent`
-          Tooltip component provides an overlay that displays additional information or descriptions for trigger elements.<br>
+          Tooltip component provides an overlay that displays additional information or descriptions for trigger elements. <br>
           It combines a component-based declarative structure with a DOM-based automatic position calculation system.
 
           ## ✨ Key Features
 
-          ### 📍 Placement & Alignment
+          ### ⚙️ Behavior
           - Automatically detects viewport boundaries and adjusts to an appropriate position
           - Automatically adjusts to the opposite direction when there is insufficient space in the configured position
+          - Uses a compound component pattern (\`Tooltip\`, \`Tooltip.Trigger\`, \`Tooltip.Content\`)
+          - Global tooltip management through \`TooltipManager\` singleton
+          - Multiple tooltips can be used simultaneously on the same page
 
           ### 🖱️ Interactions
           - Mouse hover: Displays after 200ms delay when hovering over the trigger element
@@ -60,29 +63,16 @@ const meta: Meta<typeof Tooltip> = {
           - Keyboard navigation support
           - Screen reader compatible
 
-          ## 🏗️ Component Structure
-
-          Tooltip uses a compound component pattern:
-
-          - \`Tooltip\`: Main container component
-          - \`Tooltip.Trigger\`: Component that wraps the trigger element for displaying the tooltip
-          - \`Tooltip.Content\`: Component that contains the tooltip content
-
           ## 🎨 Customization
 
           ### 💅 Styling
           - Provides default styles through CSS modules
-          - Theme support through CSS variables (\`--tooltip-bg\`, \`--tooltip-border\`, \`--tooltip-text\`)
+          - Theme support through CSS variables
           - Additional styling possible through \`className\` prop
-          - Modify \`index.module.scss\` file to change global styles
 
           ### 🎯 Trigger Elements
-          - Can use various HTML elements as triggers (buttons, links, input fields, etc.)
+          - Can use various HTML elements or components as triggers
           - \`id\` attribute required on trigger element (to uniquely identify each tooltip)
-
-          ### ⚙️ Behavior Control
-          - Global tooltip management through \`TooltipManager\` singleton
-          - Multiple tooltips can be used simultaneously on the same page
         `,
       },
     },

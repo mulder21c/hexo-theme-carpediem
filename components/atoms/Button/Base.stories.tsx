@@ -50,11 +50,31 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component: dedent`
-          Renders a semantic \`<button>\` element with configurable size, color, variant, and type.<br>
-          Accepts contents via the 'children' prop.
+          Renders a semantic \`<button>\` element with configurable size, color, variant, and type.
 
-          The button uses CSS variables for theming and is accessible by default.<br>
-          This component does not include interactive logic, focusing purely on visual and semantic output.
+          Accepts contents via the \`children\` prop.
+
+          ## ✨ Key Features
+
+          ### ⚙️ Behavior
+          - Configurable button type (button, submit, reset) via the \`type\` prop
+          - Supports all standard HTML button attributes
+
+          ### ♿ Accessibility
+          - Uses semantic HTML button element
+          - Accessible by default
+          - Supports all standard HTML button attributes (id, aria-*, etc.)
+          - Screen reader compatible
+
+          ## 🎨 Customization
+
+          ### 💅 Styling
+          - Uses CSS variables for theming
+          - Additional styling possible through \`className\` prop
+
+          ## ⚠️ Notes
+
+          - This component does not include interactive logic, focusing purely on visual and semantic output
         `,
       },
     },

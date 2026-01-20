@@ -77,7 +77,32 @@ const meta: Meta<typeof IconButton> = {
   parameters: {
     docs: {
       description: {
-        component: dedent``,
+        component: dedent`
+          Renders a semantic \`<button>\` element that displays only an icon, with integrated tooltip functionality for accessibility.
+
+          Extends Base Button with icon display capabilities using FeatherIcon library and automatic tooltip integration.
+
+          ## ✨ Key Features
+
+          ### ⚙️ Behavior
+          - Displays icon-only button using FeatherIcon library
+          - Integrated tooltip functionality through Tooltip component
+          - Supports all standard HTML button attributes
+          - Automatic ID generation if \`id\` prop is not provided
+
+          ### ♿ Accessibility
+          - Automatic tooltip integration for accessible labeling
+          - Uses semantic HTML button element
+          - Accessible by default with proper ARIA attributes
+          - Screen reader compatible through tooltip labels
+          - \`label\` prop is required to provide accessible text for the icon
+
+          ## 🎨 Customization
+
+          ### 💅 Styling
+          - Uses CSS variables for theming
+          - Additional styling possible through \`className\` prop
+        `,
       },
     },
   },
