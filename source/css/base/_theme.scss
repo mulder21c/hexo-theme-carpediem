@@ -6,6 +6,7 @@
   --black: #{color("black")};
   --light: #{color("neutral", 50)};
   --dark: #{color("bluegray", 800)};
+  --text-primary: #{color("black")};
 
   // border radius
   --border-radius-xs: #{radius("xs")};
@@ -47,12 +48,26 @@
   --tooltip-border: #{color("green", 750)};
   --tooltip-text: #{color("neutral", 50)};
 
+  // Radio colors
+  --radio-border: #{color("green", 600)};
+  --radio-surface: #{color("green", 600)};
+  --radio-label: var(--dark);
+  --radio-border-disabled: #{color("neutral", 300)};
+  --radio-surface-disabled: #{color("neutral", 300)};
+  --radio-label-disabled: #{color("neutral", 300)};
+  --radio-btn-surface: #{color("green", 600)};
+  --radio-btn-text: #{color("green", 600)};
+  --radio-btn-text-checked: #{color("neutral", 50)};
+  --radio-btn-surface-disabled: #{color("neutral", 300)};
+  --radio-btn-text-disabled: #{color("neutral", 300)};
+
   @media (prefers-color-scheme: dark) {
     --bg-color-primary: #{color("bluegray", 800)};
     --white: #{color("black")};
     --black: #{color("white")};
     --light: #{color("bluegray", 800)};
     --dark: #{color("neutral", 50)};
+    --text-primary: #{color("neutral", 150)};
 
     // focus ring
     --focus-ring: #{color("mintgreen", 300)};
@@ -75,9 +90,23 @@
     --tooltip-bg: #{color("mintgreen", 450)};
     --tooltip-border: #{color("mintgreen", 200)};
     --tooltip-text: #{color("bluegray", 850)};
+
+    // Radio colors
+    --radio-border: #{color("mintgreen", 500)};
+    --radio-surface: #{color("mintgreen", 500)};
+    --radio-border-disabled: #{color("neutral", 700)};
+    --radio-surface-disabled: #{color("neutral",700)};
+    --radio-label-disabled: #{color("neutral", 700)};
+    --radio-btn-surface: #{color("mintgreen", 500)};
+    --radio-btn-text: #{color("mintgreen", 500)};
+    --radio-btn-text-checked: #{color("bluegray", 800)};
+    --radio-btn-surface-disabled: #{color("neutral", 700)};
+    --radio-btn-text-disabled: #{color("neutral", 700)};
   }
 
-  @media (prefers-contrast: more) {
+  @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+    --text-primary: var(--dark);
+
     // button colors
     --btn-surface-primary: #{color("mintgreen", 450)};
     --btn-surface-primary-hover: #{color("mintgreen", 200)};
@@ -92,5 +121,12 @@
     --tooltip-bg: #{color("mintgreen", 200)};
     --tooltip-border: #{color("mintgreen", 100)};
     --tooltip-text: #{color("bluegray", 900)};
+
+    // Radio colors
+    --radio-border: #{color("mintgreen", 450)};
+    --radio-surface: #{color("mintgreen", 450)};
+    --focus-ring: #{color("mintgreen", 300)};
+    --radio-btn-surface: #{color("mintgreen", 450)};
+    --radio-btn-text: #{color("mintgreen", 450)};
   }
 }
