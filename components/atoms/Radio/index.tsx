@@ -51,7 +51,7 @@ function Radio({
           className={cx("radio__input")}
           aria-label={ariaLabel}
           disabled={disabled}
-          checked={checked}
+          defaultChecked={checked}
           {...props}
         />
         <span className={cx("radio__label")}>{labelContent}</span>
