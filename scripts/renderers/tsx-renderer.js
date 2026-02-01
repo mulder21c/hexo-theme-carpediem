@@ -37,6 +37,7 @@ const tsNodeService = create({
     baseUrl: path.resolve(__dirname, "../.."),
     paths: {
       "@components/*": ["components/*"],
+      "@context/*": ["components/context/*"],
       "@layout/*": ["layout/*"],
       "@styles/*": ["src/styles/*"],
     },
@@ -55,6 +56,7 @@ register({
     baseUrl: path.resolve(__dirname, "../.."),
     paths: {
       "@components/*": ["components/*"],
+      "@context/*": ["components/context/*"],
       "@layout/*": ["layout/*"],
       "@styles/*": ["src/styles/*"],
     },
@@ -529,10 +531,10 @@ Module._extensions[".tsx"] = function (module, filePath) {
  * Files in layout directory are automatically wrapped with Document component.
  *
  * @param {HexoRendererData} data - Hexo renderer data object
- * @param {Object} _options - Renderer options (unused)
+ * @param {Object} options - Renderer options containing Hexo context (site, page, config, theme, etc.)
  * @returns {string} Rendered HTML string
  */
-function tsxRenderer(data, _options) {
+function tsxRenderer(data, options) {
   log.info("tsxRenderer entered", data.path);
   const virtualPath = data.path;
 
@@ -565,6 +567,12 @@ function tsxRenderer(data, _options) {
       virtualPath.includes("layout/") ||
       virtualPath.replace(/\\/g, "/").includes("layout/");
 
+    // Load HexoProvider for context injection
+    const HexoContextModule = require(
+      path.resolve(themeRoot, "components/context/HexoContext.tsx"),
+    );
+    const HexoProvider = HexoContextModule.HexoProvider;
+
     let html;
 
     if (isLayoutFile) {
@@ -576,25 +584,34 @@ function tsxRenderer(data, _options) {
         throw new Error("Document component not found");
       }
 
-      // Render by wrapping layout component with Document component
-      // title, description, lang can be extended to get from Hexo context later
+      // Render by wrapping layout component with HexoProvider and Document component
       html = renderToStaticMarkup(
         React.createElement(
-          Document,
-          {
-            title: undefined,
-            description: undefined,
-            lang: "ko",
-          },
-          React.createElement(Component),
+          HexoProvider,
+          { value: options },
+          React.createElement(
+            Document,
+            {
+              title: options.page?.title,
+              description: options.page?.description,
+              lang: options.config?.language || "ko",
+            },
+            React.createElement(Component),
+          ),
         ),
       );
 
       // Add DOCTYPE
       html = "<!DOCTYPE html>\n" + html;
     } else {
-      // Keep existing behavior for regular components
-      html = renderToStaticMarkup(React.createElement(Component));
+      // Wrap with HexoProvider for regular components
+      html = renderToStaticMarkup(
+        React.createElement(
+          HexoProvider,
+          { value: options },
+          React.createElement(Component),
+        ),
+      );
     }
 
     return html;

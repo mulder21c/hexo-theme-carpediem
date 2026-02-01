@@ -8,9 +8,18 @@ import {
 } from "@storybook/addon-docs/blocks";
 import React from "react";
 import type { Preview } from "@storybook/react-vite";
+import { HexoProvider } from "../components/context";
+import { mockHexoContext } from "./mocks/hexo-context";
 import "../source/css/index.scss";
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <HexoProvider value={mockHexoContext}>
+        <Story />
+      </HexoProvider>
+    ),
+  ],
   parameters: {
     controls: {
       color: /(background|color)$/i,
