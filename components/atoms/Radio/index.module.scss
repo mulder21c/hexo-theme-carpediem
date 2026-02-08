@@ -228,5 +228,15 @@
         background-color: var(--radio-btn-surface);
       }
     }
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    &__label:is(:is(&--button):is(&--start) &__label):not(:is(&--center)) {
+      justify-content: flex-start;
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    &__label:is(:is(&--button):is(&--center) &__label):not(:is(&--start)) {
+      text-align: center;
+    }
   }
 }

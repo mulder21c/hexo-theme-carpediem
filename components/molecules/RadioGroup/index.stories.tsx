@@ -173,9 +173,9 @@ export const DirectionVertical: Story = {
   },
 };
 
-export const VariantOutline: Story = {
+export const VariantOutlineHorizontal: Story = {
   args: {
-    name: "choice",
+    name: "outline-horizontal",
     variant: "outline",
     size: "medium",
     align: "start",
@@ -190,12 +190,29 @@ export const VariantOutline: Story = {
   ],
 };
 
-export const VariantButton: Story = {
+export const VariantOutlineVertical: Story = {
   args: {
-    name: "choice",
-    variant: "button",
+    name: "outline-vertical",
+    variant: "outline",
     size: "medium",
     align: "start",
+    direction: "vertical",
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "600px" }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const VariantButtonHorizontal: Story = {
+  args: {
+    name: "button-horizontal",
+    variant: "button",
+    size: "medium",
+    align: "center",
     direction: "horizontal",
   },
   decorators: [
@@ -209,11 +226,12 @@ export const VariantButton: Story = {
 
 export const VariantButtonVertical: Story = {
   args: {
-    name: "choice",
+    name: "button-vertical",
     variant: "button",
     direction: "vertical",
+    size: "medium",
+    align: "start",
     options: defaultOptions,
-    defaultValue: "a",
   },
   decorators: [
     (Story) => (
