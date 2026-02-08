@@ -5,7 +5,7 @@ export interface RadioProps extends Omit<
   /**
    * Radio group identifier (HTML `name` attribute)
    */
-  name: string;
+  name?: string;
   /**
    * Option value (HTML `value` attribute)
    */

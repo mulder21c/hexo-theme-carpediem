@@ -87,7 +87,7 @@
           background-color: var(--radio-surface);
         }
 
-        &:focus-visible {
+        &:focus {
           outline: 2px solid var(--focus-ring);
           outline-offset: 3px;
         }
@@ -124,7 +124,7 @@
       border: 1px solid var(--radio-btn-surface);
       border-radius: var(--radio-btn-radius);
 
-      &:has(:focus-visible) {
+      &:has(:focus) {
         outline: 2px solid var(--focus-ring);
         outline-offset: 2px;
       }
@@ -170,7 +170,7 @@
           background-color: var(--radio-surface);
         }
 
-        &:focus-visible {
+        &:focus {
           outline: none;
         }
 
@@ -182,18 +182,32 @@
       }
     }
 
+    &--button {
+      --radio-btn-radius-top-left: var(--radio-btn-radius);
+      --radio-btn-radius-top-right: var(--radio-btn-radius);
+      --radio-btn-radius-bottom-left: var(--radio-btn-radius);
+      --radio-btn-radius-bottom-right: var(--radio-btn-radius);
+      --radio-btn-border-top-width: 1px;
+      --radio-btn-border-right-width: 1px;
+      --radio-btn-border-bottom-width: 1px;
+      --radio-btn-border-left-width: 1px;
+    }
+
     &__label:is(&--button &__label) {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
       min-height: var(--height);
       padding: var(--radio-padding-y) var(--radio-padding-x);
       color: var(--radio-btn-text);
       background-color: var(--light);
-      border: 1px solid var(--radio-btn-surface);
-      border-radius: var(--radio-btn-radius);
+      border-color: var(--radio-btn-surface);
+      border-style: solid;
+      border-width: var(--radio-btn-border-top-width) var(--radio-btn-border-right-width) var(--radio-btn-border-bottom-width) var(--radio-btn-border-left-width);
+      border-radius: var(--radio-btn-radius-top-left) var(--radio-btn-radius-top-right) var(--radio-btn-radius-bottom-right) var(--radio-btn-radius-bottom-left);
 
-      :focus-visible ~ & {
+      :focus ~ & {
         outline: 2px solid var(--focus-ring);
         outline-offset: 2px;
       }
