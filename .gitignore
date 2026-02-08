@@ -248,5 +248,9 @@ $RECYCLE.BIN/
 .cursor
 .gemini
 .serena
+.report
 
 storybook-static
+
+# build output
+source/js/ui.js
