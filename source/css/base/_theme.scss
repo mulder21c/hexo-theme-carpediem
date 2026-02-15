@@ -61,6 +61,14 @@
   --radio-btn-surface-disabled: #{color("neutral", 300)};
   --radio-btn-text-disabled: #{color("neutral", 300)};
 
+  // Checkbox colors
+  --checkbox-border: #{color("green", 600)};
+  --checkbox-surface: #{color("green", 600)};
+  --checkbox-label: var(--dark);
+  --checkbox-border-disabled: #{color("neutral", 300)};
+  --checkbox-surface-disabled: #{color("neutral", 300)};
+  --checkbox-label-disabled: #{color("neutral", 300)};
+
   @media (prefers-color-scheme: dark) {
     --bg-color-primary: #{color("bluegray", 800)};
     --white: #{color("black")};
@@ -102,6 +110,14 @@
     --radio-btn-text-checked: #{color("bluegray", 800)};
     --radio-btn-surface-disabled: #{color("neutral", 700)};
     --radio-btn-text-disabled: #{color("neutral", 700)};
+
+    // Checkbox colors
+    --checkbox-border: #{color("mintgreen", 500)};
+    --checkbox-surface: #{color("mintgreen", 500)};
+    --checkbox-label: var(--dark);
+    --checkbox-border-disabled: #{color("neutral", 700)};
+    --checkbox-surface-disabled: #{color("neutral", 700)};
+    --checkbox-label-disabled: #{color("neutral", 700)};
   }
 
   @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
@@ -128,5 +144,11 @@
     --focus-ring: #{color("mintgreen", 300)};
     --radio-btn-surface: #{color("mintgreen", 450)};
     --radio-btn-text: #{color("mintgreen", 450)};
+    --checkbox-btn-text: #{color("mintgreen", 450)};
+
+    // Checkbox colors
+    --checkbox-border: #{color("mintgreen", 450)};
+    --checkbox-surface: #{color("mintgreen", 450)};
+    --checkbox-label: var(--dark);
   }
 }

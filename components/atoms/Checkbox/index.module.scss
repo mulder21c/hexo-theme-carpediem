@@ -1,0 +1,116 @@
+@use "@source/css/helpers/mixins" as *;
+@use "@source/css/helpers/functions" as *;
+
+@layer atoms {
+  .checkbox {
+    --checkbox-gap: var(--spacing-md);
+    --checkbox-indicator-size: 1.25rem;
+    --checkbox-marker-thickness: 3px;
+    --checkbox-marker-width: 0.5em;
+
+    &--small {
+      --checkbox-gap: var(--spacing-sm);
+      --checkbox-indicator-size: 1rem;
+      --checkbox-marker-thickness: 2px;
+      --checkbox-marker-width: 0.4em;
+      @include typo("sm", 400, label);
+    }
+
+    &--medium {
+      --checkbox-gap: var(--spacing-md);
+      --checkbox-indicator-size: 1.25rem;
+      @include typo("md", 400, label);
+    }
+
+    &--large {
+      --checkbox-gap: var(--spacing-lg);
+      --checkbox-indicator-size: 1.5rem;
+      @include typo("lg", 400, label);
+    }
+
+    display: inline-flex;
+    gap: var(--checkbox-gap);
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--checkbox-label);
+
+    :global(label) {
+      display: contents;
+    }
+
+    :global(input) {
+      display: inline-flex;
+      flex: 0 0 var(--checkbox-indicator-size);
+      align-items: center;
+      justify-content: center;
+      width: var(--checkbox-indicator-size);
+      height: var(--checkbox-indicator-size);
+      aspect-ratio: 1 / 1;
+      padding: 0;
+      margin: 0;
+      appearance: none;
+      background-color: var(--light);
+      border: 1px solid var(--checkbox-border);
+      border-radius: var(--border-radius-sm);
+
+      &::before {
+        display: flex;
+        width: calc(var(--checkbox-marker-width) * 1.7);
+        height: var(--checkbox-marker-width);
+        content: "";
+        border-bottom: var(--checkbox-marker-thickness) solid var(--light);
+        border-left: var(--checkbox-marker-thickness) solid var(--light);
+        opacity: 0;
+        transform: rotate(-45deg) translate(0.1em, -0.1em);
+      }
+
+      &:checked {
+        background-color: var(--checkbox-surface);
+        border-color: var(--checkbox-surface);
+
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        border-color: var(--checkbox-border-disabled);
+
+        &:checked {
+          background-color: var(--checkbox-surface-disabled);
+        }
+      }
+    }
+
+    &:has(:disabled) {
+      color: var(--checkbox-label-disabled);
+      cursor: not-allowed;
+    }
+
+    &__input {
+      padding: 0;
+      padding-block: 0;
+      padding-inline: 0;
+      margin: 0;
+      appearance: none;
+    }
+
+    &__label {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      overflow-wrap: break-word;
+      cursor: pointer;
+
+      :disabled ~ & {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
