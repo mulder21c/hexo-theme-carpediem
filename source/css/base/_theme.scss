@@ -69,6 +69,12 @@
   --checkbox-surface-disabled: #{color("neutral", 300)};
   --checkbox-label-disabled: #{color("neutral", 300)};
 
+  // Switch colors
+  --switch-track: #{color("neutral", 600)};
+  --switch-track-on: #{color("green", 600)};
+  --switch-track-disabled: #{color("neutral", 300)};
+  --switch-surface: #{color("neutral", 50)};
+
   @media (prefers-color-scheme: dark) {
     --bg-color-primary: #{color("bluegray", 800)};
     --white: #{color("black")};
@@ -118,6 +124,12 @@
     --checkbox-border-disabled: #{color("neutral", 700)};
     --checkbox-surface-disabled: #{color("neutral", 700)};
     --checkbox-label-disabled: #{color("neutral", 700)};
+
+    // Switch colors
+    --switch-track: #{color("neutral", 450)};
+    --switch-track-on: #{color("mintgreen", 500)};
+    --switch-track-disabled: #{color("neutral", 700)};
+    --switch-surface: #{color("bluegray", 800)};
   }
 
   @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
@@ -150,5 +162,11 @@
     --checkbox-border: #{color("mintgreen", 450)};
     --checkbox-surface: #{color("mintgreen", 450)};
     --checkbox-label: var(--dark);
+
+    // Switch colors
+    --switch-track: #{color("neutral", 300)};
+    --switch-track-on: #{color("mintgreen", 450)};
+    --switch-track-disabled: #{color("neutral", 700)};
+    --switch-surface: #{color("bluegray", 800)};
   }
 }
