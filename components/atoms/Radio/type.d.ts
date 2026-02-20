@@ -5,11 +5,11 @@ export interface RadioProps extends Omit<
   /**
    * Radio group identifier (HTML `name` attribute)
    */
-  name?: string;
+  name?: React.InputHTMLAttributes<HTMLInputElement>["name"];
   /**
    * Option value (HTML `value` attribute)
    */
-  value: string;
+  value: React.InputHTMLAttributes<HTMLInputElement>["value"];
   /**
    * Text label or aria-label when children exist
    *
@@ -43,16 +43,16 @@ export interface RadioProps extends Omit<
   /**
    * Initial checked state
    */
-  checked?: boolean;
+  checked?: React.InputHTMLAttributes<HTMLInputElement>["defaultChecked"];
   /**
    * Disabled state
    */
-  disabled?: boolean;
+  disabled?: React.InputHTMLAttributes<HTMLInputElement>["disabled"];
   /**
    * Custom HTML id attribute <br>
    * Auto-generated if not provided.
    */
-  id?: string;
+  id?: React.InputHTMLAttributes<HTMLInputElement>["id"];
   /**
    * Additional CSS classes
    */

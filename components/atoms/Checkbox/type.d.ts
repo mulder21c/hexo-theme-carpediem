@@ -28,16 +28,16 @@ export interface CheckboxProps extends Omit<
   /**
    * Initial checked state
    */
-  checked?: boolean;
+  checked?: React.InputHTMLAttributes<HTMLInputElement>["defaultChecked"];
   /**
    * Disabled state.
    */
-  disabled?: boolean;
+  disabled?: React.InputHTMLAttributes<HTMLInputElement>["disabled"];
   /**
    * Custom HTML id attribute.
    * Auto-generated via useId() if not provided.
    */
-  id?: string;
+  id?: React.InputHTMLAttributes<HTMLInputElement>["id"];
   /**
    * Additional CSS classes.
    */
