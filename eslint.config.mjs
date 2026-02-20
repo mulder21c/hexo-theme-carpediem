@@ -10,6 +10,16 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
+  {
+    ignores: [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      "public/**",
+      "*.min.js",
+    ],
+  },
   // ESLint Recommended Rules
   eslint.configs.recommended,
   // TypeScript ESLint Recommended Rules
