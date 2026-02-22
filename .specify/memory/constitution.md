@@ -73,8 +73,11 @@ blog content.
   strict-family flag is prohibited.
 - The `any` type MUST NOT be used; use `unknown` with type
   guards instead.
-- All exported functions MUST have explicit return type
-  annotations.
+- Exported utility/helper functions and public APIs MUST have
+  explicit return type annotations.
+- React component functions MAY omit explicit return type when
+  JSX inference is clear; explicit annotations are RECOMMENDED
+  for complex generic components or shared library surfaces.
 - All component props MUST be declared via named `Props`
   interfaces in co-located `type.d.ts` files.
 - Additional compiler checks (`noUnusedLocals`,
@@ -91,8 +94,24 @@ serves as living documentation for component contracts.
   templates, and context layers under `components/`.
 - Path aliases (`@components/*`, `@context/*`, `@layout/*`)
   MUST be used for cross-directory imports.
-- Each component MUST reside in a directory containing at minimum
-  its `index.tsx`, `index.module.scss`, and `type.d.ts` files.
+- Each component directory MUST include:
+  - one or more `.tsx` render-entry files
+  - `index.module.scss`
+  - `type.d.ts`
+  - one or more `.stories.tsx` files
+- Utility/common calculation logic MUST be implemented in one or
+  more `.helper.ts` files.
+- UI behavior implementation logic MUST be implemented in one or
+  more `.ui.ts` files.
+- Every `.helper.ts`, `.ui.ts`, and public `.tsx` render-entry
+  file MUST have corresponding unit tests (`*.test.ts` or
+  `*.test.tsx`).
+- Variant-family directories are explicitly allowed when multiple
+  components provide the same semantic role with different DOM
+  shapes (e.g., `Base.tsx`, `IconButton.tsx` in one `Button/`
+  directory).
+- When variant-family pattern is used, variants MUST share a
+  single type/style contract and avoid duplicated business logic.
 - Cross-layer imports MUST flow downward only: templates →
   organisms → molecules → atoms. Context is accessible from
   any layer.
@@ -104,8 +123,15 @@ enforces separation of concerns, and scales predictably.
 
 - State management hooks (`useState`, `useReducer`, `useContext`
   for mutable state) MUST NOT be used in components.
-- Event handler props (`onClick`, `onChange`, `onSubmit`) MUST
-  NOT be attached to rendered elements.
+- In production render paths (Hexo SSR output), event handler
+  props (`onClick`, `onChange`, `onSubmit`, etc.) MUST NOT be
+  used at component call sites.
+- Component internals MAY accept or forward standard HTML
+  attributes (including `on*`-shaped props) for API compatibility;
+  this MUST NOT be interpreted as permission to implement
+  client-side interactivity in SSR output.
+- Storybook, tests, and other non-production demo environments are
+  out of scope for this restriction.
 - All component data MUST be received through props exclusively.
 - Prop drilling is the accepted data-passing pattern; context
   providers are limited to static configuration data.
@@ -138,10 +164,19 @@ maintenance cost.
   files with zero violations.
 - Prettier formatting MUST be enforced; unformatted code MUST
   NOT be merged.
-- Jest/Vitest test suites MUST pass; new components SHOULD
-  include unit tests.
+- Jest/Vitest test suites MUST pass.
+- Test responsibility is mandatory and split by layer:
+  - `.helper.ts`: unit tests for pure logic and edge cases.
+  - `.ui.ts`: unit tests for DOM/event/timer behavior and
+    cleanup lifecycle.
+  - `.tsx` render-entry components: unit tests for render
+    contract (semantic markup, ARIA, props-to-DOM mapping).
+  - Storybook `play` tests: representative user-flow smoke/
+    regression checks; MUST NOT replace unit tests.
 - Storybook stories MUST render without errors for all visual
   components.
+- Storybook `play` tests SHOULD avoid low-level branch assertion
+  duplication already covered by unit tests.
 - TypeScript compilation (`tsc --noEmit`) MUST succeed with
   zero diagnostics.
 
@@ -190,8 +225,11 @@ reduce manual review burden.
     expanded guidance.
   - **PATCH**: Clarifications, wording, typo fixes, or
     non-semantic refinements.
-- All `.specify/` documents MUST reference the active
-  constitution version.
+- Generated feature artifacts under `specs/` (at minimum:
+  `spec.md`, `plan.md`, `tasks.md`) MUST reference the active
+  constitution version used at generation time.
+- `.specify/templates/*.md` files are scaffolding inputs and are
+  exempt from per-file constitution version stamping.
 - A template alignment check MUST occur after every amendment
   to ensure consistency across plan, spec, tasks, checklist,
   and command templates.

@@ -4,10 +4,14 @@ export function areOptionValuesUnique(options: Array<RadioGroupOptionItem>): boo
   const values = new Set<string>();
 
   for (const option of options) {
-    if (values.has(option.value)) {
+    const normalizedValue = Array.isArray(option.value)
+      ? option.value.join("\u0000")
+      : String(option.value);
+
+    if (values.has(normalizedValue)) {
       return false;
     }
-    values.add(option.value);
+    values.add(normalizedValue);
   }
 
   return true;
