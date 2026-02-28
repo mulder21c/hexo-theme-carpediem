@@ -1,7 +1,7 @@
 ---
+root: false
 targets:
   - '*'
-root: false
 description: 코드 품질
 globs:
   - '**/*'

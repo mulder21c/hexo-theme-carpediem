@@ -1,7 +1,7 @@
 ---
+root: false
 targets:
   - '*'
-root: false
 description: React 모범 사례
 globs:
   - '**/*.tsx'

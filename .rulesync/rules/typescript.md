@@ -1,7 +1,7 @@
 ---
+root: false
 targets:
   - '*'
-root: false
 description: TypeScript coding standards and best practices for modern web development
 globs:
   - '**/*.ts'

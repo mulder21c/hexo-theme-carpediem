@@ -1,7 +1,7 @@
 ---
+root: false
 targets:
   - '*'
-root: false
 description: 한글 응답
 globs:
   - '**/*'

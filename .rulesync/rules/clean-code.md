@@ -1,7 +1,7 @@
 ---
+root: false
 targets:
   - '*'
-root: false
 description: Clean Code
 globs:
   - '**/*'
