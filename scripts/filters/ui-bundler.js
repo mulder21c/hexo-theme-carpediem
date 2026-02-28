@@ -20,7 +20,7 @@ function getFileMtime(filePath) {
     if (fs.existsSync(filePath)) {
       return fs.statSync(filePath).mtimeMs;
     }
-  } catch (error) {
+  } catch (_error) {
     // File doesn't exist or can't be accessed
   }
   return 0;
@@ -238,7 +238,7 @@ function getCachedSourceFiles(metadataPath) {
       const content = fs.readFileSync(metadataPath, "utf8");
       return JSON.parse(content);
     }
-  } catch (error) {
+  } catch (_error) {
     // If metadata file is invalid, treat as if it doesn't exist
   }
   return [];

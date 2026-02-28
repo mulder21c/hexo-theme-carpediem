@@ -7,9 +7,9 @@ import {
   Stories,
 } from "@storybook/addon-docs/blocks";
 import React from "react";
-import type { Preview } from "@storybook/react-vite";
 import { HexoProvider } from "../components/context";
 import { mockHexoContext } from "./mocks/hexo-context";
+import type { Preview } from "@storybook/react-vite";
 import "../source/css/index.scss";
 
 const preview: Preview = {

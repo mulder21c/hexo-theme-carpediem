@@ -57,7 +57,7 @@ const config: StorybookConfig = {
     }
     config.css.preprocessorOptions.scss = {
       ...config.css.preprocessorOptions.scss,
-      includePaths: [path.resolve(__dirname, "../source/css")],
+      loadPaths: [path.resolve(__dirname, "../source/css")],
     };
 
     return config;
