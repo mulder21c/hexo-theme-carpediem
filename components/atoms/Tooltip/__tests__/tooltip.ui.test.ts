@@ -1,860 +1,790 @@
-import { TooltipManager } from "../tooltip.ui";
-import type { Placement, Alignment } from "../type";
+import {
+  HIDE_DELAY,
+  SHOW_DELAY,
+  TRANSITION_DURATION,
+  TooltipManager,
+} from "../tooltip.ui";
 
-describe("TooltipManager", () => {
+function createTooltipDom({
+  triggerId,
+  tooltipId,
+  placement = "top",
+  alignment = "center",
+  triggerText = "Trigger",
+}: {
+  triggerId: string;
+  tooltipId: string;
+  placement?: "top" | "bottom" | "left" | "right";
+  alignment?: "start" | "center" | "end";
+  triggerText?: string;
+}): {
+  trigger: HTMLButtonElement;
+  tooltip: HTMLSpanElement;
+} {
+  const trigger = document.createElement("button");
+  trigger.id = triggerId;
+  trigger.type = "button";
+  trigger.textContent = triggerText;
+
+  const tooltip = document.createElement("span");
+  tooltip.id = tooltipId;
+  tooltip.setAttribute("role", "tooltip");
+  tooltip.setAttribute("data-component", "tooltip");
+  tooltip.setAttribute("data-trigger", triggerId);
+  tooltip.setAttribute("data-placement", placement);
+  tooltip.setAttribute("data-alignment", alignment);
+  tooltip.hidden = true;
+  tooltip.style.opacity = "0";
+  tooltip.textContent = "Tooltip content";
+
+  const arrow = document.createElement("span");
+  arrow.setAttribute("data-arrow", "");
+  arrow.setAttribute("aria-hidden", "true");
+  tooltip.appendChild(arrow);
+
+  document.body.appendChild(trigger);
+  document.body.appendChild(tooltip);
+
+  return { trigger, tooltip };
+}
+
+function mockRect(
+  element: HTMLElement,
+  rect: {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  },
+): void {
+  Object.defineProperty(element, "getBoundingClientRect", {
+    configurable: true,
+    value: jest.fn(() => ({
+      top: rect.top,
+      left: rect.left,
+      width: rect.width,
+      height: rect.height,
+      right: rect.left + rect.width,
+      bottom: rect.top + rect.height,
+      x: rect.left,
+      y: rect.top,
+      toJSON: jest.fn(),
+    })),
+  });
+}
+
+describe("TooltipManager UI", () => {
   let manager: TooltipManager;
-  let triggerElement: HTMLElement;
-  let tooltipElement: HTMLElement;
-  let arrowElement: HTMLElement;
 
   beforeEach(() => {
-    // Clean up any existing tooltips
+    jest.clearAllMocks();
+    jest.useRealTimers();
     document.body.innerHTML = "";
 
-    // Create test DOM structure
-    triggerElement = document.createElement("button");
-    triggerElement.id = "test-trigger";
-    triggerElement.textContent = "Trigger";
+    if (window.tooltip) {
+      window.tooltip.destroy();
+    }
 
-    tooltipElement = document.createElement("div");
-    tooltipElement.id = "test-tooltip";
-    tooltipElement.setAttribute("data-component", "tooltip");
-    tooltipElement.setAttribute("data-trigger", "test-trigger");
-    tooltipElement.setAttribute("data-placement", "top");
-    tooltipElement.setAttribute("data-alignment", "center");
-    tooltipElement.setAttribute("role", "tooltip");
-    tooltipElement.hidden = true;
-    tooltipElement.style.opacity = "0";
-
-    arrowElement = document.createElement("div");
-    arrowElement.setAttribute("data-arrow", "");
-    tooltipElement.appendChild(arrowElement);
-
-    document.body.appendChild(triggerElement);
-    document.body.appendChild(tooltipElement);
-
-    manager = new TooltipManager();
+    global.requestAnimationFrame = jest.fn((callback: FrameRequestCallback) => {
+      callback(0);
+      return 0;
+    }) as typeof global.requestAnimationFrame;
   });
 
   afterEach(() => {
-    manager.destroy();
+    if (manager) {
+      manager.destroy();
+    }
     document.body.innerHTML = "";
-    jest.clearAllTimers();
+    jest.useRealTimers();
   });
 
-  describe("Initialization and Setup", () => {
-    it("init() should scan DOM and register tooltips", () => {
-      expect(tooltipElement.hasAttribute("data-component")).toBe(false);
-      expect(tooltipElement.hasAttribute("data-trigger")).toBe(false);
-      expect(tooltipElement.hasAttribute("data-placement")).toBe(false);
-      expect(tooltipElement.hasAttribute("data-alignment")).toBe(false);
+  it("initializes tooltip config and links trigger/tooltip accessibility attributes", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-init",
+      tooltipId: "tooltip-init",
+      placement: "top",
+      alignment: "center",
     });
 
-    it("createTooltipConfig() should parse data-* attributes and remove them", () => {
-      const newTooltip = document.createElement("div");
-      newTooltip.id = "new-tooltip";
-      newTooltip.setAttribute("data-component", "tooltip");
-      newTooltip.setAttribute("data-trigger", "test-trigger");
-      newTooltip.setAttribute("data-placement", "bottom");
-      newTooltip.setAttribute("data-alignment", "start");
-      document.body.appendChild(newTooltip);
+    manager = new TooltipManager();
+
+    expect(tooltip.hasAttribute("data-component")).toBe(false);
+    expect(tooltip.hasAttribute("data-trigger")).toBe(false);
+    expect(tooltip.hasAttribute("data-placement")).toBe(false);
+    expect(tooltip.hasAttribute("data-alignment")).toBe(false);
+    expect(trigger).toHaveAttribute("aria-describedby", "tooltip-init");
+    expect(tooltip.style.transition).toContain(`opacity ${TRANSITION_DURATION}ms`);
+  });
+
+  it("keeps existing aria-describedby on trigger during initialization", () => {
+    const { trigger } = createTooltipDom({
+      triggerId: "trigger-described-by",
+      tooltipId: "tooltip-described-by",
+    });
+    trigger.setAttribute("aria-describedby", "existing-describedby");
+
+    manager = new TooltipManager();
+
+    expect(trigger).toHaveAttribute("aria-describedby", "existing-describedby");
+  });
+
+  it("shows tooltip after mouse hover delay", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-hover",
+      tooltipId: "tooltip-hover",
+    });
+    manager = new TooltipManager();
+
+    trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
+    expect(tooltip.hidden).toBe(true);
+
+    jest.advanceTimersByTime(SHOW_DELAY - 1);
+    expect(tooltip.hidden).toBe(true);
+
+    jest.advanceTimersByTime(1);
+    expect(tooltip.hidden).toBe(false);
+  });
+
+  it("hides tooltip after mouse leave delay and transition", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-leave",
+      tooltipId: "tooltip-leave",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "mouse");
+    expect(tooltip.hidden).toBe(false);
+
+    trigger.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+
+    jest.advanceTimersByTime(HIDE_DELAY - 1);
+    expect(tooltip.hidden).toBe(false);
+
+    jest.advanceTimersByTime(1);
+    expect(tooltip.style.opacity).toBe("0");
+    expect(tooltip.hidden).toBe(false);
+
+    jest.advanceTimersByTime(TRANSITION_DURATION);
+    expect(tooltip.hidden).toBe(true);
+  });
+
+  it("keeps tooltip visible when pointer moves from trigger to tooltip", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-hover-stay",
+      tooltipId: "tooltip-hover-stay",
+    });
+    manager = new TooltipManager();
+
+    trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
+    jest.advanceTimersByTime(SHOW_DELAY);
+    expect(tooltip.hidden).toBe(false);
+
+    trigger.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+    jest.advanceTimersByTime(HIDE_DELAY / 2);
+
+    tooltip.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
+    jest.advanceTimersByTime(HIDE_DELAY + TRANSITION_DURATION);
+
+    expect(tooltip.hidden).toBe(false);
+  });
+
+  it("shows tooltip on focus and hides immediately on Escape", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-focus",
+      tooltipId: "tooltip-focus",
+    });
+    manager = new TooltipManager();
+
+    trigger.dispatchEvent(new FocusEvent("focus", { bubbles: true }));
+    expect(tooltip.hidden).toBe(false);
+
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+    expect(tooltip.hidden).toBe(true);
+    expect(tooltip.style.opacity).toBe("0");
+  });
+
+  it("switches active tooltip when another trigger gets focus", () => {
+    const first = createTooltipDom({
+      triggerId: "trigger-first",
+      tooltipId: "tooltip-first",
+      triggerText: "First",
+    });
+    const second = createTooltipDom({
+      triggerId: "trigger-second",
+      tooltipId: "tooltip-second",
+      triggerText: "Second",
+    });
+
+    manager = new TooltipManager();
+
+    first.trigger.dispatchEvent(new FocusEvent("focus", { bubbles: true }));
+    expect(first.tooltip.hidden).toBe(false);
+    expect(second.tooltip.hidden).toBe(true);
+
+    second.trigger.dispatchEvent(new FocusEvent("focus", { bubbles: true }));
+    expect(second.tooltip.hidden).toBe(false);
+    expect(first.tooltip.hidden).toBe(true);
+  });
+
+  it("shows tooltip on long press and prevents default on touch end", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-touch",
+      tooltipId: "tooltip-touch",
+    });
+    manager = new TooltipManager();
+
+    const touchStartEvent = new Event("touchstart", {
+      bubbles: true,
+      cancelable: true,
+    }) as TouchEvent;
+    Object.defineProperty(touchStartEvent, "touches", {
+      value: [{ clientX: 100, clientY: 100 }],
+    });
+
+    trigger.dispatchEvent(touchStartEvent);
+    jest.advanceTimersByTime(499);
+    expect(tooltip.hidden).toBe(true);
+
+    jest.advanceTimersByTime(1);
+    expect(tooltip.hidden).toBe(false);
+
+    const touchEndEvent = new Event("touchend", {
+      bubbles: true,
+      cancelable: true,
+    }) as TouchEvent;
+    const preventDefaultSpy = jest.spyOn(touchEndEvent, "preventDefault");
+
+    trigger.dispatchEvent(touchEndEvent);
+    expect(preventDefaultSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("falls back to opposite placement when primary placement is out of viewport", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-fallback",
+      tooltipId: "tooltip-fallback",
+      placement: "top",
+      alignment: "center",
+    });
+    const arrow = tooltip.querySelector("[data-arrow]") as HTMLElement;
+
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 500 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 400 });
+
+    mockRect(trigger, { top: 5, left: 200, width: 40, height: 20 });
+    mockRect(tooltip, { top: 0, left: 0, width: 100, height: 60 });
+
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
+
+    expect(tooltip.hidden).toBe(false);
+    expect(Number.parseFloat(tooltip.style.top)).toBeCloseTo(37, 0);
+    expect(arrow.style.top).toBe("-4px");
+    expect(arrow.style.bottom).toBe("");
+  });
+
+  it("clamps tooltip coordinates within viewport when fallback placement also overflows", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-clamp",
+      tooltipId: "tooltip-clamp",
+      placement: "top",
+      alignment: "center",
+    });
+
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 300 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 200 });
+
+    mockRect(trigger, { top: 5, left: 260, width: 30, height: 20 });
+    mockRect(tooltip, { top: 0, left: 0, width: 250, height: 60 });
+
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
+
+    expect(tooltip.hidden).toBe(false);
+    expect(Number.parseFloat(tooltip.style.top)).toBeCloseTo(8, 0);
+    expect(Number.parseFloat(tooltip.style.left)).toBeCloseTo(42, 0);
+  });
+
+  it("adjusts overflowing bottom-right coordinates into viewport bounds", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-adjust",
+      tooltipId: "tooltip-adjust",
+      placement: "bottom",
+      alignment: "center",
+    });
+
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 300 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 200 });
+
+    mockRect(trigger, { top: 180, left: 280, width: 30, height: 20 });
+    mockRect(tooltip, { top: 0, left: 0, width: 100, height: 60 });
+
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
+
+    expect(tooltip.hidden).toBe(false);
+    expect(Number.parseFloat(tooltip.style.top)).toBeCloseTo(132, 0);
+    expect(Number.parseFloat(tooltip.style.left)).toBeCloseTo(192, 0);
+  });
+
+  it("hides active touch tooltip when touching outside trigger and tooltip", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-outside-touch",
+      tooltipId: "tooltip-outside-touch",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "touch");
+    expect(tooltip.hidden).toBe(false);
+
+    const outside = document.createElement("div");
+    document.body.appendChild(outside);
+
+    const outsideTouchEvent = new Event("touchstart", {
+      bubbles: true,
+      cancelable: true,
+    }) as TouchEvent;
+    Object.defineProperty(outsideTouchEvent, "target", {
+      value: outside,
+      configurable: true,
+    });
+
+    const internalManager = manager as unknown as {
+      handleOutsideTouch: (event: TouchEvent) => void;
+    };
+    internalManager.handleOutsideTouch(outsideTouchEvent);
+    expect(tooltip.style.opacity).toBe("0");
+  });
+
+  it("cleans active tooltip when trigger node is removed from DOM", async () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-remove",
+      tooltipId: "tooltip-remove",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "keyboard");
+    expect(tooltip.hidden).toBe(false);
+
+    trigger.remove();
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(), 0);
+    });
+
+    expect(tooltip.hidden).toBe(true);
+
+    manager.showTooltip(trigger, "keyboard");
+    expect(tooltip.hidden).toBe(true);
+  });
+
+  it("keeps keyboard-triggered tooltip visible on mouse leave", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-keyboard-priority",
+      tooltipId: "tooltip-keyboard-priority",
+    });
+    manager = new TooltipManager();
+
+    trigger.dispatchEvent(new FocusEvent("focus", { bubbles: true }));
+    expect(tooltip.hidden).toBe(false);
+
+    trigger.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+    jest.advanceTimersByTime(HIDE_DELAY + TRANSITION_DURATION);
+
+    expect(tooltip.hidden).toBe(false);
+  });
+
+  it("cancels long-press tooltip when touch moves beyond tolerance", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-touch-move",
+      tooltipId: "tooltip-touch-move",
+    });
+    manager = new TooltipManager();
+
+    const touchStartEvent = new Event("touchstart", {
+      bubbles: true,
+      cancelable: true,
+    }) as TouchEvent;
+    Object.defineProperty(touchStartEvent, "touches", {
+      value: [{ clientX: 100, clientY: 100 }],
+    });
+    trigger.dispatchEvent(touchStartEvent);
+
+    const touchMoveEvent = new Event("touchmove", {
+      bubbles: true,
+      cancelable: true,
+    }) as TouchEvent;
+    Object.defineProperty(touchMoveEvent, "touches", {
+      value: [{ clientX: 130, clientY: 130 }],
+    });
+    trigger.dispatchEvent(touchMoveEvent);
+
+    jest.advanceTimersByTime(500);
+    expect(tooltip.hidden).toBe(true);
+  });
+
+  it("applies left placement start alignment and positions arrow on right edge", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-left-start",
+      tooltipId: "tooltip-left-start",
+      placement: "left",
+      alignment: "start",
+    });
+    const arrow = tooltip.querySelector("[data-arrow]") as HTMLElement;
+
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 800 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 600 });
+
+    mockRect(trigger, { top: 100, left: 500, width: 80, height: 40 });
+    mockRect(tooltip, { top: 0, left: 0, width: 120, height: 60 });
+
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
+
+    expect(tooltip.hidden).toBe(false);
+    expect(Number.parseFloat(tooltip.style.top)).toBeCloseTo(100, 0);
+    expect(Number.parseFloat(tooltip.style.left)).toBeCloseTo(368, 0);
+    expect(arrow.style.right).toBe("-4px");
+    expect(arrow.style.left).toBe("");
+    expect(arrow.style.top).not.toBe("");
+  });
+
+  it("applies right placement end alignment and positions arrow on left edge", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-right-end",
+      tooltipId: "tooltip-right-end",
+      placement: "right",
+      alignment: "end",
+    });
+    const arrow = tooltip.querySelector("[data-arrow]") as HTMLElement;
+
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1000 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 700 });
+
+    mockRect(trigger, { top: 200, left: 100, width: 80, height: 70 });
+    mockRect(tooltip, { top: 0, left: 0, width: 140, height: 90 });
+
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
+
+    expect(tooltip.hidden).toBe(false);
+    expect(Number.parseFloat(tooltip.style.top)).toBeCloseTo(180, 0);
+    expect(Number.parseFloat(tooltip.style.left)).toBeCloseTo(192, 0);
+    expect(arrow.style.left).toBe("-4px");
+    expect(arrow.style.right).toBe("");
+    expect(arrow.style.top).not.toBe("");
+  });
+
+  it("hides active tooltip on window scroll and resize", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-global-hide",
+      tooltipId: "tooltip-global-hide",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "mouse");
+    expect(tooltip.hidden).toBe(false);
+
+    window.dispatchEvent(new Event("scroll"));
+    expect(tooltip.hidden).toBe(true);
+
+    manager.showTooltip(trigger, "mouse");
+    expect(tooltip.hidden).toBe(false);
+
+    window.dispatchEvent(new Event("resize"));
+    expect(tooltip.hidden).toBe(true);
+  });
+
+  it("skips tooltip already managed when init runs again", () => {
+    const { tooltip } = createTooltipDom({
+      triggerId: "trigger-reinit-skip",
+      tooltipId: "tooltip-reinit-skip",
+    });
+    manager = new TooltipManager();
+
+    tooltip.setAttribute("data-component", "tooltip");
+    const internalManager = manager as unknown as {
+      init: () => void;
+      tooltips: Map<string, unknown>;
+    };
+
+    internalManager.init();
+    expect(internalManager.tooltips.size).toBe(1);
+  });
+
+  it("logs error when tooltip data-trigger attribute is missing", () => {
+    const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+
+    const tooltip = document.createElement("span");
+    tooltip.id = "tooltip-missing-trigger";
+    tooltip.setAttribute("role", "tooltip");
+    tooltip.setAttribute("data-component", "tooltip");
+    document.body.appendChild(tooltip);
+
+    manager = new TooltipManager();
+
+    expect(errorSpy).toHaveBeenCalledWith(
+      "TooltipManager: Missing data-trigger attribute on tooltip element",
+      tooltip,
+    );
+
+    errorSpy.mockRestore();
+  });
+
+  it("logs error when tooltip trigger element cannot be found", () => {
+    const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+
+    const tooltip = document.createElement("span");
+    tooltip.id = "tooltip-without-target";
+    tooltip.setAttribute("role", "tooltip");
+    tooltip.setAttribute("data-component", "tooltip");
+    tooltip.setAttribute("data-trigger", "missing-target");
+    document.body.appendChild(tooltip);
+
+    manager = new TooltipManager();
+
+    expect(errorSpy).toHaveBeenCalledWith(
+      'TooltipManager: Trigger element with ID "missing-target" not found.',
+    );
+
+    errorSpy.mockRestore();
+  });
+
+  it("hides keyboard-triggered tooltip on blur", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-blur-hide",
+      tooltipId: "tooltip-blur-hide",
+    });
+    manager = new TooltipManager();
+
+    trigger.dispatchEvent(new FocusEvent("focus", { bubbles: true }));
+    expect(tooltip.hidden).toBe(false);
+
+    trigger.dispatchEvent(new FocusEvent("blur", { bubbles: true }));
+    expect(tooltip.hidden).toBe(true);
+  });
+
+  it("schedules hide when pointer leaves tooltip content", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-tooltip-leave",
+      tooltipId: "tooltip-tooltip-leave",
+    });
+    manager = new TooltipManager();
+
+    trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
+    jest.advanceTimersByTime(SHOW_DELAY);
+    expect(tooltip.hidden).toBe(false);
+
+    tooltip.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+    jest.advanceTimersByTime(HIDE_DELAY);
+    jest.advanceTimersByTime(TRANSITION_DURATION);
+
+    expect(tooltip.hidden).toBe(true);
+  });
+
+  it("resets touch trigger mode after short tap and allows subsequent hover", () => {
+    jest.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-short-tap",
+      tooltipId: "tooltip-short-tap",
+    });
+    manager = new TooltipManager();
+
+    const touchStartEvent = new Event("touchstart", {
+      bubbles: true,
+      cancelable: true,
+    }) as TouchEvent;
+    Object.defineProperty(touchStartEvent, "touches", {
+      value: [{ clientX: 100, clientY: 100 }],
+    });
+    trigger.dispatchEvent(touchStartEvent);
+
+    const touchEndEvent = new Event("touchend", {
+      bubbles: true,
+      cancelable: true,
+    }) as TouchEvent;
+    trigger.dispatchEvent(touchEndEvent);
+
+    trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
+    jest.advanceTimersByTime(SHOW_DELAY);
+
+    expect(tooltip.hidden).toBe(false);
+  });
+
+  it("removes detached inactive trigger from internal registry", async () => {
+    const first = createTooltipDom({
+      triggerId: "trigger-registry-first",
+      tooltipId: "tooltip-registry-first",
+    });
+    const second = createTooltipDom({
+      triggerId: "trigger-registry-second",
+      tooltipId: "tooltip-registry-second",
+    });
+    manager = new TooltipManager();
+
+    second.trigger.remove();
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(), 0);
+    });
+
+    manager.showTooltip(second.trigger, "mouse");
+    expect(second.tooltip.hidden).toBe(true);
+
+    manager.showTooltip(first.trigger, "mouse");
+    expect(first.tooltip.hidden).toBe(false);
+  });
+
+  it.each([
+    { alignment: "start" as const, expectedLeft: 300 },
+    { alignment: "end" as const, expectedLeft: 320 },
+  ])(
+    "applies top placement horizontal offset for alignment=$alignment",
+    ({ alignment, expectedLeft }) => {
+      const { trigger, tooltip } = createTooltipDom({
+        triggerId: `trigger-top-${alignment}`,
+        tooltipId: `tooltip-top-${alignment}`,
+        placement: "top",
+        alignment,
+      });
+
+      Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 });
+      Object.defineProperty(window, "innerHeight", { configurable: true, value: 800 });
+
+      mockRect(trigger, { top: 200, left: 300, width: 100, height: 40 });
+      mockRect(tooltip, { top: 0, left: 0, width: 80, height: 30 });
 
       manager = new TooltipManager();
+      manager.showTooltip(trigger, "mouse");
 
-      expect(newTooltip.hasAttribute("data-component")).toBe(false);
-      expect(newTooltip.hasAttribute("data-trigger")).toBe(false);
-      expect(newTooltip.hasAttribute("data-placement")).toBe(false);
-      expect(newTooltip.hasAttribute("data-alignment")).toBe(false);
+      expect(Number.parseFloat(tooltip.style.left)).toBeCloseTo(expectedLeft, 0);
+    },
+  );
+
+  it("applies center alignment for horizontal placement", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-left-center",
+      tooltipId: "tooltip-left-center",
+      placement: "left",
+      alignment: "center",
     });
 
-    it("createTooltipConfig() should set aria-describedby on trigger", () => {
-      expect(triggerElement.getAttribute("aria-describedby")).toBe("test-tooltip");
-      expect(triggerElement.getAttribute("aria-expanded")).toBe("false");
-    });
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 800 });
 
-    it("createTooltipConfig() should return null if trigger element not found", () => {
-      const invalidTooltip = document.createElement("div");
-      invalidTooltip.id = "invalid-tooltip";
-      invalidTooltip.setAttribute("data-component", "tooltip");
-      invalidTooltip.setAttribute("data-trigger", "non-existent-trigger");
-      document.body.appendChild(invalidTooltip);
+    mockRect(trigger, { top: 300, left: 500, width: 80, height: 80 });
+    mockRect(tooltip, { top: 0, left: 0, width: 120, height: 40 });
 
-      const consoleSpy = jest.spyOn(console, "error").mockImplementation();
-      manager = new TooltipManager();
-      expect(consoleSpy).toHaveBeenCalled();
-      consoleSpy.mockRestore();
-    });
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
 
-    it("registerTooltip() should register tooltip and bind events", () => {
-      const mouseEnterSpy = jest.fn();
-      triggerElement.addEventListener("mouseenter", mouseEnterSpy);
-
-      const mouseEvent = new MouseEvent("mouseenter", { bubbles: true });
-      triggerElement.dispatchEvent(mouseEvent);
-
-      expect(mouseEnterSpy).toHaveBeenCalled();
-    });
-
-    it("isTooltipManaged() should prevent duplicate registration", () => {
-      const secondManager = new TooltipManager();
-      expect(tooltipElement.hasAttribute("data-component")).toBe(false);
-      secondManager.destroy();
-    });
+    expect(Number.parseFloat(tooltip.style.top)).toBeCloseTo(320, 0);
   });
 
-  describe("Mouse Events", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-    });
+  it("returns expected fallback placement including default branch", () => {
+    manager = new TooltipManager();
+    const internalManager = manager as unknown as {
+      getFallbackPlacement: (
+        placement: "top" | "bottom" | "left" | "right" | "invalid",
+      ) => string;
+    };
 
-    afterEach(() => {
-      jest.useRealTimers();
-    });
-
-    it("handleMouseEnter() should show tooltip after SHOW_DELAY (200ms)", () => {
-      const mouseEvent = new MouseEvent("mouseenter", { bubbles: true });
-      triggerElement.dispatchEvent(mouseEvent);
-
-      expect(tooltipElement.hidden).toBe(true);
-
-      jest.advanceTimersByTime(200);
-
-      expect(tooltipElement.hidden).toBe(false);
-      expect(triggerElement.getAttribute("aria-expanded")).toBe("true");
-    });
-
-    it("handleMouseLeave() should hide tooltip after HIDE_DELAY (100ms)", () => {
-      // First show tooltip
-      manager.showTooltip(triggerElement, "mouse");
-      jest.advanceTimersByTime(0); // Allow requestAnimationFrame
-
-      const mouseLeaveEvent = new MouseEvent("mouseleave", { bubbles: true });
-      triggerElement.dispatchEvent(mouseLeaveEvent);
-
-      jest.advanceTimersByTime(100);
-
-      expect(tooltipElement.style.opacity).toBe("0");
-    });
-
-    it("handleMouseEnter() should cancel hide timer if mouse re-enters", () => {
-      // Show tooltip
-      manager.showTooltip(triggerElement, "mouse");
-      jest.advanceTimersByTime(0);
-
-      // Mouse leave
-      const mouseLeaveEvent = new MouseEvent("mouseleave", { bubbles: true });
-      triggerElement.dispatchEvent(mouseLeaveEvent);
-
-      // Mouse enter again before hide delay
-      jest.advanceTimersByTime(50);
-      const mouseEnterEvent = new MouseEvent("mouseenter", { bubbles: true });
-      triggerElement.dispatchEvent(mouseEnterEvent);
-
-      jest.advanceTimersByTime(100);
-
-      // Tooltip should still be visible
-      expect(tooltipElement.hidden).toBe(false);
-    });
-
-    it("handleTooltipMouseEnter() should keep tooltip visible when moving from trigger to tooltip", () => {
-      manager.showTooltip(triggerElement, "mouse");
-      jest.advanceTimersByTime(0);
-
-      // Mouse leave trigger
-      const mouseLeaveEvent = new MouseEvent("mouseleave", { bubbles: true });
-      triggerElement.dispatchEvent(mouseLeaveEvent);
-
-      // Mouse enter tooltip
-      const tooltipMouseEnterEvent = new MouseEvent("mouseenter", { bubbles: true });
-      tooltipElement.dispatchEvent(tooltipMouseEnterEvent);
-
-      jest.advanceTimersByTime(100);
-
-      // Tooltip should still be visible
-      expect(tooltipElement.hidden).toBe(false);
-    });
-
-    it("should not show tooltip if mouse leaves before SHOW_DELAY", () => {
-      const mouseEnterEvent = new MouseEvent("mouseenter", { bubbles: true });
-      triggerElement.dispatchEvent(mouseEnterEvent);
-
-      jest.advanceTimersByTime(100);
-
-      const mouseLeaveEvent = new MouseEvent("mouseleave", { bubbles: true });
-      triggerElement.dispatchEvent(mouseLeaveEvent);
-
-      jest.advanceTimersByTime(200);
-
-      expect(tooltipElement.hidden).toBe(true);
-    });
+    expect(internalManager.getFallbackPlacement("left")).toBe("right");
+    expect(internalManager.getFallbackPlacement("right")).toBe("left");
+    expect(internalManager.getFallbackPlacement("invalid")).toBe("top");
   });
 
-  describe("Keyboard Events", () => {
-    it("handleFocus() should show tooltip immediately", () => {
-      const focusEvent = new FocusEvent("focus", { bubbles: true });
-      triggerElement.dispatchEvent(focusEvent);
-
-      expect(tooltipElement.hidden).toBe(false);
-      expect(triggerElement.getAttribute("aria-expanded")).toBe("true");
+  it("centers arrow for left placement when trigger is taller than tooltip", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-left-tall",
+      tooltipId: "tooltip-left-tall",
+      placement: "left",
+      alignment: "center",
     });
+    const arrow = tooltip.querySelector("[data-arrow]") as HTMLElement;
 
-    it("handleBlur() should hide tooltip immediately", () => {
-      manager.showTooltip(triggerElement, "keyboard");
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 800 });
 
-      const blurEvent = new FocusEvent("blur", { bubbles: true });
-      triggerElement.dispatchEvent(blurEvent);
+    mockRect(trigger, { top: 220, left: 600, width: 80, height: 120 });
+    mockRect(tooltip, { top: 0, left: 0, width: 120, height: 40 });
 
-      expect(tooltipElement.hidden).toBe(true);
-      expect(triggerElement.getAttribute("aria-expanded")).toBe("false");
-    });
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
 
-    it("handleKeydown() should hide tooltip on Escape key", () => {
-      manager.showTooltip(triggerElement, "keyboard");
-
-      const escapeEvent = new KeyboardEvent("keydown", {
-        key: "Escape",
-        bubbles: true,
-      });
-      window.dispatchEvent(escapeEvent);
-
-      expect(tooltipElement.hidden).toBe(true);
-    });
-
-    it("should prioritize keyboard over mouse", () => {
-      jest.useFakeTimers();
-
-      // Mouse enter
-      const mouseEnterEvent = new MouseEvent("mouseenter", { bubbles: true });
-      triggerElement.dispatchEvent(mouseEnterEvent);
-
-      // Focus (keyboard) - should override mouse
-      const focusEvent = new FocusEvent("focus", { bubbles: true });
-      triggerElement.dispatchEvent(focusEvent);
-
-      jest.advanceTimersByTime(200);
-
-      // Mouse leave should not hide if keyboard is active
-      const mouseLeaveEvent = new MouseEvent("mouseleave", { bubbles: true });
-      triggerElement.dispatchEvent(mouseLeaveEvent);
-
-      expect(tooltipElement.hidden).toBe(false);
-
-      jest.useRealTimers();
-    });
+    expect(arrow.style.right).toBe("-4px");
+    expect(arrow.style.top).toBe("16px");
   });
 
-  describe("Touch Events", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
+  it("centers arrow for right placement when trigger is taller than tooltip", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-right-tall",
+      tooltipId: "tooltip-right-tall",
+      placement: "right",
+      alignment: "center",
     });
+    const arrow = tooltip.querySelector("[data-arrow]") as HTMLElement;
 
-    afterEach(() => {
-      jest.useRealTimers();
-    });
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 800 });
 
-    it("handleTouchStart() should show tooltip after LONG_PRESS_DELAY (500ms)", () => {
-      const touchStartEvent = new TouchEvent("touchstart", {
-        bubbles: true,
-        cancelable: true,
-        touches: [
-          {
-            clientX: 100,
-            clientY: 100,
-          } as Touch,
-        ],
-      });
-      triggerElement.dispatchEvent(touchStartEvent);
+    mockRect(trigger, { top: 220, left: 200, width: 80, height: 120 });
+    mockRect(tooltip, { top: 0, left: 0, width: 140, height: 40 });
 
-      jest.advanceTimersByTime(500);
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
 
-      expect(tooltipElement.hidden).toBe(false);
-    });
-
-    it("handleTouchMove() should cancel long press if moved more than TOUCH_MOVE_TOLERANCE (10px)", () => {
-      const touchStartEvent = new TouchEvent("touchstart", {
-        bubbles: true,
-        cancelable: true,
-        touches: [
-          {
-            clientX: 100,
-            clientY: 100,
-          } as Touch,
-        ],
-      });
-      triggerElement.dispatchEvent(touchStartEvent);
-
-      jest.advanceTimersByTime(250);
-
-      const touchMoveEvent = new TouchEvent("touchmove", {
-        bubbles: true,
-        cancelable: true,
-        touches: [
-          {
-            clientX: 115, // 15px movement > 10px tolerance
-            clientY: 100,
-          } as Touch,
-        ],
-      });
-      triggerElement.dispatchEvent(touchMoveEvent);
-
-      jest.advanceTimersByTime(300);
-
-      expect(tooltipElement.hidden).toBe(true);
-    });
-
-    it("handleTouchEnd() should prevent default if long press was triggered", () => {
-      const touchStartEvent = new TouchEvent("touchstart", {
-        bubbles: true,
-        cancelable: true,
-        touches: [
-          {
-            clientX: 100,
-            clientY: 100,
-          } as Touch,
-        ],
-      });
-      triggerElement.dispatchEvent(touchStartEvent);
-
-      jest.advanceTimersByTime(500);
-
-      const touchEndEvent = new TouchEvent("touchend", {
-        bubbles: true,
-        cancelable: true,
-      });
-      const preventDefaultSpy = jest.spyOn(touchEndEvent, "preventDefault");
-      triggerElement.dispatchEvent(touchEndEvent);
-
-      expect(preventDefaultSpy).toHaveBeenCalled();
-    });
-
-    it("handleOutsideTouch() should hide tooltip when touching outside", () => {
-      // Mock requestAnimationFrame for this test
-      global.requestAnimationFrame = jest.fn((cb: FrameRequestCallback) => {
-        cb(0);
-        return 1;
-      }) as typeof requestAnimationFrame;
-
-      manager.showTooltip(triggerElement, "touch");
-
-      const outsideElement = document.createElement("div");
-      document.body.appendChild(outsideElement);
-
-      const touchStartEvent = new TouchEvent("touchstart", {
-        bubbles: true,
-        cancelable: true,
-      });
-      Object.defineProperty(touchStartEvent, "target", {
-        writable: false,
-        value: outsideElement,
-      });
-      window.dispatchEvent(touchStartEvent);
-
-      jest.advanceTimersByTime(300); // Wait for hide transition
-
-      expect(tooltipElement.hidden).toBe(true);
-    });
+    expect(arrow.style.left).toBe("-4px");
+    expect(arrow.style.top).toBe("16px");
   });
 
-  describe("Position Calculation", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-      // Mock requestAnimationFrame to execute immediately
-      global.requestAnimationFrame = jest.fn((cb: FrameRequestCallback) => {
-        cb(0);
-        return 1;
-      }) as typeof requestAnimationFrame;
-
-      // Set up viewport dimensions
-      Object.defineProperty(window, "innerWidth", {
-        writable: true,
-        configurable: true,
-        value: 1024,
-      });
-      Object.defineProperty(window, "innerHeight", {
-        writable: true,
-        configurable: true,
-        value: 768,
-      });
-
-      // Set up element dimensions
-      triggerElement.getBoundingClientRect = jest.fn(() => ({
-        top: 400,
-        left: 500,
-        bottom: 450,
-        right: 600,
-        width: 100,
-        height: 50,
-        x: 500,
-        y: 400,
-        toJSON: jest.fn(),
-      })) as jest.Mock;
-
-      tooltipElement.getBoundingClientRect = jest.fn(() => ({
-        top: 0,
-        left: 0,
-        bottom: 80,
-        right: 200,
-        width: 200,
-        height: 80,
-        x: 0,
-        y: 0,
-        toJSON: jest.fn(),
-      })) as jest.Mock;
+  it("updates trigger method when showTooltip is called again for active tooltip", () => {
+    const { trigger } = createTooltipDom({
+      triggerId: "trigger-repeated-show",
+      tooltipId: "tooltip-repeated-show",
     });
+    manager = new TooltipManager();
+    const internalManager = manager as unknown as {
+      activeTriggerMethod: "mouse" | "keyboard" | "touch" | null;
+    };
 
-    afterEach(() => {
-      jest.useRealTimers();
-    });
+    manager.showTooltip(trigger, "keyboard");
+    expect(internalManager.activeTriggerMethod).toBe("keyboard");
 
-    it("calculatePosition() should position tooltip above trigger for 'top' placement", () => {
-      // Create new tooltip with different placement
-      const newTooltip = document.createElement("div");
-      newTooltip.id = "new-tooltip-top";
-      newTooltip.setAttribute("data-component", "tooltip");
-      newTooltip.setAttribute("data-trigger", "test-trigger");
-      newTooltip.setAttribute("data-placement", "top");
-      newTooltip.setAttribute("data-alignment", "center");
-      newTooltip.setAttribute("role", "tooltip");
-      newTooltip.hidden = true;
-      const newArrow = document.createElement("div");
-      newArrow.setAttribute("data-arrow", "");
-      newTooltip.appendChild(newArrow);
-      document.body.appendChild(newTooltip);
+    manager.showTooltip(trigger, "mouse");
+    expect(internalManager.activeTriggerMethod).toBe("keyboard");
 
-      manager = new TooltipManager();
-
-      // Make tooltip visible before showing (so getBoundingClientRect works)
-      newTooltip.hidden = false;
-
-      manager.showTooltip(triggerElement, "mouse");
-
-      const style = newTooltip.style;
-      expect(style.position).toBe("absolute");
-      expect(parseFloat(style.top)).toBeLessThan(400);
-    });
-
-    it("getPlacementCoords() should calculate correct coordinates for all placements", () => {
-      const placements: Placement[] = ["top", "bottom", "left", "right"];
-      const alignments: Alignment[] = ["start", "center", "end"];
-
-      placements.forEach((placement) => {
-        alignments.forEach((alignment) => {
-          // Create new tooltip for each test case
-          const testTooltip = document.createElement("div");
-          testTooltip.id = `test-tooltip-${placement}-${alignment}`;
-          testTooltip.setAttribute("data-component", "tooltip");
-          testTooltip.setAttribute("data-trigger", "test-trigger");
-          testTooltip.setAttribute("data-placement", placement);
-          testTooltip.setAttribute("data-alignment", alignment);
-          testTooltip.setAttribute("role", "tooltip");
-          testTooltip.hidden = true;
-          const testArrow = document.createElement("div");
-          testArrow.setAttribute("data-arrow", "");
-          testTooltip.appendChild(testArrow);
-          document.body.appendChild(testTooltip);
-
-          manager = new TooltipManager();
-
-          // Make tooltip visible before showing (so getBoundingClientRect works)
-          testTooltip.hidden = false;
-
-          manager.showTooltip(triggerElement, "mouse");
-
-          const style = testTooltip.style;
-          expect(style.position).toBe("absolute");
-          expect(style.top).toBeTruthy();
-          expect(style.left).toBeTruthy();
-        });
-      });
-    });
-
-    it("updateArrowPosition() should position arrow correctly for 'top' placement", () => {
-      // Make tooltip visible before showing (so getBoundingClientRect works)
-      tooltipElement.hidden = false;
-
-      manager.showTooltip(triggerElement, "mouse");
-
-      const arrowStyle = arrowElement.style;
-      expect(arrowStyle.bottom).toBe("-4px");
-      expect(arrowStyle.left).toBeTruthy();
-    });
+    manager.showTooltip(trigger, "touch");
+    expect(internalManager.activeTriggerMethod).toBe("touch");
   });
 
-  describe("Viewport Boundary Handling", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-      // Mock requestAnimationFrame to execute immediately
-      global.requestAnimationFrame = jest.fn((cb: FrameRequestCallback) => {
-        cb(0);
-        return 1;
-      }) as typeof requestAnimationFrame;
-
-      Object.defineProperty(window, "innerWidth", {
-        writable: true,
-        configurable: true,
-        value: 500,
-      });
-      Object.defineProperty(window, "innerHeight", {
-        writable: true,
-        configurable: true,
-        value: 500,
-      });
+  it("hides tooltip in transition callback when another tooltip becomes active", () => {
+    jest.useFakeTimers();
+    const first = createTooltipDom({
+      triggerId: "trigger-timeout-first",
+      tooltipId: "tooltip-timeout-first",
     });
-
-    afterEach(() => {
-      jest.useRealTimers();
+    const second = createTooltipDom({
+      triggerId: "trigger-timeout-second",
+      tooltipId: "tooltip-timeout-second",
     });
+    manager = new TooltipManager();
 
-    it("isOutOfViewport() should detect when tooltip is out of viewport", () => {
-      // Create new tooltip with top placement
-      const testTooltip = document.createElement("div");
-      testTooltip.id = "test-tooltip-top-edge";
-      testTooltip.setAttribute("data-component", "tooltip");
-      testTooltip.setAttribute("data-trigger", "test-trigger");
-      testTooltip.setAttribute("data-placement", "top");
-      testTooltip.setAttribute("data-alignment", "center");
-      testTooltip.setAttribute("role", "tooltip");
-      testTooltip.hidden = true;
-      const testArrow = document.createElement("div");
-      testArrow.setAttribute("data-arrow", "");
-      testTooltip.appendChild(testArrow);
-      document.body.appendChild(testTooltip);
+    manager.showTooltip(first.trigger, "mouse");
+    expect(first.tooltip.hidden).toBe(false);
 
-      manager = new TooltipManager();
+    manager.hideTooltip(first.trigger, false);
+    manager.showTooltip(second.trigger, "mouse");
 
-      // Position trigger at top edge - tooltip would be out of viewport
-      triggerElement.getBoundingClientRect = jest.fn(() => ({
-        top: 0,
-        left: 250,
-        bottom: 50,
-        right: 350,
-        width: 100,
-        height: 50,
-        x: 250,
-        y: 0,
-        toJSON: jest.fn(),
-      })) as jest.Mock;
+    jest.advanceTimersByTime(TRANSITION_DURATION);
 
-      // Mock tooltip rect - make it visible first
-      testTooltip.hidden = false;
-      testTooltip.getBoundingClientRect = jest.fn(() => ({
-        top: 0,
-        left: 0,
-        bottom: 100,
-        right: 200,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-        toJSON: jest.fn(),
-      })) as jest.Mock;
-
-      manager.showTooltip(triggerElement, "mouse");
-
-      // Should fallback to bottom (arrow should be on top)
-      const arrowStyle = testArrow.style;
-      expect(arrowStyle.top).toBe("-4px"); // Bottom placement arrow
-    });
-
-    it("getFallbackPlacement() should return opposite placement", () => {
-      const testCases: Array<{ input: Placement; expected: Placement }> = [
-        { input: "top", expected: "bottom" },
-        { input: "bottom", expected: "top" },
-        { input: "left", expected: "right" },
-        { input: "right", expected: "left" },
-      ];
-
-      testCases.forEach(({ input, expected }) => {
-        // Create new tooltip for each test case
-        const testTooltip = document.createElement("div");
-        testTooltip.id = `test-tooltip-${input}-${expected}`;
-        testTooltip.setAttribute("data-component", "tooltip");
-        testTooltip.setAttribute("data-trigger", "test-trigger");
-        testTooltip.setAttribute("data-placement", input);
-        testTooltip.setAttribute("data-alignment", "center");
-        testTooltip.setAttribute("role", "tooltip");
-        testTooltip.hidden = true;
-        const testArrow = document.createElement("div");
-        testArrow.setAttribute("data-arrow", "");
-        testTooltip.appendChild(testArrow);
-        document.body.appendChild(testTooltip);
-
-        manager = new TooltipManager();
-
-        // Position trigger so tooltip would be out of viewport
-        triggerElement.getBoundingClientRect = jest.fn(() => ({
-          top: input === "top" ? 0 : input === "bottom" ? 450 : 250,
-          left: input === "left" ? 0 : input === "right" ? 450 : 250,
-          bottom: input === "top" ? 50 : input === "bottom" ? 500 : 300,
-          right: input === "left" ? 50 : input === "right" ? 500 : 350,
-          width: 100,
-          height: 50,
-          x: input === "left" ? 0 : input === "right" ? 450 : 250,
-          y: input === "top" ? 0 : input === "bottom" ? 450 : 250,
-          toJSON: jest.fn(),
-        })) as jest.Mock;
-
-        // Mock tooltip rect - make it visible first
-        testTooltip.hidden = false;
-        testTooltip.getBoundingClientRect = jest.fn(() => ({
-          top: 0,
-          left: 0,
-          bottom: 100,
-          right: 200,
-          width: 200,
-          height: 100,
-          x: 0,
-          y: 0,
-          toJSON: jest.fn(),
-        })) as jest.Mock;
-
-        manager.showTooltip(triggerElement, "mouse");
-
-        // Check arrow position to infer placement
-        const arrowStyle = testArrow.style;
-        if (expected === "bottom") {
-          expect(arrowStyle.top).toBe("-4px");
-        } else if (expected === "top") {
-          expect(arrowStyle.bottom).toBe("-4px");
-        } else if (expected === "right") {
-          expect(arrowStyle.left).toBe("-4px");
-        } else if (expected === "left") {
-          expect(arrowStyle.right).toBe("-4px");
-        }
-      });
-    });
-
-    it("adjustToViewport() should adjust position to stay within viewport", () => {
-      Object.defineProperty(window, "innerWidth", {
-        writable: true,
-        configurable: true,
-        value: 300,
-      });
-      Object.defineProperty(window, "innerHeight", {
-        writable: true,
-        configurable: true,
-        value: 300,
-      });
-
-      triggerElement.getBoundingClientRect = jest.fn(() => ({
-        top: 150,
-        left: 150,
-        bottom: 200,
-        right: 250,
-        width: 100,
-        height: 50,
-        x: 150,
-        y: 150,
-        toJSON: jest.fn(),
-      })) as jest.Mock;
-
-      // Make tooltip visible before showing (so getBoundingClientRect works)
-      tooltipElement.hidden = false;
-      tooltipElement.getBoundingClientRect = jest.fn(() => ({
-        top: 0,
-        left: 0,
-        bottom: 100,
-        right: 250,
-        width: 250,
-        height: 100,
-        x: 0,
-        y: 0,
-        toJSON: jest.fn(),
-      })) as jest.Mock;
-
-      manager.showTooltip(triggerElement, "mouse");
-
-      const style = tooltipElement.style;
-      const left = parseFloat(style.left);
-      const top = parseFloat(style.top);
-
-      // Should be adjusted to fit within viewport (300px - 8px padding * 2 = 284px max)
-      expect(left).toBeGreaterThanOrEqual(0);
-      expect(left + 250).toBeLessThanOrEqual(300);
-      expect(top).toBeGreaterThanOrEqual(0);
-      expect(top + 100).toBeLessThanOrEqual(300);
-    });
-  });
-
-  describe("Global Events", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-      // Mock requestAnimationFrame to execute immediately
-      global.requestAnimationFrame = jest.fn((cb: FrameRequestCallback) => {
-        cb(0);
-        return 1;
-      }) as typeof requestAnimationFrame;
-    });
-
-    afterEach(() => {
-      jest.useRealTimers();
-    });
-
-    it("handleScroll() should hide active tooltip", () => {
-      manager.showTooltip(triggerElement, "mouse");
-
-      window.dispatchEvent(new Event("scroll"));
-
-      expect(tooltipElement.hidden).toBe(true);
-    });
-
-    it("handleResize() should hide active tooltip", () => {
-      manager.showTooltip(triggerElement, "mouse");
-
-      window.dispatchEvent(new Event("resize"));
-
-      expect(tooltipElement.hidden).toBe(true);
-    });
-
-    it("handleKeydown() should hide tooltip on Escape key", () => {
-      manager.showTooltip(triggerElement, "mouse");
-
-      const escapeEvent = new KeyboardEvent("keydown", {
-        key: "Escape",
-        bubbles: true,
-      });
-      window.dispatchEvent(escapeEvent);
-
-      expect(tooltipElement.hidden).toBe(true);
-    });
-  });
-
-  describe("MutationObserver", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-      // Mock requestAnimationFrame to execute immediately
-      global.requestAnimationFrame = jest.fn((cb: FrameRequestCallback) => {
-        cb(0);
-        return 1;
-      }) as typeof requestAnimationFrame;
-    });
-
-    afterEach(() => {
-      jest.useRealTimers();
-    });
-
-    it("handleNodeRemoval() should clean up when trigger element is removed", () => {
-      manager.showTooltip(triggerElement, "mouse");
-
-      triggerElement.remove();
-
-      // Wait for MutationObserver (it runs asynchronously via microtasks)
-      // Use flushPromises or wait for next tick
-      return Promise.resolve().then(() => {
-        expect(tooltipElement.hidden).toBe(true);
-      });
-    });
-
-    it("handleNodeRemoval() should clean up when parent containing trigger is removed", () => {
-      const parent = document.createElement("div");
-      parent.appendChild(triggerElement);
-      document.body.appendChild(parent);
-
-      manager.showTooltip(triggerElement, "mouse");
-
-      parent.remove();
-
-      // Wait for MutationObserver (it runs asynchronously via microtasks)
-      return Promise.resolve().then(() => {
-        expect(tooltipElement.hidden).toBe(true);
-      });
-    });
-  });
-
-  describe("destroy", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-      // Mock requestAnimationFrame to execute immediately
-      global.requestAnimationFrame = jest.fn((cb: FrameRequestCallback) => {
-        cb(0);
-        return 1;
-      }) as typeof requestAnimationFrame;
-    });
-
-    afterEach(() => {
-      jest.useRealTimers();
-    });
-
-    it("destroy() should remove all event listeners", () => {
-      const mouseEnterSpy = jest.fn();
-      triggerElement.addEventListener("mouseenter", mouseEnterSpy);
-
-      manager.destroy();
-
-      const mouseEvent = new MouseEvent("mouseenter", { bubbles: true });
-      triggerElement.dispatchEvent(mouseEvent);
-
-      // Event listener should be removed, but we can't directly test that
-      // Instead, verify that tooltip is not shown
-      expect(tooltipElement.hidden).toBe(true);
-    });
-
-    it("destroy() should restore data-* attributes", () => {
-      manager.destroy();
-
-      expect(tooltipElement.hasAttribute("data-component")).toBe(true);
-      expect(tooltipElement.getAttribute("data-component")).toBe("tooltip");
-      expect(tooltipElement.hasAttribute("data-trigger")).toBe(true);
-      expect(tooltipElement.getAttribute("data-trigger")).toBe("test-trigger");
-      expect(tooltipElement.hasAttribute("data-placement")).toBe(true);
-      expect(tooltipElement.getAttribute("data-placement")).toBe("top");
-      expect(tooltipElement.hasAttribute("data-alignment")).toBe(true);
-      expect(tooltipElement.getAttribute("data-alignment")).toBe("center");
-    });
-
-    it("destroy() should clear internal state", () => {
-      manager.showTooltip(triggerElement, "mouse");
-
-      manager.destroy();
-
-      // After destroy, showing tooltip again should not work
-      const newManager = new TooltipManager();
-      newManager.showTooltip(triggerElement, "mouse");
-
-      // Tooltip should be hidden because manager was destroyed and recreated
-      // This tests that destroy properly cleans up
-      expect(tooltipElement.hidden).toBe(false); // New manager should work
-    });
-
-    it("destroy() should remove global event listeners", () => {
-      const scrollSpy = jest.fn();
-      window.addEventListener("scroll", scrollSpy);
-
-      manager.destroy();
-
-      window.dispatchEvent(new Event("scroll"));
-
-      // Our handler should not be called (but we can't directly test that)
-      // Instead verify that tooltip state is cleared
-      expect(tooltipElement.hidden).toBe(true);
-    });
-
-    it("destroy() should disconnect MutationObserver", () => {
-      manager.destroy();
-
-      // After destroy, removing elements should not trigger observer
-      const newTrigger = document.createElement("button");
-      newTrigger.id = "new-trigger";
-      document.body.appendChild(newTrigger);
-
-      const newTooltip = document.createElement("div");
-      newTooltip.id = "new-tooltip";
-      newTooltip.setAttribute("data-component", "tooltip");
-      newTooltip.setAttribute("data-trigger", "new-trigger");
-      document.body.appendChild(newTooltip);
-
-      const newManager = new TooltipManager();
-      newManager.showTooltip(newTrigger, "mouse");
-
-      newTrigger.remove();
-
-      // Wait for MutationObserver (it runs asynchronously via microtasks)
-      return Promise.resolve().then(() => {
-        // New manager's observer should handle it
-        expect(newTooltip.hidden).toBe(true);
-
-        newManager.destroy();
-      });
-    });
+    expect(first.tooltip.hidden).toBe(true);
+    expect(second.tooltip.hidden).toBe(false);
   });
 });

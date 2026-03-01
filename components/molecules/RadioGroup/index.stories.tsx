@@ -53,7 +53,7 @@ const meta: Meta<typeof RadioGroup> = {
           ## ✨ Key Features
 
           ### ⚙️ Behavior
-          - Two content modes: \`options\` array or \`children\` (\`Radio\` elements); \`options\` takes precedence when both are provided
+          - Two content modes: \`options\` array or \`children\` (\`Radio\` elements); \`children\` takes precedence when both are provided
           - Validates that option \`value\`s are unique when using \`options\`; logs error and returns null if duplicates exist
           - Clones \`children\` to inject \`name\`, \`variant\`, \`size\`, and \`align\` from the group; supports \`Fragment\` in children
           - Renders nothing when neither \`options\` nor \`children\` are provided

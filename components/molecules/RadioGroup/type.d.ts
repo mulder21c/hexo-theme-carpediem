@@ -1,8 +1,22 @@
+import type { Fragment } from "react";
 import type { RadioProps } from "@components/atoms/Radio/type";
 
 /** Option item for RadioGroup: value and label required, rest from RadioProps */
 export type RadioGroupOptionItem = Required<Pick<RadioProps, "value" | "label">> &
-  Partial<Omit<RadioProps, "value" | "label">>;
+  Omit<RadioProps, "value" | "label">;
+
+type RadioChild = React.ReactElement<RadioProps>;
+type RadioGroupFragment = React.ReactElement<
+  { children?: RadioGroupChildren },
+  typeof Fragment
+>;
+export type RadioGroupChildren =
+  | RadioChild
+  | RadioGroupFragment
+  | ReadonlyArray<RadioChild | RadioGroupFragment>
+  | null
+  | undefined
+  | false;
 
 export interface RadioGroupProps
   extends
@@ -10,6 +24,7 @@ export interface RadioGroupProps
     Pick<RadioProps, "name" | "variant" | "size" | "align"> {
   /**
    * Array of radio button option props
+   * If both `options` and `children` are provided, `children` takes precedence.
    */
   options?: Array<RadioGroupOptionItem>;
   /**
@@ -17,9 +32,13 @@ export interface RadioGroupProps
    */
   direction?: "horizontal" | "vertical";
   /**
-   * Only accepts React element(s) of type Radio
+   * Only accepts:
+   * - `Radio` element(s)
+   * - `React.Fragment` that wraps only `Radio` element(s)
+   *
+   * If both `options` and `children` are provided, `children` takes precedence.
    */
-  children?: React.ReactElement<RadioProps> | Array<React.ReactElement<RadioProps>>;
+  children?: RadioGroupChildren;
   /**
    * Custom CSS classes
    */
@@ -33,5 +52,5 @@ export type RenderOptionsContentProps = Pick<
   Required<Pick<RadioGroupProps, "options">>;
 
 export type RenderChildrenContentProps = Omit<RadioGroupProps, "options" | "children"> & {
-  children?: React.ReactNode;
+  children?: RadioGroupChildren;
 };

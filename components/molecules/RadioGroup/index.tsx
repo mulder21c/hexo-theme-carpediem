@@ -5,6 +5,7 @@ import { Children, cloneElement, Fragment, isValidElement } from "react";
 import { areOptionValuesUnique } from "./index.helper";
 import styles from "./index.module.scss";
 import type {
+  RadioGroupChildren,
   RadioGroupProps,
   RenderChildrenContentProps,
   RenderOptionsContentProps,
@@ -16,7 +17,7 @@ const cx = classNames.bind(styles);
 
 function isFragment(
   element: React.ReactElement,
-): element is React.ReactElement<{ children?: React.ReactNode }> {
+): element is React.ReactElement<{ children?: RadioGroupChildren }> {
   return element.type === Fragment || (element.type as unknown) === REACT_FRAGMENT_TYPE;
 }
 
@@ -45,7 +46,7 @@ function renderChildrenContent({
 
     return [
       cloneElement(radioChild, {
-        ...(props || {}),
+        ...props,
         name,
         variant,
         size,
@@ -65,7 +66,7 @@ function renderOptionsContent({
   align,
   options,
 }: RenderOptionsContentProps): React.ReactNode {
-  return (options || []).map((option) => {
+  return options.map((option) => {
     return (
       <Radio
         key={`${option.value}`}
@@ -104,6 +105,12 @@ function RadioGroup({
     return null;
   }
 
+  if (hasChildren && hasOptions) {
+    hexoLog.warn(
+      "[RadioGroup] Both options and children were provided. Children takes precedence.",
+    );
+  }
+
   if (hasOptions && !hasChildren && !areOptionValuesUnique(options)) {
     hexoLog.error("[RadioGroup] Duplicate option value in group:", options);
     return null;
@@ -126,7 +133,7 @@ function RadioGroup({
         variant,
         size,
         align,
-        options: options || [],
+        options: options as RenderOptionsContentProps["options"],
       });
 
   return (

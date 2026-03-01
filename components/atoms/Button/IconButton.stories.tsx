@@ -132,8 +132,8 @@ export const Default: Story = {
         window.tooltip.destroy();
 
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
-        tooltip?.setAttribute("data-placement", options.placement);
-        tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-placement", options.placement as string);
+        tooltip?.setAttribute("data-alignment", options.alignment as string);
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -154,8 +154,8 @@ export const Variants: Story = {
         window.tooltip.destroy();
 
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
-        tooltip?.setAttribute("data-placement", options.placement);
-        tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-placement", options.placement as string);
+        tooltip?.setAttribute("data-alignment", options.alignment as string);
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -196,8 +196,8 @@ export const Colors: Story = {
         window.tooltip.destroy();
 
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
-        tooltip?.setAttribute("data-placement", options.placement);
-        tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-placement", options.placement as string);
+        tooltip?.setAttribute("data-alignment", options.alignment as string);
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -238,8 +238,8 @@ export const Sizes: Story = {
         window.tooltip.destroy();
 
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
-        tooltip?.setAttribute("data-placement", options.placement);
-        tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-placement", options.placement as string);
+        tooltip?.setAttribute("data-alignment", options.alignment as string);
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -281,8 +281,8 @@ export const Stroke: Story = {
         window.tooltip.destroy();
 
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
-        tooltip?.setAttribute("data-placement", options.placement);
-        tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-placement", options.placement as string);
+        tooltip?.setAttribute("data-alignment", options.alignment as string);
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -324,8 +324,8 @@ export const TooltipPlacements: Story = {
         window.tooltip.destroy();
 
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
-        tooltip?.setAttribute("data-placement", options.placement);
-        tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-placement", options.placement as string);
+        tooltip?.setAttribute("data-alignment", options.alignment as string);
 
         window.tooltip = new window.TooltipManager();
       } else {

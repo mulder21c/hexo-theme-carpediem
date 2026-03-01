@@ -29,7 +29,7 @@ function Radio({
   }
 
   const optionId = id || uid;
-  const labelContent = children || label || "";
+  const labelContent = children ?? label;
   const ariaLabel = children && label ? label : undefined;
 
   return (

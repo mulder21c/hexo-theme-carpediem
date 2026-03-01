@@ -16,14 +16,14 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    * <Button variant="contained">Contained Button</Button>
    * <Button variant="outlined">Outlined Button</Button>
    */
-  variant: "contained" | "outlined";
+  variant?: "contained" | "outlined";
   /**
    * Button color
    * @example
    * <Button color="primary">Primary Button</Button>
    * <Button color="secondary">Secondary Button</Button>
    */
-  color: "primary" | "secondary";
+  color?: "primary" | "secondary";
   /**
    * Button size
    * @example
@@ -31,11 +31,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    * <Button size="medium">Medium Button</Button>
    * <Button size="large">Large Button</Button>
    */
-  size: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large";
 }
 
 export interface IconButtonProps
-  extends ButtonProps, Omit<TooltipConfig, "triggerId" | "tooltipId"> {
+  extends ButtonProps, Partial<Omit<TooltipConfig, "triggerId" | "tooltipId">> {
   /**
    * Accessible label for the icon button
    * @example
