@@ -61,7 +61,7 @@ describe("Heading", () => {
 
   it("forwards event handlers", async () => {
     const user = userEvent.setup();
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
 
     render(
       <Heading level={3} onClick={handleClick}>

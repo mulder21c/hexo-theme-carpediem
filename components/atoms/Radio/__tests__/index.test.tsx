@@ -52,7 +52,7 @@ describe("Radio", () => {
   });
 
   it("returns null and warns when both label and children are missing", () => {
-    const warnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
+    const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
     const { container } = render(<Radio name="missing" value="none" />);
 
@@ -173,7 +173,7 @@ describe("Radio", () => {
 
   it("calls onChange when clicked", async () => {
     const user = userEvent.setup();
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
 
     render(
       <Radio
@@ -193,7 +193,7 @@ describe("Radio", () => {
 
   it("does not call onChange when disabled", async () => {
     const user = userEvent.setup();
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
 
     render(
       <Radio

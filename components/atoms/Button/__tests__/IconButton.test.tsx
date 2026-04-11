@@ -2,12 +2,12 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import IconButton from "../IconButton";
 
-jest.mock("feather-icons-react", () => {
+vi.mock("feather-icons-react", () => {
   function MockFeatherIcon({ icon, className }: { icon: string; className?: string }) {
     return <svg data-testid="feather-icon" data-icon={icon} className={className} />;
   }
 
-  return MockFeatherIcon;
+  return { default: MockFeatherIcon };
 });
 
 describe("IconButton", () => {
@@ -116,7 +116,7 @@ describe("IconButton", () => {
   });
 
   it("forwards native props and handles click", async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     const user = userEvent.setup();
 
     render(
@@ -142,7 +142,7 @@ describe("IconButton", () => {
   });
 
   it("does not call onClick when disabled", async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     const user = userEvent.setup();
 
     render(

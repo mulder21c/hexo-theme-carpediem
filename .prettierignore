@@ -27,6 +27,7 @@ Thumbs.db
 
 # Tooling and generated artifacts
 .codex/
+.agents/
 .rulesync/
 .specify/
 specs/

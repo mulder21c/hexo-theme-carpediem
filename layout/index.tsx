@@ -1,5 +1,5 @@
-import { Fragment } from "react";
 import Heading from "@components/atoms/Heading";
+import { Fragment } from "react";
 
 function IndexLayout() {
   return (

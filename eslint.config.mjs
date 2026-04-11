@@ -24,7 +24,7 @@ export default defineConfig(
       ".claude/**",
       ".cursor/**",
       ".specify/**",
-      "specs/**"
+      "specs/**",
     ],
   },
   // ESLint Recommended Rules
@@ -112,22 +112,6 @@ export default defineConfig(
         },
       ],
       "import/no-duplicates": "warn",
-    },
-  },
-  // CommonJS config files (Jest, etc.)
-  {
-    files: ["jest.config.js"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: "script",
-      globals: {
-        ...globals.node,
-      },
-    },
-    extends: [tseslint.configs.disableTypeChecked],
-    rules: {
-      "@typescript-eslint/no-require-imports": "off",
-      "@typescript-eslint/no-var-requires": "off",
     },
   },
   // CommonJS JavaScript files in scripts directory

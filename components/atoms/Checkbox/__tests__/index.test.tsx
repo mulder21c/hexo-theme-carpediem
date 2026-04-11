@@ -2,19 +2,17 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Checkbox from "../index";
 
-const mockWarn = jest.fn();
+const { mockWarn } = vi.hoisted(() => ({
+  mockWarn: vi.fn(),
+}));
 
-jest.mock(
-  "@context/HexoContext",
-  () => ({
-    useHexo: () => ({
-      hexoLog: {
-        warn: mockWarn,
-      },
-    }),
+vi.mock("@context/HexoContext", () => ({
+  useHexo: () => ({
+    hexoLog: {
+      warn: mockWarn,
+    },
   }),
-  { virtual: true },
-);
+}));
 
 describe("Checkbox", () => {
   beforeEach(() => {
@@ -128,7 +126,7 @@ describe("Checkbox", () => {
 
   it("toggles checked state and calls onChange when clicked", async () => {
     const user = userEvent.setup();
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
 
     render(<Checkbox name="newsletter" label="Subscribe" onChange={handleChange} />);
 
@@ -143,7 +141,7 @@ describe("Checkbox", () => {
 
   it("does not call onChange when disabled", async () => {
     const user = userEvent.setup();
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
 
     render(
       <Checkbox

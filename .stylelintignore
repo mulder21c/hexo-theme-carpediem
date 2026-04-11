@@ -1,0 +1,10 @@
+node_modules/
+dist/
+public/
+coverage/
+storybook-static/
+.cursor/
+.codex/
+.claude/
+.rulesync/
+.specify/

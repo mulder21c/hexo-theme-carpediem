@@ -59,7 +59,7 @@ function mockRect(
 ): void {
   Object.defineProperty(element, "getBoundingClientRect", {
     configurable: true,
-    value: jest.fn(() => ({
+    value: vi.fn(() => ({
       top: rect.top,
       left: rect.left,
       width: rect.width,
@@ -68,7 +68,7 @@ function mockRect(
       bottom: rect.top + rect.height,
       x: rect.left,
       y: rect.top,
-      toJSON: jest.fn(),
+      toJSON: vi.fn(),
     })),
   });
 }
@@ -77,15 +77,15 @@ describe("TooltipManager UI", () => {
   let manager: TooltipManager;
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useRealTimers();
+    vi.clearAllMocks();
+    vi.useRealTimers();
     document.body.innerHTML = "";
 
     if (window.tooltip) {
       window.tooltip.destroy();
     }
 
-    global.requestAnimationFrame = jest.fn((callback: FrameRequestCallback) => {
+    global.requestAnimationFrame = vi.fn((callback: FrameRequestCallback) => {
       callback(0);
       return 0;
     }) as typeof global.requestAnimationFrame;
@@ -96,7 +96,7 @@ describe("TooltipManager UI", () => {
       manager.destroy();
     }
     document.body.innerHTML = "";
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it("initializes tooltip config and links trigger/tooltip accessibility attributes", () => {
@@ -130,7 +130,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("shows tooltip after mouse hover delay", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-hover",
       tooltipId: "tooltip-hover",
@@ -140,15 +140,15 @@ describe("TooltipManager UI", () => {
     trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
     expect(tooltip.hidden).toBe(true);
 
-    jest.advanceTimersByTime(SHOW_DELAY - 1);
+    vi.advanceTimersByTime(SHOW_DELAY - 1);
     expect(tooltip.hidden).toBe(true);
 
-    jest.advanceTimersByTime(1);
+    vi.advanceTimersByTime(1);
     expect(tooltip.hidden).toBe(false);
   });
 
   it("hides tooltip after mouse leave delay and transition", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-leave",
       tooltipId: "tooltip-leave",
@@ -160,19 +160,19 @@ describe("TooltipManager UI", () => {
 
     trigger.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
 
-    jest.advanceTimersByTime(HIDE_DELAY - 1);
+    vi.advanceTimersByTime(HIDE_DELAY - 1);
     expect(tooltip.hidden).toBe(false);
 
-    jest.advanceTimersByTime(1);
+    vi.advanceTimersByTime(1);
     expect(tooltip.style.opacity).toBe("0");
     expect(tooltip.hidden).toBe(false);
 
-    jest.advanceTimersByTime(TRANSITION_DURATION);
+    vi.advanceTimersByTime(TRANSITION_DURATION);
     expect(tooltip.hidden).toBe(true);
   });
 
   it("keeps tooltip visible when pointer moves from trigger to tooltip", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-hover-stay",
       tooltipId: "tooltip-hover-stay",
@@ -180,14 +180,14 @@ describe("TooltipManager UI", () => {
     manager = new TooltipManager();
 
     trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
-    jest.advanceTimersByTime(SHOW_DELAY);
+    vi.advanceTimersByTime(SHOW_DELAY);
     expect(tooltip.hidden).toBe(false);
 
     trigger.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
-    jest.advanceTimersByTime(HIDE_DELAY / 2);
+    vi.advanceTimersByTime(HIDE_DELAY / 2);
 
     tooltip.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
-    jest.advanceTimersByTime(HIDE_DELAY + TRANSITION_DURATION);
+    vi.advanceTimersByTime(HIDE_DELAY + TRANSITION_DURATION);
 
     expect(tooltip.hidden).toBe(false);
   });
@@ -231,7 +231,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("shows tooltip on long press and prevents default on touch end", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-touch",
       tooltipId: "tooltip-touch",
@@ -247,17 +247,17 @@ describe("TooltipManager UI", () => {
     });
 
     trigger.dispatchEvent(touchStartEvent);
-    jest.advanceTimersByTime(499);
+    vi.advanceTimersByTime(499);
     expect(tooltip.hidden).toBe(true);
 
-    jest.advanceTimersByTime(1);
+    vi.advanceTimersByTime(1);
     expect(tooltip.hidden).toBe(false);
 
     const touchEndEvent = new Event("touchend", {
       bubbles: true,
       cancelable: true,
     }) as TouchEvent;
-    const preventDefaultSpy = jest.spyOn(touchEndEvent, "preventDefault");
+    const preventDefaultSpy = vi.spyOn(touchEndEvent, "preventDefault");
 
     trigger.dispatchEvent(touchEndEvent);
     expect(preventDefaultSpy).toHaveBeenCalledTimes(1);
@@ -332,7 +332,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("hides active touch tooltip when touching outside trigger and tooltip", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-outside-touch",
       tooltipId: "tooltip-outside-touch",
@@ -383,7 +383,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("keeps keyboard-triggered tooltip visible on mouse leave", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-keyboard-priority",
       tooltipId: "tooltip-keyboard-priority",
@@ -394,13 +394,13 @@ describe("TooltipManager UI", () => {
     expect(tooltip.hidden).toBe(false);
 
     trigger.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
-    jest.advanceTimersByTime(HIDE_DELAY + TRANSITION_DURATION);
+    vi.advanceTimersByTime(HIDE_DELAY + TRANSITION_DURATION);
 
     expect(tooltip.hidden).toBe(false);
   });
 
   it("cancels long-press tooltip when touch moves beyond tolerance", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-touch-move",
       tooltipId: "tooltip-touch-move",
@@ -425,7 +425,7 @@ describe("TooltipManager UI", () => {
     });
     trigger.dispatchEvent(touchMoveEvent);
 
-    jest.advanceTimersByTime(500);
+    vi.advanceTimersByTime(500);
     expect(tooltip.hidden).toBe(true);
   });
 
@@ -519,7 +519,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("logs error when tooltip data-trigger attribute is missing", () => {
-    const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     const tooltip = document.createElement("span");
     tooltip.id = "tooltip-missing-trigger";
@@ -538,7 +538,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("logs error when tooltip trigger element cannot be found", () => {
-    const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     const tooltip = document.createElement("span");
     tooltip.id = "tooltip-without-target";
@@ -571,7 +571,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("schedules hide when pointer leaves tooltip content", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-tooltip-leave",
       tooltipId: "tooltip-tooltip-leave",
@@ -579,18 +579,18 @@ describe("TooltipManager UI", () => {
     manager = new TooltipManager();
 
     trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
-    jest.advanceTimersByTime(SHOW_DELAY);
+    vi.advanceTimersByTime(SHOW_DELAY);
     expect(tooltip.hidden).toBe(false);
 
     tooltip.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
-    jest.advanceTimersByTime(HIDE_DELAY);
-    jest.advanceTimersByTime(TRANSITION_DURATION);
+    vi.advanceTimersByTime(HIDE_DELAY);
+    vi.advanceTimersByTime(TRANSITION_DURATION);
 
     expect(tooltip.hidden).toBe(true);
   });
 
   it("resets touch trigger mode after short tap and allows subsequent hover", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { trigger, tooltip } = createTooltipDom({
       triggerId: "trigger-short-tap",
       tooltipId: "tooltip-short-tap",
@@ -613,7 +613,7 @@ describe("TooltipManager UI", () => {
     trigger.dispatchEvent(touchEndEvent);
 
     trigger.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
-    jest.advanceTimersByTime(SHOW_DELAY);
+    vi.advanceTimersByTime(SHOW_DELAY);
 
     expect(tooltip.hidden).toBe(false);
   });
@@ -765,7 +765,7 @@ describe("TooltipManager UI", () => {
   });
 
   it("hides tooltip in transition callback when another tooltip becomes active", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const first = createTooltipDom({
       triggerId: "trigger-timeout-first",
       tooltipId: "tooltip-timeout-first",
@@ -782,7 +782,7 @@ describe("TooltipManager UI", () => {
     manager.hideTooltip(first.trigger, false);
     manager.showTooltip(second.trigger, "mouse");
 
-    jest.advanceTimersByTime(TRANSITION_DURATION);
+    vi.advanceTimersByTime(TRANSITION_DURATION);
 
     expect(first.tooltip.hidden).toBe(true);
     expect(second.tooltip.hidden).toBe(false);

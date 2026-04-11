@@ -11,8 +11,35 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@source": path.join(dirname, "source"),
+      "@components": path.join(dirname, "components"),
+      "@context": path.join(dirname, "components/context"),
+      "@layout": path.join(dirname, "layout"),
+    },
+  },
   test: {
     projects: [
+      {
+        extends: true,
+        test: {
+          name: "unit",
+          globals: true,
+          environment: "jsdom",
+          setupFiles: ["./vitest.setup.ts"],
+          include: [
+            "components/**/__tests__/**/*.test.{ts,tsx}",
+            "components/**/*.{test,spec}.{ts,tsx}",
+          ],
+          exclude: ["components/**/*.stories.{ts,tsx}"],
+          css: {
+            modules: {
+              classNameStrategy: "non-scoped",
+            },
+          },
+        },
+      },
       {
         extends: true,
         plugins: [

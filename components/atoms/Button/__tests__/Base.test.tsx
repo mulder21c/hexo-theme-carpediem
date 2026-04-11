@@ -86,7 +86,7 @@ describe("Button", () => {
   );
 
   it("forwards native button props and custom className", async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     const user = userEvent.setup();
 
     render(
@@ -114,7 +114,7 @@ describe("Button", () => {
   });
 
   it("does not call onClick when disabled", async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     const user = userEvent.setup();
 
     render(

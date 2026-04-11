@@ -4,21 +4,19 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RadioGroup from "../index";
 
-const mockWarn = jest.fn();
-const mockError = jest.fn();
+const { mockWarn, mockError } = vi.hoisted(() => ({
+  mockWarn: vi.fn(),
+  mockError: vi.fn(),
+}));
 
-jest.mock(
-  "@context/HexoContext",
-  () => ({
-    useHexo: () => ({
-      hexoLog: {
-        warn: mockWarn,
-        error: mockError,
-      },
-    }),
+vi.mock("@context/HexoContext", () => ({
+  useHexo: () => ({
+    hexoLog: {
+      warn: mockWarn,
+      error: mockError,
+    },
   }),
-  { virtual: true },
-);
+}));
 
 describe("RadioGroup", () => {
   beforeEach(() => {

@@ -35,7 +35,7 @@
       "@context/*": ["components/context/*"],
       "@layout/*": ["layout/*"]
     },
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": [
     "layout/**/*.tsx",
