@@ -20,6 +20,11 @@ export default defineConfig(
       "*.min.js",
       "storybook-static/**",
       "source/js/**",
+      ".codex/**",
+      ".claude/**",
+      ".cursor/**",
+      ".specify/**",
+      "specs/**"
     ],
   },
   // ESLint Recommended Rules

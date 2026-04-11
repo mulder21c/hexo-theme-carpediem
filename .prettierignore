@@ -25,6 +25,16 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Tooling and generated artifacts
+.codex/
+.rulesync/
+.specify/
+specs/
+storybook-static/
+coverage/
+rulesync.jsonc
+source/js/ui.js.metadata.json
+
 # Hexo
 db.json
 .deploy_git/
@@ -33,4 +43,3 @@ db.json
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
-
