@@ -30,11 +30,11 @@ const preview: Preview = {
       options: {
         light: {
           name: "Light",
-          value: "#f8f9fa",
+          value: "#f2f2f2",
         },
         dark: {
           name: "Dark",
-          value: "#10161c",
+          value: "#1f252d",
         },
       },
     },

@@ -5,7 +5,7 @@
   --white: #{color("white")};
   --black: #{color("black")};
   --light: #{color("neutral", 50)};
-  --dark: #{color("bluegray", 800)};
+  --dark: #{color("bluegray", 900)};
   --text-primary: #{color("black")};
 
   // border radius
@@ -52,34 +52,34 @@
   --radio-border: #{color("green", 600)};
   --radio-surface: #{color("green", 600)};
   --radio-label: var(--dark);
-  --radio-border-disabled: #{color("neutral", 300)};
-  --radio-surface-disabled: #{color("neutral", 300)};
-  --radio-label-disabled: #{color("neutral", 300)};
+  --radio-border-disabled: #{color("neutral", 500)};
+  --radio-surface-disabled: #{color("neutral", 500)};
+  --radio-label-disabled: #{color("neutral", 500)};
   --radio-btn-surface: #{color("green", 600)};
   --radio-btn-text: #{color("green", 600)};
   --radio-btn-text-checked: #{color("neutral", 50)};
-  --radio-btn-surface-disabled: #{color("neutral", 300)};
-  --radio-btn-text-disabled: #{color("neutral", 300)};
+  --radio-btn-surface-disabled: #{color("neutral", 500)};
+  --radio-btn-text-disabled: #{color("neutral", 500)};
 
   // Checkbox colors
   --checkbox-border: #{color("green", 600)};
   --checkbox-surface: #{color("green", 600)};
   --checkbox-label: var(--dark);
-  --checkbox-border-disabled: #{color("neutral", 300)};
-  --checkbox-surface-disabled: #{color("neutral", 300)};
-  --checkbox-label-disabled: #{color("neutral", 300)};
+  --checkbox-border-disabled: #{color("neutral", 500)};
+  --checkbox-surface-disabled: #{color("neutral", 500)};
+  --checkbox-label-disabled: #{color("neutral", 500)};
 
   // Switch colors
   --switch-track: #{color("neutral", 600)};
   --switch-track-on: #{color("green", 600)};
-  --switch-track-disabled: #{color("neutral", 300)};
+  --switch-track-disabled: #{color("neutral", 500)};
   --switch-surface: #{color("neutral", 50)};
 
   @media (prefers-color-scheme: dark) {
-    --bg-color-primary: #{color("bluegray", 800)};
+    --bg-color-primary: #{color("bluegray", 900)};
     --white: #{color("black")};
     --black: #{color("white")};
-    --light: #{color("bluegray", 800)};
+    --light: #{color("bluegray", 900)};
     --dark: #{color("neutral", 50)};
     --text-primary: #{color("neutral", 150)};
 
@@ -87,12 +87,12 @@
     --focus-ring: #{color("mintgreen", 300)};
 
     // button colors
-    --btn-surface-primary: #{color("mintgreen", 500)};
+    --btn-surface-primary: #{color("mintgreen", 450)};
     --btn-surface-primary-hover: #{color("mintgreen", 300)};
-    --btn-border-primary: #{color("mintgreen", 500)};
+    --btn-border-primary: #{color("mintgreen", 450)};
     --btn-border-primary-hover: #{color("mintgreen", 300)};
-    --btn-text-primary: #{color("bluegray", 800)};
-    --btn-text-primary-hover: #{color("bluegray", 800)};
+    --btn-text-primary: #{color("bluegray", 900)};
+    --btn-text-primary-hover: #{color("bluegray", 900)};
     --btn-surface-secondary: #{color("neutral", 450)};
     --btn-surface-secondary-hover: #{color("neutral", 300)};
     --btn-border-secondary: #{color("neutral", 450)};
@@ -106,40 +106,40 @@
     --tooltip-text: #{color("bluegray", 850)};
 
     // Radio colors
-    --radio-border: #{color("mintgreen", 500)};
-    --radio-surface: #{color("mintgreen", 500)};
-    --radio-border-disabled: #{color("neutral", 700)};
-    --radio-surface-disabled: #{color("neutral",700)};
-    --radio-label-disabled: #{color("neutral", 700)};
-    --radio-btn-surface: #{color("mintgreen", 500)};
-    --radio-btn-text: #{color("mintgreen", 500)};
-    --radio-btn-text-checked: #{color("bluegray", 800)};
-    --radio-btn-surface-disabled: #{color("neutral", 700)};
-    --radio-btn-text-disabled: #{color("neutral", 700)};
+    --radio-border: #{color("mintgreen", 450)};
+    --radio-surface: #{color("mintgreen", 450)};
+    --radio-border-disabled: #{color("neutral", 650)};
+    --radio-surface-disabled: #{color("neutral",650)};
+    --radio-label-disabled: #{color("neutral", 650)};
+    --radio-btn-surface: #{color("mintgreen", 450)};
+    --radio-btn-text: #{color("mintgreen", 450)};
+    --radio-btn-text-checked: #{color("bluegray", 900)};
+    --radio-btn-surface-disabled: #{color("neutral", 650)};
+    --radio-btn-text-disabled: #{color("neutral", 650)};
 
     // Checkbox colors
-    --checkbox-border: #{color("mintgreen", 500)};
-    --checkbox-surface: #{color("mintgreen", 500)};
+    --checkbox-border: #{color("mintgreen", 450)};
+    --checkbox-surface: #{color("mintgreen", 450)};
     --checkbox-label: var(--dark);
-    --checkbox-border-disabled: #{color("neutral", 700)};
-    --checkbox-surface-disabled: #{color("neutral", 700)};
-    --checkbox-label-disabled: #{color("neutral", 700)};
+    --checkbox-border-disabled: #{color("neutral", 650)};
+    --checkbox-surface-disabled: #{color("neutral", 650)};
+    --checkbox-label-disabled: #{color("neutral", 650)};
 
     // Switch colors
-    --switch-track: #{color("neutral", 450)};
-    --switch-track-on: #{color("mintgreen", 500)};
-    --switch-track-disabled: #{color("neutral", 700)};
-    --switch-surface: #{color("bluegray", 800)};
+    --switch-track: #{color("neutral", 400)};
+    --switch-track-on: #{color("mintgreen", 450)};
+    --switch-track-disabled: #{color("neutral", 650)};
+    --switch-surface: #{color("bluegray", 900)};
   }
 
   @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
     --text-primary: var(--dark);
 
     // button colors
-    --btn-surface-primary: #{color("mintgreen", 450)};
-    --btn-surface-primary-hover: #{color("mintgreen", 200)};
-    --btn-border-primary: #{color("mintgreen", 450)};
-    --btn-border-primary-hover: #{color("mintgreen", 200)};
+    --btn-surface-primary: #{color("mintgreen", 300)};
+    --btn-surface-primary-hover: #{color("mintgreen", 150)};
+    --btn-border-primary: #{color("mintgreen", 300)};
+    --btn-border-primary-hover: #{color("mintgreen", 150)};
     --btn-surface-secondary: #{color("neutral", 300)};
     --btn-surface-secondary-hover: #{color("neutral", 150)};
     --btn-border-secondary: #{color("neutral", 300)};
@@ -151,22 +151,22 @@
     --tooltip-text: #{color("bluegray", 900)};
 
     // Radio colors
-    --radio-border: #{color("mintgreen", 450)};
-    --radio-surface: #{color("mintgreen", 450)};
-    --focus-ring: #{color("mintgreen", 300)};
-    --radio-btn-surface: #{color("mintgreen", 450)};
-    --radio-btn-text: #{color("mintgreen", 450)};
-    --checkbox-btn-text: #{color("mintgreen", 450)};
+    --radio-border: #{color("mintgreen", 300)};
+    --radio-surface: #{color("mintgreen", 300)};
+    --focus-ring: #{color("mintgreen", 200)};
+    --radio-btn-surface: #{color("mintgreen", 300)};
+    --radio-btn-text: #{color("mintgreen", 300)};
+    --checkbox-btn-text: #{color("mintgreen", 300)};
 
     // Checkbox colors
-    --checkbox-border: #{color("mintgreen", 450)};
-    --checkbox-surface: #{color("mintgreen", 450)};
+    --checkbox-border: #{color("mintgreen", 300)};
+    --checkbox-surface: #{color("mintgreen", 300)};
     --checkbox-label: var(--dark);
 
     // Switch colors
     --switch-track: #{color("neutral", 300)};
-    --switch-track-on: #{color("mintgreen", 450)};
-    --switch-track-disabled: #{color("neutral", 700)};
-    --switch-surface: #{color("bluegray", 800)};
+    --switch-track-on: #{color("mintgreen", 300)};
+    --switch-track-disabled: #{color("neutral", 650)};
+    --switch-surface: #{color("bluegray", 900)};
   }
 }
