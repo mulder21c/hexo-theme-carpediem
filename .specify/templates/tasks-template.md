@@ -178,7 +178,11 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Within Each User Story
 
-- Tests (if included) MUST be written and FAIL before implementation
+- Tests (if included) MUST be written and confirmed to FAIL before implementation
+  (RED phase — required per Constitution Principle VIII)
+- Implementation MUST be the minimum change to make failing tests pass (GREEN phase)
+- Refactoring MUST occur after GREEN; all tests MUST still pass before next task (REFACTOR phase)
+- Vitest coverage report MUST show ≥ 80% for the feature unit before task sign-off
 - Models before services
 - Services before endpoints
 - Core implementation before integration
@@ -245,7 +249,8 @@ With multiple developers:
 - [P] tasks = different files, no dependencies
 - [Story] label maps task to specific user story for traceability
 - Each user story should be independently completable and testable
-- Verify tests fail before implementing
+- Follow TDD cycle: write test → confirm FAIL → implement → confirm PASS → refactor → confirm PASS
+- Verify Vitest coverage ≥ 80% for the feature unit before task sign-off
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence

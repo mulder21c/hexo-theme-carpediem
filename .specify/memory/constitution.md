@@ -1,28 +1,18 @@
 <!--
   === Sync Impact Report ===
-  Version change: N/A → 1.0.0 (initial creation)
+  Version change: 1.0.0 → 1.1.0 (MINOR: new principle added)
 
-  Added principles:
-    I.   SSR-First Rendering
-    II.  Accessibility by Default
-    III. Strict Type Safety
-    IV.  Atomic Design Architecture
-    V.   Stateless Prop-Driven Components
-    VI.  Clean Code Discipline
-    VII. Automated Quality Gates
+  Modified principles: (none renamed)
 
   Added sections:
-    - Core Principles (7 principles)
-    - Technology Constraints
-    - Development Workflow
-    - Governance
+    - VIII. Test-Driven Delivery and Feature Coverage Discipline
 
-  Removed sections: (none — initial creation)
+  Removed sections: (none)
 
   Templates requiring updates:
-    .specify/templates/plan-template.md       ✅ aligned (dynamic Constitution Check)
-    .specify/templates/spec-template.md       ✅ aligned (no constitution refs)
-    .specify/templates/tasks-template.md      ✅ aligned (no constitution refs)
+    .specify/templates/plan-template.md       ✅ aligned (no TDD-specific refs needed)
+    .specify/templates/spec-template.md       ✅ aligned (no TDD-specific refs needed)
+    .specify/templates/tasks-template.md      ✅ updated (TDD order note reinforced)
     .specify/templates/checklist-template.md  ✅ aligned (no constitution refs)
     .specify/templates/agent-file-template.md ✅ aligned (no constitution refs)
     .cursor/commands/speckit.plan.md          ✅ aligned (refs constitution path)
@@ -183,6 +173,30 @@ maintenance cost.
 **Rationale**: Automated gates prevent quality regression and
 reduce manual review burden.
 
+### VIII. Test-Driven Delivery and Feature Coverage Discipline
+
+- Unit tests for a feature unit MUST be written before any
+  implementation code is produced (RED phase).
+- The newly written tests MUST be confirmed to fail before
+  implementation begins (RED phase verification).
+- Implementation MUST be limited to the minimum change required
+  to make the failing tests pass (GREEN phase).
+- Refactoring MUST occur after tests pass; all tests MUST
+  continue to pass after refactoring before the next task may
+  begin (REFACTOR phase).
+- Unit test coverage for the feature unit under development
+  (new and modified scope) MUST reach 80% or above.
+- Coverage MUST be measured using the Vitest coverage report
+  as the authoritative source.
+- Tests MUST be reproducible and deterministic; time, randomness,
+  and external dependencies MUST be controlled via mocks or
+  fixed inputs (SHOULD).
+
+**Rationale**: Anchoring implementation to a failing test as a
+baseline reduces requirement omissions. Separating minimum
+implementation from refactoring preserves change stability and
+prevents scope creep within a task.
+
 ## Technology Constraints
 
 - **Runtime**: React 19.x with `react-dom` for server-side
@@ -203,8 +217,13 @@ reduce manual review burden.
 - **Linting**: `npm run lint` (ESLint + Stylelint + Prettier)
   MUST pass before every commit.
 - **Type checking**: `tsc --noEmit` MUST succeed.
-- **Testing**: `npm test` runs Jest; tests MUST pass before
-  merge.
+- **Testing**: `npm test` runs Vitest; tests MUST pass before
+  merge. TDD cycle (RED → GREEN → REFACTOR) MUST be followed
+  for every feature unit.
+- **Coverage**: `npm run test -- --coverage` produces the
+  Vitest coverage report; 80% coverage threshold for the
+  feature unit under development MUST be met before task
+  sign-off.
 - **Component development**: Storybook (`npm run storybook`)
   is the primary environment for building and documenting
   components in isolation.
@@ -236,4 +255,4 @@ reduce manual review burden.
 - Every PR and spec analysis (`/speckit.analyze`) MUST verify
   adherence to all MUST-level principles.
 
-**Version**: 1.0.0 | **Ratified**: 2026-02-22 | **Last Amended**: 2026-02-22
+**Version**: 1.1.0 | **Ratified**: 2026-02-22 | **Last Amended**: 2026-04-12
