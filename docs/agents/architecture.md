@@ -4,7 +4,7 @@
 
 - React 19 (functional component SSR)
 - TypeScript (`strict: true`)
-- SCSS (Sass) + CSS Modules
+- SCSS (Dart Sass) + CSS Modules
 - Vitest
 - Storybook
 - ESLint + Stylelint + Prettier
