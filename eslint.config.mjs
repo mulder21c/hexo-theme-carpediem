@@ -4,7 +4,6 @@ import { defineConfig } from "eslint/config";
 import eslintConfigPrettier from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
 import jsxA11y from "eslint-plugin-jsx-a11y";
-import prettier from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -39,7 +38,6 @@ export default defineConfig(
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}"],
     plugins: {
-      prettier: prettier,
       react: react,
       import: importPlugin,
     },
@@ -63,8 +61,6 @@ export default defineConfig(
       },
     },
     rules: {
-      // Prettier integration
-      "prettier/prettier": "error",
       // TypeScript unused vars - ignore variables starting with _
       "@typescript-eslint/no-unused-vars": [
         "error",
