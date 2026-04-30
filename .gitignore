@@ -116,6 +116,7 @@ web_modules/
 
 # dotenv environment variable files
 .env
+.env*
 .env.development.local
 .env.test.local
 .env.production.local
@@ -132,6 +133,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+build/
 
 # Gatsby files
 .cache/
@@ -178,6 +180,7 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
+storybook-static/
 
 ### VisualStudioCode ###
 .vscode/*
@@ -192,6 +195,9 @@ dist
 
 # Built Visual Studio Code Extensions
 *.vsix
+.idea/
+*.tmp
+*.swp
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
