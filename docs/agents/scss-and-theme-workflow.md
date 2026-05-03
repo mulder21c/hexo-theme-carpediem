@@ -6,7 +6,7 @@ These rules apply to `*.scss` files in component/layout modules and global theme
 
 ## CSS Modules and class naming
 
-- Use one BEM block per module (`block__element`, `block--modifier`,`block__element--modifier`,), nested with Sass `&` from the block root.
+- Use one BEM block per module (`block`, `block__element`, `block--modifier`,`block__element--modifier`,), nested with Sass `&` from the block root.
 - Strings passed to `classNames.bind(styles)` in TSX must match the class selectors defined in that module stylesheet.
 
 ## Color Token Source of Truth
