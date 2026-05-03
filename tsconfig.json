@@ -40,6 +40,7 @@
   "include": [
     "layout/**/*.tsx",
     "layout/**/*.d.ts",
+    "components/**/*.ts",
     "components/**/*.tsx",
     "components/**/*.d.ts",
     "global.d.ts"

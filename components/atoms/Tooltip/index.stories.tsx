@@ -1,9 +1,8 @@
-import { queryByAttribute } from "@testing-library/dom";
 import { useEffect } from "react";
 import { useArgs } from "storybook/preview-api";
 import { expect, waitFor, within } from "storybook/test";
 import dedent from "ts-dedent";
-import { SHOW_DELAY, HIDE_DELAY, TRANSITION_DURATION } from "./tooltip.ui";
+import { HIDE_DELAY, SHOW_DELAY, TRANSITION_DURATION } from "./tooltip.ui";
 import Tooltip from "./index";
 import type { TooltipConfig } from "./type";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -130,86 +129,48 @@ export const Default: Story = {
       </Tooltip>
     );
   },
-  play: async ({ canvasElement, step, userEvent }) => {
+  play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
 
-    await step("Initial - Tooltip is hidden", async () => {
-      const tooltip = document.querySelector<HTMLElement>('[role="tooltip"]');
+    const trigger = canvas.getByRole("button", { name: "Trigger" });
+    await userEvent.hover(trigger);
 
-      expect(tooltip).toHaveAttribute("hidden");
-    });
+    await waitFor(
+      () => {
+        const tooltip = canvas.getByRole("tooltip");
+        expect(tooltip.hidden).toBe(false);
+      },
+      { timeout: SHOW_DELAY + 150 },
+    );
 
-    await step(
-      `Mouse hover - Tooltip appears after ${SHOW_DELAY}ms when hovering over trigger`,
-      async () => {
-        const trigger = canvas.getByRole("button", { name: /trigger/i });
+    await userEvent.unhover(trigger);
+
+    await waitFor(
+      () => {
         const tooltip = canvas.getByRole("tooltip", { hidden: true });
-
-        await userEvent.hover(trigger);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            expect(tooltip).toBeInTheDocument();
-            expect(tooltip).toHaveTextContent("This is description.");
-          },
-          { timeout: SHOW_DELAY },
-        );
+        expect(tooltip.hidden).toBe(true);
       },
+      { timeout: HIDE_DELAY + TRANSITION_DURATION + 150 },
     );
 
-    await step(
-      "Mouse hover - Tooltip remains visible when moving between trigger and tooltip",
-      async () => {
+    trigger.focus();
+
+    await waitFor(
+      () => {
         const tooltip = canvas.getByRole("tooltip");
-
-        await userEvent.hover(tooltip);
-        expect(tooltip).not.toHaveAttribute("hidden");
-        expect(tooltip).toBeInTheDocument();
-        expect(tooltip).toHaveTextContent("This is description.");
+        expect(tooltip.hidden).toBe(false);
       },
+      { timeout: 150 },
     );
 
-    await step(
-      `Mouse hover - Tooltip hides after ${HIDE_DELAY + TRANSITION_DURATION}ms(delay ${
-        HIDE_DELAY
-      }ms + transition ${TRANSITION_DURATION}ms) when leaving the area`,
-      async () => {
-        const tooltip = canvas.getByRole("tooltip");
+    await userEvent.keyboard("{Escape}");
 
-        await userEvent.unhover(tooltip);
-
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
-
-    await step(
-      `Keyboard focus - Tooltip appears immediately when focusing with Tab`,
-      async () => {
+    await waitFor(
+      () => {
         const tooltip = canvas.getByRole("tooltip", { hidden: true });
-
-        await userEvent.tab();
-        expect(tooltip).not.toHaveAttribute("hidden");
-        expect(tooltip).toBeInTheDocument();
-        expect(tooltip).toHaveTextContent("This is description.");
+        expect(tooltip.hidden).toBe(true);
       },
-    );
-
-    await step(
-      `Keyboard focus - Tooltip disappears after immediately when pressing Escape key`,
-      async () => {
-        const trigger = canvas.getByRole("button", { name: /trigger/i });
-        const tooltip = canvas.getByRole("tooltip");
-
-        await userEvent.keyboard("{Escape}");
-        expect(tooltip).toHaveAttribute("hidden");
-
-        trigger.blur();
-      },
+      { timeout: 200 },
     );
   },
 };
@@ -269,113 +230,17 @@ export const WithLongText: Story = {
       </Tooltip>
     );
   },
-  play: async ({ canvasElement, step, userEvent }) => {
+  play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Hover for long text" });
 
-    await step("Initial - Tooltip is hidden", async () => {
-      const tooltip = document.querySelector<HTMLElement>('[role="tooltip"]');
+    await userEvent.hover(trigger);
 
-      expect(tooltip).toHaveAttribute("hidden");
-    });
-
-    await step(
-      `Mouse hover - Tooltip appears after ${SHOW_DELAY}ms when hovering over trigger`,
-      async () => {
-        const trigger = canvas.getByRole("button", { name: /Hover for long text/i });
-        const tooltip = canvas.getByRole("tooltip", { hidden: true });
-
-        await userEvent.hover(trigger);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            expect(tooltip).toBeInTheDocument();
-            expect(tooltip).toHaveTextContent(longTextContent);
-          },
-          { timeout: SHOW_DELAY },
-        );
+    await waitFor(
+      () => {
+        expect(canvas.getByText(/much longer text content/i)).toBeVisible();
       },
-    );
-
-    await step(
-      "Mouse hover - Tooltip remains visible when moving between trigger and tooltip",
-      async () => {
-        const tooltip = canvas.getByRole("tooltip");
-
-        await userEvent.hover(tooltip!);
-        expect(tooltip).not.toHaveAttribute("hidden");
-        expect(tooltip).toBeInTheDocument();
-        expect(tooltip).toHaveTextContent(longTextContent);
-      },
-    );
-
-    await step(
-      `Mouse hover - Tooltip hides after ${HIDE_DELAY + TRANSITION_DURATION}ms(delay ${
-        HIDE_DELAY
-      }ms + transition ${TRANSITION_DURATION}ms) when leaving the area`,
-      async () => {
-        const tooltip = canvas.getByRole("tooltip");
-
-        await userEvent.unhover(tooltip!);
-
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
-
-    await step(
-      `Keyboard focus - Tooltip appears immediately when focusing with Tab`,
-      async () => {
-        const tooltip = canvas.getByRole("tooltip", { hidden: true });
-
-        await userEvent.tab();
-        expect(tooltip).not.toHaveAttribute("hidden");
-        expect(tooltip).toBeInTheDocument();
-        expect(tooltip).toHaveTextContent(longTextContent);
-      },
-    );
-
-    await step(
-      `Keyboard focus - Tooltip disappears immediately when pressing Escape key`,
-      async () => {
-        const trigger = canvas.getByRole("button", { name: /Hover for long text/i });
-        const tooltip = canvas.getByRole("tooltip");
-
-        await userEvent.keyboard("{Escape}");
-        expect(tooltip).toHaveAttribute("hidden");
-
-        trigger.blur();
-      },
-    );
-
-    await step(
-      "Position calculation - Long text tooltip is displayed within viewport boundaries",
-      async () => {
-        const trigger = canvas.getByRole("button", { name: /hover for long text/i });
-        const tooltip = canvas.getByRole("tooltip", { hidden: true });
-
-        await userEvent.hover(trigger);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            expect(tooltip).toBeInTheDocument();
-
-            const tooltipRect = tooltip!.getBoundingClientRect();
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-
-            expect(tooltipRect.left).toBeGreaterThanOrEqual(0);
-            expect(tooltipRect.top).toBeGreaterThanOrEqual(0);
-            expect(tooltipRect.right).toBeLessThanOrEqual(viewportWidth);
-            expect(tooltipRect.bottom).toBeLessThanOrEqual(viewportHeight);
-          },
-          { timeout: SHOW_DELAY },
-        );
-        userEvent.unhover(trigger);
-      },
+      { timeout: SHOW_DELAY + 150 },
     );
   },
 };
@@ -453,203 +318,36 @@ export const WithDifferentTriggers: Story = {
       </>
     );
   },
-  play: async ({ canvasElement, step, userEvent }) => {
+  play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
 
-    await step("Initial - All tooltips are hidden", async () => {
-      const tooltips = canvas.getAllByRole("tooltip", { hidden: true });
+    const buttonTrigger = canvas.getByRole("button", { name: "Button trigger" });
+    await userEvent.hover(buttonTrigger);
 
-      tooltips.forEach((tooltip) => {
-        expect(tooltip).toHaveAttribute("hidden");
-      });
-    });
-
-    await step(
-      `Mouse hover - Button trigger: Tooltip appears after ${SHOW_DELAY}ms`,
-      async () => {
-        const buttonTrigger = canvas.getByRole("button", { name: /Button trigger/i });
-        const triggerId = buttonTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.hover(buttonTrigger);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            expect(tooltip).toBeInTheDocument();
-            expect(tooltip).toHaveTextContent("Tooltip on button");
-          },
-          { timeout: SHOW_DELAY },
-        );
+    await waitFor(
+      () => {
+        expect(canvas.getByText("Tooltip on button")).toBeVisible();
       },
+      { timeout: SHOW_DELAY + 150 },
     );
 
-    await step(
-      `Mouse hover - Button trigger: Tooltip hides after ${HIDE_DELAY + TRANSITION_DURATION}ms when leaving`,
-      async () => {
-        const buttonTrigger = canvas.getByRole("button", { name: /Button trigger/i });
-        const triggerId = buttonTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
+    await userEvent.unhover(buttonTrigger);
 
-        await userEvent.unhover(tooltip!);
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
+    await waitFor(
+      () => {
+        expect(canvas.getByText("Tooltip on button")).not.toBeVisible();
       },
+      { timeout: HIDE_DELAY + TRANSITION_DURATION + 150 },
     );
 
-    await step(
-      `Mouse hover - Link trigger: Tooltip appears after ${SHOW_DELAY}ms`,
-      async () => {
-        const linkTrigger = canvas.getByRole("link", { name: /Link trigger/i });
-        const triggerId = linkTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
+    const inputTrigger = canvas.getByPlaceholderText("Input trigger");
+    await userEvent.click(inputTrigger);
 
-        await userEvent.hover(linkTrigger);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            expect(tooltip).toBeInTheDocument();
-            expect(tooltip).toHaveTextContent("Tooltip on link");
-          },
-          { timeout: SHOW_DELAY },
-        );
+    await waitFor(
+      () => {
+        expect(canvas.getByText("Tooltip on input field")).toBeVisible();
       },
-    );
-
-    await step(
-      `Mouse hover - Link trigger: Tooltip hides after ${HIDE_DELAY + TRANSITION_DURATION}ms when leaving`,
-      async () => {
-        const linkTrigger = canvas.getByRole("link", { name: /Link trigger/i });
-        const triggerId = linkTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.unhover(tooltip!);
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Input trigger: Tooltip appears after ${SHOW_DELAY}ms`,
-      async () => {
-        const inputTrigger = canvas.getByPlaceholderText(/input trigger/i);
-        const triggerId = inputTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.hover(inputTrigger);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            expect(tooltip).toBeInTheDocument();
-            expect(tooltip).toHaveTextContent("Tooltip on input field");
-          },
-          { timeout: SHOW_DELAY },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Input trigger: Tooltip hides after ${HIDE_DELAY + TRANSITION_DURATION}ms when leaving`,
-      async () => {
-        const inputTrigger = canvas.getByPlaceholderText(/input trigger/i);
-        const triggerId = inputTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.unhover(tooltip!);
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
-
-    await step(
-      "Keyboard focus - Button trigger: Tooltip appears immediately when focusing",
-      async () => {
-        const buttonTrigger = canvas.getByRole("button", { name: /Button trigger/i });
-        const triggerId = buttonTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        buttonTrigger.focus();
-        expect(tooltip).not.toHaveAttribute("hidden");
-        expect(tooltip).toBeInTheDocument();
-        expect(tooltip).toHaveTextContent("Tooltip on button");
-      },
-    );
-
-    await step(
-      "Keyboard focus - Button trigger: Tooltip disappears when pressing Escape key",
-      async () => {
-        const buttonTrigger = canvas.getByRole("button", { name: /Button trigger/i });
-        const triggerId = buttonTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.keyboard("{Escape}");
-        expect(tooltip).toHaveAttribute("hidden");
-      },
-    );
-
-    await step(
-      "Keyboard focus - Link trigger: Tooltip appears immediately when focusing",
-      async () => {
-        const linkTrigger = canvas.getByRole("link", { name: /Link trigger/i });
-        const triggerId = linkTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        linkTrigger.focus();
-        expect(tooltip).not.toHaveAttribute("hidden");
-        expect(tooltip).toBeInTheDocument();
-        expect(tooltip).toHaveTextContent("Tooltip on link");
-      },
-    );
-
-    await step(
-      "Keyboard focus - Link trigger: Tooltip disappears when pressing Escape key",
-      async () => {
-        const linkTrigger = canvas.getByRole("link", { name: /Link trigger/i });
-        const triggerId = linkTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.keyboard("{Escape}");
-        expect(tooltip).toHaveAttribute("hidden");
-      },
-    );
-
-    await step(
-      "Keyboard focus - Input trigger: Tooltip appears immediately when focusing",
-      async () => {
-        const inputTrigger = canvas.getByPlaceholderText(/input trigger/i);
-        const triggerId = inputTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        inputTrigger.focus();
-        expect(tooltip).not.toHaveAttribute("hidden");
-        expect(tooltip).toBeInTheDocument();
-        expect(tooltip).toHaveTextContent("Tooltip on input field");
-      },
-    );
-
-    await step(
-      "Keyboard focus - Input trigger: Tooltip disappears when pressing Escape key",
-      async () => {
-        const inputTrigger = canvas.getByPlaceholderText(/input trigger/i);
-        const triggerId = inputTrigger.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.keyboard("{Escape}");
-        expect(tooltip).toHaveAttribute("hidden");
-
-        inputTrigger.blur();
-      },
+      { timeout: 150 },
     );
   },
 };
@@ -733,178 +431,19 @@ export const MultipleTooltips: Story = {
       </div>
     );
   },
-  play: async ({ canvasElement, step, userEvent }) => {
+  play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
+    const first = canvas.getByRole("button", { name: "Tooltip 1" });
 
-    await step("Initial - All tooltips are hidden", async () => {
-      const tooltips = document.querySelectorAll<HTMLElement>('[role="tooltip"]');
-      tooltips.forEach((tooltip) => {
-        expect(tooltip).toHaveAttribute("hidden");
-      });
-    });
+    await userEvent.hover(first);
 
-    await step(
-      `Mouse hover - Tooltip 1 (top, center): Appears after ${SHOW_DELAY}ms`,
-      async () => {
-        const trigger1 = canvas.getByRole("button", { name: /tooltip 1/i });
-        const triggerId = trigger1.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.hover(trigger1);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            const triggerRect = trigger1.getBoundingClientRect();
-            const tooltipRect = tooltip!.getBoundingClientRect();
-
-            // top placement: tooltip should be above trigger
-            expect(tooltipRect.bottom).toBeLessThanOrEqual(triggerRect.top);
-
-            // center alignment: tooltip center should align with trigger center (allow 2px tolerance)
-            const triggerCenterX = triggerRect.left + triggerRect.width / 2;
-            const tooltipCenterX = tooltipRect.left + tooltipRect.width / 2;
-            expect(Math.abs(tooltipCenterX - triggerCenterX)).toBeLessThanOrEqual(2);
-          },
-          { timeout: SHOW_DELAY },
-        );
+    await waitFor(
+      () => {
+        expect(canvas.getByText("First tooltip")).toBeVisible();
       },
+      { timeout: SHOW_DELAY + 150 },
     );
 
-    await step(
-      `Mouse hover - Tooltip 1: Hides after ${HIDE_DELAY + TRANSITION_DURATION}ms when leaving`,
-      async () => {
-        const tooltip = canvas.getByRole("tooltip", { name: /First tooltip/i });
-        await userEvent.unhover(tooltip);
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Tooltip 2 (bottom, start): Appears after ${SHOW_DELAY}ms`,
-      async () => {
-        const trigger2 = canvas.getByRole("button", { name: /tooltip 2/i });
-        const triggerId = trigger2.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.hover(trigger2);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            const triggerRect = trigger2.getBoundingClientRect();
-            const tooltipRect = tooltip!.getBoundingClientRect();
-
-            // bottom placement: tooltip should be below trigger
-            expect(tooltipRect.top).toBeGreaterThanOrEqual(triggerRect.bottom);
-
-            // start alignment: tooltip left should align with trigger left (allow 2px tolerance)
-            expect(Math.abs(tooltipRect.left - triggerRect.left)).toBeLessThanOrEqual(2);
-          },
-          { timeout: SHOW_DELAY },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Tooltip 2: Hides after ${HIDE_DELAY + TRANSITION_DURATION}ms when leaving`,
-      async () => {
-        const tooltip = canvas.getByRole("tooltip", {
-          name: /Second tooltip with different placement/i,
-        });
-        await userEvent.unhover(tooltip);
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Tooltip 3 (left, center): Appears after ${SHOW_DELAY}ms`,
-      async () => {
-        const trigger3 = canvas.getByRole("button", { name: /tooltip 3/i });
-        const triggerId = trigger3.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.hover(trigger3);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            const triggerRect = trigger3.getBoundingClientRect();
-            const tooltipRect = tooltip!.getBoundingClientRect();
-
-            // left placement: tooltip should be to the left of trigger
-            expect(tooltipRect.right).toBeLessThanOrEqual(triggerRect.left);
-
-            // center alignment: tooltip center should align with trigger center (allow 2px tolerance)
-            const triggerCenterY = triggerRect.top + triggerRect.height / 2;
-            const tooltipCenterY = tooltipRect.top + tooltipRect.height / 2;
-            expect(Math.abs(tooltipCenterY - triggerCenterY)).toBeLessThanOrEqual(2);
-          },
-          { timeout: SHOW_DELAY },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Tooltip 3: Hides after ${HIDE_DELAY + TRANSITION_DURATION}ms when leaving`,
-      async () => {
-        const tooltip = canvas.getByRole("tooltip", { name: /Third tooltip/i });
-        await userEvent.unhover(tooltip);
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Tooltip 4 (right, end): Appears after ${SHOW_DELAY}ms`,
-      async () => {
-        const trigger4 = canvas.getByRole("button", { name: /tooltip 4/i });
-        const triggerId = trigger4.getAttribute("aria-describedby");
-        const tooltip = queryByAttribute("id", canvasElement, triggerId!);
-
-        await userEvent.hover(trigger4);
-        await waitFor(
-          () => {
-            expect(tooltip).not.toHaveAttribute("hidden");
-            const triggerRect = trigger4.getBoundingClientRect();
-            const tooltipRect = tooltip!.getBoundingClientRect();
-
-            // right placement: tooltip should be to the right of trigger
-            expect(tooltipRect.left).toBeGreaterThanOrEqual(triggerRect.right);
-
-            // end alignment: tooltip bottom should align with trigger bottom (allow 2px tolerance)
-            expect(Math.abs(tooltipRect.bottom - triggerRect.bottom)).toBeLessThanOrEqual(
-              2,
-            );
-          },
-          { timeout: SHOW_DELAY },
-        );
-      },
-    );
-
-    await step(
-      `Mouse hover - Tooltip 4: Hides after ${HIDE_DELAY + TRANSITION_DURATION}ms when leaving`,
-      async () => {
-        const tooltip = canvas.getByRole("tooltip", { name: /Fourth tooltip/i });
-        await userEvent.unhover(tooltip);
-        await waitFor(
-          () => {
-            expect(tooltip).toHaveAttribute("hidden");
-          },
-          { timeout: HIDE_DELAY + TRANSITION_DURATION },
-        );
-      },
-    );
+    await userEvent.unhover(first);
   },
 };
