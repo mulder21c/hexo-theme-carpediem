@@ -1,0 +1,117 @@
+@use "@source/css/helpers/mixins" as *;
+
+@layer atoms {
+  .textfield {
+    --textfield-min-width: 12rem;
+    --textfield-height: 2.75rem;
+    --textfield-padding-x: var(--spacing-lg);
+    --textfield-gap: var(--spacing-sm);
+    --textfield-icon-size: 1rem;
+    --textfield-radius: var(--border-radius-md);
+    --textfield-focus-ring-radius: var(--border-radius-md);
+
+    display: inline-flex;
+    width: 100%;
+    max-width: 100%;
+    color: var(--textfield-text);
+    border-radius: var(--textfield-focus-ring-radius);
+
+    &:has(&__input:focus) {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    &--small {
+      --textfield-height: 2.25rem;
+      --textfield-padding-x: var(--spacing-sm);
+      --textfield-gap: var(--spacing-xs);
+      --textfield-icon-size: 0.875rem;
+      @include typo("sm", 400, label);
+    }
+
+    &--medium {
+      --textfield-height: 2.75rem;
+      --textfield-padding-x: var(--spacing-md);
+      --textfield-gap: var(--spacing-sm);
+      --textfield-icon-size: 1rem;
+      @include typo("md", 400, label);
+    }
+
+    &--large {
+      --textfield-height: 3.25rem;
+      --textfield-padding-x: var(--spacing-lg);
+      --textfield-gap: var(--spacing-md);
+      --textfield-icon-size: 1.125rem;
+      --textfield-radius: var(--border-radius-lg);
+      @include typo("lg", 400, label);
+    }
+
+    &__field {
+      display: inline-flex;
+      flex: 1 1 auto;
+      gap: var(--textfield-gap);
+      align-items: center;
+      min-width: var(--textfield-min-width);
+      min-height: var(--textfield-height);
+      padding-inline: var(--textfield-padding-x);
+      color: var(--textfield-text);
+      background-color: var(--textfield-surface);
+      border: 2px solid var(--textfield-border);
+      border-radius: var(--textfield-radius);
+    }
+
+    &--underlined &__field {
+      border-width: 0 0 2px;
+      border-radius: 0;
+    }
+
+    &__input {
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      padding: 0;
+      padding-block: 0;
+      padding-inline: 0;
+      margin: 0;
+      font: inherit;
+      line-height: inherit;
+      color: var(--textfield-text);
+      appearance: none;
+      outline: 0;
+      background-color: transparent;
+      border: 0;
+
+      &::placeholder {
+        color: var(--textfield-placeholder);
+        opacity: 1;
+      }
+    }
+
+    &__icon {
+      flex: 0 0 var(--textfield-icon-size);
+      width: var(--textfield-icon-size);
+      height: var(--textfield-icon-size);
+      color: var(--textfield-icon);
+    }
+
+    &--readonly &__input {
+      cursor: default;
+    }
+
+    &--disabled &__field {
+      color: var(--textfield-text-disabled);
+      cursor: not-allowed;
+      background-color: var(--textfield-surface-disabled);
+      border-color: var(--textfield-border-disabled);
+    }
+
+    &--disabled &__input {
+      color: var(--textfield-text-disabled);
+      cursor: not-allowed;
+    }
+
+    &:has([aria-invalid="true"]):not(&--disabled) &__field {
+      border-color: var(--textfield-border-invalid);
+    }
+  }
+}

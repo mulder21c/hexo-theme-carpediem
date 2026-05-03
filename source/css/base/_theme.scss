@@ -75,6 +75,17 @@
   --switch-track-disabled: #{color("neutral", 500)};
   --switch-surface: #{color("neutral", 50)};
 
+  // TextField colors
+  --textfield-border: #{color("green", 600)};
+  --textfield-border-invalid: #{color("scarlet", 600)};
+  --textfield-border-disabled: #{color("neutral", 500)};
+  --textfield-surface: var(--light);
+  --textfield-surface-disabled: #{color("neutral", 100)};
+  --textfield-text: var(--text-primary);
+  --textfield-text-disabled: #{color("neutral", 600)};
+  --textfield-placeholder: #{color("neutral", 600)};
+  --textfield-icon: #{color("neutral", 650)};
+
   @media (prefers-color-scheme: dark) {
     --bg-color-primary: #{color("bluegray", 900)};
     --white: #{color("black")};
@@ -130,6 +141,17 @@
     --switch-track-on: #{color("mintgreen", 450)};
     --switch-track-disabled: #{color("neutral", 650)};
     --switch-surface: #{color("bluegray", 900)};
+
+    // TextField colors
+    --textfield-border: #{color("mintgreen", 450)};
+    --textfield-border-invalid: #{color("scarlet", 300)};
+    --textfield-border-disabled: #{color("neutral", 650)};
+    --textfield-surface: var(--light);
+    --textfield-surface-disabled: #{color("bluegray", 850)};
+    --textfield-text: var(--text-primary);
+    --textfield-text-disabled: #{color("neutral", 650)};
+    --textfield-placeholder: #{color("neutral", 400)};
+    --textfield-icon: #{color("neutral", 300)};
   }
 
   @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
@@ -168,5 +190,14 @@
     --switch-track-on: #{color("mintgreen", 300)};
     --switch-track-disabled: #{color("neutral", 650)};
     --switch-surface: #{color("bluegray", 900)};
+
+    // TextField colors
+    --textfield-border: #{color("mintgreen", 300)};
+    --textfield-border-invalid: #{color("scarlet", 200)};
+    --textfield-border-disabled: #{color("neutral", 650)};
+    --textfield-surface-disabled: #{color("bluegray", 850)};
+    --textfield-text-disabled: #{color("neutral", 500)};
+    --textfield-placeholder: #{color("neutral", 300)};
+    --textfield-icon: #{color("neutral", 250)};
   }
 }

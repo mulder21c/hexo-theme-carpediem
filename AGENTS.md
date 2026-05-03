@@ -19,3 +19,11 @@ This repository builds a React 19 + TypeScript SSR theme for Hexo blogs.
 - [Accessibility Rules](docs/agents/accessibility.md)
 - [Linting and Formatting Rules](docs/agents/linting-and-formatting.md)
 - [Git Workflow and Safety Rules](docs/agents/git-workflow-and-safety.md)
+
+## Active Technologies
+
+- TypeScript 5.x with React 19.x JSX + React 19.x, classnames, feather-icons-react, SCSS Modules, HexoContext logger (001-textfield-component)
+
+## Recent Changes
+
+- 001-textfield-component: Added TypeScript 5.x with React 19.x JSX + React 19.x, classnames, feather-icons-react, SCSS Modules, HexoContext logger
