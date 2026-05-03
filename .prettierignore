@@ -35,6 +35,7 @@ storybook-static/
 coverage/
 rulesync.jsonc
 source/js/ui.js.metadata.json
+docs/**
 
 # Hexo
 db.json

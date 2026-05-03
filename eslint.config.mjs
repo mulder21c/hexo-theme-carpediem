@@ -24,6 +24,7 @@ export default defineConfig(
       ".cursor/**",
       ".specify/**",
       "specs/**",
+      "docs/**",
     ],
   },
   // ESLint Recommended Rules
