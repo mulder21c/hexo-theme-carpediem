@@ -10,12 +10,14 @@ function createTooltipDom({
   tooltipId,
   placement = "top",
   alignment = "center",
+  purpose = "description",
   triggerText = "Trigger",
 }: {
   triggerId: string;
   tooltipId: string;
   placement?: "top" | "bottom" | "left" | "right";
   alignment?: "start" | "center" | "end";
+  purpose?: "description" | "label";
   triggerText?: string;
 }): {
   trigger: HTMLButtonElement;
@@ -33,8 +35,13 @@ function createTooltipDom({
   tooltip.setAttribute("data-trigger", triggerId);
   tooltip.setAttribute("data-placement", placement);
   tooltip.setAttribute("data-alignment", alignment);
-  tooltip.hidden = true;
-  tooltip.style.opacity = "0";
+  tooltip.setAttribute("data-purpose", purpose);
+
+  if (purpose === "label") {
+    tooltip.classList.add("visually-hidden");
+  } else {
+    tooltip.hidden = true;
+  }
   tooltip.textContent = "Tooltip content";
 
   const arrow = document.createElement("span");
@@ -113,7 +120,9 @@ describe("TooltipManager UI", () => {
     expect(tooltip.hasAttribute("data-trigger")).toBe(false);
     expect(tooltip.hasAttribute("data-placement")).toBe(false);
     expect(tooltip.hasAttribute("data-alignment")).toBe(false);
+    expect(tooltip.hasAttribute("data-purpose")).toBe(false);
     expect(trigger).toHaveAttribute("aria-describedby", "tooltip-init");
+    expect(trigger).not.toHaveAttribute("aria-labelledby");
     expect(tooltip.style.transition).toContain(`opacity ${TRANSITION_DURATION}ms`);
   });
 
@@ -127,6 +136,175 @@ describe("TooltipManager UI", () => {
     manager = new TooltipManager();
 
     expect(trigger).toHaveAttribute("aria-describedby", "existing-describedby");
+  });
+
+  it("links trigger with aria-labelledby and clears data-purpose for label purpose", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-label-init",
+      tooltipId: "tooltip-label-init",
+      purpose: "label",
+    });
+
+    manager = new TooltipManager();
+
+    expect(trigger).toHaveAttribute("aria-labelledby", "tooltip-label-init");
+    expect(trigger).not.toHaveAttribute("aria-describedby");
+    expect(tooltip.hasAttribute("data-purpose")).toBe(false);
+    expect(tooltip).toHaveClass("visually-hidden");
+    expect(tooltip.hidden).toBe(false);
+  });
+
+  it("keeps existing aria-labelledby on trigger during initialization for label purpose", () => {
+    const { trigger } = createTooltipDom({
+      triggerId: "trigger-labelledby",
+      tooltipId: "tooltip-labelledby",
+      purpose: "label",
+    });
+    trigger.setAttribute("aria-labelledby", "existing-labelledby");
+
+    manager = new TooltipManager();
+
+    expect(trigger).toHaveAttribute("aria-labelledby", "existing-labelledby");
+    expect(trigger).not.toHaveAttribute("aria-describedby");
+  });
+
+  it("toggles visually-hidden class without using hidden attribute on label purpose show", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-label-show",
+      tooltipId: "tooltip-label-show",
+      purpose: "label",
+    });
+    manager = new TooltipManager();
+
+    expect(tooltip).toHaveClass("visually-hidden");
+    expect(tooltip.hidden).toBe(false);
+
+    manager.showTooltip(trigger, "keyboard");
+
+    expect(tooltip).not.toHaveClass("visually-hidden");
+    expect(tooltip.hidden).toBe(false);
+    expect(tooltip.style.opacity).toBe("1");
+  });
+
+  it("re-applies visually-hidden class without touching hidden attribute on immediate hide for label purpose", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-label-escape",
+      tooltipId: "tooltip-label-escape",
+      purpose: "label",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "keyboard");
+    expect(tooltip).not.toHaveClass("visually-hidden");
+
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+
+    expect(tooltip).toHaveClass("visually-hidden");
+    expect(tooltip.hidden).toBe(false);
+    expect(tooltip.style.opacity).toBe("0");
+  });
+
+  it("re-applies visually-hidden class after hide delay and transition for label purpose", () => {
+    vi.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-label-leave",
+      tooltipId: "tooltip-label-leave",
+      purpose: "label",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "mouse");
+    expect(tooltip).not.toHaveClass("visually-hidden");
+
+    trigger.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+
+    vi.advanceTimersByTime(HIDE_DELAY - 1);
+    expect(tooltip).not.toHaveClass("visually-hidden");
+
+    vi.advanceTimersByTime(1 + TRANSITION_DURATION);
+    expect(tooltip).toHaveClass("visually-hidden");
+    expect(tooltip.hidden).toBe(false);
+  });
+
+  it("restores data-purpose and visually-hidden class on destroy for label purpose tooltip", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-label-destroy",
+      tooltipId: "tooltip-label-destroy",
+      purpose: "label",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "keyboard");
+    expect(tooltip).not.toHaveClass("visually-hidden");
+
+    manager.destroy();
+
+    expect(tooltip).toHaveClass("visually-hidden");
+    expect(tooltip.hidden).toBe(false);
+    expect(tooltip).toHaveAttribute("data-purpose", "label");
+  });
+
+  it("restores tooltip and arrow DOM state on destroy", () => {
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-destroy-restore",
+      tooltipId: "tooltip-destroy-restore",
+      placement: "bottom",
+      alignment: "end",
+    });
+    const arrow = tooltip.querySelector("[data-arrow]") as HTMLElement;
+    const originalTooltipAttributes = {
+      hidden: tooltip.getAttribute("hidden"),
+      component: tooltip.getAttribute("data-component"),
+      trigger: tooltip.getAttribute("data-trigger"),
+      placement: tooltip.getAttribute("data-placement"),
+      alignment: tooltip.getAttribute("data-alignment"),
+      purpose: tooltip.getAttribute("data-purpose"),
+    };
+
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "keyboard");
+
+    expect(tooltip).not.toHaveAttribute("hidden");
+    expect(tooltip).toHaveAttribute("style");
+    expect(arrow).toHaveAttribute("style");
+
+    manager.destroy();
+
+    expect(tooltip).not.toHaveClass("visually-hidden");
+    expect(tooltip).not.toHaveAttribute("style");
+    expect(tooltip.getAttribute("hidden")).toBe(originalTooltipAttributes.hidden);
+    expect(tooltip.getAttribute("data-component")).toBe(
+      originalTooltipAttributes.component,
+    );
+    expect(tooltip.getAttribute("data-trigger")).toBe(originalTooltipAttributes.trigger);
+    expect(tooltip.getAttribute("data-placement")).toBe(
+      originalTooltipAttributes.placement,
+    );
+    expect(tooltip.getAttribute("data-alignment")).toBe(
+      originalTooltipAttributes.alignment,
+    );
+    expect(tooltip.getAttribute("data-purpose")).toBe(originalTooltipAttributes.purpose);
+    expect(arrow).not.toHaveAttribute("style");
+  });
+
+  it("clears pending hide transition when destroyed", () => {
+    vi.useFakeTimers();
+    const { trigger, tooltip } = createTooltipDom({
+      triggerId: "trigger-destroy-transition",
+      tooltipId: "tooltip-destroy-transition",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(trigger, "mouse");
+    manager.hideTooltip(trigger, false);
+    manager.destroy();
+
+    manager = new TooltipManager();
+    manager.showTooltip(trigger, "mouse");
+
+    vi.advanceTimersByTime(TRANSITION_DURATION);
+
+    expect(tooltip.hidden).toBe(false);
   });
 
   it("shows tooltip after mouse hover delay", () => {
@@ -785,6 +963,32 @@ describe("TooltipManager UI", () => {
     vi.advanceTimersByTime(TRANSITION_DURATION);
 
     expect(first.tooltip.hidden).toBe(true);
+    expect(second.tooltip.hidden).toBe(false);
+  });
+
+  it("re-applies visually-hidden to label tooltip in transition callback when another tooltip becomes active", () => {
+    vi.useFakeTimers();
+    const first = createTooltipDom({
+      triggerId: "trigger-label-timeout-first",
+      tooltipId: "tooltip-label-timeout-first",
+      purpose: "label",
+    });
+    const second = createTooltipDom({
+      triggerId: "trigger-label-timeout-second",
+      tooltipId: "tooltip-label-timeout-second",
+    });
+    manager = new TooltipManager();
+
+    manager.showTooltip(first.trigger, "mouse");
+    expect(first.tooltip).not.toHaveClass("visually-hidden");
+
+    manager.hideTooltip(first.trigger, false);
+    manager.showTooltip(second.trigger, "mouse");
+
+    vi.advanceTimersByTime(TRANSITION_DURATION);
+
+    expect(first.tooltip).toHaveClass("visually-hidden");
+    expect(first.tooltip.hidden).toBe(false);
     expect(second.tooltip.hidden).toBe(false);
   });
 });

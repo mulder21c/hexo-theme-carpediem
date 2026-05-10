@@ -1,5 +1,6 @@
 export type Placement = "top" | "bottom" | "left" | "right";
 export type Alignment = "start" | "center" | "end";
+export type Purpose = "label" | "description";
 
 /**
  * Configuration options for a tooltip instance
@@ -27,23 +28,28 @@ export interface TooltipConfig {
   triggerId: string;
   /** The ID of the tooltip element */
   tooltipId?: string;
+  /** The purpose of the tooltip */
+  purpose?: Purpose;
 }
 
 export interface TooltipProps
-  extends Omit<TooltipConfig, "tooltipId">, React.HTMLAttributes<HTMLSpanElement> {}
+  extends
+    Omit<TooltipConfig, "tooltipId">,
+    Omit<React.HTMLAttributes<HTMLSpanElement>, "style"> {}
 
-export type TooltipContentProps = React.HTMLAttributes<HTMLSpanElement>;
+export type TooltipContentProps = Omit<React.HTMLAttributes<HTMLSpanElement>, "style">;
 
 // Internal types for TooltipManager UI logic
 export interface TooltipInternalConfig {
   triggerId: string;
   placement: Placement;
   alignment: Alignment;
+  purpose?: Purpose;
   tooltipId?: string;
   arrowElement: HTMLElement | null;
   triggerElement?: HTMLElement;
   handlers?: TooltipEventHandlers;
-  originalAttributes?: TooltipOriginalAttributes;
+  originalAttributes: TooltipOriginalAttributes;
   showTimer?: number;
   hideTimer?: number;
   touchTimer?: number;
@@ -84,10 +90,13 @@ export type ArrowStyleConfig = {
 };
 
 export type TooltipOriginalAttributes = {
-  component: string;
-  trigger: string;
-  placement: Placement;
-  alignment: Alignment;
+  tooltip: {
+    component: string;
+    trigger: string;
+    placement: Placement;
+    alignment: Alignment;
+    purpose: Purpose;
+  };
 };
 
 export type ElementDimensions = {

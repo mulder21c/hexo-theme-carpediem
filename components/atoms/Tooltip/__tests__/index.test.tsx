@@ -48,6 +48,30 @@ describe("Tooltip component", () => {
     expect(tooltip).toHaveAttribute("data-trigger", "trigger-b");
   });
 
+  it("prioritizes provided id as the tooltip id and aria-describedby target", () => {
+    render(
+      <Tooltip
+        id="custom-tooltip-description"
+        triggerId="trigger-custom-description"
+        placement="top"
+        alignment="center"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-custom-description" type="button">
+            Trigger
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Tooltip text</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const trigger = screen.getByRole("button", { name: "Trigger" });
+    const tooltip = screen.getByRole("tooltip", { hidden: true });
+
+    expect(tooltip).toHaveAttribute("id", "custom-tooltip-description");
+    expect(trigger).toHaveAttribute("aria-describedby", "custom-tooltip-description");
+  });
+
   it("renders tooltip content with default attributes", () => {
     render(
       <Tooltip triggerId="trigger-c" placement="top" alignment="start">
@@ -174,5 +198,201 @@ describe("Tooltip component", () => {
 
     expect(trigger).not.toHaveAttribute("aria-describedby", "old-describedby");
     expect(trigger).toHaveAttribute("aria-describedby", tooltip.getAttribute("id"));
+  });
+
+  it("defaults purpose to description and sets data-purpose accordingly", () => {
+    render(
+      <Tooltip triggerId="trigger-default-purpose" placement="top" alignment="center">
+        <Tooltip.Trigger>
+          <button id="trigger-default-purpose" type="button">
+            Trigger
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Default purpose</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const tooltip = screen.getByRole("tooltip", { hidden: true });
+
+    expect(tooltip).toHaveAttribute("data-purpose", "description");
+    expect(tooltip).toHaveAttribute("hidden");
+    expect(tooltip).not.toHaveClass("visually-hidden");
+  });
+
+  it("links trigger and tooltip with aria-labelledby when purpose is label", () => {
+    render(
+      <Tooltip
+        triggerId="trigger-label-aria"
+        placement="top"
+        alignment="center"
+        purpose="label"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-label-aria" type="button">
+            Trigger
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Add item</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const trigger = screen.getByRole("button");
+    const tooltip = screen.getByRole("tooltip");
+    const labelledBy = trigger.getAttribute("aria-labelledby");
+
+    expect(labelledBy).toBeTruthy();
+    expect(tooltip).toHaveAttribute("id", labelledBy ?? "");
+    expect(trigger).not.toHaveAttribute("aria-describedby");
+  });
+
+  it("uses provided id as the tooltip id and aria-labelledby target when purpose is label", () => {
+    render(
+      <Tooltip
+        id="custom-tooltip-label"
+        triggerId="trigger-custom-label"
+        placement="top"
+        alignment="center"
+        purpose="label"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-custom-label" type="button">
+            Trigger
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Add item</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const trigger = screen.getByRole("button");
+    const tooltip = screen.getByRole("tooltip");
+
+    expect(tooltip).toHaveAttribute("id", "custom-tooltip-label");
+    expect(trigger).toHaveAttribute("aria-labelledby", "custom-tooltip-label");
+    expect(trigger).not.toHaveAttribute("aria-describedby");
+  });
+
+  it("renders label purpose tooltip with visually-hidden class and without hidden attribute", () => {
+    render(
+      <Tooltip
+        triggerId="trigger-label-visual"
+        placement="top"
+        alignment="center"
+        purpose="label"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-label-visual" type="button">
+            Trigger
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Visible label</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const tooltip = screen.getByRole("tooltip");
+
+    expect(tooltip).not.toHaveAttribute("hidden");
+    expect(tooltip).toHaveClass("visually-hidden");
+    expect(tooltip).toHaveAttribute("data-purpose", "label");
+    expect(tooltip).toHaveTextContent("Visible label");
+  });
+
+  it("applies aria-labelledby to every valid child in Tooltip.Trigger when purpose is label", () => {
+    render(
+      <Tooltip
+        triggerId="trigger-label-multi"
+        placement="top"
+        alignment="center"
+        purpose="label"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-label-multi" type="button">
+            First trigger
+          </button>
+          <a href="#target">Second trigger</a>
+          plain text
+        </Tooltip.Trigger>
+        <Tooltip.Content>Label text</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const button = screen.getByRole("button");
+    const link = screen.getByRole("link");
+    const tooltip = screen.getByRole("tooltip");
+
+    expect(button).toHaveAttribute("aria-labelledby", tooltip.getAttribute("id"));
+    expect(button).not.toHaveAttribute("aria-describedby");
+    expect(link).toHaveAttribute("aria-labelledby", tooltip.getAttribute("id"));
+    expect(link).not.toHaveAttribute("aria-describedby");
+    expect(screen.getByText("plain text")).toBeInTheDocument();
+  });
+
+  it("exposes tooltip content as the trigger's accessible name when purpose is label", () => {
+    render(
+      <Tooltip
+        triggerId="trigger-label-name"
+        placement="top"
+        alignment="center"
+        purpose="label"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-label-name" type="button">
+            <span aria-hidden="true">+</span>
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Add item</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const button = screen.getByRole("button", { name: "Add item" });
+    const tooltip = screen.getByRole("tooltip");
+
+    expect(button).toHaveAccessibleName("Add item");
+    expect(button).not.toHaveAccessibleDescription();
+    expect(tooltip).toHaveTextContent("Add item");
+    expect(tooltip).toHaveClass("visually-hidden");
+  });
+
+  it("overrides trigger inner text with tooltip content via aria-labelledby for label purpose", () => {
+    render(
+      <Tooltip
+        triggerId="trigger-label-override"
+        placement="top"
+        alignment="center"
+        purpose="label"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-label-override" type="button">
+            fallback text
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Real label</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    expect(screen.getByRole("button")).toHaveAccessibleName("Real label");
+    expect(screen.queryByRole("button", { name: "fallback text" })).toBeNull();
+  });
+
+  it("exposes tooltip content as the trigger's accessible description when purpose is description", () => {
+    render(
+      <Tooltip
+        triggerId="trigger-desc-name"
+        placement="top"
+        alignment="center"
+        purpose="description"
+      >
+        <Tooltip.Trigger>
+          <button id="trigger-desc-name" type="button">
+            Trigger
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>This is description.</Tooltip.Content>
+      </Tooltip>,
+    );
+
+    const button = screen.getByRole("button", { name: "Trigger" });
+
+    expect(button).toHaveAccessibleName("Trigger");
+    expect(button).toHaveAccessibleDescription("This is description.");
   });
 });

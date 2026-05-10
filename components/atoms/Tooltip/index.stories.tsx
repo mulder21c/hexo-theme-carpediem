@@ -28,11 +28,20 @@ const meta: Meta<typeof Tooltip> = {
         category: "Behavior",
       },
     },
+    purpose: {
+      control: "radio",
+      options: ["description", "label"],
+      table: {
+        category: "Behavior",
+        defaultValue: { summary: "description" },
+      },
+    },
   },
   args: {
     triggerId: "basic-tooltip",
     placement: "top",
     alignment: "center",
+    purpose: "description",
   },
   parameters: {
     docs: {
@@ -97,6 +106,14 @@ export default meta;
 type Story = StoryObj<typeof Tooltip>;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Default tooltip used as an `aria-describedby` description. Hidden initially via the `hidden` attribute (both visually and from assistive technology) and revealed on hover, focus, or long-press.",
+      },
+    },
+  },
   render: function (args) {
     const [options] = useArgs<TooltipConfig>();
 
@@ -107,6 +124,7 @@ export const Default: Story = {
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
         tooltip?.setAttribute("data-placement", options.placement);
         tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-purpose", options.purpose || "description");
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -116,7 +134,7 @@ export const Default: Story = {
       return () => {
         window.tooltip.destroy();
       };
-    }, [options.placement, options.alignment]);
+    }, [options.placement, options.alignment, options.purpose]);
 
     return (
       <Tooltip {...options}>
@@ -129,16 +147,36 @@ export const Default: Story = {
       </Tooltip>
     );
   },
-  play: async ({ canvasElement, userEvent }) => {
+  play: async ({ args, canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
+    const isLabelPurpose = args.purpose === "label";
 
-    const trigger = canvas.getByRole("button", { name: "Trigger" });
+    const trigger = canvas.getByRole("button");
+    const initialTooltip = canvas.getByRole("tooltip", { hidden: true });
+
+    if (isLabelPurpose) {
+      expect(initialTooltip.hidden).toBe(false);
+      expect(initialTooltip).toHaveClass("visually-hidden");
+      expect(trigger).toHaveAttribute("aria-labelledby", initialTooltip.id);
+      expect(trigger).not.toHaveAttribute("aria-describedby");
+    } else {
+      expect(initialTooltip.hidden).toBe(true);
+      expect(initialTooltip).not.toHaveClass("visually-hidden");
+      expect(trigger).toHaveAttribute("aria-describedby", initialTooltip.id);
+      expect(trigger).not.toHaveAttribute("aria-labelledby");
+    }
+
     await userEvent.hover(trigger);
 
     await waitFor(
       () => {
         const tooltip = canvas.getByRole("tooltip");
-        expect(tooltip.hidden).toBe(false);
+        if (isLabelPurpose) {
+          expect(tooltip).not.toHaveClass("visually-hidden");
+          expect(tooltip.hidden).toBe(false);
+        } else {
+          expect(tooltip.hidden).toBe(false);
+        }
       },
       { timeout: SHOW_DELAY + 150 },
     );
@@ -148,7 +186,12 @@ export const Default: Story = {
     await waitFor(
       () => {
         const tooltip = canvas.getByRole("tooltip", { hidden: true });
-        expect(tooltip.hidden).toBe(true);
+        if (isLabelPurpose) {
+          expect(tooltip).toHaveClass("visually-hidden");
+          expect(tooltip.hidden).toBe(false);
+        } else {
+          expect(tooltip.hidden).toBe(true);
+        }
       },
       { timeout: HIDE_DELAY + TRANSITION_DURATION + 150 },
     );
@@ -158,7 +201,12 @@ export const Default: Story = {
     await waitFor(
       () => {
         const tooltip = canvas.getByRole("tooltip");
-        expect(tooltip.hidden).toBe(false);
+        if (isLabelPurpose) {
+          expect(tooltip).not.toHaveClass("visually-hidden");
+          expect(tooltip.hidden).toBe(false);
+        } else {
+          expect(tooltip.hidden).toBe(false);
+        }
       },
       { timeout: 150 },
     );
@@ -168,10 +216,130 @@ export const Default: Story = {
     await waitFor(
       () => {
         const tooltip = canvas.getByRole("tooltip", { hidden: true });
-        expect(tooltip.hidden).toBe(true);
+        if (isLabelPurpose) {
+          expect(tooltip).toHaveClass("visually-hidden");
+          expect(tooltip.hidden).toBe(false);
+        } else {
+          expect(tooltip.hidden).toBe(true);
+        }
       },
       { timeout: 200 },
     );
+  },
+};
+
+export const AsLabel: Story = {
+  args: {
+    triggerId: "tooltip-as-label",
+    placement: "top",
+    alignment: "center",
+    purpose: "label",
+  },
+  argTypes: {
+    purpose: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: dedent`
+          Tooltip used as an accessible label (e.g., icon-only buttons).
+
+          - Trigger receives \`aria-labelledby\` instead of \`aria-describedby\`.
+          - The tooltip element is **always present in the accessibility tree** so the label is announced from the start.
+          - Visual hiding uses the \`.visually-hidden\` class only; the \`hidden\` attribute is never applied.
+          - Hover / focus / long-press toggles only the visual visibility, not the label exposure.
+        `,
+      },
+    },
+  },
+  render: function (args) {
+    const [options] = useArgs<TooltipConfig>();
+
+    useEffect(() => {
+      if (window?.tooltip) {
+        window.tooltip.destroy();
+
+        const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
+        tooltip?.setAttribute("data-placement", options.placement);
+        tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-purpose", "label");
+
+        window.tooltip = new window.TooltipManager();
+      } else {
+        window.tooltip = new window.TooltipManager();
+      }
+
+      return () => {
+        window.tooltip.destroy();
+      };
+    }, [options.placement, options.alignment]);
+
+    return (
+      <Tooltip {...options} purpose="label">
+        <Tooltip.Trigger>
+          <button id={args.triggerId} type="button">
+            <span aria-hidden="true">+</span>
+          </button>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Add item</Tooltip.Content>
+      </Tooltip>
+    );
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+
+    const trigger = canvas.getByRole("button", { name: "Add item" });
+    const tooltip = canvas.getByRole("tooltip");
+
+    expect(tooltip).toHaveClass("visually-hidden");
+    expect(tooltip.hidden).toBe(false);
+    expect(tooltip).toHaveTextContent("Add item");
+    expect(trigger).toHaveAttribute("aria-labelledby", tooltip.id);
+    expect(trigger).not.toHaveAttribute("aria-describedby");
+
+    await userEvent.hover(trigger);
+
+    await waitFor(
+      () => {
+        expect(tooltip).not.toHaveClass("visually-hidden");
+      },
+      { timeout: SHOW_DELAY + 150 },
+    );
+    expect(tooltip.hidden).toBe(false);
+
+    await userEvent.unhover(trigger);
+
+    await waitFor(
+      () => {
+        expect(tooltip).toHaveClass("visually-hidden");
+      },
+      { timeout: HIDE_DELAY + TRANSITION_DURATION + 150 },
+    );
+    expect(tooltip.hidden).toBe(false);
+
+    trigger.focus();
+
+    await waitFor(
+      () => {
+        expect(tooltip).not.toHaveClass("visually-hidden");
+      },
+      { timeout: 150 },
+    );
+    expect(tooltip.hidden).toBe(false);
+
+    await userEvent.keyboard("{Escape}");
+
+    await waitFor(
+      () => {
+        expect(tooltip).toHaveClass("visually-hidden");
+      },
+      { timeout: 200 },
+    );
+    expect(tooltip.hidden).toBe(false);
   },
 };
 
@@ -208,6 +376,7 @@ export const WithLongText: Story = {
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
         tooltip?.setAttribute("data-placement", options.placement);
         tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-purpose", "description");
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -220,7 +389,7 @@ export const WithLongText: Story = {
     }, [options.placement, options.alignment]);
 
     return (
-      <Tooltip {...args}>
+      <Tooltip {...args} purpose="description">
         <Tooltip.Trigger>
           <button id={args.triggerId} type="button">
             Hover for long text
@@ -272,6 +441,7 @@ export const WithDifferentTriggers: Story = {
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
         tooltip?.setAttribute("data-placement", options.placement);
         tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-purpose", "description");
 
         window.tooltip = new window.TooltipManager();
       } else {
@@ -370,6 +540,7 @@ export const MultipleTooltips: Story = {
         const tooltip = document.querySelector<HTMLElement>(`[role="tooltip"]`);
         tooltip?.setAttribute("data-placement", options.placement);
         tooltip?.setAttribute("data-alignment", options.alignment);
+        tooltip?.setAttribute("data-purpose", "description");
 
         window.tooltip = new window.TooltipManager();
       } else {

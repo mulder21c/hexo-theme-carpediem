@@ -20,3 +20,11 @@ html {
     scroll-behavior: smooth;
   }
 }
+
+.visually-hidden {
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}

@@ -3,6 +3,7 @@ import {
   Placement,
   Alignment,
   TooltipEventHandlers,
+  Purpose,
 } from "./type";
 
 // Constants for timing and positioning
@@ -30,6 +31,8 @@ export class TooltipManager {
   private showTimer: number | undefined;
   private hideTimer: number | undefined;
   private longPressTimer: number | undefined;
+  private transitionTimers: number[] = [];
+  private animationFrame: number | undefined;
 
   // Touch state
   private touchStartX: number = 0;
@@ -111,6 +114,7 @@ export class TooltipManager {
     const triggerId = element.getAttribute("data-trigger");
     const placement = (element.getAttribute("data-placement") as Placement) || "top";
     const alignment = (element.getAttribute("data-alignment") as Alignment) || "center";
+    const purpose = (element.getAttribute("data-purpose") as Purpose) || "description";
     const tooltipId = element.id;
 
     if (!triggerId) {
@@ -128,8 +132,21 @@ export class TooltipManager {
     }
 
     const arrowElement = element.querySelector("[data-arrow]") as HTMLElement;
+    const originalAttributes: TooltipInternalConfig["originalAttributes"] = {
+      tooltip: {
+        component: element.getAttribute("data-component") || "tooltip",
+        trigger: triggerId,
+        placement,
+        alignment,
+        purpose,
+      },
+    };
 
-    if (!triggerElement.hasAttribute("aria-describedby")) {
+    if (purpose === "label") {
+      if (!triggerElement.hasAttribute("aria-labelledby")) {
+        triggerElement.setAttribute("aria-labelledby", tooltipId);
+      }
+    } else if (!triggerElement.hasAttribute("aria-describedby")) {
       triggerElement.setAttribute("aria-describedby", tooltipId);
     }
 
@@ -139,15 +156,11 @@ export class TooltipManager {
       triggerId,
       placement,
       alignment,
+      purpose,
       tooltipId,
       arrowElement,
       triggerElement,
-      originalAttributes: {
-        component: "tooltip",
-        trigger: triggerId,
-        placement,
-        alignment,
-      },
+      originalAttributes,
     };
 
     // Clean up data attributes
@@ -155,6 +168,7 @@ export class TooltipManager {
     element.removeAttribute("data-trigger");
     element.removeAttribute("data-placement");
     element.removeAttribute("data-alignment");
+    element.removeAttribute("data-purpose");
 
     return config;
   }
@@ -740,12 +754,17 @@ export class TooltipManager {
     const tooltip = document.getElementById(config.tooltipId || "");
     if (!tooltip) return;
 
-    tooltip.hidden = false;
+    if (config.purpose === "label") {
+      tooltip.classList.remove("visually-hidden");
+    } else {
+      tooltip.hidden = false;
+    }
 
     this.calculatePosition(triggerElement, tooltip, config.placement, config.alignment);
 
-    requestAnimationFrame(() => {
+    this.animationFrame = requestAnimationFrame(() => {
       tooltip.style.opacity = "1";
+      this.animationFrame = undefined;
     });
 
     if (method === "touch") {
@@ -764,7 +783,12 @@ export class TooltipManager {
     window.removeEventListener("touchstart", this.handleOutsideTouch);
 
     if (immediate) {
-      tooltip.hidden = true;
+      if (config.purpose === "label") {
+        tooltip.classList.add("visually-hidden");
+      } else {
+        tooltip.hidden = true;
+      }
+
       tooltip.style.opacity = "0";
       if (this.activeTooltip === config) {
         this.activeTooltip = null;
@@ -775,23 +799,43 @@ export class TooltipManager {
 
     tooltip.style.opacity = "0";
 
-    window.setTimeout(() => {
+    const transitionTimer = window.setTimeout(() => {
+      this.transitionTimers = this.transitionTimers.filter(
+        (timer) => timer !== transitionTimer,
+      );
+
       if (this.activeTooltip !== config) {
-        tooltip.hidden = true;
+        if (config.purpose === "label") {
+          tooltip.classList.add("visually-hidden");
+        } else {
+          tooltip.hidden = true;
+        }
       } else {
         if (tooltip.style.opacity === "0") {
           if (this.activeTooltip === config) {
             this.activeTooltip = null;
             this.activeTriggerMethod = null;
-            tooltip.hidden = true;
+            if (config.purpose === "label") {
+              tooltip.classList.add("visually-hidden");
+            } else {
+              tooltip.hidden = true;
+            }
           }
         }
       }
     }, TRANSITION_DURATION);
+    this.transitionTimers.push(transitionTimer);
   }
 
   public destroy(): void {
     if (typeof window === "undefined") return;
+
+    if (this.animationFrame !== undefined) {
+      window.cancelAnimationFrame(this.animationFrame);
+      this.animationFrame = undefined;
+    }
+    this.transitionTimers.forEach((timer) => window.clearTimeout(timer));
+    this.transitionTimers = [];
 
     window.removeEventListener("scroll", this.handleScroll);
     window.removeEventListener("resize", this.handleResize);
@@ -806,22 +850,30 @@ export class TooltipManager {
     this.tooltips.forEach((config) => {
       this.removeEventListeners(config);
       const tooltip = document.getElementById(config.tooltipId || "");
+      const arrow = config.arrowElement;
+
       if (tooltip) {
-        tooltip.setAttribute(
-          "data-component",
-          config.originalAttributes?.component || "tooltip",
-        );
-        tooltip.setAttribute(
-          "data-placement",
-          config.originalAttributes?.placement || "top",
-        );
-        tooltip.setAttribute(
-          "data-alignment",
-          config.originalAttributes?.alignment || "center",
-        );
-        tooltip.setAttribute("data-trigger", config.originalAttributes?.trigger || "");
+        const { tooltip: originalTooltip } = config.originalAttributes;
+
+        tooltip.setAttribute("data-component", originalTooltip.component);
+        tooltip.setAttribute("data-placement", originalTooltip.placement);
+        tooltip.setAttribute("data-alignment", originalTooltip.alignment);
+        tooltip.setAttribute("data-purpose", originalTooltip.purpose);
+        tooltip.setAttribute("data-trigger", originalTooltip.trigger);
+        tooltip.removeAttribute("style");
+
+        if (config.purpose === "label") {
+          tooltip.hidden = false;
+          tooltip.classList.add("visually-hidden");
+        } else {
+          tooltip.hidden = true;
+          tooltip.classList.remove("visually-hidden");
+        }
       }
+
+      arrow?.removeAttribute("style");
     });
+
     this.tooltips.clear();
     this.activeTooltip = null;
     this.clearTimers();
