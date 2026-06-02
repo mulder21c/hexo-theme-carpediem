@@ -2,9 +2,35 @@ import dedent from "ts-dedent";
 import TextField from "./index";
 import type { TextFieldSize, TextFieldType } from "./type";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { FeatherIconName } from "feather-icons-react";
 
 const textFieldTypes: TextFieldType[] = ["text", "password", "search", "url", "email"];
 const textFieldSizes: TextFieldSize[] = ["small", "medium", "large"];
+const featherIconNames = [
+  "search",
+  "mail",
+  "lock",
+  "user",
+  "key",
+  "link",
+  "globe",
+  "phone",
+  "calendar",
+  "map-pin",
+  "tag",
+  "hash",
+  "edit",
+  "eye",
+  "eye-off",
+  "alert-circle",
+  "check-circle",
+  "x-circle",
+  "info",
+  "settings",
+] satisfies FeatherIconName[];
+const featherIconOptions = [undefined, ...featherIconNames] satisfies Array<
+  FeatherIconName | undefined
+>;
 
 const meta: Meta<typeof TextField> = {
   title: "Atoms/TextField",
@@ -32,7 +58,8 @@ const meta: Meta<typeof TextField> = {
       },
     },
     icon: {
-      control: "text",
+      control: "select",
+      options: featherIconOptions,
       table: {
         category: "Content",
       },
@@ -163,6 +190,23 @@ type Story = StoryObj<typeof TextField>;
 export const Default: Story = {
   args: {
     "aria-label": "Default text field",
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    type: "search",
+    icon: "search",
+    placeholder: "Search posts",
+    "aria-label": "Search posts",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "TextField with a decorative leading Feather icon inside the input boundary.",
+      },
+    },
   },
 };
 
