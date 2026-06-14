@@ -60,6 +60,33 @@ const config: StorybookConfig = {
       loadPaths: [path.resolve(__dirname, "../source/css")],
     };
 
+    if (!config.server) {
+      config.server = {};
+    }
+    if (!config.server.watch) {
+      config.server.watch = {};
+    }
+
+    const existingIgnored = config.server.watch.ignored;
+    const ignoredPatterns = Array.isArray(existingIgnored)
+      ? existingIgnored
+      : existingIgnored
+        ? [existingIgnored]
+        : [];
+
+    config.server.watch.ignored = [
+      ...ignoredPatterns,
+      "**/.codex/**",
+      "**/.agents/**",
+      "**/.claude/**",
+      "**/.codex/**",
+      "**/.cursor/**",
+      "**/.rulesync/**",
+      "**/.serena/**",
+      "**/.specify/**",
+      "**/.vscode/**",
+    ];
+
     return config;
   },
 };
