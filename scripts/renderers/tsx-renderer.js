@@ -573,45 +573,28 @@ function tsxRenderer(data, options) {
     );
     const HexoProvider = HexoContextModule.HexoProvider;
 
+    const globalVariables = {
+      site: options.site ?? {},
+      page: options.page ?? {},
+      config: options.config ?? {},
+      theme: options.theme ?? {},
+      path: options.path ?? "",
+      url: options.url ?? "",
+    };
+
     let html;
 
+    html = renderToStaticMarkup(
+      React.createElement(
+        HexoProvider,
+        { value: options },
+        React.createElement(Component, globalVariables),
+      ),
+    );
+
     if (isLayoutFile) {
-      // Wrap with Document component if it's a layout file
-      const DocumentModule = require(path.resolve(themeRoot, "components/_document.tsx"));
-      const Document = DocumentModule.default || DocumentModule;
-
-      if (!Document) {
-        throw new Error("Document component not found");
-      }
-
-      // Render by wrapping layout component with HexoProvider and Document component
-      html = renderToStaticMarkup(
-        React.createElement(
-          HexoProvider,
-          { value: options },
-          React.createElement(
-            Document,
-            {
-              title: options.page?.title,
-              description: options.page?.description,
-              lang: options.config?.language || "ko",
-            },
-            React.createElement(Component),
-          ),
-        ),
-      );
-
       // Add DOCTYPE
       html = "<!DOCTYPE html>\n" + html;
-    } else {
-      // Wrap with HexoProvider for regular components
-      html = renderToStaticMarkup(
-        React.createElement(
-          HexoProvider,
-          { value: options },
-          React.createElement(Component),
-        ),
-      );
     }
 
     return html;

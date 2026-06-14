@@ -1,6 +1,4 @@
-import type { DocumentProps } from "@components/_document.d";
+import type { HexoContextValue, HexoHomePage, HexoPost } from "@context/HexoContext.d";
 
-export interface IndexLayoutProps
-  extends
-    React.HTMLAttributes<HTMLDivElement>,
-    Pick<DocumentProps, "title" | "description" | "lang"> {}
+export type HomeLayoutProps = HexoContextValue<HexoHomePage>;
+export type PostLayoutProps = HexoContextValue<HexoPost>;

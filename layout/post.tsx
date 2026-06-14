@@ -1,7 +1,8 @@
-import IndexTemplate from "@components/templates";
-import type { HomeLayoutProps } from "./type";
+import PostTemplate from "@components/templates/post";
+import type { PostLayoutProps } from "./type";
 
-function HomeLayout({ config: { language, title, description: configDescription } }: HomeLayoutProps) {
+function PostLayout({ config: { language, description: configDescription }, page }: PostLayoutProps) {
+  const title = page.title;
   const description = configDescription ?? "";
 
   return (
@@ -15,10 +16,10 @@ function HomeLayout({ config: { language, title, description: configDescription 
         <link rel="stylesheet" href="/css/index.css" />
       </head>
       <body>
-        <IndexTemplate />
+        <PostTemplate />
       </body>
     </html>
   );
 }
 
-export default HomeLayout;
+export default PostLayout;
