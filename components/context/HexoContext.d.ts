@@ -1,51 +1,247 @@
 import type { ReactNode } from "react";
 
 /**
+ * @todo complete
  * Hexo site data containing posts, pages, categories, and tags.
  */
 export interface HexoSite {
+  /**
+   * All posts
+   */
   posts: HexoPost[];
+  /**
+   * All pages
+   */
   pages: HexoPage[];
+  /**
+   * All categories
+   */
   categories: HexoCategory[];
+  /**
+   * All tags
+   */
   tags: HexoTag[];
+  /**
+   * All data
+   */
+  data: unknown;
+  /**
+   * Hexo logger
+   */
   hexoLog?: HexoLog;
 }
 
 /**
- * Hexo post data.
+ * Base page post data.
  */
-export interface HexoPost {
+export interface BasePagePost {
+  /**
+   * Article title
+   */
   title: string;
-  date: Date;
-  updated: Date;
-  content: string;
-  excerpt: string;
-  slug: string;
+  /**
+   * Article created date
+   */
+  date: moment.Moment;
+  /**
+   * Article last updated date
+   */
+  updated: moment.Moment;
+  /**
+   * Comment enabled or not
+   */
+  comments: boolean;
+  /**
+   * Layout name
+   */
+  layout: string | false;
+  /**
+   * The full processed content of the article
+   */
+  content?: string;
+  /**
+   * The path of the source file
+   */
+  source: string;
+  /**
+   * The URL of the article without root URL.
+   * We usually use url_for(page.path) in theme.
+   */
   path: string;
+  /**
+   * The raw data of the article
+   */
+  raw: string;
+  /**
+   * Article excerpt
+   */
+  excerpt?: string;
+  /**
+   * Contents except article excerpt
+   */
+  more?: string;
+  /**
+   * Full path of the source file
+   */
+  full_source: string;
+  /**
+   * Full (encoded) URL of the article
+   */
   permalink: string;
-  categories: HexoCategory[];
-  tags: HexoTag[];
+  /**
+   * The photos of the article (Used in gallery posts)
+   */
+  photos?: string[];
+  /**
+   * The external link of the article (Used in link posts)
+   */
+  link?: string;
+  /**
+   * The language of the article
+   */
+  lang?: string;
+  /**
+   * @todo 아래 두 개는 확인 필요. 실제 데이터에서 안나오는 듯?
+   */
+  // /**
+  //  * The language of the article
+  //  */
+  // language?: string;
+  // /**
+  //  * Base URL
+  //  */
+  // base?: string;
+  /**
+   * custom variables set in front-matter.
+   */
   [key: string]: unknown;
 }
 
+export type HexoPage = BasePagePost;
+
 /**
- * Hexo page data.
+ * @todo complete
+ * Hexo post data.
  */
-export interface HexoPage {
-  title: string;
-  date: Date;
-  updated: Date;
-  content: string;
-  path: string;
-  permalink: string;
-  [key: string]: unknown;
+export interface HexoPost extends BasePagePost {
+  /**
+   * The slug of the post
+   */
+  slug: string;
+  /**
+   * True if the post is not a draft
+   */
+  published: boolean;
+  /**
+   * All categories of the post
+   */
+  categories: HexoCategory[];
+  /**
+   * All tags of the post
+   */
+  tags: HexoTag[];
+  /**
+   * The path of the asset directory
+   */
+  asset_dir: string;
+  /**
+   * The previous post, `null` if the post is the first post
+   */
+  prev?: HexoPost | null;
+  /**
+   * The next post, `null` if the post is the last post
+   */
+  next?: HexoPost | null;
+  /**
+   * The canonical path of the post
+   */
+  canonical_path: string;
+}
+
+/**
+ * Index page data.
+ */
+export interface HexoHomePage extends HexoPage {
+  /**
+   * Posts displayed per page
+   */
+  per_page?: number;
+  /**
+   * Total number of pages
+   */
+  total?: number;
+  /**
+   * 	Current page number
+   */
+  current?: number;
+  /**
+   * The URL of current page
+   */
+  current_url?: string;
+  /**
+   * Posts in this page
+   */
+  posts?: HexoPost[];
+  /**
+   * Previous page number. `0` if the current page is the first
+   */
+  prev?: number;
+  /**
+   * The URL of previous page. `''` if the current page is the first.
+   */
+  prev_link?: string;
+  /**
+   * Next page number. `0` if the current page is the last.
+   */
+  next?: number;
+  /**
+   * The URL of next page. `''` if the current page is the last.
+   */
+  next_link?: string;
+}
+
+/**
+ * Archive page data.
+ */
+export interface HexoArchivePage extends HexoHomePage {
+  /**
+   * Equals true
+   */
+  archive?: boolean;
+  /**
+   * Archive year (4-digit)
+   */
+  year?: number;
+  /**
+   * Archive month (2-digit without leading zeros)
+   */
+  month?: number;
+}
+
+/**
+ * Category page data.
+ */
+export interface HexoCategoryPage extends HexoHomePage {
+  /**
+   * Category name
+   */
+  category?: string;
+}
+
+export interface HexoTagPage extends HexoHomePage {
+  /**
+   * Tag name
+   */
+  tag?: string;
 }
 
 /**
  * Hexo category data.
  */
 export interface HexoCategory {
+  id?: string;
   name: string;
+  parent?: string;
   slug: string;
   path: string;
   permalink: string;
@@ -57,6 +253,7 @@ export interface HexoCategory {
  * Hexo tag data.
  */
 export interface HexoTag {
+  id?: string;
   name: string;
   slug: string;
   path: string;
@@ -69,15 +266,88 @@ export interface HexoTag {
  * Hexo site configuration from _config.yml.
  */
 export interface HexoConfig {
+  // Site
   title: string;
   subtitle: string;
   description: string;
   author: string;
   language: string;
   timezone: string;
+  // URL
   url: string;
   root: string;
   permalink: string;
+  permalink_defaults: Record<string, string>;
+  pretty_urls: {
+    trailing_index: boolean;
+    trailing_html: boolean;
+  },
+  // Directory
+  source_dir: string;
+  public_dir: string;
+  tag_dir: string;
+  archive_dir: string;
+  category_dir: string;
+  code_dir: string;
+  i18n_dir: string;
+  skip_render: string[];
+  // Writing
+  new_post_name: string;
+  default_layout: string;
+  titlecase: boolean;
+  external_link: {
+    enable: boolean;
+    field: "site" | "post";
+    exclude: string[];
+  },
+  filename_case: number;
+  render_drafts: boolean;
+  post_asset_folder: boolean;
+  relative_link: boolean;
+  future: boolean;
+  syntax_highlighter: string;
+  highlight: {
+    auto_detect: boolean,
+    line_number: string,
+    tab_replace: string,
+    wrap: boolean,
+    exclude_languages: string[],
+    language_attr: boolean,
+    hljs: boolean,
+    line_threshold: number,
+    first_line_number: string,
+    strip_indent: boolean,
+  },
+  prismjs: {
+    preprocess: boolean,
+    line_number: boolean,
+    tab_replace: string,
+    exclude_languages: string[],
+    strip_indent: boolean,
+  },
+  use_filename_as_post_title: boolean,
+  // Category & Tag
+  default_category: string,
+  category_map: Record<string, string>,
+  tag_map: Record<string, string>,
+  // Date & Time format
+  date_format: string,
+  time_format: string,
+  updated_option: "mtime" | "date" | "empty",
+  // Pagination
+  per_page: number,
+  pagination_dir: string,
+  // Extensions
+  theme: string,
+  server: {
+    cache: boolean
+  },
+  // Deployment
+  deploy: { type: string; [keys: string]: unknown } | { type: string; [keys: string]: unknown }[],
+  // ignore files from processing
+  ignore: string[],
+  // Category & Tag
+  meta_generator: true
   [key: string]: unknown;
 }
 
@@ -98,19 +368,6 @@ export interface HexoLog {
   debug: (...args: unknown[]) => void;
 }
 
-/**
- * Current page context data.
- */
-export interface HexoPageContext {
-  title?: string;
-  description?: string;
-  content?: string;
-  date?: Date;
-  updated?: Date;
-  path: string;
-  permalink: string;
-  [key: string]: unknown;
-}
 
 // ============================================================================
 // Helper Option Types
@@ -486,13 +743,11 @@ export type HexoHelpers = HexoUrlHelpers &
 /**
  * Complete Hexo context value passed from renderer.
  */
-export interface HexoContextValue extends HexoHelpers {
+export interface HexoContextValue<TPage = HexoPage> extends HexoHelpers {
   site: HexoSite;
-  page: HexoPageContext;
+  page: TPage;
   config: HexoConfig;
   theme: HexoTheme;
-  path: string;
-  url: string;
   hexoLog: HexoLog;
 }
 
