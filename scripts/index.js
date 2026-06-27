@@ -8,3 +8,4 @@ require("./renderers/tsx-renderer");
 
 // Register Hexo filter
 require("./filters/ui-bundler");
+require("./filters/dev-reload");
