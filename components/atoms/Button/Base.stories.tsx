@@ -20,6 +20,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: "select",
+      options: ["x-small", "small", "medium", "large"],
       table: {
         category: "Appearance",
       },
@@ -147,6 +148,7 @@ export const Colors: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <>
+      <Button {...args} size="x-small" />
       <Button {...args} size="small" />
       <Button {...args} size="medium" />
       <Button {...args} size="large" />
@@ -158,7 +160,7 @@ export const Sizes: Story = {
     },
     docs: {
       description: {
-        story: "Button sizes: small, medium, and large",
+        story: "Button sizes: x-small, small, medium, and large",
       },
     },
     viewMode: "docs",

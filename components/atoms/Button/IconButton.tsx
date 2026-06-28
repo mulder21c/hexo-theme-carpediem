@@ -26,7 +26,12 @@ function IconButton({
   const triggerId = id || uid;
 
   return (
-    <Tooltip triggerId={triggerId} placement={placement} alignment={alignment}>
+    <Tooltip
+      triggerId={triggerId}
+      placement={placement}
+      alignment={alignment}
+      className={className}
+    >
       <Tooltip.Trigger>
         <button
           id={triggerId}
@@ -37,7 +42,6 @@ function IconButton({
             { [`btn--${variant}`]: variant },
             { [`btn--${color}`]: color },
             { [`btn-icon--${size}`]: size },
-            className,
           )}
           {...props}
         >

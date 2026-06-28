@@ -1,7 +1,12 @@
 import type { TooltipConfig } from "@components/atoms/Tooltip/type";
 import type { FeatherIconName } from "feather-icons-react";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export type ButtonVariant = "contained" | "outlined";
+export type IconButtonVariant = ButtonVariant | "ghost";
+
+export interface ButtonProps<
+  TVariant extends IconButtonVariant = ButtonVariant,
+> extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * HTML button type attribute
    * @example
@@ -16,7 +21,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    * <Button variant="contained">Contained Button</Button>
    * <Button variant="outlined">Outlined Button</Button>
    */
-  variant?: "contained" | "outlined";
+  variant?: TVariant;
   /**
    * Button color
    * @example
@@ -27,15 +32,18 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   /**
    * Button size
    * @example
+   * <Button size="x-small">X-Small Button</Button>
    * <Button size="small">Small Button</Button>
    * <Button size="medium">Medium Button</Button>
    * <Button size="large">Large Button</Button>
    */
-  size?: "small" | "medium" | "large";
+  size?: "x-small" | "small" | "medium" | "large";
 }
 
 export interface IconButtonProps
-  extends ButtonProps, Partial<Omit<TooltipConfig, "triggerId" | "tooltipId">> {
+  extends
+    ButtonProps<IconButtonVariant>,
+    Partial<Omit<TooltipConfig, "triggerId" | "tooltipId">> {
   /**
    * Accessible label for the icon button
    * @example

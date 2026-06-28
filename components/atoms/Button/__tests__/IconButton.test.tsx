@@ -98,13 +98,15 @@ describe("IconButton", () => {
     const button = screen.getByRole("button", { name: "Close button" });
     const icon = screen.getByTestId("feather-icon");
     const tooltip = screen.getByRole("tooltip", { hidden: true });
+    const container = button.closest(".tooltip__container");
 
     expect(button).toHaveAttribute("id", "custom-trigger");
     expect(button).toHaveAttribute("type", "submit");
     expect(button).toHaveClass("btn--outlined");
     expect(button).toHaveClass("btn--secondary");
     expect(button).toHaveClass("btn-icon--large");
-    expect(button).toHaveClass("custom-class");
+    expect(button).not.toHaveClass("custom-class");
+    expect(container).toHaveClass("custom-class");
 
     expect(icon).toHaveAttribute("data-icon", "x");
     expect(icon).toHaveClass("btn-icon__icon--bold");

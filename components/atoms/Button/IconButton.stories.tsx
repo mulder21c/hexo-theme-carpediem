@@ -11,6 +11,7 @@ const meta: Meta<typeof IconButton> = {
   argTypes: {
     variant: {
       control: "select",
+      options: ["contained", "outlined", "ghost"],
       table: {
         category: "Appearance",
       },
@@ -23,6 +24,7 @@ const meta: Meta<typeof IconButton> = {
     },
     size: {
       control: "select",
+      options: ["x-small", "small", "medium", "large"],
       table: {
         category: "Appearance",
       },
@@ -171,6 +173,7 @@ export const Variants: Story = {
       <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
         <IconButton {...args} variant="contained" label="Contained" />
         <IconButton {...args} variant="outlined" label="Outlined" />
+        <IconButton {...args} variant="ghost" label="Ghost" />
       </div>
     );
   },
@@ -180,7 +183,7 @@ export const Variants: Story = {
     },
     docs: {
       description: {
-        story: "IconButton variant styles: contained and outlined",
+        story: "IconButton variant styles: contained, outlined, and ghost",
       },
     },
     viewMode: "docs",
@@ -253,6 +256,7 @@ export const Sizes: Story = {
 
     return (
       <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+        <IconButton {...args} size="x-small" label="X-Small" />
         <IconButton {...args} size="small" label="Small" />
         <IconButton {...args} size="medium" label="Medium" />
         <IconButton {...args} size="large" label="Large" />
@@ -265,7 +269,7 @@ export const Sizes: Story = {
     },
     docs: {
       description: {
-        story: "IconButton sizes: small, medium, and large",
+        story: "IconButton sizes: x-small, small, medium, and large",
       },
     },
     viewMode: "docs",
