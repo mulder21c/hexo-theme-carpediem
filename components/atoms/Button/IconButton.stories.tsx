@@ -104,6 +104,11 @@ const meta: Meta<typeof IconButton> = {
           ### 💅 Styling
           - Uses CSS variables for theming
           - Additional styling possible through \`className\` prop
+
+          ### 👻 Ghost Variant
+          - \`variant="ghost"\` is specific to \`IconButton\`
+          - In the resting state, the icon uses the current text color instead of the selected \`color\` prop
+          - Hover, focus-visible, and active states still use the selected \`color\` scheme for interaction feedback
         `,
       },
     },
@@ -183,7 +188,8 @@ export const Variants: Story = {
     },
     docs: {
       description: {
-        story: "IconButton variant styles: contained, outlined, and ghost",
+        story:
+          "IconButton variant styles: contained, outlined, and ghost. Ghost keeps the current text color until hover, focus-visible, or active feedback is shown.",
       },
     },
     viewMode: "docs",

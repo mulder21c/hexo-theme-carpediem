@@ -104,7 +104,7 @@
     }
 
     &--ghost:is(.btn-icon) {
-      color: var(--btn-border);
+      color: currentcolor;
       background-color: var(--light);
       background-image: radial-gradient(
         ellipse at bottom left,
