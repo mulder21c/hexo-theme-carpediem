@@ -30,6 +30,7 @@ function IconButton({
       triggerId={triggerId}
       placement={placement}
       alignment={alignment}
+      purpose="label"
       className={className}
     >
       <Tooltip.Trigger>
