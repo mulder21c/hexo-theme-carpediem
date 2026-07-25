@@ -12,9 +12,9 @@ vi.mock("feather-icons-react", () => {
 
 describe("IconButton", () => {
   it("renders with default button/icon/tooltip settings when optional props are omitted", () => {
-    render(<IconButton icon="plus" label="Add item" aria-label="Add item button" />);
+    render(<IconButton icon="plus" label="Add item" />);
 
-    const button = screen.getByRole("button", { name: "Add item button" });
+    const button = screen.getByRole("button", { name: "Add item" });
     const icon = screen.getByTestId("feather-icon");
     const tooltip = screen.getByRole("tooltip", { hidden: true });
 
@@ -33,7 +33,7 @@ describe("IconButton", () => {
     expect(tooltip).toHaveAttribute("data-placement", "right");
     expect(tooltip).toHaveAttribute("data-alignment", "center");
     expect(button).toHaveAttribute("id");
-    expect(button).toHaveAttribute("aria-describedby");
+    expect(button).toHaveAttribute("aria-labelledby", tooltip.getAttribute("id"));
     expect(tooltip).toHaveAttribute("data-trigger", button.getAttribute("id"));
   });
 
@@ -63,14 +63,13 @@ describe("IconButton", () => {
         <IconButton
           icon="plus"
           label="Combo item"
-          aria-label="Combo button"
           variant={variant}
           color={color}
           size={size}
         />,
       );
 
-      const button = screen.getByRole("button", { name: "Combo button" });
+      const button = screen.getByRole("button", { name: "Combo item" });
       expectedClasses.forEach((className) => {
         expect(button).toHaveClass(className);
       });
@@ -91,11 +90,10 @@ describe("IconButton", () => {
         placement="left"
         alignment="end"
         className="custom-class"
-        aria-label="Close button"
       />,
     );
 
-    const button = screen.getByRole("button", { name: "Close button" });
+    const button = screen.getByRole("button", { name: "Close menu" });
     const icon = screen.getByTestId("feather-icon");
     const tooltip = screen.getByRole("tooltip", { hidden: true });
     const container = button.closest(".tooltip__container");
@@ -125,7 +123,6 @@ describe("IconButton", () => {
       <IconButton
         icon="plus"
         label="Add item"
-        aria-label="Add button"
         variant="contained"
         color="primary"
         size="medium"
@@ -136,7 +133,7 @@ describe("IconButton", () => {
       />,
     );
 
-    const button = screen.getByRole("button", { name: "Add button" });
+    const button = screen.getByRole("button", { name: "Add item" });
     expect(screen.getByTestId("icon-button")).toBe(button);
 
     await user.click(button);
@@ -151,7 +148,6 @@ describe("IconButton", () => {
       <IconButton
         icon="plus"
         label="Disabled item"
-        aria-label="Disabled icon button"
         variant="contained"
         color="primary"
         size="medium"
@@ -162,7 +158,7 @@ describe("IconButton", () => {
       />,
     );
 
-    const button = screen.getByRole("button", { name: "Disabled icon button" });
+    const button = screen.getByRole("button", { name: "Disabled item" });
     expect(button).toBeDisabled();
 
     await user.click(button);
