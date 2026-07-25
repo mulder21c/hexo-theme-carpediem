@@ -1,13 +1,13 @@
 ---
-targets:
-  - '*'
-description: ''
+name: "Storybook Component Documentaion Generator"
+description: Use when generate story for component
 ---
+
 # Storybook Component Documentation Generator
 
 ## Overview
 
-Generates Storybook component documentation by analyzing the component code and applying the documentation template from `.cursor/docs/component-docs-template.md`.
+Generates Storybook component documentation by analyzing the component code and applying the documentation template from `./references/component-docs-template.md`.
 
 ## Parameters
 
@@ -49,7 +49,7 @@ Extract the component name from the command. The component name can be:
 
 ### 3. Read Template
 
-1. Read `.cursor/docs/component-docs-template.md` to understand the documentation structure and guidelines
+1. Read `./references/component-docs-template.md` to understand the documentation structure and guidelines
 
 ### 4. Generate Documentation
 
@@ -73,7 +73,7 @@ Extract the component name from the command. The component name can be:
    - Add Usage Examples (💡) if the component has complex usage patterns
 
 3. **Follow Template Guidelines**:
-   - Use the template structure from `component-docs-template.md`
+   - Use the template structure from `./references/component-docs-template.md`
    - Keep descriptions clear and concise
    - Maintain consistency with other component documentation
    - Include accessibility information when relevant

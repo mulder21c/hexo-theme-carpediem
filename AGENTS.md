@@ -19,6 +19,7 @@ This repository builds a React 19 + TypeScript SSR theme for Hexo blogs.
 - [Accessibility Rules](docs/agents/accessibility.md)
 - [Linting and Formatting Rules](docs/agents/linting-and-formatting.md)
 - [Git Workflow and Safety Rules](docs/agents/git-workflow-and-safety.md)
+- [Client UI Boundaries](docs/agents/client-ui-boundaries.md)
 
 ## Active Technologies
 
