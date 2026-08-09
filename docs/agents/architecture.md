@@ -39,7 +39,8 @@
 - Co-locate `type.d.ts` for props/types.
 - Use `index.module.scss` for component styles.
 - Use `*.stories.tsx` for Storybook stories.
-- Use `*.helper.ts` and `*.ui.ts` for split logic/render helpers as needed.
+- Use `*.helper.ts` for split logic/render helpers as needed.
+- Use `*.ui.ts` for client side interaction as needed.
 - Add a local barrel (`index.ts` / `index.tsx`) when folders are split by module.
 - Allow sub-components inside the same folder only when they are tightly coupled to the parent component and are not intended for cross-feature reuse.
 - Keep the folder centered on one primary public component. Use named files such as `Base.tsx` or `IconButton.tsx` for parent-owned variants instead of creating another nested component folder.

@@ -16,6 +16,12 @@
 - Data should flow via props; prop drilling is allowed.
 - Context usage is limited to static configuration data.
 
+## Where Interaction Belongs
+- Production user interaction does not live in React components.
+- Implement it in client scripts as described in [Client-Side Interaction](./client-side-interaction.md).
+- React owns the initial markup and props.
+- Client scripts own subsequent DOM mutations after load.
+
 ## Exemptions
 
 - Storybook and tests are exempt from production interaction restrictions.

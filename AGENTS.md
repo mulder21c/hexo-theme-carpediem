@@ -12,14 +12,14 @@ This repository builds a React 19 + TypeScript SSR theme for Hexo blogs.
 
 - [Architecture and Project Layout](docs/agents/architecture.md)
 - [Commands and Quality Gates](docs/agents/commands-and-quality-gates.md)
-- [React SSR and Interaction Rules](docs/agents/react-ssr-and-interaction.md)
+- [React SSR and Interaction](docs/agents/react-ssr-and-interaction.md)
+- [Client-Side Interaction](docs/agents/client-side-interaction.md)
 - [SCSS and Theme Workflow](docs/agents/scss-and-theme-workflow.md)
 - [TypeScript and Naming Conventions](docs/agents/typescript-and-naming.md)
 - [Testing and Storybook Rules](docs/agents/testing-and-storybook.md)
 - [Accessibility Rules](docs/agents/accessibility.md)
 - [Linting and Formatting Rules](docs/agents/linting-and-formatting.md)
 - [Git Workflow and Safety Rules](docs/agents/git-workflow-and-safety.md)
-- [Client UI Boundaries](docs/agents/client-ui-boundaries.md)
 
 ## Active Technologies
 
