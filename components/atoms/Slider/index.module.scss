@@ -1,0 +1,264 @@
+@layer atoms {
+  .slider {
+    --slider-thumb-size: 16px;
+    --slider-rail-size: 4px;
+    --slider-hit-size: 32px;
+
+    position: relative;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: var(--slider-hit-size);
+    padding-inline: calc(var(--slider-thumb-size) / 2);
+    color: var(--slider-label);
+
+    &--small {
+      --slider-thumb-size: 14px;
+      --slider-rail-size: 2px;
+      --slider-hit-size: 24px;
+    }
+
+    &--medium {
+      --slider-thumb-size: 16px;
+      --slider-rail-size: 4px;
+      --slider-hit-size: 32px;
+    }
+
+    &--large {
+      --slider-thumb-size: 18px;
+      --slider-rail-size: 6px;
+      --slider-hit-size: 32px;
+    }
+
+    &--vertical {
+      width: var(--slider-hit-size);
+      height: 100%;
+      min-height: 0;
+      padding-block: calc(var(--slider-thumb-size) / 2);
+      padding-inline: 0;
+    }
+
+    &__input {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      appearance: none;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    &__rail {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: var(--slider-hit-size);
+      touch-action: pan-y;
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: var(--slider-rail-size);
+        content: "";
+        border-radius: var(--border-radius-circle);
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        width: 100%;
+        background: var(--slider-rail);
+      }
+
+      &::after {
+        width: calc(var(--slider-value-ratio) * 100%);
+        background: var(--slider-fill);
+        transition:
+          width 120ms ease,
+          background-color 120ms ease;
+      }
+    }
+
+    &__thumb {
+      position: absolute;
+      top: 50%;
+      left: calc(var(--slider-value-ratio) * 100%);
+      z-index: 2;
+      box-sizing: border-box;
+      display: block;
+      width: var(--slider-thumb-size);
+      height: var(--slider-thumb-size);
+      touch-action: pan-y;
+      cursor: grab;
+      background: var(--slider-thumb-surface);
+      border: 2px solid var(--slider-thumb-border);
+      border-radius: var(--border-radius-circle);
+      box-shadow: 0 1px 2px var(--slider-mark);
+      transform: translate(-50%, -50%);
+      transition:
+        left 120ms ease,
+        transform 120ms ease;
+    }
+
+    &__mark {
+      position: absolute;
+      top: 50%;
+      left: calc(var(--slider-value-ratio) * 100%);
+      z-index: 1;
+      display: block;
+      width: max(2px, calc(var(--slider-rail-size) / 2));
+      height: max(2px, calc(var(--slider-rail-size) / 2));
+      background: var(--slider-mark);
+      border: 1px solid var(--slider-thumb-surface);
+      border-radius: var(--border-radius-circle);
+      opacity: calc(0.65 + var(--slider-mark-active) * 0.35);
+      transform: translate(-50%, -50%) scale(calc(1 + var(--slider-mark-active) * 0.35));
+      transition:
+        transform 120ms ease,
+        opacity 120ms ease;
+    }
+
+    &__mark-label {
+      position: absolute;
+      top: calc(100% + var(--spacing-md));
+      left: 50%;
+      display: block;
+      width: max-content;
+      max-width: none;
+      overflow: visible;
+      text-overflow: clip;
+      color: var(--slider-label);
+      white-space: normal;
+      touch-action: pan-y;
+      cursor: pointer;
+      transform: translateX(-50%);
+    }
+
+    &--vertical &__rail {
+      width: var(--slider-hit-size);
+      height: 100%;
+      touch-action: pan-x;
+
+      &::before,
+      &::after {
+        inset: auto auto 0 50%;
+        width: var(--slider-rail-size);
+        transform: translateX(-50%);
+      }
+
+      &::before {
+        height: 100%;
+      }
+
+      &::after {
+        height: calc(var(--slider-value-ratio) * 100%);
+        transition-property: height, background-color;
+      }
+    }
+
+    &--vertical &__thumb,
+    &--vertical &__mark {
+      top: auto;
+      bottom: calc(var(--slider-value-ratio) * 100%);
+      left: 50%;
+      transform: translate(-50%, 50%);
+    }
+
+    &--vertical &__thumb,
+    &--vertical &__mark-label {
+      touch-action: pan-x;
+    }
+
+    &--vertical &__mark-label {
+      top: 50%;
+      left: calc(100% + var(--spacing-md));
+      transform: translateY(-50%);
+    }
+
+    &--disabled {
+      color: var(--slider-disabled);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    &--disabled &__rail,
+    &--disabled &__thumb,
+    &--disabled &__mark-label {
+      touch-action: auto;
+      cursor: not-allowed;
+    }
+
+    &--disabled &__thumb {
+      background: transparent;
+      border-color: var(--slider-disabled);
+      box-shadow: none;
+    }
+
+    &--disabled &__rail::after,
+    &--disabled &__mark {
+      background: var(--slider-disabled);
+    }
+
+    &:not(&--disabled):hover &__rail::after {
+      background: var(--slider-fill-hover);
+    }
+
+    &:not(&--disabled):active &__thumb {
+      cursor: grabbing;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    &--vertical:not(&--disabled):active &__thumb {
+      transform: translate(-50%, 50%) scale(1.08);
+    }
+
+    &__input:focus-visible + &__rail {
+      outline: 3px solid var(--slider-focus);
+      outline-offset: 2px;
+      border-radius: var(--border-radius-sm);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &__rail::after,
+      &__thumb,
+      &__mark {
+        transition: none;
+      }
+    }
+
+    @media (forced-colors: active) {
+      &__rail::before {
+        background: CanvasText;
+      }
+
+      &__rail::after,
+      &__mark {
+        background: Highlight;
+      }
+
+      &__thumb {
+        background: Canvas;
+        border-color: Highlight;
+        box-shadow: none;
+      }
+
+      &__input:focus-visible + &__rail {
+        outline-color: Highlight;
+      }
+
+      &--disabled &__rail::after,
+      &--disabled &__mark,
+      &--disabled &__thumb {
+        background: Canvas;
+        border-color: GrayText;
+      }
+    }
+  }
+}

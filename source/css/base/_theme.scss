@@ -75,6 +75,18 @@
   --switch-track-disabled: #{color("neutral", 500)};
   --switch-surface: #{color("neutral", 50)};
 
+  // Slider colors
+  --slider-rail: #{color("neutral", 300)};
+  --slider-fill: #{color("green", 600)};
+  --slider-fill-hover: #{color("green", 700)};
+  --slider-thumb-surface: #{color("neutral", 50)};
+  --slider-thumb-border: #{color("green", 700)};
+  --slider-mark: #{color("neutral", 500)};
+  --slider-mark-active: #{color("green", 600)};
+  --slider-label: var(--text-primary);
+  --slider-disabled: #{color("neutral", 500)};
+  --slider-focus: var(--focus-ring);
+
   // TextField colors
   --textfield-border: #{color("green", 600)};
   --textfield-border-invalid: #{color("scarlet", 600)};
@@ -142,6 +154,18 @@
     --switch-track-disabled: #{color("neutral", 650)};
     --switch-surface: #{color("bluegray", 900)};
 
+    // Slider colors
+    --slider-rail: #{color("neutral", 650)};
+    --slider-fill: #{color("mintgreen", 450)};
+    --slider-fill-hover: #{color("mintgreen", 300)};
+    --slider-thumb-surface: #{color("bluegray", 900)};
+    --slider-thumb-border: #{color("mintgreen", 300)};
+    --slider-mark: #{color("neutral", 650)};
+    --slider-mark-active: #{color("mintgreen", 450)};
+    --slider-label: var(--text-primary);
+    --slider-disabled: #{color("neutral", 650)};
+    --slider-focus: var(--focus-ring);
+
     // TextField colors
     --textfield-border: #{color("mintgreen", 450)};
     --textfield-border-invalid: #{color("scarlet", 300)};
@@ -190,6 +214,16 @@
     --switch-track-on: #{color("mintgreen", 300)};
     --switch-track-disabled: #{color("neutral", 650)};
     --switch-surface: #{color("bluegray", 900)};
+
+    // Slider colors
+    --slider-rail: #{color("neutral", 500)};
+    --slider-fill: #{color("mintgreen", 300)};
+    --slider-fill-hover: #{color("mintgreen", 150)};
+    --slider-thumb-border: #{color("mintgreen", 200)};
+    --slider-mark: #{color("neutral", 500)};
+    --slider-mark-active: #{color("mintgreen", 300)};
+    --slider-disabled: #{color("neutral", 650)};
+    --slider-focus: #{color("mintgreen", 200)};
 
     // TextField colors
     --textfield-border: #{color("mintgreen", 300)};

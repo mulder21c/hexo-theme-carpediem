@@ -23,6 +23,7 @@ This repository builds a React 19 + TypeScript SSR theme for Hexo blogs.
 
 ## Active Technologies
 
+- TypeScript 5.9.3, React/React DOM 19.2.1 JSX, Node.js 20+, ES2020 target + React, React DOM server rendering, classnames, native DOM/Pointer Events/Form APIs; no new runtime dependency (002-slider-component)
 - TypeScript 5.x with React 19.x JSX + React 19.x, classnames, feather-icons-react, SCSS Modules, HexoContext logger (001-textfield-component)
 
 ## Recent Changes
