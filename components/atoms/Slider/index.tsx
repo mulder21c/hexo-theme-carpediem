@@ -40,7 +40,7 @@ function Slider(props: SliderProps) {
       data-slider-name={model.name}
     >
       <input
-        className={cx("slider__input")}
+        className={cx("slider__input", "visually-hidden")}
         type="range"
         min={model.canonicalMin}
         max={model.canonicalMax}
@@ -61,7 +61,7 @@ function Slider(props: SliderProps) {
         aria-hidden="true"
       >
         <span className={cx("slider__thumb")} data-slider-thumb="" style={valueStyle} />
-        {model.markModels.map((mark) => {
+        {model.markModels.map((mark, markIndex) => {
           const markStyle: SliderStyle = {
             "--slider-value-ratio": mark.ratio,
             "--slider-mark-active": mark.isCurrent ? 1 : 0,
@@ -71,13 +71,21 @@ function Slider(props: SliderProps) {
               key={mark.canonicalValue}
               className={cx("slider__mark", {
                 "slider__mark--current": mark.isCurrent,
+                "slider__mark--first": markIndex === 0,
+                "slider__mark--last": markIndex === model.markModels.length - 1,
               })}
               data-slider-mark=""
               data-slider-mark-value={mark.canonicalValue}
               style={markStyle}
             >
               {mark.label !== undefined ? (
-                <span className={cx("slider__mark-label")} data-slider-mark-label="">
+                <span
+                  className={cx("slider__mark-label", {
+                    "slider__mark-label--first": markIndex === 0,
+                    "slider__mark-label--last": markIndex === model.markModels.length - 1,
+                  })}
+                  data-slider-mark-label=""
+                >
                   {mark.label}
                 </span>
               ) : null}

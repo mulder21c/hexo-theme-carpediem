@@ -69,19 +69,23 @@ const meta: Meta<typeof Slider> = {
     docs: {
       description: {
         component: dedent`
-          Slider renders one native \`<input type="range">\` as a static SSR form control and delegates browser interaction to an explicitly created \`SliderManager\`.
+          Slider renders one native \`<input type="range">\` as a static SSR form control and delegates browser interaction to an explicitly created \`SliderManager\` from \`slider.ui.ts\`.
+
+          Pass range props (\`min\`, \`max\`, \`value\`, \`step\`, \`shiftStep\`, \`marks\`) plus naming (\`aria-label\` or \`aria-labelledby\`). Do not pass React \`onChange\` handlers—wire adapters or DOM events through the manager.
 
           ## ✨ Key Features
 
           ### ⚙️ Behavior
-          - Supports exact numeric steps, automatic marks, custom guidance marks, and restricted mark values
+          - Supports exact numeric steps, automatic marks, custom guidance marks, and restricted mark values (\`step={null}\` with custom marks)
           - Keeps the native input, ARIA state, form payload, visual thumb, and notifications on one normalized value
           - Treats \`value\` as the immutable SSR and form-reset baseline rather than a controlled React value
+          - Requires an explicit \`new SliderManager(target, options?)\`; the UI bundle never auto-scans or creates a default instance
 
           ### 🖱️ Interactions
           - Accepts rail, thumb, and mark-label pointer input with root-owned pointer capture
           - Supports Arrow, Page Up/Down, Home, and End keys through the canonical input
           - Dispatches bubbling \`slider:change\` and \`slider:commit\` events after successful synchronization
+          - Optional \`onChange\` / \`onChangeCommitted\` adapters receive the same normalized \`number\`
 
           ### ♿ Accessibility
           - Uses one native range input for focus, keyboard, form, and slider semantics
@@ -99,6 +103,91 @@ const meta: Meta<typeof Slider> = {
           - Production SSR markup is not hydrated; consumers initialize and destroy the manager explicitly
           - Mark labels are never truncated, so consumers must reserve enough space for long content and overflow
           - Large valid mark collections are rendered completely without virtualization
+          - After \`destroy()\`, create a new manager instance—reusing a destroyed instance throws
+
+          ## 💡 Usage Examples
+
+          ### Client script (\`slider.ui.ts\` / \`window.SliderManager\`)
+          Load the production UI bundle so \`window.SliderManager\` is available, then construct one manager per root and tear it down with \`destroy()\`.
+
+          Target forms: a root \`Element\`, an element \`id\` (optionally \`#\`-prefixed), or the default selector \`[data-component="slider"]\` when exactly one Slider exists on the page.
+
+          \`\`\`ts
+          const manager = new window.SliderManager!("volume-slider", {
+            onChange(value) {
+              console.log("changing", value);
+            },
+          });
+
+          // After reparenting into a different form while live:
+          // manager.refreshFormAssociation();
+
+          manager.destroy();
+          \`\`\`
+
+          ### \`SliderManagerOptions\`
+          Pass an options object (or omit it). \`null\` / primitives are rejected with \`ADAPTER\` / \`options\` before initialization. Callbacks are snapshotted once at construction and must be plain functions when provided.
+
+          | Option | Type | When it runs |
+          | --- | --- | --- |
+          | \`onChange\` | \`(value: number) => void\` | After each successful actual value change, immediately after \`slider:change\` |
+          | \`onChangeCommitted\` | \`(value: number) => void\` | After a commit, immediately after \`slider:commit\` |
+
+          Adapter details:
+          - Argument is the same normalized \`number\` used for the input, ARIA, visuals, and custom events
+          - Called with no \`this\` binding; return values, Promises, and thenables are ignored
+          - A thrown adapter stops later notification steps in that sequence but leaves an otherwise live manager live
+          - Omitted adapters skip only that step; DOM events still dispatch when applicable
+
+          ### Custom events
+          Listen on the Slider root. Both events bubble, are non-cancelable, and expose \`detail.value\` as a normalized \`number\`.
+
+          | Event | Plain-language meaning | \`CustomEvent\` init |
+          | --- | --- | --- |
+          | \`slider:change\` | Value updated | \`{ bubbles: true, cancelable: false, detail: { value } }\` |
+          | \`slider:commit\` | Current gesture finished | \`{ bubbles: true, cancelable: false, detail: { value } }\` |
+
+          Applicable notification order after synchronization:
+
+          \`\`\`text
+          slider:change dispatch
+          → onChange
+          → slider:commit dispatch
+          → onChangeCommitted
+          \`\`\`
+
+          \`\`\`ts
+          const root = document.getElementById("volume-slider");
+
+          // Live preview while dragging
+          root?.addEventListener("slider:change", (event) => {
+            if (event instanceof CustomEvent) {
+              console.log("preview", event.detail.value);
+            }
+          });
+
+          // Persist only after the user releases the thumb
+          root?.addEventListener("slider:commit", (event) => {
+            if (event instanceof CustomEvent) {
+              console.log("save", event.detail.value);
+            }
+          });
+          \`\`\`
+
+          Native range \`input\` / \`change\` events remain browser-owned. The manager does not synthesize, cancel, redispatch, or promise a cross-order between them and \`slider:*\` notifications.
+
+          ### Choosing \`change\` vs \`commit\`
+          Think of a drag as many tiny updates, then one “done”:
+
+          - **\`change\` / \`onChange\`** — “the value moved.” Fires every time the number actually changes while the user is still interacting (dragging or pressing keys). Use this for cheap, local UI feedback: live preview labels, CSS variables, unmuted audio volume while scrubbing.
+          - **\`commit\` / \`onChangeCommitted\`** — “the user finished this gesture.” Fires once when the interaction settles. Use this for work you do **not** want on every intermediate thumb position: persist settings, call an API, write \`localStorage\`, sync a remote preference.
+
+          Most consumers only need \`change\`. Add \`commit\` when intermediate updates would be too noisy or expensive.
+
+          Concrete timing:
+          - **Pointer drag**: \`change\` on each moved value; \`commit\` once when the pointer ends (\`pointerup\` / \`pointercancel\` / \`lostpointercapture\` / window \`blur\`)—even if the drag never changed the value
+          - **Keyboard** (Arrow / Page / Home / End): a value-changing key fires \`change\` and \`commit\` together in one sequence (each key press is already a finished step)
+          - **Form reset**: restores the SSR baseline with **no** adapters and **no** custom events
         `,
       },
     },
@@ -209,10 +298,39 @@ export const Marks: Story = {
         ]}
         aria-label="Restricted marks"
       />
+      <div
+        style={{
+          display: "flex",
+          gap: "6rem",
+          alignItems: "stretch",
+          height: "20rem",
+        }}
+      >
+        <div style={{ height: "100%", width: "3rem" }}>
+          <ManagedSlider
+            {...args}
+            orientation="vertical"
+            marks
+            aria-label="Vertical automatic marks"
+          />
+        </div>
+        <div style={{ height: "100%", minWidth: "8rem" }}>
+          <ManagedSlider
+            {...args}
+            orientation="vertical"
+            marks={[
+              { value: 0, label: "Mute" },
+              { value: 50, label: "Balanced" },
+              { value: 100, label: "Maximum" },
+            ]}
+            aria-label="Vertical custom marks"
+          />
+        </div>
+      </div>
     </div>
   ),
   parameters: {
-    controls: { exclude: ["marks", "step"] },
+    controls: { exclude: ["marks", "step", "orientation"] },
     viewMode: "docs",
   },
 };
