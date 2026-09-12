@@ -140,8 +140,13 @@ const localRegistrationError =
 function registrationError(
   code: SliderRegistrationErrorCode,
   field?: string,
+  detail?: string,
 ): SliderRegistrationErrorInstance {
-  return new localRegistrationError(code, field);
+  const error = new localRegistrationError(code, field);
+  if (detail !== undefined) {
+    error.message = `${code}: ${detail}`;
+  }
+  return error;
 }
 
 function readDiagnosticsFlag(): boolean {
@@ -185,12 +190,19 @@ function parseCanonicalNumber(
   code: SliderRegistrationErrorCode,
   field: string,
 ): number {
-  if (value === null || value === "") {
-    throw registrationError(code, field);
+  if (value === null) {
+    throw registrationError(code, field, `${field} is missing`);
+  }
+  if (value === "") {
+    throw registrationError(code, field, `${field} is empty`);
   }
   const parsed = Number(value);
   if (!Number.isFinite(parsed) || serializeCanonicalDecimal(parsed) !== value) {
-    throw registrationError(code, field);
+    throw registrationError(
+      code,
+      field,
+      `${field} must be a canonical decimal, found ${JSON.stringify(value)}`,
+    );
   }
   return parsed;
 }
@@ -199,27 +211,42 @@ function normalizedName(value: string | null): string | undefined {
   return value === null || value.trim() === "" ? undefined : value;
 }
 
+function expectedSingleMatchError(
+  selector: string,
+  found: number,
+): SliderRegistrationErrorInstance {
+  return registrationError(
+    "ROOT_TOPOLOGY",
+    undefined,
+    `expected exactly 1 match for ${selector}, found ${found}`,
+  );
+}
+
 function requireSingleElement<T extends Element>(root: Element, selector: string): T {
   const matches = root.querySelectorAll<T>(selector);
   if (matches.length !== 1) {
-    throw registrationError("ROOT_TOPOLOGY");
+    throw expectedSingleMatchError(selector, matches.length);
   }
   const match = matches[0];
   if (match === undefined) {
-    throw registrationError("ROOT_TOPOLOGY");
+    throw expectedSingleMatchError(selector, 0);
   }
   return match;
 }
 
 function resolveTarget(target: SliderTarget | undefined): Element {
   if (!hasBrowserDocument()) {
-    throw registrationError("BROWSER_ENVIRONMENT");
+    throw registrationError("BROWSER_ENVIRONMENT", undefined, "document is unavailable");
   }
 
   if (target === undefined || target === DEFAULT_SELECTOR) {
     const matches = document.querySelectorAll(DEFAULT_SELECTOR);
     if (matches.length !== 1 || matches[0] === undefined) {
-      throw registrationError("ROOT_TOPOLOGY", "target");
+      throw registrationError(
+        "ROOT_TOPOLOGY",
+        "target",
+        `expected exactly 1 match for ${DEFAULT_SELECTOR}, found ${matches.length}`,
+      );
     }
     return matches[0];
   }
@@ -227,48 +254,81 @@ function resolveTarget(target: SliderTarget | undefined): Element {
   if (typeof target === "string") {
     const id = target.startsWith("#") ? target.slice(1) : target;
     if (id === "") {
-      throw registrationError("ROOT_TOPOLOGY", "target");
+      throw registrationError("ROOT_TOPOLOGY", "target", "target ID is empty");
     }
     const resolved = document.getElementById(id);
     if (resolved === null) {
-      throw registrationError("ROOT_TOPOLOGY", "target");
+      throw registrationError("ROOT_TOPOLOGY", "target", `no element with id "${id}"`);
     }
     return resolved;
   }
 
   if (!isElement(target)) {
-    throw registrationError("ROOT_TOPOLOGY", "target");
+    throw registrationError("ROOT_TOPOLOGY", "target", "target is not an Element");
   }
   return target;
 }
 
 function validateRootTopology(root: Element): SliderDom {
-  if (
-    root.ownerDocument !== document ||
-    !root.isConnected ||
-    root.getRootNode() !== document
-  ) {
-    throw registrationError("ROOT_TOPOLOGY");
+  if (root.ownerDocument !== document) {
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      undefined,
+      "root is not in the current document",
+    );
   }
-  if (root.getAttribute("data-component") !== "slider") {
-    throw registrationError("ROOT_TOPOLOGY", "data-component");
+  if (!root.isConnected) {
+    throw registrationError("ROOT_TOPOLOGY", undefined, "root is not connected");
+  }
+  if (root.getRootNode() !== document) {
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      undefined,
+      "root is not in the current document light DOM",
+    );
+  }
+  const component = root.getAttribute("data-component");
+  if (component !== "slider") {
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      "data-component",
+      `data-component must be "slider", found ${JSON.stringify(component)}`,
+    );
   }
 
   if (root.querySelector(DEFAULT_SELECTOR) !== null) {
-    throw registrationError("ROOT_TOPOLOGY");
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      undefined,
+      "nested slider root is not allowed",
+    );
   }
 
   const input = requireSingleElement<HTMLInputElement>(root, 'input[type="range"]');
   const rail = requireSingleElement<HTMLElement>(root, "[data-slider-rail]");
   const thumb = requireSingleElement<HTMLElement>(root, "[data-slider-thumb]");
-  if (rail.getAttribute("data-slider-rail") !== "") {
-    throw registrationError("ROOT_TOPOLOGY", "data-slider-rail");
+  const railHook = rail.getAttribute("data-slider-rail");
+  if (railHook !== "") {
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      "data-slider-rail",
+      `data-slider-rail must be an empty attribute, found ${JSON.stringify(railHook)}`,
+    );
   }
-  if (thumb.getAttribute("data-slider-thumb") !== "") {
-    throw registrationError("ROOT_TOPOLOGY", "data-slider-thumb");
+  const thumbHook = thumb.getAttribute("data-slider-thumb");
+  if (thumbHook !== "") {
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      "data-slider-thumb",
+      `data-slider-thumb must be an empty attribute, found ${JSON.stringify(thumbHook)}`,
+    );
   }
   if (!rail.contains(thumb)) {
-    throw registrationError("ROOT_TOPOLOGY");
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      undefined,
+      "[data-slider-thumb] must be inside [data-slider-rail]",
+    );
   }
 
   const marks = Array.from(root.querySelectorAll<HTMLElement>("[data-slider-mark]"));
@@ -276,12 +336,41 @@ function validateRootTopology(root: Element): SliderDom {
     root.querySelectorAll<HTMLElement>("[data-slider-mark-label]"),
   );
   if (marks.some((mark) => !rail.contains(mark))) {
-    throw registrationError("ROOT_TOPOLOGY");
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      undefined,
+      "[data-slider-mark] must be inside [data-slider-rail]",
+    );
   }
   if (markLabels.some((label) => !marks.some((mark) => mark.contains(label)))) {
-    throw registrationError("ROOT_TOPOLOGY");
+    throw registrationError(
+      "ROOT_TOPOLOGY",
+      undefined,
+      "[data-slider-mark-label] must be inside [data-slider-mark]",
+    );
   }
   return { root, input, rail, thumb, marks, markLabels };
+}
+
+function throwAutomaticMarkMismatch(
+  markValues: readonly number[],
+  automaticMarks: readonly number[],
+  automaticMarkCount: number,
+): void {
+  if (automaticMarkCount !== markValues.length) {
+    throw registrationError(
+      "MARK",
+      "data-slider-marks",
+      `data-slider-marks "true" expected ${automaticMarkCount} automatic marks, found ${markValues.length}`,
+    );
+  }
+  if (automaticMarks.some((mark, index) => mark !== markValues[index])) {
+    throw registrationError(
+      "MARK",
+      "data-slider-marks",
+      `data-slider-marks "true" mark values [${markValues.join(", ")}] do not match automatic marks [${automaticMarks.join(", ")}]`,
+    );
+  }
 }
 
 function readConfiguration(
@@ -291,15 +380,27 @@ function readConfiguration(
   const { root, input } = dom;
   const orientationSource = root.getAttribute("data-slider-orientation");
   if (orientationSource !== "horizontal" && orientationSource !== "vertical") {
-    throw registrationError("BOOTSTRAP_CONTRACT", "data-slider-orientation");
+    throw registrationError(
+      "BOOTSTRAP_CONTRACT",
+      "data-slider-orientation",
+      `data-slider-orientation must be "horizontal" or "vertical", found ${JSON.stringify(orientationSource)}`,
+    );
   }
   const sizeSource = root.getAttribute("data-slider-size");
   if (sizeSource !== "small" && sizeSource !== "medium" && sizeSource !== "large") {
-    throw registrationError("BOOTSTRAP_CONTRACT", "data-slider-size");
+    throw registrationError(
+      "BOOTSTRAP_CONTRACT",
+      "data-slider-size",
+      `data-slider-size must be "small", "medium", or "large", found ${JSON.stringify(sizeSource)}`,
+    );
   }
   const disabledSource = root.getAttribute("data-slider-disabled");
   if (disabledSource !== "true" && disabledSource !== "false") {
-    throw registrationError("BOOTSTRAP_CONTRACT", "data-slider-disabled");
+    throw registrationError(
+      "BOOTSTRAP_CONTRACT",
+      "data-slider-disabled",
+      `data-slider-disabled must be "true" or "false", found ${JSON.stringify(disabledSource)}`,
+    );
   }
 
   const min = parseCanonicalNumber(
@@ -318,10 +419,18 @@ function readConfiguration(
     "data-slider-value",
   );
   if (min >= max) {
-    throw registrationError("RANGE", "data-slider-max");
+    throw registrationError(
+      "RANGE",
+      "data-slider-max",
+      `data-slider-max must be greater than data-slider-min, found min ${min} max ${max}`,
+    );
   }
   if (!input.hasAttribute("aria-label") && !input.hasAttribute("aria-labelledby")) {
-    throw registrationError("NAMING");
+    throw registrationError(
+      "NAMING",
+      undefined,
+      "canonical input requires aria-label or aria-labelledby",
+    );
   }
 
   const stepSource = root.getAttribute("data-slider-step");
@@ -330,32 +439,92 @@ function readConfiguration(
       ? null
       : parseCanonicalNumber(stepSource, "STEP", "data-slider-step");
   if (step !== null && step <= 0) {
-    throw registrationError("STEP", "data-slider-step");
+    throw registrationError(
+      "STEP",
+      "data-slider-step",
+      `data-slider-step must be greater than 0, found ${step}`,
+    );
   }
 
   const name = normalizedName(root.getAttribute("data-slider-name"));
   const inputName = normalizedName(input.getAttribute("name"));
   const disabled = disabledSource === "true";
-  if (
-    Number(input.min) !== min ||
-    Number(input.max) !== max ||
-    (step === null ? input.step !== "any" : Number(input.step) !== step) ||
-    Number(input.defaultValue) !== value ||
-    input.disabled !== disabled ||
-    inputName !== name ||
-    (orientationSource === "vertical"
-      ? input.getAttribute("aria-orientation") !== "vertical"
-      : input.hasAttribute("aria-orientation"))
-  ) {
-    throw registrationError("STATIC_MIRROR");
+  if (Number(input.min) !== min) {
+    throw registrationError(
+      "STATIC_MIRROR",
+      undefined,
+      `native input min ${JSON.stringify(input.min)} does not match data-slider-min ${JSON.stringify(serializeCanonicalDecimal(min))}`,
+    );
+  }
+  if (Number(input.max) !== max) {
+    throw registrationError(
+      "STATIC_MIRROR",
+      undefined,
+      `native input max ${JSON.stringify(input.max)} does not match data-slider-max ${JSON.stringify(serializeCanonicalDecimal(max))}`,
+    );
+  }
+  const expectedStep = step === null ? "null" : serializeCanonicalDecimal(step);
+  if (step === null ? input.step !== "any" : Number(input.step) !== step) {
+    throw registrationError(
+      "STATIC_MIRROR",
+      undefined,
+      `native input step ${JSON.stringify(input.step)} does not match data-slider-step ${JSON.stringify(expectedStep)}`,
+    );
+  }
+  if (Number(input.defaultValue) !== value) {
+    throw registrationError(
+      "STATIC_MIRROR",
+      undefined,
+      `native input value ${JSON.stringify(input.defaultValue)} does not match data-slider-value ${JSON.stringify(serializeCanonicalDecimal(value))}`,
+    );
+  }
+  if (input.disabled !== disabled) {
+    throw registrationError(
+      "STATIC_MIRROR",
+      undefined,
+      `native input disabled ${input.disabled} does not match data-slider-disabled ${disabled}`,
+    );
+  }
+  if (inputName !== name) {
+    throw registrationError(
+      "STATIC_MIRROR",
+      undefined,
+      `native input name ${JSON.stringify(inputName ?? "")} does not match data-slider-name ${JSON.stringify(name ?? "")}`,
+    );
+  }
+  if (orientationSource === "vertical") {
+    if (input.getAttribute("aria-orientation") !== "vertical") {
+      throw registrationError(
+        "STATIC_MIRROR",
+        undefined,
+        'native input must have aria-orientation "vertical"',
+      );
+    }
+  } else if (input.hasAttribute("aria-orientation")) {
+    throw registrationError(
+      "STATIC_MIRROR",
+      undefined,
+      "native input must not have aria-orientation when horizontal",
+    );
   }
 
   const marksSource = root.getAttribute("data-slider-marks");
   if (marksSource !== "false" && marksSource !== "true" && marksSource !== "custom") {
-    throw registrationError("MARK", "data-slider-marks");
+    throw registrationError(
+      "MARK",
+      "data-slider-marks",
+      `data-slider-marks must be "false", "true", or "custom", found ${JSON.stringify(marksSource)}`,
+    );
   }
-  if (dom.marks.some((mark) => mark.getAttribute("data-slider-mark") !== "")) {
-    throw registrationError("MARK", "data-slider-mark");
+  const filledMarkHook = dom.marks.find(
+    (mark) => mark.getAttribute("data-slider-mark") !== "",
+  );
+  if (filledMarkHook !== undefined) {
+    throw registrationError(
+      "MARK",
+      "data-slider-mark",
+      `data-slider-mark must be an empty attribute, found ${JSON.stringify(filledMarkHook.getAttribute("data-slider-mark"))}`,
+    );
   }
   const markValues = dom.marks.map((mark) =>
     parseCanonicalNumber(
@@ -373,12 +542,21 @@ function readConfiguration(
     }
     const labels = mark.querySelectorAll<HTMLElement>("[data-slider-mark-label]");
     if (labels.length > 1) {
-      throw registrationError("MARK_LABEL");
+      throw registrationError(
+        "MARK_LABEL",
+        undefined,
+        `expected at most 1 [data-slider-mark-label] per mark, found ${labels.length}`,
+      );
     }
     const label = labels[0];
     if (label !== undefined) {
-      if (label.getAttribute("data-slider-mark-label") !== "") {
-        throw registrationError("MARK_LABEL", "data-slider-mark-label");
+      const labelHook = label.getAttribute("data-slider-mark-label");
+      if (labelHook !== "") {
+        throw registrationError(
+          "MARK_LABEL",
+          "data-slider-mark-label",
+          `data-slider-mark-label must be an empty attribute, found ${JSON.stringify(labelHook)}`,
+        );
       }
       markLabelValues.set(label, markValue);
       if (label.textContent !== "") {
@@ -386,22 +564,43 @@ function readConfiguration(
       }
     }
   });
-  if (
-    (marksSource === "false" && markValues.length !== 0) ||
-    markValues.some(
-      (mark, index) =>
-        mark < min ||
-        mark > max ||
-        (index > 0 && mark <= (markValues[index - 1] ?? mark)),
-    )
-  ) {
-    throw registrationError("MARK", "data-slider-marks");
+  if (marksSource === "false" && markValues.length !== 0) {
+    throw registrationError(
+      "MARK",
+      "data-slider-marks",
+      `data-slider-marks "false" does not allow mark elements, found ${markValues.length}`,
+    );
+  }
+  for (const [index, mark] of markValues.entries()) {
+    if (mark < min || mark > max) {
+      throw registrationError(
+        "MARK",
+        "data-slider-marks",
+        `data-slider-marks value ${mark} is outside min ${min} max ${max}`,
+      );
+    }
+    const previous = markValues[index - 1];
+    if (index > 0 && previous !== undefined && mark <= previous) {
+      throw registrationError(
+        "MARK",
+        "data-slider-marks",
+        `data-slider-marks values must be strictly increasing, found ${mark} after ${previous}`,
+      );
+    }
   }
   if (step === null && markValues.length === 0) {
-    throw registrationError("STEP", "data-slider-step");
+    throw registrationError(
+      "STEP",
+      "data-slider-step",
+      'data-slider-step "null" requires at least one mark',
+    );
   }
   if (step === null && marksSource !== "custom") {
-    throw registrationError("STEP", "data-slider-step");
+    throw registrationError(
+      "STEP",
+      "data-slider-step",
+      `data-slider-step "null" requires data-slider-marks "custom", found ${JSON.stringify(marksSource)}`,
+    );
   }
 
   let automaticMarksValidated = false;
@@ -420,13 +619,8 @@ function readConfiguration(
           (provisionalDomain.maxUnits - provisionalDomain.minUnits) /
             (provisionalDomain.stepUnits ?? 1),
         ) + 1;
-      if (automaticMarkCount !== markValues.length) {
-        throw registrationError("MARK", "data-slider-marks");
-      }
       const automaticMarks = getAutomaticMarkValues(provisionalDomain);
-      if (automaticMarks.some((mark, index) => mark !== markValues[index])) {
-        throw registrationError("MARK", "data-slider-marks");
-      }
+      throwAutomaticMarkMismatch(markValues, automaticMarks, automaticMarkCount);
       automaticMarksValidated = true;
     } catch (error) {
       if (error instanceof localRegistrationError) {
@@ -441,7 +635,11 @@ function readConfiguration(
     "data-slider-shift-step",
   );
   if (shiftStep <= 0) {
-    throw registrationError("SHIFT_STEP", "data-slider-shift-step");
+    throw registrationError(
+      "SHIFT_STEP",
+      "data-slider-shift-step",
+      `data-slider-shift-step must be greater than 0, found ${shiftStep}`,
+    );
   }
 
   let domain: FixedPointDomain;
@@ -455,22 +653,23 @@ function readConfiguration(
       marks: markValues,
     });
   } catch {
-    throw registrationError("NUMERIC_REPRESENTABILITY");
+    throw registrationError(
+      "NUMERIC_REPRESENTABILITY",
+      undefined,
+      "configuration values are not numerically representable",
+    );
   }
   if (marksSource === "true" && !automaticMarksValidated) {
     const automaticMarkCount =
       Math.floor((domain.maxUnits - domain.minUnits) / (domain.stepUnits ?? 1)) + 1;
-    if (automaticMarkCount !== markValues.length) {
-      throw registrationError("MARK", "data-slider-marks");
-    }
-    const automaticMarks = getAutomaticMarkValues(domain);
-    if (automaticMarks.some((mark, index) => mark !== markValues[index])) {
-      throw registrationError("MARK", "data-slider-marks");
-    }
+    throwAutomaticMarkMismatch(
+      markValues,
+      getAutomaticMarkValues(domain),
+      automaticMarkCount,
+    );
   }
   const resetValue = normalizeValue(domain, value);
   if (diagnosticsEnabled && resetValue !== value) {
-    console.log("1");
     warnBestEffort(
       "Slider initial value corrected",
       "data-slider-value",
@@ -484,7 +683,6 @@ function readConfiguration(
     domain.stepUnits !== null &&
     (domain.maxUnits - domain.minUnits) % domain.stepUnits !== 0
   ) {
-    console.log("2");
     warnBestEffort("Slider automatic marks do not reach max", "data-slider-marks");
   }
   if (
@@ -492,7 +690,6 @@ function readConfiguration(
     domain.stepUnits !== null &&
     domain.shiftStepUnits % domain.stepUnits !== 0
   ) {
-    console.log("3");
     warnBestEffort("Slider shift step is not a step multiple", "data-slider-shift-step");
   }
 
@@ -616,7 +813,7 @@ class LocalSliderManager implements SliderManagerInstance {
       return;
     }
     if (typeof window === "undefined") {
-      throw registrationError("BROWSER_ENVIRONMENT");
+      throw registrationError("BROWSER_ENVIRONMENT", undefined, "window is undefined");
     }
     if (
       this.state === "destroyed" ||
@@ -624,7 +821,11 @@ class LocalSliderManager implements SliderManagerInstance {
       this.state === "cleanup-pending" ||
       this.state === "initializing"
     ) {
-      throw registrationError("OWNERSHIP_CONFLICT", "manager");
+      throw registrationError(
+        "OWNERSHIP_CONFLICT",
+        "manager",
+        "manager is in an invalid state",
+      );
     }
 
     if (this.state === "live") {
@@ -632,7 +833,11 @@ class LocalSliderManager implements SliderManagerInstance {
       if (resolvedRoot === this.root) {
         return;
       }
-      throw registrationError("OWNERSHIP_CONFLICT", "manager");
+      throw registrationError(
+        "OWNERSHIP_CONFLICT",
+        "manager",
+        "manager is already initialized",
+      );
     }
 
     this.state = "initializing";
@@ -645,7 +850,11 @@ class LocalSliderManager implements SliderManagerInstance {
       const existing = ownershipRegistry.get(resolvedRoot);
       if (existing !== undefined) {
         if (existing.owner !== undefined && existing.owner.state === "live") {
-          throw registrationError("OWNERSHIP_CONFLICT", "root");
+          throw registrationError(
+            "OWNERSHIP_CONFLICT",
+            "root",
+            "root is already owned by a live manager",
+          );
         }
         this.recoverPending(resolvedRoot, existing);
         this.throwIfInitializationCancelled();
@@ -704,7 +913,6 @@ class LocalSliderManager implements SliderManagerInstance {
         }
       }
       if (this.diagnosticsEnabled && error instanceof localRegistrationError) {
-        console.log("4");
         warnBestEffort("Slider registration failed", error);
       }
       throw error;
@@ -713,7 +921,11 @@ class LocalSliderManager implements SliderManagerInstance {
 
   private throwIfInitializationCancelled(): void {
     if (this.initializationCancelled) {
-      throw registrationError("OWNERSHIP_CONFLICT", "manager");
+      throw registrationError(
+        "OWNERSHIP_CONFLICT",
+        "manager",
+        "initialization has been cancelled",
+      );
     }
   }
 
@@ -867,7 +1079,7 @@ class LocalSliderManager implements SliderManagerInstance {
     if (currentValue === undefined) {
       this.releaseInitialCapture(
         captureEntry,
-        registrationError("BOOTSTRAP_CONTRACT", "value"),
+        registrationError("BOOTSTRAP_CONTRACT", "value", "value is undefined"),
       );
     }
     this.activePointer = {
@@ -1336,19 +1548,23 @@ class LocalSliderManager implements SliderManagerInstance {
 
   private validateAdapters(): void {
     if (this.onChange !== undefined && typeof this.onChange !== "function") {
-      throw registrationError("ADAPTER", "onChange");
+      throw registrationError("ADAPTER", "onChange", "onChange is not a function");
     }
     if (
       this.onChangeCommitted !== undefined &&
       typeof this.onChangeCommitted !== "function"
     ) {
-      throw registrationError("ADAPTER", "onChangeCommitted");
+      throw registrationError(
+        "ADAPTER",
+        "onChangeCommitted",
+        "onChangeCommitted is not a function",
+      );
     }
   }
 
   private recoverPending(root: Element, record: OwnershipRecord): void {
     if (record.recovering) {
-      throw registrationError("OWNERSHIP_CONFLICT", "root");
+      throw registrationError("OWNERSHIP_CONFLICT", "root", "root is already recovering");
     }
     record.recovering = true;
     try {
@@ -1609,7 +1825,6 @@ function selectExportPair(): readonly [
   try {
     existing = window.SliderManager;
   } catch (error) {
-    console.log("5");
     warnBestEffort("SliderManager global exposure failed", "read", error);
     return [localSliderManager, localRegistrationError];
   }
@@ -1619,7 +1834,6 @@ function selectExportPair(): readonly [
     if (compatible !== null) {
       return compatible;
     }
-    console.log("6");
     warnBestEffort("SliderManager global conflict", existing);
     return [localSliderManager, localRegistrationError];
   }
@@ -1627,7 +1841,6 @@ function selectExportPair(): readonly [
   try {
     window.SliderManager = localSliderManager;
   } catch (error) {
-    console.log("7");
     warnBestEffort("SliderManager global exposure failed", "write", error);
     return [localSliderManager, localRegistrationError];
   }
@@ -1635,11 +1848,9 @@ function selectExportPair(): readonly [
   try {
     const verified = window.SliderManager;
     if (verified !== localSliderManager) {
-      console.log("8");
       warnBestEffort("SliderManager global exposure failed", "verify", verified);
     }
   } catch (error) {
-    console.log("9");
     warnBestEffort("SliderManager global exposure failed", "verify", error);
   }
   return [localSliderManager, localRegistrationError];

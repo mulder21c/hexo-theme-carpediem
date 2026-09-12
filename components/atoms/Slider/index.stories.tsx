@@ -114,7 +114,7 @@ const meta: Meta<typeof Slider> = {
 
           \`\`\`ts
           const manager = new window.SliderManager!("volume-slider", {
-            onChange(value) {
+            onChangeCommitted(value) {
               console.log("changing", value);
             },
           });
@@ -332,6 +332,65 @@ export const Marks: Story = {
   parameters: {
     controls: { exclude: ["marks", "step", "orientation"] },
     viewMode: "docs",
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step("Mark labels participate in cross-axis layout", () => {
+      const horizontalInput = canvas.getByRole("slider", { name: "Custom marks" });
+      const verticalInput = canvas.getByRole("slider", { name: "Vertical custom marks" });
+      const horizontalRoot = horizontalInput.parentElement;
+      const verticalRoot = verticalInput.parentElement;
+      const horizontalRail = horizontalInput.nextElementSibling;
+      const verticalRail = verticalInput.nextElementSibling;
+
+      if (
+        !(horizontalRoot instanceof HTMLElement) ||
+        !(verticalRoot instanceof HTMLElement) ||
+        !(horizontalRail instanceof HTMLElement) ||
+        !(verticalRail instanceof HTMLElement)
+      ) {
+        throw new Error("Expected Slider roots and rails");
+      }
+
+      const horizontalLabels = Array.from(horizontalRail.children)
+        .map((mark) => mark.firstElementChild)
+        .filter((label): label is HTMLElement => label instanceof HTMLElement);
+      const verticalLabels = Array.from(verticalRail.children)
+        .map((mark) => mark.firstElementChild)
+        .filter((label): label is HTMLElement => label instanceof HTMLElement);
+      const horizontalRootRect = horizontalRoot.getBoundingClientRect();
+      const verticalRootRect = verticalRoot.getBoundingClientRect();
+      const horizontalHitSize = Number.parseFloat(
+        getComputedStyle(horizontalRoot).getPropertyValue("--slider-hit-size"),
+      );
+      const verticalHitSize = Number.parseFloat(
+        getComputedStyle(verticalRoot).getPropertyValue("--slider-hit-size"),
+      );
+
+      expect(horizontalLabels).toHaveLength(3);
+      expect(verticalLabels).toHaveLength(3);
+      expect(horizontalRootRect.height).toBeGreaterThan(horizontalHitSize);
+      expect(verticalRootRect.width).toBeGreaterThan(verticalHitSize);
+      horizontalLabels.forEach((label) => {
+        expect(getComputedStyle(label.parentElement as HTMLElement).position).toBe(
+          "static",
+        );
+        expect(getComputedStyle(label).position).toBe("static");
+        expect(label.getBoundingClientRect().bottom).toBeLessThanOrEqual(
+          horizontalRootRect.bottom + 1,
+        );
+      });
+      verticalLabels.forEach((label) => {
+        expect(getComputedStyle(label.parentElement as HTMLElement).position).toBe(
+          "static",
+        );
+        expect(getComputedStyle(label).position).toBe("static");
+        expect(label.getBoundingClientRect().right).toBeLessThanOrEqual(
+          verticalRootRect.right + 1,
+        );
+      });
+    });
   },
 };
 
