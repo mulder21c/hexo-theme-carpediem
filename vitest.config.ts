@@ -31,6 +31,7 @@ export default defineConfig({
           include: [
             "components/**/__tests__/**/*.test.{ts,tsx}",
             "components/**/*.{test,spec}.{ts,tsx}",
+            "scripts/**/__tests__/**/*.test.{js,ts}",
           ],
           exclude: ["components/**/*.stories.{ts,tsx}"],
           css: {

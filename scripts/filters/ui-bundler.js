@@ -7,6 +7,16 @@ const { minify } = require("terser");
 // Theme root directory path
 const themeRoot = path.resolve(__dirname, "../..");
 
+const COMPONENT_UI_LAYERS = Object.freeze([
+  "atoms",
+  "molecules",
+  "organisms",
+  "templates",
+]);
+const UNKNOWN_COMPONENT_LAYER_RANK = COMPONENT_UI_LAYERS.length;
+const LAYOUT_LAYER_RANK = UNKNOWN_COMPONENT_LAYER_RANK + 1;
+const UNKNOWN_LAYER_RANK = LAYOUT_LAYER_RANK + 1;
+
 // Flag to prevent multiple simultaneous executions
 let isBundling = false;
 
@@ -54,9 +64,71 @@ function findUiFiles(dirPath, fileList = []) {
 }
 
 /**
+ * Converts a file path to a POSIX relative path from the given root.
+ * @param {string} filePath - File path
+ * @param {string} root - Theme root directory
+ * @returns {string} POSIX relative path
+ */
+function toPosixRelativePath(filePath, root) {
+  return path.relative(root, filePath).split(path.sep).join("/");
+}
+
+/**
+ * Returns the bundle rank for a UI file so lower layers execute first.
+ * @param {string} filePath - File path
+ * @param {string} root - Theme root directory
+ * @returns {number} Sort rank (lower runs first)
+ */
+function getUiFileLayerRank(filePath, root) {
+  const relativePath = toPosixRelativePath(filePath, root);
+
+  if (relativePath === "layout" || relativePath.startsWith("layout/")) {
+    return LAYOUT_LAYER_RANK;
+  }
+
+  if (relativePath === "components" || relativePath.startsWith("components/")) {
+    const layer = relativePath.split("/")[1];
+    const layerIndex = COMPONENT_UI_LAYERS.indexOf(layer);
+    if (layerIndex !== -1) {
+      return layerIndex;
+    }
+    return UNKNOWN_COMPONENT_LAYER_RANK;
+  }
+
+  return UNKNOWN_LAYER_RANK;
+}
+
+/**
+ * Sorts UI files by Atomic Design layer, then by relative path within a layer.
+ * Order: atoms → molecules → organisms → templates → other components → layout.
+ * @param {string[]} filePaths - UI file paths
+ * @param {string} [root] - Theme root directory
+ * @returns {string[]} Sorted UI file paths
+ */
+function sortUiFiles(filePaths, root = themeRoot) {
+  return [...filePaths].sort((leftPath, rightPath) => {
+    const rankDiff =
+      getUiFileLayerRank(leftPath, root) - getUiFileLayerRank(rightPath, root);
+    if (rankDiff !== 0) {
+      return rankDiff;
+    }
+
+    const leftRelative = toPosixRelativePath(leftPath, root);
+    const rightRelative = toPosixRelativePath(rightPath, root);
+    if (leftRelative < rightRelative) {
+      return -1;
+    }
+    if (leftRelative > rightRelative) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
+/**
  * Collects all *.ui.ts files from components and layout directories.
  * @param {string} root - Theme root directory
- * @returns {string[]} Array of found *.ui.ts file paths (sorted)
+ * @returns {string[]} Array of found *.ui.ts file paths (layer-sorted)
  */
 function collectUiFiles(root) {
   const uiFiles = [];
@@ -75,10 +147,7 @@ function collectUiFiles(root) {
     uiFiles.push(...layoutFiles);
   }
 
-  // Sort files for consistent output
-  uiFiles.sort();
-
-  return uiFiles;
+  return sortUiFiles(uiFiles, root);
 }
 
 /**
@@ -393,4 +462,5 @@ if (typeof hexo !== "undefined") {
   hexo.extend.filter.register("before_generate", bundleUi, 10);
 }
 
+bundleUi.sortUiFiles = sortUiFiles;
 module.exports = bundleUi;
