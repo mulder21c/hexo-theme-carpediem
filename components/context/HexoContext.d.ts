@@ -281,7 +281,7 @@ export interface HexoConfig {
   pretty_urls: {
     trailing_index: boolean;
     trailing_html: boolean;
-  },
+  };
   // Directory
   source_dir: string;
   public_dir: string;
@@ -299,7 +299,7 @@ export interface HexoConfig {
     enable: boolean;
     field: "site" | "post";
     exclude: string[];
-  },
+  };
   filename_case: number;
   render_drafts: boolean;
   post_asset_folder: boolean;
@@ -307,47 +307,49 @@ export interface HexoConfig {
   future: boolean;
   syntax_highlighter: string;
   highlight: {
-    auto_detect: boolean,
-    line_number: string,
-    tab_replace: string,
-    wrap: boolean,
-    exclude_languages: string[],
-    language_attr: boolean,
-    hljs: boolean,
-    line_threshold: number,
-    first_line_number: string,
-    strip_indent: boolean,
-  },
+    auto_detect: boolean;
+    line_number: string;
+    tab_replace: string;
+    wrap: boolean;
+    exclude_languages: string[];
+    language_attr: boolean;
+    hljs: boolean;
+    line_threshold: number;
+    first_line_number: string;
+    strip_indent: boolean;
+  };
   prismjs: {
-    preprocess: boolean,
-    line_number: boolean,
-    tab_replace: string,
-    exclude_languages: string[],
-    strip_indent: boolean,
-  },
-  use_filename_as_post_title: boolean,
+    preprocess: boolean;
+    line_number: boolean;
+    tab_replace: string;
+    exclude_languages: string[];
+    strip_indent: boolean;
+  };
+  use_filename_as_post_title: boolean;
   // Category & Tag
-  default_category: string,
-  category_map: Record<string, string>,
-  tag_map: Record<string, string>,
+  default_category: string;
+  category_map: Record<string, string>;
+  tag_map: Record<string, string>;
   // Date & Time format
-  date_format: string,
-  time_format: string,
-  updated_option: "mtime" | "date" | "empty",
+  date_format: string;
+  time_format: string;
+  updated_option: "mtime" | "date" | "empty";
   // Pagination
-  per_page: number,
-  pagination_dir: string,
+  per_page: number;
+  pagination_dir: string;
   // Extensions
-  theme: string,
+  theme: string;
   server: {
-    cache: boolean
-  },
+    cache: boolean;
+  };
   // Deployment
-  deploy: { type: string; [keys: string]: unknown } | { type: string; [keys: string]: unknown }[],
+  deploy:
+    | { type: string; [keys: string]: unknown }
+    | { type: string; [keys: string]: unknown }[];
   // ignore files from processing
-  ignore: string[],
+  ignore: string[];
   // Category & Tag
-  meta_generator: true
+  meta_generator: true;
   [key: string]: unknown;
 }
 
@@ -367,7 +369,6 @@ export interface HexoLog {
   error: (...args: unknown[]) => void;
   debug: (...args: unknown[]) => void;
 }
-
 
 // ============================================================================
 // Helper Option Types
